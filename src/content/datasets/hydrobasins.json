@@ -1,0 +1,180 @@
+{
+  "id": "hydrobasins",
+  "title": "HydroBASINS v1c – Hierarchical Sub-basin Boundaries (Africa, levels 1–12)",
+  "description": "HydroBASINS is a set of vector polygon layers depicting watershed and sub-basin boundaries globally, derived from HydroSHEDS 15 arc-second hydrography. Twelve hierarchically nested levels with Pfafstetter coding allow up- and downstream topological analysis; versions without lakes ('standard') and with inserted lakes ('customized') are provided per continent.",
+  "purpose": "Provides consistent catchment and sub-basin units for aggregating rainfall, drought, evapotranspiration and surface-water indicators over Algeria's coastal (Tell) basins, the endorheic High Plateaux chotts and Saharan basins.",
+  "domain": [
+    "water"
+  ],
+  "categories": [
+    "Hydrography",
+    "Watershed boundaries"
+  ],
+  "keywords": [
+    "HydroBASINS",
+    "HydroSHEDS",
+    "watersheds",
+    "sub-basins",
+    "Pfafstetter",
+    "endorheic basins",
+    "catchments",
+    "vector"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "HydroSHEDS (World Wildlife Fund US / McGill University)",
+    "url": "https://www.hydrosheds.org/products/hydrobasins"
+  },
+  "creator": "Bernhard Lehner (McGill University) on behalf of World Wildlife Fund US, with the EU BioFresh project and IUCN",
+  "source_url": "https://www.hydrosheds.org/products/hydrobasins",
+  "documentation_url": "https://data.hydrosheds.org/file/technical-documentation/HydroBASINS_TechDoc_v1c.pdf",
+  "license": {
+    "name": "HydroSHEDS Version 1 License Agreement (WWF; custom licence, free for non-commercial and commercial use)",
+    "spdx": null,
+    "url": "https://data.hydrosheds.org/file/technical-documentation/HydroSHEDS_TechDoc_v1_4.pdf"
+  },
+  "license_notes": "HydroBASINS v1c is covered by the HydroSHEDS v1 License Agreement (Appendix A of the HydroSHEDS Technical Documentation v1.4), not by CC-BY 4.0 (CC-BY 4.0 applies only to HydroSHEDS v2 core products). The agreement states that licensees may not 'license or distribute the Licensed Materials as a stand-alone product' and requires the Exhibit B attribution: 'This product [...] incorporates data from the HydroSHEDS version 1 database which is © World Wildlife Fund, Inc. (2006-2022) and has been used herein under license. [...]'. AEO should link to the provider rather than re-host the files.",
+  "citation": "Lehner, B., Grill G. (2013): Global river hydrography and network routing: baseline data and new approaches to study the world's large river systems. Hydrological Processes, 27(15): 2171–2186. Data is available at www.hydrosheds.org.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Lehner, B., Grill, G. (2013). Global river hydrography and network routing: baseline data and new approaches to study the world's large river systems. Hydrological Processes 27(15), 2171–2186.",
+      "doi": "10.1002/hyp.9740",
+      "url": null
+    },
+    {
+      "citation": "Lehner, B., Verdin, K., Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU 89(10), 93–94.",
+      "doi": "10.1029/2008EO100001",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "continental",
+    "description": "Distributed per continent; the Africa file (prefix hybas_af) contains Algeria. The global product covers about 135.0 million km² of land excluding Antarctica. Users must select Algerian basins (note that many basins cross national borders).",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Static product derived from SRTM-based HydroSHEDS v1 (SRTM acquired February 2000). Technical documentation v1.c dated July 2014."
+  },
+  "resolution": {
+    "spatial": "Vector, derived from 15 arc-second (~500 m) HydroSHEDS grids",
+    "spatial_m": 500,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "Esri Shapefile (zipped)"
+  ],
+  "crs": "EPSG:4326 (WGS 84, geographic)",
+  "variables": [
+    {
+      "name": "Hybas_id / Next_down / Next_sink / Main_bas",
+      "units": "identifier",
+      "description": "Sub-basin ID and downstream, next-sink and main-basin topology"
+    },
+    {
+      "name": "Pfaf_id",
+      "units": "code",
+      "description": "Pfafstetter code (levels 1–12)"
+    },
+    {
+      "name": "Sub_area / Up_area",
+      "units": "km²",
+      "description": "Sub-basin area and total directly connected upstream area"
+    },
+    {
+      "name": "Dist_sink / Dist_main",
+      "units": "km",
+      "description": "Distance from polygon outlet to next downstream sink / main basin outlet"
+    },
+    {
+      "name": "Endo",
+      "units": "class",
+      "description": "Endorheic indicator: 0 not endorheic, 1 part of an endorheic basin, 2 endorheic sink"
+    },
+    {
+      "name": "Coast",
+      "units": "class",
+      "description": "Lumped coastal basin indicator (0 = no, 1 = yes)"
+    },
+    {
+      "name": "Order",
+      "units": "class",
+      "description": "Classical river order (0 = lumped coastal conglomerates)"
+    },
+    {
+      "name": "Lake",
+      "units": "class",
+      "description": "Customized (with lakes) format only: 0 no lake, 1 lake, 2 reservoir, 3 lagoon"
+    }
+  ],
+  "processing": "Watersheds were delineated from HydroSHEDS 15 arc-second flow directions and broken down hierarchically following the Pfafstetter concept (nine sub-units per level) over 12 levels. Small coastal basins were lumped into coastal drainage units (up to 500 km²), endorheic basins were grouped and seeded with Pfafstetter codes manually, and some small endorheic sinks were given 'virtual' connections to the surrounding river basin.",
+  "validation": null,
+  "limitations": [
+    "Quality depends on the SRTM-derived HydroSHEDS v1 hydrography; in very flat terrain (e.g. Saharan plains and High Plateaux depressions) drainage divides are less certain.",
+    "Small endorheic sinks may be virtually connected to larger basins (Endo = 2 with Next_down > 0); users must decide whether to terminate routing at endorheic sinks.",
+    "Small coastal basins are lumped into coastal units up to 500 km², which affects analyses along the Algerian Mediterranean coast.",
+    "Pfafstetter coding forces nine sub-basins per level, which can yield irregular sub-basin sizes at some levels.",
+    "Attributes are mostly geometric; the licence prohibits redistribution as a stand-alone product."
+  ],
+  "version": "v1c (Technical Documentation version 1.c)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "HydroBASINS product page (download table and per-level trees)",
+      "url": "https://www.hydrosheds.org/products/hydrobasins",
+      "kind": "external",
+      "format": "Shapefile (zip)",
+      "requires_login": false,
+      "notes": "Per-level Africa files are offered through an interactive tree; their URLs are not listed in the page HTML."
+    },
+    {
+      "label": "Africa, standard (no lakes), levels 1–12",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_af_lev01-12_v1c.zip",
+      "kind": "download",
+      "format": "Shapefile (zip)",
+      "requires_login": false,
+      "notes": "URL published on the official product page. Automated HEAD/GET requests on 2026-11-19 returned HTTP 403 with a Cloudflare challenge ('Cf-Mitigated: challenge'); download works in an interactive browser only. File size not reported."
+    },
+    {
+      "label": "Africa, customized (with lakes), levels 1–12",
+      "url": "https://data.hydrosheds.org/file/hydrobasins/customized_with_lakes/hybas_lake_af_lev01-12_v1c.zip",
+      "kind": "download",
+      "format": "Shapefile (zip)",
+      "requires_login": false,
+      "notes": "Same Cloudflare challenge behaviour as above."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Algeria combines short Mediterranean coastal basins in the Tell (lumped into coastal units where small), large endorheic systems on the High Plateaux (chotts) and vast Saharan endorheic or poorly defined drainage. Use the ENDO/NEXT_SINK fields to handle endorheic routing, and expect low-confidence divides in flat desert terrain. For reservoir/dam analyses, basins can be combined with JRC Global Surface Water layers.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "bbox",
+      "published_date",
+      "updated_date",
+      "download_url",
+      "format"
+    ],
+    "sources_consulted": [
+      "https://www.hydrosheds.org/products/hydrobasins",
+      "https://data.hydrosheds.org/file/technical-documentation/HydroBASINS_TechDoc_v1c.pdf",
+      "https://data.hydrosheds.org/file/technical-documentation/HydroSHEDS_TechDoc_v1_4.pdf",
+      "https://www.hydrosheds.org/products/hydrosheds-v2",
+      "https://www.hydrosheds.org/terms-of-use",
+      "https://api.crossref.org/works/10.1002/hyp.9740"
+    ],
+    "notes": "The Africa all-levels URL (hybas_af_lev01-12_v1c.zip) is the exact link published on the official page, but could not be confirmed as a file because data.hydrosheds.org serves a Cloudflare bot challenge (HTTP 403) to curl, so download_url is left null and no file size is given. Shapefile format is inferred from the TechDoc file naming (Hybas_XX_levYY_v1c.shp); the page itself only states shapefile for Pour Points. Attribute names follow the TechDoc v1.c field table capitalisation. HydroSHEDS v2 (CC-BY 4.0) includes only a beta HydroBASINS limited to the Americas, so v1c remains the Africa product. Licence restriction on stand-alone redistribution is from Appendix A, section 2.1.2 of the HydroSHEDS TechDoc v1.4."
+  }
+}

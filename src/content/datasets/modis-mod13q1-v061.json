@@ -1,0 +1,184 @@
+{
+  "id": "modis-mod13q1-v061",
+  "title": "MODIS/Terra Vegetation Indices 16-Day L3 Global 250 m (MOD13Q1 v061)",
+  "description": "16-day composite NDVI and EVI at 250 m from the MODIS instrument on Terra, with red, NIR, blue and MIR surface reflectances, view/sun geometry, composite day of year, VI quality and pixel reliability layers. Distributed as HDF-EOS2 files on the MODIS sinusoidal tile grid by the NASA Land Processes DAAC.",
+  "purpose": "A consistent vegetation-index time series for Algeria since February 2000, widely used for monitoring cereal-season vegetation, drought impacts on rangeland and cropland, and inter-annual greenness anomalies at regional scale.",
+  "domain": [
+    "agriculture",
+    "climate-drought",
+    "land-ecosystems"
+  ],
+  "categories": [
+    "Vegetation indices",
+    "Satellite-derived time series"
+  ],
+  "keywords": [
+    "MODIS",
+    "Terra",
+    "MOD13Q1",
+    "NDVI",
+    "EVI",
+    "vegetation index",
+    "16-day",
+    "250 m",
+    "Collection 6.1"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Land Processes Distributed Active Archive Center (LP DAAC)",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061"
+  },
+  "creator": "Kamel Didan (MODIS Vegetation Index team, Vegetation Index and Phenology Lab, University of Arizona)",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061",
+  "documentation_url": "https://lpdaac.usgs.gov/documents/621/MOD13_User_Guide_V61.pdf",
+  "license": {
+    "name": "Creative Commons Zero (NASA Earth science data, per EOSDIS Data Use and Citation Guidance)",
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "The dataset page states the data are 'openly shared, without restriction, in accordance with the EOSDIS Data Use and Citation Guidance', which licenses data from NASA-led missions as CC0 unless otherwise noted. Citation is not required but strongly requested.",
+  "citation": "Didan, Kamel. (2021). MODIS/Terra Vegetation Indices 16-Day L3 Global 250m SIN Grid V061 [Data set]. NASA Land Processes Distributed Active Archive Center. https://doi.org/10.5067/MODIS/MOD13Q1.061",
+  "doi": "10.5067/MODIS/MOD13Q1.061",
+  "references": [
+    {
+      "citation": "Didan, K., Barreto Munoz, A. (2019) MODIS Vegetation Index User's Guide (MOD13 Series), Version 3.10, Collection 6.1. Vegetation Index and Phenology Lab, The University of Arizona.",
+      "doi": null,
+      "url": "https://lpdaac.usgs.gov/documents/621/MOD13_User_Guide_V61.pdf"
+    },
+    {
+      "citation": "MODIS Vegetation Index (MOD13) Algorithm Theoretical Basis Document.",
+      "doi": null,
+      "url": "https://lpdaac.usgs.gov/documents/104/MOD13_ATBD.pdf"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land, processed in MODIS Sinusoidal Tiling System tiles (hXXvYY); only tiles containing land are produced. Users must select the tiles covering Algeria (or use AppEEARS) and reproject/clip themselves.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-02-18",
+    "end": null,
+    "ongoing": true,
+    "frequency": "16-day",
+    "description": "From 18 February 2000. The data catalog page states that Terra MODIS acquisitions will cease on 1 December 2026 and recommends transitioning to the VIIRS products VJ213A1 (primary) or VJ113A1 (secondary)."
+  },
+  "resolution": {
+    "spatial": "250 m",
+    "spatial_m": 250,
+    "temporal": "16-day"
+  },
+  "format": [
+    "HDF-EOS2"
+  ],
+  "crs": "MODIS Sinusoidal grid",
+  "variables": [
+    {
+      "name": "NDVI (16-day)",
+      "units": "NDVI (scale factor 0.0001)",
+      "description": "int16; valid range -2000 to 10000; fill -3000."
+    },
+    {
+      "name": "EVI (16-day)",
+      "units": "EVI (scale factor 0.0001)",
+      "description": "int16; valid range -2000 to 10000; fill -3000."
+    },
+    {
+      "name": "VI Quality",
+      "units": "bit field",
+      "description": "uint16 quality assessment bits; fill 65535."
+    },
+    {
+      "name": "Red, NIR, blue, MIR reflectance (bands 1, 2, 3, 7)",
+      "units": "reflectance (scale factor 0.0001)",
+      "description": "int16; valid range 0 to 10000; fill -1000."
+    },
+    {
+      "name": "Composite day of year",
+      "units": "Julian day",
+      "description": "Day of year of the selected observation (1–366)."
+    },
+    {
+      "name": "Pixel reliability",
+      "units": "rank",
+      "description": "Summary quality rank 0–3; fill -1."
+    },
+    {
+      "name": "View zenith, sun zenith, relative azimuth angles",
+      "units": "degrees (scale factor 0.01)",
+      "description": "Observation geometry of the selected pixel."
+    }
+  ],
+  "processing": "Since Collection 6, the 250 m VI product ingests pre-composited 8-day MODIS Level-2G surface reflectance (corrected for molecular scattering, ozone absorption and aerosols). The 16-day composite is built with a Constrained View angle – Maximum Value Composite (CV-MVC), with a plain Maximum Value Composite as backup. Collection 6.1 makes no change to the science algorithm; differences from C6 come from Level-1B calibration and polarization-correction updates.",
+  "validation": null,
+  "limitations": [
+    "Terra MODIS acquisitions are scheduled to end on 1 December 2026 (per the NASA data catalog page), so the series will not continue beyond that date; continuity requires switching to VIIRS vegetation-index products.",
+    "250 m pixels mix fields, fallow and natural vegetation in fragmented landscapes; NDVI/EVI values are not crop-specific.",
+    "The maximum-value compositing selects one observation per 16-day period, so the actual observation date varies within the period (see Composite day of year).",
+    "Downloading requires a free NASA Earthdata Login account."
+  ],
+  "version": "061 (Collection 6.1)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NASA Earthdata catalog page (LP DAAC)",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": false,
+      "notes": "Landing page; the DOI resolves here (lpdaac.usgs.gov/products/mod13q1v061/ redirects here)."
+    },
+    {
+      "label": "NASA Earthdata Search",
+      "url": "https://search.earthdata.nasa.gov/search?q=MOD13Q1",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "Granule downloads from data.lpdaac.earthdatacloud.nasa.gov redirect to Earthdata Login."
+    },
+    {
+      "label": "AppEEARS (subset/reproject by area)",
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "kind": "api",
+      "format": null,
+      "requires_login": true,
+      "notes": "Listed as a data tool on the catalog page for area-based subsetting. Output formats and login requirement not verified here."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Across northern Algeria's cereal and steppe zones, MOD13Q1 NDVI is a practical indicator of season greenness and drought stress, but 250 m pixels mix cereal fields, fallow, rangeland and orchards, so it should not be read as a crop-specific signal. Over the Sahara, NDVI stays near bare-soil values apart from oases and irrigated perimeters, which may occupy only part of a pixel.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "published_date",
+      "updated_date",
+      "validation",
+      "access[AppEEARS].format"
+    ],
+    "sources_consulted": [
+      "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061",
+      "https://doi.org/10.5067/MODIS/MOD13Q1.061",
+      "https://lpdaac.usgs.gov/documents/621/MOD13_User_Guide_V61.pdf",
+      "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      "https://cmr.earthdata.nasa.gov/search/granules.json?short_name=MOD13Q1&version=061"
+    ],
+    "notes": "DOI 10.5067/MODIS/MOD13Q1.061 confirmed via DataCite content negotiation (Didan, 2021; NASA LP DAAC; title 'MODIS/Terra Vegetation Indices 16-Day L3 Global 250m SIN Grid V061'). Earthdata Login requirement confirmed by a test request on a granule URL, which returned a 302 redirect to urs.earthdata.nasa.gov. The bbox is the global extent stated on the catalog page. The legacy lpdaac.usgs.gov product URL now redirects to earthdata.nasa.gov, and the old e4ftl01 data-pool path returned 404."
+  },
+  "map_layers": [
+    "ndvi-16day"
+  ],
+  "alert": "NASA has announced that Terra MODIS acquisitions cease on 1 December 2026. The archive remains available, but the time series will not be extended; NASA points users to equivalent VIIRS products."
+}

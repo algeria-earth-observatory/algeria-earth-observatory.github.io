@@ -1,0 +1,31 @@
+{
+  "name": "algeria-earth-observatory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Algeria Earth Observatory - open Earth data for Algeria (static website and data catalog).",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=20.3" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run check:data && astro build && node scripts/postbuild-check.mjs",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:data": "node scripts/validate-catalog.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "checksums": "node scripts/checksums.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.4.2",
+    "@fontsource-variable/inter": "5.2.8",
+    "@fontsource/ibm-plex-mono": "5.2.7",
+    "@tailwindcss/vite": "4.1.18",
+    "astro": "5.18.2",
+    "maplibre-gl": "5.24.1",
+    "tailwindcss": "4.1.18"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "typescript": "5.9.3"
+  }
+}

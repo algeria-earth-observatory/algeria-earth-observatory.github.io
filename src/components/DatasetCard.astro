@@ -1,0 +1,61 @@
+---
+import type { Dataset } from '../content.config';
+import Badges from './Badges.astro';
+import { domainById } from '../lib/domains';
+import {
+  COVERAGE, DATA_TYPE, period, resolutionBucket, periodBuckets, formatFamilies, accessMode, fmtDate,
+} from '../lib/format';
+interface Props { d: Dataset; headingLevel?: 'h2' | 'h3'; compact?: boolean }
+const { d, headingLevel = 'h3', compact = false } = Astro.props;
+const H = headingLevel;
+const mode = accessMode(d);
+const search = [d.title, d.title_fr, d.title_ar, d.description, d.provider?.name, d.creator, ...d.keywords, ...d.categories]
+  .filter(Boolean).join(' ').toLowerCase();
+const providerShort = d.provider?.name?.replace(/\s*\(.*?\)\s*/g, ' ').replace(/\s+([,;])/g, '$1').trim();
+---
+<article
+  class="card group relative flex h-full flex-col p-5 transition-shadow hover:shadow-[0_2px_14px_rgba(20,59,86,0.09)]"
+  data-dataset={d.id}
+  data-search={search}
+  data-domain={d.domain.join('|')}
+  data-provider={d.provider?.name ?? ''}
+  data-res={resolutionBucket(d)}
+  data-period={periodBuckets(d).join('|')}
+  data-coverage={d.spatial_extent?.coverage ?? ''}
+  data-format={formatFamilies(d).join('|')}
+  data-access={mode}
+  data-nature={d.data_nature ?? 'n/a'}
+  data-status={d.status}
+  data-title={d.title.toLowerCase()}
+  data-published={d.published_date ?? ''}
+  data-updated={d.updated_date ?? d.published_date ?? ''}
+>
+  <div class="flex items-start justify-between gap-3">
+    <Badges d={d} />
+    <span class="meta shrink-0">{d.domain.map((x) => domainById(x)?.short).join(' · ')}</span>
+  </div>
+  <H class="mt-3 text-[1.06rem] font-semibold leading-snug">
+    <a href={`/data/${d.id}/`} class="text-atlas no-underline after:absolute after:inset-0 after:content-[''] group-hover:text-signal">{d.title}</a>
+  </H>
+  {!compact && <p class="mt-2 text-[0.92rem] leading-relaxed text-slate line-clamp-3">{d.description}</p>}
+  {d.status === 'in-preparation' ? (
+    <p class="mt-auto pt-4 text-sm text-[#6b5228]">Planned product — no data released.</p>
+  ) : (
+    <dl class="mt-auto grid grid-cols-2 gap-x-4 gap-y-2 pt-4 text-[0.8rem]">
+      <div><dt class="meta">Coverage</dt><dd class="text-graphite">{COVERAGE[d.spatial_extent?.coverage ?? ''] ?? '—'}{d.spatial_extent?.algeria_subset === 'extract' ? ' · subset' : ''}</dd></div>
+      <div><dt class="meta">Period</dt><dd class="text-graphite">{period(d)}</dd></div>
+      <div><dt class="meta">Resolution</dt><dd class="text-graphite truncate" title={d.resolution?.spatial ?? ''}>{d.resolution?.spatial ?? '—'}</dd></div>
+      <div><dt class="meta">Type</dt><dd class="text-graphite">{DATA_TYPE[d.data_type ?? ''] ?? '—'}</dd></div>
+      {!compact && <div class="col-span-2"><dt class="meta">Source</dt><dd class="text-graphite truncate" title={d.provider?.name}>{providerShort}</dd></div>}
+      {!compact && <div><dt class="meta">Licence</dt><dd class="text-graphite truncate" title={d.license?.name}>{d.license?.spdx ?? d.license?.name ?? '—'}</dd></div>}
+      {!compact && <div><dt class="meta">Updated</dt><dd class="text-graphite">{fmtDate(d.updated_date ?? d.published_date)}</dd></div>}
+      {!compact && <div class="col-span-2"><dt class="meta">Formats</dt><dd class="text-graphite truncate">{d.format.join(', ') || '—'}</dd></div>}
+      <div class="col-span-2 pt-1">
+        <dt class="sr-only">Access</dt>
+        <dd class="font-medium text-[0.82rem]" style={mode === 'direct' ? 'color:#0b5d45' : 'color:#124f87'}>
+          {mode === 'direct' ? (d.origin === 'external' ? '↓ Direct download from source' : '↓ Download from AEO') : '↗ Access at source'}
+        </dd>
+      </div>
+    </dl>
+  )}
+</article>

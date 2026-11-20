@@ -1,0 +1,20 @@
+---
+interface Props { eyebrow?: string; title: string; lead?: string; crumbs?: { href: string; label: string }[] }
+const { eyebrow, title, lead, crumbs } = Astro.props;
+---
+<section class="border-b border-line bg-paper">
+  <div class="container-aeo py-10 sm:py-14">
+    {crumbs && (
+      <nav aria-label="Breadcrumb" class="mb-4">
+        <ol class="flex flex-wrap items-center gap-1.5 text-sm text-slate">
+          <li><a href="/" class="text-slate no-underline hover:text-signal">Home</a></li>
+          {crumbs.map((c) => (<li class="flex items-center gap-1.5"><span aria-hidden="true">/</span><a href={c.href} class="text-slate no-underline hover:text-signal">{c.label}</a></li>))}
+        </ol>
+      </nav>
+    )}
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class="mt-2 text-3xl sm:text-[2.35rem] font-semibold max-w-4xl">{title}</h1>
+    {lead && <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate">{lead}</p>}
+    <slot />
+  </div>
+</section>

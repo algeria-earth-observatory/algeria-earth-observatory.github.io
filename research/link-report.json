@@ -1,0 +1,1649 @@
+{
+  "checked": "2026-11-20T00:57:45.220Z",
+  "total": 198,
+  "problems": [
+    {
+      "url": "https://algeria-earth-observatory.github.io/docs/boundaries/",
+      "status": 404,
+      "final": "https://algeria-earth-observatory.github.io/docs/boundaries/",
+      "used_by": [
+        "aeo-dza-admin-boundaries.documentation_url"
+      ]
+    },
+    {
+      "url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/blob/main/scripts/processing/build_boundaries.py",
+      "status": 404,
+      "final": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/blob/main/scripts/processing/build_boundaries.py",
+      "used_by": [
+        "aeo-dza-admin-boundaries.code_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1002/qj.3803",
+      "status": 403,
+      "final": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.3803",
+      "used_by": [
+        "era5-land.reference"
+      ]
+    },
+    {
+      "url": "https://data-starcloud.pcl.ac.cn/iearthdata/map?id=67",
+      "status": 0,
+      "error": "UND_ERR_CONNECT_TIMEOUT",
+      "used_by": [
+        "gaced30.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1080/17538947.2024.2390454",
+      "status": 403,
+      "final": "https://www.tandfonline.com/doi/full/10.1080/17538947.2024.2390454",
+      "used_by": [
+        "ghsl-built-s.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1002/hyp.9740",
+      "status": 403,
+      "final": "https://onlinelibrary.wiley.com/doi/10.1002/hyp.9740",
+      "used_by": [
+        "hydrobasins.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1029/2008EO100001",
+      "status": 403,
+      "final": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2008EO100001",
+      "used_by": [
+        "hydrobasins.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1002/joc.3887",
+      "status": 403,
+      "final": "https://onlinelibrary.wiley.com/doi/10.1002/joc.3887",
+      "used_by": [
+        "speibase.reference"
+      ]
+    }
+  ],
+  "ok": [
+    {
+      "url": "https://www.openstreetmap.org/relation/192756",
+      "status": 200,
+      "final": "https://www.openstreetmap.org/relation/192756",
+      "used_by": [
+        "aeo-dza-admin-boundaries.source_url"
+      ]
+    },
+    {
+      "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "status": 200,
+      "final": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "used_by": [
+        "aeo-dza-admin-boundaries.license",
+        "geoboundaries-dza.license",
+        "speibase.license"
+      ]
+    },
+    {
+      "url": "https://www.chc.ucsb.edu/data/chirps",
+      "status": 200,
+      "final": "https://www.chc.ucsb.edu/data/chirps",
+      "used_by": [
+        "chirps-v2.source_url"
+      ]
+    },
+    {
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/README-CHIRPS.txt",
+      "status": 200,
+      "final": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/README-CHIRPS.txt",
+      "used_by": [
+        "chirps-v2.documentation_url"
+      ]
+    },
+    {
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "status": 200,
+      "final": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "used_by": [
+        "chirps-v2.license",
+        "nex-gddp-cmip6.license"
+      ]
+    },
+    {
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/",
+      "status": 200,
+      "final": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/",
+      "used_by": [
+        "chirps-v2.access"
+      ]
+    },
+    {
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/netcdf/chirps-v2.0.monthly.nc",
+      "status": 200,
+      "final": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/netcdf/chirps-v2.0.monthly.nc",
+      "used_by": [
+        "chirps-v2.access"
+      ]
+    },
+    {
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/africa_monthly/",
+      "status": 200,
+      "final": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/africa_monthly/",
+      "used_by": [
+        "chirps-v2.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHG_CHIRPS_DAILY",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHG_CHIRPS_DAILY?hl=ko",
+      "used_by": [
+        "chirps-v2.access"
+      ]
+    },
+    {
+      "url": "https://www.chc.ucsb.edu/data/chirps3",
+      "status": 200,
+      "final": "https://www.chc.ucsb.edu/data/chirps3",
+      "used_by": [
+        "chirps-v2.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1038/sdata.2015.66",
+      "status": 200,
+      "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fsdata201566&code=30dec6a9-b2d2-4cda-acc2-a994fb6addab",
+      "used_by": [
+        "chirps-v2.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1038/s41597-026-07096-4",
+      "status": 200,
+      "final": "https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41597-026-07096-4",
+      "used_by": [
+        "chirps-v2.reference"
+      ]
+    },
+    {
+      "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "status": 200,
+      "final": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "used_by": [
+        "copernicus-dem-glo30.source_url",
+        "copernicus-dem-glo30.documentation_url",
+        "copernicus-dem-glo30.access"
+      ]
+    },
+    {
+      "url": "https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf",
+      "status": 200,
+      "final": "https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf",
+      "used_by": [
+        "copernicus-dem-glo30.license"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5270/ESA-c5d3d65",
+      "status": 200,
+      "final": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "used_by": [
+        "copernicus-dem-glo30.doi"
+      ]
+    },
+    {
+      "url": "https://browser.dataspace.copernicus.eu/",
+      "status": 200,
+      "final": "https://browser.dataspace.copernicus.eu/",
+      "used_by": [
+        "copernicus-dem-glo30.access",
+        "copernicus-sentinel-2-l2a.access",
+        "sentinel-5p-no2.access"
+      ]
+    },
+    {
+      "url": "https://registry.opendata.aws/copernicus-dem/",
+      "status": 200,
+      "final": "https://registry.opendata.aws/copernicus-dem/",
+      "used_by": [
+        "copernicus-dem-glo30.access"
+      ]
+    },
+    {
+      "url": "https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3",
+      "status": 200,
+      "final": "https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3",
+      "used_by": [
+        "copernicus-dem-glo30.access"
+      ]
+    },
+    {
+      "url": "https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access/sentinel-products/sentinel-2-data-products/collection-1-level-2a",
+      "status": 200,
+      "final": "https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access/sentinel-products/sentinel-2-data-products/collection-1-level-2a",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.source_url"
+      ]
+    },
+    {
+      "url": "https://sentiwiki.copernicus.eu/web/s2-products",
+      "status": 200,
+      "final": "https://sentiwiki.copernicus.eu/web/s2-products",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.documentation_url"
+      ]
+    },
+    {
+      "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "status": 200,
+      "final": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.license",
+        "sentinel-5p-no2.license"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5270/S2_-znk9xsj",
+      "status": 200,
+      "final": "https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access/sentinel-products/sentinel-2-data-products/collection-1-level-2a",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.doi"
+      ]
+    },
+    {
+      "url": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a",
+      "status": 200,
+      "final": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.access"
+      ]
+    },
+    {
+      "url": "https://documentation.dataspace.copernicus.eu/APIs/OData.html",
+      "status": 200,
+      "final": "https://documentation.dataspace.copernicus.eu/APIs/OData.html",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.access"
+      ]
+    },
+    {
+      "url": "https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel2.html",
+      "status": 200,
+      "final": "https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel2.html",
+      "used_by": [
+        "copernicus-sentinel-2-l2a.access"
+      ]
+    },
+    {
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
+      "status": 200,
+      "final": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview",
+      "used_by": [
+        "era5-land.source_url",
+        "era5-land.access"
+      ]
+    },
+    {
+      "url": "https://confluence.ecmwf.int/display/CKB/ERA5-Land%3A+data+documentation",
+      "status": 200,
+      "final": "https://confluence.ecmwf.int/spaces/CKB/pages/140385202/ERA5-Land+data+documentation",
+      "used_by": [
+        "era5-land.documentation_url"
+      ]
+    },
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": 200,
+      "final": "https://creativecommons.org/licenses/by/4.0/",
+      "used_by": [
+        "era5-land.license",
+        "esa-worldcereal-2021.license",
+        "esa-worldcover.license",
+        "faostat-qcl.license",
+        "gaced30.license",
+        "soilgrids.license",
+        "terraclimate.license",
+        "worldpop-dza.license"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.24381/cds.e2161bac",
+      "status": 200,
+      "final": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview",
+      "used_by": [
+        "era5-land.doi"
+      ]
+    },
+    {
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land-monthly-means",
+      "status": 200,
+      "final": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land-monthly-means?tab=overview",
+      "used_by": [
+        "era5-land.access"
+      ]
+    },
+    {
+      "url": "https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-land",
+      "status": 200,
+      "final": "https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-land",
+      "used_by": [
+        "era5-land.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+      "used_by": [
+        "era5-land.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5194/essd-13-4349-2021",
+      "status": 200,
+      "final": "https://essd.copernicus.org/articles/13/4349/2021/",
+      "used_by": [
+        "era5-land.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.24381/cds.68d2bb30",
+      "status": 200,
+      "final": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land-monthly-means?tab=overview",
+      "used_by": [
+        "era5-land.reference"
+      ]
+    },
+    {
+      "url": "https://esa-worldcereal.org/en/products/global-maps",
+      "status": 200,
+      "final": "https://esa-worldcereal.org/en/products/global-maps",
+      "used_by": [
+        "esa-worldcereal-2021.source_url",
+        "esa-worldcereal-2021.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5194/essd-15-5491-2023",
+      "status": 200,
+      "final": "https://essd.copernicus.org/articles/15/5491/2023/",
+      "used_by": [
+        "esa-worldcereal-2021.documentation_url",
+        "esa-worldcereal-2021.reference"
+      ]
+    },
+    {
+      "url": "https://github.com/WorldCereal/worldcereal-classification",
+      "status": 200,
+      "final": "https://github.com/WorldCereal/worldcereal-classification",
+      "used_by": [
+        "esa-worldcereal-2021.code_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.7875105",
+      "status": 200,
+      "final": "https://zenodo.org/records/7875105",
+      "used_by": [
+        "esa-worldcereal-2021.doi"
+      ]
+    },
+    {
+      "url": "https://vdm.esa-worldcereal.org/",
+      "status": 200,
+      "final": "https://vdm.esa-worldcereal.org/",
+      "used_by": [
+        "esa-worldcereal-2021.access"
+      ]
+    },
+    {
+      "url": "https://hub.esa-worldcereal.org/",
+      "status": 200,
+      "final": "https://hub.esa-worldcereal.org/",
+      "used_by": [
+        "esa-worldcereal-2021.access"
+      ]
+    },
+    {
+      "url": "https://zenodo.org/records/7875105",
+      "status": 200,
+      "final": "https://zenodo.org/records/7875105",
+      "used_by": [
+        "esa-worldcereal-2021.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCereal_2021_MODELS_v100",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCereal_2021_MODELS_v100",
+      "used_by": [
+        "esa-worldcereal-2021.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.7863779",
+      "status": 200,
+      "final": "https://zenodo.org/records/7863779",
+      "used_by": [
+        "esa-worldcereal-2021.reference"
+      ]
+    },
+    {
+      "url": "https://esa-worldcover.org/en",
+      "status": 200,
+      "final": "https://esa-worldcover.org/en",
+      "used_by": [
+        "esa-worldcover.source_url"
+      ]
+    },
+    {
+      "url": "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+      "status": 200,
+      "final": "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+      "used_by": [
+        "esa-worldcover.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.7254221",
+      "status": 200,
+      "final": "https://zenodo.org/records/7254221",
+      "used_by": [
+        "esa-worldcover.doi"
+      ]
+    },
+    {
+      "url": "https://esa-worldcover.org/en/data-access",
+      "status": 200,
+      "final": "https://esa-worldcover.org/en/data-access",
+      "used_by": [
+        "esa-worldcover.access"
+      ]
+    },
+    {
+      "url": "https://viewer.esa-worldcover.org/worldcover/",
+      "status": 200,
+      "final": "https://viewer.esa-worldcover.org/worldcover/",
+      "used_by": [
+        "esa-worldcover.access"
+      ]
+    },
+    {
+      "url": "https://zenodo.org/records/7254221",
+      "status": 200,
+      "final": "https://zenodo.org/records/7254221",
+      "used_by": [
+        "esa-worldcover.access"
+      ]
+    },
+    {
+      "url": "https://zenodo.org/records/5571936",
+      "status": 200,
+      "final": "https://zenodo.org/records/5571936",
+      "used_by": [
+        "esa-worldcover.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200",
+      "used_by": [
+        "esa-worldcover.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.5571936",
+      "status": 200,
+      "final": "https://zenodo.org/records/5571936",
+      "used_by": [
+        "esa-worldcover.reference"
+      ]
+    },
+    {
+      "url": "https://www.fao.org/faostat/en/#data/QCL",
+      "status": 200,
+      "final": "https://www.fao.org/faostat/en/",
+      "used_by": [
+        "faostat-qcl.source_url",
+        "faostat-qcl.access"
+      ]
+    },
+    {
+      "url": "https://data.fao.org/catalog/iso/d24a448b-3b62-4c09-8c1d-4a39bb599876",
+      "status": 200,
+      "final": "https://data.fao.org/catalog/iso/d24a448b-3b62-4c09-8c1d-4a39bb599876",
+      "used_by": [
+        "faostat-qcl.documentation_url",
+        "faostat-qcl.access"
+      ]
+    },
+    {
+      "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "status": 200,
+      "final": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "used_by": [
+        "faostat-qcl.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.4060/cd8035en",
+      "status": 200,
+      "final": "https://openknowledge.fao.org/handle/20.500.14283/cd8035en",
+      "used_by": [
+        "faostat-qcl.reference"
+      ]
+    },
+    {
+      "url": "https://zenodo.org/records/18199675",
+      "status": 200,
+      "final": "https://zenodo.org/records/18199675",
+      "used_by": [
+        "gaced30.source_url",
+        "gaced30.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5194/essd-18-7071-2026",
+      "status": 200,
+      "final": "https://essd.copernicus.org/articles/18/7071/2026/",
+      "used_by": [
+        "gaced30.documentation_url",
+        "gaced30.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.18199675",
+      "status": 200,
+      "final": "https://zenodo.org/records/18199675",
+      "used_by": [
+        "gaced30.doi"
+      ]
+    },
+    {
+      "url": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
+      "status": 200,
+      "final": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
+      "used_by": [
+        "geoboundaries-dza.source_url",
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://www.geoboundaries.org/",
+      "status": 200,
+      "final": "https://www.geoboundaries.org/",
+      "used_by": [
+        "geoboundaries-dza.documentation_url"
+      ]
+    },
+    {
+      "url": "https://github.com/wmgeolab/geoBoundaries",
+      "status": 200,
+      "final": "https://github.com/wmgeolab/geoBoundaries",
+      "used_by": [
+        "geoboundaries-dza.code_url"
+      ]
+    },
+    {
+      "url": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM0/",
+      "status": 200,
+      "final": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM0/",
+      "used_by": [
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1.geojson",
+      "status": 200,
+      "final": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1.geojson",
+      "used_by": [
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1_simplified.geojson",
+      "status": 200,
+      "final": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1_simplified.geojson",
+      "used_by": [
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1-all.zip",
+      "status": 200,
+      "final": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1-all.zip",
+      "used_by": [
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0.geojson",
+      "status": 200,
+      "final": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0.geojson",
+      "used_by": [
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0_simplified.geojson",
+      "status": 200,
+      "final": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0_simplified.geojson",
+      "used_by": [
+        "geoboundaries-dza.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1371/journal.pone.0231866",
+      "status": 200,
+      "final": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0231866",
+      "used_by": [
+        "geoboundaries-dza.reference"
+      ]
+    },
+    {
+      "url": "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php",
+      "status": 200,
+      "final": "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php",
+      "used_by": [
+        "ghsl-built-s.source_url",
+        "ghsl-built-s.access"
+      ]
+    },
+    {
+      "url": "https://human-settlement.emergency.copernicus.eu/documents/GHSL_Data_Package_2023.pdf",
+      "status": 200,
+      "final": "https://human-settlement.emergency.copernicus.eu/documents/GHSL_Data_Package_2023.pdf",
+      "used_by": [
+        "ghsl-built-s.documentation_url"
+      ]
+    },
+    {
+      "url": "https://commission.europa.eu/legal-notice_en",
+      "status": 200,
+      "final": "https://commission.europa.eu/legal-notice_en",
+      "used_by": [
+        "ghsl-built-s.license"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA",
+      "status": 200,
+      "final": "https://data.jrc.ec.europa.eu/dataset/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea",
+      "used_by": [
+        "ghsl-built-s.doi"
+      ]
+    },
+    {
+      "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=bu",
+      "status": 200,
+      "final": "https://human-settlement.emergency.copernicus.eu/download.php?ds=bu",
+      "used_by": [
+        "ghsl-built-s.access"
+      ]
+    },
+    {
+      "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/",
+      "status": 200,
+      "final": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/",
+      "used_by": [
+        "ghsl-built-s.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.2760/098587",
+      "status": 200,
+      "final": "https://op.europa.eu/en/publication-detail/-/publication/a1483a27-ed5d-11ed-a05c-01aa75ed71a1/language-en",
+      "used_by": [
+        "ghsl-built-s.reference"
+      ]
+    },
+    {
+      "url": "https://glad.umd.edu/dataset/croplands",
+      "status": 200,
+      "final": "https://glad.umd.edu/dataset/croplands",
+      "used_by": [
+        "glad-global-cropland.source_url",
+        "glad-global-cropland.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1038/s43016-021-00429-z",
+      "status": 200,
+      "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs43016-021-00429-z&code=ddf4260c-31dc-47f9-8680-a6d5821f72f8",
+      "used_by": [
+        "glad-global-cropland.documentation_url",
+        "glad-global-cropland.reference"
+      ]
+    },
+    {
+      "url": "https://glad.geog.umd.edu/Potapov/Global_Crop/Data/",
+      "status": 200,
+      "final": "https://gladxfer.umd.edu/Potapov/Global_Crop/Data/",
+      "used_by": [
+        "glad-global-cropland.access"
+      ]
+    },
+    {
+      "url": "https://glad.earthengine.app/view/global-cropland-dynamics",
+      "status": 200,
+      "final": "https://glad.earthengine.app/view/global-cropland-dynamics",
+      "used_by": [
+        "glad-global-cropland.access"
+      ]
+    },
+    {
+      "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary",
+      "status": 200,
+      "final": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary",
+      "used_by": [
+        "gpm-imerg.source_url",
+        "gpm-imerg.access"
+      ]
+    },
+    {
+      "url": "https://gpm.nasa.gov/data/imerg",
+      "status": 200,
+      "final": "https://gpm.nasa.gov/data/imerg",
+      "used_by": [
+        "gpm-imerg.documentation_url"
+      ]
+    },
+    {
+      "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      "used_by": [
+        "gpm-imerg.license",
+        "merra2-aerosol-diagnostics.license",
+        "modis-mcd64a1-v061.license",
+        "modis-mod11c3-v061.license",
+        "modis-mod13q1-v061.license",
+        "modis-mod16a2gf-v061.license",
+        "nasa-firms.license",
+        "smap-soil-moisture.license"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/GPM/IMERGDF/DAY/07",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gpm-3imergdf-07",
+      "used_by": [
+        "gpm-imerg.doi"
+      ]
+    },
+    {
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C2723754864-GES_DISC",
+      "status": 200,
+      "final": "https://search.earthdata.nasa.gov/search/granules?p=C2723754864-GES_DISC",
+      "used_by": [
+        "gpm-imerg.access"
+      ]
+    },
+    {
+      "url": "https://www.hydrosheds.org/products/hydrobasins",
+      "status": 200,
+      "final": "https://www.hydrosheds.org/products/hydrobasins",
+      "used_by": [
+        "hydrobasins.source_url",
+        "hydrobasins.access"
+      ]
+    },
+    {
+      "url": "https://data.hydrosheds.org/file/technical-documentation/HydroBASINS_TechDoc_v1c.pdf",
+      "status": 200,
+      "final": "https://data.hydrosheds.org/file/technical-documentation/HydroBASINS_TechDoc_v1c.pdf",
+      "used_by": [
+        "hydrobasins.documentation_url"
+      ]
+    },
+    {
+      "url": "https://data.hydrosheds.org/file/technical-documentation/HydroSHEDS_TechDoc_v1_4.pdf",
+      "status": 200,
+      "final": "https://data.hydrosheds.org/file/technical-documentation/HydroSHEDS_TechDoc_v1_4.pdf",
+      "used_by": [
+        "hydrobasins.license"
+      ]
+    },
+    {
+      "url": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_af_lev01-12_v1c.zip",
+      "status": 200,
+      "final": "https://data.hydrosheds.org/file/hydrobasins/standard/hybas_af_lev01-12_v1c.zip",
+      "used_by": [
+        "hydrobasins.access"
+      ]
+    },
+    {
+      "url": "https://data.hydrosheds.org/file/hydrobasins/customized_with_lakes/hybas_lake_af_lev01-12_v1c.zip",
+      "status": 200,
+      "final": "https://data.hydrosheds.org/file/hydrobasins/customized_with_lakes/hybas_lake_af_lev01-12_v1c.zip",
+      "used_by": [
+        "hydrobasins.access"
+      ]
+    },
+    {
+      "url": "https://global-surface-water.appspot.com/download",
+      "status": 200,
+      "final": "https://global-surface-water.appspot.com/download",
+      "used_by": [
+        "jrc-global-surface-water.source_url",
+        "jrc-global-surface-water.access"
+      ]
+    },
+    {
+      "url": "https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf",
+      "status": 200,
+      "final": "https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf",
+      "used_by": [
+        "jrc-global-surface-water.documentation_url"
+      ]
+    },
+    {
+      "url": "https://eur-lex.europa.eu/eli/reg/2014/377/oj",
+      "status": 200,
+      "final": "https://eur-lex.europa.eu/eli/reg/2014/377/oj",
+      "used_by": [
+        "jrc-global-surface-water.license"
+      ]
+    },
+    {
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/occurrence_0E_40N_v1_5_2024.tif",
+      "status": 200,
+      "final": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/occurrence_0E_40N_v1_5_2024.tif",
+      "used_by": [
+        "jrc-global-surface-water.access"
+      ]
+    },
+    {
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/",
+      "status": 204,
+      "final": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/",
+      "used_by": [
+        "jrc-global-surface-water.access"
+      ]
+    },
+    {
+      "url": "https://global-surface-water.appspot.com/",
+      "status": 200,
+      "final": "https://global-surface-water.appspot.com/",
+      "used_by": [
+        "jrc-global-surface-water.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+      "used_by": [
+        "jrc-global-surface-water.access"
+      ]
+    },
+    {
+      "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GSWE/",
+      "status": 200,
+      "final": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GSWE/",
+      "used_by": [
+        "jrc-global-surface-water.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1038/nature20584",
+      "status": 200,
+      "final": "https://www.nature.com/articles/nature20584",
+      "used_by": [
+        "jrc-global-surface-water.reference"
+      ]
+    },
+    {
+      "url": "https://disc.gsfc.nasa.gov/datasets/M2TMNXAER_5.12.4/summary",
+      "status": 200,
+      "final": "https://disc.gsfc.nasa.gov/datasets/M2TMNXAER_5.12.4/summary",
+      "used_by": [
+        "merra2-aerosol-diagnostics.source_url",
+        "merra2-aerosol-diagnostics.documentation_url",
+        "merra2-aerosol-diagnostics.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/FH9A0MLJPC7N",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-m2tmnxaer-5.12.4",
+      "used_by": [
+        "merra2-aerosol-diagnostics.doi"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1175/JCLI-D-16-0758.1",
+      "status": 200,
+      "final": "https://journals.ametsoc.org/view/journals/clim/30/14/jcli-d-16-0758.1.xml",
+      "used_by": [
+        "merra2-aerosol-diagnostics.reference"
+      ]
+    },
+    {
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061",
+      "used_by": [
+        "modis-mcd64a1-v061.source_url",
+        "modis-mcd64a1-v061.access"
+      ]
+    },
+    {
+      "url": "https://lpdaac.usgs.gov/documents/1006/MCD64_User_Guide_V61.pdf",
+      "status": 200,
+      "final": "https://lpdaac.usgs.gov/documents/1006/MCD64_User_Guide_V61.pdf",
+      "used_by": [
+        "modis-mcd64a1-v061.documentation_url",
+        "modis-mcd64a1-v061.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/MODIS/MCD64A1.061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061",
+      "used_by": [
+        "modis-mcd64a1-v061.doi"
+      ]
+    },
+    {
+      "url": "https://search.earthdata.nasa.gov/search?q=C2565786756-LPCLOUD",
+      "status": 200,
+      "final": "https://search.earthdata.nasa.gov/search?q=C2565786756-LPCLOUD",
+      "used_by": [
+        "modis-mcd64a1-v061.access"
+      ]
+    },
+    {
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "status": 200,
+      "final": "https://appeears.earthdatacloud.nasa.gov/",
+      "used_by": [
+        "modis-mcd64a1-v061.access",
+        "modis-mod13q1-v061.access",
+        "modis-mod16a2gf-v061.access",
+        "smap-soil-moisture.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1016/j.rse.2018.08.005",
+      "status": 200,
+      "final": "https://linkinghub.elsevier.com/retrieve/pii/S0034425718303705",
+      "used_by": [
+        "modis-mcd64a1-v061.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1016/j.rse.2019.111490",
+      "status": 200,
+      "final": "https://linkinghub.elsevier.com/retrieve/pii/S0034425719305097",
+      "used_by": [
+        "modis-mcd64a1-v061.reference"
+      ]
+    },
+    {
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod11c3-061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod11c3-061",
+      "used_by": [
+        "modis-mod11c3-v061.source_url",
+        "modis-mod11c3-v061.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/MODIS/MOD11C3.061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod11c3-061",
+      "used_by": [
+        "modis-mod11c3-v061.documentation_url",
+        "modis-mod11c3-v061.doi"
+      ]
+    },
+    {
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C2565788897-LPCLOUD",
+      "status": 200,
+      "final": "https://search.earthdata.nasa.gov/search/granules?p=C2565788897-LPCLOUD",
+      "used_by": [
+        "modis-mod11c3-v061.access"
+      ]
+    },
+    {
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061",
+      "used_by": [
+        "modis-mod13q1-v061.source_url",
+        "modis-mod13q1-v061.access"
+      ]
+    },
+    {
+      "url": "https://lpdaac.usgs.gov/documents/621/MOD13_User_Guide_V61.pdf",
+      "status": 200,
+      "final": "https://lpdaac.usgs.gov/documents/621/MOD13_User_Guide_V61.pdf",
+      "used_by": [
+        "modis-mod13q1-v061.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/MODIS/MOD13Q1.061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061",
+      "used_by": [
+        "modis-mod13q1-v061.doi"
+      ]
+    },
+    {
+      "url": "https://search.earthdata.nasa.gov/search?q=MOD13Q1",
+      "status": 200,
+      "final": "https://search.earthdata.nasa.gov/search?q=MOD13Q1",
+      "used_by": [
+        "modis-mod13q1-v061.access"
+      ]
+    },
+    {
+      "url": "https://lpdaac.usgs.gov/products/mod16a2gfv061/",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod16a2gf-061",
+      "used_by": [
+        "modis-mod16a2gf-v061.source_url",
+        "modis-mod16a2gf-v061.access"
+      ]
+    },
+    {
+      "url": "https://lpdaac.usgs.gov/documents/931/MOD16_User_Guide_V61.pdf",
+      "status": 200,
+      "final": "https://lpdaac.usgs.gov/documents/931/MOD16_User_Guide_V61.pdf",
+      "used_by": [
+        "modis-mod16a2gf-v061.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/MODIS/MOD16A2GF.061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod16a2gf-061",
+      "used_by": [
+        "modis-mod16a2gf-v061.doi"
+      ]
+    },
+    {
+      "url": "https://search.earthdata.nasa.gov/",
+      "status": 200,
+      "final": "https://search.earthdata.nasa.gov/",
+      "used_by": [
+        "modis-mod16a2gf-v061.access",
+        "smap-soil-moisture.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD16A2GF",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD16A2GF?hl=de",
+      "used_by": [
+        "modis-mod16a2gf-v061.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1016/j.rse.2011.02.019",
+      "status": 200,
+      "final": "https://linkinghub.elsevier.com/retrieve/pii/S0034425711000691",
+      "used_by": [
+        "modis-mod16a2gf-v061.reference"
+      ]
+    },
+    {
+      "url": "https://www.earthdata.nasa.gov/data/tools/firms",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/tools/firms",
+      "used_by": [
+        "nasa-firms.source_url"
+      ]
+    },
+    {
+      "url": "https://www.earthdata.nasa.gov/data/tools/firms/faq",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/tools/firms/faq",
+      "used_by": [
+        "nasa-firms.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/FIRMS/MODIS/MCD14DL.NRT.0061",
+      "status": 200,
+      "final": "https://www.earthdata.nasa.gov/data/catalog/lancemodis-mcd14dl-6.1nrt",
+      "used_by": [
+        "nasa-firms.doi"
+      ]
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/download/",
+      "status": 200,
+      "final": "https://firms.modaps.eosdis.nasa.gov/download/",
+      "used_by": [
+        "nasa-firms.access"
+      ]
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Algeria.csv",
+      "status": 200,
+      "final": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Algeria.csv",
+      "used_by": [
+        "nasa-firms.access"
+      ]
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Algeria.csv",
+      "status": 200,
+      "final": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Algeria.csv",
+      "used_by": [
+        "nasa-firms.access"
+      ]
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/api/map_key/",
+      "status": 200,
+      "final": "https://firms.modaps.eosdis.nasa.gov/api/map_key/",
+      "used_by": [
+        "nasa-firms.access"
+      ]
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "status": 200,
+      "final": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "used_by": [
+        "nasa-firms.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1016/j.rse.2016.02.054",
+      "status": 200,
+      "final": "https://linkinghub.elsevier.com/retrieve/pii/S0034425716300827",
+      "used_by": [
+        "nasa-firms.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1016/j.rse.2013.12.008",
+      "status": 200,
+      "final": "https://linkinghub.elsevier.com/retrieve/pii/S0034425713004483",
+      "used_by": [
+        "nasa-firms.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1109/TGRS.2008.2002076",
+      "status": 202,
+      "final": "https://ieeexplore.ieee.org/document/4689339/",
+      "used_by": [
+        "nasa-firms.reference"
+      ]
+    },
+    {
+      "url": "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6",
+      "status": 200,
+      "final": "https://www.nccs.nasa.gov/data-collections/nex-gddp-cmip6/",
+      "used_by": [
+        "nex-gddp-cmip6.source_url",
+        "nex-gddp-cmip6.access"
+      ]
+    },
+    {
+      "url": "https://www.nccs.nasa.gov/wp-content/uploads/2025/06/NEX-GDDP-CMIP6-v2-Tech_Note.pdf",
+      "status": 200,
+      "final": "https://www.nccs.nasa.gov/wp-content/uploads/2025/06/NEX-GDDP-CMIP6-v2-Tech_Note.pdf",
+      "used_by": [
+        "nex-gddp-cmip6.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.7917/OFSG3345",
+      "status": 200,
+      "final": "https://www.nccs.nasa.gov/data-collections/nex-gddp-cmip6/",
+      "used_by": [
+        "nex-gddp-cmip6.doi"
+      ]
+    },
+    {
+      "url": "https://ds.nccs.nasa.gov/thredds/catalog/AMES/NEX/GDDP-CMIP6/catalog.html",
+      "status": 200,
+      "final": "https://ds.nccs.nasa.gov/thredds/catalog/AMES/NEX/GDDP-CMIP6/catalog.html",
+      "used_by": [
+        "nex-gddp-cmip6.access"
+      ]
+    },
+    {
+      "url": "https://registry.opendata.aws/nex-gddp-cmip6/",
+      "status": 200,
+      "final": "https://registry.opendata.aws/nex-gddp-cmip6/",
+      "used_by": [
+        "nex-gddp-cmip6.access"
+      ]
+    },
+    {
+      "url": "https://nex-gddp-cmip6.s3.us-west-2.amazonaws.com/index.html",
+      "status": 200,
+      "final": "https://nex-gddp-cmip6.s3.us-west-2.amazonaws.com/index.html",
+      "used_by": [
+        "nex-gddp-cmip6.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1038/s41597-022-01393-4",
+      "status": 200,
+      "final": "https://www.nature.com/articles/s41597-022-01393-4",
+      "used_by": [
+        "nex-gddp-cmip6.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5194/hess-16-3309-2012",
+      "status": 200,
+      "final": "https://hess.copernicus.org/articles/16/3309/2012/",
+      "used_by": [
+        "nex-gddp-cmip6.reference"
+      ]
+    },
+    {
+      "url": "https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p",
+      "status": 200,
+      "final": "https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-5p",
+      "used_by": [
+        "sentinel-5p-no2.source_url",
+        "sentinel-5p-no2.access"
+      ]
+    },
+    {
+      "url": "https://sentinels.copernicus.eu/documents/247904/3541451/Sentinel-5P-Nitrogen-Dioxide-Level-2-Product-Readme-File",
+      "status": 200,
+      "final": "https://sentinels.copernicus.eu/documents/247904/3541451/Sentinel-5P-Nitrogen-Dioxide-Level-2-Product-Readme-File",
+      "used_by": [
+        "sentinel-5p-no2.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5270/S5P-9bnp8q8",
+      "status": 200,
+      "final": "https://www.tropomi.eu/data-products/nitrogen-dioxide",
+      "used_by": [
+        "sentinel-5p-no2.doi"
+      ]
+    },
+    {
+      "url": "https://sentinels.copernicus.eu/data-products/-/asset_publisher/fp37fc19FN8F/content/sentinel-5-precursor-level-2-nitrogen-dioxide",
+      "status": 200,
+      "final": "https://sentinels.copernicus.eu/data-products/-/asset_publisher/fp37fc19FN8F/content/sentinel-5-precursor-level-2-nitrogen-dioxide",
+      "used_by": [
+        "sentinel-5p-no2.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_NO2",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_NO2",
+      "used_by": [
+        "sentinel-5p-no2.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5270/S5P-s4ljg54",
+      "status": 200,
+      "final": "https://sentinels.copernicus.eu/web/sentinel/data-products/-/asset_publisher/fp37fc19FN8F/content/sentinel-5-precursor-level-2-nitrogen-dioxide",
+      "used_by": [
+        "sentinel-5p-no2.reference"
+      ]
+    },
+    {
+      "url": "https://nsidc.org/data/spl3smp_e/versions/6",
+      "status": 200,
+      "final": "https://nsidc.org/data/spl3smp_e/versions/6",
+      "used_by": [
+        "smap-soil-moisture.source_url",
+        "smap-soil-moisture.access"
+      ]
+    },
+    {
+      "url": "https://nsidc.org/sites/default/files/documents/user-guide/spl3smp_e-v006-userguide.pdf",
+      "status": 200,
+      "final": "https://nsidc.org/sites/default/files/documents/user-guide/spl3smp_e-v006-userguide.pdf",
+      "used_by": [
+        "smap-soil-moisture.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/M20OXIZHY3RJ",
+      "status": 200,
+      "final": "https://nsidc.org/data/spl3smp_e/versions/6",
+      "used_by": [
+        "smap-soil-moisture.doi"
+      ]
+    },
+    {
+      "url": "https://nsidc.org/data/spl4smgp/versions/8",
+      "status": 200,
+      "final": "https://nsidc.org/data/spl4smgp/versions/8",
+      "used_by": [
+        "smap-soil-moisture.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5067/T5RUATAQREF8",
+      "status": 200,
+      "final": "https://nsidc.org/data/spl4smgp/versions/8",
+      "used_by": [
+        "smap-soil-moisture.reference"
+      ]
+    },
+    {
+      "url": "https://www.isric.org/explore/soilgrids",
+      "status": 200,
+      "final": "https://isric.org/explore/soilgrids",
+      "used_by": [
+        "soilgrids.source_url",
+        "soilgrids.access"
+      ]
+    },
+    {
+      "url": "https://docs.isric.org/globaldata/soilgrids/",
+      "status": 200,
+      "final": "https://docs.isric.org/globaldata/soilgrids/",
+      "used_by": [
+        "soilgrids.documentation_url"
+      ]
+    },
+    {
+      "url": "https://files.isric.org/soilgrids/latest/data/",
+      "status": 200,
+      "final": "https://files.isric.org/soilgrids/latest/data/",
+      "used_by": [
+        "soilgrids.access"
+      ]
+    },
+    {
+      "url": "https://maps.isric.org/",
+      "status": 200,
+      "final": "https://maps.isric.org/",
+      "used_by": [
+        "soilgrids.access"
+      ]
+    },
+    {
+      "url": "https://soilgrids.org/",
+      "status": 200,
+      "final": "https://soilgrids.org/",
+      "used_by": [
+        "soilgrids.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5194/soil-7-217-2021",
+      "status": 200,
+      "final": "https://soil.copernicus.org/articles/7/217/2021/",
+      "used_by": [
+        "soilgrids.reference"
+      ]
+    },
+    {
+      "url": "https://spei.csic.es/database.html",
+      "status": 200,
+      "final": "https://spei.csic.es/database.html",
+      "used_by": [
+        "speibase.source_url",
+        "speibase.documentation_url",
+        "speibase.access"
+      ]
+    },
+    {
+      "url": "https://github.com/sbegueria/SPEIbase",
+      "status": 200,
+      "final": "https://github.com/sbegueria/SPEIbase",
+      "used_by": [
+        "speibase.code_url"
+      ]
+    },
+    {
+      "url": "https://spei.csic.es/spei_database_2_11",
+      "status": 200,
+      "final": "https://spei.csic.es/spei_database_2_11/",
+      "used_by": [
+        "speibase.access"
+      ]
+    },
+    {
+      "url": "https://spei.csic.es/spei_database_2_11/nc/spei12.nc",
+      "status": 200,
+      "final": "https://spei.csic.es/spei_database_2_11/nc/spei12.nc",
+      "used_by": [
+        "speibase.access"
+      ]
+    },
+    {
+      "url": "https://digital.csic.es/handle/10261/364137",
+      "status": 200,
+      "final": "https://digital.csic.es/handle/10261/364137",
+      "used_by": [
+        "speibase.access"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/CSIC_SPEI_2_11",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/CSIC_SPEI_2_11",
+      "used_by": [
+        "speibase.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1175/2009JCLI2909.1",
+      "status": 200,
+      "final": "https://journals.ametsoc.org/view/journals/clim/23/7/2009jcli2909.1.xml",
+      "used_by": [
+        "speibase.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1175/2010BAMS2988.1",
+      "status": 200,
+      "final": "https://journals.ametsoc.org/view/journals/bams/91/10/2010bams2988_1.xml",
+      "used_by": [
+        "speibase.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1175/2010JHM1224.1",
+      "status": 200,
+      "final": "https://journals.ametsoc.org/view/journals/hydr/11/4/2010jhm1224_1.xml",
+      "used_by": [
+        "speibase.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.20350/digitalCSIC/16497",
+      "status": 200,
+      "final": "https://digital.csic.es/handle/10261/364137",
+      "used_by": [
+        "speibase.reference"
+      ]
+    },
+    {
+      "url": "https://www.climatologylab.org/terraclimate.html",
+      "status": 200,
+      "final": "https://www.climatologylab.org/terraclimate.html",
+      "used_by": [
+        "terraclimate.source_url",
+        "terraclimate.documentation_url"
+      ]
+    },
+    {
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE",
+      "status": 200,
+      "final": "https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE?hl=ru",
+      "used_by": [
+        "terraclimate.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1038/sdata.2017.191",
+      "status": 200,
+      "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fsdata2017191&code=f7f74980-0848-42df-b7fd-c8ba39277bda",
+      "used_by": [
+        "terraclimate.reference"
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products",
+      "status": 200,
+      "final": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products",
+      "used_by": [
+        "usgs-landsat-c2-l2.source_url",
+        "usgs-landsat-c2-l2.documentation_url"
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+      "status": 200,
+      "final": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+      "used_by": [
+        "usgs-landsat-c2-l2.license"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5066/P9OGBGM6",
+      "status": 200,
+      "final": "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-landsat-archives-landsat-8-9-olitirs-collection-2-level-2",
+      "used_by": [
+        "usgs-landsat-c2-l2.doi"
+      ]
+    },
+    {
+      "url": "https://earthexplorer.usgs.gov/",
+      "status": 200,
+      "final": "https://earthexplorer.usgs.gov/",
+      "used_by": [
+        "usgs-landsat-c2-l2.access"
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/landsat-missions/landsat-data-access",
+      "status": 200,
+      "final": "https://www.usgs.gov/landsat-missions/landsat-data-access",
+      "used_by": [
+        "usgs-landsat-c2-l2.access"
+      ]
+    },
+    {
+      "url": "https://registry.opendata.aws/usgs-landsat/",
+      "status": 200,
+      "final": "https://registry.opendata.aws/usgs-landsat/",
+      "used_by": [
+        "usgs-landsat-c2-l2.access"
+      ]
+    },
+    {
+      "url": "https://landsatlook.usgs.gov/stac-server/collections",
+      "status": 200,
+      "final": "https://landsatlook.usgs.gov/stac-server/collections",
+      "used_by": [
+        "usgs-landsat-c2-l2.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5066/P9C7I13B",
+      "status": 200,
+      "final": "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-landsat-archives-landsat-7-etm-plus-collection-2-level-2",
+      "used_by": [
+        "usgs-landsat-c2-l2.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5066/P9IAXOVV",
+      "status": 200,
+      "final": "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-landsat-archives-landsat-4-5-tm-collection-2-level-2-science",
+      "used_by": [
+        "usgs-landsat-c2-l2.reference"
+      ]
+    },
+    {
+      "url": "https://hub.worldpop.org/geodata/summary?id=72319",
+      "status": 200,
+      "final": "https://hub.worldpop.org/geodata/summary?id=72319",
+      "used_by": [
+        "worldpop-dza.source_url",
+        "worldpop-dza.access"
+      ]
+    },
+    {
+      "url": "https://data.worldpop.org/repo/prj/Global_2015_2030/R2025A/doc/Global2_Release_Statement_R2025A_v1.pdf",
+      "status": 200,
+      "final": "https://data.worldpop.org/repo/prj/Global_2015_2030/R2025A/doc/Global2_Release_Statement_R2025A_v1.pdf",
+      "used_by": [
+        "worldpop-dza.documentation_url"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5258/SOTON/WP00839",
+      "status": 200,
+      "final": "https://hub.worldpop.org/doi/10.5258/SOTON/WP00839",
+      "used_by": [
+        "worldpop-dza.doi"
+      ]
+    },
+    {
+      "url": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2025/DZA/v1/100m/constrained/dza_pop_2025_CN_100m_R2025A_v1.tif",
+      "status": 200,
+      "final": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2025/DZA/v1/100m/constrained/dza_pop_2025_CN_100m_R2025A_v1.tif",
+      "used_by": [
+        "worldpop-dza.access"
+      ]
+    },
+    {
+      "url": "https://data.worldpop.org/GIS/Population/Global_2000_2020_Constrained/2020/BSGM/DZA/dza_ppp_2020_constrained.tif",
+      "status": 200,
+      "final": "https://data.worldpop.org/GIS/Population/Global_2000_2020_Constrained/2020/BSGM/DZA/dza_ppp_2020_constrained.tif",
+      "used_by": [
+        "worldpop-dza.access"
+      ]
+    },
+    {
+      "url": "https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/DZA/dza_ppp_2020.tif",
+      "status": 200,
+      "final": "https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/DZA/dza_ppp_2020.tif",
+      "used_by": [
+        "worldpop-dza.access"
+      ]
+    },
+    {
+      "url": "https://hub.worldpop.org/rest/data/pop/G2_CN_POP_R25A_100m?iso3=DZA",
+      "status": 200,
+      "final": "https://hub.worldpop.org/rest/data/pop/G2_CN_POP_R25A_100m?iso3=DZA",
+      "used_by": [
+        "worldpop-dza.access"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5258/SOTON/WP00684",
+      "status": 200,
+      "final": "https://hub.worldpop.org/doi/10.5258/SOTON/WP00684",
+      "used_by": [
+        "worldpop-dza.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.5258/SOTON/WP00645",
+      "status": 200,
+      "final": "https://hub.worldpop.org/doi/10.5258/SOTON/WP00645",
+      "used_by": [
+        "worldpop-dza.reference"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1371/journal.pone.0107042",
+      "status": 200,
+      "final": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0107042",
+      "used_by": [
+        "worldpop-dza.reference"
+      ]
+    }
+  ]
+}

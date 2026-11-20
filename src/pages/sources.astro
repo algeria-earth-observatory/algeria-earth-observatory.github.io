@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getDatasets } from '../lib/catalog';
+import { STATUS, fmtDate } from '../lib/format';
+import { MAP_LAYERS } from '../data/map-layers';
+import { SITE } from '../config/site';
+
+const all = await getDatasets();
+const published = all.filter((d) => d.status !== 'in-preparation');
+
+const notIncorporated = [
+  { item: 'ESA WorldCover map tiles (Terrascope WMTS) as a map layer', reason: 'The tile service could not be reached from AEO’s verification environment on 2026-11-19 (connection reset). The dataset is catalogued; the map layer was not added because it could not be verified.' },
+  { item: 'HydroBASINS clipped to Algeria as an AEO-hosted layer', reason: 'The HydroSHEDS v1 licence does not allow redistribution as a stand-alone product. AEO links to the source instead.' },
+  { item: 'geoBoundaries / OCHA COD-AB / GADM as the wilaya layer', reason: 'All represent 48 wilayas, not the 69-wilaya configuration in force since Loi n° 26-06 (2026). GADM is also restricted to non-commercial use. geoBoundaries is catalogued for reference.' },
+  { item: 'NASA FIRMS live fire map layer', reason: 'The FIRMS API requires a personal MAP_KEY that cannot be published in a static site. FIRMS is catalogued with links to its own map and archive download.' },
+  { item: 'A precipitation or drought layer derived by AEO', reason: 'Not produced: AEO publishes derived data only with documented, reviewed methods. Planned under “AEO Climate and Vegetation Time Series”.' },
+];
+---
+<Base title="Source audit" description="Which data sources and services were checked for the Algeria Earth Observatory, which were incorporated, and what could not be verified.">
+  <PageHeader
+    eyebrow="Source audit"
+    title="What was checked, and what was not"
+    lead="Every record was researched from official provider pages, data papers and DOI landing pages. This page summarises the verification status of each record and lists candidates that were examined but not incorporated."
+  />
+  <div class="container-aeo py-12 space-y-14">
+    <section aria-labelledby="rec-h">
+      <h2 id="rec-h" class="text-xl font-semibold">Catalogued records ({published.length})</h2>
+      <p class="mt-2 text-[0.93rem] text-slate">“Unconfirmed fields” are fields AEO could not confirm from an official source; they are left empty or flagged on the dataset page rather than guessed.</p>
+      <div class="mt-4 overflow-x-auto rounded-md border border-line">
+        <table class="w-full min-w-[44rem] text-[0.88rem]">
+          <thead class="bg-paper text-left">
+            <tr>
+              <th class="px-3 py-2.5 font-semibold text-atlas">Dataset</th>
+              <th class="px-3 py-2.5 font-semibold text-atlas">Status</th>
+              <th class="px-3 py-2.5 font-semibold text-atlas">Checked</th>
+              <th class="px-3 py-2.5 font-semibold text-atlas">Links tested</th>
+              <th class="px-3 py-2.5 font-semibold text-atlas">Unconfirmed fields</th>
+            </tr>
+          </thead>
+          <tbody>
+            {published.map((d) => (
+              <tr class="border-t border-line align-top">
+                <td class="px-3 py-2.5"><a href={`/data/${d.id}/`}>{d.title}</a></td>
+                <td class="px-3 py-2.5 whitespace-nowrap">{STATUS[d.status].label}</td>
+                <td class="px-3 py-2.5 whitespace-nowrap">{fmtDate(d.verification.checked)}</td>
+                <td class="px-3 py-2.5">{d.verification.urls_checked ? 'Yes' : 'No'}</td>
+                <td class="px-3 py-2.5 text-slate">{d.verification.unverified_fields.length ? d.verification.unverified_fields.length : 'None'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="map-h">
+      <h2 id="map-h" class="text-xl font-semibold">Map services</h2>
+      <p class="mt-2 text-[0.93rem] text-slate">Tile endpoints were requested and returned valid images on 2026-11-19. NASA GIBS layer names, time dimensions and legends are read from the official GetCapabilities document by a script in the repository.</p>
+      <ul class="mt-3 list-disc space-y-1 pl-5 text-[0.93rem]">
+        {MAP_LAYERS.map((l) => <li>{l.title} — {l.dataset ? <a href={`/data/${l.dataset}/`}>catalog record</a> : 'visual reference imagery'}</li>)}
+        <li>Basemaps: OpenFreeMap (Positron, Liberty styles), NASA Blue Marble: Next Generation and ASTER GDEM shaded relief via GIBS.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="no-h">
+      <h2 id="no-h" class="text-xl font-semibold">Examined but not incorporated</h2>
+      <ul class="mt-4 space-y-3">
+        {notIncorporated.map((n) => (
+          <li class="rounded-md border border-line p-4"><p class="font-medium text-atlas">{n.item}</p><p class="mt-1 text-[0.92rem] text-slate">{n.reason}</p></li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="notes-h" class="prose-aeo">
+      <h2 id="notes-h" class="!mt-0">Notable findings during verification</h2>
+      <ul>
+        <li>NASA has announced that Terra MODIS acquisitions cease on 1 December 2026. MOD13Q1, MOD11C3, MOD16A2GF and the combined MCD64A1 records note this.</li>
+        <li>SPEIbase: the provider reports a potential-evapotranspiration unit-conversion error affecting releases v2.6–v2.12, largest in arid regions; corrected data had not been released when checked.</li>
+        <li>CHIRPS v2 production is announced to end after December 2026 in favour of CHIRPS v3.</li>
+        <li>GLAD global cropland: no data licence is stated by the provider (only the article is open access).</li>
+        <li>Algeria’s 69-wilaya configuration (Loi n° 26-06 of 4 April 2026, JO n° 25) was not reflected in any openly licensed boundary set AEO checked except OpenStreetMap.</li>
+      </ul>
+      <p>The detailed audit tables, with URLs and HTTP results, are in <a href={`${SITE.github.repoUrl}/blob/main/docs/SOURCE_AUDIT.md`} rel="noopener">docs/SOURCE_AUDIT.md</a>.</p>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,33 @@
+name: Volunteer as reviewer or maintainer
+description: Offer to review dataset records, guides or code in your area of expertise.
+title: "[Volunteer] "
+labels: ["volunteer"]
+body:
+  - type: dropdown
+    id: role
+    attributes:
+      label: Role
+      multiple: true
+      options:
+        - Dataset / metadata reviewer
+        - Documentation and tutorials
+        - Code and infrastructure
+        - Translation (French)
+        - Translation (Arabic)
+        - Maintainer
+    validations:
+      required: true
+  - type: textarea
+    id: expertise
+    attributes:
+      label: Areas of expertise
+      description: For example remote sensing of cropland, hydrology, climate data, GIS, web development.
+    validations:
+      required: true
+  - type: textarea
+    id: time
+    attributes:
+      label: Availability (optional)
+  - type: markdown
+    attributes:
+      value: Volunteers are listed publicly only after they accept a role and agree to be named.

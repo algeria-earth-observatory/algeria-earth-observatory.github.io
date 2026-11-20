@@ -1,0 +1,80 @@
+{
+  "id": "faostat-qcl",
+  "title": "FAOSTAT Production: Crops and livestock products (QCL)",
+  "description": "Annual national statistics on crop and livestock production for countries and territories worldwide, maintained by FAO. For crops it gives area harvested, production quantity and yield; for livestock it gives animal stocks, producing and slaughtered animals and production of meat, milk, eggs and other products, plus selected processed products. Values are country-level (with regional aggregates), not spatially explicit.",
+  "purpose": "Provides the internationally harmonised country-level series for Algeria (e.g. wheat, barley, dates, olives, potatoes, livestock) since 1961, used to put satellite-derived cropland and vegetation products into context and to compare map-based areas with reported harvested areas.",
+  "domain": ["agriculture"],
+  "categories": ["Agricultural statistics"],
+  "keywords": ["FAOSTAT", "QCL", "crop production", "area harvested", "yield", "livestock", "national statistics", "Algeria"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "observed",
+  "data_type": "tabular",
+  "provider": { "name": "Food and Agriculture Organization of the United Nations (FAO), Statistics Division (ESS)", "url": "https://www.fao.org/faostat/en/#data/QCL" },
+  "creator": "FAO Statistics Division (ESS), Crops, Livestock and Food Statistics Team",
+  "source_url": "https://www.fao.org/faostat/en/#data/QCL",
+  "documentation_url": "https://data.fao.org/catalog/iso/d24a448b-3b62-4c09-8c1d-4a39bb599876",
+  "license": { "name": "Creative Commons Attribution 4.0 International", "spdx": "CC-BY-4.0", "url": "https://creativecommons.org/licenses/by/4.0/" },
+  "license_notes": "FAO corporate statistical databases are CC BY 4.0 by default unless otherwise specified, and the FAO Statistical Database Terms of Use also apply (no commercial promotion, no implied FAO endorsement). The FAO catalog notes that some data from Eurostat and the International Organisation of Vine and Wine may carry additional restrictions.",
+  "citation": "FAO. 2025. FAOSTAT: Crops and livestock products. [Accessed on DD Month YYYY]. https://www.fao.org/faostat/en/#data/QCL Licence: CC-BY-4.0.",
+  "doi": null,
+  "references": [
+    { "citation": "FAO (2025) Agricultural production statistics 2010–2024. FAOSTAT Analytical Brief.", "doi": "10.4060/cd8035en", "url": "https://www.fao.org/statistics/highlights-archive/highlights-detail/agricultural-production-statistics-2010-2024/" }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Country-level statistics for over 245 countries and territories (M49 classification) plus regional and world aggregates. Algeria is one country among many; users filter Area = Algeria. No sub-national data.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "1961-01-01",
+    "end": "2024-12-31",
+    "ongoing": true,
+    "frequency": "annual",
+    "description": "1961–2024 for primary crop and livestock production as of the release dated 31 December 2025; selected processed products run to 2023. The dataset is updated annually."
+  },
+  "resolution": { "spatial": "national (country-level)", "spatial_m": null, "temporal": "annual" },
+  "format": ["CSV (bulk ZIP download)", "Web query interface"],
+  "crs": null,
+  "variables": [
+    { "name": "Area harvested", "units": "ha", "description": "Area from which a crop is harvested; land used twice in a year can be counted twice. Cereals refer to crops harvested for dry grain only." },
+    { "name": "Production", "units": "t", "description": "Harvested production in basic product weight, including on-holding losses and farm-consumed quantities." },
+    { "name": "Yield", "units": "hg/ha", "description": "Harvested production per unit area harvested (1 t/ha = 10,000 hg/ha)." },
+    { "name": "Livestock stocks and products", "units": "head / t (by item)", "description": "Animal stocks, producing and slaughtered animals and livestock product quantities." },
+    { "name": "Flags", "units": "code", "description": "Each value is flagged by source or treatment (official, unofficial or imputed); see FAOSTAT metadata for flag definitions." }
+  ],
+  "processing": "Data are compiled mainly from official statistics reported by FAO member countries (annual production questionnaires, national yearbooks and official websites), which may themselves be based on surveys, administrative records or expert estimates. FAO records data as reported apart from conversion factors and corrections of reporting errors; unofficial sources are used when official data are unavailable, and imputation only when neither exists.",
+  "validation": null,
+  "limitations": [
+    "National totals only: no sub-national (wilaya) breakdown and no spatial information.",
+    "Harvested area is not sown area: in drought years sown cereal area that fails or is grazed is not counted, so harvested area can differ greatly from satellite-mapped cropland.",
+    "Values for a given country-year may be official, unofficial or imputed, and series are revised between releases; always check flags and note the release used.",
+    "Yield is expressed in hg/ha, not t/ha.",
+    "Cereal statistics exclude crops harvested green, for hay, silage or grazing."
+  ],
+  "version": "Release of 31 December 2025",
+  "published_date": null,
+  "updated_date": "2025-12-31",
+  "download_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+  "preview_url": null,
+  "access": [
+    { "label": "FAOSTAT QCL web interface", "url": "https://www.fao.org/faostat/en/#data/QCL", "kind": "external", "format": "CSV / XLS export", "requires_login": false, "notes": "Interactive selection of country (Algeria), items, elements and years." },
+    { "label": "Bulk download (all countries, normalized CSV)", "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip", "kind": "download", "format": "CSV in ZIP", "requires_login": false, "notes": "Location listed in the FAOSTAT bulk-download index (datasets_E.json), DateUpdate 2025-12-31." },
+    { "label": "FAO data catalog entry (crop production, yield, harvested area)", "url": "https://data.fao.org/catalog/iso/d24a448b-3b62-4c09-8c1d-4a39bb599876", "kind": "external", "format": null, "requires_login": false, "notes": "ISO metadata including definitions, units, licence and sources." }
+  ],
+  "code_url": null,
+  "algeria_notes": "For Algeria the cereal series (wheat, barley, oats) show very large year-to-year swings driven by rainfall in the rainfed northern belt, and harvested area in dry years can be much lower than sown area, which matters when comparing with satellite cropland maps. Southern production (e.g. dates, and cereals and potatoes under centre-pivot irrigation) is included in the national totals but cannot be separated geographically. Users should check observation flags, as some Algeria values may be FAO estimates or imputations rather than official figures.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": ["published_date", "flag code definitions", "validation"],
+    "sources_consulted": [
+      "https://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.json",
+      "https://data.fao.org/catalog/iso/d24a448b-3b62-4c09-8c1d-4a39bb599876",
+      "https://www.fao.org/contact-us/terms/db-terms-of-use/en/",
+      "https://www.fao.org/statistics/highlights-archive/highlights-detail/agricultural-production-statistics-2010-2024/"
+    ],
+    "notes": "The FAOSTAT web page is a JavaScript application and its text could not be read directly; facts come from the FAOSTAT bulk-download index, the FAO data catalog ISO record and the FAO database terms of use. The citation follows the FAO terms-of-use template with the year of last update (2025). The bulk ZIP URL returned HTTP 200 (application/x-zip-compressed). Two FAOSTAT API endpoints tried returned 'Missing Authorization Header' or a 521 error, so API access is not listed. The data_nature 'observed' is an approximation: values are reported statistics, partly estimated or imputed. The Algeria-specific statements in algeria_notes about cereal variability are general context, not checked against the series."
+  }
+}

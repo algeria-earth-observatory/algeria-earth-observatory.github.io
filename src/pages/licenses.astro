@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getDatasets } from '../lib/catalog';
+import { SITE } from '../config/site';
+
+const all = (await getDatasets()).filter((d) => d.status !== 'in-preparation');
+const byLicense = new Map<string, { url?: string | null; ids: { id: string; title: string }[] }>();
+for (const d of all) {
+  const k = d.license?.name ?? 'Not stated';
+  if (!byLicense.has(k)) byLicense.set(k, { url: d.license?.url, ids: [] });
+  byLicense.get(k)!.ids.push({ id: d.id, title: d.title });
+}
+const groups = [...byLicense.entries()].sort((a, b) => b[1].ids.length - a[1].ids.length);
+---
+<Base title="Licenses" description="Licences for the AEO website code, its text, map services, and each catalogued dataset.">
+  <PageHeader eyebrow="Licenses" title="Code, content and data are licensed separately" lead="The website's own licences never override the licence of a dataset. Always follow the licence set by the data producer." />
+  <div class="container-aeo py-12 space-y-12">
+    <section class="grid gap-4 md:grid-cols-3">
+      <div class="card p-5"><h2 class="font-semibold">Website code</h2><p class="mt-1 text-[0.92rem] text-slate">MIT License — see <a href={`${SITE.github.repoUrl}/blob/main/LICENSE`} rel="noopener">LICENSE</a>.</p></div>
+      <div class="card p-5"><h2 class="font-semibold">Website text and documentation</h2><p class="mt-1 text-[0.92rem] text-slate"><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> — see <a href={`${SITE.github.repoUrl}/blob/main/LICENSE-CONTENT.md`} rel="noopener">LICENSE-CONTENT</a>.</p></div>
+      <div class="card p-5"><h2 class="font-semibold">Metadata records</h2><p class="mt-1 text-[0.92rem] text-slate">Catalog records (descriptions, fields) are CC BY 4.0. Quoted provider text and citations remain the providers'.</p></div>
+    </section>
+
+    <section aria-labelledby="map-h">
+      <h2 id="map-h" class="text-xl font-semibold">Map services and imagery</h2>
+      <ul class="mt-3 list-disc space-y-1.5 pl-5 text-[0.93rem]">
+        <li>Basemaps: <a href="https://openfreemap.org" rel="noopener">OpenFreeMap</a>, © <a href="https://www.openmaptiles.org/" rel="noopener">OpenMapTiles</a>, data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL).</li>
+        <li>Imagery and data visualisation tiles: <a href="https://earthdata.nasa.gov/gibs" rel="noopener">NASA EOSDIS GIBS</a> (NASA data are open, without restriction on use).</li>
+        <li>Surface water tiles: Source: EC JRC/Google (Copernicus Programme, free and open).</li>
+        <li>Homepage image: NASA Blue Marble: Next Generation via NASA GIBS, with AEO boundaries (© OpenStreetMap contributors).</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="data-h">
+      <h2 id="data-h" class="text-xl font-semibold">Dataset licences</h2>
+      <p class="mt-2 text-[0.93rem] text-slate">As stated by each provider and recorded in the catalog. “Not stated” means AEO found no data licence on the provider's pages; ask the provider before redistributing.</p>
+      <div class="mt-5 space-y-5">
+        {groups.map(([name, g]) => (
+          <div class="rounded-md border border-line p-4">
+            <h3 class="font-semibold text-atlas">{g.url ? <a href={g.url} rel="noopener">{name}</a> : name}</h3>
+            <ul class="mt-2 flex flex-wrap gap-2">{g.ids.map((x) => <li><a href={`/data/${x.id}/`} class="chip no-underline hover:border-signal">{x.title}</a></li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

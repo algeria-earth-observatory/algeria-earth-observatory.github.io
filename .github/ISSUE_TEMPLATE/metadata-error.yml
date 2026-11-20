@@ -1,0 +1,34 @@
+name: Report a broken link or metadata error
+description: Something wrong or outdated on a dataset page (link, licence, citation, dates, description).
+title: "[Metadata] "
+labels: ["metadata", "needs-review"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Dataset page
+      placeholder: https://algeria-earth-observatory.github.io/data/...
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of problem
+      multiple: true
+      options:
+        - Broken or redirected link
+        - Wrong or missing licence
+        - Wrong or missing citation / DOI
+        - Wrong coverage, resolution or dates
+        - Outdated version
+        - Missing limitation or caveat
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong, and what is correct?
+      description: Please link the official source that shows the correct information.
+    validations:
+      required: true

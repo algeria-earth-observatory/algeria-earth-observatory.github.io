@@ -1,0 +1,190 @@
+{
+  "id": "geoboundaries-dza",
+  "title": "geoBoundaries Algeria (DZA) ADM0 and ADM1 Boundaries (gbOpen)",
+  "description": "Open administrative boundary polygons for Algeria from the geoBoundaries database (William & Mary geoLab): the national outline (ADM0, 1 unit) and first-level units (ADM1, 48 wilayas), both sourced from OpenStreetMap (Wambacher extract) and representing the year 2017.",
+  "purpose": "Openly licensed national and wilaya outlines for clipping global datasets and aggregating statistics; note that the ADM1 layer reflects the pre-2019 48-wilaya division.",
+  "domain": [
+    "human-change"
+  ],
+  "categories": [
+    "Administrative boundaries"
+  ],
+  "keywords": [
+    "administrative boundaries",
+    "wilayas",
+    "ADM0",
+    "ADM1",
+    "geoBoundaries",
+    "OpenStreetMap",
+    "Algeria"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "geoBoundaries (William & Mary geoLab)",
+    "url": "https://www.geoboundaries.org/"
+  },
+  "creator": "geoBoundaries / William & Mary geoLab; boundary source: OpenStreetMap contributors (via wambachers-osm.website)",
+  "source_url": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
+  "documentation_url": "https://www.geoboundaries.org/",
+  "license": {
+    "name": "Open Data Commons Open Database License 1.0",
+    "spdx": "ODbL-1.0",
+    "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "license_notes": "License for DZA ADM0 and ADM1 (gbOpen) as reported by the geoBoundaries API: 'Open Data Commons Open Database License 1.0', licenseSource www.openstreetmap.org/copyright. This differs from the CC BY 4.0 stated generically on the geoBoundaries homepage; the per-boundary ODbL (share-alike for derived databases) applies. Attribute OpenStreetMap contributors and geoBoundaries (link to www.geoboundaries.org when used on the web).",
+  "citation": "Runfola, D. et al. (2020) geoBoundaries: A global database of political administrative boundaries. PLoS ONE 15(4): e0231866. https://doi.org/10.1371/journal.pone.0231866. Boundary data: geoBoundaries gbOpen DZA ADM0 (DZA-ADM0-9297773) and ADM1 (DZA-ADM1-43142294), source OpenStreetMap, Wambacher; © OpenStreetMap contributors, ODbL 1.0.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Runfola, D., Anderson, A., Baier, H., Crittenden, M., et al. (2020). geoBoundaries: A global database of political administrative boundaries. PLoS ONE, 15(4), e0231866.",
+      "doi": "10.1371/journal.pone.0231866",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Algeria only (ADM0 national outline; ADM1 48 units with ISO 3166-2 codes DZ-01 to DZ-48).",
+    "algeria_subset": "native",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "boundaryYearRepresented 2017 (ADM0 and ADM1); source data update date 19 Jan 2023; geoBoundaries build date 12 Dec 2023. Algeria officially had 58 wilayas from law 19-12 (2019; names fixed March 2021) and has 69 since law 26-06 of 4 April 2026, so this ADM1 layer is outdated (see research/wilaya_geography.md)."
+  },
+  "resolution": {
+    "spatial": "vector (full and simplified geometries)",
+    "spatial_m": null,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "GeoJSON",
+    "TopoJSON",
+    "Shapefile (zip)"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "shapeName",
+      "units": null,
+      "description": "Unit name (Latin script); 'Bordj Bou Arreridj' carries a trailing U+200E character in the ADM1 file"
+    },
+    {
+      "name": "shapeISO",
+      "units": null,
+      "description": "ISO 3166-2 code (DZ-01 ... DZ-48 for ADM1)"
+    },
+    {
+      "name": "shapeID",
+      "units": null,
+      "description": "geoBoundaries unit identifier"
+    },
+    {
+      "name": "shapeGroup",
+      "units": null,
+      "description": "Country ISO3 (DZA)"
+    },
+    {
+      "name": "shapeType",
+      "units": null,
+      "description": "ADM level (ADM0 / ADM1)"
+    }
+  ],
+  "processing": "geoBoundaries ingests boundaries from the cited source (here OpenStreetMap via the Wambacher boundaries extract), standardises attributes and geometry, and publishes full and simplified files with metadata through a versioned GitHub release and an API.",
+  "validation": null,
+  "limitations": [
+    "ADM1 represents the 48-wilaya configuration (year 2017), not the 58 (2019/2021) or 69 (2026) wilayas now in law.",
+    "boundaryCanonical is 'Unknown' and the source is crowd-sourced OSM, not an official Algerian cadastre; boundaries are not authoritative.",
+    "ODbL share-alike applies to derived databases.",
+    "geoBoundaries gbOpen DZA ADM2 is not a commune layer (48 units, Wikimedia Commons, 2012, Public Domain); use gbHumanitarian ADM2 (1,541 units, UNHCR/GAUL, CC BY 3.0 IGO) for communes."
+  ],
+  "version": "gbOpen current (commit 9469f09; build 12 Dec 2023)",
+  "published_date": "2023-12-12",
+  "updated_date": null,
+  "download_url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1.geojson",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "geoBoundaries API - DZA ADM1 metadata",
+      "url": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
+      "kind": "api",
+      "format": "JSON",
+      "requires_login": false,
+      "notes": "admUnitCount 48; boundaryID DZA-ADM1-43142294."
+    },
+    {
+      "label": "geoBoundaries API - DZA ADM0 metadata",
+      "url": "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM0/",
+      "kind": "api",
+      "format": "JSON",
+      "requires_login": false,
+      "notes": "admUnitCount 1; boundaryID DZA-ADM0-9297773."
+    },
+    {
+      "label": "ADM1 GeoJSON (full)",
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "HTTP 200, 6405776 bytes (2026-11-19)."
+    },
+    {
+      "label": "ADM1 GeoJSON (simplified)",
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1_simplified.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "HTTP 200, 682435 bytes; 48 features (2026-11-19)."
+    },
+    {
+      "label": "ADM1 all formats (zip)",
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM1/geoBoundaries-DZA-ADM1-all.zip",
+      "kind": "download",
+      "format": "zip (GeoJSON, TopoJSON, Shapefile)",
+      "requires_login": false,
+      "notes": "HTTP 200, 5791130 bytes (2026-11-19)."
+    },
+    {
+      "label": "ADM0 GeoJSON (full)",
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "HTTP 200, 1232874 bytes (2026-11-19)."
+    },
+    {
+      "label": "ADM0 GeoJSON (simplified)",
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0_simplified.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "HTTP 200, 137900 bytes (2026-11-19)."
+    }
+  ],
+  "code_url": "https://github.com/wmgeolab/geoBoundaries",
+  "algeria_notes": "Label this layer '48 wilayas (pre-2019 configuration, OSM 2017)'. Algeria has 69 wilayas under law 26-06 (JO n° 25, 5 April 2026); no openly licensed 58- or 69-wilaya boundary file was found on 2026-11-19. Raw API responses are archived in research/geoboundaries_dza.json.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "validation",
+      "updated_date"
+    ],
+    "sources_consulted": [
+      "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM0/",
+      "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
+      "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM2/",
+      "https://www.geoboundaries.org/api/current/gbHumanitarian/DZA/ADM1/",
+      "https://www.geoboundaries.org/",
+      "https://api.crossref.org/works/10.1371/journal.pone.0231866"
+    ],
+    "notes": "All metadata from the geoBoundaries 'current' API on 2026-11-19: boundarySource 'OpenStreetMap, Wambacher'; boundarySourceURL wambachers-osm.website/boundaries/; boundaryLicense ODbL 1.0; boundaryYearRepresented 2017; sourceDataUpdateDate 'Thu Jan 19 07:31:04 2023'; buildDate 'Dec 12, 2023'; admUnitCount ADM0 1, ADM1 48. gbAuthoritative/DZA returns 404. published_date = buildDate. Simplified ADM1 file inspected: 48 features, shapeISO DZ-01..DZ-48."
+  },
+  "alert": "This dataset represents Algeria's former 48-wilaya configuration (2017). Algeria has had 58 wilayas since 2019 and 69 since Loi n° 26-06 of 4 April 2026. For the current configuration, see the AEO boundary dataset (aeo-dza-admin-boundaries)."
+}

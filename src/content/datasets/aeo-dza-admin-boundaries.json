@@ -1,0 +1,172 @@
+{
+  "id": "aeo-dza-admin-boundaries",
+  "title": "Algeria national and wilaya boundaries (69 wilayas, OSM snapshot)",
+  "title_fr": "Limites nationales et des wilayas de l'Algérie (69 wilayas, instantané OSM)",
+  "title_ar": "حدود الجزائر الوطنية وحدود الولايات (69 ولاية، لقطة من OpenStreetMap)",
+  "description": "Polygons for Algeria's national territory and its 69 wilayas, extracted from OpenStreetMap on 19 November 2026, assembled, clipped to land and checked for overlaps by AEO. The 69-wilaya configuration was established by Loi n° 26-06 of 4 April 2026 (JO n° 25); wilayas 59–69 were named by Décret présidentiel n° 26-206 (JO n° 40).",
+  "purpose": "A versioned, openly licensed reference geography for summarising gridded data by wilaya, for the AEO map explorer, and for future wilaya-level search and downloads.",
+  "domain": [
+    "reference"
+  ],
+  "categories": [
+    "Administrative boundaries",
+    "Reference geography"
+  ],
+  "keywords": [
+    "wilaya",
+    "administrative boundaries",
+    "ADM1",
+    "Algeria",
+    "OpenStreetMap",
+    "ولاية",
+    "boundaries"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "OpenStreetMap contributors (source); Algeria Earth Observatory (processing)",
+    "url": "https://www.openstreetmap.org/"
+  },
+  "creator": "Algeria Earth Observatory maintainers",
+  "source_url": "https://www.openstreetmap.org/relation/192756",
+  "documentation_url": "https://algeria-earth-observatory.github.io/docs/boundaries/",
+  "license": {
+    "name": "Open Data Commons Open Database License 1.0",
+    "spdx": "ODbL-1.0",
+    "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "license_notes": "Derived from OpenStreetMap. Attribute as “© OpenStreetMap contributors” and share derived databases under ODbL.",
+  "citation": "Algeria Earth Observatory (2026). Algeria national and wilaya boundaries (69 wilayas), OpenStreetMap snapshot 2026-11-19, version 2026-11-19. Data © OpenStreetMap contributors, ODbL 1.0. https://algeria-earth-observatory.github.io/data/aeo-dza-admin-boundaries/",
+  "doi": null,
+  "references": [],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "All of Algeria; land area only (territorial sea removed).",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ]
+  },
+  "temporal_extent": {
+    "start": "2026-11-19",
+    "end": "2026-11-19",
+    "ongoing": false,
+    "frequency": "single snapshot",
+    "description": "State of OpenStreetMap on 19 November 2026. New snapshots are published as new versions; earlier versions remain downloadable."
+  },
+  "resolution": {
+    "spatial": "Vector (full detail as mapped in OSM); display file simplified",
+    "spatial_m": null,
+    "temporal": "single snapshot"
+  },
+  "format": [
+    "GeoJSON"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "wilaya_code",
+      "units": null,
+      "description": "Two-digit wilaya code (OSM ref tag), 01–69"
+    },
+    {
+      "name": "iso_3166_2",
+      "units": null,
+      "description": "ISO 3166-2 code as tagged in OSM (null where untagged)"
+    },
+    {
+      "name": "name / name_ar / name_en",
+      "units": null,
+      "description": "French, Arabic and English names from OSM tags"
+    },
+    {
+      "name": "osm_relation, wikidata",
+      "units": null,
+      "description": "Source OSM relation id and Wikidata id"
+    },
+    {
+      "name": "area_km2",
+      "units": "km²",
+      "description": "Planimetric polygon area in a Lambert azimuthal equal-area projection (not an official statistic)"
+    }
+  ],
+  "processing": "Boundary relations (admin_level 2 for Algeria and admin_level 4 within it) were downloaded from the Overpass API with member-way geometries. Rings were assembled with shapely.polygonize, clipped to land using the OSM-derived geoBoundaries DZA ADM0 polygon as a coastline mask, and repaired. One overlap left by an incomplete OSM edit (El Aricha, 63, still included in Tlemcen, 13) was resolved by giving precedence to the newer wilaya. A display version was simplified with mapshaper (topology-preserving).",
+  "validation": "Automated checks at build: 69 valid polygons; no overlaps above 1 km² after the documented fix; gap against the national land outline below 200 km² (coastline differences). Boundaries have not been checked against official legal texts or survey data.",
+  "limitations": [
+    "Community-mapped boundaries: not an official, legal or cadastral delineation. Positional accuracy varies, particularly for wilayas 59–69 created in 2026.",
+    "Transition period: under Loi n° 26-06 the former (mother) wilayas hand over powers to the new wilayas by 31 December 2026 at the latest; statistics published during the transition may still use 48 or 58 units.",
+    "Wilaya code 63 (El Aricha) has no ISO 3166-2 tag in OSM at snapshot time; the field is left empty rather than inferred.",
+    "The simplified display file is for web maps only; use the full-detail file for analysis.",
+    "Computed areas depend on the polygon detail and projection and will differ from official area figures."
+  ],
+  "version": "2026-11-19",
+  "published_date": "2026-11-19",
+  "updated_date": "2026-11-19",
+  "download_url": "/data/aeo/boundaries/2026-11-19/dza_adm1_wilayas.geojson",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Wilayas — full detail (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-19/dza_adm1_wilayas.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "69 features, EPSG:4326",
+      "sha256": "de40101adcfd6fab75b05ad061ed3ca4d3b51a791473bba4f592e3314c303e6c",
+      "size_bytes": 7457673
+    },
+    {
+      "label": "Wilayas — simplified for web maps (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-19/dza_adm1_wilayas_display.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "Display only",
+      "sha256": "7cfc7de914bea7ec068e7fbb78d23284bedbedbc07e09545e3324b1228719b43",
+      "size_bytes": 249644
+    },
+    {
+      "label": "National boundary — full detail (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-19/dza_adm0.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "Dissolved from the wilaya polygons",
+      "sha256": "89ad6d3a3dcf78c56cd78ee3cbca1962b4af6e48d6d995a38f228c8e04660e6c",
+      "size_bytes": 1846211
+    },
+    {
+      "label": "Provenance record (JSON)",
+      "url": "/data/aeo/boundaries/2026-11-19/PROVENANCE.json",
+      "kind": "download",
+      "format": "JSON",
+      "requires_login": false,
+      "notes": "Overpass query, inputs, fixes applied",
+      "sha256": "55697c738051abd05abb4d00f713324f9064a00d0c35bfd02d527fd4d1023f10",
+      "size_bytes": 1525
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/blob/main/scripts/processing/build_boundaries.py",
+  "algeria_notes": "Algeria moved from 48 to 58 wilayas (Loi n° 19-12, 2019; names by Décret n° 21-117, 2021) and to 69 wilayas (Loi n° 26-06, 2026). Other open boundary sets checked by AEO (geoBoundaries, OCHA COD-AB, GADM) still show 48 wilayas. Check which configuration your statistics use before joining tables to polygons.",
+  "map_layers": [
+    "wilayas"
+  ],
+  "featured": true,
+  "added_date": "2026-11-19",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://overpass-api.de/api/interpreter",
+      "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
+      "https://www.joradp.dz/"
+    ],
+    "notes": "Processing log and fixes in PROVENANCE.json. Legal references verified in Journal Officiel PDFs (see research/wilaya_geography.md)."
+  }
+}

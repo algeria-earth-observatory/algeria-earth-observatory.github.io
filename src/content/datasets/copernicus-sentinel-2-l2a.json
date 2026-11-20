@@ -1,0 +1,83 @@
+{
+  "id": "copernicus-sentinel-2-l2a",
+  "title": "Copernicus Sentinel-2 MSI Level-2A Surface Reflectance (Collection 1)",
+  "description": "Orthorectified, atmospherically corrected surface (bottom-of-atmosphere) reflectance from the Sentinel-2 MultiSpectral Instrument, delivered as 110 × 110 km tiles in UTM/WGS84 geometry. Each product contains 12 spectral bands at 10, 20 and 60 m (cirrus band B10 excluded) plus a Scene Classification map (including clouds and cloud shadows), aerosol optical thickness and water vapour maps.",
+  "purpose": "The primary freely available optical imagery source at 10–20 m for Algeria, suitable for crop and land-cover mapping, vegetation monitoring and change detection, and the input to several derived products listed in this catalogue (e.g. WorldCereal, WorldCover).",
+  "domain": ["land-ecosystems", "agriculture", "water"],
+  "categories": ["Satellite imagery", "Optical multispectral"],
+  "keywords": ["Sentinel-2", "MSI", "Level-2A", "surface reflectance", "bottom-of-atmosphere", "Copernicus", "Sen2Cor", "Collection 1", "Scene Classification"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "observed",
+  "data_type": "imagery",
+  "provider": { "name": "European Commission Copernicus Programme / European Space Agency (ESA)", "url": "https://dataspace.copernicus.eu/" },
+  "creator": "European Space Agency (Copernicus Sentinel-2 mission, processed by ESA)",
+  "source_url": "https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access/sentinel-products/sentinel-2-data-products/collection-1-level-2a",
+  "documentation_url": "https://sentiwiki.copernicus.eu/web/s2-products",
+  "license": { "name": "Legal notice on the use of Copernicus Sentinel Data and Service Information (free, full and open access under Regulation (EU) No 377/2014 and Commission Delegated Regulation (EU) No 1159/2013)", "spdx": null, "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice" },
+  "license_notes": "Reproduction, distribution, communication to the public, adaptation, modification and combination are permitted. Required notice when distributing: 'Copernicus Sentinel data [Year]'; when adapted or modified: 'Contains modified Copernicus Sentinel data [Year]'. Data are provided without warranty.",
+  "citation": "Copernicus Sentinel-2 (processed by ESA), 2021, MSI Level-2A BOA Reflectance Product. Collection 1. European Space Agency. https://doi.org/10.5270/S2_-znk9xsj",
+  "doi": "10.5270/S2_-znk9xsj",
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land acquisitions in 110 × 110 km tiles on a 100 km UTM/MGRS grid (neighbouring tiles overlap). Algeria is covered by many tiles across several UTM zones; users must select tiles or use a cloud API to subset Algeria.",
+    "algeria_subset": "extract",
+    "bbox": [-180, -90, 180, 90]
+  },
+  "temporal_extent": {
+    "start": "2015-06-27",
+    "end": null,
+    "ongoing": true,
+    "frequency": "5-day revisit at the equator with two satellites (2–3 days at mid-latitudes)",
+    "description": "The CDSE STAC collection starts on 2015-06-27. Operational L2A production began in March 2018 over the Euro-Mediterranean region and became global on 13 December 2018; earlier L2A (from 2015) comes from the Collection-1 reprocessing of the archive. Sentinel-2C replaced Sentinel-2A in operations on 21 January 2025."
+  },
+  "resolution": { "spatial": "10 m, 20 m and 60 m depending on band", "spatial_m": 10, "temporal": "5-day revisit (two satellites, equator)" },
+  "format": ["SAFE package with JPEG2000 image files"],
+  "crs": "UTM / WGS 84 (zone of each tile)",
+  "variables": [
+    { "name": "B02, B03, B04, B08", "units": "surface reflectance (scaled integer)", "description": "Blue, green, red, NIR at 10 m." },
+    { "name": "B05, B06, B07, B8A, B11, B12", "units": "surface reflectance (scaled integer)", "description": "Red-edge, narrow NIR and SWIR bands at 20 m (all bands also resampled to 20 m and 60 m)." },
+    { "name": "B01, B09", "units": "surface reflectance (scaled integer)", "description": "Coastal aerosol and water vapour bands at 60 m. B10 (cirrus) is not included in L2A." },
+    { "name": "SCL", "units": "class code", "description": "Scene Classification map (including cloud and cloud-shadow classes) at 20 m and 60 m." },
+    { "name": "AOT, WVP", "units": "scaled integer", "description": "Aerosol optical thickness and water vapour maps." },
+    { "name": "TCI", "units": "RGB", "description": "True-colour image." }
+  ],
+  "processing": "Level-2A is derived from Level-1C top-of-atmosphere reflectance by atmospheric correction (Rayleigh scattering, gaseous absorption, aerosols). For Collection 1 the Sen2Cor algorithm version 2.10 is used with the Copernicus DEM at 30 m, and products carry processing baseline 05.xx. Products are available within about 8 hours of sensing.",
+  "validation": null,
+  "limitations": [
+    "Archive products were generated with different processing baselines over time (2.xx, 4.00, 5.xx; Collection 1 = 05.xx); users building time series should check the processing baseline of each product and harmonise accordingly.",
+    "Tiles overlap (110 km tiles on a 100 km grid), so the same area can appear in multiple tiles and must be de-duplicated when mosaicking.",
+    "Scene Classification is an automatic per-scene mask; residual cloud, cloud-shadow and bright-surface misclassification should be checked, especially over very bright desert surfaces.",
+    "L2A for 2015 to 2018 relies on reprocessing; CDSE notes that old-baseline products are being removed and replaced by Collection 1."
+  ],
+  "version": "Collection 1 (processing baseline 05.xx)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    { "label": "Copernicus Browser (CDSE)", "url": "https://browser.dataspace.copernicus.eu/", "kind": "viewer", "format": null, "requires_login": false, "notes": "Interactive visualisation. Product download requires a CDSE account (per OData documentation); whether viewing requires login was not verified." },
+    { "label": "CDSE STAC collection sentinel-2-l2a", "url": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a", "kind": "api", "format": "STAC", "requires_login": false, "notes": "Catalogue search without authentication; asset download requires a CDSE account/token." },
+    { "label": "CDSE OData API", "url": "https://documentation.dataspace.copernicus.eu/APIs/OData.html", "kind": "api", "format": "SAFE (zipped)", "requires_login": true, "notes": "CDSE documentation: 'For downloading products you need an authorization token as only authorized users are allowed to download data products.'" },
+    { "label": "CDSE Sentinel-2 documentation", "url": "https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel2.html", "kind": "external", "format": null, "requires_login": false, "notes": "Mission, product levels and access routes in CDSE." }
+  ],
+  "code_url": null,
+  "algeria_notes": "Northern Algeria's winter-spring cereal season can be followed at 10–20 m with a nominal 5-day revisit, and the red-edge and SWIR bands help separate green crops, fallow and bare soil. Over the Sahara, very bright surfaces and dust events can affect atmospheric correction and the scene classification mask, so cloud/dust screening should be checked visually. Oasis gardens and centre-pivot fields are well resolved at 10 m.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": ["validation (no official accuracy figure consulted)", "published_date", "updated_date", "current constellation status after the three-satellite period ending 13 March 2026", "reflectance scale factor/offset (not consulted)", "access[Copernicus Browser].requires_login (viewing)"],
+    "sources_consulted": [
+      "https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel2.html",
+      "https://documentation.dataspace.copernicus.eu/Data/Others/Sentinel2_L2A_baseline.html",
+      "https://documentation.dataspace.copernicus.eu/APIs/OData.html",
+      "https://sentiwiki.copernicus.eu/web/s2-products",
+      "https://sentinels.copernicus.eu/web/sentinel/sentinel-data-access/sentinel-products/sentinel-2-data-products/collection-1-level-2a",
+      "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a",
+      "https://api.crossref.org/works/10.5270/S2_-znk9xsj"
+    ],
+    "notes": "DOI 10.5270/S2_-znk9xsj is registered with Crossref as 'Sentinel-2 MSI Level-2A BOA Reflectance' (ESA, 2022) and resolves to the ESA Collection-1 L2A page, which gives the citation used here. The STAC collection's license link points to the Sentinel data legal notice, with sci:citation 'Copernicus Sentinel data [Year]'. The bbox is the STAC collection extent. The 'bright desert surfaces' caveat in limitations and algeria_notes is a general remote-sensing caution, not a statement from ESA documentation."
+  }
+}

@@ -1,0 +1,75 @@
+name: Propose a dataset
+description: Suggest an authentic dataset relevant to Algeria for the AEO catalog.
+title: "[Dataset] "
+labels: ["dataset-proposal", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you! You do not need to fill in everything — share what you know and maintainers will research the rest.
+        **This issue is public.** Do not include personal data, exact field locations, unpublished or restricted data.
+  - type: input
+    id: name
+    attributes:
+      label: Dataset name
+      description: Official name and version, if known.
+      placeholder: e.g. ESA WorldCereal 2021 winter cereals map
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Official source link
+      description: The provider's landing page or DOI (not a third-party copy).
+      placeholder: https://...
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      multiple: true
+      options:
+        - Agriculture & Cropland
+        - Climate & Drought
+        - Water Resources
+        - Land & Ecosystems
+        - Environmental Hazards
+        - Human & Environmental Change
+        - Reference data (boundaries, imagery, elevation)
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it useful for Algeria?
+      description: What questions can it help answer? Any known strengths or limitations for Algeria?
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: Licence (if known)
+      placeholder: e.g. CC BY 4.0
+  - type: dropdown
+    id: coverage
+    attributes:
+      label: Coverage
+      options:
+        - Global
+        - Africa / regional
+        - Algeria only
+        - Part of Algeria
+        - I don't know
+  - type: textarea
+    id: details
+    attributes:
+      label: Other details (optional)
+      description: Resolution, period, formats, citation or DOI, login requirements.
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: The link is to the original, official source, and this issue contains no sensitive or restricted information.
+          required: true

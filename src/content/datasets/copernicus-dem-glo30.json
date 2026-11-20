@@ -1,0 +1,146 @@
+{
+  "id": "copernicus-dem-glo30",
+  "title": "Copernicus DEM GLO-30 (30 m Global Digital Surface Model)",
+  "description": "Global digital surface model at 1 arc-second (about 30 m) grid spacing, derived from an edited version of the WorldDEM product based on TanDEM-X radar data acquired 2011-2015. Heights include buildings, infrastructure and vegetation; water bodies are flattened and rivers made consistent.",
+  "purpose": "Reference terrain for Algeria-wide analyses: slope, watershed and drainage delineation, terrain correction, topographic covariates for crop, erosion, flood and fire studies.",
+  "domain": [
+    "land-ecosystems",
+    "water",
+    "hazards"
+  ],
+  "categories": [
+    "Elevation / terrain"
+  ],
+  "keywords": [
+    "DEM",
+    "DSM",
+    "elevation",
+    "Copernicus",
+    "TanDEM-X",
+    "WorldDEM",
+    "GLO-30",
+    "terrain"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "observed",
+  "data_type": "raster",
+  "provider": {
+    "name": "European Space Agency (ESA) / Copernicus Programme (Copernicus Data Space Ecosystem)",
+    "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+  },
+  "creator": "Airbus Defence and Space GmbH (WorldDEM, from DLR/Airbus TanDEM-X data), provided under Copernicus by the European Union and ESA",
+  "source_url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+  "documentation_url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+  "license": {
+    "name": "Licence for the use of the Copernicus WorldDEM-30 (free of charge, worldwide)",
+    "spdx": null,
+    "url": "https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf"
+  },
+  "license_notes": "Free licence allowing reproduction, distribution, communication to the public and modification. Required notice when distributing: '© DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.' For modified data: 'produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved'. Redistributors must also include: 'The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30'.",
+  "citation": "Copernicus DEM GLO-30. European Space Agency / Copernicus Programme. https://doi.org/10.5270/ESA-c5d3d65 (© DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved).",
+  "doi": "10.5270/ESA-c5d3d65",
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global landmasses in 1x1 degree tiles (ocean tiles absent). Algeria is covered by many tiles that the user must mosaic and clip.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2011-01-01",
+    "end": "2015-12-31",
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Source TanDEM-X acquisitions 2011-2015, with gap filling from other DEMs (ASTER, SRTM, GMTED2010, TerraSAR-X, ALOS World 3D, national DEMs). Several maintenance releases exist (2019_1 to 2024_1)."
+  },
+  "resolution": {
+    "spatial": "1 arc-second (about 30 m)",
+    "spatial_m": 30,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "GeoTIFF (DGED)",
+    "DTED",
+    "Cloud Optimized GeoTIFF (AWS Open Data mirror)"
+  ],
+  "crs": "EPSG:4326 (WGS84-G1150) horizontal; EGM2008 (EPSG:3855) heights in metres",
+  "variables": [
+    {
+      "name": "DEM",
+      "units": "m",
+      "description": "Surface elevation above the EGM2008 geoid (digital surface model)"
+    }
+  ],
+  "processing": "WorldDEM was generated from TanDEM-X interferometric SAR data (2011-2015) and edited for Copernicus: water bodies flattened, rivers made consistent and implausible terrain corrected; voids filled with other DEM sources. Distributed in 1x1 degree tiles as GLO-30 (1 arc-second) and GLO-90 (3 arc-seconds).",
+  "validation": "The CDSE collection page states specifications: absolute vertical accuracy < 4 m (90% linear error), relative vertical accuracy < 2 m for slopes up to 20% and < 4 m above 20%, absolute horizontal accuracy < 6 m (90% circular error). These are product specifications quoted by the provider, not an AEO assessment.",
+  "limitations": [
+    "Digital surface model: elevations include vegetation canopy and buildings, so urban areas and oases (palm groves) appear raised relative to bare ground.",
+    "Radar-based heights can be affected in steep relief and over sand dunes (dune fields such as the Grand Erg Oriental/Occidental change shape over time; DEM reflects 2011-2015 acquisitions).",
+    "Heights are relative to the EGM2008 geoid, not the WGS84 ellipsoid.",
+    "Some releases and mirrors differ (e.g. AWS registry: 2021 release; OpenTopography: 2023_1); record the release used."
+  ],
+  "version": "GLO-30 (releases 2019_1 to 2024_1; AWS mirror states 2021 release; OpenTopography serves DGED 2023_1)",
+  "published_date": "2019-12-01",
+  "updated_date": "2024-07-01",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Copernicus Data Space Ecosystem (collection page)",
+      "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "kind": "external",
+      "format": "GeoTIFF / DTED",
+      "requires_login": true,
+      "notes": "Bulk access via OData API and S3-compatible storage requires a free CDSE account."
+    },
+    {
+      "label": "Copernicus Browser",
+      "url": "https://browser.dataspace.copernicus.eu/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Visualisation; downloads require login."
+    },
+    {
+      "label": "AWS Open Data registry (s3://copernicus-dem-30m, eu-central-1)",
+      "url": "https://registry.opendata.aws/copernicus-dem/",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "Public bucket, no AWS account needed; tile naming Copernicus_DSM_COG_10_N<lat>_00_E<lon>_00_DEM. Example Algiers tile verified (HTTP 200): https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_E003_00_DEM/Copernicus_DSM_COG_10_N36_00_E003_00_DEM.tif"
+    },
+    {
+      "label": "OpenTopography (Copernicus GLO-30)",
+      "url": "https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Area-of-interest subsetting; bulk/advanced processing requires sign-in."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Covers all of Algeria. Within the AWS mirror the tile N36 E003 (Algiers) was read successfully (EPSG:4326, 3600x3600 px). For hydrology in the Tell Atlas, note DSM effects of forest canopy; in the Sahara, dune mobility since 2011-2015 limits use for recent topography.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "published_date (taken as release 2019_1, Dec 2019; exact day unknown)",
+      "updated_date (release 2024_1, Jul 2024; exact day unknown)"
+    ],
+    "sources_consulted": [
+      "https://doi.org/10.5270/ESA-c5d3d65",
+      "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf",
+      "https://registry.opendata.aws/copernicus-dem/",
+      "https://copernicus-dem-30m.s3.amazonaws.com/readme.html",
+      "https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3"
+    ],
+    "notes": "DOI 10.5270/ESA-c5d3d65 confirmed: it redirects (HTTP 302) to the CDSE COP-DEM collection page, which asks users to cite it. Licence notice text copied from the 'Licence for Copernicus DEM instance COP-DEM-GLO-30-F Global 30m Full, Free & Open' (Article 6) in the CDSE licence PDF. The AWS registry 'How to Cite' asks for: 'Copernicus Digital Elevation Model (DEM) was accessed on DATE from https://registry.opendata.aws/copernicus-dem.' Release 2023_1 (Dec 2023) opened GLO-30 for Armenia, Azerbaijan and Moldova. The non-released-tiles spreadsheet was not opened; completeness of all Algerian tiles on the AWS mirror was not checked (only N36 E003 was read). The OpenTopography dataset DOI was not displayed in fetched content and is not recorded."
+  }
+}

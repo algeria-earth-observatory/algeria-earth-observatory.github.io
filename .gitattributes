@@ -1,0 +1,6 @@
+* text=auto eol=lf
+# Distributed data files must stay byte-identical (SHA-256 checksums).
+public/data/** -text
+*.png binary
+*.jpg binary
+*.webp binary

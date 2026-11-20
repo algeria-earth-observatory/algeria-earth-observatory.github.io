@@ -1,0 +1,28 @@
+name: Suggest an improvement
+description: An idea for the catalog, map explorer, documentation or website.
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would you like to do that is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your suggestion
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Data catalog
+        - Map explorer
+        - Documentation / tutorials
+        - Contribution process
+        - Languages (French / Arabic)
+        - Other

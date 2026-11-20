@@ -1,0 +1,132 @@
+{
+  "id": "gaced30",
+  "title": "GACED30: Global 30-m Annual Cropland Extent Dynamics (2000–2024)",
+  "description": "Annual 30 m global cropland extent maps for each year from 2000 to 2024, generated from the gap-free Global 30-m Seamless Data Cube (SDC30) with year-specific classifiers. Each tile is a 25-band GeoTIFF (one band per year) with cropland / non-cropland classes. The authors describe it as the first dedicated global 30 m annual cropland-extent dataset.",
+  "purpose": "Offers an annual (rather than multi-year epoch) cropland time series at 30 m for 25 years, allowing year-to-year cropland dynamics, cropping frequency and expansion of irrigated perimeters in Algeria to be examined against national statistics.",
+  "domain": [
+    "agriculture",
+    "land-ecosystems",
+    "human-change"
+  ],
+  "categories": [
+    "Cropland and crop-type maps",
+    "Land-use change"
+  ],
+  "keywords": [
+    "GACED30",
+    "cropland extent",
+    "annual",
+    "30 m",
+    "SDC30",
+    "CatBoost",
+    "2000–2024",
+    "cropping frequency"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Tsinghua University, University of Hong Kong and Peng Cheng Laboratory (dataset authors, via Zenodo)",
+    "url": "https://zenodo.org/records/18199675"
+  },
+  "creator": "Shuang Chen (University of Hong Kong), Yuanhong Liao (Tsinghua University), Yuqi Bai (Tsinghua University), Jie Wang (Peng Cheng Laboratory), Peng Gong (University of Hong Kong)",
+  "source_url": "https://zenodo.org/records/18199675",
+  "documentation_url": "https://doi.org/10.5194/essd-18-7071-2026",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "CC BY 4.0 as stated on the Zenodo record. No specific attribution wording is given.",
+  "citation": "Chen, S., Liao, Y., Bai, Y., Wang, J., Gong, P. (2026). Global 30-m Annual Cropland Extent Dynamics (GACED30) (v1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.18199675",
+  "doi": "10.5281/zenodo.18199675",
+  "references": [
+    {
+      "citation": "Liao, Y., Chen, S., Bai, Y., Wang, J., and Gong, P. (2026) Global 30 m annual cropland extent dynamics (2000–2024): a harmonized baseline of structural evolution and regional disparities. Earth System Science Data, 18, 7071–7096.",
+      "doi": "10.5194/essd-18-7071-2026",
+      "url": "https://essd.copernicus.org/articles/18/7071/2026/"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surface in non-overlapping 3° × 3° tiles, packaged on Zenodo in 60 ZIP files each spanning 6° of longitude. Algeria (about 9°W–12°E) falls in the lon_-012_to_-006, lon_-006_to_+000, lon_+000_to_+006 and lon_+006_to_+012 packages; users must mosaic and clip Algeria themselves.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "2000-01-01",
+    "end": "2024-12-31",
+    "ongoing": false,
+    "frequency": "annual",
+    "description": "25 annual layers, 2000–2024 (Band 1 = 2000 … Band 25 = 2024)."
+  },
+  "resolution": {
+    "spatial": "30 m (0.000269°)",
+    "spatial_m": 30,
+    "temporal": "annual"
+  },
+  "format": [
+    "GeoTIFF (Cloud Optimized), 25 bands per tile, in ZIP packages"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "Cropland extent (bands 1–25, years 2000–2024)",
+      "units": "class code",
+      "description": "0 = non-cropland; 10 = cropland (active annual crops, perennial woody crops, active fallow and agricultural structures such as greenhouses); 255 = NoData."
+    }
+  ],
+  "processing": "Daily gap-free surface reflectance from the Global 30 m Seamless Data Cube (SDC30) was aggregated into 8-day median composites and combined with spectral indices (e.g. NDVI, kNDVI, MNDWI, tasseled cap) and NASADEM terrain and location features. Year-specific CatBoost classifiers were trained using the expert-annotated FAST sample set plus spatially augmented samples (screened for label noise), followed by rule-based spatial and temporal refinement. The annual record was used to derive cropping frequency and 1 km structural-evolution indicators described in the paper.",
+  "validation": "Liao et al. (2026, ESSD) report, against independent stable-site FAST-Crop samples, an overall accuracy of 0.965 and an F1 score of 0.844; in a matched regional assessment in China, OA 0.946 and F1 0.840. National cropland areas agreed with definition-reconciled FAOSTAT statistics with R² = 0.95 and an area-weighted direction match rate of 83.1%. The authors note that absolute crop gain/loss transition scores remained modest.",
+  "limitations": [
+    "Recently published (ESSD, September 2026); independent evaluation by other groups, particularly in North Africa, is not yet available. The paper gives no accuracy figures specific to North Africa or Algeria.",
+    "The authors report spectral confusion between active fallow and natural bare land, and larger map discrepancies in semi-arid and transitional regions.",
+    "Cropland includes perennial woody crops, active fallow and greenhouses but excludes temporary meadows and pastures, so totals differ by definition from GLAD (no woody crops) and WorldCereal temporary crops.",
+    "Intermediate cropping frequencies reported in some drylands may reflect rotation, fallow or classification variability rather than true cultivation changes."
+  ],
+  "version": "v1",
+  "published_date": "2026-01-09",
+  "updated_date": "2026-08-04",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Zenodo (full archive)",
+      "url": "https://zenodo.org/records/18199675",
+      "kind": "download",
+      "format": "COG GeoTIFF in ZIP",
+      "requires_login": false,
+      "notes": "60 ZIP packages by 6° longitude band; total listed by Zenodo as 41.4 GB."
+    },
+    {
+      "label": "iEarth cloud platform (GACED30)",
+      "url": "https://data-starcloud.pcl.ac.cn/iearthdata/map?id=67",
+      "kind": "viewer",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Linked from the Zenodo record for downloading individual tiles by region. Could not be reached from our test location (connection failed); login requirement unknown."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Because GACED30 counts active fallow and perennial woody crops (olive groves, date palms) as cropland, Algerian totals are expected to be higher than products restricted to annual or herbaceous crops; the reported fallow-versus-bare-land confusion is a particular concern in the semi-arid High Plateaus and steppe margins. The annual series is well suited to tracking the growth of centre-pivot and other irrigated perimeters in the Sahara, but users should check isolated pixels in the desert before interpreting them as cultivation.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "citation (Zenodo gives no recommended citation; built from Zenodo metadata)",
+      "SDC30 input sensors (not stated in the parts of the paper read)",
+      "access[iEarth].requires_login"
+    ],
+    "sources_consulted": [
+      "https://zenodo.org/records/18199675",
+      "https://zenodo.org/api/records/18199675",
+      "https://essd.copernicus.org/articles/18/7071/2026/",
+      "https://essd.copernicus.org/articles/18/7071/2026/essd-18-7071-2026.html",
+      "https://api.crossref.org/works/10.5194/essd-18-7071-2026"
+    ],
+    "notes": "GACED30 is confirmed as 'Global 30-m Annual Cropland Extent Dynamics' (Zenodo title). Concept DOI is 10.5281/zenodo.18199674; v1 (10.5281/zenodo.18199675) is the latest version at the check date. published_date = Zenodo publication date; updated_date = Zenodo record last modification (2026-08-04), which may be a metadata-only change. The ESSD article (preprint essd-2025-838) was published 25 September 2026; figures above are from the final article abstract. Zenodo and the ESSD DOI returned HTTP 200; the iEarth link did not respond."
+  },
+  "featured": true
+}

@@ -1,0 +1,72 @@
+{
+  "id": "aeo-cropland-extent",
+  "title": "AEO Cropland Extent — Algeria",
+  "description": "A planned national cropland extent product for Algeria with an explicit cropland definition suited to dryland agriculture, documented inputs and a design-based accuracy assessment.",
+  "purpose": null,
+  "domain": [
+    "agriculture"
+  ],
+  "categories": [
+    "Cropland extent and distribution",
+    "Cropland classification and validation"
+  ],
+  "keywords": [
+    "cropland",
+    "cropland extent",
+    "Algeria",
+    "classification"
+  ],
+  "status": "in-preparation",
+  "origin": "aeo-original",
+  "data_nature": null,
+  "data_type": null,
+  "provider": {
+    "name": "Algeria Earth Observatory",
+    "url": "https://algeria-earth-observatory.github.io/"
+  },
+  "creator": null,
+  "source_url": null,
+  "documentation_url": null,
+  "license": null,
+  "license_notes": "Licence to be decided before release; AEO intends to use an open licence.",
+  "citation": null,
+  "doi": null,
+  "references": [],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Planned national coverage of Algeria.",
+    "algeria_subset": "native",
+    "bbox": null
+  },
+  "temporal_extent": null,
+  "resolution": null,
+  "format": [],
+  "crs": null,
+  "variables": [],
+  "processing": null,
+  "validation": null,
+  "limitations": [
+    "No data have been released. Methods, input versions, validation design and accuracy assessment will be documented and reviewed before any release."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [],
+  "code_url": null,
+  "algeria_notes": null,
+  "planned_scope": [
+    "A stated cropland definition, including how temporarily fallow land is treated",
+    "National coverage with documented reference period(s)",
+    "Accuracy and area estimates with uncertainty from independent reference data",
+    "Comparison notes against existing global cropland products"
+  ],
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": false,
+    "unverified_fields": [],
+    "sources_consulted": [],
+    "notes": "Planned product family. Nothing in this record describes released data."
+  }
+}

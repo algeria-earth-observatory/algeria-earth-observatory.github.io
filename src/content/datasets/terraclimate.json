@@ -1,0 +1,185 @@
+{
+  "id": "terraclimate",
+  "title": "TerraClimate v1.1 Monthly Climate and Water Balance (~4 km)",
+  "description": "TerraClimate is a global dataset of monthly climate and climatic water balance for terrestrial surfaces at about 4 km (1/30°) resolution. Version 1.1 (released November 2026) covers 1950 to present and combines CHELSA v2.1 climatological normals with ERA5 monthly anomalies, and derives reference evapotranspiration, actual evapotranspiration, climatic water deficit, soil moisture, runoff and snow water equivalent with a water balance model.",
+  "purpose": "Provides consistent monthly temperature, precipitation and water-balance variables (deficit, actual ET, soil moisture) at a resolution suitable for distinguishing Tell, High Plateaux and Saharan Atlas climates in Algeria over seven decades.",
+  "domain": [
+    "climate-drought",
+    "water",
+    "agriculture"
+  ],
+  "categories": [
+    "Gridded climate",
+    "Climatic water balance",
+    "Drought indicators"
+  ],
+  "keywords": [
+    "TerraClimate",
+    "monthly climate",
+    "water balance",
+    "climatic water deficit",
+    "reference evapotranspiration",
+    "CHELSA",
+    "ERA5",
+    "climatically aided interpolation",
+    "Climatology Lab"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Climatology Lab, University of California Merced",
+    "url": "https://www.climatologylab.org/terraclimate.html"
+  },
+  "creator": "John T. Abatzoglou, Katherine C. Hegewisch and colleagues (University of California Merced)",
+  "source_url": "https://www.climatologylab.org/terraclimate.html",
+  "documentation_url": "https://www.climatologylab.org/terraclimate.html",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International (as stated in v1.1 file metadata)",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "The global attributes of the v1.1 NetCDF files on the THREDDS server state 'CC BY 4.0'. The Google Earth Engine catalogue entry for the earlier version (IDAHO_EPSCOR/TERRACLIMATE, 1958–2024) states CC0 public domain. The Climatology Lab web page itself does not state a licence. File metadata also asks users to acknowledge CHELSA, CRU TS and ERA5.",
+  "citation": "Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, K.C. Hegewisch (2018). TerraClimate, a high-resolution global dataset of monthly climate and climatic water balance from 1958–2015. Scientific Data 5, 170191. https://doi.org/10.1038/sdata.2017.191",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Abatzoglou, J.T., Dobrowski, S.Z., Parks, S.A., Hegewisch, K.C. (2018). TerraClimate, a high-resolution global dataset of monthly climate and climatic water balance from 1958–2015. Scientific Data 5, 170191.",
+      "doi": "10.1038/sdata.2017.191",
+      "url": null
+    },
+    {
+      "citation": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C., Kalashnikov, D.A. (2026). TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data (as cited in v1.1 file metadata; publication details not verified).",
+      "doi": null,
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surfaces, about 56.6°S–81.5°N (v1.1 file metadata), 1/30° grid. Global files per variable and year; Algeria must be subset by the user (OPeNDAP/NCSS subsetting is available).",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -56.55,
+      180,
+      81.52
+    ]
+  },
+  "temporal_extent": {
+    "start": "1950-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "v1.1: currently 1950–2025 on the THREDDS server (latest year file TerraClimate_*_2025.nc, checked 2026-11-19); the lab plans annual updates. The earlier v1.0 covered 1958 onward (Google Earth Engine copy 1958–2024) and is now only available from a legacy FTP on request. Pseudo-year (1950–2025) +2 °C, +3 °C and counterfactual scenario datasets are also provided."
+  },
+  "resolution": {
+    "spatial": "1/30° (~4 km)",
+    "spatial_m": 3711,
+    "temporal": "monthly"
+  },
+  "format": [
+    "NetCDF-4 (scale_factor/offset packed)"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "ppt",
+      "units": "mm",
+      "description": "Accumulated precipitation"
+    },
+    {
+      "name": "tmax / tmin",
+      "units": "degC",
+      "description": "Maximum / minimum 2 m temperature"
+    },
+    {
+      "name": "pet",
+      "units": "mm",
+      "description": "Reference evapotranspiration (ASCE Penman-Monteith, CO2-adjusted)"
+    },
+    {
+      "name": "aet",
+      "units": "mm",
+      "description": "Actual evapotranspiration"
+    },
+    {
+      "name": "def",
+      "units": "mm",
+      "description": "Climatic water deficit"
+    },
+    {
+      "name": "soil",
+      "units": "mm",
+      "description": "Soil moisture at end of month"
+    },
+    {
+      "name": "q",
+      "units": "mm",
+      "description": "Runoff"
+    },
+    {
+      "name": "vap, vpd, srad, ws, swe",
+      "units": "various",
+      "description": "Vapour pressure, vapour pressure deficit, shortwave radiation, wind speed, snow water equivalent"
+    }
+  ],
+  "processing": "Climatically aided interpolation: ERA5 monthly anomalies are interpolated and applied to CHELSA v2.1 (1981–2010) high-resolution normals, with calculated vapour pressure bias-corrected to CRU TS 4.09 climatologies. Water-balance variables come from a modified Thornthwaite-Mather model using CO2-adjusted Penman-Monteith reference ET and plant-extractable soil water capacity (Wang-Erlandsson et al. 2016); v1.1 adds month-to-month runoff carry-over.",
+  "validation": "For the original version, the provider reports validation against GHCN, SNOTEL and RAWS stations with statistics 'slightly better' than the parent CRU TS 4.0 data, and good agreement of reference ET with FLUXNET and of runoff with streamflow (Abatzoglou et al. 2018). No v1.1-specific accuracy numbers were found.",
+  "limitations": [
+    "Long-term trends are inherited from parent datasets (now ERA5); the provider advises against using TerraClimate for independent trend assessments.",
+    "Temporal variability finer than the parent data is not captured, including orographic precipitation ratios and inversions; cold-air drainage in complex terrain is likely missed.",
+    "The water-balance model is simple and uses static reference land cover; validation is limited in data-sparse regions.",
+    "Mixing v1.0 and v1.1 data is not recommended by the provider; the Google Earth Engine copy is still v1.0.",
+    "The v1.1 THREDDS variable list does not include PDSI, which was part of v1.0 (checked 2026-11-19)."
+  ],
+  "version": "v1.1",
+  "published_date": "2026-11-14",
+  "updated_date": "2026-11-15",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "THREDDS catalogue – individual years (v1.1)",
+      "url": "http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html",
+      "kind": "external",
+      "format": "NetCDF",
+      "requires_login": false,
+      "notes": "One file per variable and year, 1950–2025. Example TerraClimate_ppt_2025.nc: HEAD HTTP 200, 162,411,837 bytes."
+    },
+    {
+      "label": "THREDDS – aggregated years (OPeNDAP / NCSS subsetting)",
+      "url": "http://thredds.northwestknowledge.net:8080/thredds/terraclimate_aggregated.html",
+      "kind": "api",
+      "format": "NetCDF / OPeNDAP",
+      "requires_login": false,
+      "notes": "Supports spatial subsetting to an Algeria box."
+    },
+    {
+      "label": "Google Earth Engine (IDAHO_EPSCOR/TERRACLIMATE, v1.0 1958–2024)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Earlier version; do not mix with v1.1."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "The ~4 km grid resolves the Tell–High Plateaux–Saharan Atlas gradients better than CRU or ERA5, but the interannual signal now comes from ERA5, so rainfall anomalies over the sparsely gauged Algerian interior inherit ERA5 behaviour. Over the hyper-arid Sahara precipitation, AET and soil moisture are near zero while the climatic water deficit is very large, so relative anomalies and percent-of-normal metrics are unstable there.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "doi",
+      "references[1].doi"
+    ],
+    "sources_consulted": [
+      "https://www.climatologylab.org/terraclimate.html",
+      "http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html",
+      "http://thredds.northwestknowledge.net:8080/thredds/dodsC/TERRACLIMATE_ALL/data/TerraClimate_ppt_2025.nc.das",
+      "https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE",
+      "https://doi.org/10.1038/sdata.2017.191"
+    ],
+    "notes": "TerraClimate v1.1 was released on 15 November 2026 (page update note); file metadata dates are 2026-11-14 (used as published_date). The v1.1 file metadata cites Zenodo DOI 10.5281/zenodo.23961197, but that DOI returned HTTP 404 on 2026-11-19, so doi is left null. The landing page is internally inconsistent on scenario levels (+2/+4 °C in places, +2/+3 °C in the v1.1 notes and file summary); the record follows the v1.1 statements. climate.northwestknowledge.net (direct-download page) refused connections during checking. Licence taken from v1.1 file global attributes (CC BY 4.0), which differs from the CC0 stated by Earth Engine for v1.0. data_nature kept as 'derived' following the provider's description 'Gridded Observation-Based Climate Data (Level 4)', although v1.1 time variability comes from ERA5 reanalysis."
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "id": "ghsl-built-s",
+  "title": "GHSL Built-up Surface Grid GHS-BUILT-S R2023A (1975-2030)",
+  "description": "Global raster of built-up surface (square metres of built-up area per cell), total and non-residential, from the Joint Research Centre's Global Human Settlement Layer. Epochs 1975-2030 at 5-year intervals at 100 m and 1 km (Mollweide) and 3/30 arc-seconds (WGS84), plus a 10 m layer for the 2018 Sentinel-2 anchor epoch.",
+  "purpose": "Long-term, consistent measure of urban and settlement expansion across Algeria (coastal metropolitan growth, new towns, Saharan oasis cities) and an exposure layer for hazard assessments.",
+  "domain": [
+    "human-change",
+    "hazards"
+  ],
+  "categories": [
+    "Built-up / settlements"
+  ],
+  "keywords": [
+    "GHSL",
+    "built-up surface",
+    "urbanisation",
+    "settlements",
+    "Sentinel-2",
+    "Landsat",
+    "JRC",
+    "non-residential"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "European Commission, Joint Research Centre (JRC) - Global Human Settlement Layer (Copernicus Emergency Management Service)",
+    "url": "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php"
+  },
+  "creator": "Pesaresi, M., Politis, P. (European Commission, Joint Research Centre)",
+  "source_url": "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php",
+  "documentation_url": "https://human-settlement.emergency.copernicus.eu/documents/GHSL_Data_Package_2023.pdf",
+  "license": {
+    "name": "European Commission reuse policy (Commission Decision 2011/833/EU): reuse authorised provided the source is acknowledged",
+    "spdx": null,
+    "url": "https://commission.europa.eu/legal-notice_en"
+  },
+  "license_notes": "GHSL Data Package 2023 terms of use: 'The data in this data package are provided free-of-charge © European Union, 2023. Reuse is authorised, provided the source is acknowledged. The reuse policy of the European Commission is implemented by a Decision of 12 December 2011 (2011/833/EU).' The data package report itself is CC BY 4.0. Data provided 'as is' per the JRC disclaimer.",
+  "citation": "Pesaresi M., Politis P. (2023): GHS-BUILT-S R2023A - GHS built-up surface grid, derived from Sentinel2 composite and Landsat, multitemporal (1975-2030). European Commission, Joint Research Centre (JRC). PID: http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea, doi:10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA",
+  "doi": "10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA",
+  "references": [
+    {
+      "citation": "Pesaresi M., Schiavina M., Politis P., Freire S., Krasnodębska K., Uhl J. H., Carioli A., Corbane C., Dijkstra L., Florio P., Friedrich H. K., Gao J., Leyk S., Lu L., Maffenini L., Mari-Rivero I., Melchiorri M., Syrris V., Van Den Hoek J., Kemper T. (2024). Advances on the Global Human Settlement Layer by joint assessment of Earth Observation and population survey data. International Journal of Digital Earth, 17(1), 2390454.",
+      "doi": "10.1080/17538947.2024.2390454",
+      "url": null
+    },
+    {
+      "citation": "European Commission (2024). GHSL Data Package 2023. Publications Office of the European Union, Luxembourg. JRC133256.",
+      "doi": "10.2760/098587",
+      "url": "https://human-settlement.emergency.copernicus.eu/documents/GHSL_Data_Package_2023.pdf"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global. Distributed as global files or tiles; Algeria must be clipped by the user.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "1975-01-01",
+    "end": "2030-12-31",
+    "ongoing": false,
+    "frequency": "5-year epochs",
+    "description": "Epochs 1975, 1980, ..., 2030 (5-year steps) at 100 m / 1 km / 3 and 30 arc-seconds. Observed anchor epochs: Landsat 1975, 1990, 2000, 2014 and Sentinel-2 2018; other epochs are spatio-temporally interpolated, and 2025/2030 are extrapolations. The 10 m layer exists only for 2018."
+  },
+  "resolution": {
+    "spatial": "100 m and 1 km (Mollweide); 3 and 30 arc-seconds (WGS84); 10 m for 2018",
+    "spatial_m": 100,
+    "temporal": "5-year epochs"
+  },
+  "format": [
+    "GeoTIFF (zipped)"
+  ],
+  "crs": "World Mollweide (EPSG:54009); WGS84 (EPSG:4326) for 3 and 30 arc-second versions",
+  "variables": [
+    {
+      "name": "BUILT_S (total)",
+      "units": "m2 per cell",
+      "description": "Built-up surface; 100 m: uint16 range 0-10,000, NoData 65535; 1 km: uint32 range 0-1,000,000; 10 m (2018): uint8 0-100, NoData 255"
+    },
+    {
+      "name": "BUILT_S NRES",
+      "units": "m2 per cell",
+      "description": "Built-up surface allocated to dominant non-residential uses"
+    }
+  ],
+  "processing": "Built-up surface fraction is estimated at 10 m from a Sentinel-2 composite (2018) using a learning set from GHS-BUILT-S2 R2020A, Facebook, Microsoft and OpenStreetMap building delineations and associative rule learning on quantized image features; Landsat (MSS, TM, ETM) supports the 1975, 1990, 2000 and 2014 epochs. Values for 5-year epochs 1975-2030 are obtained by spatio-temporal interpolation/extrapolation with rank-optimal spatial allocation using slope, elevation, distance to water and vegetation, and observed built-up dynamics.",
+  "validation": "GHSL Data Package 2023 (section 2.1.2) reports, from the first tranche of 250,000 visually interpreted reference points for the 2018 Sentinel-2 predictions, a 4-class overall accuracy of 82.6% (voting schema) and 90.5% on the 155,649 high-confidence/high-agreement points; Boolean built-up vs non-built-up accuracy improved from 75.47% (R2019) to 94.04% (R2022/R2023) on the same reference data, and 100 m continuous built-up surface MAE dropped from 0.117 to 0.035. These are global figures, not Algeria-specific.",
+  "limitations": [
+    "Epochs other than the observed anchor years are interpolated; 2025 and 2030 are model extrapolations, not observations.",
+    "Bright bare soils, rock and sand in arid regions can be confused with built-up surfaces in optical classification; Algeria-specific accuracy is not reported.",
+    "Residential vs non-residential split is a model abstraction and should not be read as land-use cadastre.",
+    "Large global files (e.g. the 2020 3 arc-second zip is about 3.2 GB); Mollweide versions need reprojection for most web maps."
+  ],
+  "version": "R2023A (V1-0)",
+  "published_date": "2023-04-25",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GHSL dataset page (BUILT-S R2023A)",
+      "url": "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Product description and citation."
+    },
+    {
+      "label": "GHSL download tool",
+      "url": "https://human-settlement.emergency.copernicus.eu/download.php?ds=bu",
+      "kind": "download",
+      "format": "GeoTIFF (zip)",
+      "requires_login": false,
+      "notes": "Select epoch, resolution, CRS; global or tile downloads."
+    },
+    {
+      "label": "JRC Open Data FTP (GHS_BUILT_S_GLOBE_R2023A)",
+      "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/",
+      "kind": "download",
+      "format": "GeoTIFF (zip)",
+      "requires_login": false,
+      "notes": "Example verified 2026-11-19: GHS_BUILT_S_E2020_GLOBE_R2023A_4326_3ss_V1_0.zip HTTP 200, Content-Length 3208625400 bytes; ..._54009_100_V1_0.zip HTTP 200, 2036312871 bytes."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful to track urban growth along the coast (Algiers, Oran, Constantine) and in Saharan cities; in desert areas verify built-up detections against high-resolution imagery because of bright-soil confusion.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "updated_date",
+      "data.jrc.ec.europa.eu catalogue record (request rejected to automated client)"
+    ],
+    "sources_consulted": [
+      "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php",
+      "https://human-settlement.emergency.copernicus.eu/data/ghs_buS2023.json",
+      "https://human-settlement.emergency.copernicus.eu/data/datasetsGallery.json",
+      "https://human-settlement.emergency.copernicus.eu/documents/GHSL_Data_Package_2023.pdf",
+      "https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA",
+      "https://api.datacite.org/dois/10.2905/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea",
+      "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/"
+    ],
+    "notes": "published_date = DataCite 'Issued' 2023-04-25. The GHSL dataset page is rendered from JSON files (ghs_buS2023.json, datasetsGallery.json), which were read directly. No newer BUILT-S release than R2023A was listed in the GHSL dataset gallery on 2026-11-19 (only UCDB has R2024A). The arid-area bright-soil caveat is an AEO caution, not a provider statement. Domain set to human-change (primary) as requested."
+  }
+}

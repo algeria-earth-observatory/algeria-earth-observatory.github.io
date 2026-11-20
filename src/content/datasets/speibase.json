@@ -1,0 +1,183 @@
+{
+  "id": "speibase",
+  "title": "SPEIbase – Global SPEI Drought Index (0.5°, 1–48 months)",
+  "description": "SPEIbase is a global gridded dataset of the Standardised Precipitation-Evapotranspiration Index (SPEI) at 0.5° resolution and monthly time step, provided for accumulation time scales of 1 to 48 months. It is computed from CRU TS monthly precipitation and FAO-56 Penman-Monteith potential evapotranspiration, starting in January 1901.",
+  "purpose": "Gives a long, multi-scalar, standardised drought record that accounts for atmospheric evaporative demand, allowing comparison of meteorological to hydrological drought time scales across northern Algeria since 1901.",
+  "domain": [
+    "climate-drought"
+  ],
+  "categories": [
+    "Drought indices",
+    "Standardised indices"
+  ],
+  "keywords": [
+    "SPEI",
+    "drought index",
+    "standardised precipitation-evapotranspiration index",
+    "CRU TS",
+    "Penman-Monteith",
+    "multi-scalar drought",
+    "CSIC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Consejo Superior de Investigaciones Científicas (CSIC), Spain",
+    "url": "https://spei.csic.es/database.html"
+  },
+  "creator": "Santiago Beguería, Sergio M. Vicente-Serrano, Fergus Reig-Gracia, Borja Latorre Garcés (CSIC)",
+  "source_url": "https://spei.csic.es/database.html",
+  "documentation_url": "https://spei.csic.es/database.html",
+  "license": {
+    "name": "Open Data Commons Open Database License 1.0 (contents: Database Contents License 1.0)",
+    "spdx": "ODbL-1.0",
+    "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "license_notes": "ODbL 1.0 is share-alike: public use of an adapted database must be offered under the ODbL, and any public use must be attributed by citing the reference papers. Individual contents are under DbCL 1.0. The Google Earth Engine catalogue page states CC-BY 4.0 instead; AEO follows the provider (spei.csic.es and DIGITAL.CSIC records list ODbL 1.0).",
+  "citation": "Vicente-Serrano, S.M., Beguería, S., López-Moreno, J.I. (2010). A Multiscalar Drought Index Sensitive to Global Warming: The Standardized Precipitation Evapotranspiration Index. Journal of Climate 23(7), 1696–1718. https://doi.org/10.1175/2009JCLI2909.1; Beguería, S., Vicente-Serrano, S.M., Angulo-Martínez, M. (2010). A Multiscalar Global Drought Dataset: The SPEIbase. Bulletin of the American Meteorological Society 91(10), 1351–1356. https://doi.org/10.1175/2010BAMS2988.1; Beguería, S., Vicente-Serrano, S.M., Reig, F., Latorre, B. (2014). Standardized precipitation evapotranspiration index (SPEI) revisited. International Journal of Climatology 34(10), 3001–3023. https://doi.org/10.1002/joc.3887",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Vicente-Serrano, S.M., Beguería, S., López-Moreno, J.I. (2010). A Multiscalar Drought Index Sensitive to Global Warming: The Standardized Precipitation Evapotranspiration Index. Journal of Climate 23(7), 1696–1718.",
+      "doi": "10.1175/2009JCLI2909.1",
+      "url": null
+    },
+    {
+      "citation": "Beguería, S., Vicente-Serrano, S.M., Angulo-Martínez, M. (2010). A Multiscalar Global Drought Dataset: The SPEIbase. Bulletin of the American Meteorological Society 91(10), 1351–1356.",
+      "doi": "10.1175/2010BAMS2988.1",
+      "url": null
+    },
+    {
+      "citation": "Vicente-Serrano, S.M., Beguería, S., López-Moreno, J.I., Angulo, M., El Kenawy, A. (2010). A New Global 0.5° Gridded Dataset (1901–2006) of a Multiscalar Drought Index. Journal of Hydrometeorology 11(4), 1033–1043.",
+      "doi": "10.1175/2010JHM1224.1",
+      "url": null
+    },
+    {
+      "citation": "Beguería, S., Vicente-Serrano, S.M., Reig, F., Latorre, B. (2014). Standardized precipitation evapotranspiration index (SPEI) revisited: parameter fitting, evapotranspiration models, tools, datasets and drought monitoring. International Journal of Climatology 34(10), 3001–3023.",
+      "doi": "10.1002/joc.3887",
+      "url": null
+    },
+    {
+      "citation": "Beguería, S., Vicente Serrano, S.M., Reig-Gracia, F., Latorre Garcés, B. (2024). SPEIbase v.2.10 [Dataset]. DIGITAL.CSIC. Version 2.10 (previous version, CRU TS 4.08, 1901–2023).",
+      "doi": "10.20350/digitalCSIC/16497",
+      "url": "https://digital.csic.es/handle/10261/364137"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land pixels on a 0.5° grid (cell centres −179.75 to 179.75 E, −89.75 to 89.75 N); one global NetCDF file per time scale. Users must subset Algeria.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "1901-01-01",
+    "end": "2024-12-31",
+    "ongoing": false,
+    "frequency": "monthly",
+    "description": "v2.11: January 1901 – December 2024 (CRU TS 4.09). Updated roughly annually as new CRU TS versions are released. The GitHub code repository already lists v2.12.0 (CRU TS 4.10, to December 2025) and v2.13.0 (PET fix), but no corresponding dataset release was found on spei.csic.es on 2026-11-19."
+  },
+  "resolution": {
+    "spatial": "0.5°",
+    "spatial_m": 55660,
+    "temporal": "monthly (time scales 1–48 months)"
+  },
+  "format": [
+    "NetCDF-4 (classic model, compressed)"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "spei",
+      "units": "z-values (dimensionless)",
+      "description": "Standardised Precipitation-Evapotranspiration Index for the given accumulation time scale (files spei01.nc … spei48.nc)"
+    }
+  ],
+  "processing": "The monthly climatic water balance (precipitation minus FAO-56 Penman-Monteith reference evapotranspiration, from CRU TS) is accumulated over 1–48 months and fitted to a log-logistic distribution using probability weighted moments; values are transformed to standard normal deviates. The reference period is the whole record. Computed in R with the SPEI package (v1.8.1 for v2.11).",
+  "validation": null,
+  "limitations": [
+    "Known bug (provider GitHub README, issue #19): from v2.6 to v2.12.0 the CRU PET conversion from mm/day to mm/month was applied along longitude instead of time, so all published SPEIbase datasets v2.6–v2.12.0 (including v2.11) are affected. The provider states the effect is generally small but largest in arid regions where PET dominates the water balance; a corrected dataset release 'will follow' (code fixed in v2.13.0, 2026-11-07).",
+    "SPEIbase contains SPEI only; it does not include SPI. SPI must be computed separately (e.g. from CRU TS or CHIRPS).",
+    "In rare cases the log-logistic fit fails and cells contain NaN; non-land pixels are set to 1.0e30 (the metadata section lists 3.0E33 as missing value).",
+    "Resolution (0.5°) and inputs are those of CRU TS, whose station support varies strongly in space and time; the website metadata block still shows an outdated time range (1901–2011).",
+    "The SPEI Global Drought Monitor on the same site uses Thornthwaite PET and is a different product from SPEIbase."
+  ],
+  "version": "v2.11",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "SPEIbase information and version history",
+      "url": "https://spei.csic.es/database.html",
+      "kind": "external",
+      "format": "NetCDF",
+      "requires_login": false,
+      "notes": "Lists v2.11 as the latest version (CRU TS 4.09, 1901–2024)."
+    },
+    {
+      "label": "SPEIbase v2.11 viewer and download page",
+      "url": "https://spei.csic.es/spei_database_2_11",
+      "kind": "viewer",
+      "format": "NetCDF",
+      "requires_login": false,
+      "notes": "Map viewer with per-time-scale download links."
+    },
+    {
+      "label": "SPEIbase v2.11 SPEI-12 file (example)",
+      "url": "https://spei.csic.es/spei_database_2_11/nc/spei12.nc",
+      "kind": "download",
+      "format": "NetCDF",
+      "requires_login": false,
+      "notes": "Path taken from the viewer's download script; HEAD on 2026-11-19 returned HTTP 200, 380,954,035 bytes, last modified 2025-06-24. Other scales follow spei01.nc … spei48.nc."
+    },
+    {
+      "label": "DIGITAL.CSIC – SPEIbase v2.10 (DOI 10.20350/digitalCSIC/16497)",
+      "url": "https://digital.csic.es/handle/10261/364137",
+      "kind": "external",
+      "format": "NetCDF (48 files)",
+      "requires_login": false,
+      "notes": "Previous version (CRU TS 4.08, 1901–2023). The spei.csic.es page links this record from its v2.11 entry, but the record itself is titled v2.10."
+    },
+    {
+      "label": "Google Earth Engine (CSIC/SPEI/2_11)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/CSIC_SPEI_2_11",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Bands SPEI_01_month … SPEI_48_month; Earth Engine account required."
+    }
+  ],
+  "code_url": "https://github.com/sbegueria/SPEIbase",
+  "algeria_notes": "Over the hyper-arid Algerian Sahara monthly precipitation is near zero and PET is very high, so the water balance is dominated by PET; this is exactly where the provider says the v2.6–v2.12 PET-conversion bug has its largest effect, and where distribution fitting is least meaningful. Interpretation should focus on the semi-arid Tell and High Plateaux. CRU TS inputs over Algeria depend on a sparse station network, and 0.5° cells (about 55 km) cannot resolve Tell Atlas topography.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "doi",
+      "published_date",
+      "updated_date",
+      "validation"
+    ],
+    "sources_consulted": [
+      "https://spei.csic.es/database.html",
+      "https://spei.csic.es/spei_database_2_11",
+      "https://digital.csic.es/handle/10261/364137",
+      "https://digital.csic.es/handle/10261/332007",
+      "https://api.datacite.org/dois?query=titles.title:SPEIbase AND prefix:10.20350",
+      "https://github.com/sbegueria/SPEIbase",
+      "https://raw.githubusercontent.com/sbegueria/SPEIbase/master/README.md",
+      "https://developers.google.com/earth-engine/datasets/catalog/CSIC_SPEI_2_11"
+    ],
+    "notes": "No DOI for v2.11 was found on DIGITAL.CSIC or DataCite (latest registered DOI is v2.10, 10.20350/digitalCSIC/16497). The spei.csic.es version list links each version to the DIGITAL.CSIC record of the previous version (e.g. 'v2.11' → handle 364137, which is titled v2.10), so links are off by one. v2.11 files are served from spei.csic.es (last-modified 2025-06-24); exact release date not stated. The PET-conversion bug and SPEIbase v2.12/v2.13 code releases come from the provider's GitHub README and releases (v2.13.0 released 2026-11-07). The provider asks users to cite the papers; no single dataset citation exists for v2.11."
+  },
+  "featured": true,
+  "alert": "The provider reports an error in the potential-evapotranspiration unit conversion affecting SPEIbase releases v2.6 to v2.12.0, with the largest effects in arid regions such as most of Algeria. The code was corrected on 2026-11-07; corrected data had not been released when AEO checked (2026-11-19). See Quality and limitations."
+}

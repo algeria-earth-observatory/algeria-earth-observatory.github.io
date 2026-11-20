@@ -1,0 +1,67 @@
+{
+  "id": "gpm-imerg",
+  "title": "GPM IMERG Final Precipitation, daily 0.1° (V07)",
+  "description": "NASA's Integrated Multi-satellitE Retrievals for GPM (IMERG) combines precipitation estimates from an international satellite constellation, calibrated against the GPM Core Observatory and, in the Final run, monthly gauge analyses. This record covers the daily 0.1° Final product (GPM_3IMERGDF V07).",
+  "purpose": "Satellite precipitation at daily scale for monitoring rainfall events, seasonal accumulation and drought onset across Algeria, including areas with few rain gauges.",
+  "domain": ["climate-drought"],
+  "categories": ["Precipitation"],
+  "keywords": ["precipitation", "rainfall", "IMERG", "GPM", "satellite precipitation", "daily"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": { "name": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)", "url": "https://disc.gsfc.nasa.gov/" },
+  "creator": "Huffman, G.J.; Stocker, E.F.; Bolvin, D.T.; Nelkin, E.J.; Tan, J. (NASA GPM)",
+  "source_url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary",
+  "documentation_url": "https://gpm.nasa.gov/data/imerg",
+  "license": { "name": "NASA Earth science data — open, no restrictions on use (EOSDIS data use guidance)", "spdx": null, "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance" },
+  "license_notes": "Cite the dataset DOI as requested by the GES DISC data guidelines.",
+  "citation": "Huffman, G.J., E.F. Stocker, D.T. Bolvin, E.J. Nelkin, Jackson Tan (2023), GPM IMERG Final Precipitation L3 1 day 0.1 degree x 0.1 degree V07, Edited by Andrey Savtchenko, Greenbelt, MD, Goddard Earth Sciences Data and Information Services Center (GES DISC), https://doi.org/10.5067/GPM/IMERGDF/DAY/07",
+  "doi": "10.5067/GPM/IMERGDF/DAY/07",
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global grid (complete coverage between 60°N and 60°S). Algeria lies fully within the grid; users must subset it.",
+    "algeria_subset": "extract",
+    "bbox": [-180, -90, 180, 90]
+  },
+  "temporal_extent": {
+    "start": "1998-01-01",
+    "end": "2025-09-30",
+    "ongoing": true,
+    "frequency": "daily",
+    "description": "V07 Final run from 1998. NASA CMR listed data through 30 Sep 2025 when checked; the Final run is released several months after observation. The AEO map shows NASA GIBS near-real-time IMERG visualisations, which are not the Final run."
+  },
+  "resolution": { "spatial": "0.1° (≈ 11 km)", "spatial_m": 11132, "temporal": "daily" },
+  "format": ["NetCDF-4"],
+  "crs": "EPSG:4326 (WGS 84 geographic grid)",
+  "variables": [
+    { "name": "precipitation", "units": "mm/day", "description": "Daily accumulated multi-satellite precipitation (gauge-adjusted in the Final run)" }
+  ],
+  "processing": "Passive-microwave precipitation retrievals from constellation satellites are intercalibrated to the GPM Core Observatory, propagated and merged with infrared estimates, then (Final run) adjusted with monthly gauge analyses. Daily files aggregate the half-hourly estimates.",
+  "validation": null,
+  "limitations": [
+    "Satellite estimate, not a gauge measurement; light rainfall, orographic precipitation over the Tell Atlas and coastal ranges, and snowfall are less reliable.",
+    "Gauge adjustment depends on the density of reporting stations, which is low across the Algerian Sahara.",
+    "0.1° cells average over strong local rainfall gradients in northern Algeria."
+  ],
+  "version": "V07",
+  "published_date": "2023-07-12",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    { "label": "Access at source (GES DISC)", "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary", "kind": "external", "format": "NetCDF-4", "requires_login": true, "notes": "NASA Earthdata Login required to download." },
+    { "label": "Search granules (Earthdata Search)", "url": "https://search.earthdata.nasa.gov/search/granules?p=C2723754864-GES_DISC", "kind": "viewer", "format": null, "requires_login": true, "notes": null }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful for event-scale rainfall and season-to-date totals over the northern cereal belt. Compare against CHIRPS and station data before drawing conclusions for specific wilayas.",
+  "map_layers": ["imerg-daily"],
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": ["validation", "updated_date"],
+    "sources_consulted": ["https://cmr.earthdata.nasa.gov/search/collections.umm_json?doi=10.5067/GPM/IMERGDF/DAY/07", "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary", "https://gpm.nasa.gov/data/imerg"],
+    "notes": "Title, creators, version, release date and temporal range from NASA CMR metadata."
+  }
+}

@@ -1,0 +1,338 @@
+---
+import Base from '../../layouts/Base.astro';
+import Badges from '../../components/Badges.astro';
+import { getDatasets } from '../../lib/catalog';
+import { domainById } from '../../lib/domains';
+import { MAP_LAYERS } from '../../data/map-layers';
+import {
+  STATUS, NATURE, COVERAGE, SUBSET, DATA_TYPE, ORIGIN, fmtDate, doiUrl, humanBytes, hostOf,
+} from '../../lib/format';
+import { SITE, issueUrl } from '../../config/site';
+import type { Dataset } from '../../content.config';
+
+export async function getStaticPaths() {
+  const all = await getDatasets();
+  return all.map((d) => ({ params: { id: d.id }, props: { d } }));
+}
+const { d } = Astro.props as { d: Dataset };
+const planned = d.status === 'in-preparation';
+const st = STATUS[d.status];
+const layers = MAP_LAYERS.filter((l) => d.map_layers.includes(l.id));
+const t = d.temporal_extent;
+const downloads = d.access.filter((a) => a.kind === 'download');
+const other = d.access.filter((a) => a.kind !== 'download');
+const reportUrl = issueUrl('metadata-error.yml', `[Metadata] ${d.id}: `, `Dataset: ${SITE.url}/data/${d.id}/\n\nWhat is wrong or missing?\n`);
+
+const facts: [string, string | null | undefined][] = planned
+  ? [
+      ['Identifier', d.id],
+      ['Status', st.label],
+      ['Origin', ORIGIN[d.origin]],
+      ['Coverage', 'Algeria (planned)'],
+    ]
+  : [
+      ['Identifier', d.id],
+      ['Version', d.version],
+      ['Provider', d.provider?.name],
+      ['Origin', ORIGIN[d.origin]],
+      ['Data nature', d.data_nature ? NATURE[d.data_nature].label : null],
+      ['Data type', d.data_type ? DATA_TYPE[d.data_type] : null],
+      ['Coverage', d.spatial_extent ? `${COVERAGE[d.spatial_extent.coverage]}${d.spatial_extent.algeria_subset ? ` — ${SUBSET[d.spatial_extent.algeria_subset]}` : ''}` : null],
+      ['Period', t ? `${t.start ? fmtDate(t.start) : '?'} – ${t.ongoing ? 'ongoing' : fmtDate(t.end)}` : null],
+      ['Frequency', t?.frequency],
+      ['Spatial resolution', d.resolution?.spatial],
+      ['Temporal resolution', d.resolution?.temporal],
+      ['CRS', d.crs],
+      ['Formats', d.format.join(', ')],
+      ['Licence', d.license?.name],
+      ['Published', d.published_date ? fmtDate(d.published_date) : null],
+      ['Updated by provider', d.updated_date ? fmtDate(d.updated_date) : null],
+      ['Record checked', fmtDate(d.verification.checked)],
+    ];
+
+const jsonLd = planned ? undefined : {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: d.title,
+  description: d.description,
+  url: `${SITE.url}/data/${d.id}/`,
+  sameAs: d.source_url ?? undefined,
+  identifier: d.doi ? `https://doi.org/${d.doi}` : d.id,
+  keywords: d.keywords,
+  license: d.license?.url ?? d.license?.name,
+  creator: d.creator ? { '@type': 'Organization', name: d.creator } : undefined,
+  provider: d.provider ? { '@type': 'Organization', name: d.provider.name, url: d.provider.url ?? undefined } : undefined,
+  temporalCoverage: t?.start ? `${t.start}/${t.ongoing ? '..' : (t.end ?? '..')}` : undefined,
+  spatialCoverage: d.spatial_extent?.bbox ? { '@type': 'Place', geo: { '@type': 'GeoShape', box: `${d.spatial_extent.bbox[1]} ${d.spatial_extent.bbox[0]} ${d.spatial_extent.bbox[3]} ${d.spatial_extent.bbox[2]}` } } : undefined,
+  isAccessibleForFree: true,
+};
+---
+<Base title={d.title} description={d.description} jsonLd={jsonLd}>
+  <section class="border-b border-line bg-paper">
+    <div class="container-aeo py-8 sm:py-12">
+      <nav aria-label="Breadcrumb" class="mb-4">
+        <ol class="flex flex-wrap items-center gap-1.5 text-sm text-slate">
+          <li><a href="/" class="text-slate no-underline hover:text-signal">Home</a></li>
+          <li class="flex items-center gap-1.5"><span aria-hidden="true">/</span><a href="/data/" class="text-slate no-underline hover:text-signal">Data catalog</a></li>
+          {planned && <li class="flex items-center gap-1.5"><span aria-hidden="true">/</span><a href="/products/" class="text-slate no-underline hover:text-signal">AEO products</a></li>}
+        </ol>
+      </nav>
+      <Badges d={d} size="md" />
+      <h1 class="mt-3 max-w-4xl text-[1.75rem] font-semibold sm:text-[2.2rem]">{d.title}</h1>
+      {(d.title_fr || d.title_ar) && (
+        <p class="mt-2 text-slate text-[0.95rem]">
+          {d.title_fr && <span lang="fr">{d.title_fr}</span>}
+          {d.title_fr && d.title_ar && <span aria-hidden="true"> · </span>}
+          {d.title_ar && <span lang="ar" dir="rtl">{d.title_ar}</span>}
+        </p>
+      )}
+      <p class="mt-4 max-w-3xl text-[1.06rem] leading-relaxed text-graphite">{d.description}</p>
+      {d.alert && (
+        <div role="note" class="mt-5 max-w-3xl rounded-md border border-[#e3a008] bg-[#fff8e6] p-4 text-[0.93rem] leading-relaxed text-[#5c3d00]">
+          <p class="font-semibold">Important notice</p>
+          <p class="mt-1">{d.alert}</p>
+        </div>
+      )}
+      <div class="mt-5 flex flex-wrap gap-2">
+        {d.domain.map((x) => <a href={`/data/?domain=${x}`} class="chip no-underline hover:border-signal hover:text-signal">{domainById(x)?.title}</a>)}
+        {d.categories.map((c) => <span class="chip bg-paper">{c}</span>)}
+      </div>
+      {!planned && (
+        <div class="mt-7 flex flex-wrap gap-3">
+          {downloads.length > 0 && d.origin !== 'external' ? (
+            <a href="#access" class="btn btn-primary">Download</a>
+          ) : (
+            <a href={d.access[0]?.url ?? d.source_url} class="btn btn-primary" rel="noopener" target="_blank">
+              Access at source <span aria-hidden="true">↗</span><span class="sr-only">(opens {hostOf(d.access[0]?.url ?? d.source_url ?? '')} in a new tab)</span>
+            </a>
+          )}
+          <a href="#citation" class="btn btn-secondary">Cite this dataset</a>
+          {layers.length > 0 && <a href={`/map/?layers=${layers.map((l) => l.id).join(',')}`} class="btn btn-secondary">Open in map</a>}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <div class="container-aeo py-10 lg:grid lg:grid-cols-[1fr_20rem] lg:gap-12">
+    <div class="min-w-0 space-y-12">
+      {planned ? (
+        <section aria-labelledby="planned-h">
+          <div class="rounded-md border border-sand bg-sand-100 p-5">
+            <h2 id="planned-h" class="text-lg font-semibold">Planned product — no data released</h2>
+            <p class="mt-2 text-[0.95rem] text-graphite">
+              This record announces a product family that AEO intends to develop. No maps, files, validation results or time series exist for it yet,
+              and nothing will be released until methods, input versions and accuracy assessment are documented and reviewed.
+            </p>
+          </div>
+          <h3 class="mt-8 text-base font-semibold">Intended scope</h3>
+          <ul class="mt-3 list-disc space-y-1.5 pl-5 text-[0.95rem]">{d.planned_scope.map((s) => <li>{s}</li>)}</ul>
+          <p class="mt-6 text-[0.95rem] text-slate">
+            Interested in contributing reference data, methods or review? See <a href="/contribute/">how to contribute</a> or
+            <a href={issueUrl('collaboration.yml', `[Collaboration] ${d.title}`)}>propose a collaboration</a>.
+          </p>
+        </section>
+      ) : (
+        <>
+          {(d.purpose || d.algeria_notes) && (
+            <section aria-labelledby="overview-h">
+              <h2 id="overview-h" class="text-xl font-semibold">Overview</h2>
+              {d.purpose && <p class="mt-3 leading-relaxed">{d.purpose}</p>}
+              {d.algeria_notes && (
+                <div class="mt-5 rounded-md border-l-4 border-teal bg-[#eef7f7] p-4">
+                  <p class="eyebrow">Notes for Algeria</p>
+                  <p class="mt-1.5 text-[0.95rem] leading-relaxed">{d.algeria_notes}</p>
+                </div>
+              )}
+              {d.spatial_extent?.algeria_subset === 'extract' && (
+                <p class="mt-4 text-[0.92rem] text-slate">
+                  <strong class="text-atlas">This is a {COVERAGE[d.spatial_extent.coverage].toLowerCase()} product.</strong> It is not an Algeria-specific dataset:
+                  you must select, clip or subset the Algeria area yourself (see <a href="/docs/subsetting-algeria/">Subsetting data to Algeria</a>).
+                </p>
+              )}
+            </section>
+          )}
+
+          <section aria-labelledby="access" id="access" class="scroll-mt-24">
+            <h2 class="text-xl font-semibold" id="access-h">Access and downloads</h2>
+            <p class="mt-2 text-[0.92rem] text-slate">{st.help}</p>
+            {downloads.length > 0 && (
+              <ul class="mt-4 divide-y divide-line rounded-md border border-line">
+                {downloads.map((a) => (
+                  <li class="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="min-w-0">
+                      <p class="font-medium text-atlas">{a.label}</p>
+                      <p class="meta mt-0.5 break-all">
+                        {[a.format, humanBytes(a.size_bytes), a.url.startsWith('/') ? 'hosted by AEO' : hostOf(a.url), a.requires_login ? 'login required' : null].filter(Boolean).join(' · ')}
+                      </p>
+                      {a.sha256 && <p class="meta mt-1 break-all">SHA-256 <span class="select-all">{a.sha256}</span></p>}
+                      {a.notes && <p class="mt-1 text-sm text-slate">{a.notes}</p>}
+                    </div>
+                    <a href={a.url} class="btn btn-primary shrink-0" download={a.url.startsWith('/') ? '' : undefined} rel={a.url.startsWith('/') ? undefined : 'noopener'}>
+                      Download <span class="sr-only">{a.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {other.length > 0 && (
+              <ul class="mt-4 divide-y divide-line rounded-md border border-line">
+                {other.map((a) => (
+                  <li class="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="min-w-0">
+                      <p class="font-medium text-atlas">{a.label}</p>
+                      <p class="meta mt-0.5">{[hostOf(a.url), a.format, a.requires_login ? 'free account / login required' : 'no login required'].filter(Boolean).join(' · ')}</p>
+                      {a.notes && <p class="mt-1 text-sm text-slate">{a.notes}</p>}
+                    </div>
+                    <a href={a.url} class="btn btn-secondary shrink-0" target="_blank" rel="noopener">
+                      {a.kind === 'api' ? 'API' : a.kind === 'viewer' ? 'Open viewer' : 'Access at source'} <span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {d.license && (
+              <div class="mt-4 rounded-md bg-paper p-4 text-[0.92rem]">
+                <p><strong class="text-atlas">Licence:</strong> {d.license.url ? <a href={d.license.url} rel="noopener">{d.license.name}</a> : d.license.name}</p>
+                {d.license_notes && <p class="mt-1 text-slate">{d.license_notes}</p>}
+                <p class="mt-1 text-slate">The licence is set by the data provider. The AEO website licence does not apply to this dataset.</p>
+              </div>
+            )}
+          </section>
+
+          <section aria-labelledby="citation-h" id="citation" class="scroll-mt-24">
+            <h2 id="citation-h" class="text-xl font-semibold">Citation</h2>
+            <p class="mt-2 text-[0.92rem] text-slate">Recommended citation, as requested by the provider. Also cite the reference publication(s) where relevant.</p>
+            <div class="mt-3 rounded-md border border-line bg-white p-4">
+              <p id="cite-text" class="font-mono text-[0.84rem] leading-relaxed text-graphite">{d.citation}</p>
+              <div class="mt-3 flex flex-wrap items-center gap-3">
+                <button type="button" class="btn btn-secondary !py-1.5 text-sm" data-copy-target="cite-text">Copy citation</button>
+                {d.doi && <a href={doiUrl(d.doi)!} class="meta hover:text-signal" rel="noopener">doi:{d.doi}</a>}
+                <span role="status" class="text-sm text-teal-700" data-copy-status></span>
+              </div>
+            </div>
+            {d.references.length > 0 && (
+              <>
+                <h3 class="mt-6 text-base font-semibold">References</h3>
+                <ul class="mt-2 space-y-2 text-[0.92rem]">
+                  {d.references.map((r) => (
+                    <li class="leading-relaxed">{r.citation}{r.doi && <> <a href={`https://doi.org/${r.doi}`} rel="noopener" class="break-all">doi:{r.doi}</a></>}{!r.doi && r.url && <> <a href={r.url} rel="noopener">link</a></>}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </section>
+
+          {d.variables.length > 0 && (
+            <section aria-labelledby="vars-h">
+              <h2 id="vars-h" class="text-xl font-semibold">Variables and units</h2>
+              <div class="mt-3 overflow-x-auto">
+                <table class="w-full text-[0.9rem]">
+                  <thead><tr class="border-b border-line text-left"><th class="py-2 pr-4 font-semibold text-atlas">Variable</th><th class="py-2 pr-4 font-semibold text-atlas">Units</th><th class="py-2 font-semibold text-atlas">Description</th></tr></thead>
+                  <tbody>{d.variables.map((v) => (<tr class="border-b border-line align-top"><td class="py-2 pr-4 font-mono text-[0.82rem]">{v.name}</td><td class="py-2 pr-4">{v.units ?? '—'}</td><td class="py-2 text-slate">{v.description ?? ''}</td></tr>))}</tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
+          {(d.processing || d.validation) && (
+            <section aria-labelledby="methods-h">
+              <h2 id="methods-h" class="text-xl font-semibold">Methods and validation</h2>
+              {d.processing && (<><h3 class="mt-4 text-base font-semibold">Processing</h3><p class="mt-1.5 leading-relaxed">{d.processing}</p></>)}
+              <h3 class="mt-5 text-base font-semibold">Validation</h3>
+              <p class="mt-1.5 leading-relaxed">{d.validation ?? 'No validation statistics are reported in the sources AEO consulted. This does not mean the product is inaccurate — consult the provider documentation.'}</p>
+              {d.documentation_url && <p class="mt-3 text-[0.92rem]"><a href={d.documentation_url} rel="noopener">Provider documentation ↗</a></p>}
+              {d.code_url && <p class="mt-1 text-[0.92rem]"><a href={d.code_url} rel="noopener">Processing code ↗</a></p>}
+            </section>
+          )}
+        </>
+      )}
+
+      {d.limitations.length > 0 && (
+        <section aria-labelledby="lim-h">
+          <h2 id="lim-h" class="text-xl font-semibold">Quality and limitations</h2>
+          <ul class="mt-3 space-y-2">
+            {d.limitations.map((l) => (
+              <li class="flex gap-3 text-[0.95rem] leading-relaxed"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sand-700" aria-hidden="true"></span><span>{l}</span></li>
+            ))}
+          </ul>
+          {!planned && d.data_nature && <p class="mt-4 text-[0.9rem] text-slate"><strong class="text-atlas">{NATURE[d.data_nature].label}:</strong> {NATURE[d.data_nature].help}</p>}
+        </section>
+      )}
+
+      {layers.length > 0 && (
+        <section aria-labelledby="map-h">
+          <h2 id="map-h" class="text-xl font-semibold">Map preview</h2>
+          <ul class="mt-3 space-y-3">
+            {layers.map((l) => (
+              <li class="rounded-md border border-line p-4">
+                <p class="font-medium text-atlas">{l.title}</p>
+                <p class="mt-1 text-[0.92rem] text-slate">{l.summary}</p>
+                {l.caveat && <p class="mt-1 text-[0.85rem] text-slate">{l.caveat}</p>}
+                <a href={`/map/?layers=${l.id}`} class="mt-2 inline-block text-[0.92rem] font-medium">Open this layer in the map explorer →</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section aria-labelledby="ver-h">
+        <h2 id="ver-h" class="text-xl font-semibold">Record verification</h2>
+        <p class="mt-2 text-[0.95rem]">
+          Checked on {fmtDate(d.verification.checked)}{d.verification.urls_checked ? '; links were tested on that date.' : '.'}
+          {d.verification.unverified_fields.length > 0 && (
+            <> Fields that could not be confirmed from an official source: <span class="font-mono text-[0.85rem]">{d.verification.unverified_fields.join(', ')}</span>.</>
+          )}
+        </p>
+        {d.verification.notes && <p class="mt-2 text-[0.92rem] text-slate">{d.verification.notes}</p>}
+        {d.verification.sources_consulted.length > 0 && (
+          <details class="mt-3 text-[0.9rem]">
+            <summary class="cursor-pointer text-signal">Sources consulted ({d.verification.sources_consulted.length})</summary>
+            <ul class="mt-2 space-y-1 break-all">{d.verification.sources_consulted.map((s) => <li><a href={s} rel="noopener">{s}</a></li>)}</ul>
+          </details>
+        )}
+        <p class="mt-4 text-[0.92rem]"><a href={reportUrl} rel="noopener">Report an error or broken link in this record</a></p>
+      </section>
+    </div>
+
+    <aside class="mt-12 lg:mt-0" aria-label="Dataset facts">
+      <div class="rounded-md border border-line lg:sticky lg:top-20">
+        <h2 class="border-b border-line px-4 py-3 text-sm font-semibold">Key facts</h2>
+        <dl class="divide-y divide-line text-[0.86rem]">
+          {facts.filter(([, v]) => v).map(([k, v]) => (
+            <div class="grid grid-cols-[7.5rem_1fr] gap-2 px-4 py-2.5">
+              <dt class="text-slate">{k}</dt>
+              <dd class:list={['min-w-0 break-words text-graphite', k === 'Identifier' && 'font-mono text-[0.8rem]']}>{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="border-t border-line px-4 py-3">
+          <p class="meta uppercase tracking-wider">Metadata</p>
+          <ul class="mt-2 space-y-1 text-[0.88rem]">
+            <li><a href={`/data/${d.id}.json`}>AEO record (JSON)</a></li>
+            {!planned && <li><a href={`/data/${d.id}.stac.json`}>STAC Collection (JSON)</a></li>}
+            {d.source_url && <li><a href={d.source_url} rel="noopener">Original source ↗</a></li>}
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-target]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const el = document.getElementById(btn.dataset.copyTarget!);
+      const status = btn.parentElement?.querySelector('[data-copy-status]');
+      const text = el?.textContent?.trim() ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        if (status) status.textContent = 'Citation copied.';
+      } catch {
+        const r = document.createRange();
+        if (el) { r.selectNodeContents(el); getSelection()?.removeAllRanges(); getSelection()?.addRange(r); }
+        if (status) status.textContent = 'Press Ctrl+C to copy the selected citation.';
+      }
+      setTimeout(() => { if (status) status.textContent = ''; }, 4000);
+    });
+  });
+</script>

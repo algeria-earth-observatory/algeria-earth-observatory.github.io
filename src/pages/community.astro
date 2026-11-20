@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SITE, issueUrl } from '../config/site';
+
+const sections = [
+  { t: 'Contributors', d: 'People whose datasets, records, reviews, code or guides have been merged. Contributors are listed with their consent.' },
+  { t: 'Participating research groups', d: 'Laboratories and teams that contribute data or expertise. Groups are listed only after they confirm participation.' },
+  { t: 'Scientific collaborations', d: 'Joint product development, for example on cropland, fallow land and agricultural drought in Algeria.' },
+  { t: 'Workshops and training', d: 'Hands-on sessions on accessing and using Earth observation data for Algeria.' },
+  { t: 'Data-sharing initiatives', d: 'Agreements to document or openly publish datasets, with licences and responsibilities stated.' },
+  { t: 'Publications and technical contributions', d: 'Papers, reports and software that use or improve AEO resources.' },
+];
+---
+<Base title="Community" description="The Algeria Earth Observatory community: contributors, research groups, collaborations and training — and how to join.">
+  <PageHeader
+    eyebrow="Community"
+    title="A community in formation"
+    lead="AEO is at the beginning of its development. This page will list confirmed contributors, research groups, collaborations and activities as they happen. Nothing is listed until it is real and confirmed."
+  />
+  <div class="container-aeo py-12 space-y-14">
+    {SITE.founder && (
+      <section aria-labelledby="maint-h">
+        <h2 id="maint-h" class="text-xl font-semibold">Maintainers</h2>
+        <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <li class="card p-5">
+            <p class="font-semibold text-atlas">{SITE.founder.name}</p>
+            <p class="text-[0.92rem] text-slate">Founding maintainer</p>
+            <a href={`https://github.com/${SITE.founder.github}`} class="meta mt-2 inline-block hover:text-signal" rel="noopener">github.com/{SITE.founder.github}</a>
+          </li>
+        </ul>
+        <p class="mt-3 text-sm text-slate">Further maintainers and scientific advisers will be listed after they accept those roles.</p>
+      </section>
+    )}
+
+    <section aria-labelledby="sec-h">
+      <h2 id="sec-h" class="text-xl font-semibold">What this page will show</h2>
+      <ul class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {sections.map((s) => (
+          <li class="rounded-md border border-dashed border-[#b9c7d1] p-5">
+            <h3 class="font-semibold">{s.t}</h3>
+            <p class="mt-1.5 text-[0.92rem] leading-relaxed text-slate">{s.d}</p>
+            <p class="meta mt-3">None listed yet</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="join-h" class="grid gap-6 rounded-md bg-atlas p-8 text-white md:grid-cols-[1.4fr_1fr] md:items-center">
+      <div>
+        <h2 id="join-h" class="text-2xl font-semibold text-white">Take part from the start</h2>
+        <p class="mt-3 text-[#d4dfe7]">
+          Researchers, students, engineers and practitioners working on Algeria’s environment are welcome — in Algeria and abroad.
+          Early contributors help define the catalog’s priorities and review standards.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 md:justify-end">
+        <a href={issueUrl('volunteer.yml')} class="btn btn-primary !bg-white !text-atlas" rel="noopener">Volunteer</a>
+        <a href={issueUrl('collaboration.yml')} class="btn btn-on-dark" rel="noopener">Propose a collaboration</a>
+      </div>
+    </section>
+
+    <section class="prose-aeo">
+      <h2 class="!mt-0">Code of conduct</h2>
+      <p>
+        All community spaces follow the <a href={`${SITE.github.repoUrl}/blob/main/CODE_OF_CONDUCT.md`} rel="noopener">Code of Conduct</a>:
+        respectful, inclusive and focused on good science. Contributions in English, French or Arabic are welcome.
+      </p>
+    </section>
+  </div>
+</Base>

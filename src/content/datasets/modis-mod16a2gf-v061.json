@@ -1,0 +1,176 @@
+{
+  "id": "modis-mod16a2gf-v061",
+  "title": "MODIS/Terra Gap-Filled 8-Day Evapotranspiration 500 m (MOD16A2GF v061)",
+  "description": "MOD16A2GF Version 6.1 is a year-end gap-filled 8-day composite of actual evapotranspiration (ET), latent heat flux (LE), potential ET (PET) and potential LE at 500 m resolution, produced from Terra MODIS land products and daily meteorological reanalysis with a Penman-Monteith-based algorithm. It is generated once per year after the full year of LAI/FPAR inputs is available.",
+  "purpose": "Supports mapping of actual water use by vegetation and irrigated agriculture at field-to-landscape scale in northern Algeria and oases, where in-situ flux measurements are essentially absent.",
+  "domain": [
+    "water",
+    "agriculture",
+    "climate-drought"
+  ],
+  "categories": [
+    "Evapotranspiration",
+    "Water balance components"
+  ],
+  "keywords": [
+    "MODIS",
+    "Terra",
+    "MOD16",
+    "evapotranspiration",
+    "latent heat",
+    "potential evapotranspiration",
+    "Penman-Monteith",
+    "LP DAAC",
+    "gap-filled"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Land Processes Distributed Active Archive Center (LP DAAC)",
+    "url": "https://lpdaac.usgs.gov/products/mod16a2gfv061/"
+  },
+  "creator": "Running, S., Mu, Q., Zhao, M., Moreno, A. (MODIS Land Team, University of Montana / NASA)",
+  "source_url": "https://lpdaac.usgs.gov/products/mod16a2gfv061/",
+  "documentation_url": "https://lpdaac.usgs.gov/documents/931/MOD16_User_Guide_V61.pdf",
+  "license": {
+    "name": "NASA Earth science data – Creative Commons Zero (no restrictions on use)",
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "LP DAAC: 'This dataset is openly shared, without restriction, in accordance with the EOSDIS Data Use and Citation Guidance.' NASA ESDIS guidance states that unmarked data from NASA-led missions are licensed CC0; citation is strongly requested.",
+  "citation": "Running, Steve, Mu, Qiaozhen, Zhao, Maosheng, & Moreno, Alvaro. (2021). MODIS/Terra Net Evapotranspiration Gap-Filled 8-Day L4 Global 500m SIN Grid V061 [Data set]. NASA Land Processes Distributed Active Archive Center. https://doi.org/10.5067/MODIS/MOD16A2GF.061",
+  "doi": "10.5067/MODIS/MOD16A2GF.061",
+  "references": [
+    {
+      "citation": "Mu, Q., Zhao, M., Running, S.W. (2011). Improvements to a MODIS global terrestrial evapotranspiration algorithm. Remote Sensing of Environment 115(8), 1781–1800.",
+      "doi": "10.1016/j.rse.2011.02.019",
+      "url": null
+    },
+    {
+      "citation": "Running, S.W., Mu, Q., Zhao, M., Moreno, A. (2021). User's Guide: MODIS Global Terrestrial Evapotranspiration (ET) Product (MOD16A2/A3 and Year-end Gap-filled MOD16A2GF/A3GF), NASA Earth Observing System MODIS Land Algorithm (For Collection 6.1), Version 1.1.",
+      "doi": null,
+      "url": "https://lpdaac.usgs.gov/documents/931/MOD16_User_Guide_V61.pdf"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global vegetated land in MODIS Sinusoidal 10° x 10° tiles; Algeria spans several tiles (approximately h17–h19, v05–v07). Users must mosaic and subset tiles, or extract via AppEEARS.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "8-day",
+    "description": "2000-01-01 to present, released once per year after year-end (latest granule in CMR on 2026-11-19: period ending 2025-12-31). The last composite of each year covers 5 or 6 days. NASA announced that Terra will stop acquiring new observations on 1 December 2026, so the record is expected to end around that date."
+  },
+  "resolution": {
+    "spatial": "500 m (MODIS Sinusoidal grid)",
+    "spatial_m": 500,
+    "temporal": "8-day"
+  },
+  "format": [
+    "HDF-EOS2"
+  ],
+  "crs": "MODIS Sinusoidal tiling system (as stated by LP DAAC)",
+  "variables": [
+    {
+      "name": "ET_500m",
+      "units": "kg/m2/8day (scale factor 0.1)",
+      "description": "8-day total actual evapotranspiration"
+    },
+    {
+      "name": "LE_500m",
+      "units": "J/m2/day (scale factor 10000)",
+      "description": "8-day average latent heat flux"
+    },
+    {
+      "name": "PET_500m",
+      "units": "kg/m2/8day (scale factor 0.1)",
+      "description": "8-day total potential evapotranspiration"
+    },
+    {
+      "name": "PLE_500m",
+      "units": "J/m2/day",
+      "description": "8-day average potential latent heat flux"
+    },
+    {
+      "name": "ET_QC_500m",
+      "units": "bit flag",
+      "description": "Quality control layer"
+    }
+  ],
+  "processing": "The MOD16 algorithm applies Penman-Monteith logic to daily GMAO/MERRA meteorological reanalysis and MODIS inputs (LAI/FPAR, albedo, land cover), with biome-specific parameters from a look-up table. In the year-end gap-filled product, poor-quality 8-day LAI/FPAR pixels are replaced by linear interpolation (and climatology back-up) before ET is computed. Collection 6.1 changes come from L1B calibration and polarization corrections, not from the ET science algorithm.",
+  "validation": "The MOD16 User's Guide (C6.1) reports that, against 46 eddy-covariance flux towers, average daily ET bias was −0.02 kg/m2/day and mean absolute error 0.31 kg/m2/day (24.1% of observed ET) when driven by GMAO meteorology.",
+  "limitations": [
+    "ET is not computed for non-vegetated land: the User's Guide lists fill values 32761–32767, including 32765 for land cover 'barren, sparse veg (rock, tundra, desert)', 32766 for water bodies and 32762 for urban/built-up. Most of the Algerian Sahara is therefore fill, not zero ET.",
+    "Biome parameters are constant in space and time (the guide notes a semi-desert grassland is treated like a tallgrass prairie), which limits accuracy for steppe rangelands and irrigated oases.",
+    "Meteorological forcing comes from coarse GMAO reanalysis (0.5° x 0.625° or coarser), so local humidity and temperature gradients are not resolved.",
+    "Not available in near-real time: the gap-filled product is produced only after the end of each year; the guide advises caution for the first years of the record.",
+    "Terra observations cease on 1 December 2026; NASA directs users relying on updated data to its Terra/MODIS transition resources for alternative products."
+  ],
+  "version": "Collection 6.1 (V061)",
+  "published_date": "2021-03-15",
+  "updated_date": "2026-01-14",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "LP DAAC product page",
+      "url": "https://lpdaac.usgs.gov/products/mod16a2gfv061/",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "Downloads via NASA Earthdata (Earthdata Login required). Cloud-enabled collection C2565791021-LPCLOUD."
+    },
+    {
+      "label": "NASA Earthdata Search",
+      "url": "https://search.earthdata.nasa.gov/",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "Tile search and download."
+    },
+    {
+      "label": "AppEEARS (area/point extraction, reprojection)",
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "kind": "api",
+      "format": "GeoTIFF / NetCDF",
+      "requires_login": true,
+      "notes": "Allows an Algeria polygon extraction with reprojection to geographic coordinates."
+    },
+    {
+      "label": "Google Earth Engine (MODIS/061/MOD16A2GF)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD16A2GF",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Third-party mirror; Earth Engine account required."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful mainly for the Tell, High Plateaux steppe and irrigated perimeters/oases; the Sahara and most bare surfaces are assigned land-cover fill values (e.g. 32765 barren/desert) rather than ET estimates, so area averages must exclude fill codes explicitly. Dams and lakes are fill 32766. Small oases and irrigated pivots may be mixed with bare soil at 500 m and inherit biome parameters that do not reflect irrigation.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://lpdaac.usgs.gov/products/mod16a2gfv061/",
+      "https://lpdaac.usgs.gov/documents/931/MOD16_User_Guide_V61.pdf",
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=MOD16A2GF",
+      "https://www.earthdata.nasa.gov/data/alerts-outages/new-terra-observations-cease-december-1-2026",
+      "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      "https://api.crossref.org/works/10.1016/j.rse.2011.02.019"
+    ],
+    "notes": "published_date from LP DAAC page ('Published 2021-03-15'); updated_date = CMR collection metadata update (2026-01-14). The MODIS tile range for Algeria (h17–h19, v05–v07) is AEO's approximation from the standard Sinusoidal tiling, not a provider statement. The PLE_500m unit row in the guide table is garbled in text extraction; unit given as for LE."
+  },
+  "alert": "NASA has announced that Terra MODIS acquisitions cease on 1 December 2026. The archive remains available, but the time series will not be extended; NASA points users to equivalent VIIRS products."
+}

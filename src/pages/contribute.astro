@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SITE, issueUrl } from '../config/site';
+
+const routes = [
+  { t: 'Propose a dataset', d: 'Suggest an authentic dataset relevant to Algeria. A short form asks for the source, licence and why it matters.', href: issueUrl('dataset-proposal.yml'), cta: 'Open the form' },
+  { t: 'Report a broken link or metadata error', d: 'Something wrong on a dataset page? Each page has a pre-filled report link; you can also start here.', href: issueUrl('metadata-error.yml'), cta: 'Report an error' },
+  { t: 'Suggest an improvement', d: 'Ideas for the catalog, map, documentation or website.', href: issueUrl('feature-request.yml'), cta: 'Make a suggestion' },
+  { t: 'Report a website bug', d: 'A page that does not load, a broken control, an accessibility barrier.', href: issueUrl('bug-report.yml'), cta: 'Report a bug' },
+  { t: 'Propose a scientific collaboration', d: 'Reference data, methods or joint products — for example on cropland, fallow or drought in Algeria.', href: issueUrl('collaboration.yml'), cta: 'Propose' },
+  { t: 'Volunteer as reviewer or maintainer', d: 'Help review dataset records, guides or code in your area of expertise.', href: issueUrl('volunteer.yml'), cta: 'Volunteer' },
+];
+---
+<Base title="Contribute" description="How to propose datasets, report errors, contribute code or documentation, and volunteer as a reviewer — with or without programming experience.">
+  <PageHeader
+    eyebrow="Contribute"
+    title="Help build an open data resource for Algeria"
+    lead="Contributions are proposed in public on GitHub, reviewed by maintainers, and credited. You do not need to know how to program, and you do not need to be an expert in GitHub."
+  />
+  <div class="container-aeo py-12 space-y-16">
+    <section aria-labelledby="ways-h">
+      <h2 id="ways-h" class="text-2xl font-semibold">Ways to contribute</h2>
+      <ul class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {routes.map((r) => (
+          <li class="card flex flex-col p-5">
+            <h3 class="text-[1.02rem] font-semibold">{r.t}</h3>
+            <p class="mt-2 flex-1 text-[0.92rem] leading-relaxed text-slate">{r.d}</p>
+            <a href={r.href} class="mt-4 text-[0.92rem] font-medium" rel="noopener">{r.cta} →</a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-4 text-sm text-slate">The forms open on GitHub and require a free GitHub account.</p>
+    </section>
+
+    <section aria-labelledby="new-h" class="grid gap-10 lg:grid-cols-2">
+      <div class="prose-aeo">
+        <h2 id="new-h" class="!mt-0">New to GitHub? A five-minute guide</h2>
+        <ol>
+          <li>Create a free account at <a href="https://github.com/signup" rel="noopener">github.com/signup</a>.</li>
+          <li>Choose one of the forms above. GitHub shows a page with labelled fields — fill them in like any web form.</li>
+          <li>Click <strong>Create</strong> (or <strong>Submit new issue</strong>). Your proposal becomes a public “issue” with its own page.</li>
+          <li>Maintainers reply on that page. You receive email notifications and can answer there.</li>
+          <li>When a proposal is accepted, a maintainer prepares the catalog record and credits you in the change.</li>
+        </ol>
+        <p>That is all you need to propose a dataset, report an error or volunteer. Writing code or editing files is optional.</p>
+      </div>
+      <div class="prose-aeo">
+        <h2 class="!mt-0">Contributing code or documentation</h2>
+        <ol>
+          <li>Read <a href={`${SITE.github.repoUrl}/blob/main/CONTRIBUTING.md`} rel="noopener">CONTRIBUTING.md</a>.</li>
+          <li>Fork the <a href={SITE.github.repoUrl} rel="noopener">website repository</a> and create a branch.</li>
+          <li>Run <code>npm install</code> and <code>npm run dev</code>; dataset records live in <code>src/content/datasets/</code>, guides in <code>src/content/docs/</code>.</li>
+          <li>Run <code>npm run build</code> — it validates every record and checks internal links.</li>
+          <li>Open a pull request using the template; a maintainer reviews it.</li>
+        </ol>
+        <p>Small text corrections can be made directly in the browser with the pencil (“Edit”) button on any file on GitHub.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="review-h" class="rounded-md bg-paper p-6 sm:p-8">
+      <h2 id="review-h" class="text-xl font-semibold">How contributions are reviewed</h2>
+      <div class="mt-5 grid gap-6 text-[0.93rem] md:grid-cols-3">
+        <div><p class="font-medium text-atlas">Scientific documentation</p><p class="mt-1 text-slate">Is the source authentic and citable? Are definitions, resolution, period, validation and limitations documented from official sources?</p></div>
+        <div><p class="font-medium text-atlas">Licence and sharing conditions</p><p class="mt-1 text-slate">Does the licence allow listing or redistribution? Is attribution correct? Files are only hosted by AEO if the licence permits it.</p></div>
+        <div><p class="font-medium text-atlas">Technical compatibility</p><p class="mt-1 text-slate">Does the record pass schema validation, do links work, are formats and CRS stated, and is code reproducible?</p></div>
+      </div>
+      <p class="mt-6 text-sm text-slate">The full checklist is in <a href={`${SITE.github.repoUrl}/blob/main/docs/DATASET_REVIEW_CHECKLIST.md`} rel="noopener">DATASET_REVIEW_CHECKLIST.md</a>. Submitted files are never published automatically.</p>
+    </section>
+
+    <section aria-labelledby="sensitive-h" class="rounded-md border-l-4 border-sand-700 bg-sand-100 p-6">
+      <h2 id="sensitive-h" class="text-lg font-semibold">Do not post sensitive information in public issues</h2>
+      <p class="mt-2 text-[0.95rem] leading-relaxed">
+        GitHub issues are public. Do not include personal data, farmers’ names or exact field locations, unpublished survey data, restricted or
+        security-sensitive geospatial data, or anything you are not authorised to share. If a contribution would require sharing such information,
+        describe it in general terms only and ask a maintainer for a private channel. AEO does not accept restricted data through public submissions.
+        Security vulnerabilities in the website should be reported privately as described in
+        <a href={`${SITE.github.repoUrl}/blob/main/SECURITY.md`} rel="noopener">SECURITY.md</a>.
+      </p>
+    </section>
+  </div>
+</Base>

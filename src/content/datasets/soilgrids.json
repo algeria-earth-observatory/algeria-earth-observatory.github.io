@@ -1,0 +1,206 @@
+{
+  "id": "soilgrids",
+  "title": "SoilGrids 250 m Global Soil Property Maps (SoilGrids 2.0)",
+  "description": "Global gridded predictions of soil properties at 250 m resolution for six standard depth intervals (0-5, 5-15, 15-30, 30-60, 60-100, 100-200 cm), with per-pixel prediction uncertainty (5th, 50th and 95th percentiles and an uncertainty ratio). Produced by ISRIC - World Soil Information with machine learning applied to soil profile observations and environmental covariates.",
+  "purpose": "Provides consistent, depth-resolved estimates of texture, pH, organic carbon, bulk density, CEC, nitrogen and coarse fragments where national gridded soil data are not openly available, e.g. as covariates for crop, erosion or hydrological modelling in Algeria.",
+  "domain": [
+    "land-ecosystems",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil properties",
+    "Digital soil mapping"
+  ],
+  "keywords": [
+    "soil",
+    "SoilGrids",
+    "soil organic carbon",
+    "texture",
+    "pH",
+    "bulk density",
+    "digital soil mapping",
+    "ISRIC",
+    "WoSIS"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "ISRIC - World Soil Information",
+    "url": "https://www.isric.org/explore/soilgrids"
+  },
+  "creator": "ISRIC - World Soil Information (Poggio, de Sousa, Batjes, Heuvelink, Kempen, Ribeiro, Rossiter)",
+  "source_url": "https://www.isric.org/explore/soilgrids",
+  "documentation_url": "https://docs.isric.org/globaldata/soilgrids/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "ISRIC FAQ: 'Since 2019, SoilGrids products are released under CC BY 4.0'. Cite the SoilGrids 2.0 paper (Poggio et al. 2021); ISRIC does not give a separate dataset citation on its documentation pages.",
+  "citation": "Poggio, L., de Sousa, L. M., Batjes, N. H., Heuvelink, G. B. M., Kempen, B., Ribeiro, E., and Rossiter, D. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217-240. https://doi.org/10.5194/soil-7-217-2021",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Poggio, L., de Sousa, L. M., Batjes, N. H., Heuvelink, G. B. M., Kempen, B., Ribeiro, E., and Rossiter, D. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217-240.",
+      "doi": "10.5194/soil-7-217-2021",
+      "url": "https://soil.copernicus.org/articles/7/217/2021/"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surface. Algeria is covered; users must subset Algeria themselves (WCS subsetting or clipping the WebDAV VRT mosaics).",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Static maps without a single reference date; predictions are trained on soil profile observations collected over many decades (WoSIS). ISRIC describes SoilGrids as a 'rolling release' system served from the 'latest' path."
+  },
+  "resolution": {
+    "spatial": "250 m (coarser 1 km and 5 km aggregates also available)",
+    "spatial_m": 250,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "GeoTIFF tiles with VRT mosaics (WebDAV)",
+    "OGC WCS / WMS",
+    "Cloud Optimized GeoTIFF (1 km and 5 km aggregates)"
+  ],
+  "crs": "Interrupted Goode Homolosine, WGS84 datum (ESRI:54052; '+proj=igh +datum=WGS84'); WMS/WCS can also serve EPSG:4326",
+  "variables": [
+    {
+      "name": "bdod",
+      "units": "cg/cm3",
+      "description": "Bulk density of the fine earth fraction (divide by 100 for kg/dm3)"
+    },
+    {
+      "name": "cec",
+      "units": "mmol(c)/kg",
+      "description": "Cation exchange capacity at pH 7 (divide by 10 for cmol(c)/kg)"
+    },
+    {
+      "name": "cfvo",
+      "units": "cm3/dm3 (vol per mille)",
+      "description": "Volumetric fraction of coarse fragments (> 2 mm) (divide by 10 for vol%)"
+    },
+    {
+      "name": "clay",
+      "units": "g/kg",
+      "description": "Clay content (divide by 10 for %)"
+    },
+    {
+      "name": "sand",
+      "units": "g/kg",
+      "description": "Sand content (divide by 10 for %)"
+    },
+    {
+      "name": "silt",
+      "units": "g/kg",
+      "description": "Silt content (divide by 10 for %)"
+    },
+    {
+      "name": "nitrogen",
+      "units": "cg/kg",
+      "description": "Total nitrogen (divide by 100 for g/kg)"
+    },
+    {
+      "name": "phh2o",
+      "units": "pH x 10",
+      "description": "Soil pH in water (divide by 10)"
+    },
+    {
+      "name": "soc",
+      "units": "dg/kg",
+      "description": "Soil organic carbon content in the fine earth fraction (divide by 10 for g/kg)"
+    },
+    {
+      "name": "ocd",
+      "units": "hg/m3",
+      "description": "Organic carbon density (divide by 10 for kg/m3)"
+    },
+    {
+      "name": "ocs",
+      "units": "t/ha",
+      "description": "Organic carbon stock, 0-30 cm (FAQ conversion factor 10 to kg/m2)"
+    },
+    {
+      "name": "wrb",
+      "units": "class / probability",
+      "description": "World Reference Base soil group maps (present on the WebDAV server)"
+    }
+  ],
+  "processing": "Prediction models are fitted to soil profile observations from ISRIC's WoSIS database (the SoilGrids 2.0 paper reports about 240 000 locations; the current ISRIC documentation states over 230 000 profiles) and a selection from over 400 environmental covariates (climate, land cover, terrain morphology, Earth observation products). Quantile Random Forest gives the median and the 5th/95th percentiles of the predictive distribution, so per-pixel uncertainty is quantified. Computation is done in an equal-area Homolosine projection.",
+  "validation": "ISRIC FAQ: 'The accuracy of SoilGrids layers is still limited' and 'the variation explained by the models is between 30% and 70%' (depending on property). Poggio et al. (2021) state that the quantitative evaluation 'showed metrics in line with previous global, continental and large-region studies'.",
+  "limitations": [
+    "Model-based predictions with limited accuracy (30-70% of variance explained according to ISRIC); local values can differ strongly from field measurements.",
+    "Prediction quality depends on local density of training profiles; the Saharan part of Algeria is likely sparsely sampled, so uncertainty layers should be inspected before use.",
+    "Native Homolosine projection requires reprojection for most GIS workflows; full global maps are large (about 5 GB per map, about 120 GB per property with all depths and quantiles).",
+    "The SoilGrids REST API is temporarily paused (ISRIC notice); use WCS, WebDAV or Google Earth Engine instead.",
+    "Rolling release: maps served under 'latest' may change; record the access date."
+  ],
+  "version": "SoilGrids 2.0 (rolling release served under /soilgrids/latest/)",
+  "published_date": "2021-06-14",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "SoilGrids landing page (ISRIC)",
+      "url": "https://www.isric.org/explore/soilgrids",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Overview, license and links."
+    },
+    {
+      "label": "WebDAV file server (VRT + GeoTIFF tiles)",
+      "url": "https://files.isric.org/soilgrids/latest/data/",
+      "kind": "download",
+      "format": "VRT / GeoTIFF",
+      "requires_login": false,
+      "notes": "One folder per property (bdod, cec, cfvo, clay, landmask, nitrogen, ocd, ocs, phh2o, sand, silt, soc, wrb); subfolders per depth and statistic (mean, Q0.05, Q0.5, Q0.95, uncertainty)."
+    },
+    {
+      "label": "OGC WCS / WMS services",
+      "url": "https://maps.isric.org/",
+      "kind": "api",
+      "format": "GeoTIFF via WCS",
+      "requires_login": false,
+      "notes": "Recommended for subsetting Algeria; WCS supports EPSG:4326 output."
+    },
+    {
+      "label": "SoilGrids.org web viewer",
+      "url": "https://soilgrids.org/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive map with download option."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful as a first-order soil covariate for northern Algeria's cropping zones and steppe; in the Sahara, where few soil profiles exist, treat predictions as highly uncertain and check the Q0.05-Q0.95 interval.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "updated_date",
+      "doi (no dataset DOI found on ISRIC documentation; paper DOI used in citation)"
+    ],
+    "sources_consulted": [
+      "https://www.isric.org/explore/soilgrids",
+      "https://docs.isric.org/globaldata/soilgrids/",
+      "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
+      "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html",
+      "https://files.isric.org/soilgrids/latest/data/",
+      "https://soil.copernicus.org/articles/7/217/2021/",
+      "https://api.crossref.org/works/10.5194/soil-7-217-2021"
+    ],
+    "notes": "published_date is the publication date of the SoilGrids 2.0 paper (Crossref: 2021-06-14), not of the current files. FAQ also lists water-content layers (wv0010, wv0033, wv1500) that were not found in the WebDAV 'latest/data' listing on 2026-11-19; they are therefore not listed as variables. Units/conversion factors from SoilGrids_faqs_01."
+  }
+}

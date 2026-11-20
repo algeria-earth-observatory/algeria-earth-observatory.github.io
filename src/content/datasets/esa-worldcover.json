@@ -1,0 +1,170 @@
+{
+  "id": "esa-worldcover",
+  "title": "ESA WorldCover 10 m Land Cover (2020 v100, 2021 v200)",
+  "description": "Global 10 m land-cover maps for the reference years 2020 (algorithm v100) and 2021 (algorithm v200) derived from Sentinel-1 and Sentinel-2 data, with 11 classes aligned with the UN-FAO Land Cover Classification System. Each 3° × 3° tile also has an InputQuality layer describing the Sentinel-1/Sentinel-2 observations used.",
+  "purpose": "Provides a detailed baseline of land cover across Algeria, including cropland, built-up areas, bare/sparse vegetation, shrubland and water, useful as a stratification or mask for agricultural, ecological and hydrological work.",
+  "domain": [
+    "land-ecosystems",
+    "agriculture"
+  ],
+  "categories": [
+    "Land-cover maps"
+  ],
+  "keywords": [
+    "land cover",
+    "WorldCover",
+    "Sentinel-1",
+    "Sentinel-2",
+    "10 m",
+    "cropland",
+    "bare",
+    "LCCS"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "European Space Agency (ESA)",
+    "url": "https://esa-worldcover.org/en"
+  },
+  "creator": "WorldCover consortium led by VITO Remote Sensing with Brockmann Consult, CS SI (2020 only), Gamma Remote Sensing AG, IIASA and Wageningen University",
+  "source_url": "https://esa-worldcover.org/en",
+  "documentation_url": "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Product User Manual v2.0: 'provided free of charge, without restriction of use' under CC BY 4.0. Map attribution text requested: '© ESA WorldCover project [year] / Contains modified Copernicus Sentinel data ([year]) processed by ESA WorldCover consortium', with year 2020 or 2021.",
+  "citation": "Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200. doi:10.5281/zenodo.7254221.",
+  "doi": "10.5281/zenodo.7254221",
+  "references": [
+    {
+      "citation": "Zanaga, D., Van De Kerchove, R., De Keersmaecker, W., Souverijns, N., Brockmann, C., Quast, R., Wevers, J., Grosu, A., Paccini, A., Vergnaud, S., Cartus, O., Santoro, M., Fritz, S., Georgieva, I., Lesiv, M., Carter, S., Herold, M., Li, Linlin, Tsendbazar, N.E., Ramoino, F., Arino, O., 2021. ESA WorldCover 10 m 2020 v100.",
+      "doi": "10.5281/zenodo.5571936",
+      "url": "https://zenodo.org/records/5571936"
+    },
+    {
+      "citation": "WorldCover Product Validation Report, Version 2.0 (WorldCover 2021 v200).",
+      "doi": null,
+      "url": "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PVR_V2.0.pdf"
+    },
+    {
+      "citation": "WorldCover Product Validation Report, Version 1.1 (WorldCover 2020 v100).",
+      "doi": null,
+      "url": "https://esa-worldcover.s3.amazonaws.com/v100/2020/docs/WorldCover_PVR_V1.1.pdf"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "All land areas observed by Sentinel-2 in 2020 or 2021 except Antarctica, limited to 82.75°N in the north; 2651 tiles of 3° × 3°. Users must select the tiles covering Algeria and clip the country themselves (the viewer also offers download by administrative area).",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "2020-01-01",
+    "end": "2021-12-31",
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Two separate single-year maps: 2020 (v100) and 2021 (v200), each representing 1 January–31 December of its reference year. They were produced with different algorithm versions."
+  },
+  "resolution": {
+    "spatial": "10 m (1/12000°); InputQuality layer ~60 m (1/2000°)",
+    "spatial_m": 10,
+    "temporal": "single epoch (2020 and 2021)"
+  },
+  "format": [
+    "GeoTIFF (Cloud Optimized)"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "Map",
+      "units": "class code",
+      "description": "11 classes: 10 Tree cover, 20 Shrubland, 30 Grassland, 40 Cropland, 50 Built-up, 60 Bare/sparse vegetation, 70 Snow and ice, 80 Permanent water bodies, 90 Herbaceous wetland, 95 Mangroves, 100 Moss and lichen."
+    },
+    {
+      "name": "InputQuality",
+      "units": "count / percent",
+      "description": "Band 1: number of Sentinel-1 GAMMA0 observations; Band 2: number of Sentinel-2 L2A observations; Band 3: percentage (0–100) of invalid Sentinel-2 observations discarded."
+    }
+  ],
+  "processing": "Sentinel-2 L2A observations were cloud-masked using the scene classification layer, aggregated into 10-day median composites and gap-filled by linear interpolation; percentile and other temporal features were computed for Sentinel-2 bands, vegetation indices and Sentinel-1 VV/VH backscatter. A machine-learning classifier trained on reference locations (259,734 locations and 131 features for v100; 319,415 locations and 115 features for v200) predicted class labels and probabilities, after which expert rules using auxiliary datasets were applied and results tiled into 3° × 3° tiles in EPSG:4326.",
+  "validation": "WorldCover Product Validation Report v2.0: global overall accuracy of the 2021 v200 map 76.7 ± 0.5% (2.16 million secondary sample units at 21,624 primary sample locations). WorldCover Product Validation Report v1.1: global overall accuracy of the 2020 v100 map 74.4 ± 0.1%. Both reports state that the cropland class was mapped with higher accuracy on all continents except Africa, where cropland tended to be under-represented (v100 report: mostly confused with grassland).",
+  "limitations": [
+    "The 2020 and 2021 maps were produced with different algorithm versions; the provider states that most differences between them are due to algorithm changes, so they must not be used directly for change detection.",
+    "The Cropland class covers annual crops only; perennial woody crops are classified as tree cover or shrubland (the Tree cover definition explicitly includes olive trees and oil palm), and greenhouses are classified as built-up.",
+    "The Grassland class may contain uncultivated cropland (no harvest / bare-soil period) in the reference year, so fallow fields can fall outside the Cropland class.",
+    "Known artefacts listed in the PUM include hard borders between Sentinel-2 orbits/blocks in areas of high class confusion and confusion between (irrigated) agriculture and herbaceous wetland.",
+    "Cropland accuracy in Africa is reported to be lower (omission) than on other continents."
+  ],
+  "version": "v100 (2020); v200 (2021)",
+  "published_date": "2021-10-20",
+  "updated_date": "2022-10-28",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "ESA WorldCover data access page",
+      "url": "https://esa-worldcover.org/en/data-access",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Lists download options, documentation (PUM, PVR) for both versions."
+    },
+    {
+      "label": "WorldCover viewer",
+      "url": "https://viewer.esa-worldcover.org/worldcover/",
+      "kind": "viewer",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Visualisation, statistics and download by administrative area or custom region (per PUM v2.0). Login requirement for download not verified."
+    },
+    {
+      "label": "Zenodo: WorldCover 2021 v200",
+      "url": "https://zenodo.org/records/7254221",
+      "kind": "download",
+      "format": "GeoTIFF in ZIP (60° macrotiles)",
+      "requires_login": false,
+      "notes": "Distributed as 60° macrotile ZIPs; Algeria spans more than one macrotile, so check tile footprints before downloading."
+    },
+    {
+      "label": "Zenodo: WorldCover 2020 v100",
+      "url": "https://zenodo.org/records/5571936",
+      "kind": "download",
+      "format": "tar.gz",
+      "requires_login": false,
+      "notes": "Single global archive of the Map layer."
+    },
+    {
+      "label": "Google Earth Engine catalog: ESA/WorldCover/v200",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Earth Engine account required."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Olive groves and date-palm plantations are mapped as tree cover or shrubland, and fallow parcels in the cereal rotation can appear as grassland or bare/sparse vegetation, so WorldCover 'Cropland' will understate total agricultural land in Algeria compared with definitions that include perennial crops and fallow. Most of the Saharan territory falls in the Bare/sparse vegetation class, for which the validation report notes high accuracy in Africa; irrigated centre-pivot fields and oases form small cropland or tree-cover patches within it.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox (southern limit not stated numerically)",
+      "access[viewer].requires_login"
+    ],
+    "sources_consulted": [
+      "https://zenodo.org/api/records/5571936",
+      "https://zenodo.org/api/records/7254221",
+      "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+      "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PVR_V2.0.pdf",
+      "https://esa-worldcover.s3.amazonaws.com/v100/2020/docs/WorldCover_PVR_V1.1.pdf",
+      "https://esa-worldcover.org/en",
+      "https://esa-worldcover.org/en/data-access"
+    ],
+    "notes": "Record covers both versions; doi and citation refer to the more recent v200 (2021), v100 is listed in references. published_date is the v100 Zenodo date (2021-10-20); updated_date is the v200 release (2022-10-28, also stated in PUM v2.0). Continental OA values were not transcribed because the PDF table text extraction was ambiguous. The alternative viewer worldcover2021.esa.int mentioned in the PUM did not respond. All other URLs returned HTTP 200."
+  },
+  "featured": true
+}

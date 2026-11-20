@@ -1,0 +1,41 @@
+name: Propose a scientific collaboration
+description: Reference data, methods, joint products, training or support for the Observatory.
+title: "[Collaboration] "
+labels: ["collaboration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This issue is public.** Describe the collaboration in general terms only. Do not share unpublished data, personal information
+        or confidential details here — a maintainer will propose a private channel if needed.
+  - type: input
+    id: who
+    attributes:
+      label: Who are you? (optional)
+      description: Your role or group, as much as you are comfortable sharing publicly.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of collaboration
+      multiple: true
+      options:
+        - Contribute reference / field data (described in general terms)
+        - Methods or validation for an AEO product
+        - Joint development of a dataset
+        - Training or workshop
+        - Infrastructure or in-kind support
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposal
+    validations:
+      required: true
+  - type: checkboxes
+    id: private
+    attributes:
+      label: Follow-up
+      options:
+        - label: I would like to continue this conversation privately.

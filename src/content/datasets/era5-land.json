@@ -1,0 +1,88 @@
+{
+  "id": "era5-land",
+  "title": "ERA5-Land Reanalysis (hourly and monthly, 0.1°)",
+  "description": "ERA5-Land is a global land-surface reanalysis produced by replaying the land component (H-TESSEL) of the ECMWF ERA5 reanalysis forced by ERA5 atmospheric fields, from January 1950 to present. It provides hourly land variables (temperature, precipitation, soil water in four layers, evaporation, runoff, snow, energy fluxes) on a regular 0.1° grid, with a separate post-processed monthly-averaged product.",
+  "purpose": "Offers a gap-free, physically consistent record of near-surface climate and land water-balance variables over all of Algeria since 1950, useful as a reference for temperature, evaporation and soil-moisture context where observations are sparse.",
+  "domain": ["climate-drought", "water", "agriculture"],
+  "categories": ["Reanalysis", "Land surface climate", "Soil moisture and evaporation"],
+  "keywords": ["ERA5-Land", "reanalysis", "ECMWF", "Copernicus Climate Change Service", "C3S", "H-TESSEL", "2 m temperature", "soil moisture", "evaporation", "runoff"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": { "name": "Copernicus Climate Change Service (C3S), implemented by ECMWF", "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land" },
+  "creator": "European Centre for Medium-Range Weather Forecasts (ECMWF) for the Copernicus Climate Change Service",
+  "source_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
+  "documentation_url": "https://confluence.ecmwf.int/display/CKB/ERA5-Land%3A+data+documentation",
+  "license": { "name": "Creative Commons Attribution 4.0 International", "spdx": "CC-BY-4.0", "url": "https://creativecommons.org/licenses/by/4.0/" },
+  "license_notes": "The CDS catalogue lists the licence as CC-BY 4.0. Users must cite the CDS catalogue entry and include the attribution: 'Generated using or contains modified Copernicus Climate Change Service information <year>. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains.'",
+  "citation": "Muñoz Sabater, J. (2019): ERA5-Land hourly data from 1950 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.e2161bac (Accessed on DD-MMM-YYYY)",
+  "doi": "10.24381/cds.e2161bac",
+  "references": [
+    { "citation": "Muñoz-Sabater, J. et al. (2021). ERA5-Land: a state-of-the-art global reanalysis dataset for land applications. Earth System Science Data 13(9), 4349–4383.", "doi": "10.5194/essd-13-4349-2021", "url": null },
+    { "citation": "Copernicus Climate Change Service (2019): ERA5-Land monthly averaged data from 1950 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS).", "doi": "10.24381/cds.68d2bb30", "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land-monthly-means" },
+    { "citation": "Hersbach, H. et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society 146(730), 1999–2049.", "doi": "10.1002/qj.3803", "url": null }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surface on a regular 0.1° x 0.1° latitude–longitude grid (native: octahedral reduced Gaussian grid TCo1279, about 9 km). The CDS form allows area sub-setting, so an Algeria box can be requested directly, but the user must define it.",
+    "algeria_subset": "extract",
+    "bbox": [-180, -90, 180, 90]
+  },
+  "temporal_extent": {
+    "start": "1950-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "hourly",
+    "description": "January 1950 to present. Hourly data (DOI 10.24381/cds.e2161bac) and monthly averages (DOI 10.24381/cds.68d2bb30). Near-real-time ERA5-Land-T is available about 5 days behind real time (monthly means about 5 days after month end) and is replaced by consolidated ERA5-Land about two months later."
+  },
+  "resolution": { "spatial": "0.1° (native about 9 km)", "spatial_m": 11132, "temporal": "hourly; monthly averages" },
+  "format": ["GRIB", "NetCDF4 (experimental conversion on the CDS)", "Zarr (ARCO subset, selected variables)"],
+  "crs": "EPSG:4326 (WGS 84, regular latitude–longitude grid as distributed by the CDS)",
+  "variables": [
+    { "name": "2m temperature (t2m)", "units": "K", "description": "Air temperature at 2 m above the surface" },
+    { "name": "Total precipitation (tp)", "units": "m", "description": "Accumulated liquid and frozen precipitation (taken from the ERA5 forcing)" },
+    { "name": "Volumetric soil water layers 1–4 (swvl1–swvl4)", "units": "m3 m-3", "description": "Soil water in layers 0–7, 7–28, 28–100 and 100–289 cm" },
+    { "name": "Total evaporation", "units": "m of water equivalent", "description": "Accumulated evaporation including a simplified representation of transpiration; negative values denote evaporation" },
+    { "name": "Potential evaporation", "units": "m", "description": "Computed in ERA5-Land as open-water (pan) evaporation" },
+    { "name": "Runoff", "units": "m", "description": "Surface plus sub-surface runoff" },
+    { "name": "Skin temperature (skt)", "units": "K", "description": "Temperature of the uppermost surface layer" }
+  ],
+  "processing": "ERA5-Land runs the H-TESSEL land surface model (IFS cycle CY45R1) offline, forced by ERA5 near-surface meteorology, with air temperature, humidity and pressure lapse-rate corrected to the higher-resolution ERA5-Land orography. No observations are assimilated directly; observations influence the product only through the ERA5 forcing. Data are produced on the TCo1279 grid and regridded to 0.1° for the CDS.",
+  "validation": "The ESSD data paper (Muñoz-Sabater et al. 2021) reports added value relative to ERA5 for soil moisture, lake description and river discharge, comparable energy-cycle results, and mixed snow-depth performance depending on location and altitude. No single global accuracy figure is stated on the CDS page.",
+  "limitations": [
+    "Precipitation is inherited from the ERA5 atmospheric forcing; the land replay does not add new precipitation information.",
+    "The CDS variable description warns that potential evaporation 'can give unrealistic results in arid conditions due to too strong evaporation forced by dry air'; in ERA5-Land it is computed as open-water (pan) evaporation.",
+    "Monthly-averaged accumulated variables for September 2022–February 2024 are known to be incorrect and will not be replaced; ECMWF advises using the monthly averaged reanalysis by hour of day at 00:00 instead.",
+    "No uncertainty fields are provided; ECMWF suggests using ERA5 ensemble spread as a proxy. Uncertainty is larger in early decades with fewer observations.",
+    "Lake depth and area are held constant and lake water balance is not modelled, which affects reservoir-dominated grid cells."
+  ],
+  "version": "ERA5-Land (consolidated) with ERA5-Land-T near-real-time extension",
+  "published_date": "2019-07-12",
+  "updated_date": "2026-11-19",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    { "label": "CDS: ERA5-Land hourly data", "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land", "kind": "external", "format": "GRIB / NetCDF4", "requires_login": true, "notes": "Free ECMWF/CDS account and acceptance of the CC-BY licence are required before download; requests are queued." },
+    { "label": "CDS: ERA5-Land monthly averaged data", "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land-monthly-means", "kind": "external", "format": "GRIB / NetCDF4", "requires_login": true, "notes": "DOI 10.24381/cds.68d2bb30; published 2019-06-23 per CDS catalogue." },
+    { "label": "CDS API (cdsapi / retrieve endpoint)", "url": "https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-land", "kind": "api", "format": "GRIB / NetCDF4", "requires_login": true, "notes": "Requires a personal CDS API key." },
+    { "label": "Google Earth Engine (ECMWF/ERA5_LAND/MONTHLY_AGGR)", "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR", "kind": "api", "format": "Earth Engine ImageCollection", "requires_login": true, "notes": "Third-party mirror of monthly aggregates; Earth Engine account required." }
+  ],
+  "code_url": null,
+  "algeria_notes": "ERA5-Land gives complete coverage of both the semi-arid north and the hyper-arid Sahara, but its rainfall is ERA5 model precipitation and should be checked against gauges or CHIRPS in the Tell. At 0.1° (about 11 km) the lapse-rate correction helps over the Tell Atlas and Aurès, but valley–ridge contrasts are still smoothed. Potential evaporation is flagged by ECMWF as unreliable in arid conditions, which matters for most of Algeria; reservoirs are not represented as dynamic water bodies.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://cds.climate.copernicus.eu/api/catalogue/v1/collections/reanalysis-era5-land",
+      "https://cds.climate.copernicus.eu/api/catalogue/v1/collections/reanalysis-era5-land-monthly-means",
+      "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
+      "https://confluence.ecmwf.int/display/CKB/ERA5-Land%3A+data+documentation",
+      "https://essd.copernicus.org/articles/13/4349/2021/",
+      "https://doi.org/10.24381/cds.e2161bac",
+      "https://doi.org/10.24381/cds.68d2bb30"
+    ],
+    "notes": "Licence, DOIs, dates and overview table read from the CDS STAC catalogue API and layout JSON (licence field 'CC-BY-4.0'). The CDS catalogue spatial extent is given as 0–360°E, 89°S–89°N; the bbox here is the global grid in −180/180 form. published_date/updated_date refer to the hourly entry (monthly entry: published 2019-06-23, updated 2026-11-06). Validation summarised from the ESSD abstract only."
+  }
+}

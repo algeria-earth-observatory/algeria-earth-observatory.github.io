@@ -1,0 +1,79 @@
+{
+  "id": "glad-global-cropland",
+  "title": "GLAD Global Cropland Extent and Change 2000–2019 (30 m)",
+  "description": "Globally consistent 30 m cropland extent maps for five four-year intervals (2000–2003, 2004–2007, 2008–2011, 2012–2015, 2016–2019) produced by the University of Maryland GLAD laboratory from the Landsat archive. A 0.025° (~3 km) percent-cropland overview and 3 km net cropland gain and loss layers are also provided.",
+  "purpose": "Allows mapping of cropland extent and its change over two decades at field-relevant resolution, for example to examine expansion of irrigated agriculture in southern Algeria or cropland stability in the northern cereal belt. The 4-year compositing captures land used at least once in the interval, which is useful where fallow rotations are common.",
+  "domain": ["agriculture", "land-ecosystems", "human-change"],
+  "categories": ["Cropland and crop-type maps", "Land-use change"],
+  "keywords": ["cropland", "cropland expansion", "Landsat", "GLAD", "University of Maryland", "30 m", "time series"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": { "name": "Global Land Analysis and Discovery (GLAD) laboratory, University of Maryland", "url": "https://glad.umd.edu/" },
+  "creator": "P. Potapov, S. Turubanova, M.C. Hansen, A. Tyukavina, V. Zalles, A. Khan, X.-P. Song, A. Pickens, Q. Shen, J. Cortez (GLAD, University of Maryland)",
+  "source_url": "https://glad.umd.edu/dataset/croplands",
+  "documentation_url": "https://doi.org/10.1038/s43016-021-00429-z",
+  "license": { "name": "Not stated by provider", "spdx": null, "url": null },
+  "license_notes": "The GLAD dataset page does not state a data licence. The associated Nature Food article is published under CC BY 4.0 and its data availability statement says the maps are publicly available from the GLAD page, but this is not an explicit licence for the data. Users should cite the article as the dataset reference given by GLAD.",
+  "citation": "P. Potapov, S. Turubanova, M.C. Hansen, A. Tyukavina, V. Zalles, A. Khan, X.-P. Song, A. Pickens, Q. Shen, J. Cortez. (2021) Global maps of cropland extent and change show accelerated cropland expansion in the twenty-first century. Nature Food. https://doi.org/10.1038/s43016-021-00429-z",
+  "doi": null,
+  "references": [
+    { "citation": "Potapov, P., Turubanova, S., Hansen, M.C., Tyukavina, A., Zalles, V., Khan, A., Song, X.-P., Pickens, A., Shen, Q., Cortez, J. (2022) Global maps of cropland extent and change show accelerated cropland expansion in the twenty-first century. Nature Food, 3(1), 19–28 (published online 23 December 2021).", "doi": "10.1038/s43016-021-00429-z", "url": "https://www.nature.com/articles/s43016-021-00429-z" }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, distributed as four quadrant mosaics (NE, NW, SE, SW) per epoch at 30 m, plus untiled 3 km overview files. Algeria straddles the prime meridian, so both the NE and NW quadrant files are needed; users must clip Algeria themselves.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "2000-01-01",
+    "end": "2019-12-31",
+    "ongoing": false,
+    "frequency": "4-year intervals",
+    "description": "Five epochs: 2000–2003, 2004–2007, 2008–2011, 2012–2015, 2016–2019; files are named after the last year of each interval (2003, 2007, 2011, 2015, 2019). Net gain and loss layers summarise change 2003–2019."
+  },
+  "resolution": { "spatial": "0.00025° (~30 m at the Equator); overview 0.025° (~3 km)", "spatial_m": 30, "temporal": "4-year epochs" },
+  "format": ["GeoTIFF (8-bit unsigned, LZW-compressed)"],
+  "crs": "WGS 84 geographic coordinates",
+  "variables": [
+    { "name": "Cropland (30 m)", "units": "class code", "description": "0 = no croplands or no data; 1 = croplands." },
+    { "name": "Cropland (3 km overview)", "units": "percent", "description": "0–100, percent of cropland per 0.025° pixel for each epoch." },
+    { "name": "Net gain / net loss (3 km)", "units": "percent", "description": "0–100, percent of cropland dynamic (net gain or net loss) per pixel, 2003–2019." }
+  ],
+  "processing": "Global 16-day normalized surface reflectance Landsat Analysis Ready Data (normalized to MODIS surface reflectance) were composited into annualized gap-free 16-day time series per 4-year interval and transformed into multitemporal phenology metrics. Locally calibrated machine-learning classification models, trained with visually interpreted high-resolution imagery, mapped cropland. A pixel is mapped as cropland if a growing crop was detected in any year of the interval, implementing a maximum fallow length of four years.",
+  "validation": "Potapov et al. (Nature Food, Table 3) report sample-based accuracies (standard error in parentheses). World, 2016–2019 cropland: overall accuracy 97.2% (0.3), user's accuracy 88.5% (1.0), producer's accuracy 86.4% (1.9). Africa, 2016–2019 cropland: overall accuracy 96.5% (0.8), user's 77.3% (3.2), producer's 70.6% (7.9). World cropland gain: user's 67.4% (1.9), producer's 73.3% (5.8). The paper states that in Europe, Asia and Africa the map underestimates cropland area because of resolution limits in heterogeneous landscapes, and that change mapping is less accurate.",
+  "limitations": [
+    "Cropland is defined as land used for annual and perennial herbaceous crops (food, forage including hay, biofuel); perennial woody crops (e.g. orchards, olive groves, date palms), permanent pastures and shifting cultivation are excluded, and fallow is limited to four years.",
+    "Four-year epochs: the maps show land cropped at least once per interval, not annual cultivated area, so they are not comparable with single-year crop maps or annual harvested-area statistics.",
+    "Reported accuracies for Africa are lower than the global average, with cropland underestimated in heterogeneous landscapes; change (gain/loss) accuracy is lower than extent accuracy.",
+    "The 30 m value 0 combines non-cropland and no data."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    { "label": "GLAD dataset page", "url": "https://glad.umd.edu/dataset/croplands", "kind": "external", "format": "GeoTIFF", "requires_login": false, "notes": "Product description and links to all files." },
+    { "label": "Direct file directory", "url": "https://glad.geog.umd.edu/Potapov/Global_Crop/Data/", "kind": "download", "format": "GeoTIFF", "requires_login": false, "notes": "Contains Global_cropland_{NE,NW,SE,SW}_{2003..2019}.tif, Global_cropland_3km_{year}.tif and 3 km net gain/loss files. The GLAD page lists NE files at 1.8 GB and NW files at 0.9 GB each." },
+    { "label": "Google Earth Engine visualization app", "url": "https://glad.earthengine.app/view/global-cropland-dynamics", "kind": "viewer", "format": null, "requires_login": false, "notes": "Linked from the GLAD page; HTTP HEAD request returned 405, page not otherwise checked." },
+    { "label": "Google Earth Engine assets", "url": "https://glad.umd.edu/dataset/croplands", "kind": "api", "format": "Earth Engine ImageCollection", "requires_login": true, "notes": "Collection IDs users/potapovpeter/Global_cropland_2003 … _2019, as listed on the GLAD page; an Earth Engine account is needed." }
+  ],
+  "code_url": null,
+  "algeria_notes": "GLAD's definition (herbaceous crops, fallow up to four years, no woody crops) differs from WorldCereal's temporary crops (single-year, excludes perennial crops) and from WorldCover/GACED30, so area totals for Algeria will differ between products by construction. Long fallow and rangeland cultivated only in wet years in the High Plateaus may be mapped intermittently, and olive groves and date-palm oases are excluded by definition. Centre-pivot and other irrigated annual cropping in the Sahara should be detectable at 30 m; the remaining Saharan desert carries no cropland signal.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": ["license", "doi (no dataset DOI; the article DOI is the reference)", "version", "published_date", "updated_date", "spatial_extent.bbox"],
+    "sources_consulted": [
+      "https://glad.umd.edu/dataset/croplands",
+      "https://glad.geog.umd.edu/Potapov/Global_Crop/Data/",
+      "https://www.nature.com/articles/s43016-021-00429-z",
+      "https://www.nature.com/articles/s43016-021-00429-z/tables/3",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s43016-021-00429-z&resultType=core&format=json"
+    ],
+    "notes": "The task brief called this 'Potapov et al. 2022, Nature Food': the article is in Nature Food vol. 3 (January 2022 issue) but was published online on 23 December 2021, and GLAD's own reference gives 2021. Direct file Global_cropland_NE_2019.tif returned HTTP 200 (image/tiff). glad.geog.umd.edu/Potapov/Global_Crop/ redirects to gladxfer.umd.edu. The GLAD server also hosts other regional folders (e.g. AFR, East_Africa_2024) that were not examined and may contain other products; they are not part of this record."
+  }
+}

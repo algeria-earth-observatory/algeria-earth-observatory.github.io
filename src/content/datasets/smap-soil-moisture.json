@@ -1,0 +1,170 @@
+{
+  "id": "smap-soil-moisture",
+  "title": "SMAP Enhanced L3 Radiometer Soil Moisture, Daily 9 km (SPL3SMP_E v6)",
+  "description": "Daily global composite of surface soil moisture (approximately the top 5 cm) retrieved from NASA Soil Moisture Active Passive (SMAP) L-band radiometer brightness temperatures, posted on the 9 km EASE-Grid 2.0, with separate 6:00 a.m. (descending) and 6:00 p.m. (ascending) local-time fields. The companion model–data assimilation product SMAP L4 (SPL4SMGP v8) provides 3-hourly surface and root-zone soil moisture at 9 km.",
+  "purpose": "Provides observation-based near-surface soil moisture since March 2015 for monitoring agricultural drought onset and rainfall response in the cereal-growing High Plateaux and Tell, complementing rainfall- and model-based indicators.",
+  "domain": [
+    "climate-drought",
+    "agriculture",
+    "water"
+  ],
+  "categories": [
+    "Soil moisture",
+    "Passive microwave retrievals"
+  ],
+  "keywords": [
+    "SMAP",
+    "soil moisture",
+    "L-band",
+    "radiometer",
+    "brightness temperature",
+    "EASE-Grid 2.0",
+    "NSIDC",
+    "SPL3SMP_E",
+    "SPL4SMGP"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC)",
+    "url": "https://nsidc.org/data/spl3smp_e/versions/6"
+  },
+  "creator": "O'Neill, P. E., Chan, S., Njoku, E. G., Jackson, T., Bindlish, R., Chaubell, J., Colliander, A. (SMAP Science Team, NASA)",
+  "source_url": "https://nsidc.org/data/spl3smp_e/versions/6",
+  "documentation_url": "https://nsidc.org/sites/default/files/documents/user-guide/spl3smp_e-v006-userguide.pdf",
+  "license": {
+    "name": "NASA Earth science data – Creative Commons Zero (no restrictions on use)",
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "CMR use constraint: 'These data are freely, openly, and fully available to use without restrictions, provided that you cite the data according to the recommended citation.' NASA ESDIS guidance states that data from NASA-led missions without a marked restriction are licensed CC0. NSIDC states that citing the data set is a condition of use.",
+  "citation": "O'Neill, P. E., Chan, S., Njoku, E. G., Jackson, T., Bindlish, R., Chaubell, J. & Colliander, A. (2023). SMAP Enhanced L3 Radiometer Global and Polar Grid Daily 9 km EASE-Grid Soil Moisture. (SPL3SMP_E, Version 6). [Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/M20OXIZHY3RJ. [describe subset used if applicable]. Date Accessed MM-DD-YYYY.",
+  "doi": "10.5067/M20OXIZHY3RJ",
+  "references": [
+    {
+      "citation": "Reichle, R., De Lannoy, G., Koster, R. D., Crow, W. T., Kimball, J. S., Liu, Q. & Bechtold, M. (2025). SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data. (SPL4SMGP, Version 8). [Data Set]. Boulder, Colorado USA. NASA NSIDC DAAC.",
+      "doi": "10.5067/T5RUATAQREF8",
+      "url": "https://nsidc.org/data/spl4smgp/versions/8"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land on the 9 km EASE-Grid 2.0 Global projection (EPSG:6933; 85.044°S–85.044°N); a Northern Hemisphere polar grid (EPSG:6931) is also included. Users must subset Algeria (e.g. via NSIDC/Harmony spatial subsetting or AppEEARS).",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -85.044,
+      180,
+      85.044
+    ]
+  },
+  "temporal_extent": {
+    "start": "2015-03-31",
+    "end": null,
+    "ongoing": true,
+    "frequency": "daily",
+    "description": "31 March 2015 to present (latest granule seen in CMR: 2026-11-18). SPL4SMGP v8 also starts 31 March 2015 at 3-hourly resolution. NSIDC announced a forward-processing pause from 1 December 2026, tentatively resuming 3 December 2026."
+  },
+  "resolution": {
+    "spatial": "9 km (EASE-Grid 2.0)",
+    "spatial_m": 9000,
+    "temporal": "daily (AM and PM overpass composites)"
+  },
+  "format": [
+    "HDF5"
+  ],
+  "crs": "EPSG:6933 (WGS 84 / NSIDC EASE-Grid 2.0 Global); EPSG:6931 for the polar grid",
+  "variables": [
+    {
+      "name": "soil_moisture / soil_moisture_pm",
+      "units": "m3/m3",
+      "description": "Surface soil moisture (about 0–5 cm) from the baseline Dual Channel Algorithm (DCA), 6 a.m. descending and 6 p.m. ascending composites"
+    },
+    {
+      "name": "soil_moisture_scav, soil_moisture_scah",
+      "units": "m3/m3",
+      "description": "Alternative retrievals from the single-channel V- and H-polarisation algorithms"
+    },
+    {
+      "name": "retrieval_qual_flag",
+      "units": "bit flag",
+      "description": "Retrieval quality; values 0 or 8 indicate recommended-quality retrievals"
+    },
+    {
+      "name": "tb_h_corrected, tb_v_corrected",
+      "units": "K",
+      "description": "Water-corrected brightness temperatures resampled to 9 km"
+    }
+  ],
+  "processing": "SMAP antenna temperatures are converted to brightness temperatures with Backus-Gilbert optimal interpolation and posted to the 9 km EASE-Grid 2.0 (L1C). Level-2 soil moisture is retrieved with the Dual Channel Algorithm (baseline since Version 5) and single-channel alternatives, then composited daily using the observations closest to 6:00 a.m. and 6:00 p.m. local solar time. Version 6 applies an improved processing of the input enhanced L2 brightness temperatures.",
+  "validation": null,
+  "limitations": [
+    "Represents only about the top 5 cm of soil; root-zone conditions require the model-based SPL4SMGP product.",
+    "Retrievals are flagged as uncertain or not retrieved over steep, variable topography (mountainous flag: slope standard deviation above 3° flagged, above 6° not retrieved), urban fractions above 0.25, open water and frozen ground.",
+    "Valid soil_moisture range starts at 0.02 m3/m3; very dry desert soils sit near this lower bound, limiting dynamic range.",
+    "Enhanced 9 km posting is interpolated from a radiometer footprint much coarser than 9 km, so adjacent pixels are not independent.",
+    "Radio-frequency interference can contaminate L-band observations; the radiometer applies detection and mitigation but residual effects are possible."
+  ],
+  "version": "SPL3SMP_E Version 6 (companion: SPL4SMGP Version 8)",
+  "published_date": "2023-12-05",
+  "updated_date": "2026-09-08",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NSIDC SPL3SMP_E v6 data page",
+      "url": "https://nsidc.org/data/spl3smp_e/versions/6",
+      "kind": "external",
+      "format": "HDF5",
+      "requires_login": true,
+      "notes": "Free NASA Earthdata Login required. Data Access Tool, HTTPS, earthaccess, Harmony subsetting/reformatting, AWS S3 (us-west-2) access."
+    },
+    {
+      "label": "NSIDC SPL4SMGP v8 (L4 surface and root-zone soil moisture)",
+      "url": "https://nsidc.org/data/spl4smgp/versions/8",
+      "kind": "external",
+      "format": "HDF5",
+      "requires_login": true,
+      "notes": "3-hourly, 9 km, model with assimilation of SMAP brightness temperatures; DOI 10.5067/T5RUATAQREF8."
+    },
+    {
+      "label": "NASA Earthdata Search",
+      "url": "https://search.earthdata.nasa.gov/",
+      "kind": "external",
+      "format": "HDF5",
+      "requires_login": true,
+      "notes": "Search and order with spatial/temporal filters."
+    },
+    {
+      "label": "AppEEARS (point and area extraction)",
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "kind": "api",
+      "format": "GeoTIFF / NetCDF / CSV",
+      "requires_login": true,
+      "notes": "Allows extraction of an Algeria polygon; Earthdata Login required."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "SMAP is most informative over the semi-arid High Plateaux and interior Tell plains, where L-band sensing through sparse vegetation works well. Tell Atlas, Aurès and Kabylie relief will trigger mountainous flags, coastal pixels can be affected by the sea, and over the hyper-arid Sahara values stay near the 0.02 m3/m3 floor except after rare rain events. Always filter on retrieval_qual_flag.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation"
+    ],
+    "sources_consulted": [
+      "https://nsidc.org/data/spl3smp_e/versions/6",
+      "https://nsidc.org/data/spl4smgp/versions/8",
+      "https://nsidc.org/sites/default/files/documents/user-guide/spl3smp_e-v006-userguide.pdf",
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=SPL3SMP_E",
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=SPL4SMGP",
+      "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+    ],
+    "notes": "Primary product chosen: SPL3SMP_E v6 (latest version per NSIDC page and CMR). SPL4SMGP v8 recorded as companion reference/access route; the record's doi and citation are for SPL3SMP_E. published_date = CMR DataDates CREATE (2023-12-05); updated_date = CMR metadata UPDATE (2026-09-08). The user guide cites validation in the SMAP assessment reports, but no accuracy figure was extracted, so validation is null. The 1-3 December 2026 processing pause is a temporary NSIDC notice."
+  },
+  "map_layers": [
+    "smap-soil-moisture"
+  ]
+}

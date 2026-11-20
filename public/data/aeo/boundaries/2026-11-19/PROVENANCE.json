@@ -1,0 +1,39 @@
+{
+  "dataset": "aeo-dza-admin-boundaries",
+  "version": "2026-11-19",
+  "inputs": {
+    "openstreetmap": {
+      "api": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:600];\narea[\"ISO3166-1\"=\"DZ\"][admin_level=2]->.a;\n(rel[\"ISO3166-1\"=\"DZ\"][admin_level=2][boundary=administrative];\n rel(area.a)[boundary=administrative][admin_level=4];);\nout geom;",
+      "retrieved": "2026-11-19",
+      "elements": 70
+    },
+    "land_mask": {
+      "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DZA/ADM0/geoBoundaries-DZA-ADM0.geojson",
+      "boundaryID": "DZA-ADM0-9297773",
+      "license": "ODbL 1.0"
+    }
+  },
+  "wilaya_count": 69,
+  "iso_3166_2_note": "iso_3166_2 values are copied from OSM tags (ISO3166-2) and are null where OSM has no tag.",
+  "missing_iso_3166_2": [
+    "El Aricha"
+  ],
+  "overlap_fixes": [
+    {
+      "parent": "Tlemcen",
+      "parent_code": "13",
+      "removed_overlap_with": "El Aricha",
+      "code": "63",
+      "overlap_km2": 3009.6
+    }
+  ],
+  "notes": [
+    "area_km2 is the planimetric area of the polygon in a Lambert azimuthal equal-area projection; it is not an official statistic.",
+    "Boundaries are community-mapped (OpenStreetMap) and are not a legal or cadastral delineation."
+  ],
+  "crs": "EPSG:4326",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors; processing: Algeria Earth Observatory",
+  "code": "scripts/processing/build_boundaries.py"
+}

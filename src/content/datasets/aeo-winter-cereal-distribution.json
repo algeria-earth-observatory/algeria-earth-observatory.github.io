@@ -1,0 +1,72 @@
+{
+  "id": "aeo-winter-cereal-distribution",
+  "title": "AEO Winter Cereal Distribution",
+  "description": "A planned product on the distribution of winter cereals (principally wheat and barley) across Algeria's cereal-growing regions, intended to support area monitoring in rainfed and irrigated systems.",
+  "purpose": null,
+  "domain": [
+    "agriculture"
+  ],
+  "categories": [
+    "Winter cereals",
+    "Crop-type mapping"
+  ],
+  "keywords": [
+    "winter cereals",
+    "wheat",
+    "barley",
+    "crop type",
+    "Algeria"
+  ],
+  "status": "in-preparation",
+  "origin": "aeo-original",
+  "data_nature": null,
+  "data_type": null,
+  "provider": {
+    "name": "Algeria Earth Observatory",
+    "url": "https://algeria-earth-observatory.github.io/"
+  },
+  "creator": null,
+  "source_url": null,
+  "documentation_url": null,
+  "license": null,
+  "license_notes": "Licence to be decided before release; AEO intends to use an open licence.",
+  "citation": null,
+  "doi": null,
+  "references": [],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Planned national coverage of Algeria.",
+    "algeria_subset": "native",
+    "bbox": null
+  },
+  "temporal_extent": null,
+  "resolution": null,
+  "format": [],
+  "crs": null,
+  "variables": [],
+  "processing": null,
+  "validation": null,
+  "limitations": [
+    "No data have been released. Methods, input versions, validation design and accuracy assessment will be documented and reviewed before any release."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [],
+  "code_url": null,
+  "algeria_notes": null,
+  "planned_scope": [
+    "Winter cereal presence for documented agricultural seasons",
+    "Clear treatment of mixed, intercropped and failed crops",
+    "Reference data collection protocol and accuracy assessment"
+  ],
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": false,
+    "unverified_fields": [],
+    "sources_consulted": [],
+    "notes": "Planned product family. Nothing in this record describes released data."
+  }
+}

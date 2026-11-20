@@ -1,0 +1,178 @@
+{
+  "id": "chirps-v2",
+  "title": "CHIRPS v2.0 Quasi-Global Precipitation (0.05°)",
+  "description": "Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS) v2.0 is a quasi-global (50°S–50°N) gridded rainfall time series over land at 0.05° resolution from 1981 to near-present. It blends the CHPclim climatology, satellite thermal-infrared cold-cloud-duration estimates (CHIRP) and in-situ station observations, and is distributed at daily, pentadal, dekadal, monthly, multi-monthly and annual time steps.",
+  "purpose": "Provides a long, consistent rainfall record at a resolution finer than most gauge-only grids, suitable for rainfall anomaly, seasonal monitoring and drought-index work over northern Algeria where the station network is sparse.",
+  "domain": [
+    "climate-drought",
+    "water",
+    "agriculture"
+  ],
+  "categories": [
+    "Precipitation",
+    "Satellite–gauge rainfall estimates",
+    "Drought monitoring inputs"
+  ],
+  "keywords": [
+    "precipitation",
+    "rainfall",
+    "CHIRPS",
+    "CHIRP",
+    "CHPclim",
+    "satellite-gauge blend",
+    "drought",
+    "FEWS NET",
+    "Climate Hazards Center"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Climate Hazards Center (CHC), University of California, Santa Barbara",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+  },
+  "creator": "Climate Hazards Center (formerly Climate Hazards Group), UC Santa Barbara, in collaboration with the USGS Famine Early Warning Systems Network (FEWS NET)",
+  "source_url": "https://www.chc.ucsb.edu/data/chirps",
+  "documentation_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/README-CHIRPS.txt",
+  "license": {
+    "name": "Public domain (CC0-style copyright waiver stated by the provider)",
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "license_notes": "The CHC page states: 'To the extent possible under the law, Pete Peterson has waived all copyright and related or neighboring rights to CHIRPS. CHIRPS data is in the public domain as registered with Creative Commons.' The page does not link a specific licence deed; the CC0-1.0 SPDX mapping is AEO's reading of this waiver wording. Note that CHIRPS v3 is released under CC BY 4.0.",
+  "citation": "Funk, C., Peterson, P., Landsfeld, M., Pedreros, D., Verdin, J., Shukla, S., Husak, G., Rowland, J., Harrison, L., Hoell, A., Michaelsen, J. (2015). The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes. Scientific Data 2, 150066. https://doi.org/10.1038/sdata.2015.66",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Funk, C. et al. (2015). The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes. Scientific Data 2, 150066.",
+      "doi": "10.1038/sdata.2015.66",
+      "url": null
+    },
+    {
+      "citation": "Funk, C.C., Peterson, P.J., Landsfeld, M.F., Pedreros, D.H., Verdin, J.P., Rowland, J.D., Romero, B.E., Husak, G.J., Michaelsen, J.C., Verdin, A.P. (2014). A quasi-global precipitation time series for drought monitoring. U.S. Geological Survey Data Series 832, 4 p.",
+      "doi": null,
+      "url": "https://pubs.usgs.gov/ds/832/"
+    },
+    {
+      "citation": "Funk, C. et al. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. Scientific Data 13, 718 (successor product, CHIRPS v3).",
+      "doi": "10.1038/s41597-026-07096-4",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Quasi-global land, 50°S–50°N, all longitudes; an Africa subset is also distributed. All of Algeria (approx. 19°N–37°N) lies inside the 50°N limit. Users must clip Algeria themselves.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -50,
+      180,
+      50
+    ]
+  },
+  "temporal_extent": {
+    "start": "1981-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "daily",
+    "description": "1981 to near-present. Distributed as daily, pentad, dekad, monthly, 2-monthly, 3-monthly and annual fields. A preliminary product is released about two days after each pentad; the final product is completed in the third week of the following month. The provider states that CHIRPS v2 production will end after December 2026."
+  },
+  "resolution": {
+    "spatial": "0.05°",
+    "spatial_m": 5566,
+    "temporal": "daily (also pentad, dekad, monthly, annual aggregates)"
+  },
+  "format": [
+    "NetCDF",
+    "GeoTIFF",
+    "Cloud Optimized GeoTIFF",
+    "BIL",
+    "PNG"
+  ],
+  "crs": "EPSG:4326 (WGS 84, regular latitude–longitude grid)",
+  "variables": [
+    {
+      "name": "precip",
+      "units": "mm per time step",
+      "description": "Precipitation total for the day, pentad, dekad, month or year (unit as stated in each file)"
+    }
+  ],
+  "processing": "CHIRPS combines a 0.05° satellite-informed precipitation climatology (CHPclim) with CHIRP, a satellite-only estimate based on infrared cold cloud duration calibrated against TRMM 3B42 and expressed as a fraction of the climatology. Station observations are then blended in using a modified inverse-distance weighting scheme with CHIRP-derived decorrelation distances (Funk et al. 2015).",
+  "validation": "Funk et al. (2015, Table 2) report, for 2000–2010 wet-season comparisons against GPCC over the semi-global validation domain, a correlation of 0.67 and a mean absolute error of 82 mm for CHIRPS (Africa: correlation 0.56, MAE 79 mm).",
+  "limitations": [
+    "Station counts used in CHIRPS declined over time; Funk et al. (2015) report Africa falling from about 2,400 gauges in the early 1980s to about 500 after 2010, so recent years over North Africa rely more on the satellite component.",
+    "Funk et al. (2015) note the product may under-represent extremes and that CHIRP can overestimate the number of rainy days; no per-pixel uncertainty is provided.",
+    "In the 2015 validation, areas with mean wet-season totals below 50 mm were masked, so performance over hyper-arid terrain such as the Algerian Sahara was not part of that assessment.",
+    "CHIRPS v2 is being superseded by CHIRPS v3 (0.05°, 60°S–60°N, CC BY 4.0); v2 production is announced to end after December 2026, so v2 time series will stop being extended."
+  ],
+  "version": "v2.0",
+  "published_date": "2015-02-12",
+  "updated_date": "2026-11-13",
+  "download_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/netcdf/chirps-v2.0.monthly.nc",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CHC data archive (CHIRPS v2.0)",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/",
+      "kind": "external",
+      "format": "NetCDF, GeoTIFF, COG, BIL",
+      "requires_login": false,
+      "notes": "Directory listing with global, Africa and regional subsets at daily to annual steps."
+    },
+    {
+      "label": "Global monthly NetCDF (single file)",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/netcdf/chirps-v2.0.monthly.nc",
+      "kind": "download",
+      "format": "NetCDF",
+      "requires_login": false,
+      "notes": "HEAD request on 2026-11-19 returned HTTP 200, Content-Length 7,769,103,244 bytes (about 7.8 GB), last modified 2026-11-13."
+    },
+    {
+      "label": "Africa monthly subset",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/africa_monthly/",
+      "kind": "external",
+      "format": "BIL, PNG, TIFF",
+      "requires_login": false,
+      "notes": "Smaller Africa-only files that include Algeria."
+    },
+    {
+      "label": "Google Earth Engine (UCSB-CHG/CHIRPS/DAILY)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHG_CHIRPS_DAILY",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Requires an Earth Engine account."
+    },
+    {
+      "label": "CHIRPS v3 (successor product)",
+      "url": "https://www.chc.ucsb.edu/data/chirps3",
+      "kind": "external",
+      "format": "GeoTIFF, NetCDF, BIL, COG",
+      "requires_login": false,
+      "notes": "CHIRPS v3 released 2025-01-14 per the v2 README; DOI 10.15780/G2JQ0P; CC BY 4.0."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "The 50°N northern limit covers all of Algeria. Most of the gauge information that constrains CHIRPS lies in the semi-arid Tell and High Plateaux, whereas over the hyper-arid Sahara the estimate is dominated by the satellite/climatology component and near-zero totals make percent-of-normal anomalies unstable. The 0.05° grid (about 5.5 km) still smooths rainfall gradients across the Tell Atlas and Aurès ranges.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "doi",
+      "variables"
+    ],
+    "sources_consulted": [
+      "https://www.chc.ucsb.edu/data/chirps",
+      "https://www.chc.ucsb.edu/data/chirps3",
+      "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/README-CHIRPS.txt",
+      "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC4672685/",
+      "https://api.crossref.org/works/10.1038/sdata.2015.66",
+      "https://storage.googleapis.com/earthengine-stac/catalog/UCSB-CHG/UCSB-CHG_CHIRPS_DAILY.json"
+    ],
+    "notes": "No dataset-level DOI was found for CHIRPS v2.0; the Scientific Data paper DOI is given as the citation. The README lists a USGS Data Series 832 citation while the CHC page points to the 2015 Scientific Data paper; both are listed. Variable name 'precip' and per-file units were not checked inside a file. The CHC landing page's own download link (products/CHIRPS-2.0/) is broken (404); working path products/CHIRPS/v2.0/ was verified. The CHC landing page link to data.chc.ucsb.edu/products/CHIRPS-2.0/ returned HTTP 404 on 2026-11-19; the archive is currently served under data.chc.ucsb.edu/products/CHIRPS/v2.0/."
+  },
+  "featured": true,
+  "alert": "CHIRPS v2.0 production is announced to end after December 2026; the provider is moving to CHIRPS v3. Check which version you use and avoid mixing versions in one time series."
+}

@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { fmtDate } from '../../lib/format';
+
+const docs = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
+const sections = ['Getting started', 'Working with data', 'Scientific practice', 'Tutorials'] as const;
+---
+<Base title="Methods and documentation" description="Guides for accessing, subsetting, citing and responsibly using Earth observation and environmental data for Algeria, with Python, R and QGIS tutorials.">
+  <PageHeader
+    eyebrow="Methods & documentation"
+    title="Use the data well"
+    lead="Introductory, tested guides on accessing data, file formats, subsetting global products to Algeria, citation, uncertainty and reproducibility. Guides are versioned with the website; corrections are welcome."
+  />
+  <div class="container-aeo py-12 space-y-14">
+    {sections.map((s) => {
+      const items = docs.filter((d) => d.data.section === s);
+      return items.length > 0 && (
+        <section aria-labelledby={`s-${s}`}>
+          <h2 id={`s-${s}`} class="text-xl font-semibold">{s}</h2>
+          <ul class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {items.map((d) => (
+              <li class="card relative p-5 hover:border-signal">
+                <h3 class="text-[1.02rem] font-semibold"><a href={`/docs/${d.id}/`} class="no-underline after:absolute after:inset-0 after:content-['']">{d.data.title}</a></h3>
+                <p class="mt-2 text-[0.9rem] leading-relaxed text-slate">{d.data.description}</p>
+                <p class="meta mt-3">Updated {fmtDate(d.data.updated)}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    })}
+  </div>
+</Base>

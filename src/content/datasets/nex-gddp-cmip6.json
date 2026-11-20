@@ -1,0 +1,85 @@
+{
+  "id": "nex-gddp-cmip6",
+  "title": "NASA NEX-GDDP-CMIP6 Downscaled Climate Projections (0.25°)",
+  "description": "NEX-GDDP-CMIP6 provides global daily climate projections at 0.25° statistically downscaled and bias-corrected with the BCSD method from CMIP6 global climate models, for the historical experiment (1950–2014) and four Tier 1 Shared Socioeconomic Pathways (SSP1-2.6, SSP2-4.5, SSP3-7.0, SSP5-8.5; 2015–2100). Variables include precipitation, mean/maximum/minimum near-surface temperature, humidity, radiation and wind speed.",
+  "purpose": "Offers a multi-model ensemble of daily climate scenarios at a common 0.25° grid for exploring projected changes in temperature, heat and precipitation over Algeria under different emission pathways.",
+  "domain": ["climate-drought"],
+  "categories": ["Climate projections", "Downscaled CMIP6"],
+  "keywords": ["CMIP6", "climate projections", "SSP", "downscaling", "BCSD", "bias correction", "NASA Earth Exchange", "NEX-GDDP", "GMFD"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": { "name": "NASA Center for Climate Simulation (NCCS) / NASA Earth Exchange (NEX), NASA Ames Research Center", "url": "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6" },
+  "creator": "Climate Analytics Group and NASA Ames Research Center using the NASA Earth Exchange (Thrasher, Wang, Michaelis, Melton, Lee, Nemani)",
+  "source_url": "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6",
+  "documentation_url": "https://www.nccs.nasa.gov/wp-content/uploads/2025/06/NEX-GDDP-CMIP6-v2-Tech_Note.pdf",
+  "license": { "name": "Creative Commons Zero v1.0 Universal (per AWS Open Data registry entry)", "spdx": "CC0-1.0", "url": "https://creativecommons.org/publicdomain/zero/1.0/" },
+  "license_notes": "The AWS Open Data registry states that the archive was initially released under CC-BY-SA 4.0 and that, after CMIP6 licence updates, 'as of September 2022, all NEX-GDDP-CMIP6 outputs are made available under a blanket Creative Commons Zero license (CC0)'. The v2 Tech Note (section 7) still says derivatives are governed by the CMIP6 Terms of Use and 'may have some restrictions', and directs users to the per-file 'cmip6_license' attribute. Requested acknowledgement: 'Climate scenarios used were from the NEX-GDDP-CMIP6 dataset, prepared by the Climate Analytics Group and NASA Ames Research Center using the NASA Earth eXchange (NEX) and distributed by the NASA Center for Climate Simulation (NCCS).'",
+  "citation": "Thrasher, B., Wang, W., Michaelis, A. et al. (2022). NASA Global Daily Downscaled Projections, CMIP6. Sci Data 9, 262. https://doi.org/10.1038/s41597-022-01393-4; Thrasher, B., Wang, W., Michaelis, A., Nemani, R. (2021). NEX-GDDP-CMIP6. NASA Center for Climate Simulation. https://doi.org/10.7917/OFSG3345",
+  "doi": "10.7917/OFSG3345",
+  "references": [
+    { "citation": "Thrasher, B., Wang, W., Michaelis, A., Melton, F., Lee, T., Nemani, R. (2022). NASA Global Daily Downscaled Projections, CMIP6. Scientific Data 9, 262.", "doi": "10.1038/s41597-022-01393-4", "url": null },
+    { "citation": "Thrasher, B., Maurer, E.P., McKellar, C., Duffy, P.B. (2012). Technical Note: Bias correcting climate model simulated daily temperature extremes with quantile mapping. Hydrology and Earth System Sciences 16(9), 3309–3314.", "doi": "10.5194/hess-16-3309-2012", "url": null }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, 180°W–180°E, 60°S–90°N on a 0.25° grid (600 x 1440 cells). Files are global per model, scenario, variable and year; Algeria must be subset (e.g. via NCCS THREDDS NetcdfSubset).",
+    "algeria_subset": "extract",
+    "bbox": [-180, -60, 180, 90]
+  },
+  "temporal_extent": {
+    "start": "1950-01-01",
+    "end": "2100-12-31",
+    "ongoing": false,
+    "frequency": "daily",
+    "description": "Historical experiment 1950–2014 and SSP1-2.6, SSP2-4.5, SSP3-7.0 and SSP5-8.5 for 2015–2100. Not all models provide all scenarios/variables (see Tech Note Appendix I). The AWS registry states no future updates are planned."
+  },
+  "resolution": { "spatial": "0.25°", "spatial_m": 27830, "temporal": "daily" },
+  "format": ["NetCDF-4 (CF-1.7)", "Cloud Optimized GeoTIFF (NEX-GDDP-CMIP6-COG on AWS)"],
+  "crs": "EPSG:4326 (WGS 84, geographic)",
+  "variables": [
+    { "name": "pr", "units": "kg m-2 s-1", "description": "Precipitation (mean of the daily precipitation rate)" },
+    { "name": "tas / tasmax / tasmin", "units": "K", "description": "Daily mean, maximum and minimum near-surface air temperature" },
+    { "name": "hurs", "units": "%", "description": "Near-surface relative humidity" },
+    { "name": "huss", "units": "kg/kg", "description": "Near-surface specific humidity" },
+    { "name": "rlds / rsds", "units": "W m-2", "description": "Surface downwelling longwave / shortwave radiation" },
+    { "name": "sfcWind", "units": "m s-1", "description": "Daily-mean near-surface wind speed" }
+  ],
+  "processing": "Daily outputs of 35 CMIP6 GCM configurations were bias-corrected and spatially disaggregated (BCSD) against the 0.25° Global Meteorological Forcing Dataset (GMFD; Princeton Global Forcing) over 1960–2014 using quantile mapping, with temperature-trend preservation. Version 2.0 (Tech Note dated May 2025) applies bounds and fixes to v1.x outputs (e.g. hurs ≤ 105%, non-negative huss/rlds/sfcWind, adjustment of anomalously large values where daily climatology is very small).",
+  "validation": null,
+  "limitations": [
+    "BCSD assumes the 1960–2014 relative spatial patterns remain constant under future climate and adds no information beyond the parent CMIP6 runs other than resolution and bias correction.",
+    "BCSD adjusts the offset but not the slope of model trends; the Tech Note warns the linear shift may be unrealistic, particularly when using single GCMs.",
+    "The provider states the dataset is intended for scientific research and that engineering/design or commercial use is not recommended without expert consultation.",
+    "Earlier versions over-corrected precipitation in climatologically dry areas (reprocessed in v1.1) and could produce anomalously large values where daily climatology is very small (adjusted in v2.0); several file versions (v1.0, v1.1, v1.2, v2.0) coexist in the archive and must not be mixed.",
+    "The reference dataset GMFD is itself a reanalysis–observation blend; biases in GMFD over data-sparse regions propagate to all downscaled projections."
+  ],
+  "version": "v2.0 (files suffixed _v2.0.nc; earlier v1.0/v1.1/v1.2 files remain in the archive)",
+  "published_date": null,
+  "updated_date": "2025-05-31",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    { "label": "NCCS dataset page", "url": "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6", "kind": "external", "format": "NetCDF", "requires_login": false, "notes": "Overview, Tech Notes, access links; total size stated as 38 TB." },
+    { "label": "NCCS THREDDS catalogue (subset and download)", "url": "https://ds.nccs.nasa.gov/thredds/catalog/AMES/NEX/GDDP-CMIP6/catalog.html", "kind": "api", "format": "NetCDF", "requires_login": false, "notes": "NetcdfSubset allows spatial subsetting to Algeria." },
+    { "label": "AWS Open Data (s3://nex-gddp-cmip6, us-west-2)", "url": "https://registry.opendata.aws/nex-gddp-cmip6/", "kind": "external", "format": "NetCDF, COG", "requires_login": false, "notes": "No AWS account required (aws s3 ls --no-sign-request s3://nex-gddp-cmip6/)." },
+    { "label": "AWS bucket browser", "url": "https://nex-gddp-cmip6.s3.us-west-2.amazonaws.com/index.html", "kind": "external", "format": "NetCDF", "requires_login": false, "notes": "File names e.g. pr_day_ACCESS-CM2_ssp245_r1i1p1f1_gn_2080_v2.0.nc." }
+  ],
+  "code_url": null,
+  "algeria_notes": "At 0.25° (about 28 km) the Tell Atlas and coastal gradients are only partly resolved, and downscaled precipitation over the Algerian Sahara is very sensitive to BCSD behaviour where daily climatological rainfall is near zero (an issue the provider corrected in v1.1 and v2.0). Use ensembles rather than single models, compare SSPs, and treat percent-change precipitation signals over hyper-arid areas with caution.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": ["published_date", "validation"],
+    "sources_consulted": [
+      "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6",
+      "https://www.nccs.nasa.gov/wp-content/uploads/2025/06/NEX-GDDP-CMIP6-v2-Tech_Note.pdf",
+      "https://registry.opendata.aws/nex-gddp-cmip6/",
+      "https://doi.org/10.7917/OFSG3345",
+      "https://doi.org/10.1038/s41597-022-01393-4",
+      "https://nex-gddp-cmip6.s3.us-west-2.amazonaws.com/?list-type=2&prefix=NEX-GDDP-CMIP6/ACCESS-CM2/ssp245/r1i1p1f1/pr/"
+    ],
+    "notes": "updated_date = 'Latest update: May 31, 2025' on the v2 Tech Note. The AWS registry description says 'two of the four Tier 1' SSPs, whereas the Tech Note and NCCS page say four (SSP1-2.6, 2-4.5, 3-7.0, 5-8.5); the record follows the Tech Note. Licence statements differ between AWS registry (blanket CC0 since Sept 2022) and the Tech Note (CMIP6 Terms of Use, per-file cmip6_license attribute) — reviewers should confirm the per-file attribute before redistribution. The DOI 10.7917/OFSG3345 resolves to the NCCS page."
+  }
+}

@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SITE } from '../config/site';
+import { THEMATIC_DOMAINS } from '../lib/domains';
+---
+<Base title="About" description="Why the Algeria Earth Observatory exists, its scientific scope, independence, governance, open-data principles and long-term vision.">
+  <PageHeader eyebrow="About the Observatory" title="An open scientific initiative for Algeria’s environmental data" />
+  <div class="container-aeo py-12 lg:grid lg:grid-cols-[1fr_17rem] lg:gap-14">
+    <div class="prose-aeo">
+      <h2 id="mission">Mission</h2>
+      <p>
+        Algeria Earth Observatory is an open scientific initiative dedicated to making Earth observation and environmental information about Algeria
+        accessible, discoverable, reusable, and scientifically documented. Through open data, interactive mapping, and collaborative research, the Observatory
+        supports better understanding of Algeria’s agricultural landscapes, climate variability, land-use change, water resources, and environmental systems.
+      </p>
+
+      <h2 id="why">Why it exists</h2>
+      <p>
+        A large and growing body of satellite and environmental data covers Algeria, but it is scattered across dozens of international portals, each with its own
+        formats, account systems, licences and definitions. Researchers spend time rediscovering the same sources; important caveats — a cropland definition, a
+        known processing error, a change of version — are easy to miss; and Algeria-specific derivatives are rarely documented well enough to be reused.
+      </p>
+      <p>The Observatory addresses this by:</p>
+      <ul>
+        <li>documenting authentic datasets with their provenance, licence, resolution, period and limitations in one consistent format;</li>
+        <li>stating clearly when a dataset is global and must be subset, and when it is held by the provider rather than by AEO;</li>
+        <li>publishing Algeria-specific derivatives only with version, checksum and reproducible code;</li>
+        <li>providing an interactive map for exploration, and guides for responsible use.</li>
+      </ul>
+
+      <h2 id="reproducibility">Reproducible Earth observation science</h2>
+      <p>
+        Results based on satellite products depend on product versions, definitions, processing choices and validation. AEO treats these as first-class information:
+        every record distinguishes observed, derived and modeled data, discloses validation status, and links to the original source and citation.
+        See <a href="/docs/quality-uncertainty/">Dataset quality and uncertainty</a> and <a href="/docs/reproducibility/">Geospatial reproducibility</a>.
+      </p>
+
+      <h2 id="scope">Scientific scope</h2>
+      <p>The catalog is organised around six interconnected domains. Agriculture and cropland is the initial priority.</p>
+      <ul>{THEMATIC_DOMAINS.map((d) => <li><a href={`/data/?domain=${d.id}`}>{d.title}</a> — {d.summary}</li>)}</ul>
+
+      <h2 id="governance">Independence and governance</h2>
+      <p>
+        AEO is an independent initiative. It is <strong>not</strong> a government service, is not officially registered or nationally mandated, and is not
+        affiliated with or endorsed by any institution. It is in its initial development phase and is exploring sustainable support models
+        (see <a href="/support/">Support the Observatory</a>).
+      </p>
+      <p>The governance model is deliberately simple during the initial development phase:</p>
+      <ul>
+        <li>{SITE.founder ? <>The founding maintainer (<a href={`https://github.com/${SITE.founder.github}`} rel="noopener">{SITE.founder.name}</a>)</> : 'The founding maintainer'} sets overall project direction.</li>
+        <li>Anyone can propose changes through GitHub issues and pull requests.</li>
+        <li>Maintainers review scientific documentation, licence and sharing conditions, and technical compatibility before merging.</li>
+        <li>Maintainers and scientific advisers are named publicly only after they have accepted the role.</li>
+      </ul>
+      <p>The full text is in <a href={`${SITE.github.repoUrl}/blob/main/GOVERNANCE.md`} rel="noopener">GOVERNANCE.md</a>.</p>
+
+      <h2 id="principles">Open data principles</h2>
+      <ul>
+        <li><strong>Credit the source.</strong> Original producers keep the credit; their citation is shown first.</li>
+        <li><strong>Respect licences.</strong> Data are only redistributed where the licence allows it; otherwise AEO links to the source.</li>
+        <li><strong>No invented numbers.</strong> No fabricated accuracy figures, download counts, partnerships or statistics.</li>
+        <li><strong>Transparency.</strong> Unverified information is marked as such; the <a href="/sources/">source audit</a> lists what was checked.</li>
+        <li><strong>Separate licences.</strong> Website code (MIT) and text (CC BY 4.0) are licensed separately from each dataset.</li>
+      </ul>
+
+      <h2 id="vision">Long-term vision</h2>
+      <p>
+        The ambition is a durable, community-maintained reference for Algerian environmental data — one that researchers in Algerian universities and
+        laboratories, public institutions and international collaborators can rely on. Capabilities under consideration include wilaya- and watershed-level
+        search and downloads, documented national cropland and drought products, reproducible notebooks, and DOI-based publication of AEO products.
+        These are plans, not existing services; see the <a href={`${SITE.github.repoUrl}/blob/main/docs/ROADMAP.md`} rel="noopener">roadmap</a>.
+      </p>
+    </div>
+    <aside class="mt-12 lg:mt-0" aria-label="Summary">
+      <div class="sticky top-24 space-y-4 rounded-md border border-line p-5 text-[0.9rem]">
+        <p class="meta uppercase tracking-wider">At a glance</p>
+        <dl class="space-y-3">
+          <div><dt class="text-slate">Status</dt><dd class="text-graphite">{SITE.phase}</dd></div>
+          <div><dt class="text-slate">Nature</dt><dd class="text-graphite">Independent, open, non-commercial initiative</dd></div>
+          <div><dt class="text-slate">Support</dt><dd class="text-graphite">Exploring sustainable models — see <a href="/support/">Support</a></dd></div>
+          <div><dt class="text-slate">Code</dt><dd class="text-graphite"><a href={SITE.github.repoUrl} rel="noopener">GitHub repository</a></dd></div>
+        </dl>
+      </div>
+    </aside>
+  </div>
+</Base>

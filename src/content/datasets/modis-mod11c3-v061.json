@@ -1,0 +1,130 @@
+{
+  "id": "modis-mod11c3-v061",
+  "title": "MODIS/Terra Land Surface Temperature Monthly 0.05° (MOD11C3 v061)",
+  "description": "Monthly daytime and night-time land surface temperature and emissivity from the Terra MODIS sensor on a 0.05° Climate Modeling Grid, distributed by NASA's Land Processes DAAC.",
+  "purpose": "Land surface temperature supports heat-stress, drought and surface energy-balance analysis across Algeria's cropland, steppe and desert surfaces.",
+  "domain": [
+    "climate-drought",
+    "hazards"
+  ],
+  "categories": [
+    "Land surface temperature",
+    "Extreme heat"
+  ],
+  "keywords": [
+    "land surface temperature",
+    "LST",
+    "MODIS",
+    "Terra",
+    "emissivity",
+    "heat"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Land Processes Distributed Active Archive Center (LP DAAC)",
+    "url": "https://www.earthdata.nasa.gov/centers/lp-daac"
+  },
+  "creator": "Zhengming Wan, Simon Hook, Glynn Hulley",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod11c3-061",
+  "documentation_url": "https://doi.org/10.5067/MODIS/MOD11C3.061",
+  "license": {
+    "name": "NASA Earth science data — open, no restrictions on use (EOSDIS data use policy)",
+    "spdx": null,
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": null,
+  "citation": "Wan, Z., Hook, S., Hulley, G. (2021). MODIS/Terra Land Surface Temperature/Emissivity Monthly L3 Global 0.05Deg CMG V061 [Data set]. NASA Land Processes Distributed Active Archive Center. https://doi.org/10.5067/MODIS/MOD11C3.061",
+  "doi": "10.5067/MODIS/MOD11C3.061",
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global 0.05° Climate Modeling Grid. Algeria must be subset by the user.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-02-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "February 2000 onward. NASA has announced that Terra MODIS acquisitions cease on 1 December 2026, so the record ends then."
+  },
+  "resolution": {
+    "spatial": "0.05° (≈ 5.6 km)",
+    "spatial_m": 5600,
+    "temporal": "monthly"
+  },
+  "format": [
+    "HDF-EOS2"
+  ],
+  "crs": "Geographic latitude/longitude (0.05° CMG)",
+  "variables": [
+    {
+      "name": "LST_Day_CMG",
+      "units": "K",
+      "description": "Monthly daytime land surface temperature"
+    },
+    {
+      "name": "LST_Night_CMG",
+      "units": "K",
+      "description": "Monthly night-time land surface temperature"
+    }
+  ],
+  "processing": "Monthly composites of clear-sky land surface temperature retrieved from MODIS thermal infrared observations, aggregated to the 0.05° Climate Modeling Grid.",
+  "validation": null,
+  "limitations": [
+    "Land surface (skin) temperature differs from 2 m air temperature, especially over bare desert surfaces in daytime.",
+    "Clear-sky only: persistently cloudy months in the north have fewer valid observations.",
+    "Terra MODIS acquisitions end on 1 December 2026 (NASA); NASA points users to the VIIRS VJ221C3 / VJ121C3 products for continuity."
+  ],
+  "version": "6.1 (061)",
+  "published_date": "2021-02-04",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Access at source (NASA Earthdata)",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod11c3-061",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "NASA Earthdata Login required to download."
+    },
+    {
+      "label": "Search granules (Earthdata Search)",
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C2565788897-LPCLOUD",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": true,
+      "notes": null
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Daytime land surface temperature over the Sahara regularly exceeds air temperature by a wide margin; use anomalies relative to a baseline rather than absolute values when comparing regions.",
+  "map_layers": [
+    "lst-monthly-day"
+  ],
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation",
+      "updated_date"
+    ],
+    "sources_consulted": [
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?doi=10.5067/MODIS/MOD11C3.061",
+      "https://www.earthdata.nasa.gov/data/alerts-outages/new-terra-observations-cease-december-1-2026"
+    ],
+    "notes": "Metadata from NASA CMR, including the Terra end-of-acquisition notice."
+  },
+  "alert": "NASA has announced that Terra MODIS acquisitions cease on 1 December 2026. The archive remains available, but the time series will not be extended; NASA points users to equivalent VIIRS products."
+}

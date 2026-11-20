@@ -1,0 +1,199 @@
+{
+  "id": "jrc-global-surface-water",
+  "title": "JRC Global Surface Water (GSW) v1.5, 1984–2024",
+  "description": "The JRC Global Surface Water dataset maps the location and temporal distribution of surface water at 30 m resolution from the full Landsat archive since March 1984. Version 1.5 provides long-term occurrence, change intensity, seasonality, recurrence, transitions and maximum extent layers for 1984–2024, plus yearly and monthly water history.",
+  "purpose": "Allows mapping of reservoirs, sebkhas, chotts and ephemeral water bodies and their long-term changes across Algeria, e.g. to document reservoir filling and drawdown or the episodic flooding of endorheic depressions.",
+  "domain": [
+    "water",
+    "land-ecosystems",
+    "hazards"
+  ],
+  "categories": [
+    "Surface water",
+    "Reservoirs and lakes",
+    "Water change detection"
+  ],
+  "keywords": [
+    "surface water",
+    "Landsat",
+    "water occurrence",
+    "water seasonality",
+    "reservoirs",
+    "JRC",
+    "Copernicus",
+    "Google Earth Engine",
+    "Pekel"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "European Commission Joint Research Centre (JRC) / Google",
+    "url": "https://global-surface-water.appspot.com/"
+  },
+  "creator": "Jean-François Pekel, Andrew Cottam, Noel Gorelick, Alan S. Belward (EC JRC and Google)",
+  "source_url": "https://global-surface-water.appspot.com/download",
+  "documentation_url": "https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf",
+  "license": {
+    "name": "Copernicus Programme free, full and open data policy — Regulation (EU) No 377/2014 (no restriction of use)",
+    "spdx": null,
+    "url": "https://eur-lex.europa.eu/eli/reg/2014/377/oj"
+  },
+  "license_notes": "Data Users Guide v5: 'All data here is produced under the Copernicus Programme and is provided free of charge, without restriction of use. For the full license information see the Copernicus Regulation.' Publications and products must cite the dataset and Pekel et al. (2016); published maps should carry the attribution 'Source: EC JRC/Google'.",
+  "citation": "Jean-Francois Pekel, Andrew Cottam, Noel Gorelick, Alan S. Belward, High-resolution mapping of global surface water and its long-term changes. Nature 540, 418-422 (2016). (doi:10.1038/nature20584)",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Pekel, J.-F., Cottam, A., Gorelick, N., Belward, A.S. (2016). High-resolution mapping of global surface water and its long-term changes. Nature 540(7633), 418–422.",
+      "doi": "10.1038/nature20584",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, distributed as 10° x 10° GeoTIFF tiles named by their top-left corner (e.g. occurrence_0E_40N_v1_5_2024.tif covers 0–10°E, 30–40°N). Algeria requires several tiles (top-left corners 10°W/0°E/10°E by 40°N/30°N/20°N) to be mosaicked and clipped.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "1984-03-16",
+    "end": "2024-12-31",
+    "ongoing": false,
+    "frequency": "multi-decadal summary layers; yearly and monthly history",
+    "description": "v1.5 summary layers synthesise March 1984 – December 2024. Change intensity compares 1984–1999 with 2000–2024. In v1.5 the seasonality, monthly and yearly history assets cover only 2022–2024 and must be merged with v1.4 (1984–2021) for a full timeline. The 1984–2015 release (v1.0) is the validated version of record of the 2016 Nature paper."
+  },
+  "resolution": {
+    "spatial": "30 m (Landsat)",
+    "spatial_m": 30,
+    "temporal": "monthly history; multi-year summaries"
+  },
+  "format": [
+    "GeoTIFF"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "occurrence",
+      "units": "%",
+      "description": "Frequency with which water was present over 1984–2024 (valid observations only)"
+    },
+    {
+      "name": "change",
+      "units": "%",
+      "description": "Change in water occurrence intensity between 1984–1999 and 2000–2024"
+    },
+    {
+      "name": "seasonality",
+      "units": "months",
+      "description": "Number of months water is present in the reference year"
+    },
+    {
+      "name": "recurrence",
+      "units": "%",
+      "description": "Inter-annual frequency of water return"
+    },
+    {
+      "name": "transitions",
+      "units": "class code",
+      "description": "Change in water state between first and last year (permanent, seasonal, new, lost, etc.)"
+    },
+    {
+      "name": "extent",
+      "units": "binary",
+      "description": "Maximum water extent ever detected"
+    }
+  ],
+  "processing": "Each Landsat 5, 7 and 8 scene (Collection 1 to 2021, Collection 2 thereafter) was classified into water, land and non-valid observations with an expert system, and monthly and yearly water histories were aggregated into summary statistics. v1.5 reprocessed the post-2015 occurrence years against the v1.0 baseline to restore consistency and recomputed seasonality for 2016–2021.",
+  "validation": "For the original 1984–2015 release, the provider FAQ reports validation against more than 40,000 control points with less than 1% false water detections and less than 5% of water surfaces missed. Later extensions (2016–2024) 'were not subjected to the same validation' according to the download page.",
+  "limitations": [
+    "Combining Landsat Collection 1 (to 2021) and Collection 2 (2022 onward) introduces a residual co-registration offset that is typically sub-pixel but can reach or exceed one 30 m pixel in some WRS-2 path/rows; a full back-processing is planned.",
+    "Monthly recurrence in v1.4 and v1.5 can be underestimated where observations are sparse; the correction has not yet been applied.",
+    "An anomaly with occurrence values above 100% was corrected on 10 November 2026; the Cloudferro mirror tile checked was modified on that date, while the Google Cloud Storage copy of the same tile was last modified in June 2026 and may predate the fix.",
+    "Landsat 7 SLC-off gaps (since 31 May 2003) and uneven observation density reduce the reliability of statistics in pixels with few valid observations.",
+    "Turbid, shallow or salt-crusted water bodies and very small water bodies at 30 m are harder to classify; users should inspect observation-count ancillary layers."
+  ],
+  "version": "v1.5 (1984–2024)",
+  "published_date": null,
+  "updated_date": "2026-11-10",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Data download page (tile picker, Python script)",
+      "url": "https://global-surface-water.appspot.com/download",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "10° x 10° tiles for occurrence, change, seasonality, recurrence, transitions and extent; v1.4 is deprecated for download."
+    },
+    {
+      "label": "Example tile: occurrence, 0–10°E / 30–40°N (northern Algeria)",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/occurrence_0E_40N_v1_5_2024.tif",
+      "kind": "download",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "HEAD on 2026-11-19: HTTP 200, 29,985,443 bytes, last modified 2026-11-10. URL pattern used by the official tile picker."
+    },
+    {
+      "label": "V1.5 file listing (Cloudferro object store)",
+      "url": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Includes monthly history 2022–2024."
+    },
+    {
+      "label": "Global Surface Water Explorer (viewer)",
+      "url": "https://global-surface-water.appspot.com/",
+      "kind": "viewer",
+      "format": "web map",
+      "requires_login": false,
+      "notes": "Visualisation only."
+    },
+    {
+      "label": "Google Earth Engine (JRC/GSW1_4/GlobalSurfaceWater, 1984–2021)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+      "kind": "api",
+      "format": "Earth Engine Image",
+      "requires_login": true,
+      "notes": "The public Earth Engine catalogue page found is for v1.4; Earth Engine account required."
+    },
+    {
+      "label": "JRC FTP (v1.0, 1984–2015)",
+      "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GSWE/",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Version of record of the 2016 paper."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Northern Algeria's dam reservoirs show strong inter-annual fluctuations linked to drought, so occurrence and recurrence layers are useful for documenting filling and drawdown. Saharan and High Plateaux chotts and sebkhas are flooded only episodically and have bright saline crusts, which can make water/no-water classification ambiguous; check monthly history and observation counts before interpreting change.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "doi",
+      "published_date",
+      "bbox"
+    ],
+    "sources_consulted": [
+      "https://global-surface-water.appspot.com/download",
+      "https://global-surface-water.appspot.com/faq",
+      "https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf",
+      "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+      "https://doi.org/10.1038/nature20584"
+    ],
+    "notes": "No dataset DOI found; the Nature paper is the required citation. The exact v1.5 release date is not stated (Users Guide: produced 'in 2026'); updated_date is the 10 November 2026 occurrence fix announced on the download page. The bbox is the Earth Engine STAC extent for v1.4 (−180, −90, 180, 90); the exact latitudinal extent of v1.5 tiles was not checked. Two mirrors serve v1.5 tiles with different sizes/dates for the same file (Cloudferro 2026-11-10, 29.99 MB; Google Cloud Storage 2026-06-19, 35.06 MB); the download page's active base URL is Cloudferro. Licence URL in the user guide (copernicus.eu/main/data-access) is dead; AEO links the Copernicus Regulation on EUR-Lex instead."
+  },
+  "featured": true,
+  "map_layers": [
+    "gsw-occurrence"
+  ]
+}

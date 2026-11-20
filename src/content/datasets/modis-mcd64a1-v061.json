@@ -1,0 +1,174 @@
+{
+  "id": "modis-mcd64a1-v061",
+  "title": "MODIS Burned Area Monthly 500 m (MCD64A1 Version 6.1)",
+  "description": "Monthly global gridded burned-area product at 500 m from combined Terra and Aqua MODIS, giving per-pixel burn date (day of year), burn-date uncertainty, first/last day of reliable change detection and quality flags.",
+  "purpose": "Mapping and trend analysis of burned area in Algeria since November 2000, e.g. post-fire assessment of summer forest fires in the Tell Atlas and comparison with active-fire detections.",
+  "domain": [
+    "hazards",
+    "land-ecosystems"
+  ],
+  "categories": [
+    "Wildfire / burned area"
+  ],
+  "keywords": [
+    "burned area",
+    "MODIS",
+    "MCD64A1",
+    "fire",
+    "Terra",
+    "Aqua",
+    "burn date",
+    "LP DAAC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Land Processes Distributed Active Archive Center (LP DAAC)",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061"
+  },
+  "creator": "Giglio, L., Justice, C., Boschetti, L., Roy, D. (MODIS Burned Area team, University of Maryland)",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061",
+  "documentation_url": "https://lpdaac.usgs.gov/documents/1006/MCD64_User_Guide_V61.pdf",
+  "license": {
+    "name": "NASA EOSDIS data: openly shared without restriction (CC0 unless otherwise marked)",
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "The catalog page states the dataset 'is openly shared, without restriction' under the EOSDIS Data Use and Citation Guidance; NASA strongly urges users to cite the dataset DOI.",
+  "citation": "Giglio, L., Justice, C., Boschetti, L., & Roy, D. (2021). MODIS/Terra+Aqua Burned Area Monthly L3 Global 500m SIN Grid V061 [Data set]. NASA Land Processes Distributed Active Archive Center. https://doi.org/10.5067/MODIS/MCD64A1.061",
+  "doi": "10.5067/MODIS/MCD64A1.061",
+  "references": [
+    {
+      "citation": "Giglio, L., Boschetti, L., Roy, D. P., Humber, M. L., and Justice, C. O. (2018). The Collection 6 MODIS burned area mapping algorithm and product. Remote Sensing of Environment, 217, 72-85.",
+      "doi": "10.1016/j.rse.2018.08.005",
+      "url": null
+    },
+    {
+      "citation": "Boschetti, L., Roy, D. P., Giglio, L., Huang, H., Zubkova, M., and Humber, M. L. (2019). Global validation of the collection 6 MODIS burned area product. Remote Sensing of Environment, 235, 111490.",
+      "doi": "10.1016/j.rse.2019.111490",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land in MODIS sinusoidal 10x10 degree tiles. Algeria spans several tiles that must be mosaicked, reprojected and clipped (or subset via AppEEARS).",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-11-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "From November 2000 to present (latest granule found in NASA CMR on 2026-11-19: September 2026, A2026244). Pre-November 2000 is not distributed; June 2001 is heavily degraded (Terra outage)."
+  },
+  "resolution": {
+    "spatial": "500 m nominal (463.3 m actual sinusoidal grid cell)",
+    "spatial_m": 500,
+    "temporal": "monthly"
+  },
+  "format": [
+    "HDF-EOS2"
+  ],
+  "crs": "MODIS Sinusoidal tiling system (SIN grid)",
+  "variables": [
+    {
+      "name": "Burn Date",
+      "units": "day of year",
+      "description": "Ordinal day of burn (1-366); 0 = unburned land, -1 = unmapped due to insufficient data, -2 = water (user guide)"
+    },
+    {
+      "name": "Burn Date Uncertainty",
+      "units": "days",
+      "description": "Estimated uncertainty in burn day (0-100; fill 0)"
+    },
+    {
+      "name": "First Day",
+      "units": "day of year",
+      "description": "First day of the year of reliable change detection"
+    },
+    {
+      "name": "Last Day",
+      "units": "day of year",
+      "description": "Last day of the year of reliable change detection"
+    },
+    {
+      "name": "QA",
+      "units": "bit field",
+      "description": "Quality assurance indicators"
+    }
+  ],
+  "processing": "Uses 500 m MODIS surface reflectance combined with 1 km MODIS active fire observations; a burn-sensitive vegetation index with dynamic thresholds is applied, with cumulative active-fire maps guiding the selection of burned and unburned training samples; burn dates are stored as day of year (Giglio et al. 2018). Collection 6.1 made no algorithm or product changes relative to Collection 6 for MCD64A1 (user guide).",
+  "validation": "Per the MCD64 Collection 6.1 user guide, the Collection 6 product was validated at Stage 3 against 558 Landsat 8 OLI image pairs (2014-2015): global estimated commission error 40.2%, omission error 72.6% and bias in burned area -54.1% relative to Landsat reference data; errors largely compensate at coarser (3-6 km) scales (r2 > 0.70). The large negative bias is attributed primarily to systematic underestimation of smaller burned areas (Boschetti et al. 2019).",
+  "limitations": [
+    "High omission of small burned areas at 500 m (global omission error 72.6% vs Landsat reference); total burned area is underestimated.",
+    "Burned areas in cropland should be treated as low confidence (user guide 'Known Problems'), relevant to stubble burning in Algerian cereal areas.",
+    "June 2001 is heavily degraded; no data before November 2000.",
+    "Product depends on Terra and Aqua MODIS; NASA states Terra observations are scheduled to cease on 1 December 2026, which may affect future production.",
+    "Sinusoidal HDF tiles require reprojection; University of Maryland GeoTIFF/shapefile versions are on an SFTP server (fuoco.geog.umd.edu) with credentials given in the user guide."
+  ],
+  "version": "Collection 6.1 (061)",
+  "published_date": "2021-04-08",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NASA Earthdata catalog page (LP DAAC)",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": false,
+      "notes": "Landing page; CMR concept ID C2565786756-LPCLOUD."
+    },
+    {
+      "label": "Earthdata Search",
+      "url": "https://search.earthdata.nasa.gov/search?q=C2565786756-LPCLOUD",
+      "kind": "download",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "Granule download requires a free NASA Earthdata Login."
+    },
+    {
+      "label": "AppEEARS (subset and reproject)",
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "kind": "api",
+      "format": "GeoTIFF / NetCDF",
+      "requires_login": true,
+      "notes": "Area subsetting to an Algeria polygon with reprojection; Earthdata Login required."
+    },
+    {
+      "label": "MCD64 Collection 6.1 User Guide",
+      "url": "https://lpdaac.usgs.gov/documents/1006/MCD64_User_Guide_V61.pdf",
+      "kind": "external",
+      "format": "PDF",
+      "requires_login": false,
+      "notes": "Includes SFTP access details for University of Maryland GeoTIFF and shapefile versions."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Captures large summer forest and maquis fires in northern Algeria, but many small fires and agricultural burns will be missed or should be treated as low confidence; combine with FIRMS VIIRS active fires and Sentinel-2/Landsat for fire-scar mapping.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "updated_date"
+    ],
+    "sources_consulted": [
+      "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mcd64a1-061",
+      "https://lpdaac.usgs.gov/documents/1006/MCD64_User_Guide_V61.pdf",
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?concept_id=C2565786756-LPCLOUD",
+      "https://doi.org/10.5067/MODIS/MCD64A1.061",
+      "https://api.crossref.org/works/10.1016/j.rse.2018.08.005",
+      "https://api.crossref.org/works/10.1016/j.rse.2019.111490"
+    ],
+    "notes": "lpdaac.usgs.gov/products/mcd64a1v061/ now redirects (301) to the Earthdata catalog page. published_date = CMR DataDates CREATE 2021-04-08. The CMR/catalog entry title reads 'MODIS/Terra+Aqua Direct Broadcast Burned Area Monthly L3 Global 500m SIN Grid V061', while the recommended citation omits 'Direct Broadcast'; the AEO title follows the citation. Validation figures are quoted from user guide section 7 (they refer to Collection 6, which C6.1 MCD64A1 does not change algorithmically)."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "merra2-aerosol-diagnostics",
+  "title": "MERRA-2 Monthly Aerosol Diagnostics (M2TMNXAER V5.12.4)",
+  "description": "Monthly mean two-dimensional aerosol diagnostics from NASA's MERRA-2 reanalysis, including dust column and surface mass concentration and aerosol optical thickness at 550 nm, on a 0.625° × 0.5° grid.",
+  "purpose": "A consistent long-term record of dust loading for studying sand and dust storm seasonality and its links with drought and land degradation over Algeria.",
+  "domain": ["hazards"],
+  "categories": ["Dust and sandstorms", "Air pollution"],
+  "keywords": ["dust", "aerosol", "AOT", "MERRA-2", "reanalysis", "sandstorm"],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": { "name": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)", "url": "https://disc.gsfc.nasa.gov/" },
+  "creator": "Global Modeling and Assimilation Office (GMAO), NASA GSFC",
+  "source_url": "https://disc.gsfc.nasa.gov/datasets/M2TMNXAER_5.12.4/summary",
+  "documentation_url": "https://disc.gsfc.nasa.gov/datasets/M2TMNXAER_5.12.4/summary",
+  "license": { "name": "NASA Earth science data — open, no restrictions on use (EOSDIS data use guidance)", "spdx": null, "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance" },
+  "license_notes": null,
+  "citation": "Global Modeling and Assimilation Office (GMAO) (2015), MERRA-2 tavgM_2d_aer_Nx: 2d,Monthly mean,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics V5.12.4, Greenbelt, MD, USA, Goddard Earth Sciences Data and Information Services Center (GES DISC), https://doi.org/10.5067/FH9A0MLJPC7N",
+  "doi": "10.5067/FH9A0MLJPC7N",
+  "references": [
+    { "citation": "Gelaro, R., et al. (2017). The Modern-Era Retrospective Analysis for Research and Applications, Version 2 (MERRA-2). Journal of Climate, 30(14), 5419–5454.", "doi": "10.1175/JCLI-D-16-0758.1", "url": null }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global reanalysis grid. Algeria must be subset by the user.",
+    "algeria_subset": "extract",
+    "bbox": [-180, -90, 180, 90]
+  },
+  "temporal_extent": {
+    "start": "1980-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "January 1980 onward (NASA CMR: ends-at-present)."
+  },
+  "resolution": { "spatial": "0.625° × 0.5°", "spatial_m": 55660, "temporal": "monthly" },
+  "format": ["NetCDF-4"],
+  "crs": "EPSG:4326 (WGS 84 geographic grid)",
+  "variables": [
+    { "name": "Dust surface mass concentration", "units": null, "description": "Surface mass concentration of dust aerosol" },
+    { "name": "Dust column mass density", "units": null, "description": "Vertically integrated dust mass" },
+    { "name": "Total aerosol extinction AOT 550 nm", "units": "unitless", "description": "Total aerosol optical thickness at 550 nm" }
+  ],
+  "processing": "Output of the GEOS-5 atmospheric model with assimilation of meteorological observations and of aerosol optical depth observations (MERRA-2 aerosol reanalysis).",
+  "validation": null,
+  "limitations": [
+    "Reanalysis output: values are model estimates constrained by assimilated observations, not direct measurements of dust or air quality.",
+    "Coarse grid (~50 km) cannot resolve local dust sources, urban pollution or terrain effects.",
+    "Dust emission over the Sahara is parameterised in the model and carries substantial uncertainty."
+  ],
+  "version": "5.12.4",
+  "published_date": "2015-06-30",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    { "label": "Access at source (GES DISC)", "url": "https://disc.gsfc.nasa.gov/datasets/M2TMNXAER_5.12.4/summary", "kind": "external", "format": "NetCDF-4", "requires_login": true, "notes": "NASA Earthdata Login required to download; subsetting services are available at the source." }
+  ],
+  "code_url": null,
+  "algeria_notes": "Captures the large-scale seasonal cycle of Saharan dust affecting southern and northern Algeria; not suitable for local air-quality assessment in cities.",
+  "map_layers": ["merra2-dust"],
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": ["validation", "updated_date", "variables.units"],
+    "sources_consulted": ["https://cmr.earthdata.nasa.gov/search/collections.umm_json?doi=10.5067/FH9A0MLJPC7N", "https://disc.gsfc.nasa.gov/datasets/M2TMNXAER_5.12.4/summary"],
+    "notes": "Metadata from NASA CMR. Variable descriptions from the collection abstract; file variable names and units should be confirmed in the MERRA-2 file specification."
+  }
+}

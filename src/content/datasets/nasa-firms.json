@@ -1,0 +1,199 @@
+{
+  "id": "nasa-firms",
+  "title": "NASA FIRMS Active Fire Detections (MODIS C6.1 and VIIRS 375 m)",
+  "description": "Point locations of satellite-detected active fires and thermal anomalies from MODIS Collection 6.1 (1 km, Terra and Aqua) and VIIRS 375 m (Suomi NPP, NOAA-20, NOAA-21), distributed by NASA's Fire Information for Resource Management System (FIRMS) in near real time and as a standard-quality archive.",
+  "purpose": "Monitoring and historical analysis of wildfires in Algeria's northern forests and maquis, crop-residue and stubble burning, and gas flaring / industrial heat sources in the Sahara.",
+  "domain": [
+    "hazards",
+    "land-ecosystems"
+  ],
+  "categories": [
+    "Wildfire / active fire"
+  ],
+  "keywords": [
+    "active fire",
+    "hotspots",
+    "FIRMS",
+    "MODIS",
+    "VIIRS",
+    "thermal anomalies",
+    "fire radiative power",
+    "wildfire"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "point",
+  "provider": {
+    "name": "NASA Earth Science Data and Information System (ESDIS) - FIRMS / LANCE",
+    "url": "https://www.earthdata.nasa.gov/data/tools/firms"
+  },
+  "creator": "NASA LANCE / FIRMS (ESDIS); active fire algorithms by the University of Maryland MODIS/VIIRS fire teams",
+  "source_url": "https://www.earthdata.nasa.gov/data/tools/firms",
+  "documentation_url": "https://www.earthdata.nasa.gov/data/tools/firms/faq",
+  "license": {
+    "name": "NASA Earth science data: no restrictions on use (EOSDIS Data Use and Citation Guidance; CC0 unless otherwise marked)",
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "FIRMS acknowledgement (verbatim from the FIRMS page): 'We acknowledge the use of data and/or imagery from NASA's Fire Information for Resource Management System (FIRMS) (https://earthdata.nasa.gov/firms), part of NASA's Land, Atmosphere Near real-time Capability for Earth observations (LANCE) (https://earthdata.nasa.gov/lance) and NASA's Earth Science Data and Information System (ESDIS).' FIRMS asks that users who provide FIRMS data to a third party follow its guidelines; information is provided 'as is' and users bear all responsibility and liability for their use of data.",
+  "citation": "NRT VIIRS 375 m Active Fire product VNP14IMGTDL_NRT / VJ114IMGTDL_NRT / VJ214IMGTDL_NRT (Version 2) and MODIS Collection 6.1 NRT Hotspot / Active Fire Detections MCD14DL. Distributed from NASA FIRMS. DOIs: 10.5067/FIRMS/VIIRS/VNP14IMGT_NRT.002, 10.5067/FIRMS/VIIRS/VJ114IMGT_NRT.002, 10.5067/FIRMS/VIIRS/VJ214IMGT_NRT.002, 10.5067/FIRMS/MODIS/MCD14DL.NRT.0061.",
+  "doi": "10.5067/FIRMS/MODIS/MCD14DL.NRT.0061",
+  "references": [
+    {
+      "citation": "Giglio, L., Schroeder, W., and Justice, C. O. (2016). The collection 6 MODIS active fire detection algorithm and fire products. Remote Sensing of Environment, 178, 31-41.",
+      "doi": "10.1016/j.rse.2016.02.054",
+      "url": null
+    },
+    {
+      "citation": "Schroeder, W., Oliva, P., Giglio, L., and Csiszar, I. A. (2014). The New VIIRS 375 m active fire detection data product: Algorithm description and initial assessment. Remote Sensing of Environment, 143, 85-96.",
+      "doi": "10.1016/j.rse.2013.12.008",
+      "url": null
+    },
+    {
+      "citation": "Davies, D. K., Ilavajhala, S., Wong, M. M., and Justice, C. O. (2009). Fire Information for Resource Management System: Archiving and Distributing MODIS Active Fire Data. IEEE Transactions on Geoscience and Remote Sensing, 47(1), 72-79.",
+      "doi": "10.1109/TGRS.2008.2002076",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global. FIRMS offers yearly per-country CSV summaries, including Algeria (verified for MODIS and VIIRS S-NPP 2023); otherwise subset by bounding box (API) or by drawing an area in the archive download tool.",
+    "algeria_subset": "country-file",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-11-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "multiple overpasses per day (near real time); archive updated with standard-quality data",
+    "description": "Archive coverage stated on the FIRMS download page (2026-11-19): MODIS C6.1 from 1 Nov 2000 - present; VIIRS S-NPP 375 m 20 Jan 2012 - 2 Nov 2026; VIIRS NOAA-20 375 m 1 Apr 2018 - present; VIIRS NOAA-21 375 m 1 Mar 2023 - present. NRT data are replaced by standard science-quality data with approximately a 5-month lag."
+  },
+  "resolution": {
+    "spatial": "375 m (VIIRS I-band) and 1 km (MODIS) nominal pixel size; delivered as pixel-centre points",
+    "spatial_m": 375,
+    "temporal": "sub-daily"
+  },
+  "format": [
+    "CSV",
+    "Shapefile",
+    "JSON",
+    "KML",
+    "WMS/WFS"
+  ],
+  "crs": "EPSG:4326 (WGS 84) latitude/longitude of fire pixel centres",
+  "variables": [
+    {
+      "name": "latitude, longitude",
+      "units": "degrees",
+      "description": "Centre of the fire pixel"
+    },
+    {
+      "name": "brightness / bright_ti4",
+      "units": "K",
+      "description": "Brightness temperature of the fire pixel (MODIS: brightness; VIIRS: I-4 band)"
+    },
+    {
+      "name": "frp",
+      "units": "MW",
+      "description": "Fire radiative power"
+    },
+    {
+      "name": "confidence",
+      "units": "% (MODIS) or class l/n/h (VIIRS)",
+      "description": "Detection confidence"
+    },
+    {
+      "name": "acq_date, acq_time",
+      "units": "date, HHMM UTC",
+      "description": "Acquisition date and time"
+    },
+    {
+      "name": "daynight, type",
+      "units": "flag / code",
+      "description": "Day/night flag; inferred hot-spot type code (see FIRMS FAQ for code meanings)"
+    }
+  ],
+  "processing": "Active fire pixels are detected in MODIS (MCD14) and VIIRS I-band (VNP14IMG/VJ114IMG/VJ214IMG) swath data using contextual thermal-anomaly algorithms (Giglio et al. 2016; Schroeder et al. 2014). LANCE produces near-real-time detections (global within about 3 hours of observation); standard-processing (SP) science-quality detections later replace NRT data in the FIRMS archive.",
+  "validation": null,
+  "limitations": [
+    "Detections are thermal anomalies, not burned area; a single fire can produce many points and small or short-lived fires between overpasses or under cloud/smoke may be missed.",
+    "Static industrial heat sources (e.g. gas flares at Saharan oil and gas fields) are detected and must be filtered using the 'type' attribute or a flare mask before wildfire analysis.",
+    "Point location is the pixel centre; actual fire can be anywhere within the 375 m or 1 km footprint (larger off-nadir).",
+    "Sensor continuity: FIRMS lists VIIRS S-NPP coverage ending 2 Nov 2026, and NASA states Terra observations are scheduled to cease on 1 Dec 2026; long time series must account for sensor changes.",
+    "API and NRT services require a free MAP_KEY (limit 5000 transactions per 10-minute interval); archive download requires Earthdata Login or email code."
+  ],
+  "version": "MODIS Collection 6.1 (MCD14DL, 6.1NRT); VIIRS 375 m Version 2 (VNP14IMGTDL_NRT, VJ114IMGTDL_NRT, VJ214IMGTDL_NRT)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "FIRMS archive download",
+      "url": "https://firms.modaps.eosdis.nasa.gov/download/",
+      "kind": "download",
+      "format": "SHP / CSV / JSON",
+      "requires_login": true,
+      "notes": "For data older than 7 days; authentication via Earthdata Login or email code; results delivered by email."
+    },
+    {
+      "label": "FIRMS yearly country file - MODIS 2023 Algeria (example)",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Algeria.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "Verified HTTP 200, Content-Length 416366 bytes on 2026-11-19. Pattern: /data/country/<sensor>/<year>/<sensor>_<year>_Algeria.csv."
+    },
+    {
+      "label": "FIRMS yearly country file - VIIRS S-NPP 2023 Algeria (example)",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Algeria.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "Verified HTTP 200, Content-Length 7324359 bytes on 2026-11-19."
+    },
+    {
+      "label": "FIRMS API (area endpoint, MAP_KEY required)",
+      "url": "https://firms.modaps.eosdis.nasa.gov/api/map_key/",
+      "kind": "api",
+      "format": "CSV",
+      "requires_login": true,
+      "notes": "Free MAP_KEY by email; /api/area/csv/[MAP_KEY]/[SOURCE]/[west,south,east,north]/[DAY_RANGE 1-5]/[DATE]; sources include MODIS_NRT, MODIS_SP, VIIRS_SNPP_NRT/SP, VIIRS_NOAA20_NRT/SP, VIIRS_NOAA21_NRT/SP. The 'country' endpoint was flagged 'Feature currently not available' on 2026-11-19."
+    },
+    {
+      "label": "FIRMS Fire Map",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive web map."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Algeria's summer wildfires in the Tell Atlas (e.g. Kabylie, El Tarf) are captured, but Saharan gas flares form persistent hot-spot clusters that must be excluded. VIIRS 375 m is preferred for small agricultural fires; MODIS gives the longer record (from Nov 2000).",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation",
+      "published_date",
+      "updated_date",
+      "variables[type] code meanings"
+    ],
+    "sources_consulted": [
+      "https://www.earthdata.nasa.gov/data/tools/firms",
+      "https://firms.modaps.eosdis.nasa.gov/download/",
+      "https://firms.modaps.eosdis.nasa.gov/api/map_key/",
+      "https://firms.modaps.eosdis.nasa.gov/api/area/",
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?keyword=FIRMS",
+      "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+    ],
+    "notes": "Collection DOIs taken from NASA CMR (provider LANCEMODIS) and all four resolve (HTTP 200). The 'doi' field holds the MODIS C6.1 NRT DOI; VIIRS DOIs are in 'citation'. The exact FIRMS-recommended per-product citation wording could not be copied verbatim (page quote limits), so 'citation' is assembled from CMR product names and DOIs. Data_type 'point'. Variable names checked against the headers of the Algeria 2023 country CSVs (MODIS: brightness, bright_t31, frp, confidence, daynight, type; VIIRS: bright_ti4, bright_ti5, frp, confidence, daynight, type). The meaning of 'type' codes is from general FIRMS documentation and was not re-read on 2026-11-19."
+  }
+}

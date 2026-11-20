@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SITE } from '../config/site';
+---
+<Base title="Support the Observatory" description="How the Algeria Earth Observatory could be sustained over time, and its commitment to transparency about support and conflicts of interest.">
+  <PageHeader eyebrow="Support" title="Support the Observatory" />
+  <div class="container-aeo py-12">
+    <div class="prose-aeo">
+      <p>
+        The Observatory is in its <strong>initial development phase</strong> and is exploring sustainable support models.
+        It does not accept donations or payments at this time, and no sponsors or funders are listed because none have been confirmed.
+      </p>
+
+      <h2>What sustained support would cover</h2>
+      <ul>
+        <li><strong>Maintenance</strong> of the website, catalog and link checking as providers change their services.</li>
+        <li><strong>Data storage and distribution</strong> for AEO products that are too large for a static website.</li>
+        <li><strong>Quality assurance</strong>: reviewing records, validating derived products, collecting reference data.</li>
+        <li><strong>Community coordination</strong>: reviewing contributions, training and workshops.</li>
+      </ul>
+
+      <h2>Forms of support under consideration</h2>
+      <ul>
+        <li>Research grants for specific products or capabilities</li>
+        <li>Institutional partnerships with universities and research centres</li>
+        <li>Philanthropic support</li>
+        <li>In-kind technical contributions (storage, computing, software)</li>
+        <li>Sponsored development of specific, openly licensed datasets</li>
+        <li>Community support through contributions and reviews</li>
+      </ul>
+
+      <h2>Commitments</h2>
+      <ul>
+        <li><strong>Transparency.</strong> Any financial or in-kind support will be listed publicly on this page with its source and purpose.</li>
+        <li><strong>Scientific independence.</strong> Support will not buy editorial control over datasets, methods or results.</li>
+        <li><strong>Conflicts of interest.</strong> Maintainers will declare relevant interests; reviewers will not review contributions they have a stake in.</li>
+        <li><strong>Open outputs.</strong> Products developed with support will be released under open licences, subject to the licences of their inputs.</li>
+      </ul>
+
+      <h2>Discussing support</h2>
+      <p>
+        Organisations interested in supporting the Observatory can open a
+        <a href={`${SITE.github.repoUrl}/issues/new?template=collaboration.yml`} rel="noopener">collaboration proposal</a>
+        (public) or use the private route described on the <a href="/contact/">contact page</a>.
+      </p>
+    </div>
+  </div>
+</Base>

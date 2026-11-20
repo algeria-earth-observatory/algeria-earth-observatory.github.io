@@ -1,0 +1,199 @@
+{
+  "id": "esa-worldcereal-2021",
+  "title": "ESA WorldCereal 10 m 2021 crop and irrigation maps (v100)",
+  "description": "Global 10 m product suite for the 2021 reference year: an annual temporary-crop extent map, seasonal crop-type maps (maize, winter cereals, spring cereals), seasonal active-cropland and active-irrigation maps, and per-product confidence layers. Products were generated separately for up to 106 agro-ecological zones (AEZ), each following its own regional seasonality. WorldCereal 'cereals' are wheat, barley and rye (Triticeae tribe).",
+  "purpose": "Provides a wall-to-wall 10 m reference for where temporary crops and winter cereals were mapped in 2021, which can be compared with national statistics and other cropland products over northern Algeria. The irrigation layer is a starting point for locating actively irrigated fields, keeping in mind that the provider describes it as conservative.",
+  "domain": [
+    "agriculture",
+    "water",
+    "land-ecosystems"
+  ],
+  "categories": [
+    "Cropland and crop-type maps",
+    "Irrigation maps"
+  ],
+  "keywords": [
+    "WorldCereal",
+    "temporary crops",
+    "winter cereals",
+    "spring cereals",
+    "maize",
+    "active cropland",
+    "irrigation",
+    "Sentinel-1",
+    "Sentinel-2",
+    "Landsat 8",
+    "CatBoost",
+    "10 m"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "European Space Agency (ESA) / WorldCereal consortium",
+    "url": "https://esa-worldcereal.org/en"
+  },
+  "creator": "ESA WorldCereal consortium led by VITO (with CS France, CS Romania, eLEAF, IIASA, University of Maryland, Universitat de Valencia, University of Almería, Wageningen Environmental Research, Gisat and ESA, as listed on the Zenodo record)",
+  "source_url": "https://esa-worldcereal.org/en/products/global-maps",
+  "documentation_url": "https://doi.org/10.5194/essd-15-5491-2023",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "CC BY 4.0 is stated on the Zenodo record and in the Google Earth Engine catalog terms of use. The provider gives no specific attribution wording.",
+  "citation": "Van Tricht, K., Degerickx, J., Gilliams, S., Zanaga, D., Savinaud, M., Battude, M., Buguet de Chargère, R., Dubreule, G., Grosu, A., Brombacher, J., Pelgrum, H., Lesiv, M., Laso Bayas, J. C., Karanam, S., Fritz, S., Becker-Reshef, I., Franch, B., Mollà Bononad, B., Cintas, J., Boogaard, H., Pratihast, A. K., Kucera, L., Szantoi, Z. (2023). ESA WorldCereal 10 m 2021 v100 (v100) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7875105",
+  "doi": "10.5281/zenodo.7875105",
+  "references": [
+    {
+      "citation": "Van Tricht, K., Degerickx, J., Gilliams, S., Zanaga, D., Battude, M., Grosu, A., Brombacher, J., Lesiv, M., Bayas, J. C. L., Karanam, S., Fritz, S., Becker-Reshef, I., Franch, B., Mollà-Bononad, B., Boogaard, H., Pratihast, A. K., Koetz, B., and Szantoi, Z. (2023) WorldCereal: a dynamic open-source system for global-scale, seasonal, and reproducible crop and irrigation mapping. Earth System Science Data, 15, 5491–5515.",
+      "doi": "10.5194/essd-15-5491-2023",
+      "url": "https://essd.copernicus.org/articles/15/5491/2023/"
+    },
+    {
+      "citation": "WorldCereal classification module (software), cited in the Zenodo record and ESSD paper.",
+      "doi": "10.5281/zenodo.7863779",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, processed per agro-ecological zone (up to 106 AEZ products per file). Algeria is covered; users must select the relevant AEZ GeoTIFFs and clip Algeria themselves. Sentinel-2 tiles judged to contain no temporary crops were not processed.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "2020-01-01",
+    "end": "2021-12-31",
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Reference year 2021. Season windows follow regional crop calendars, so some AEZ seasons start in 2020; the Google Earth Engine catalog lists availability 2020-01-01 to 2021-12-31. As of the check date the global-maps page states that more products will be added by the end of 2026; no newer global release was found."
+  },
+  "resolution": {
+    "spatial": "10 m",
+    "spatial_m": 10,
+    "temporal": "single epoch (annual and seasonal products for 2021)"
+  },
+  "format": [
+    "GeoTIFF (Cloud Optimized), packaged in ZIP files per season/product"
+  ],
+  "crs": "WGS 84 geographic latitude/longitude (products reprojected from the Sentinel-2 tile grid, per the ESSD paper; EPSG code not stated in sources consulted)",
+  "variables": [
+    {
+      "name": "temporarycrops (season tc-annual)",
+      "units": "0 or 100",
+      "description": "Annual temporary-crop extent; perennial crops and (temporary) pastures are excluded."
+    },
+    {
+      "name": "wintercereals (season tc-wintercereals)",
+      "units": "0 or 100",
+      "description": "Winter cereals (wheat, barley, rye) in the main cereals season."
+    },
+    {
+      "name": "springcereals (season tc-springcereals)",
+      "units": "0 or 100",
+      "description": "Spring cereals; optional season defined only in certain AEZs."
+    },
+    {
+      "name": "maize (seasons tc-maize-main, tc-maize-second)",
+      "units": "0 or 100",
+      "description": "Maize in the main and, where defined, second maize season."
+    },
+    {
+      "name": "activecropland",
+      "units": "0 or 100",
+      "description": "Seasonal active cropland: a full crop growth cycle takes place within the season."
+    },
+    {
+      "name": "irrigation",
+      "units": "0 or 100",
+      "description": "Seasonal active irrigation; not processed in AEZs lacking thermal Landsat data."
+    },
+    {
+      "name": "confidence",
+      "units": "0–100",
+      "description": "Model confidence layer accompanying each classification product."
+    }
+  ],
+  "processing": "Time series of Sentinel-2 (optical), Sentinel-1 (radar) and Landsat 8 (thermal) observations, with AgERA5 meteorological data and the Copernicus DEM (GLO-30) as ancillary inputs, were classified with CatBoost models, processed per agro-ecological zone and season according to regional crop calendars. A temporary-crop map was produced from one year of input data; training data spanned 2017–2021. Outputs were reprojected from the Sentinel-2 tile grid to WGS 84 latitude/longitude and released as COGs.",
+  "validation": "Van Tricht et al. (2023, ESSD) report a global statistical validation of the temporary-crop extent product with user's and producer's accuracies of 88.5% and 92.1%. Crop-type products reached 82.5% overall agreement against a newly collected street-view dataset and a minimum agreement of 80% against a limited number of public in situ datasets. The irrigation product was found to be conservative compared with other irrigated-area estimates. The paper notes that Africa has the lowest accuracy numbers.",
+  "limitations": [
+    "Single reference year (2021); the AEZ products were processed independently and should be treated as separate products, so seams at AEZ boundaries are possible.",
+    "The temporary-crop definition excludes perennial crops (e.g. orchards, olive groves) and (temporary) pastures, so it is not directly comparable with cropland definitions that include perennial woody crops or fallow.",
+    "The Google Earth Engine catalog describes the classification band as binary 0/100, while the global-maps page describes values 0–100; users should check the actual value distribution.",
+    "10 × 10 km processing blocks with less than 1% agricultural land were initially excluded and Sentinel-2 tiles outside processing were treated as containing no temporary crops, which may omit small isolated fields.",
+    "The irrigation product is described by the authors as conservative and was not produced for AEZs lacking thermal Landsat data."
+  ],
+  "version": "v100",
+  "published_date": "2023-05-12",
+  "updated_date": "2024-08-05",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Global maps page (ESA WorldCereal)",
+      "url": "https://esa-worldcereal.org/en/products/global-maps",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Describes products and lists viewer, area download, Zenodo and Earth Engine access."
+    },
+    {
+      "label": "WorldCereal viewer",
+      "url": "https://vdm.esa-worldcereal.org/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Web viewer for the 2021 products. Login requirement not verified."
+    },
+    {
+      "label": "Area download interface",
+      "url": "https://hub.esa-worldcereal.org/",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Listed on the global-maps page for downloading by area. Login requirement not verified."
+    },
+    {
+      "label": "Zenodo (full global archive)",
+      "url": "https://zenodo.org/records/7875105",
+      "kind": "download",
+      "format": "GeoTIFF in ZIP",
+      "requires_login": false,
+      "notes": "19 ZIP files (one per season/product/layer) plus WorldCereal_AEZ.geojson and QGIS style files; total listed by Zenodo as 236.9 GB."
+    },
+    {
+      "label": "Google Earth Engine catalog: ESA/WorldCereal/2021/MODELS/v100",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCereal_2021_MODELS_v100",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Earth Engine account required to use the collection."
+    }
+  ],
+  "code_url": "https://github.com/WorldCereal/worldcereal-classification",
+  "algeria_notes": "In northern Algeria the winter-cereals layer is the most directly relevant product for the dryland wheat and barley systems; spring cereals and maize seasons may not be defined in the relevant AEZs. Large fallow areas within cereal rotations and failed or grazed crops in drought years are a known source of confusion in temporary-crop and active-cropland maps. The temporary-crop definition excludes olive groves, date palms and other perennial crops, so oasis agriculture is only partly represented, while annual crops in irrigated centre-pivot areas of the south may be captured where those areas were processed; the Saharan interior is largely outside agricultural use.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "crs (EPSG code)",
+      "citation (provider gives no recommended dataset citation; built from Zenodo metadata)",
+      "requires_login for viewer and area download interface"
+    ],
+    "sources_consulted": [
+      "https://zenodo.org/records/7875105",
+      "https://zenodo.org/api/records/7875105",
+      "https://essd.copernicus.org/articles/15/5491/2023/",
+      "https://api.crossref.org/works/10.5194/essd-15-5491-2023",
+      "https://esa-worldcereal.org/en",
+      "https://esa-worldcereal.org/en/products/global-maps",
+      "https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCereal_2021_MODELS_v100",
+      "https://ceos.org/gst/agriculture.html"
+    ],
+    "notes": "The DOI 10.5281/zenodo.7875105 is the v100 version DOI; the ESSD abstract cites the concept DOI 10.5281/zenodo.7875104 (Zenodo API confirms 7875104 as concept DOI). published_date is the Zenodo publication date; updated_date is the Zenodo record's last modification (metadata), not necessarily a data change. Newer releases: the CEOS agriculture page (Oct 2025) says a new global product set was expected in 2026 and that the WorldCereal processing system is to be available through the Copernicus Data Space Ecosystem; no official newer global map release was found at the check date. All URLs in access returned HTTP 200."
+  },
+  "featured": true
+}

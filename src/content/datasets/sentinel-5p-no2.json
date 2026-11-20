@@ -1,0 +1,188 @@
+{
+  "id": "sentinel-5p-no2",
+  "title": "Sentinel-5P TROPOMI Level-2 Nitrogen Dioxide (NO2) Columns",
+  "description": "Orbit-level (Level-2) retrievals of tropospheric, stratospheric and total NO2 vertical columns from the TROPOMI spectrometer on the Copernicus Sentinel-5 Precursor satellite, with near-daily global coverage at about 3.5 x 5.5 km (since 6 August 2019; 3.5 x 7 km before) and an early-afternoon overpass (about 13:30 local solar time).",
+  "purpose": "Mapping NO2 pollution hotspots and trends over Algerian cities, ports, industrial zones, power plants and oil and gas facilities, as an air-quality hazard indicator where ground monitoring is sparse.",
+  "domain": [
+    "hazards",
+    "human-change"
+  ],
+  "categories": [
+    "Air pollution"
+  ],
+  "keywords": [
+    "NO2",
+    "nitrogen dioxide",
+    "air quality",
+    "Sentinel-5P",
+    "TROPOMI",
+    "Copernicus",
+    "tropospheric column"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "imagery",
+  "provider": {
+    "name": "European Space Agency (ESA) / Copernicus Programme (KNMI NO2 processor)",
+    "url": "https://sentinels.copernicus.eu/data-products/-/asset_publisher/fp37fc19FN8F/content/sentinel-5-precursor-level-2-nitrogen-dioxide"
+  },
+  "creator": "Copernicus Sentinel-5P (processed by ESA); NO2 algorithm and processor by KNMI within the S5P Mission Performance Centre",
+  "source_url": "https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p",
+  "documentation_url": "https://sentinels.copernicus.eu/documents/247904/3541451/Sentinel-5P-Nitrogen-Dioxide-Level-2-Product-Readme-File",
+  "license": {
+    "name": "Legal notice on the use of Copernicus Sentinel Data and Service Information (free, full and open access; Regulation (EU) No 377/2014 and Delegated Regulation (EU) No 1159/2013)",
+    "spdx": null,
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
+  },
+  "license_notes": "Reproduction, distribution, communication to the public and adaptation are permitted. Required notice: 'Copernicus Sentinel data [Year]'; for adapted or modified data: 'Contains modified Copernicus Sentinel data [Year]'.",
+  "citation": "Copernicus Sentinel-5P (processed by ESA), 2021, TROPOMI Level 2 Nitrogen Dioxide total column products. Version 02. European Space Agency. https://doi.org/10.5270/S5P-9bnp8q8",
+  "doi": "10.5270/S5P-9bnp8q8",
+  "references": [
+    {
+      "citation": "Copernicus Sentinel-5P (processed by ESA), 2018, TROPOMI Level 2 Nitrogen Dioxide total column products. Version 01. European Space Agency.",
+      "doi": "10.5270/S5P-s4ljg54",
+      "url": null
+    },
+    {
+      "citation": "Eskes, H. J., et al. S5P Mission Performance Centre Nitrogen Dioxide [L2__NO2___] Readme, S5P-MPC-KNMI-PRF-NO2, product version 02.05.00, issue 2.4, 2023-03-16.",
+      "doi": null,
+      "url": "https://sentinels.copernicus.eu/documents/247904/3541451/Sentinel-5P-Nitrogen-Dioxide-Level-2-Product-Readme-File"
+    },
+    {
+      "citation": "Eskes, H., van Geffen, J., Boersma, F., et al. Sentinel-5 precursor/TROPOMI Level 2 Product User Manual Nitrogendioxide, S5P-KNMI-L2-0021-MA.",
+      "doi": null,
+      "url": "https://sentinels.copernicus.eu/documents/247904/2474726/Sentinel-5P-Level-2-Product-User-Manual-Nitrogen-Dioxide.pdf"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, orbit-by-orbit swaths (~daily). Algeria must be extracted from individual orbit files or from gridded third-party Level-3 products.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": true,
+    "frequency": "daily (one early-afternoon overpass per location; orbit files)",
+    "description": "Level-2 data available since April 2018 (CDSE). Timeliness streams: NRTI (near real time), OFFL (offline) and RPRO (reprocessed). A PAL reprocessing with processor v2.3.1 covers 1 May 2018 - 14 November 2021."
+  },
+  "resolution": {
+    "spatial": "3.5 x 5.5 km at nadir since 6 Aug 2019 (3.5 x 7 km before)",
+    "spatial_m": 5500,
+    "temporal": "daily"
+  },
+  "format": [
+    "NetCDF-4"
+  ],
+  "crs": "Satellite swath geometry (pixel latitude/longitude and corner bounds, WGS 84)",
+  "variables": [
+    {
+      "name": "nitrogendioxide_tropospheric_column",
+      "units": "mol/m2",
+      "description": "Tropospheric vertical column of NO2 (multiply by 6.02214e19 for molec/cm2)"
+    },
+    {
+      "name": "nitrogendioxide_tropospheric_column_precision",
+      "units": "mol/m2",
+      "description": "Error estimate of the tropospheric column"
+    },
+    {
+      "name": "nitrogendioxide_stratospheric_column",
+      "units": "mol/m2",
+      "description": "Stratospheric vertical column"
+    },
+    {
+      "name": "nitrogendioxide_total_column",
+      "units": "mol/m2",
+      "description": "Total vertical column"
+    },
+    {
+      "name": "qa_value",
+      "units": "0-1",
+      "description": "Quality assurance value; use > 0.75 for tropospheric columns (> 0.5 if cloudy scenes are of interest)"
+    },
+    {
+      "name": "averaging_kernel",
+      "units": "1",
+      "description": "Averaging kernels for comparison with models or profiles"
+    }
+  ],
+  "processing": "Slant NO2 columns are retrieved by DOAS from TROPOMI UV-visible spectra and converted to vertical columns with a retrieval-assimilation-modelling system (DOMINO-2 / QA4ECV heritage) that uses the TM5-MP chemistry transport model to separate stratospheric and tropospheric parts and air-mass factors that depend on clouds (FRESCO-S) and surface reflectivity. Processor versions evolve (v01.x to v02.x), with version 2 increasing tropospheric columns for polluted scenes.",
+  "validation": "Product Readme (PRF-NO2, v02.05.00, 2023-03-16): independent validation by the S5P Mission Performance Centre and Validation Team concludes that versions 02.02.00 and 02.03.01 of the NRTI/OFFL NO2 data are compliant with the S5P Cal/Val Plan requirements (tropospheric NO2: bias 25-50%, random error 0.7x10^15 molec/cm2). Up-to-date results are in the quarterly ROCVR validation reports (mpc-vdaf.tropomi.eu).",
+  "limitations": [
+    "Column amounts, not surface concentrations; converting to ground-level NO2 requires modelling.",
+    "Only pixels with qa_value > 0.75 should be used for tropospheric columns; clouds, snow/ice and bright surfaces reduce valid coverage.",
+    "Processor version changes (v1 to v2, and later 02.0x updates) cause step changes; use reprocessed (RPRO/PAL) data for trend analysis.",
+    "Single early-afternoon overpass; does not resolve diurnal cycle.",
+    "Over bright desert surfaces and with dust aerosol, surface-reflectivity and air-mass-factor errors may be larger (AEO caution, not quantified for Algeria by the provider)."
+  ],
+  "version": "Version 02 (processor 02.xx; PRF reviewed: 02.05.00)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Copernicus Data Space Ecosystem - Sentinel-5P",
+      "url": "https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p",
+      "kind": "external",
+      "format": "NetCDF",
+      "requires_login": true,
+      "notes": "Search and download via Copernicus Browser / CDSE APIs; free account required for download."
+    },
+    {
+      "label": "Copernicus Browser",
+      "url": "https://browser.dataspace.copernicus.eu/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Visualise NO2 layers."
+    },
+    {
+      "label": "ESA Sentinel-5P NO2 product page (citations, documents)",
+      "url": "https://sentinels.copernicus.eu/data-products/-/asset_publisher/fp37fc19FN8F/content/sentinel-5-precursor-level-2-nitrogen-dioxide",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "DOIs, PRF, PUM, ATBD links; PAL reprocessed data at https://data-portal.s5p-pal.com."
+    },
+    {
+      "label": "Google Earth Engine COPERNICUS/S5P/OFFL/L3_NO2 (third-party Level-3 gridding)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_NO2",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Gridded by Google from OFFL L2 (not an ESA product); catalog states availability 2018-06-28 to 2026-11-09 on 2026-11-19."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Expected to show enhanced NO2 over Algiers, Oran and industrial/hydrocarbon sites (e.g. Arzew, Skikda, Hassi Messaoud), but signals must be averaged over weeks to months; this is an AEO expectation to be checked against data, not a provider statement.",
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": true,
+    "unverified_fields": [
+      "temporal_extent.start (only 'April 2018' month-level availability found)",
+      "published_date",
+      "updated_date",
+      "current operational processor version in Nov 2026"
+    ],
+    "sources_consulted": [
+      "https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p",
+      "https://sentinels.copernicus.eu/data-products/-/asset_publisher/fp37fc19FN8F/content/sentinel-5-precursor-level-2-nitrogen-dioxide",
+      "https://sentinels.copernicus.eu/documents/247904/3541451/Sentinel-5P-Nitrogen-Dioxide-Level-2-Product-Readme-File",
+      "https://sentinels.copernicus.eu/documents/247904/2474726/Sentinel-5P-Level-2-Product-User-Manual-Nitrogen-Dioxide.pdf",
+      "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "https://dataspace.copernicus.eu/terms-and-conditions",
+      "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_NO2",
+      "https://doi.org/10.5270/S5P-9bnp8q8"
+    ],
+    "notes": "DOI 10.5270/S5P-9bnp8q8 is given in the PRF for OFFL and RPRO products and on the ESA product page (Version 02 citation); resolves HTTP 200. Launch date 13 Oct 2017 and 13:30 equator crossing from the PUM. The sentinel.esa.int domain timed out from this client; the same documents were fetched from sentinels.copernicus.eu. data_type set to 'imagery' (swath Level-2 product). spatial_m is the along-track 5.5 km dimension."
+  }
+}

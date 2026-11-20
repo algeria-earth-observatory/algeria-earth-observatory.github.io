@@ -1,0 +1,36 @@
+name: Report a website bug
+description: A page that does not work, a broken control, or an accessibility barrier.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page address
+      placeholder: https://algeria-earth-observatory.github.io/...
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+  - type: input
+    id: env
+    attributes:
+      label: Browser and device
+      placeholder: e.g. Firefox 140 on Android phone
+  - type: checkboxes
+    id: a11y
+    attributes:
+      label: Accessibility
+      options:
+        - label: This is an accessibility problem (keyboard, screen reader, contrast, zoom).

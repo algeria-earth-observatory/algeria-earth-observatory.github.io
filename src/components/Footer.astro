@@ -1,0 +1,61 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../config/site';
+const build = new Date().toISOString().slice(0, 10);
+const cols = [
+  { title: 'Observatory', links: [
+    { href: '/about/', label: 'Mission' },
+    { href: '/about/#governance', label: 'Governance' },
+    { href: '/community/', label: 'Community' },
+    { href: '/support/', label: 'Support the Observatory' },
+  ]},
+  { title: 'Data', links: [
+    { href: '/data/', label: 'Data catalog' },
+    { href: '/map/', label: 'Map explorer' },
+    { href: '/products/', label: 'AEO products' },
+    { href: '/sources/', label: 'Source audit' },
+    { href: '/catalog.json', label: 'Catalog JSON' },
+  ]},
+  { title: 'Methods', links: [
+    { href: '/docs/', label: 'Documentation' },
+    { href: '/docs/citing-data/', label: 'How to cite' },
+    { href: '/docs/metadata-schema/', label: 'Metadata schema' },
+  ]},
+  { title: 'Participate', links: [
+    { href: '/contribute/', label: 'Contribute' },
+    { href: SITE.github.orgUrl, label: 'GitHub', ext: true },
+    { href: '/contact/', label: 'Contact' },
+    { href: '/licenses/', label: 'Licenses' },
+  ]},
+];
+---
+<footer class="mt-24 bg-atlas text-[#d9e3ea]">
+  <div class="container-aeo py-14 grid gap-12 lg:grid-cols-[1.3fr_2fr]">
+    <div class="max-w-sm">
+      <Logo inverse />
+      <p class="mt-5 text-sm leading-relaxed text-[#c3d1db]">
+        An independent, open scientific initiative for Earth observation and environmental data on Algeria.
+        Not a government service; not affiliated with or endorsed by any institution.
+      </p>
+      <p class="mt-4 font-mono text-xs text-[#9fb4c3]">{SITE.phase} · site built {build}</p>
+    </div>
+    <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+      {cols.map((c) => (
+        <div>
+          <h2 class="text-xs font-mono uppercase tracking-[0.12em] text-sand font-medium">{c.title}</h2>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            {c.links.map((l) => (
+              <li><a href={l.href} class="text-[#e8eef2] no-underline hover:text-white hover:underline" rel={l.ext ? 'noopener' : undefined}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-aeo py-5 flex flex-col gap-2 text-xs text-[#9fb4c3] sm:flex-row sm:justify-between">
+      <p>Website code: MIT License · Site text: CC BY 4.0 · Each dataset keeps its own licence.</p>
+      <p>Map data © OpenStreetMap contributors · Imagery: NASA EOSDIS GIBS</p>
+    </div>
+  </div>
+</footer>

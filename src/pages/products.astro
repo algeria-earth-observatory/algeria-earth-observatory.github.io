@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import DatasetCard from '../components/DatasetCard.astro';
+import { getDatasets } from '../lib/catalog';
+import { STATUS } from '../lib/format';
+
+const all = await getDatasets();
+const aeo = all.filter((d) => d.origin !== 'external');
+const released = aeo.filter((d) => d.status === 'available' || d.status === 'archived');
+const planned = aeo.filter((d) => d.status === 'in-preparation');
+---
+<Base title="AEO products" description="Data products created or processed by the Algeria Earth Observatory: what is released, and which product families are in preparation.">
+  <PageHeader
+    eyebrow="AEO products"
+    title="Products created by the Observatory"
+    lead="Alongside the catalog of external datasets, AEO publishes its own Algeria-specific products. Each is versioned, distributed with checksums and processing code, and released only after scientific review."
+  />
+  <div class="container-aeo py-12 space-y-14">
+    <section aria-labelledby="rel-h">
+      <h2 id="rel-h" class="text-xl font-semibold">Released</h2>
+      <div class="mt-5 grid gap-4 md:grid-cols-2">{released.map((d) => <DatasetCard d={d} />)}</div>
+    </section>
+
+    <section aria-labelledby="plan-h">
+      <h2 id="plan-h" class="text-xl font-semibold">Planned product families</h2>
+      <p class="mt-2 max-w-3xl text-slate">
+        These product families are announced so that collaborators can see the intended scope and contribute reference data, methods or review.
+        <strong class="text-atlas">No data, maps, validation results or time series exist for them yet.</strong> {STATUS['in-preparation'].help}
+      </p>
+      <div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{planned.map((d) => <DatasetCard d={d} />)}</div>
+    </section>
+
+    <section aria-labelledby="rel-proc-h" class="rounded-md bg-paper p-6">
+      <h2 id="rel-proc-h" class="text-lg font-semibold">From “in preparation” to “available”</h2>
+      <ol class="mt-4 grid gap-4 text-[0.93rem] sm:grid-cols-2 lg:grid-cols-4">
+        <li><p class="meta">01</p><p class="mt-1 font-medium text-atlas">Method note</p><p class="text-slate">Definitions, inputs and versions, and validation design are documented publicly.</p></li>
+        <li><p class="meta">02</p><p class="mt-1 font-medium text-atlas">Reproducible code</p><p class="text-slate">Processing code is published and runs from documented inputs.</p></li>
+        <li><p class="meta">03</p><p class="mt-1 font-medium text-atlas">Validation</p><p class="text-slate">Accuracy is assessed against independent reference data, with uncertainty reported.</p></li>
+        <li><p class="meta">04</p><p class="mt-1 font-medium text-atlas">Review and release</p><p class="text-slate">Maintainers review documentation and licences; the product is versioned and checksummed.</p></li>
+      </ol>
+    </section>
+  </div>
+</Base>

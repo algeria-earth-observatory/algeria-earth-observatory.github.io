@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found" noindex>
+  <section class="container-aeo py-24 text-center">
+    <p class="eyebrow">Error 404</p>
+    <h1 class="mt-3 text-3xl font-semibold">This page does not exist</h1>
+    <p class="mx-auto mt-4 max-w-xl text-slate">The address may be mistyped, or the page may have moved. Dataset identifiers are permanent, so a dataset link that worked before should still work — if it does not, please tell us.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn btn-primary">Home</a>
+      <a href="/data/" class="btn btn-secondary">Data catalog</a>
+      <a href="/map/" class="btn btn-secondary">Map explorer</a>
+    </div>
+  </section>
+</Base>

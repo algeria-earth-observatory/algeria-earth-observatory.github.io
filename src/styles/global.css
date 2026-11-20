@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   AEO design tokens — "North African scientific modernism"
+   Atlas Blue structure, Signal Blue interaction, Mediterranean Teal
+   for data accents, Warm Sand as the single warm counterpoint.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-atlas: #143b56;
+  --color-atlas-900: #0e2a3e;
+  --color-atlas-700: #1d4c6d;
+  --color-signal: #176bba;
+  --color-signal-700: #125797;
+  --color-teal: #008c91;
+  --color-teal-700: #007075;
+  --color-sand: #d8c4a1;
+  --color-sand-100: #f3ece0;
+  --color-sand-700: #8a6d3b;
+  --color-paper: #f7f9fa;
+  --color-graphite: #202b33;
+  --color-slate: #4a5a66;
+  --color-line: #dde4e9;
+  --color-mist: #eef3f6;
+
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --radius-card: 0.5rem;
+}
+
+@layer base {
+  html {
+    color: var(--color-graphite);
+    background: #fff;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    line-height: 1.6;
+    background: #fff;
+  }
+  [dir="rtl"] body { font-family: "Noto Sans Arabic", var(--font-sans); }
+  h1, h2, h3, h4 { color: var(--color-atlas); letter-spacing: -0.015em; line-height: 1.2; font-weight: 640; }
+  a { color: var(--color-signal); text-decoration-line: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { color: var(--color-signal-700); }
+  :focus-visible { outline: 3px solid var(--color-signal); outline-offset: 2px; border-radius: 2px; }
+  ::selection { background: #cfe3f5; }
+  code, kbd, samp, pre { font-family: var(--font-mono); font-size: 0.92em; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  .container-aeo { width: 100%; max-width: 76rem; margin-inline: auto; padding-inline: 1rem; }
+  @media (min-width: 640px) { .container-aeo { padding-inline: 1.5rem; } }
+  @media (min-width: 1024px) { .container-aeo { padding-inline: 2rem; } }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--color-teal-700); font-weight: 500;
+  }
+  .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-slate); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.375rem;
+    padding: 0.625rem 1.05rem; font-weight: 560; font-size: 0.95rem; line-height: 1.2;
+    text-decoration: none; transition: background-color .15s, color .15s, border-color .15s;
+    border: 1px solid transparent; cursor: pointer;
+  }
+  .btn-primary { background: var(--color-signal); color: #fff; }
+  .btn-primary:hover { background: var(--color-signal-700); color: #fff; }
+  .btn-secondary { background: #fff; color: var(--color-atlas); border-color: #b9c7d1; }
+  .btn-secondary:hover { border-color: var(--color-atlas); color: var(--color-atlas); }
+  .btn-ghost { color: var(--color-signal); padding-inline: 0.25rem; }
+  .btn-ghost:hover { text-decoration: underline; }
+  .btn-on-dark { background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.35); }
+  .btn-on-dark:hover { background: rgba(255,255,255,.16); color: #fff; border-color: #fff; }
+
+  .card { background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius-card); }
+  .chip {
+    display: inline-flex; align-items: center; gap: .3rem; border-radius: 999px; padding: .125rem .55rem;
+    font-size: .75rem; font-weight: 520; border: 1px solid var(--color-line); color: var(--color-slate); background: #fff; white-space: nowrap;
+  }
+
+  /* Long-form text (docs, about) */
+  .prose-aeo { max-width: 46rem; font-size: 1.0125rem; }
+  .prose-aeo > * + * { margin-top: 1em; }
+  .prose-aeo h2 { font-size: 1.45rem; margin-top: 2.2em; }
+  .prose-aeo h3 { font-size: 1.15rem; margin-top: 1.8em; }
+  .prose-aeo ul { list-style: disc; padding-left: 1.3rem; }
+  .prose-aeo ol { list-style: decimal; padding-left: 1.3rem; }
+  .prose-aeo li + li { margin-top: .35em; }
+  .prose-aeo pre {
+    padding: 1rem 1.1rem; border-radius: .5rem; overflow-x: auto;
+    font-size: .85rem; line-height: 1.55;
+  }
+  .prose-aeo :not(pre) > code { background: var(--color-mist); padding: .1em .35em; border-radius: .25rem; color: var(--color-atlas); }
+  .prose-aeo table { width: 100%; border-collapse: collapse; font-size: .92rem; display: block; overflow-x: auto; }
+  .prose-aeo th, .prose-aeo td { border-bottom: 1px solid var(--color-line); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  .prose-aeo th { color: var(--color-atlas); font-weight: 600; background: var(--color-paper); }
+  .prose-aeo blockquote { border-left: 3px solid var(--color-sand); padding-left: 1rem; color: var(--color-slate); }
+  .prose-aeo a { text-decoration: underline; }
+
+  .skip-link {
+    position: absolute; left: .75rem; top: -3rem; z-index: 100; background: var(--color-atlas); color: #fff;
+    padding: .5rem .8rem; border-radius: .375rem; text-decoration: none;
+  }
+  .skip-link:focus { top: .75rem; color: #fff; }
+
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  /* Map popups (explorer + homepage preview) */
+  .aeo-pop { font-family: var(--font-sans); min-width: 12.5rem; }
+  .aeo-pop-k { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--color-teal-700); }
+  .aeo-pop-t { font-weight: 640; font-size: 1rem; color: var(--color-atlas); margin-top: .1rem; }
+  .aeo-pop-ar { font-size: .95rem; color: var(--color-graphite); }
+  .aeo-pop dl { display: grid; grid-template-columns: auto 1fr; gap: .15rem .7rem; margin-top: .45rem; font-size: .76rem; }
+  .aeo-pop dt { color: var(--color-slate); }
+  .aeo-pop-n { margin-top: .45rem; font-size: .7rem; color: var(--color-slate); }
+  .maplibregl-ctrl-attrib { font-size: 10.5px; }
+  .aeo-reset button { font-size: 12px; font-weight: 600; width: auto !important; padding: 0 .55rem; color: var(--color-atlas); }
+}

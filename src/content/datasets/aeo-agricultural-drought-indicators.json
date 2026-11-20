@@ -1,0 +1,72 @@
+{
+  "id": "aeo-agricultural-drought-indicators",
+  "title": "AEO Agricultural Drought Indicators",
+  "description": "A planned set of agricultural drought indicators for Algeria that combine climatic water balance and vegetation condition, summarised over cropland and by wilaya.",
+  "purpose": null,
+  "domain": [
+    "agriculture",
+    "climate-drought"
+  ],
+  "categories": [
+    "Agricultural drought",
+    "Crop conditions and vegetation indices"
+  ],
+  "keywords": [
+    "agricultural drought",
+    "SPEI",
+    "vegetation condition",
+    "Algeria"
+  ],
+  "status": "in-preparation",
+  "origin": "aeo-original",
+  "data_nature": null,
+  "data_type": null,
+  "provider": {
+    "name": "Algeria Earth Observatory",
+    "url": "https://algeria-earth-observatory.github.io/"
+  },
+  "creator": null,
+  "source_url": null,
+  "documentation_url": null,
+  "license": null,
+  "license_notes": "Licence to be decided before release; AEO intends to use an open licence.",
+  "citation": null,
+  "doi": null,
+  "references": [],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Planned national coverage of Algeria.",
+    "algeria_subset": "native",
+    "bbox": null
+  },
+  "temporal_extent": null,
+  "resolution": null,
+  "format": [],
+  "crs": null,
+  "variables": [],
+  "processing": null,
+  "validation": null,
+  "limitations": [
+    "No data have been released. Methods, input versions, validation design and accuracy assessment will be documented and reviewed before any release."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [],
+  "code_url": null,
+  "algeria_notes": null,
+  "planned_scope": [
+    "Indicators computed only over cropland masks with documented versions",
+    "Wilaya-level summaries using a versioned boundary set",
+    "Clear separation of observed, derived and modelled inputs"
+  ],
+  "verification": {
+    "checked": "2026-11-19",
+    "urls_checked": false,
+    "unverified_fields": [],
+    "sources_consulted": [],
+    "notes": "Planned product family. Nothing in this record describes released data."
+  }
+}
