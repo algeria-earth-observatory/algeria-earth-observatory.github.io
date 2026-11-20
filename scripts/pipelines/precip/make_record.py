@@ -84,7 +84,7 @@ rec = {
         {"name": "trend_*", "units": "mm per decade", "description": "Theil–Sen slope with 95 % Sen interval; Mann–Kendall p (Yue–Wang correction when lag-1 autocorrelation is significant)"},
         {"name": "statistical_support", "units": None, "description": "adequate (≥ 4 effective cells), limited (1–4), very limited (< 1)"},
     ],
-    "processing": ("Monthly CHIRPS v3.0 final COGs read over the Algeria window with HTTP range requests; QC (complete series, no negative values, stable mask); "
+    "processing": ("Monthly CHIRPS v3.0 final data for the Algeria window, taken for v1.0.0 from the official CHC yearly NetCDF files (local copy, file date 2025; identical to the server COGs for all 26 months compared) because the CHC data server was unreachable; QC (complete series, no negative values, stable mask); "
                    "annual totals for complete years; 1991–2020 normals and anomalies; area-weighted zonal means using cell coverage fractions (10×10 supersampling) × geodesic cell area, "
                    "with wilaya and national weights as unions of commune weights; Theil–Sen / Mann–Kendall trends; export to COG, CSV, Parquet and JSON with SHA-256 manifest. "
                    "Full method: /docs/method-precipitation/."),

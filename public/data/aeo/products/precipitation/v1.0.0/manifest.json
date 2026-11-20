@@ -1,0 +1,906 @@
+{
+ "product_id": "aeo-dza-precipitation-chirps3",
+ "title": "Algeria Precipitation (CHIRPS v3.0): annual and monthly, national, wilaya and commune",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1",
+  "admin2"
+ ],
+ "spatial_products_levels": [
+  "admin0",
+  "admin1"
+ ],
+ "boundary_version": "2026-11-20",
+ "source_product": "CHIRPS v3.0 final, monthly (Climate Hazards Center, UC Santa Barbara)",
+ "source_version": "3.0",
+ "source_doi": "10.15780/G2JQ0P",
+ "source_paper_doi": "10.1038/s41597-026-07096-4",
+ "source_license": "CC BY 4.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "monthly": [
+   "1981-01",
+   "2025-02"
+  ],
+  "annual": [
+   1981,
+   2024
+  ]
+ },
+ "reference_period": [
+  1991,
+  2020
+ ],
+ "spatial_resolution": "0.05° (about 5.5 km); statistics are area-weighted means over administrative units",
+ "crs": "EPSG:4326",
+ "units": "mm",
+ "formats": [
+  "COG",
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/precip/",
+ "methodology_url": "/docs/method-precipitation/",
+ "created": "2026-11-20",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2024_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "bytes": 8988992,
+   "sha256": "fa63d55b2d76a0ade6ee9738a04a54a4b2d3e9e7311bd4bdb5e0061adccc4fb3",
+   "title": "Annual precipitation 1981–2024, Algeria (one band per year)"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_normal_1991_2020_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "bytes": 212481,
+   "sha256": "f5dd809ca0fb7fcbf112a289f3cc6043e017b7cf0f2b2404c6b7a6ba63c00d85",
+   "title": "Mean annual precipitation 1991–2020, Algeria"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_anomaly_pct_1981_2024_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "bytes": 10045699,
+   "sha256": "aa2989d26b29297c534595989f659abebdc43532d66eea06e8c085ad9e36f789",
+   "title": "Annual anomaly (% of 1991–2020) 1981–2024, Algeria"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w01_adrar_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 712194,
+   "sha256": "af6d136d454f86652b2be606deab0de4aef113b1f55fec6f313951bc557c533f",
+   "unit_code": "01",
+   "title": "Annual precipitation, wilaya 01"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w02_chlef_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 41610,
+   "sha256": "8fdee367352543eecccb8e549c451814eebc0c8ef51f8a642e160410647c270a",
+   "unit_code": "02",
+   "title": "Annual precipitation, wilaya 02"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w03_laghouat_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 108639,
+   "sha256": "d1b5c56c12cf9c4f992ce13d4bcfd6d56cc9c16623427f0538425f51625df1bd",
+   "unit_code": "03",
+   "title": "Annual precipitation, wilaya 03"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w04_oum-el-bouaghi_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 52415,
+   "sha256": "6a9ff5bc01b99c9d0218cc956dabd0be93d1f79f850193be72849725db707178",
+   "unit_code": "04",
+   "title": "Annual precipitation, wilaya 04"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w05_batna_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 62542,
+   "sha256": "2312f9e0df5cf3f93d1f66a91ad686f26136247abec057302fb601018399fc78",
+   "unit_code": "05",
+   "title": "Annual precipitation, wilaya 05"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w06_bejaia_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 39103,
+   "sha256": "cd11309f067078d4c25f7a97d1734f741477c0ed2131e309fc3e7c40abc3c042",
+   "unit_code": "06",
+   "title": "Annual precipitation, wilaya 06"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w07_biskra_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 59670,
+   "sha256": "88e175737e6179a52fc7e783ebd3f61b08b7bdea174e41351748cd605a718a24",
+   "unit_code": "07",
+   "title": "Annual precipitation, wilaya 07"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w08_bechar_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 200776,
+   "sha256": "f3026e2ce9ddb4adec3a06a59f1b31e1dac84021dd0f84600caaeb3cff57ac49",
+   "unit_code": "08",
+   "title": "Annual precipitation, wilaya 08"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w09_blida_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 27910,
+   "sha256": "74f554d36b59f620729d5844ceef521ceae01daccd311d42ac0ff2711b922ba9",
+   "unit_code": "09",
+   "title": "Annual precipitation, wilaya 09"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w10_bouira_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 43985,
+   "sha256": "2e0abfb1b70fd0a90508da424e6dac70dedc9e6df3ba004b41ee5ea7aee75a0e",
+   "unit_code": "10",
+   "title": "Annual precipitation, wilaya 10"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w11_tamanrasset_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 1093644,
+   "sha256": "508cedb70a1d674e91f7635c20533e0aa7d924aee8d4b9f79b730e019deaf38e",
+   "unit_code": "11",
+   "title": "Annual precipitation, wilaya 11"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w12_tebessa_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 70696,
+   "sha256": "c306653b0a8859d3983b06054f33e6fd207549c01f201d23b52570b134806e99",
+   "unit_code": "12",
+   "title": "Annual precipitation, wilaya 12"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w13_tlemcen_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 50826,
+   "sha256": "58b17eec49f37db7c6997e1f476d8eec2ab95454ed1bc3d2eb95b35fa2eaf165",
+   "unit_code": "13",
+   "title": "Annual precipitation, wilaya 13"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w14_tiaret_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 96733,
+   "sha256": "ad50dfca46ed7345750040c27be1b267310b9899e4952f73724176bc56ee6a32",
+   "unit_code": "14",
+   "title": "Annual precipitation, wilaya 14"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w15_tizi-ouzou_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 34438,
+   "sha256": "1f57552b08e7e4a86a0dd5bcf090a0bf73a26d13c0c0aff071b46fd2e79729c0",
+   "unit_code": "15",
+   "title": "Annual precipitation, wilaya 15"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w16_alger_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 24135,
+   "sha256": "67aac88b13d2ff280664cf633dcb6eeb25003c3b149f2af64bbb281fd54b0aa5",
+   "unit_code": "16",
+   "title": "Annual precipitation, wilaya 16"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w17_djelfa_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 69926,
+   "sha256": "e6aa5ea96c5c857efedcf8e8f0130949ee1219827867f90dd8b87839742e3494",
+   "unit_code": "17",
+   "title": "Annual precipitation, wilaya 17"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w18_jijel_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 32683,
+   "sha256": "b4c9e0ba54579c2ab0209d4217f01ba0c3fd6fa66aba7c808944cc16a0d51ac0",
+   "unit_code": "18",
+   "title": "Annual precipitation, wilaya 18"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w19_setif_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 55610,
+   "sha256": "a9dd38bc028b2cfed17ebd7b6bf55237d56093c298f7d239ec901b182045a2a9",
+   "unit_code": "19",
+   "title": "Annual precipitation, wilaya 19"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w20_saida_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 52156,
+   "sha256": "5d2d5fb104a814300b0abfd96bc5b4d5ba4ccae96391ba59c14bb36ff345dd7b",
+   "unit_code": "20",
+   "title": "Annual precipitation, wilaya 20"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w21_skikda_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 42755,
+   "sha256": "81b868d7a81b9b81ea5e16c038103cce92c26dee2228f085a02901e2e697cbeb",
+   "unit_code": "21",
+   "title": "Annual precipitation, wilaya 21"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w22_sidi-bel-abbes_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 68796,
+   "sha256": "e6920c97f908f7e4c7d6407fa01b31d3db2b6b2616be7a411403311dd8440817",
+   "unit_code": "22",
+   "title": "Annual precipitation, wilaya 22"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w23_annaba_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 28227,
+   "sha256": "7b14fd1e7b60df51359950042aec98b58b5026a235412c9e609452ccc88d3591",
+   "unit_code": "23",
+   "title": "Annual precipitation, wilaya 23"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w24_guelma_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 39625,
+   "sha256": "2885561dec630abcb56f6310e0f30e368b83f8ed6728dc198652277701e79599",
+   "unit_code": "24",
+   "title": "Annual precipitation, wilaya 24"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w25_constantine_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 32677,
+   "sha256": "ef10681cc91b40292c187610fac0c684d55ff2216080abe05593d68d261c47a0",
+   "unit_code": "25",
+   "title": "Annual precipitation, wilaya 25"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w26_medea_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 40197,
+   "sha256": "4e24aaa71ab214b2550abc030ff03ec1425c912ff464fcb82ae03fc40b7249ec",
+   "unit_code": "26",
+   "title": "Annual precipitation, wilaya 26"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w27_mostaganem_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 32978,
+   "sha256": "dd057a2b4f73d1dd0b14a729c6af73d4b195a8faf36cb777433fde4653e177e7",
+   "unit_code": "27",
+   "title": "Annual precipitation, wilaya 27"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w28_m-sila_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 54432,
+   "sha256": "225b953c3b8b65c9d069d9f56334681acb00e40f5f9034480f9dc27be33f979c",
+   "unit_code": "28",
+   "title": "Annual precipitation, wilaya 28"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w29_mascara_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 48370,
+   "sha256": "1680047dacee22a92dea12869e45737f6578327878455dc67fbb22e64449008e",
+   "unit_code": "29",
+   "title": "Annual precipitation, wilaya 29"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w30_ouargla_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 447944,
+   "sha256": "23f6543b8c56b3d654b5afb02b05095db8e1909a0c5467a4ec6f72f6c2c06cf8",
+   "unit_code": "30",
+   "title": "Annual precipitation, wilaya 30"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w31_oran_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 32958,
+   "sha256": "8a5be35f6ed457b89822a43053a696b5168bb33f8cd235786d51e9c06aaf1ce1",
+   "unit_code": "31",
+   "title": "Annual precipitation, wilaya 31"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w32_el-bayadh_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 149245,
+   "sha256": "94810a44dbe3b6b6768b681747bd7cff3a8fb268c6786a32c6f35eca9580ef75",
+   "unit_code": "32",
+   "title": "Annual precipitation, wilaya 32"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w33_illizi_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 647419,
+   "sha256": "9102c1debbf690a0369bd5630b00c0892fccf374db0e56c4c758d7a47e2caa9a",
+   "unit_code": "33",
+   "title": "Annual precipitation, wilaya 33"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w34_bordj-bou-arreridj_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 40306,
+   "sha256": "1efef38f1d08787293092883a28d126b3e1277ebc94da4c4a0761e6ccbdd6cde",
+   "unit_code": "34",
+   "title": "Annual precipitation, wilaya 34"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w35_boumerdes_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 28288,
+   "sha256": "41fed9fc27e63148115e5951ad2fbf364b68aff347de922ca7426eeb15c9c49b",
+   "unit_code": "35",
+   "title": "Annual precipitation, wilaya 35"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w36_el-tarf_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 34934,
+   "sha256": "ed7f806d88a3c3913b884dcddd3814ad2b2517a3af654cbbfcc3f67a4aa4aed4",
+   "unit_code": "36",
+   "title": "Annual precipitation, wilaya 36"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w37_tindouf_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 527842,
+   "sha256": "cce19cf09d6e934133273a5c27dbec7f7d1be91bdec47895e7cb63212808418d",
+   "unit_code": "37",
+   "title": "Annual precipitation, wilaya 37"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w38_tissemsilt_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 37322,
+   "sha256": "8fab9322e227df14a31d546b2a466715d514d201c44b1b54eeba450d9b87bea4",
+   "unit_code": "38",
+   "title": "Annual precipitation, wilaya 38"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w39_el-oued_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 153756,
+   "sha256": "dcdb9f7c8ba7cfbb7c7e07d9c3ad42537fd195f1a7d7841c017a2bb3878d0976",
+   "unit_code": "39",
+   "title": "Annual precipitation, wilaya 39"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w40_khenchela_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 68954,
+   "sha256": "c9f46fe041fce0848f3d208bcd803b23313e1a0475c22b7337733cca1e77d4cb",
+   "unit_code": "40",
+   "title": "Annual precipitation, wilaya 40"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w41_souk-ahras_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 41508,
+   "sha256": "ae82b5bfed9788d6020c203f5b7ab0b40ad35c4976bdfac2704682bf18341d8f",
+   "unit_code": "41",
+   "title": "Annual precipitation, wilaya 41"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w42_tipaza_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 28479,
+   "sha256": "b517d49e31afbe5020e1fc098d7209e111b80a295779f19d7a2c019eaa843b5a",
+   "unit_code": "42",
+   "title": "Annual precipitation, wilaya 42"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w43_mila_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 40565,
+   "sha256": "ba1f9582e9a810f74b8bfed6f91411d377d02e60e566b6eb1cf931ed3e744f20",
+   "unit_code": "43",
+   "title": "Annual precipitation, wilaya 43"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w44_ain-defla_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 42310,
+   "sha256": "832a493edca5cdd5e2c006c10c9572550227048ee5782a3336d75f139764bc46",
+   "unit_code": "44",
+   "title": "Annual precipitation, wilaya 44"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w45_naama_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 139165,
+   "sha256": "c2019eafddbe39e67ace8c5e33efec8d8f9f468343f55308018fdf83679d4ebc",
+   "unit_code": "45",
+   "title": "Annual precipitation, wilaya 45"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w46_ain-temouchent_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 33513,
+   "sha256": "9da984788b38cd93308cd38d9bbed3e0fb72d243eaa566338edd8eab50d13dbf",
+   "unit_code": "46",
+   "title": "Annual precipitation, wilaya 46"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w47_ghardaia_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 97278,
+   "sha256": "39ec0757f841d718f68ec402a03b4ed442367284f688e888057b7e733620a996",
+   "unit_code": "47",
+   "title": "Annual precipitation, wilaya 47"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w48_relizane_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 44957,
+   "sha256": "10dd5e1179e61301641072f66c5b65efbc4d03b3090f23d228a991b7f62631d6",
+   "unit_code": "48",
+   "title": "Annual precipitation, wilaya 48"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w49_timimoune_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 238226,
+   "sha256": "0d5327df3edbf932ee9edf0cc62f84a6871c9b3f403d03b15866f43cfb79d36f",
+   "unit_code": "49",
+   "title": "Annual precipitation, wilaya 49"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w50_bordj-badji-mokhtar_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 448668,
+   "sha256": "27312cc9854a06929fd63e4146d9b917390aad22e6955b929276d77c8bd094b1",
+   "unit_code": "50",
+   "title": "Annual precipitation, wilaya 50"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w51_ouled-djellal_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 71783,
+   "sha256": "409c29d5b5ae82cfcf4f605b647ddb2bd9076efd5f3eed0ab5997328f89c2132",
+   "unit_code": "51",
+   "title": "Annual precipitation, wilaya 51"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w52_beni-abbes_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 394855,
+   "sha256": "3a9a5db2c63aece22b3800e78b1e2c823ea23ba1cca75c48caba4a9bbff9e810",
+   "unit_code": "52",
+   "title": "Annual precipitation, wilaya 52"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w53_in-salah_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 462086,
+   "sha256": "fa9b5cd9e000ad01e9ab4bfee8339ac7b2ed0b2e57e6854038b301f1ecb86b41",
+   "unit_code": "53",
+   "title": "Annual precipitation, wilaya 53"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w54_in-guezzam_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 320610,
+   "sha256": "1d0ac2dcdf97b8648bfab0f354f98a3a1ba97c118b46a0309ae164ee31de57a8",
+   "unit_code": "54",
+   "title": "Annual precipitation, wilaya 54"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w55_touggourt_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 97085,
+   "sha256": "08471ada1e85ab7d43cdc9fb5efc51a8c3288952e9419942c14814d5b582ad9d",
+   "unit_code": "55",
+   "title": "Annual precipitation, wilaya 55"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w56_djanet_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 294733,
+   "sha256": "753bb33a411131765ef5b871ff504646c9f680fb40c6b61d6abff944ee1fe090",
+   "unit_code": "56",
+   "title": "Annual precipitation, wilaya 56"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w57_el-m-ghair_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 54813,
+   "sha256": "3377791d9c6c9dd54b9b5b8ecbb97b959028b9ad60f5e9dad6a3f7bddf66fd16",
+   "unit_code": "57",
+   "title": "Annual precipitation, wilaya 57"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w58_el-meniaa_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 234656,
+   "sha256": "5567a5f208834d0cd3c09762c40922003563010e62329d047527536430fbdc2f",
+   "unit_code": "58",
+   "title": "Annual precipitation, wilaya 58"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w59_aflou_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 51178,
+   "sha256": "2090679a8c77c247a0a8f82eef604576cac0a5192eaf11c4c45e79b3f7fb8285",
+   "unit_code": "59",
+   "title": "Annual precipitation, wilaya 59"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w60_barika_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 37214,
+   "sha256": "a5fe98710c29596695f0e82fde9e54bde69aa2151c0f02999684e872d18ecc84",
+   "unit_code": "60",
+   "title": "Annual precipitation, wilaya 60"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w61_el-kantara_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 26990,
+   "sha256": "2825c0dd815bb83e60f4c64d654001c54a5c9f063b6aa0554b71f50977cb2a70",
+   "unit_code": "61",
+   "title": "Annual precipitation, wilaya 61"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w62_bir-el-ater_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 44381,
+   "sha256": "4f7dfe30390b00c0c997ff93e2be1f93de89069445004dc01e9b31736d955ed9",
+   "unit_code": "62",
+   "title": "Annual precipitation, wilaya 62"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w63_el-aricha_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 35416,
+   "sha256": "7e845ca0e88ce1606b46dcb37ccab2b431dbe4f84a81d88d1a95d3f583e8d609",
+   "unit_code": "63",
+   "title": "Annual precipitation, wilaya 63"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w64_ksar-chellala_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 37363,
+   "sha256": "7366b5b79ba8316291ca8ddf68e93f3167bcff7cf488bd95d91bc4b974799d50",
+   "unit_code": "64",
+   "title": "Annual precipitation, wilaya 64"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w65_ain-oussara_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 52210,
+   "sha256": "caf570fa4f259629a94a12951ccb7e6019e41407a7aa9bbdac57aa6ce157643a",
+   "unit_code": "65",
+   "title": "Annual precipitation, wilaya 65"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w66_messaad_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 88941,
+   "sha256": "e105b08fa2031c80a5ce04440d28d6eb71406a66a11cc01242891260d02fda26",
+   "unit_code": "66",
+   "title": "Annual precipitation, wilaya 66"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w67_ksar-el-boukhari_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 46037,
+   "sha256": "40a68a9ffef51994e6f3188af8ec96def05f7eaeef9ceb177d1095b976ef8704",
+   "unit_code": "67",
+   "title": "Annual precipitation, wilaya 67"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w68_bou-saada_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 69636,
+   "sha256": "b1dd512d98b66b7ff18d6dc47e46e5c2436856491b501f2a59d63b0f1f7b1bdd",
+   "unit_code": "68",
+   "title": "Annual precipitation, wilaya 68"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/raster/wilaya/aeo_precip_annual_w69_el-abiodh-sidi-cheikh_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin1",
+   "bytes": 181433,
+   "sha256": "c7ccb6ed7d67a25f59a3e4aede2a20993c5a048551710c83d7b13a49ab3d87b0",
+   "unit_code": "69",
+   "title": "Annual precipitation, wilaya 69"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin0_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin0",
+   "bytes": 2444,
+   "sha256": "16014185e9884a2f63f1de3e202b558e73fb8b0a25913f9622f2506ee0374756",
+   "title": "Annual statistics, admin0"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin0_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin0",
+   "bytes": 7191,
+   "sha256": "e36c941ea3deeb5313df20c0297145ba22cd484b74bf094e8e1425d08dd5faf0",
+   "title": "Annual statistics, admin0"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin1_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin1",
+   "bytes": 174559,
+   "sha256": "18c77d0692d2e378c7fdc945eb91c38038e0cd81b74c942282e5b93ebf1b9019",
+   "title": "Annual statistics, admin1"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin1_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin1",
+   "bytes": 46218,
+   "sha256": "0f2d0ddc65d88b731944df2a297ba965304601dd9076c16f417991effe52197c",
+   "title": "Annual statistics, admin1"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin2_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin2",
+   "bytes": 4127754,
+   "sha256": "10d78e98122801d8958234d590e110ee012222a96e47e989b36a62ab498e8655",
+   "title": "Annual statistics, admin2"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin2_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin2",
+   "bytes": 469507,
+   "sha256": "dd37a3f89130558728d7c83cb8890ede5d94be7ff3f9d356557b539ec3fed955",
+   "title": "Annual statistics, admin2"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin0_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin0",
+   "bytes": 21650,
+   "sha256": "4e0356b7c531660eeb4e329d44a64e8306556be9901e4ee3e9f57fef6bf4e9a5",
+   "title": "Monthly statistics, admin0"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin0_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin0",
+   "bytes": 8535,
+   "sha256": "6a6c445f663c7018722b8632f162bda37696335292773e73a4bba142647ddbd9",
+   "title": "Monthly statistics, admin0"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin1_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin1",
+   "bytes": 1664453,
+   "sha256": "cc7fe9e7215cf28c4b1a68bf88c7abf2a4741baad15ac669cbce814e11f70281",
+   "title": "Monthly statistics, admin1"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin1_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin1",
+   "bytes": 135992,
+   "sha256": "f16b273c6cfae3f3091b154ab41e5e0493509b56a04fd0fa2a715f27836a6da4",
+   "title": "Monthly statistics, admin1"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin2_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin2",
+   "bytes": 2788677,
+   "sha256": "e31cb34ee8f69dfafb81b4820e37ea9f5111de19aa88100c0e9552ecd48b36fc",
+   "title": "Monthly statistics, admin2"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_summary_admin0_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin0",
+   "bytes": 427,
+   "sha256": "2b63e8f2a9e9d741d1b48481bce0158d6bb035e01453081d67039057a4236518",
+   "title": "Summary statistics, admin0"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_summary_admin1_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin1",
+   "bytes": 9086,
+   "sha256": "6d6faa727393673a20adb5f9f86266a150f0bc005bf56f3df0f1ea1c43675c79",
+   "title": "Summary statistics, admin1"
+  },
+  {
+   "href": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_summary_admin2_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin2",
+   "bytes": 197368,
+   "sha256": "bd54d31b4452a3b4f1fdebd93399cf361229bcbfca73eaf88094971c309a217e",
+   "title": "Summary statistics, admin2"
+  }
+ ],
+ "web_assets": {
+  "annual": {
+   "admin0": "/data/aeo/products/precipitation/v1.0.0/web/annual_admin0.json",
+   "admin1": "/data/aeo/products/precipitation/v1.0.0/web/annual_admin1.json",
+   "admin2": "/data/aeo/products/precipitation/v1.0.0/web/annual_admin2.json"
+  },
+  "monthly": {
+   "admin0": "/data/aeo/products/precipitation/v1.0.0/web/monthly_admin0.json",
+   "admin1": "/data/aeo/products/precipitation/v1.0.0/web/monthly_admin1.json",
+   "admin2": "/data/aeo/products/precipitation/v1.0.0/web/monthly_admin2/{wilaya_code}.json"
+  },
+  "map": "/data/aeo/products/precipitation/v1.0.0/map/map.json"
+ }
+}

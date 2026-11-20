@@ -146,6 +146,12 @@ def main() -> None:
     cov_frac = np.zeros(GRID.nrow * GRID.ncol)
     cov_frac[w0.cells[0]] = w0.fractions[0]
     area_check = float((w0.weights[0]).sum())
+    inside_vals = np.where(inside[None], cube, np.nan)
+    t_max, r_max, c_max = np.unravel_index(np.nanargmax(inside_vals), inside_vals.shape)
+    qc.append(f"Maximum monthly value inside Algeria: {np.nanmax(inside_vals):.1f} mm ({months[t_max]}, "
+              f"{GRID.north - (r_max + 0.5) * GRID.res:.3f}°N, {GRID.west + (c_max + 0.5) * GRID.res:.3f}°E); "
+              "the processing window also covers parts of neighbouring countries, which are excluded from all products")
+    del inside_vals
     qc.append(f"Algeria area from cell weights: {area_check:,.0f} km² (boundary polygon, geodesic: see boundary PROVENANCE)")
 
     levels = {
