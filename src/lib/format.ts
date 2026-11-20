@@ -11,13 +11,23 @@ export const STATUS: Record<Dataset['status'], { label: string; help: string; cl
     help: 'Held by the original provider. AEO documents it and links to the source; it does not host the files.',
     cls: 'bg-[#e8f1fa] text-[#124f87] border-[#a9c9ea]',
   },
+  experimental: {
+    label: 'Experimental',
+    help: 'An AEO product released for testing. Files are real, but the method may change and validation is incomplete.',
+    cls: 'bg-[#fdf1e4] text-[#8a4b0f] border-[#f0c99a]',
+  },
+  'under-validation': {
+    label: 'Under validation',
+    help: 'An AEO product whose method is fixed and whose validation is in progress.',
+    cls: 'bg-[#f1ecfa] text-[#4c3a87] border-[#cbbfec]',
+  },
   'in-preparation': {
-    label: 'In preparation',
+    label: 'Planned',
     help: 'A planned AEO product. No data are released until scientific review is complete.',
     cls: 'bg-sand-100 text-[#6b5228] border-sand',
   },
   archived: {
-    label: 'Archived',
+    label: 'Deprecated',
     help: 'Kept for reference; superseded or no longer maintained.',
     cls: 'bg-[#eef0f2] text-[#4a5a66] border-[#cfd6dc]',
   },

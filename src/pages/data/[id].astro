@@ -4,6 +4,7 @@ import Badges from '../../components/Badges.astro';
 import { getDatasets } from '../../lib/catalog';
 import { domainById } from '../../lib/domains';
 import { MAP_LAYERS } from '../../data/map-layers';
+import ProductDownloads from '../../components/ProductDownloads.astro';
 import {
   STATUS, NATURE, COVERAGE, SUBSET, DATA_TYPE, ORIGIN, fmtDate, doiUrl, humanBytes, hostOf,
 } from '../../lib/format';
@@ -155,6 +156,8 @@ const jsonLd = planned ? undefined : {
           <section aria-labelledby="access" id="access" class="scroll-mt-24">
             <h2 class="text-xl font-semibold" id="access-h">Access and downloads</h2>
             <p class="mt-2 text-[0.92rem] text-slate">{st.help}</p>
+            {d.product && <div class="mt-4"><ProductDownloads d={d} /></div>}
+            {d.product && downloads.length > 0 && <h3 class="mt-6 font-semibold text-atlas">Main files</h3>}
             {downloads.length > 0 && (
               <ul class="mt-4 divide-y divide-line rounded-md border border-line">
                 {downloads.map((a) => (

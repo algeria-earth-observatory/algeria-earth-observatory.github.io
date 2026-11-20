@@ -16,7 +16,14 @@ const providers = [...new Set(all.map((d) => d.provider?.name).filter(Boolean) a
 const formats = [...new Set(all.flatMap(formatFamilies))].sort();
 
 type Facet = { key: string; label: string; options: { value: string; label: string; n: number }[] };
+const kindOf = (d: (typeof all)[number]) => (d.status === 'in-preparation' ? 'planned' : d.origin === 'external' ? 'source' : 'product');
+const products = all.filter((d) => kindOf(d) === 'product');
 const facets: Facet[] = [
+  { key: 'kind', label: 'Record type', options: [
+    { value: 'product', label: 'Algeria-ready product (AEO)', n: count((d) => kindOf(d) === 'product') },
+    { value: 'source', label: 'Upstream source dataset', n: count((d) => kindOf(d) === 'source') },
+    { value: 'planned', label: 'Planned AEO product', n: count((d) => kindOf(d) === 'planned') },
+  ] },
   { key: 'domain', label: 'Scientific domain', options: DOMAINS.map((x) => ({ value: x.id, label: x.title, n: count((d) => d.domain.includes(x.id)) })) },
   { key: 'status', label: 'Status', options: (Object.keys(STATUS) as (keyof typeof STATUS)[]).map((k) => ({ value: k, label: STATUS[k].label, n: count((d) => d.status === k) })) },
   { key: 'access', label: 'Access', options: [
@@ -33,10 +40,18 @@ const facets: Facet[] = [
 ---
 <Base title="Data catalog" description="Search and filter documented Earth observation and environmental datasets for Algeria: source, licence, coverage, resolution, limitations and access.">
   <PageHeader
-    eyebrow="Data catalog"
-    title="Find environmental data for Algeria"
-    lead="Each record documents the original source, licence, coverage, resolution, scientific limitations and how to access the data. Most datasets are global products held by their providers: AEO links to the source and states when you must extract the Algeria subset yourself."
+    eyebrow="Data"
+    title="Algeria-ready data and source library"
+    lead="Algeria-ready products are processed by AEO for Algeria and its administrative units, and downloadable here with checksums. The source library documents the upstream datasets they are built from — usually global products held by their providers."
   />
+
+  <section class="container-aeo pt-8" aria-labelledby="products-h">
+    <h2 id="products-h" class="text-xl font-semibold text-atlas">Algeria-ready products</h2>
+    <p class="mt-1 text-[0.92rem] text-slate">Download for Algeria, by wilaya or as statistics tables — no clipping of global files needed.</p>
+    <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {products.map((d) => <DatasetCard d={d} />)}
+    </div>
+  </section>
 
   <div class="container-aeo py-8 lg:py-10">
     <div class="lg:grid lg:grid-cols-[17rem_1fr] lg:gap-10">
@@ -67,7 +82,8 @@ const facets: Facet[] = [
 
       <!-- Results -->
       <section aria-labelledby="results-title" class="mt-8 lg:mt-0">
-        <h2 id="results-title" class="sr-only">Results</h2>
+        <h2 id="results-title" class="text-xl font-semibold text-atlas">Search all records</h2>
+        <p class="mb-4 mt-1 text-[0.92rem] text-slate">Products, upstream source datasets and planned products. Filter by record type to see the source library only.</p>
         <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div class="flex-1">
             <label for="q" class="meta uppercase tracking-wider">Search</label>
@@ -95,7 +111,7 @@ const facets: Facet[] = [
         </div>
 
         <div class="mt-10 grid gap-4 rounded-md bg-paper p-5 text-sm text-slate sm:grid-cols-2">
-          <p><strong class="text-atlas">Geographic browsing.</strong> Every current record covers the whole of Algeria. Wilaya-level subsetting and downloads are planned; use the <a href="/map/">map explorer</a> to locate wilayas and inspect layers.</p>
+          <p><strong class="text-atlas">Geographic browsing.</strong> Algeria-ready products offer downloads by wilaya and statistics by commune. Profiles for every wilaya and commune are in <a href="/regions/">Regions</a>.</p>
           <p><strong class="text-atlas">Machine-readable.</strong> The full catalog is available as <a href="/catalog.json">JSON</a> and as a static <a href="/stac/catalog.json">STAC catalog</a>. Each record also has its own JSON and STAC file.</p>
         </div>
       </section>

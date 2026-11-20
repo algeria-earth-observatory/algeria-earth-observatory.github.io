@@ -1,5 +1,5 @@
 import {
-  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml,
+  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml, communePopupHtml,
   setLayerVisible, setLayerOpacity, setLayerTime, resolveMosaic, refreshTiles, snapDate, stepDate, availableDates, defaultDate, escapeHtml,
   type MapState, type BasemapId,
 } from './map-core';
@@ -108,6 +108,20 @@ export async function initExplorer() {
     hovered = null;
     map.getCanvas().style.cursor = '';
   });
+
+  // communes: registered after the wilaya handler so a commune click wins
+  let hoveredC: string | null = null;
+  map.on('click', 'aeo-communes-fill', (e) => {
+    const f = e.features?.[0];
+    if (f) popup.setLngLat(e.lngLat).setHTML(communePopupHtml(f.properties ?? {})).addTo(map);
+  });
+  map.on('mousemove', 'aeo-communes-fill', (e) => {
+    const id = String(e.features?.[0]?.properties?.commune_code ?? '');
+    if (hoveredC && hoveredC !== id) map.setFeatureState({ source: 'aeo-communes', id: hoveredC }, { hover: false });
+    hoveredC = id;
+    map.setFeatureState({ source: 'aeo-communes', id }, { hover: true });
+  });
+  map.on('mouseleave', 'aeo-communes-fill', () => { if (hoveredC) map.setFeatureState({ source: 'aeo-communes', id: hoveredC }, { hover: false }); hoveredC = null; });
 
   const coords = document.getElementById('coords');
   map.on('mousemove', (e) => {

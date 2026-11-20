@@ -10,6 +10,7 @@
  * scripts/fetch_gibs_layers.py regenerates from the live GetCapabilities.
  */
 import gibs from './gibs-layers.json';
+import precipMap from '../../public/data/aeo/products/precipitation/v1.0.0/map/map.json';
 import type { DomainId } from '../lib/domains';
 
 type GibsId = keyof typeof gibs.layers;
@@ -29,7 +30,9 @@ export interface MapLayer {
   title: string;
   summary: string;
   domain: DomainId | 'reference';
-  type: 'raster' | 'geojson';
+  type: 'raster' | 'geojson' | 'image';
+  /** Image overlay (type 'image'): URL template with {year}, Web Mercator image corners. */
+  image?: { url: string; coordinates: [number, number][] };
   dataset: string | null;
   nature: 'observed' | 'derived' | 'modeled' | 'reference';
   /** Raster tile URL template ({z}/{x}/{y}; {time} replaced at runtime). */
@@ -128,7 +131,7 @@ function gibsTime(id: GibsId, step: NonNullable<MapLayer['time']>['step']) {
 const GIBS_ATTR =
   '<a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener">NASA EOSDIS GIBS</a>';
 
-export const BOUNDARY_VERSION = '2026-11-19';
+export const BOUNDARY_VERSION = '2026-11-20';
 const BDIR = `/data/aeo/boundaries/${BOUNDARY_VERSION}`;
 
 export const MAP_LAYERS: MapLayer[] = [
@@ -147,6 +150,53 @@ export const MAP_LAYERS: MapLayer[] = [
     legend: { kind: 'line', caption: 'Wilaya boundary (community-mapped; not a legal delineation)' },
     caveat: 'Simplified for display. Community-mapped boundaries; not an official legal or cadastral delineation.',
     defaultOn: true,
+  },
+  {
+    id: 'communes',
+    title: 'Commune boundaries (1,541)',
+    summary: `Algeria's 1,541 communes (OpenStreetMap snapshot ${BOUNDARY_VERSION}), nested in the 69 wilayas. Click a commune for its codes and profile.`,
+    domain: 'reference',
+    type: 'geojson',
+    dataset: 'aeo-dza-admin-boundaries',
+    nature: 'reference',
+    data: `${BDIR}/dza_adm2_communes_display.geojson`,
+    maxzoom: 22,
+    opacity: 1,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL) · AEO processing',
+    legend: { kind: 'line', caption: 'Commune boundary (community-mapped)' },
+    caveat: 'Simplified for display (about 1.5 MB, loaded when switched on). Not an official delineation.',
+  },
+  {
+    id: 'precip-annual',
+    title: 'Annual precipitation (AEO, CHIRPS v3.0)',
+    summary: 'Calendar-year precipitation totals for Algeria from the AEO precipitation product (CHIRPS v3.0, 0.05° ≈ 5.5 km). Use the year slider.',
+    domain: 'climate-drought',
+    type: 'image',
+    dataset: 'aeo-dza-precipitation-chirps3',
+    nature: 'derived',
+    image: { url: '/data/aeo/products/precipitation/v1.0.0/map/annual_{year}.png', coordinates: precipMap.coordinates as [number, number][] },
+    maxzoom: 22,
+    time: { periods: [`${precipMap.years[0]}-01-01/${precipMap.years[precipMap.years.length - 1]}-01-01/P1Y`], default: `${precipMap.years[precipMap.years.length - 1]}-01-01`, step: 'year' },
+    opacity: 0.85,
+    attribution: 'Precipitation: CHIRPS v3.0 (UCSB Climate Hazards Center, CC BY 4.0) · AEO processing',
+    legend: { kind: 'classes', caption: 'mm per year', classes: precipMap.annual.colors.map((c: string, i: number) => ({ color: c, label: i === 0 ? `< ${precipMap.annual.breaks[0]}` : i === precipMap.annual.breaks.length ? `≥ ${precipMap.annual.breaks[i - 1]}` : `${precipMap.annual.breaks[i - 1]}–${precipMap.annual.breaks[i]}` })) },
+    caveat: 'Satellite–gauge estimate at about 5.5 km; few gauges in the Sahara. Display pixels are resampled to 5 km; use the GeoTIFF for analysis.',
+  },
+  {
+    id: 'precip-anomaly',
+    title: 'Precipitation anomaly vs 1991–2020 (AEO)',
+    summary: 'Calendar-year precipitation as a percentage departure from the 1991–2020 normal, from the AEO precipitation product (CHIRPS v3.0).',
+    domain: 'climate-drought',
+    type: 'image',
+    dataset: 'aeo-dza-precipitation-chirps3',
+    nature: 'derived',
+    image: { url: '/data/aeo/products/precipitation/v1.0.0/map/anomaly_{year}.png', coordinates: precipMap.coordinates as [number, number][] },
+    maxzoom: 22,
+    time: { periods: [`${precipMap.years[0]}-01-01/${precipMap.years[precipMap.years.length - 1]}-01-01/P1Y`], default: `${precipMap.years[precipMap.years.length - 1]}-01-01`, step: 'year' },
+    opacity: 0.85,
+    attribution: 'Precipitation: CHIRPS v3.0 (UCSB Climate Hazards Center, CC BY 4.0) · AEO processing',
+    legend: { kind: 'classes', caption: '% of the 1991–2020 normal (red drier, blue wetter)', classes: precipMap.anomaly.colors.map((c: string, i: number) => ({ color: c, label: i === 0 ? `< ${precipMap.anomaly.breaks[0]}` : i === precipMap.anomaly.breaks.length ? `≥ +${precipMap.anomaly.breaks[i - 1]}` : `${precipMap.anomaly.breaks[i - 1]} to ${precipMap.anomaly.breaks[i]}` })) },
+    caveat: 'Relative anomalies are large and unstable where the normal is very low (most of the Sahara); not computed where the normal is below 1 mm.',
   },
   {
     id: 'gaced30-cropland',

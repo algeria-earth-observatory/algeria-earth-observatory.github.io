@@ -1,0 +1,43 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PrecipSummary from '../../../components/PrecipSummary.astro';
+import { loadRegions, fmtNum, BOUNDARY_VERSION, type Commune, type Wilaya } from '../../../lib/regions-data';
+
+export function getStaticPaths() {
+  const { wilayas, communes } = loadRegions();
+  const byCode = new Map(wilayas.map((w) => [w.code, w]));
+  return communes.map((c) => ({ params: { wilaya: c.wilaya_code, commune: c.code }, props: { c, w: byCode.get(c.wilaya_code)! } }));
+}
+const { c, w } = Astro.props as { c: Commune; w: Wilaya };
+const moved = c.code_1984 !== c.wilaya_code;
+---
+<Base title={`${c.name}, ${w.name} (commune ${c.code})`} description={`Environmental profile of the commune of ${c.name} (wilaya of ${w.name}, Algeria): precipitation normal, anomalies and trend from the Algeria Earth Observatory.`}>
+  <div class="container-aeo py-8">
+    <nav aria-label="Breadcrumb" class="text-[0.85rem] text-slate"><a href="/regions/">Algeria</a> <span aria-hidden="true">›</span> <a href={`/regions/${w.code}/`}>{w.name}</a> <span aria-hidden="true">›</span> <span aria-current="page">{c.name}</span></nav>
+    <header class="mt-3 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">Commune {c.code} · wilaya {w.code}</p>
+        <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{c.name} <span lang="ar" dir="rtl" class="ml-2 text-[1.6rem] font-normal text-slate">{c.name_ar}</span></h1>
+      </div>
+      <a class="btn btn-primary" href={`/analyze/?level=admin2&unit=${c.code}`}>Analyze this commune</a>
+    </header>
+    <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
+      <div class="min-w-0 space-y-8">
+        <PrecipSummary stats={c.precip} areaLabel={`commune of ${c.name}`} analyzeHref={`/analyze/?level=admin2&unit=${c.code}`} level="admin2" />
+        <p class="text-[0.9rem] text-slate">Other indicators (temperature, drought indices, vegetation, cropland statistics) are not yet processed at commune level. Coarse climate data may never be meaningful for small communes; AEO will only publish commune values where the source resolution supports them.</p>
+      </div>
+      <aside>
+        <section class="rounded-md border border-line bg-white p-4 text-[0.88rem]">
+          <h2 class="font-semibold text-atlas">Facts</h2>
+          <dl class="mt-2 space-y-2">
+            <div><dt class="text-[0.78rem] text-slate">ONS code</dt><dd class="font-mono">{c.code}</dd></div>
+            <div><dt class="text-[0.78rem] text-slate">Wilaya (2026)</dt><dd><a href={`/regions/${w.code}/`}>{w.code} — {w.name}</a></dd></div>
+            {moved && <div><dt class="text-[0.78rem] text-slate">Wilaya before reorganisation</dt><dd>Code prefix {c.code_1984} (1984 organisation). The ONS code keeps this prefix.</dd></div>}
+            <div><dt class="text-[0.78rem] text-slate">Area of the boundary polygon</dt><dd>{fmtNum(c.area_km2, 1)} km² <span class="text-slate">(computed)</span></dd></div>
+            <div><dt class="text-[0.78rem] text-slate">Boundary source</dt><dd>OpenStreetMap (<a href={`https://www.openstreetmap.org/relation/${c.osm_relation}`}>relation {c.osm_relation}</a>){c.wikidata && <>, <a href={`https://www.wikidata.org/wiki/${c.wikidata}`}>Wikidata {c.wikidata}</a></>}; AEO version {BOUNDARY_VERSION}.</dd></div>
+          </dl>
+        </section>
+      </aside>
+    </div>
+  </div>
+</Base>

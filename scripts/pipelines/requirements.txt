@@ -1,0 +1,12 @@
+# Python environment for AEO processing pipelines and data QA tests.
+# Versions used to build v1.0.0 products (conda env "grre", 2026-11-20):
+# numpy 2.5.4, scipy 1.18.1, pandas 2.3.3, geopandas 1.2.0, shapely 2.2.0, rasterio 1.5.2, pyarrow 26.0.0, pytest 9.2.0
+numpy>=2.0,<3
+scipy>=1.13
+pandas>=2.2,<3
+pyarrow>=16
+shapely>=2.0
+geopandas>=1.0
+rasterio>=1.4
+pyproj>=3.6
+pytest>=8

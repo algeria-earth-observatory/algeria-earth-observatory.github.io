@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PrecipSummary from '../../components/PrecipSummary.astro';
+import { loadRegions, fmtNum, fmtSigned, BOUNDARY_VERSION } from '../../lib/regions-data';
+const { national, wilayas, communes } = loadRegions();
+---
+<Base title="Regions" description="Environmental profiles of Algeria's 69 wilayas and 1,541 communes, with precipitation statistics computed by the Algeria Earth Observatory.">
+  <PageHeader eyebrow="Regions" title="Algeria by wilaya and commune"
+    lead={`Profiles for all ${wilayas.length} wilayas and ${communes.length.toLocaleString('en-US')} communes, using the administrative division of Loi n° 26-06 (2026). Each profile shows the indicators AEO has processed for that area and links to its data.`} />
+  <div class="container-aeo space-y-10 py-10">
+    <PrecipSummary stats={national} areaLabel="Algeria" analyzeHref="/analyze/?level=admin0&unit=DZ" level="admin0" />
+
+    <section aria-labelledby="w-h">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 id="w-h" class="text-xl font-semibold text-atlas">Wilayas</h2>
+          <p class="mt-1 text-[0.9rem] text-slate">Boundaries: AEO version {BOUNDARY_VERSION} (OpenStreetMap, nested communes). Precipitation: calendar-year totals, CHIRPS v3.0.</p>
+        </div>
+        <label class="text-[0.85rem]"><span class="sr-only">Filter wilayas</span>
+          <input id="w-filter" type="search" placeholder="Filter by name or code…" class="w-64 rounded-md border border-[#b9c7d1] px-3 py-2" /></label>
+      </div>
+      <div class="mt-4 overflow-x-auto rounded-md border border-line bg-white">
+        <table class="w-full text-left text-[0.88rem]">
+          <thead class="bg-paper text-[0.78rem] uppercase tracking-wide text-slate">
+            <tr><th class="px-3 py-2">Code</th><th class="px-3 py-2">Wilaya</th><th class="px-3 py-2" lang="ar">الاسم</th><th class="px-3 py-2 text-right">Communes</th><th class="px-3 py-2 text-right">Area (km²)</th><th class="px-3 py-2 text-right">Normal 1991–2020 (mm)</th><th class="px-3 py-2 text-right">Trend (mm/decade)</th></tr>
+          </thead>
+          <tbody id="w-body">
+            {wilayas.map((w) => (
+              <tr class="border-t border-line" data-filter={`${w.code} ${w.name} ${w.name_ar ?? ''}`.toLowerCase()}>
+                <td class="px-3 py-1.5 font-mono">{w.code}</td>
+                <td class="px-3 py-1.5"><a href={`/regions/${w.code}/`}>{w.name}</a></td>
+                <td class="px-3 py-1.5" lang="ar" dir="rtl">{w.name_ar}</td>
+                <td class="px-3 py-1.5 text-right">{w.n_communes}</td>
+                <td class="px-3 py-1.5 text-right">{fmtNum(w.area_km2)}</td>
+                <td class="px-3 py-1.5 text-right">{fmtNum(w.precip?.normal)}</td>
+                <td class="px-3 py-1.5 text-right" title={w.precip?.trend.mk_p != null ? `Mann–Kendall p = ${w.precip.trend.mk_p}` : ''}>
+                  {fmtSigned(w.precip?.trend.slope_mm_per_decade, 1)}{w.precip?.trend.mk_p != null && w.precip.trend.mk_p < 0.05 ? ' *' : ''}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-2 text-[0.8rem] text-slate">* Mann–Kendall p &lt; 0.05 for {national?.trend.period}. Areas are planimetric areas of the boundary polygons (equal-area projection), not official statistics.</p>
+    </section>
+
+    <section aria-labelledby="c-h">
+      <h2 id="c-h" class="text-xl font-semibold text-atlas">Find a commune</h2>
+      <label class="mt-3 block max-w-md text-[0.85rem]"><span class="sr-only">Search communes</span>
+        <input id="c-search" type="search" placeholder="Commune name (French or Arabic) or ONS code…" class="w-full rounded-md border border-[#b9c7d1] px-3 py-2" /></label>
+      <ul id="c-results" class="mt-3 grid gap-1 text-[0.9rem] sm:grid-cols-2 lg:grid-cols-3"></ul>
+      <script type="application/json" id="c-index" set:html={JSON.stringify(communes.map((c) => [c.code, c.name, c.name_ar, c.wilaya_code, c.wilaya_name]))} />
+    </section>
+  </div>
+</Base>
+
+<script>
+  const f = document.getElementById('w-filter') as HTMLInputElement;
+  f.addEventListener('input', () => {
+    const q = f.value.trim().toLowerCase();
+    document.querySelectorAll<HTMLTableRowElement>('#w-body tr').forEach((tr) => { tr.hidden = !!q && !tr.dataset.filter!.includes(q); });
+  });
+  const idx: [string, string, string | null, string, string][] = JSON.parse(document.getElementById('c-index')!.textContent!);
+  const s = document.getElementById('c-search') as HTMLInputElement;
+  const out = document.getElementById('c-results')!;
+  const esc = (v: unknown) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  s.addEventListener('input', () => {
+    const q = s.value.trim().toLowerCase();
+    if (q.length < 2) { out.innerHTML = ''; return; }
+    const hits = idx.filter(([code, n, ar]) => code.startsWith(q) || n.toLowerCase().includes(q) || (ar ?? '').includes(q)).slice(0, 30);
+    out.innerHTML = hits.length ? hits.map(([code, n, ar, w, wn]) => `<li><a href="${['', 'regions', w, code, ''].join('/')}">${esc(n)}</a> <span class="text-slate text-[0.8rem]">${code} · ${esc(wn)}${ar ? ` · <span lang="ar">${esc(ar)}</span>` : ''}</span></li>`).join('') : '<li class="text-slate">No commune found.</li>';
+  });
+</script>

@@ -4,11 +4,11 @@
  * without JavaScript. Within a facet, options combine with OR; across facets
  * with AND. State is mirrored in the URL query string for shareable links.
  */
-const FACETS = ['domain', 'status', 'access', 'nature', 'res', 'period', 'coverage', 'format', 'provider'] as const;
+const FACETS = ['kind', 'domain', 'status', 'access', 'nature', 'res', 'period', 'coverage', 'format', 'provider'] as const;
 type Facet = (typeof FACETS)[number];
 // Attribute on each card holding the facet value(s); multi-valued ones are "|"-separated.
 const ATTR: Record<Facet, string> = {
-  domain: 'domain', status: 'status', access: 'access', nature: 'nature', res: 'res',
+  kind: 'kind', domain: 'domain', status: 'status', access: 'access', nature: 'nature', res: 'res',
   period: 'period', coverage: 'coverage', format: 'format', provider: 'provider',
 };
 const MULTI: Facet[] = ['domain', 'period', 'format'];

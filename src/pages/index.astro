@@ -2,208 +2,213 @@
 import Base from '../layouts/Base.astro';
 import DatasetCard from '../components/DatasetCard.astro';
 import { getDatasets } from '../lib/catalog';
-import { THEMATIC_DOMAINS } from '../lib/domains';
-import { fmtDate } from '../lib/format';
+import { fmtDate, STATUS } from '../lib/format';
 import { SITE } from '../config/site';
+import { loadRegions, fmtNum, fmtSigned, BOUNDARY_VERSION } from '../lib/regions-data';
+import manifest from '../../public/data/aeo/products/precipitation/v1.0.0/manifest.json';
+import mapMeta from '../../public/data/aeo/products/precipitation/v1.0.0/map/map.json';
 
 const all = await getDatasets();
-const published = all.filter((d) => d.status !== 'in-preparation');
-const featured = published.filter((d) => d.featured).slice(0, 6);
-const latest = [...published]
-  .sort((a, b) => (b.added_date ?? b.verification.checked).localeCompare(a.added_date ?? a.verification.checked) || a.title.localeCompare(b.title))
-  .slice(0, 5);
-const nByDomain = (id: string) => published.filter((d) => d.domain.includes(id as never)).length;
+const products = all.filter((d) => d.origin !== 'external' && d.status !== 'in-preparation');
+const planned = all.filter((d) => d.status === 'in-preparation');
+const sources = all.filter((d) => d.origin === 'external' && d.featured).slice(0, 3);
+const { national, wilayas, communes } = loadRegions();
+const lastYear = manifest.temporal_coverage.annual[1];
+const lastMonth = manifest.temporal_coverage.monthly[1];
+const wettest = [...wilayas].filter((w) => w.precip?.normal != null).sort((a, b) => b.precip!.normal! - a.precip!.normal!)[0];
+const driest = [...wilayas].filter((w) => w.precip?.normal != null).sort((a, b) => a.precip!.normal! - b.precip!.normal!)[0];
+const nDrierLast = wilayas.filter((w) => (w.precip?.last.anomaly_pct ?? 0) < 0).length;
+const mapData = wilayas.map((w) => [w.code, w.name, w.precip?.normal ?? null, w.precip?.last.anomaly_pct ?? null]);
+const monthName = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'DataCatalog',
-  name: SITE.name,
-  url: SITE.url,
-  description: SITE.description,
-  inLanguage: 'en',
-};
-
-const icons: Record<string, string> = {
-  agriculture: 'M4 20h16M7 20c0-5 2-9 5-12M12 8c3 3 5 7 5 12M12 8V3M9 5l3 3 3-3',
-  'climate-drought': 'M7 15a4 4 0 1 1 1-7.9A5 5 0 0 1 18 9a3 3 0 0 1-1 5.8M9 18l-1 2M13 18l-1 2M17 17l-1 2',
-  water: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11ZM9 15a3 3 0 0 0 3 3',
-  'land-ecosystems': 'M3 19l6-9 4 6 3-4 5 7H3ZM16 6a2 2 0 1 0 0-.01',
-  hazards: 'M12 3l9 16H3L12 3ZM12 10v4M12 17h.01',
-  'human-change': 'M4 20V10l5-3v13M9 20V5l6 3v12M15 20v-8l5 2v6M3 20h18',
-};
+const jsonLd = { '@context': 'https://schema.org', '@type': 'DataCatalog', name: SITE.name, url: SITE.url, description: SITE.description, inLanguage: 'en' };
+const analyses = [
+  { t: 'Sétif — annual precipitation since 1981', d: 'Time series, anomalies and trend for a high-plateau cereal wilaya.', h: `/analyze/?level=admin1&unit=19&agg=year` },
+  { t: 'Agricultural year (Sep–Aug) in Tiaret', d: 'Totals over the cereal season instead of the calendar year.', h: `/analyze/?level=admin1&unit=14&agg=hydro` },
+  { t: 'Compare Tlemcen, Oran and Alger', d: 'Three coastal and Tell wilayas on one chart.', h: `/analyze/?level=admin1&unit=13&compare=31,16&agg=year` },
+  { t: 'Winter rainfall in the commune of Djelfa', d: 'December–February totals for a steppe commune.', h: `/analyze/?level=admin2&unit=1701&agg=DJF` },
+];
 ---
-<Base description="Discover, explore and access documented Earth observation and environmental data across Algeria — agriculture, climate and drought, water, land, hazards." jsonLd={jsonLd}>
-  <!-- 1. Hero -->
-  <section class="relative overflow-hidden bg-atlas text-white">
-    <div class="container-aeo grid items-center gap-10 py-14 lg:grid-cols-[1.05fr_1fr] lg:py-20">
+<Base description="Environmental data and intelligence for Algeria: explore, analyse and download Algeria-ready Earth observation and environmental data at national, wilaya and commune levels." jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="bg-atlas text-white">
+    <div class="container-aeo grid items-center gap-10 py-12 lg:grid-cols-[1fr_1.1fr] lg:py-16">
       <div>
         <p class="font-mono text-xs uppercase tracking-[0.16em] text-sand">Open scientific initiative · {SITE.phase.toLowerCase()}</p>
         <h1 class="mt-4 text-[2.35rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl">Algeria Earth Observatory</h1>
-        <p class="mt-3 text-xl font-medium text-[#9fd3d5] sm:text-2xl">Open Earth Data for Algeria</p>
-        <p class="mt-6 max-w-xl text-[1.05rem] leading-relaxed text-[#d4dfe7]">
-          Discover, explore, and download environmental and Earth observation data across Algeria. An open scientific platform
-          connecting satellite observations, climate information, agricultural landscapes, and research communities.
+        <p class="mt-3 text-xl font-medium text-[#9fd3d5] sm:text-2xl">Environmental data and intelligence for Algeria.</p>
+        <p class="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-[#d4dfe7]">
+          Explore, analyze, and download Algeria-ready Earth observation and environmental data at national, wilaya, and commune levels.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/data/" class="btn btn-primary !bg-white !text-atlas hover:!bg-[#e8f1fa]">Explore Data</a>
-          <a href="/map/" class="btn btn-on-dark">Open Map</a>
+          <a href="/map/" class="btn btn-primary !bg-white !text-atlas hover:!bg-[#e8f1fa]">Explore Map</a>
+          <a href="/data/" class="btn btn-on-dark">Browse Data</a>
+          <a href="/analyze/" class="btn btn-on-dark">Analyze a Wilaya</a>
         </div>
-        <p class="mt-5 text-sm"><a href="/contribute/" class="text-[#9fd3d5] underline-offset-4 hover:text-white">Contribute data or expertise →</a></p>
       </div>
-      <figure class="relative">
-        <picture>
-          <source type="image/webp" srcset="/images/hero/algeria-bluemarble-960.webp 960w, /images/hero/algeria-bluemarble-1600.webp 1600w" sizes="(min-width: 1024px) 560px, 100vw" />
-          <img src="/images/hero/algeria-bluemarble-960.jpg" width="960" height="876" fetchpriority="high"
-            alt="Satellite composite of Algeria with its 69 wilaya boundaries; the green Tell and Atlas in the north give way to the Sahara, its ergs and the Hoggar and Tassili massifs in the south."
-            class="w-full rounded-md ring-1 ring-white/10" />
-        </picture>
-        <figcaption class="mt-2 font-mono text-[0.68rem] leading-snug text-[#9fb4c3]">
-          NASA Blue Marble: Next Generation (MODIS composite) with shaded relief via NASA GIBS · wilaya boundaries © OpenStreetMap contributors (AEO snapshot 2026-11-19) · Web Mercator
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 2. Domains -->
-  <section class="container-aeo py-16 sm:py-20" aria-labelledby="domains-h">
-    <div class="max-w-2xl">
-      <p class="eyebrow">Explore by domain</p>
-      <h2 id="domains-h" class="mt-2 text-3xl font-semibold">Six interconnected data domains</h2>
-      <p class="mt-3 text-slate">Agriculture is the first priority: Algeria’s dryland farming systems, where telling active cultivation from fallow and non-agricultural land is a central scientific challenge.</p>
-    </div>
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {THEMATIC_DOMAINS.map((d) => (
-        <a href={`/data/?domain=${d.id}`} class="card group flex flex-col p-6 no-underline transition-colors hover:border-signal">
-          <div class="flex items-center justify-between">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#008C91" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icons[d.id]} /></svg>
-            {d.priority && <span class:list={['rounded px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-wider', d.priority === 'initial priority' ? 'bg-[#e3f4ee] text-[#0b5d45]' : 'bg-paper text-slate']}>{d.priority}</span>}
+      <div>
+        <div class="relative aspect-[4/3.4] overflow-hidden rounded-md bg-[#dfe7ec] ring-1 ring-white/15">
+          <div class="absolute inset-0"><div id="home-map" class="h-full w-full" role="region" aria-label="Interactive map of precipitation by wilaya"></div></div>
+          <div class="absolute left-2 top-2 z-10 flex rounded-md bg-white/95 p-0.5 text-[0.78rem] text-atlas shadow-sm" role="radiogroup" aria-label="Indicator">
+            <label class="cursor-pointer rounded px-2 py-1 has-[:checked]:bg-atlas has-[:checked]:text-white"><input type="radio" name="home-ind" value="normal" class="sr-only" checked />Normal 1991–2020</label>
+            <label class="cursor-pointer rounded px-2 py-1 has-[:checked]:bg-atlas has-[:checked]:text-white"><input type="radio" name="home-ind" value="anom" class="sr-only" />{lastYear} anomaly</label>
           </div>
-          <h3 class="mt-4 text-lg font-semibold group-hover:text-signal">{d.title}</h3>
-          <p class="mt-2 text-[0.92rem] leading-relaxed text-slate">{d.summary}</p>
-          <p class="meta mt-auto pt-4">{nByDomain(d.id)} documented {nByDomain(d.id) === 1 ? 'record' : 'records'} →</p>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <!-- 3. Featured datasets -->
-  <section class="border-y border-line bg-paper py-16 sm:py-20" aria-labelledby="featured-h">
-    <div class="container-aeo">
-      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div class="max-w-2xl">
-          <p class="eyebrow">Featured datasets</p>
-          <h2 id="featured-h" class="mt-2 text-3xl font-semibold">Documented sources, honest access</h2>
-          <p class="mt-3 text-slate">Each record states who produced the data, under which licence, at what resolution and period — and whether you download from AEO or from the original provider.</p>
         </div>
-        <a href="/data/" class="btn btn-secondary shrink-0">Browse the full catalog</a>
-      </div>
-      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {featured.map((d) => <DatasetCard d={d} compact />)}
+        <div id="home-legend" class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.72rem] text-[#c3d1db]"></div>
+        <p class="mt-1 font-mono text-[0.68rem] leading-snug text-[#9fb4c3]">Annual precipitation by wilaya, AEO product v{manifest.version} from CHIRPS v3.0 · boundaries © OpenStreetMap contributors (AEO {BOUNDARY_VERSION}) · click a wilaya for its profile</p>
+        <script type="application/json" id="home-data" set:html={JSON.stringify({ units: mapData, meta: mapMeta })} />
       </div>
     </div>
   </section>
 
-  <!-- 4. Explore Algeria -->
-  <section class="container-aeo py-16 sm:py-20" aria-labelledby="explore-h">
-    <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-center">
+  <!-- Indicators computed from the product -->
+  {national && (
+    <section class="border-b border-line bg-white" aria-labelledby="ind-h">
+      <div class="container-aeo py-10">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="ind-h" class="text-xl font-semibold text-atlas">Precipitation indicators, computed from the data</h2>
+          <a href="/data/aeo-dza-precipitation-chirps3/" class="text-[0.9rem]">Source product and method →</a>
+        </div>
+        <dl class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">Algeria, mean annual precipitation 1991–2020</dt><dd class="mt-1 text-2xl font-semibold text-atlas">{fmtNum(national.normal)} mm</dd><dd class="text-[0.8rem] text-slate">area-weighted over the whole country</dd></div>
+          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">Algeria, {lastYear}</dt><dd class="mt-1 text-2xl font-semibold text-atlas">{fmtSigned(national.last.anomaly_pct)} %</dd><dd class="text-[0.8rem] text-slate">vs 1991–2020 · {nDrierLast} of {wilayas.length} wilayas below normal</dd></div>
+          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">Wettest / driest wilaya (normal)</dt><dd class="mt-1 text-lg font-semibold text-atlas">{wettest?.name} {fmtNum(wettest?.precip?.normal)} mm</dd><dd class="text-[0.9rem] text-graphite">{driest?.name} {fmtNum(driest?.precip?.normal)} mm</dd></div>
+          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">National trend {national.trend.period}</dt><dd class="mt-1 text-2xl font-semibold text-atlas">{fmtSigned(national.trend.slope_mm_per_decade, 1)} mm/decade</dd><dd class="text-[0.8rem] text-slate">Theil–Sen; Mann–Kendall p = {national.trend.mk_p?.toFixed(2)} ({national.trend.mk_p != null && national.trend.mk_p < 0.05 ? 'significant' : 'not significant'} at 5 %)</dd></div>
+        </dl>
+        <p class="mt-3 text-[0.8rem] text-slate">Satellite–gauge estimates (CHIRPS v3.0). Gauge density is low in the Sahara, and national means are dominated by the large, dry south. See the <a href="/docs/method-precipitation/">method and limitations</a>.</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Algeria-ready products -->
+  <section class="container-aeo py-14" aria-labelledby="prod-h">
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Algeria-ready data</p>
+        <h2 id="prod-h" class="mt-2 text-3xl font-semibold">Prepared for Algeria, ready to download</h2>
+        <p class="mt-3 text-slate">Processed by AEO from documented sources, clipped and aggregated to Algeria's administrative units, with checksums, provenance and code.</p>
+      </div>
+      <a href="/data/" class="btn btn-secondary shrink-0">All data</a>
+    </div>
+    <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {products.map((d) => <DatasetCard d={d} compact />)}
+    </div>
+    <p class="mt-4 text-[0.9rem] text-slate">{planned.length} further Algeria products are <a href="/products/">planned</a> ({STATUS['in-preparation'].label.toLowerCase()}, no data released yet). The catalog also documents {all.filter((d) => d.origin === 'external').length} upstream source datasets.</p>
+  </section>
+
+  <!-- Featured analyses + coverage -->
+  <section class="border-y border-line bg-paper py-14" aria-labelledby="an-h">
+    <div class="container-aeo grid gap-10 lg:grid-cols-[1.4fr_1fr]">
       <div>
-        <p class="eyebrow">Explore Algeria</p>
-        <h2 id="explore-h" class="mt-2 text-3xl font-semibold">A map built as a scientific instrument</h2>
-        <p class="mt-3 text-slate">Navigate all 69 wilayas, then add cropland by year, land cover, vegetation, precipitation, land surface temperature, soil moisture, surface water or dust layers — each linked to its catalog record, citation and limitations.</p>
-        <ul class="mt-5 space-y-2 text-[0.95rem]">
-          <li class="flex gap-2"><span class="text-teal" aria-hidden="true">■</span> Time-enabled layers with date stepping</li>
-          <li class="flex gap-2"><span class="text-teal" aria-hidden="true">■</span> Click a wilaya to inspect its code, names and source</li>
-          <li class="flex gap-2"><span class="text-teal" aria-hidden="true">■</span> Legends and attribution for every layer</li>
+        <p class="eyebrow">Featured analyses</p>
+        <h2 id="an-h" class="mt-2 text-2xl font-semibold">Start from a question</h2>
+        <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+          {analyses.map((a) => (
+            <li class="card p-4"><a href={a.h} class="font-semibold">{a.t}</a><p class="mt-1 text-[0.88rem] text-slate">{a.d}</p></li>
+          ))}
         </ul>
-        <a href="/map/" class="btn btn-primary mt-7">Open the map explorer</a>
       </div>
       <div>
-        <div class="relative aspect-[4/3] overflow-hidden rounded-md border border-line bg-[#dfe7ec]">
-          <div class="absolute inset-0"><div id="home-map" class="h-full w-full" role="region" aria-label="Interactive preview map of Algeria’s wilayas"></div></div>
-          <button id="home-map-load" type="button" class="absolute inset-0 grid place-items-center bg-[#dfe7ec] text-atlas">
-            <span class="btn btn-secondary">Load interactive map</span>
-          </button>
-        </div>
-        <p class="meta mt-2">Wilaya boundaries: OpenStreetMap snapshot 2026-11-19 (ODbL), simplified for display. Basemap: OpenFreeMap / OpenStreetMap.</p>
+        <p class="eyebrow">Geographic coverage</p>
+        <h2 class="mt-2 text-2xl font-semibold">Country, wilaya, commune</h2>
+        <dl class="mt-5 grid grid-cols-3 gap-3 text-center">
+          <div class="card p-3"><dt class="text-[0.78rem] text-slate">Country</dt><dd class="text-2xl font-semibold text-atlas">1</dd></div>
+          <div class="card p-3"><dt class="text-[0.78rem] text-slate">Wilayas</dt><dd class="text-2xl font-semibold text-atlas">{wilayas.length}</dd></div>
+          <div class="card p-3"><dt class="text-[0.78rem] text-slate">Communes</dt><dd class="text-2xl font-semibold text-atlas">{communes.length.toLocaleString('en-US')}</dd></div>
+        </dl>
+        <p class="mt-3 text-[0.88rem] text-slate">Administrative division of Loi n° 26-06 (4 April 2026). Boundaries from OpenStreetMap (AEO version {BOUNDARY_VERSION}), checked against the commune lists of the law. <a href="/regions/">Browse regions →</a></p>
       </div>
     </div>
   </section>
 
-  <!-- 5. Open science -->
-  <section class="bg-atlas-900 py-16 text-white sm:py-20" aria-labelledby="open-h">
-    <div class="container-aeo">
-      <p class="font-mono text-xs uppercase tracking-[0.14em] text-sand">Built for open science</p>
-      <h2 id="open-h" class="mt-2 max-w-2xl text-3xl font-semibold text-white">From discovery to citation, every step documented</h2>
-      <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          ['Find data', 'Search by domain, source, resolution, period, format and access type.', '/data/'],
-          ['Examine methods', 'Read processing, validation status and scientific limitations before use.', '/docs/'],
-          ['Download and reuse', 'Direct, checksummed downloads or verified links to the original source, with licence terms.', '/docs/data-access/'],
-          ['Contribute knowledge', 'Propose datasets, correct metadata, write guides or review records.', '/contribute/'],
-        ].map(([t, b, h], i) => (
-          <li class="border-t border-white/20 pt-5">
-            <span class="font-mono text-sm text-[#9fd3d5]">0{i + 1}</span>
-            <h3 class="mt-2 text-lg font-semibold text-white"><a href={h} class="text-white no-underline hover:underline">{t}</a></h3>
-            <p class="mt-2 text-[0.92rem] leading-relaxed text-[#c3d1db]">{b}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- 6. Collaborative initiative + latest additions -->
-  <section class="container-aeo grid gap-12 py-16 sm:py-20 lg:grid-cols-2" aria-label="Participation and latest additions">
+  <!-- Updates + methodology -->
+  <section class="container-aeo grid gap-10 py-14 lg:grid-cols-2" aria-label="Latest updates and methodology">
     <div>
-      <p class="eyebrow">A collaborative initiative</p>
-      <h2 class="mt-2 text-3xl font-semibold">Open to researchers, students and practitioners</h2>
-      <p class="mt-4 leading-relaxed text-slate">
-        AEO is an independent initiative in its initial development phase. Contributions are proposed openly on GitHub, reviewed for
-        scientific documentation, licence compatibility and technical quality, and credited. You do not need to program to take part:
-        dataset suggestions, metadata corrections and reviews are submitted through simple forms.
-      </p>
-      <div class="mt-7 flex flex-wrap gap-3">
-        <a href="/contribute/" class="btn btn-primary">How to contribute</a>
-        <a href="/about/" class="btn btn-secondary">About the Observatory</a>
-      </div>
-    </div>
-    <div>
-      <p class="eyebrow">Latest verified additions</p>
-      <ul class="mt-4 divide-y divide-line border-y border-line">
-        {latest.map((d) => (
-          <li class="flex items-baseline justify-between gap-4 py-3">
-            <a href={`/data/${d.id}/`} class="font-medium no-underline hover:underline">{d.title}</a>
-            <span class="meta shrink-0">{fmtDate(d.added_date ?? d.verification.checked)}</span>
-          </li>
-        ))}
+      <p class="eyebrow">Latest data updates</p>
+      <ul class="mt-4 divide-y divide-line border-y border-line text-[0.95rem]">
+        <li class="flex items-baseline justify-between gap-4 py-3"><a href="/data/aeo-dza-precipitation-chirps3/">Precipitation: monthly data through {monthName(lastMonth)}</a><span class="meta shrink-0">v{manifest.version} · {fmtDate(manifest.created)}</span></li>
+        <li class="flex items-baseline justify-between gap-4 py-3"><a href="/data/aeo-dza-admin-boundaries/">Boundaries: {communes.length.toLocaleString('en-US')} communes nested in {wilayas.length} wilayas</a><span class="meta shrink-0">{fmtDate(BOUNDARY_VERSION)}</span></li>
+        <li class="flex items-baseline justify-between gap-4 py-3"><a href="/map/?layers=gaced30-cropland">Map: GACED30 cropland year slider, 2000–2024</a><span class="meta shrink-0">{fmtDate('2026-11-20')}</span></li>
+        <li class="flex items-baseline justify-between gap-4 py-3"><a href="/map/?layers=worldcover-2021">Map: ESA WorldCover 2020 and 2021</a><span class="meta shrink-0">{fmtDate('2026-11-20')}</span></li>
       </ul>
-      <p class="mt-3 text-sm text-slate">Dates are when the record was added or last verified by AEO.</p>
+      <p class="mt-2 text-[0.8rem] text-slate">Full history: <a href={`${SITE.github.repoUrl}/blob/main/CHANGELOG.md`}>CHANGELOG</a>.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Scientific methodology</p>
+      <h2 class="mt-2 text-2xl font-semibold">Every number can be traced</h2>
+      <p class="mt-3 text-slate">Each product follows the same pipeline: source retrieval → Algeria subset → quality control → indicator computation → aggregation to administrative units → export with metadata and checksums. The code runs from the repository; automated tests check coverage, units, aggregation and file integrity.</p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href="/docs/method-precipitation/" class="btn btn-secondary">Precipitation method</a>
+        <a href="/docs/" class="btn btn-secondary">All methods</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contribute + sources -->
+  <section class="bg-atlas-900 py-14 text-white" aria-labelledby="open-h">
+    <div class="container-aeo grid gap-10 lg:grid-cols-[1fr_1.2fr]">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-sand">Open source, open data</p>
+        <h2 id="open-h" class="mt-2 text-2xl font-semibold text-white">Contribute data, code or expertise</h2>
+        <p class="mt-3 text-[#c3d1db]">Propose Algeria datasets, validation data, processing scripts or corrections through GitHub. Every product needs provenance, a compatible licence and documented methods before it is published.</p>
+        <div class="mt-6 flex flex-wrap gap-3"><a href="/contribute/" class="btn btn-on-dark">How to contribute</a><a href="/about/" class="btn btn-on-dark">About AEO</a></div>
+      </div>
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-sand">Upstream sources</p>
+        <ul class="mt-3 space-y-2 text-[0.95rem]">
+          {sources.map((d) => <li><a href={`/data/${d.id}/`} class="text-white">{d.title}</a> <span class="text-[0.8rem] text-[#9fb4c3]">· {d.provider?.name?.split('(')[0]}</span></li>)}
+        </ul>
+        <p class="mt-3 text-[0.85rem] text-[#9fb4c3]">Global datasets are documented as sources; AEO publishes Algeria-ready derivatives from them.</p>
+      </div>
     </div>
   </section>
 </Base>
 
 <script>
-  const btn = document.getElementById('home-map-load');
-  const box = document.getElementById('home-map');
-  let started = false;
-  async function start() {
-    if (started || !box) return;
-    started = true;
-    btn?.remove();
-    const core = await import('../scripts/map-core');
-    const state = { basemap: 'light' as const, layers: Object.fromEntries(core.MAP_LAYERS.map((l) => [l.id, { on: l.id === 'wilayas', opacity: l.opacity, time: null }])) };
-    const map = core.createMap(box, await core.buildStyle(state), { cooperativeGestures: true });
-    map.addControl(new core.maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-    const popup = new core.maplibregl.Popup({ maxWidth: '280px' });
-    map.on('click', 'aeo-wilayas-fill', (e) => {
-      const f = e.features?.[0];
-      if (f) popup.setLngLat(e.lngLat).setHTML(core.wilayaPopupHtml(f.properties ?? {})).addTo(map);
+  import maplibregl from 'maplibre-gl';
+  import 'maplibre-gl/dist/maplibre-gl.css';
+  const box = document.getElementById('home-map')!;
+  const { units, meta } = JSON.parse(document.getElementById('home-data')!.textContent!);
+  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const color = (v: number | null, breaks: number[], colors: string[]) => {
+    if (v === null) return '#d9dee2';
+    let i = 0; while (i < breaks.length && v >= breaks[i]) i++;
+    return colors[i];
+  };
+  const expr = (mode: string) => {
+    const e: unknown[] = ['match', ['get', 'wilaya_code']];
+    for (const [code, , normal, anom] of units) e.push(code, mode === 'normal' ? color(normal, meta.annual.breaks, meta.annual.colors) : color(anom, meta.anomaly.breaks, meta.anomaly.colors));
+    e.push('#d9dee2');
+    return e;
+  };
+  const legend = (mode: string) => {
+    const m = mode === 'normal' ? { ...meta.annual, unit: 'mm/year' } : { ...meta.anomaly, unit: '% of normal' };
+    document.getElementById('home-legend')!.innerHTML = `<span>${m.unit}:</span>` + m.colors.map((c: string, i: number) => {
+      const lo = i ? m.breaks[i - 1] : null, hi = i < m.breaks.length ? m.breaks[i] : null;
+      return `<span class="flex items-center gap-1"><span class="inline-block h-2.5 w-3.5 rounded-sm" style="background:${c}"></span>${lo === null ? `< ${hi}` : hi === null ? `≥ ${lo}` : `${lo}–${hi}`}</span>`;
+    }).join('');
+  };
+  const map = new maplibregl.Map({ container: box, style: 'https://tiles.openfreemap.org/styles/positron', bounds: [-8.7, 18.9, 12.0, 37.2], fitBoundsOptions: { padding: 12 }, attributionControl: { compact: true }, cooperativeGestures: true });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  map.on('load', async () => {
+    const data = await (await fetch('/data/aeo/boundaries/2026-11-20/dza_adm1_wilayas_display.geojson')).json();
+    const before = map.getStyle().layers.find((l) => l.type === 'symbol')?.id;
+    map.addSource('w', { type: 'geojson', data });
+    map.addLayer({ id: 'w-fill', type: 'fill', source: 'w', paint: { 'fill-color': expr('normal') as any, 'fill-opacity': 0.88 } }, before);
+    map.addLayer({ id: 'w-line', type: 'line', source: 'w', paint: { 'line-color': '#ffffff', 'line-width': 0.7 } }, before);
+    legend('normal');
+    const pop = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
+    map.on('mousemove', 'w-fill', (e) => {
+      const code = e.features?.[0]?.properties?.wilaya_code;
+      const u = units.find((x: unknown[]) => x[0] === code);
+      if (!u) return;
+      map.getCanvas().style.cursor = 'pointer';
+      pop.setLngLat(e.lngLat).setHTML(`<strong>${esc(u[1])}</strong><br>Normal ${u[2] === null ? '—' : Math.round(u[2])} mm/year · last year ${u[3] === null ? '—' : `${u[3] > 0 ? '+' : ''}${u[3].toFixed(0)} %`}`).addTo(map);
     });
-    map.on('mouseenter', 'aeo-wilayas-fill', () => (map.getCanvas().style.cursor = 'pointer'));
-    map.on('mouseleave', 'aeo-wilayas-fill', () => (map.getCanvas().style.cursor = ''));
-  }
-  btn?.addEventListener('click', start);
-  if (box && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); start(); } }, { rootMargin: '200px' });
-    io.observe(box);
-  }
+    map.on('mouseleave', 'w-fill', () => { map.getCanvas().style.cursor = ''; pop.remove(); });
+    map.on('click', 'w-fill', (e) => { const c = e.features?.[0]?.properties?.wilaya_code; if (c) location.href = `/regions/${c}/`; });
+    document.querySelectorAll<HTMLInputElement>('input[name="home-ind"]').forEach((r) => r.addEventListener('change', () => {
+      map.setPaintProperty('w-fill', 'fill-color', expr(r.value) as any); legend(r.value);
+    }));
+  });
 </script>

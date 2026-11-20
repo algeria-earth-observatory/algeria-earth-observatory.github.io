@@ -1,0 +1,50 @@
+---
+import type { PrecipStats } from '../lib/regions-data';
+import { fmtNum, fmtSigned, trendText } from '../lib/regions-data';
+interface Props { stats: PrecipStats | null; areaLabel: string; analyzeHref: string; level: 'admin0' | 'admin1' | 'admin2' }
+const { stats, areaLabel, analyzeHref, level } = Astro.props;
+const payload = stats ? JSON.stringify({ years: stats.years, values: stats.annual, normal: stats.normal, label: areaLabel }) : '';
+---
+<section aria-labelledby="precip-h" class="rounded-md border border-line bg-white p-5">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 id="precip-h" class="text-lg font-semibold text-atlas">Precipitation</h2>
+    <p class="meta">AEO product · CHIRPS v3.0 · area-weighted mean</p>
+  </div>
+  {stats ? (
+    <>
+      {level === 'admin2' && (
+        <p class="mt-3 rounded-md border border-[#e9d8b4] bg-[#fbf6ea] px-3 py-2 text-[0.85rem] text-[#5f4716]">
+          {stats.support === 'adequate'
+            ? `Average of the ${stats.effective_cells.toFixed(1)} CHIRPS cells (≈5.5 km) covering the commune — a description of the commune area, not a local measurement.`
+            : `Limited spatial support: the commune covers ${stats.effective_cells.toFixed(2)} CHIRPS cell(s) of ≈5.5 km, so values mostly reflect the surrounding area.`}
+        </p>
+      )}
+      <dl class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div><dt class="text-[0.75rem] text-slate">Normal 1991–2020</dt><dd class="text-[1.15rem] font-semibold text-atlas">{fmtNum(stats.normal)} mm/year</dd></div>
+        <div><dt class="text-[0.75rem] text-slate">{stats.last.year}</dt><dd class="text-[1.15rem] font-semibold text-atlas">{fmtNum(stats.last.value)} mm</dd><dd class="text-[0.75rem] text-slate">{fmtSigned(stats.last.anomaly_pct)} % vs normal</dd></div>
+        <div><dt class="text-[0.75rem] text-slate">Driest year</dt><dd class="text-[1.15rem] font-semibold text-atlas">{stats.driest ? `${stats.driest[0]}` : '—'}</dd><dd class="text-[0.75rem] text-slate">{stats.driest ? `${fmtNum(stats.driest[1])} mm` : ''}</dd></div>
+        <div><dt class="text-[0.75rem] text-slate">Wettest year</dt><dd class="text-[1.15rem] font-semibold text-atlas">{stats.wettest ? `${stats.wettest[0]}` : '—'}</dd><dd class="text-[0.75rem] text-slate">{stats.wettest ? `${fmtNum(stats.wettest[1])} mm` : ''}</dd></div>
+      </dl>
+      <div class="mt-4" data-precip-chart={payload}></div>
+      <p class="mt-2 text-[0.88rem] text-graphite"><strong class="text-atlas">Trend {stats.trend.period}:</strong> {trendText(stats.trend)}. Theil–Sen slope, Mann–Kendall test.</p>
+      <p class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[0.9rem]">
+        <a href={analyzeHref}>Analyse seasons, anomalies and comparisons →</a>
+        <a href="/docs/method-precipitation/">Method</a>
+      </p>
+    </>
+  ) : (
+    <p class="mt-3 text-slate">Precipitation statistics are not available in this build.</p>
+  )}
+</section>
+
+<script>
+  import { lineChart } from '../lib/charts';
+  document.querySelectorAll<HTMLElement>('[data-precip-chart]').forEach((el) => {
+    const raw = el.dataset.precipChart;
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    lineChart(el, [{ name: 'Annual precipitation', keys: d.years, values: d.values }],
+      { yLabel: 'mm', reference: d.normal !== null ? { value: d.normal, label: `1991–2020 normal` } : null },
+      `Annual precipitation, ${d.label}`);
+  });
+</script>

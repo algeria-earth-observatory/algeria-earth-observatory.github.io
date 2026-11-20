@@ -1,0 +1,1542 @@
+commune_code,name,name_ar,name_en,wilaya_code,wilaya_name,wilaya_name_ar,wilaya_code_1984,area_km2,osm_relation,wikidata,wilaya_assignment_share,source,snapshot
+0101,Adrar,أدرار,Adrar,01,Adrar,أدرار,01,708.88,4171602,Q251181,1.0,OpenStreetMap,2026-11-20
+0102,Tamest,تامست,Tamast,01,Adrar,أدرار,01,6824.51,4171622,Q2701549,1.0,OpenStreetMap,2026-11-20
+0103,Charouine,شروين,Charouine,49,Timimoune,تيميمون,01,2875.87,4171610,Q2642041,1.0,OpenStreetMap,2026-11-20
+0104,Reggane,رقان,Reggane,01,Adrar,أدرار,01,124775.44,4171617,Q582905,1.0,OpenStreetMap,2026-11-20
+0105,In Zghmir,إن زغمير,In Zghmir,01,Adrar,أدرار,01,5412.34,4171611,Q672105,1.0,OpenStreetMap,2026-11-20
+0106,Tit,تيط,Tit,01,Adrar,أدرار,01,1639.48,4171626,Q3529471,1.0,OpenStreetMap,2026-11-20
+0107,Ksar Kaddour,قصر قدور,Ksar Kaddour,49,Timimoune,تيميمون,01,8079.77,4171612,Q2702132,1.0,OpenStreetMap,2026-11-20
+0108,Tsabit,تسابيت,Tsabit,01,Adrar,أدرار,01,14568.88,4171627,Q2701217,1.0,OpenStreetMap,2026-11-20
+0109,Timimoun,تيميمون,Timimoun,49,Timimoune,تيميمون,01,9757.29,4171624,Q1021173,1.0,OpenStreetMap,2026-11-20
+0110,Ouled Saïd,أولاد السعيد,Ouled Said,49,Timimoune,تيميمون,01,656.59,4171616,Q2642053,1.0,OpenStreetMap,2026-11-20
+0111,Zaouiet Kounta,زاوية كنتة,Zaouiet Kounta,01,Adrar,أدرار,01,9057.79,4171629,Q2702097,1.0,OpenStreetMap,2026-11-20
+0112,Aoulef,اولف,Aoulef,01,Adrar,أدرار,01,3053.01,4171605,Q602548,1.0,OpenStreetMap,2026-11-20
+0113,Timokten,تمقطن,Timokten,01,Adrar,أدرار,01,18284.34,4171628,Q2704101,1.0,OpenStreetMap,2026-11-20
+0114,Tamentit,تامنطيت,Tamantit,01,Adrar,أدرار,01,6994.88,4171621,Q2701585,1.0,OpenStreetMap,2026-11-20
+0115,Fenoughil,فنوغيل,Fenoughil,01,Adrar,أدرار,01,7582.33,4171609,Q2701570,1.0,OpenStreetMap,2026-11-20
+0116,Tinerkouk,تنيركوك,Tinerkouk,49,Timimoune,تيميمون,01,20136.01,4171625,Q777457,1.0,OpenStreetMap,2026-11-20
+0117,Deldoul,دلدول,Deldoul,49,Timimoune,تيميمون,01,1204.83,4171608,Q2757182,1.0,OpenStreetMap,2026-11-20
+0118,Sali,سالي,Sali,01,Adrar,أدرار,01,17511.05,4171618,Q2757170,1.0,OpenStreetMap,2026-11-20
+0119,Akabli,أقبلي,Akabli,01,Adrar,أدرار,01,1657.38,4171603,Q2353819,1.0,OpenStreetMap,2026-11-20
+0120,Metarfa,المطارفة,Metarfa,49,Timimoune,تيميمون,01,1420.89,4171613,Q2215260,1.0,OpenStreetMap,2026-11-20
+0121,Ouled Ahmed Tammi,أولاد أحمد تيمي,Ouled Ahmed Tammi,01,Adrar,أدرار,01,4787.32,4171614,Q2701208,1.0,OpenStreetMap,2026-11-20
+0122,Bouda,بودة,Bouda,01,Adrar,أدرار,01,4257.02,4171607,Q2704152,1.0,OpenStreetMap,2026-11-20
+0123,Aougrout,أوقروت,Aougrout,49,Timimoune,تيميمون,01,14184.16,4171604,Q2642071,1.0,OpenStreetMap,2026-11-20
+0124,Talmine,طالمين,Talmine,49,Timimoune,تيميمون,01,2954.94,4171620,Q2701541,1.0,OpenStreetMap,2026-11-20
+0125,Bordj Badji Mokhtar,برجي باجي مختار,Bordj Badji Mokhtar,50,Bordj Badji Mokhtar,برج باجي مختار,01,122847.4,4171606,Q2535214,1.0,OpenStreetMap,2026-11-20
+0126,Sebaa,السبع,Sebaa,01,Adrar,أدرار,01,4968.46,4171619,Q2701577,1.0,OpenStreetMap,2026-11-20
+0127,Ouled Aissa,أولاد عيسى,Ouled Aissa,49,Timimoune,تيميمون,01,4173.43,4171615,Q2757193,1.0,OpenStreetMap,2026-11-20
+0128,Timiaouine,تيمياوين,Timiaouine,50,Bordj Badji Mokhtar,برج باجي مختار,01,12513.19,4171623,Q2701565,1.0,OpenStreetMap,2026-11-20
+0201,Chlef,الشلف,Chlef,02,Chlef,الشلف,02,126.25,4295138,Q849561,1.0,OpenStreetMap,2026-11-20
+0202,Ténès,تنس,Tenes,02,Chlef,الشلف,02,91.62,6532382,Q860307,1.0,OpenStreetMap,2026-11-20
+0203,Benairia,بنايرية,Benairia,02,Chlef,الشلف,02,59.76,5147901,Q1649549,1.0,OpenStreetMap,2026-11-20
+0204,El Karimia,الكريمية,El Karimia,02,Chlef,الشلف,02,98.67,2785546,Q1649510,1.0,OpenStreetMap,2026-11-20
+0205,Tadjena,تاجنة,Tadjena,02,Chlef,الشلف,02,116.52,4833525,Q1650025,1.0,OpenStreetMap,2026-11-20
+0206,Taougrite,تاوقريت,Taougrite,02,Chlef,الشلف,02,186.21,4813599,Q1650273,1.0,OpenStreetMap,2026-11-20
+0207,Beni Haoua,بني حواء,Beni Haoua,02,Chlef,الشلف,02,112.08,5130869,Q1648908,1.0,OpenStreetMap,2026-11-20
+0208,Sobha,صبحة,Sobha,02,Chlef,الشلف,02,184.08,4822051,Q7549961,1.0,OpenStreetMap,2026-11-20
+0209,Harchoun,حرشون,Harchoun,02,Chlef,الشلف,02,80.36,2792071,Q3127321,1.0,OpenStreetMap,2026-11-20
+0210,Ouled Fares,أولاد فارس,Ouled Fares,02,Chlef,الشلف,02,243.03,4826404,Q1649346,1.0,OpenStreetMap,2026-11-20
+0211,Sidi Akkacha,سيدى عكاشة,Sidi Akkacha,02,Chlef,الشلف,02,129.78,5151277,Q1650037,1.0,OpenStreetMap,2026-11-20
+0212,Boukadir,بوقادير,Boukadir,02,Chlef,الشلف,02,220.2,4564555,Q1648911,1.0,OpenStreetMap,2026-11-20
+0213,Beni Rachid,بنى راشد,Beni Rachid,02,Chlef,الشلف,02,104.4,5124256,Q4887908,1.0,OpenStreetMap,2026-11-20
+0214,Talassa,تلعصة,Talassa,02,Chlef,الشلف,02,69.45,4836837,Q3514436,1.0,OpenStreetMap,2026-11-20
+0215,Harenfa,الهرنفة,Harenfa,02,Chlef,الشلف,02,138.64,4830347,Q3127420,1.0,OpenStreetMap,2026-11-20
+0216,Oued Ghoussine,وادى قوسين,Oued Ghoussine,02,Chlef,الشلف,02,79.31,5139279,Q3358018,1.0,OpenStreetMap,2026-11-20
+0217,Dahra,الظهرة,Dahra,02,Chlef,الشلف,02,203.69,4813363,Q3011993,1.0,OpenStreetMap,2026-11-20
+0218,Ouled Abbes,أولاد عباس,Awlad Abbas,02,Chlef,الشلف,02,37.56,4295685,Q783462,1.0,OpenStreetMap,2026-11-20
+0219,Sendjas,السنجاس,Sendjas,02,Chlef,الشلف,02,218.79,2799177,Q1649902,1.0,OpenStreetMap,2026-11-20
+0220,Zeboudja,الزبوجة,Zeboudja,02,Chlef,الشلف,02,134.73,5126947,Q3575061,1.0,OpenStreetMap,2026-11-20
+0221,Oued Sly,وادي سلي,Oued Sly,02,Chlef,الشلف,02,101.4,4546198,Q1649555,1.0,OpenStreetMap,2026-11-20
+0222,Abou El Hassen,أبو الحسن,Abou El Hassen,02,Chlef,الشلف,02,81.72,4844288,Q2821729,1.0,OpenStreetMap,2026-11-20
+0223,El Marsa,المرسى,El Marsa,02,Chlef,الشلف,02,119.88,4813524,Q3050053,1.0,OpenStreetMap,2026-11-20
+0224,Chettia,الشطية,Chettia,02,Chlef,الشلف,02,38.58,4542228,Q2962891,1.0,OpenStreetMap,2026-11-20
+0225,Sidi Abderrahmane,سيدي عبد الرحمان,Sidi Abderrahmane,02,Chlef,الشلف,02,74.55,4843814,Q3483160,1.0,OpenStreetMap,2026-11-20
+0226,Moussadek,مصدق,Moussadek,02,Chlef,الشلف,02,62.81,4832928,Q1649322,1.0,OpenStreetMap,2026-11-20
+0227,El Hadjadj,الحجاج,El Hadjadj,02,Chlef,الشلف,02,98.44,2801336,Q1649177,1.0,OpenStreetMap,2026-11-20
+0228,Labiodh Medjadja,الأبيض مجاجة,Labiodh Medjadja,02,Chlef,الشلف,02,106.36,5126924,Q1649545,1.0,OpenStreetMap,2026-11-20
+0229,Oued Fodda,وادى الفضة,Wadi Al Fiddha,02,Chlef,الشلف,02,75.97,2789469,Q3358021,1.0,OpenStreetMap,2026-11-20
+0230,Ouled Ben Abdelkader,أولاد بن عبد القادر,Ouled Ben Abdelkader,02,Chlef,الشلف,02,181.53,2803637,Q3358199,1.0,OpenStreetMap,2026-11-20
+0231,Bouzeghaia,بوزغاية,Bouzeghaia,02,Chlef,الشلف,02,137.96,5147952,Q2922675,1.0,OpenStreetMap,2026-11-20
+0232,Ain Merane,عين مران,Ain Merane,02,Chlef,الشلف,02,99.63,4821631,Q374598,1.0,OpenStreetMap,2026-11-20
+0233,Oum Drou,أم الذروع,Oum Drou,02,Chlef,الشلف,02,59.25,4295551,Q1649324,1.0,OpenStreetMap,2026-11-20
+0234,Breira,بريرة,,02,Chlef,الشلف,02,73.02,5130868,Q2924353,1.0,OpenStreetMap,2026-11-20
+0235,Beni Bouattab,بنى بوعتاب,Beni Bouattab,02,Chlef,الشلف,02,121.07,2785325,Q2895866,1.0,OpenStreetMap,2026-11-20
+0301,Laghouat,الأغواط,Laghouat,03,Laghouat,الأغواط,03,488.99,6546026,Q402733,1.0,OpenStreetMap,2026-11-20
+0302,Ksar El Hirane,قصر الحيران,Ksar El Hiranet,03,Laghouat,الأغواط,03,508.45,6546025,Q3200129,1.0,OpenStreetMap,2026-11-20
+0303,Bennasser Benchohra,بن ناصر بن شهرة,Bennasser Benchohra,03,Laghouat,الأغواط,03,1263.32,6546015,Q2896326,1.0,OpenStreetMap,2026-11-20
+0304,Sidi Makhlouf,سيدي مخلوف,Sidi Makhlouf,03,Laghouat,الأغواط,03,1310.86,6546031,Q1649921,1.0,OpenStreetMap,2026-11-20
+0305,Hassi Delaa,حاسى دلاعة,Hassi Delaa,03,Laghouat,الأغواط,03,4674.98,6546022,Q3128220,1.0,OpenStreetMap,2026-11-20
+0306,Hassi R'Mel,حاسى الرمل,Hassi R'Mel,03,Laghouat,الأغواط,03,3090.89,6546023,Q1408322,1.0,OpenStreetMap,2026-11-20
+0307,Aïn Madhi,عين ماضي,Aïn Madhi,03,Laghouat,الأغواط,03,4247.8,6546012,Q2876355,1.0,OpenStreetMap,2026-11-20
+0308,Tadjemout,تاجموت,Tadjemout,03,Laghouat,الأغواط,03,1286.75,6546032,Q3055042,1.0,OpenStreetMap,2026-11-20
+0309,Kheneg,الخنق,Kheneg,03,Laghouat,الأغواط,03,1712.86,6546024,Q3196152,1.0,OpenStreetMap,2026-11-20
+0310,Gueltat Sidi Saad,قلتة سيدي سعد,Gueltat Sidi Saad,59,Aflou,آفلو,03,1184.04,6546020,Q3118877,1.0,OpenStreetMap,2026-11-20
+0311,Aïn Sidi Ali,عين سيدي على,Aïn Sidi Ali,59,Aflou,آفلو,03,448.02,6546013,Q2876364,1.0,OpenStreetMap,2026-11-20
+0312,Beidha,بيضاء,Beidha,59,Aflou,آفلو,03,722.68,6546014,Q2893944,1.0,OpenStreetMap,2026-11-20
+0313,Brida,بريدة,Brida,59,Aflou,آفلو,03,293.06,6546016,Q1649391,1.0,OpenStreetMap,2026-11-20
+0314,El Ghicha,الغيشة,El Ghicha,59,Aflou,آفلو,03,1147.77,6546018,Q1884159,1.0,OpenStreetMap,2026-11-20
+0315,Hadj Mechri,حاج مشري,Hadj Mechri,59,Aflou,آفلو,03,622.97,6546021,Q1648965,1.0,OpenStreetMap,2026-11-20
+0316,Sebgag,سبقاق,Sebgag,59,Aflou,آفلو,03,397.69,6546029,Q3055216,1.0,OpenStreetMap,2026-11-20
+0317,Taouiala,تاويالة,Taouila,59,Aflou,آفلو,03,140.43,6546034,Q3515420,1.0,OpenStreetMap,2026-11-20
+0318,Tadjrouna,تاجرونة,Tadjrouna,03,Laghouat,الأغواط,03,1253.9,6546033,Q3513732,1.0,OpenStreetMap,2026-11-20
+0319,Aflou,آفلو,Aflou,59,Aflou,آفلو,03,303.33,6546011,Q500560,1.0,OpenStreetMap,2026-11-20
+0320,El Assafia,العاسفية,El Assafia,03,Laghouat,الأغواط,03,266.4,6546017,Q1649018,1.0,OpenStreetMap,2026-11-20
+0321,Oued Morra,وادي مرة,Oued Morra,59,Aflou,آفلو,03,307.26,6546028,Q3358042,1.0,OpenStreetMap,2026-11-20
+0322,Oued M'zi,وادي مزي,Wadi M'zi,59,Aflou,آفلو,03,582.97,6546027,Q3358034,1.0,OpenStreetMap,2026-11-20
+0323,El Houaita,الحوايطة,El Houaita,03,Laghouat,الأغواط,03,853.2,6546019,Q3049975,1.0,OpenStreetMap,2026-11-20
+0324,Sidi Bouzid,سيدي بوزيد,Sidi Bouzid,59,Aflou,آفلو,03,442.26,6546030,Q3483208,1.0,OpenStreetMap,2026-11-20
+0401,Oum El Bouaghi,أم البواقي,Oum El Bouaghi,04,Oum El Bouaghi,أم البواقي,04,428.43,4469695,Q5478122,1.0,OpenStreetMap,2026-11-20
+0402,Aïn Beïda,عين البيضاء,Aïn Beïda,04,Oum El Bouaghi,أم البواقي,04,53.62,4486894,Q2088349,1.0,OpenStreetMap,2026-11-20
+0403,Ain M'lila,عين مليلة,Ain M'lila,04,Oum El Bouaghi,أم البواقي,04,236.06,3678573,Q722562,1.0,OpenStreetMap,2026-11-20
+0404,Behir Chergui,بحير شرقي,Behir Chergui,04,Oum El Bouaghi,أم البواقي,04,116.67,4489885,Q2893899,1.0,OpenStreetMap,2026-11-20
+0405,El Amiria,العامرية,El Amiria,04,Oum El Bouaghi,أم البواقي,04,166.88,3669980,Q3049701,1.0,OpenStreetMap,2026-11-20
+0406,Sigus,سيقوس,Sigus,04,Oum El Bouaghi,أم البواقي,04,209.48,3669909,Q3483742,1.0,OpenStreetMap,2026-11-20
+0407,El Belala,البلالة,El Belala,04,Oum El Bouaghi,أم البواقي,04,183.93,4494201,Q3049740,1.0,OpenStreetMap,2026-11-20
+0408,Aïn Babouche,عين بابوش,Aïn Babouche,04,Oum El Bouaghi,أم البواقي,04,198.66,4471690,Q2876255,1.0,OpenStreetMap,2026-11-20
+0409,Berriche,بريش,Berriche,04,Oum El Bouaghi,أم البواقي,04,348.42,4489752,Q2899127,1.0,OpenStreetMap,2026-11-20
+0410,Ouled Hamla,أولاد حملة,Ouled Hamla,04,Oum El Bouaghi,أم البواقي,04,156.94,4432661,Q1920157,1.0,OpenStreetMap,2026-11-20
+0411,Dhalaa,الضلعة,Dhalaa,04,Oum El Bouaghi,أم البواقي,04,202.83,4491867,Q3025681,1.0,OpenStreetMap,2026-11-20
+0412,Aïn Kercha,عين كرشة,Aïn Kercha,04,Oum El Bouaghi,أم البواقي,04,161.93,4470516,Q593739,1.0,OpenStreetMap,2026-11-20
+0413,Hanchir Toumghani,هنشير تومغني,Hanchir Toumghani,04,Oum El Bouaghi,أم البواقي,04,107.45,4469769,Q3126682,1.0,OpenStreetMap,2026-11-20
+0414,El Djazia,الجازية,El Djazia,04,Oum El Bouaghi,أم البواقي,04,197.2,4491892,Q1884817,1.0,OpenStreetMap,2026-11-20
+0415,Aïn Diss,عين الديس,Aïn Diss,04,Oum El Bouaghi,أم البواقي,04,122.47,3671772,Q2876282,1.0,OpenStreetMap,2026-11-20
+0416,F'Kirina,فكرينة,F'Kirina,04,Oum El Bouaghi,أم البواقي,04,343.16,4486870,Q3073186,1.0,OpenStreetMap,2026-11-20
+0417,Souk Naamane,سوق نعمان,Souk Naamane,04,Oum El Bouaghi,أم البواقي,04,225.84,4432660,Q3491587,1.0,OpenStreetMap,2026-11-20
+0418,Zorg,الزرق,Zorg,04,Oum El Bouaghi,أم البواقي,04,198.82,4489766,Q3576102,1.0,OpenStreetMap,2026-11-20
+0419,El Fedjoudj Boughrara Saoudi,الفجوج بوغرارة سعودي,El Fedjoudj Boughrara Saoudi,04,Oum El Bouaghi,أم البواقي,04,315.02,4471633,Q3049852,1.0,OpenStreetMap,2026-11-20
+0420,Ouled Zouai,أولاد زواي,Ouled Zouai,04,Oum El Bouaghi,أم البواقي,04,136.92,4469615,Q666830,1.0,OpenStreetMap,2026-11-20
+0421,Bir Chouhada,بئر الشهداء,Bir Chouhada,04,Oum El Bouaghi,أم البواقي,04,168.92,4432659,Q2904336,1.0,OpenStreetMap,2026-11-20
+0422,Ksar Sbahi,قصر صباحي,Ksar Sbahi,04,Oum El Bouaghi,أم البواقي,04,179.06,4487146,Q3200137,1.0,OpenStreetMap,2026-11-20
+0423,Oued Nini,وادي نيني,Oued Nini,04,Oum El Bouaghi,أم البواقي,04,191.64,4491789,Q3358046,1.0,OpenStreetMap,2026-11-20
+0424,Meskiana,مسكيانة,Meskiana,04,Oum El Bouaghi,أم البواقي,04,182.66,4491932,Q3306857,1.0,OpenStreetMap,2026-11-20
+0425,Aïn Fakroun,عين فكرون,Aïn Fakroun,04,Oum El Bouaghi,أم البواقي,04,261.93,4469737,Q2876323,1.0,OpenStreetMap,2026-11-20
+0426,El Rahia,الراحية,El Rahia,04,Oum El Bouaghi,أم البواقي,04,161.67,4491702,Q3417568,1.0,OpenStreetMap,2026-11-20
+0427,Aïn Zitoun,عين الزيتون,Aïn Zitoun,04,Oum El Bouaghi,أم البواقي,04,734.54,4471647,Q2876402,1.0,OpenStreetMap,2026-11-20
+0428,Ouled Gacem,أولاد قاسم,Ouled Gacem,04,Oum El Bouaghi,أم البواقي,04,138.24,3672487,Q3358228,1.0,OpenStreetMap,2026-11-20
+0429,El Harmilia,الحرميلية,El Harmilia,04,Oum El Bouaghi,أم البواقي,04,133.5,4469646,Q3049951,1.0,OpenStreetMap,2026-11-20
+0501,Batna,باتنة,Batna,05,Batna,باتنة,05,117.55,4224144,Q338844,1.0,OpenStreetMap,2026-11-20
+0502,Ghassira,غسيرة,Ghassira,05,Batna,باتنة,05,237.03,5202030,Q3104799,1.0,OpenStreetMap,2026-11-20
+0503,Maafa,معافة,Maafa,05,Batna,باتنة,05,151.98,5195796,Q2215698,1.0,OpenStreetMap,2026-11-20
+0504,Merouana,مروانة,Merouana,05,Batna,باتنة,05,76.36,4864533,Q3174992,1.0,OpenStreetMap,2026-11-20
+0505,Seriana,سريانة,Seriana,05,Batna,باتنة,05,175.72,5229467,Q2214722,1.0,OpenStreetMap,2026-11-20
+0506,Menaa,منعة,Menaa,05,Batna,باتنة,05,190.77,5200833,Q2215228,1.0,OpenStreetMap,2026-11-20
+0507,El Madher,المعذر,El Madher,05,Batna,باتنة,05,102.54,5230088,Q2214701,1.0,OpenStreetMap,2026-11-20
+0508,Tazoult,تازولت,Tazoult,05,Batna,باتنة,05,103.13,4650420,Q3516526,1.0,OpenStreetMap,2026-11-20
+0509,N'Gaous,نقاوس,N'Gaous,05,Batna,باتنة,05,81.47,5149366,Q3178467,1.0,OpenStreetMap,2026-11-20
+0510,Guigba,القيقبة,Guigba,05,Batna,باتنة,05,63.77,5149244,Q3119500,1.0,OpenStreetMap,2026-11-20
+0511,Inoughissen,إينوغيسن,Inoughissen,05,Batna,باتنة,05,72.47,5204390,Q2215786,1.0,OpenStreetMap,2026-11-20
+0512,Ouyoun El Assafir,عيون العصا فير,Ouyoun El Assafir,05,Batna,باتنة,05,163.24,5234181,Q2215216,1.0,OpenStreetMap,2026-11-20
+0513,Djerma,جرمة,Djerma,05,Batna,باتنة,05,100.2,5229598,Q2215114,1.0,OpenStreetMap,2026-11-20
+0514,Bitam,بيطام,Bitam,60,Barika,بريكة,05,940.22,5177042,Q2215164,1.0,OpenStreetMap,2026-11-20
+0515,Abdelkader Azil,عزيل عبد القادر,Abdelkader Azil,60,Barika,بريكة,05,1038.84,5160749,Q2215082,1.0,OpenStreetMap,2026-11-20
+0516,Arris,أريس,Arris,05,Batna,باتنة,05,152.25,5201972,Q1388056,1.0,OpenStreetMap,2026-11-20
+0517,Kimmel,كيمل,Kimmel,05,Batna,باتنة,05,556.48,5204368,Q3196906,1.0,OpenStreetMap,2026-11-20
+0518,Tilatou,تيلاطو,Tilatou,60,Barika,بريكة,05,383.42,5180262,Q2215772,1.0,OpenStreetMap,2026-11-20
+0519,Aïn Djasser,عين جاسر,Aïn Djasser,05,Batna,باتنة,05,129.76,5216386,Q2214604,1.0,OpenStreetMap,2026-11-20
+0520,Ouled Sellam,أولاد سلام,Ouled Sellam,05,Batna,باتنة,05,221.78,4727888,Q3358263,1.0,OpenStreetMap,2026-11-20
+0521,Tigherghar,تيغرغار,Tigherghar,05,Batna,باتنة,05,225.57,5200635,Q3528325,1.0,OpenStreetMap,2026-11-20
+0522,Aïn Yagout,عين ياقوت,Aïn Yagout,05,Batna,باتنة,05,157.44,5240863,Q2214568,1.0,OpenStreetMap,2026-11-20
+0523,Fesdis,فسديس,Fesdis,05,Batna,باتنة,05,85.83,4633179,Q2214735,1.0,OpenStreetMap,2026-11-20
+0524,Sefiane,سفيان,Sefiane,05,Batna,باتنة,05,182.95,5176888,Q2215689,1.0,OpenStreetMap,2026-11-20
+0525,Rahbat,الرحبات,Rahbat,05,Batna,باتنة,05,54.33,4730910,Q3417565,1.0,OpenStreetMap,2026-11-20
+0526,Tighanimine,تيغانيمين,Tighanimine,05,Batna,باتنة,05,127.33,5201437,Q2215807,1.0,OpenStreetMap,2026-11-20
+0527,Lemsen,لمسان,Lemsen,05,Batna,باتنة,05,68.09,5147423,Q278682,1.0,OpenStreetMap,2026-11-20
+0528,Ksar Belezma,قصر بلزمة,Ksar Belezma,05,Batna,باتنة,05,90.06,5207822,Q2215226,1.0,OpenStreetMap,2026-11-20
+0529,Seggana,سقانة,Seggana,60,Barika,بريكة,05,287.54,5177086,Q1657425,1.0,OpenStreetMap,2026-11-20
+0530,Ichemoul,إشمول,Ichemoul,05,Batna,باتنة,05,125.2,5231289,Q2215279,1.0,OpenStreetMap,2026-11-20
+0531,Foum Toub,فم الطوب,Foum Toub,05,Batna,باتنة,05,109.86,5234253,Q2215209,1.0,OpenStreetMap,2026-11-20
+0532,Beni Foudhala El Hakania,بني فضالة الحقانية,Beni Foudhala El Hakania,05,Batna,باتنة,05,301.28,5195901,Q2214625,1.0,OpenStreetMap,2026-11-20
+0533,Oued El Ma,وادي الماء,Oued El Ma,05,Batna,باتنة,05,196.39,5226549,Q2215250,1.0,OpenStreetMap,2026-11-20
+0534,Talkhamt,تالخمت,Talkhamt,05,Batna,باتنة,05,180.97,4730802,Q2217800,1.0,OpenStreetMap,2026-11-20
+0535,Bouzina,بوزينة,Bouzina,05,Batna,باتنة,05,197.35,5196080,Q1649021,1.0,OpenStreetMap,2026-11-20
+0536,Chemora,الشمرة,Chemora,05,Batna,باتنة,05,262.73,5241205,Q2215192,1.0,OpenStreetMap,2026-11-20
+0537,Oued Chaaba,وادي الشعبة,Oued Chaaba,05,Batna,باتنة,05,247.93,4633383,Q964100,1.0,OpenStreetMap,2026-11-20
+0538,Taxlent,تاكسلانت,Taxlent,05,Batna,باتنة,05,145.95,5147557,Q2217827,1.0,OpenStreetMap,2026-11-20
+0539,Gosbat,القصبات,Gosbat,05,Batna,باتنة,05,276.12,5175666,Q2215245,1.0,OpenStreetMap,2026-11-20
+0540,Ouled Aouf,أولاد عوف,Ouled Aouf,05,Batna,باتنة,05,151.5,5176250,Q2215830,1.0,OpenStreetMap,2026-11-20
+0541,Boumagueur,بومقر,Boumagueur,05,Batna,باتنة,05,114.34,5175546,Q2214684,1.0,OpenStreetMap,2026-11-20
+0542,Barika,بريكة,Barika,60,Barika,بريكة,05,301.62,5176213,Q648253,1.0,OpenStreetMap,2026-11-20
+0543,Djezzar,الجزار,Djezzar,60,Barika,بريكة,05,327.68,5175823,Q3032929,1.0,OpenStreetMap,2026-11-20
+0544,T'Kout,تكوت,T'Kout,05,Batna,باتنة,05,185.97,5204381,Q3511821,1.0,OpenStreetMap,2026-11-20
+0545,Aïn Touta,عين التوتة,Aïn Touta,05,Batna,باتنة,05,173.12,5181217,Q2876412,1.0,OpenStreetMap,2026-11-20
+0546,Hidoussa,حيدوسة,Hidoussa,05,Batna,باتنة,05,151.71,4864578,Q2215265,1.0,OpenStreetMap,2026-11-20
+0547,Teniet El Abed,ثنية العابد,Teniet El Abed,05,Batna,باتنة,05,108.27,5201404,Q2215676,1.0,OpenStreetMap,2026-11-20
+0548,Oued Taga,وادي الطاقة,Oued Taga,05,Batna,باتنة,05,265.14,5234317,Q2215821,1.0,OpenStreetMap,2026-11-20
+0549,Ouled Fadel,أولاد فاضل,Ouled Fadel,05,Batna,باتنة,05,206.77,5241219,Q3358230,1.0,OpenStreetMap,2026-11-20
+0550,Timgad,تيمقاد,Timgad,05,Batna,باتنة,05,222.71,5240919,Q3528992,1.0,OpenStreetMap,2026-11-20
+0551,Ras El Aïoun,رأس العيون,Ras El Aioun,05,Batna,باتنة,05,116.13,5149283,Q982735,1.0,OpenStreetMap,2026-11-20
+0552,Chir,شير,Chir,05,Batna,باتنة,05,78.98,5201376,Q972717,1.0,OpenStreetMap,2026-11-20
+0553,Ouled Si Slimane,أولاد سي سليمان,Ouled Si Slimane,05,Batna,باتنة,05,157.18,5149321,Q2215183,1.0,OpenStreetMap,2026-11-20
+0554,Zana El Beida,زانة البيضاء,Zana El Beida,05,Batna,باتنة,05,219.03,5226646,Q3574752,1.0,OpenStreetMap,2026-11-20
+0555,M'Doukel,أمدوكال,M'Doukel,60,Barika,بريكة,05,250.93,5177026,Q1523317,1.0,OpenStreetMap,2026-11-20
+0556,Ouled Ammar,أولاد عمار,Ouled Ammar,60,Barika,بريكة,05,75.75,5175812,Q2215165,1.0,OpenStreetMap,2026-11-20
+0557,El Hassi,الحاسي,El Hassi,05,Batna,باتنة,05,59.65,5209309,Q3049963,1.0,OpenStreetMap,2026-11-20
+0558,Lazrou,لازرو,Lazrou,05,Batna,باتنة,05,161.99,5229570,Q2215239,1.0,OpenStreetMap,2026-11-20
+0559,Boumia,بوميــة,Boumia,05,Batna,باتنة,05,152.07,5240975,Q2215173,1.0,OpenStreetMap,2026-11-20
+0560,Boulehilet,بولهيلات,Boulehilet,05,Batna,باتنة,05,161.54,5241047,Q2215207,1.0,OpenStreetMap,2026-11-20
+0561,Larbaa,لارباع,Larbaa,05,Batna,باتنة,05,101.15,5195935,Q6488718,1.0,OpenStreetMap,2026-11-20
+0601,Béjaïa,بجاية,Bejaia,06,Béjaïa,بجاية,06,117.34,2094122,Q59975,1.0,OpenStreetMap,2026-11-20
+0602,Amizour,أميزور,Amizour,06,Béjaïa,بجاية,06,110.61,4112937,Q2214578,1.0,OpenStreetMap,2026-11-20
+0603,Feraoun,فرعون,Feraoun,06,Béjaïa,بجاية,06,43.46,4112903,Q2215098,1.0,OpenStreetMap,2026-11-20
+0604,Taourirt Ighil,ثاوريرث إغيل,Taourirt Ighil,06,Béjaïa,بجاية,06,73.76,4067932,Q1034220,1.0,OpenStreetMap,2026-11-20
+0605,Chellata,شلاطة,Chellata,06,Béjaïa,بجاية,06,42.97,4069657,Q1649100,1.0,OpenStreetMap,2026-11-20
+0606,Tamokra,ثامُقرة,Tamokra,06,Béjaïa,بجاية,06,68.67,4069720,Q2217816,1.0,OpenStreetMap,2026-11-20
+0607,Timezrit,تيمزريت,Timezrit,06,Béjaïa,بجاية,06,38.66,4070118,Q938943,1.0,OpenStreetMap,2026-11-20
+0608,Souk El Ténine,سوق الاثنين,Souk El Tenine,06,Béjaïa,بجاية,06,26.35,4112879,Q3491584,1.0,OpenStreetMap,2026-11-20
+0609,M'Cisna,مسيسنة,M'Cisna,06,Béjaïa,بجاية,06,39.6,4070101,Q3272316,1.0,OpenStreetMap,2026-11-20
+0610,Thinabdher,ثينبذار,Thinabdher,06,Béjaïa,بجاية,06,16.92,4069489,Q3529143,1.0,OpenStreetMap,2026-11-20
+0611,Tichy,تيشي,Tichy,06,Béjaïa,بجاية,06,55.85,4112952,Q2215739,1.0,OpenStreetMap,2026-11-20
+0612,Semaoun,سمعون,Semaoun,06,Béjaïa,بجاية,06,32.78,4112934,Q1765273,1.0,OpenStreetMap,2026-11-20
+0613,Kendira,كنديرة,Kendira,06,Béjaïa,بجاية,06,45.98,4112944,Q1657242,1.0,OpenStreetMap,2026-11-20
+0614,Tifra,تيفرة,Tifra,06,Béjaïa,بجاية,06,39.02,4069500,Q1657386,1.0,OpenStreetMap,2026-11-20
+0615,Ighram,إغرم,Ighram,06,Béjaïa,بجاية,06,50.57,4069668,Q2215840,1.0,OpenStreetMap,2026-11-20
+0616,Amalou,أمالو,Amalou,06,Béjaïa,بجاية,06,59.24,4069971,Q1657281,1.0,OpenStreetMap,2026-11-20
+0617,Ighil Ali,إغيل علي,Ighil Ali,06,Béjaïa,بجاية,06,196.99,4069801,Q193945,1.0,OpenStreetMap,2026-11-20
+0618,Fenaia Ilmaten,فناية الماثن,Fenaia Ilmaten,06,Béjaïa,بجاية,06,45.11,4067950,Q2215199,1.0,OpenStreetMap,2026-11-20
+0619,Toudja,توجة,Toudja,06,Béjaïa,بجاية,06,168.49,4067893,Q1894468,1.0,OpenStreetMap,2026-11-20
+0620,Darguina,درقينة,Darguina,06,Béjaïa,بجاية,06,83.69,4112864,Q1649721,1.0,OpenStreetMap,2026-11-20
+0621,Sidi Ayad,سيدي عياد,Sidi Ayad,06,Béjaïa,بجاية,06,8.68,4069491,Q3483186,1.0,OpenStreetMap,2026-11-20
+0622,Aokas,أوقاس,Aokas,06,Béjaïa,بجاية,06,27.63,4112961,Q2214081,1.0,OpenStreetMap,2026-11-20
+0623,Beni Djellil,بني جليل,Beni Djellil,06,Béjaïa,بجاية,06,28.95,4112900,Q2895888,1.0,OpenStreetMap,2026-11-20
+0624,Adekar,آدكار,Adekar,06,Béjaïa,بجاية,06,108.62,4067907,Q2215123,1.0,OpenStreetMap,2026-11-20
+0625,Akbou,آقبو,Akbou,06,Béjaïa,بجاية,06,51.71,4069688,Q2828968,1.0,OpenStreetMap,2026-11-20
+0626,Seddouk,صدوق,Seddouk,06,Béjaïa,بجاية,06,61.23,4070075,Q2223541,1.0,OpenStreetMap,2026-11-20
+0627,Tazmalt,تازمالت,Tazmalt,06,Béjaïa,بجاية,06,33.98,4069751,Q3141810,1.0,OpenStreetMap,2026-11-20
+0628,Aït R'Zine,آيت أرزين,Ait R'Zine,06,Béjaïa,بجاية,06,74.16,4069831,Q2214615,1.0,OpenStreetMap,2026-11-20
+0629,Chemini,شميني,Chemini,06,Béjaïa,بجاية,06,39.73,4069536,Q2962465,1.0,OpenStreetMap,2026-11-20
+0630,Souk Oufella,سوق أوفلا,Souk Oufella,06,Béjaïa,بجاية,06,13.81,4069543,Q3087355,1.0,OpenStreetMap,2026-11-20
+0631,Taskriout,تاسقريوت,Taskriout,06,Béjaïa,بجاية,06,31.5,4112874,Q2215307,1.0,OpenStreetMap,2026-11-20
+0632,Tibane,ظيبان,Tibane,06,Béjaïa,بجاية,06,5.39,4069542,Q1885068,1.0,OpenStreetMap,2026-11-20
+0633,Tala Hamza,ثالة حمزة,Tala Hamza,06,Béjaïa,بجاية,06,37.59,4112949,Q2217809,1.0,OpenStreetMap,2026-11-20
+0634,Barbacha,برباشة,Barbacha,06,Béjaïa,بجاية,06,83.18,4112945,Q2214633,1.0,OpenStreetMap,2026-11-20
+0635,Beni Ksila,بني كسيلة,Beni Ksila,06,Béjaïa,بجاية,06,183.47,4067904,Q1657273,1.0,OpenStreetMap,2026-11-20
+0636,Ouzellaguen,أوزلاقن,Ouzellaguen,06,Béjaïa,بجاية,06,58.68,4069556,Q3358841,1.0,OpenStreetMap,2026-11-20
+0637,Bouhamza,بوحمزة,Bouhamza,06,Béjaïa,بجاية,06,76.52,4069950,Q2215134,1.0,OpenStreetMap,2026-11-20
+0638,Beni Melikeche,بني مليكش,Beni Melikeche,06,Béjaïa,بجاية,06,41.82,2170758,Q588117,1.0,OpenStreetMap,2026-11-20
+0639,Sidi-Aïch,سيدي عيش,Sidi Aich,06,Béjaïa,بجاية,06,8.08,4069476,Q1657475,1.0,OpenStreetMap,2026-11-20
+0640,El Kseur,القصر,El Kseur,06,Béjaïa,بجاية,06,95.25,4067937,Q1649095,1.0,OpenStreetMap,2026-11-20
+0641,Melbou,ملبو,Melbou,06,Béjaïa,بجاية,06,47.64,4112877,Q1657401,1.0,OpenStreetMap,2026-11-20
+0642,Akfadou,أكفادو,Akfadou,06,Béjaïa,بجاية,06,38.22,4069527,Q2223592,1.0,OpenStreetMap,2026-11-20
+0643,Leflaye,لفلاي,Leflaye,06,Béjaïa,بجاية,06,9.32,4069493,Q1657359,1.0,OpenStreetMap,2026-11-20
+0644,Kherrata,خراطة,Kherrata,06,Béjaïa,بجاية,06,96.88,4112854,Q2215859,1.0,OpenStreetMap,2026-11-20
+0645,Draâ El-Kaïd,ذراع القايد,Draa El Kaid,06,Béjaïa,بجاية,06,122.16,4112846,Q3039191,1.0,OpenStreetMap,2026-11-20
+0646,Tamridjet,ثامريجث,Tamridjet,06,Béjaïa,بجاية,06,48.09,1283404,Q2217785,1.0,OpenStreetMap,2026-11-20
+0647,Ait Smaïl,آيت إسماعيل,Ait Smail,06,Béjaïa,بجاية,06,26.87,4112875,Q2214545,1.0,OpenStreetMap,2026-11-20
+0648,Boukhelifa,بوخليفة,Boukhelifa,06,Béjaïa,بجاية,06,115.72,4112950,Q1657369,1.0,OpenStreetMap,2026-11-20
+0649,Tizi N'Berber,ثيزي نبربر,Tizi N'Berber,06,Béjaïa,بجاية,06,52.74,4112960,Q3529992,1.0,OpenStreetMap,2026-11-20
+0650,Beni Maouche,بني معوش,Beni Maouche,06,Béjaïa,بجاية,06,95.08,4070138,Q2223580,1.0,OpenStreetMap,2026-11-20
+0651,Oued Ghir,وادي غير,Oued Ghir,06,Béjaïa,بجاية,06,48.97,4067884,Q1649069,1.0,OpenStreetMap,2026-11-20
+0652,Boudjellil,بوجليل,Boudjellil,06,Béjaïa,بجاية,06,101.42,4069763,Q2214606,1.0,OpenStreetMap,2026-11-20
+0701,Biskra,بسكرة,Biskra,07,Biskra,بسكرة,07,127.62,4120759,Q312759,1.0,OpenStreetMap,2026-11-20
+0702,Oumache,أوماش,Oumache,07,Biskra,بسكرة,07,816.34,4120782,Q3358295,1.0,OpenStreetMap,2026-11-20
+0703,Branis,برانيس,Branis,61,El Kantara,القنطرة,07,369.76,4120762,Q1649245,1.0,OpenStreetMap,2026-11-20
+0704,Chetma,شتمة,Chetma,07,Biskra,بسكرة,07,110.14,4120763,Q2962881,1.0,OpenStreetMap,2026-11-20
+0705,Ouled Djellal,أولاد جلال,Ouled Djellal,51,Ouled Djellal,أولاد جلال,07,320.94,4120781,Q4118338,1.0,OpenStreetMap,2026-11-20
+0706,Ras El Miaad,رأس الميعاد,Ras El Miaad,51,Ouled Djellal,أولاد جلال,07,4797.09,4120784,Q256820,1.0,OpenStreetMap,2026-11-20
+0707,Besbes,البسباس,Besbes,51,Ouled Djellal,أولاد جلال,07,3664.36,4120758,Q2899849,1.0,OpenStreetMap,2026-11-20
+0708,Sidi Khaled,سيدي خالد,Sidi Khaled,51,Ouled Djellal,أولاد جلال,07,217.25,4120785,Q2215511,1.0,OpenStreetMap,2026-11-20
+0709,Doucen,الدوسن,Doucen,51,Ouled Djellal,أولاد جلال,07,621.56,4120766,Q3037852,1.0,OpenStreetMap,2026-11-20
+0710,Ech Chaïba,الشعيبة,Ech Chaïba,51,Ouled Djellal,أولاد جلال,07,1685.63,4120764,Q3046938,1.0,OpenStreetMap,2026-11-20
+0711,Sidi Okba,سيدي عقبة,Sidi Okba,07,Biskra,بسكرة,07,253.82,4120786,Q2215485,1.0,OpenStreetMap,2026-11-20
+0712,M'Chouneche,مشونش,M'Chouneche,07,Biskra,بسكرة,07,502.75,4120777,Q3272274,1.0,OpenStreetMap,2026-11-20
+0713,El Haouch,الحوش,El Haouch,07,Biskra,بسكرة,07,754.18,4120770,Q3049949,1.0,OpenStreetMap,2026-11-20
+0714,Ain Naga,عين الناقة,Ain Naga,07,Biskra,بسكرة,07,507.11,4120756,Q2876360,1.0,OpenStreetMap,2026-11-20
+0715,Zeribet El Oued,زريبة الواد,Zeribet El Oued,07,Biskra,بسكرة,07,499.93,4120788,Q3575264,1.0,OpenStreetMap,2026-11-20
+0716,El Feidh,الفيض,El Feidh,07,Biskra,بسكرة,07,1373.15,4120767,Q1649560,1.0,OpenStreetMap,2026-11-20
+0717,El Kantara,القنطرة,El Kantara,61,El Kantara,القنطرة,07,237.86,4120771,Q3050002,1.0,OpenStreetMap,2026-11-20
+0718,Aïn Zaatout,عين زعطوط,Ain Zaatout,61,El Kantara,القنطرة,07,169.81,4120757,Q2214646,1.0,OpenStreetMap,2026-11-20
+0719,El Outaya,لوطاية,El Outaya,61,El Kantara,القنطرة,07,405.72,4120772,Q3050155,1.0,OpenStreetMap,2026-11-20
+0720,Djemorah,جمورة,Djemourah,61,El Kantara,القنطرة,07,250.7,4120765,Q3032882,1.0,OpenStreetMap,2026-11-20
+0721,Tolga,طولقة,Tulqa,07,Biskra,بسكرة,07,1213.44,4120787,Q2280394,1.0,OpenStreetMap,2026-11-20
+0722,Lioua,ليوة,Lioua,07,Biskra,بسكرة,07,241.96,4120776,Q3242103,1.0,OpenStreetMap,2026-11-20
+0723,Lichana,ليشانة,Lichana,07,Biskra,بسكرة,07,39.63,4120775,Q3238081,1.0,OpenStreetMap,2026-11-20
+0724,Ourlal,أورلال,Ourlal,07,Biskra,بسكرة,07,188.88,4120783,Q4118676,1.0,OpenStreetMap,2026-11-20
+0725,M'Lili,مليلى,M'Lili,07,Biskra,بسكرة,07,371.39,4120778,Q1887805,1.0,OpenStreetMap,2026-11-20
+0726,Foughala,فوغالة,Foughala,07,Biskra,بسكرة,07,80.31,4120773,Q3079875,1.0,OpenStreetMap,2026-11-20
+0727,Bordj Ben Azzouz,برج بن عزوز,Bordj Ben Azzouz,07,Biskra,بسكرة,07,23.21,4120760,Q2910765,1.0,OpenStreetMap,2026-11-20
+0728,M'Ziraa,المزيرعة,M'Ziraa,07,Biskra,بسكرة,07,959.27,4120779,Q3050087,1.0,OpenStreetMap,2026-11-20
+0729,Bouchagroune,بوشقرون,Bouchagroune,07,Biskra,بسكرة,07,57.83,4120761,Q2921336,1.0,OpenStreetMap,2026-11-20
+0730,Mekhadma,مخادمة,Mekhadma,07,Biskra,بسكرة,07,152.59,4120780,Q3055115,1.0,OpenStreetMap,2026-11-20
+0731,El Ghrous,لغروس,El Ghrous,07,Biskra,بسكرة,07,237.55,4120768,Q3049877,1.0,OpenStreetMap,2026-11-20
+0732,El Hadjeb,الحاجب,El Hadjeb,07,Biskra,بسكرة,07,207.89,4120769,Q3049927,1.0,OpenStreetMap,2026-11-20
+0733,Khenguet Sidi Nadji,خنقة سيدي ناجي,Khenguet Sidi Nadji,07,Biskra,بسكرة,07,79.9,4120774,Q3196153,1.0,OpenStreetMap,2026-11-20
+0801,Béchar,بشار,Bechar,08,Béchar,بشار,08,5022.88,6530988,Q638704,1.0,OpenStreetMap,2026-11-20
+0802,Erg Ferradj,عرق فراج,Erg Ferradj,08,Béchar,بشار,08,5611.02,6530992,Q2215144,1.0,OpenStreetMap,2026-11-20
+0803,Ouled Khoudir,أولاد خدير,Ouled Khoudir,52,Béni Abbès,بني عباس,08,1905.2,6531001,Q2215761,1.0,OpenStreetMap,2026-11-20
+0804,Meridja,مريجة,Meridja,08,Béchar,بشار,08,2503.01,6530999,Q2215728,1.0,OpenStreetMap,2026-11-20
+0805,Timmoudi,تيمودي,Timmoudi,52,Béni Abbès,بني عباس,08,5676.46,6531004,Q2215343,1.0,OpenStreetMap,2026-11-20
+0806,Lahmar,الأحمر,Lahmar,08,Béchar,بشار,08,816.57,6530997,Q2215193,1.0,OpenStreetMap,2026-11-20
+0807,Béni Abbès,بني عباس,Bani Abbas,52,Béni Abbès,بني عباس,08,9794.26,6530989,Q130246,1.0,OpenStreetMap,2026-11-20
+0808,Beni Ikhlef,بني يخلف,Beni Ikhlef,52,Béni Abbès,بني عباس,08,2393.39,6530986,Q2214557,1.0,OpenStreetMap,2026-11-20
+0809,Mechraa Houari Boumediene,مشرع هواري بومدين,Mechraa Houari Boumediene,08,Béchar,بشار,08,3218.14,6530998,Q2215182,1.0,OpenStreetMap,2026-11-20
+0810,Kenadsa,القنادسة,Kenadsa,08,Béchar,بشار,08,2784.41,6530994,Q390925,1.0,OpenStreetMap,2026-11-20
+0811,Igli,إقلي,Igli,52,Béni Abbès,بني عباس,08,6142.38,6530993,Q2214881,1.0,OpenStreetMap,2026-11-20
+0812,Tabelbala,تبلبالة,Tabelbala,52,Béni Abbès,بني عباس,08,60298.65,6530809,Q2302870,1.0,OpenStreetMap,2026-11-20
+0813,Taghit,تاغيت,Taghit,08,Béchar,بشار,08,8309.35,6531002,Q3052604,1.0,OpenStreetMap,2026-11-20
+0814,El Ouatta,الواتة,Al Wata,52,Béni Abbès,بني عباس,08,8767.74,6530991,Q581185,1.0,OpenStreetMap,2026-11-20
+0815,Boukais,بوكايس,Boukais,08,Béchar,بشار,08,1781.58,6530987,Q2921673,1.0,OpenStreetMap,2026-11-20
+0816,Mougheul,موغل,Mougheul,08,Béchar,بشار,08,713.96,6531000,Q1649172,1.0,OpenStreetMap,2026-11-20
+0817,Abadla,العبادلة,Abadla,08,Béchar,بشار,08,2710.3,6530985,Q304704,1.0,OpenStreetMap,2026-11-20
+0818,Kerzaz,كرزاز,Kerzaz,52,Béni Abbès,بني عباس,08,10610.48,6530995,Q3120375,1.0,OpenStreetMap,2026-11-20
+0819,Ksabi,القصابي,Ksabi,52,Béni Abbès,بني عباس,08,2181.31,6530996,Q2215707,1.0,OpenStreetMap,2026-11-20
+0820,Tamtert,تامترت,Tamtert,52,Béni Abbès,بني عباس,08,3430.29,6531003,Q2215797,1.0,OpenStreetMap,2026-11-20
+0821,Béni Ounif,بنى ونيف,Beni Ounif,08,Béchar,بشار,08,16132.98,6530990,Q1648984,1.0,OpenStreetMap,2026-11-20
+0901,Blida,البليدة,Blida,09,Blida,البليدة,09,53.15,3823201,Q216990,1.0,OpenStreetMap,2026-11-20
+0902,Chebli,الشبلي,Chebli,09,Blida,البليدة,09,61.68,3827714,Q1649700,1.0,OpenStreetMap,2026-11-20
+0903,Bouinan,بوعينان,Bouinan,09,Blida,البليدة,09,73.47,3827717,Q2921643,1.0,OpenStreetMap,2026-11-20
+0904,Oued El Alleug,وادي العلايق,Oued El Alleug,09,Blida,البليدة,09,55.65,3825025,Q941199,1.0,OpenStreetMap,2026-11-20
+0907,Ouled Yaïch,أولاد يعيش,Ouled Yaïch,09,Blida,البليدة,09,14.0,3825582,Q648795,1.0,OpenStreetMap,2026-11-20
+0908,Chréa,الشريعة,Chrea,09,Blida,البليدة,09,80.25,2621789,Q959927,1.0,OpenStreetMap,2026-11-20
+0910,El Affroun,العفرون,El Affroun,09,Blida,البليدة,09,55.83,2614958,Q3049687,1.0,OpenStreetMap,2026-11-20
+0911,Chiffa,الشفة,Chiffa,09,Blida,البليدة,09,48.76,2621615,Q2963503,1.0,OpenStreetMap,2026-11-20
+0912,Hammam Melouane,حمام ملوان,Hammam Melouane,09,Blida,البليدة,09,151.86,2621816,Q1649228,1.0,OpenStreetMap,2026-11-20
+0913,Ben Khellil,بن خليل,Benkhelil,09,Blida,البليدة,09,43.46,3823981,Q1653142,1.0,OpenStreetMap,2026-11-20
+0914,Soumaa,صومعة,Soumaa,09,Blida,البليدة,09,27.82,3827610,Q1649886,1.0,OpenStreetMap,2026-11-20
+0916,Mouzaia,موزاية,Mouzaia,09,Blida,البليدة,09,83.53,2617049,Q1649746,1.0,OpenStreetMap,2026-11-20
+0917,Souhane,صوحان,Souhane,09,Blida,البليدة,09,71.48,3830116,Q3491561,1.0,OpenStreetMap,2026-11-20
+0918,Meftah,مفتاح,Meftah,09,Blida,البليدة,09,52.32,1299236,Q2215400,1.0,OpenStreetMap,2026-11-20
+0919,Ouled Slama,أولاد سلامة,Ouled Slama,09,Blida,البليدة,09,70.95,3828802,Q925894,1.0,OpenStreetMap,2026-11-20
+0920,Boufarik,بوفاريك,Boufarik,09,Blida,البليدة,09,52.18,3823980,Q2344308,1.0,OpenStreetMap,2026-11-20
+0921,Larbaa,الاربعاء,Larbaa,09,Blida,البليدة,09,85.25,1299237,Q3217833,1.0,OpenStreetMap,2026-11-20
+0922,Oued Djer,وادى جر,Oued Djer,09,Blida,البليدة,09,60.78,2614832,Q1649274,1.0,OpenStreetMap,2026-11-20
+0923,Beni Tamou,بني تامو,Beni Tamou,09,Blida,البليدة,09,24.84,3825351,Q2895916,1.0,OpenStreetMap,2026-11-20
+0924,Bouarfa,بوعرفة,Bouarfa,09,Blida,البليدة,09,68.14,2621697,Q2911971,1.0,OpenStreetMap,2026-11-20
+0925,Beni Mered,بني مراد,Beni Mered,09,Blida,البليدة,09,14.89,3825648,Q2895897,1.0,OpenStreetMap,2026-11-20
+0926,Bougara,بوقرة,Bougara,09,Blida,البليدة,09,85.97,2623687,Q2573679,1.0,OpenStreetMap,2026-11-20
+0927,Guerrouaou,قرواو,Guerrouaou,09,Blida,البليدة,09,17.68,3827421,Q3118934,1.0,OpenStreetMap,2026-11-20
+0928,Aïn Romana,عين الرمانة,Aïn Romana,09,Blida,البليدة,09,99.86,2620528,Q1648596,1.0,OpenStreetMap,2026-11-20
+0929,Djebabra,جبابرة,Djebabra,09,Blida,البليدة,09,29.03,1299267,Q1649286,1.0,OpenStreetMap,2026-11-20
+1001,Bouira,البويرة,Bouira,10,Bouira,البويرة,10,98.06,3416774,Q722522,1.0,OpenStreetMap,2026-11-20
+1002,El Asnam,الأصنام,El Asnam,10,Bouira,البويرة,10,113.16,3414084,Q3049718,1.0,OpenStreetMap,2026-11-20
+1003,Guerrouma,قرومة,Guerrouma,10,Bouira,البويرة,10,96.15,3443260,Q3119214,1.0,OpenStreetMap,2026-11-20
+1004,Souk El Khemis,سوق الخمیس,Souk El Khemis,10,Bouira,البويرة,10,65.73,3435106,Q3491578,1.0,OpenStreetMap,2026-11-20
+1005,Kadiria,القادرية,Kadiria,10,Bouira,البويرة,10,93.46,3459499,Q1649201,1.0,OpenStreetMap,2026-11-20
+1006,Ahnif,الحانيف,Ahnif,10,Bouira,البويرة,10,159.25,3390920,Q3126778,1.0,OpenStreetMap,2026-11-20
+1007,Dirah,ديرة,Dirah,10,Bouira,البويرة,10,234.18,3202071,Q3029712,1.0,OpenStreetMap,2026-11-20
+1008,Aït Laaziz,آيت لعزيز,,10,Bouira,البويرة,10,37.03,3416156,Q2876493,1.0,OpenStreetMap,2026-11-20
+1009,Taghzout,تاغزوت,Taghzout,10,Bouira,البويرة,10,46.83,3414766,Q3513832,1.0,OpenStreetMap,2026-11-20
+1010,Raouraoua,الروراوة,Raouraoua,10,Bouira,البويرة,10,69.09,3279505,Q3419336,1.0,OpenStreetMap,2026-11-20
+1011,Mezdour,مسدور,Mezdour,10,Bouira,البويرة,10,152.62,3201914,Q3307743,1.0,OpenStreetMap,2026-11-20
+1012,Haizer,الحيزر,Haizer,10,Bouira,البويرة,10,88.05,3414631,Q735694,1.0,OpenStreetMap,2026-11-20
+1013,Lakhdaria,الأخضرية,Lakhdaria,10,Bouira,البويرة,10,92.47,3827782,Q2522066,1.0,OpenStreetMap,2026-11-20
+1014,Maala,معالة,Maala,10,Bouira,البويرة,10,55.2,3445352,Q3273671,1.0,OpenStreetMap,2026-11-20
+1015,El Hachimia,الهاشمية,El Hachimia,10,Bouira,البويرة,10,247.76,3403218,Q1648962,1.0,OpenStreetMap,2026-11-20
+1016,Aomar,عمر,Aomar,10,Bouira,البويرة,10,70.86,3422623,Q2223561,1.0,OpenStreetMap,2026-11-20
+1017,Chorfa,الشرفة,Chorfa,10,Bouira,البويرة,10,31.12,3397401,Q2964506,1.0,OpenStreetMap,2026-11-20
+1018,Bordj Oukhris,برج أوخريص,Bordj Oukhris,10,Bouira,البويرة,10,158.47,3399110,Q2910774,1.0,OpenStreetMap,2026-11-20
+1019,El Adjiba,العجيبية,El Adjiba,10,Bouira,البويرة,10,81.54,3412721,Q3049685,1.0,OpenStreetMap,2026-11-20
+1020,El Hakimia,الحاكمية,El Hakimia,10,Bouira,البويرة,10,68.1,3400553,Q3049933,1.0,OpenStreetMap,2026-11-20
+1021,El Khabouzia,الخبوزية,El Khabouzia,10,Bouira,البويرة,10,50.17,3302416,Q3050006,1.0,OpenStreetMap,2026-11-20
+1022,Ahl El Ksar,أهل القصر,Ahl El Ksar,10,Bouira,البويرة,10,104.16,3403768,Q2827426,1.0,OpenStreetMap,2026-11-20
+1023,Bouderbala,بودربالة,Bouderbala,10,Bouira,البويرة,10,46.49,3445431,Q2921466,1.0,OpenStreetMap,2026-11-20
+1024,Zbarbar,الزبربر,Zbarbar,10,Bouira,البويرة,10,58.54,3441846,Q3574993,1.0,OpenStreetMap,2026-11-20
+1025,Aïn El Hadjar,عین الحجر,,10,Bouira,البويرة,10,74.48,3420998,Q2876303,1.0,OpenStreetMap,2026-11-20
+1026,Djebahia,الجباحية,Djebahia,10,Bouira,البويرة,10,72.56,3423129,Q1649310,1.0,OpenStreetMap,2026-11-20
+1027,Aghbalou,أغبالو,Aghbalou,10,Bouira,البويرة,10,60.96,3397589,Q2826832,1.0,OpenStreetMap,2026-11-20
+1028,Taguedit,تاقديت,Taguedit,10,Bouira,البويرة,10,261.81,2971955,Q3513862,1.0,OpenStreetMap,2026-11-20
+1029,Ain Turk,عين الترك,Ain Turk,10,Bouira,البويرة,10,41.49,3421330,Q4833301,1.0,OpenStreetMap,2026-11-20
+1030,Saharidj,الصهاريج,Saharidj,10,Bouira,البويرة,10,93.87,3397675,Q3461519,1.0,OpenStreetMap,2026-11-20
+1031,Dechmia,الدشمية,Dechmia,10,Bouira,البويرة,10,148.07,3279197,Q3021001,1.0,OpenStreetMap,2026-11-20
+1032,Ridane,ريدان,Ridane,10,Bouira,البويرة,10,77.37,3279012,Q1649926,1.0,OpenStreetMap,2026-11-20
+1033,Bechloul,بشلول,Bechloul,10,Bouira,البويرة,10,93.46,3413543,Q2893467,1.0,OpenStreetMap,2026-11-20
+1034,Boukram,بوكرام,Boukram,10,Bouira,البويرة,10,92.65,3443670,Q2921680,1.0,OpenStreetMap,2026-11-20
+1035,Aïn Bessam,عين بسام,,10,Bouira,البويرة,10,127.62,3303478,Q2876271,1.0,OpenStreetMap,2026-11-20
+1036,Bir Ghbalou,بئر غبالو,Bir Ghbalou,10,Bouira,البويرة,10,49.37,3297140,Q1649483,1.0,OpenStreetMap,2026-11-20
+1037,M'Chedallah,مشدا الله,M'Chedallah,10,Bouira,البويرة,10,56.96,3398694,Q3272271,1.0,OpenStreetMap,2026-11-20
+1038,Sour El Ghozlane,سور الغزلان,Sour El Ghozlane,10,Bouira,البويرة,10,177.97,3303641,Q312000,1.0,OpenStreetMap,2026-11-20
+1039,Mamora,المعمورة,Mamora,10,Bouira,البويرة,10,115.02,3278688,Q3273686,1.0,OpenStreetMap,2026-11-20
+1040,Ouled Rached,أولاد راشد,Ouled Rached,10,Bouira,البويرة,10,147.71,3398839,Q3358246,1.0,OpenStreetMap,2026-11-20
+1041,Aïn Laloui,عين العلوي,,10,Bouira,البويرة,10,58.44,3420252,Q2876351,1.0,OpenStreetMap,2026-11-20
+1042,Hadjera Zergua,الحجرة الزرقاء,Hadjera Zergua,10,Bouira,البويرة,10,146.71,3202034,Q3125560,1.0,OpenStreetMap,2026-11-20
+1043,Ath Mansour,آث منصور,Ath Mansour,10,Bouira,البويرة,10,88.86,3390977,Q1649223,1.0,OpenStreetMap,2026-11-20
+1044,El Mokrani,المقراني,El Mokrani,10,Bouira,البويرة,10,55.68,3435135,Q512323,1.0,OpenStreetMap,2026-11-20
+1045,Oued El Bardi,وادي البردي,Oued El Bardi,10,Bouira,البويرة,10,112.92,3403611,Q517133,1.0,OpenStreetMap,2026-11-20
+1101,Tamanrasset,تمنراست,Tamanghasset,11,Tamanrasset,تامنغست,11,39006.94,4175374,Q205792,1.0,OpenStreetMap,2026-11-20
+1102,Abalessa,أبلسة,Abalessa,11,Tamanrasset,تامنغست,11,80391.83,4175367,Q283326,1.0,OpenStreetMap,2026-11-20
+1103,In Ghar,إن غار,In Ghar,53,In Salah,إن صالح,11,29278.47,4175371,Q1649190,1.0,OpenStreetMap,2026-11-20
+1104,In Guezzam,عين قزام,In Guezzam,54,In Guezzam,إن قزام,11,51325.62,4175372,Q1655182,1.0,OpenStreetMap,2026-11-20
+1105,Idles,أدلس,Idles,11,Tamanrasset,تامنغست,11,58330.22,4175369,Q2215277,1.0,OpenStreetMap,2026-11-20
+1106,Tazrouk,تاظروك,Tazrouk,11,Tamanrasset,تامنغست,11,86740.71,4175375,Q1650305,1.0,OpenStreetMap,2026-11-20
+1107,Tinzaouten,تين ظواتين,Tinzaouten,54,In Guezzam,إن قزام,11,46639.36,4175376,Q389569,1.0,OpenStreetMap,2026-11-20
+1108,In Salah,عين صالح,In Salah,53,In Salah,إن صالح,11,44274.78,4175373,Q255251,1.0,OpenStreetMap,2026-11-20
+1109,In Amguel,عين أمقل,In Amguel,11,Tamanrasset,تامنغست,11,101337.06,4175370,Q3123591,1.0,OpenStreetMap,2026-11-20
+1110,Foggaret Ezzaouia,فقارة الزاوية,Foggaret Ezzaouia,53,In Salah,إن صالح,11,64577.39,4175368,Q2041151,1.0,OpenStreetMap,2026-11-20
+1201,Tébessa,تبسة,Tebessa,12,Tébessa,تبسة,12,200.57,2814580,Q984575,1.0,OpenStreetMap,2026-11-20
+1202,Bir El Ater,بئر العاتر,Bir El Ater,62,Bir El Ater,بئر العاتر,12,1718.87,6618831,Q2904370,1.0,OpenStreetMap,2026-11-20
+1203,Cheria,الشريعة,Cheria,12,Tébessa,تبسة,12,306.06,6618834,Q736205,1.0,OpenStreetMap,2026-11-20
+1204,Stah Guentis,سطح قنطيس,Stah Guentis,12,Tébessa,تبسة,12,1274.66,6618851,Q1650106,1.0,OpenStreetMap,2026-11-20
+1205,El Aouinet,العوينات,El Aouinet,12,Tébessa,تبسة,12,467.66,6618835,Q921801,1.0,OpenStreetMap,2026-11-20
+1206,El Houidjbet,الحويجبات,El Houidjbet,12,Tébessa,تبسة,12,273.94,6618836,Q3049976,1.0,OpenStreetMap,2026-11-20
+1207,Safsaf El Ouesra,صفصاف الوسرة,Safsaf El Ouesra,12,Tébessa,تبسة,12,539.68,6618850,Q3461303,1.0,OpenStreetMap,2026-11-20
+1208,Hammamet,الحمامات,Hammamet,12,Tébessa,تبسة,12,102.98,6618844,Q3126511,1.0,OpenStreetMap,2026-11-20
+1209,Negrine,نقرين,Negrine,62,Bir El Ater,بئر العاتر,12,963.4,6618846,Q1649736,1.0,OpenStreetMap,2026-11-20
+1210,Bir Mokkadem,بئر مقدم,Bir Mokkadem,12,Tébessa,تبسة,12,394.77,6618830,Q2904342,1.0,OpenStreetMap,2026-11-20
+1211,El Kouif,الكويف,El Kouif,12,Tébessa,تبسة,12,229.87,6618837,Q5351493,1.0,OpenStreetMap,2026-11-20
+1212,Morsott,مرسط,Morsott,12,Tébessa,تبسة,12,358.68,6618845,Q3324442,1.0,OpenStreetMap,2026-11-20
+1213,El Ogla,العقلة,El Ogla,12,Tébessa,تبسة,12,130.77,6618841,Q3050135,1.0,OpenStreetMap,2026-11-20
+1214,Bir Dheb,بٔير الذھب,Bir Dheb,12,Tébessa,تبسة,12,285.69,6618829,Q2904327,1.0,OpenStreetMap,2026-11-20
+1215,Ogla Melha,العقلة المالحة,Ogla Melha,62,Bir El Ater,بئر العاتر,12,885.34,6618847,Q3349798,1.0,OpenStreetMap,2026-11-20
+1216,Guorriguer,قوريقر,Guorriguer,12,Tébessa,تبسة,12,305.13,6618843,Q3120926,1.0,OpenStreetMap,2026-11-20
+1217,Bekkaria,بكارية,Bekkaria,12,Tébessa,تبسة,12,124.11,6618828,Q2894102,1.0,OpenStreetMap,2026-11-20
+1218,Boukhadra,بوخضرة,Boukhadra,12,Tébessa,تبسة,12,222.1,6618832,Q1649743,1.0,OpenStreetMap,2026-11-20
+1219,Ouenza,ونزة,Ouenza,12,Tébessa,تبسة,12,150.38,6618848,Q2215410,1.0,OpenStreetMap,2026-11-20
+1220,El Ma Labiodh,الماء اابيض,El Ma Labiodh,12,Tébessa,تبسة,12,294.71,6618838,Q3050027,1.0,OpenStreetMap,2026-11-20
+1221,Oum Ali,أم علي,Oum Ali,12,Tébessa,تبسة,12,246.39,6618849,Q1649739,1.0,OpenStreetMap,2026-11-20
+1222,Tlidjene,ثليجان,Tlidjene,12,Tébessa,تبسة,12,1667.46,6618852,Q3530066,1.0,OpenStreetMap,2026-11-20
+1223,Aïn Zerga,عين الزرقاء,Ain Zerga,12,Tébessa,تبسة,12,366.96,6618826,Q2876398,1.0,OpenStreetMap,2026-11-20
+1224,El Meridj,المريج,El Meridj,12,Tébessa,تبسة,12,275.35,6618839,Q3050080,1.0,OpenStreetMap,2026-11-20
+1225,Boulhaf Dir,بولحاف الدير,Boulhaf Dir,12,Tébessa,تبسة,12,172.03,6618833,Q961879,1.0,OpenStreetMap,2026-11-20
+1226,Bedjene,بجن,Bedjene,12,Tébessa,تبسة,12,142.7,6618827,Q2893575,1.0,OpenStreetMap,2026-11-20
+1227,El Mezeraa,المزرعة,El Mezeraa,12,Tébessa,تبسة,12,525.72,6618840,Q3050079,1.0,OpenStreetMap,2026-11-20
+1228,Ferkane,فركان,Ferkane,62,Bir El Ater,بئر العاتر,12,600.42,6618842,Q3068813,1.0,OpenStreetMap,2026-11-20
+1301,Tlemcen,تلمسان,Tlemcen,13,Tlemcen,تلمسان,13,43.14,4291172,Q185134,1.0,OpenStreetMap,2026-11-20
+1302,Beni Mester,بني مستار,,13,Tlemcen,تلمسان,13,87.25,5265113,Q1649238,1.0,OpenStreetMap,2026-11-20
+1303,Aïn Tallout,عين تالوت,Aïn Tallout,13,Tlemcen,تلمسان,13,506.94,6666550,Q1649342,1.0,OpenStreetMap,2026-11-20
+1304,Remchi,الرمشي,Remchi,13,Tlemcen,تلمسان,13,133.56,6666575,Q3424477,1.0,OpenStreetMap,2026-11-20
+1305,El Fehoul,الفحول,El Fehoul,13,Tlemcen,تلمسان,13,112.74,6666563,Q1649207,1.0,OpenStreetMap,2026-11-20
+1306,Sabra,صبرة,Sabra,13,Tlemcen,تلمسان,13,168.99,6666576,Q3108345,1.0,OpenStreetMap,2026-11-20
+1307,Ghazaouet,الغزوات,Ghazaouet,13,Tlemcen,تلمسان,13,27.21,6666565,Q1521492,1.0,OpenStreetMap,2026-11-20
+1308,Souani,السواني,,13,Tlemcen,تلمسان,13,58.3,6666582,Q731749,1.0,OpenStreetMap,2026-11-20
+1309,Djebala,جبالة,Djebala,13,Tlemcen,تلمسان,13,112.06,6666562,Q3032819,1.0,OpenStreetMap,2026-11-20
+1310,El Gor,القور,El Gor,63,El Aricha,العريشة,13,805.05,6666560,Q532797,1.0,OpenStreetMap,2026-11-20
+1311,Oued Lakhdar,الوادي الأخضر,Oued Lakhdar,13,Tlemcen,تلمسان,13,135.31,6666572,Q3358033,1.0,OpenStreetMap,2026-11-20
+1312,Aïn Fezza,عين فزة,,13,Tlemcen,تلمسان,13,128.14,6666547,Q2876331,1.0,OpenStreetMap,2026-11-20
+1313,Ouled Mimoun,أولاد ميمون,Ouled Mimoun,13,Tlemcen,تلمسان,13,89.77,6666573,Q2110236,1.0,OpenStreetMap,2026-11-20
+1314,Amieur,عمير,Amieur,13,Tlemcen,تلمسان,13,201.38,6666544,Q1649520,1.0,OpenStreetMap,2026-11-20
+1315,Aïn Youcef,عين يوسف,Aïn Youcef,13,Tlemcen,تلمسان,13,63.4,6666551,Q1648923,1.0,OpenStreetMap,2026-11-20
+1316,Zenata,زناتة,,13,Tlemcen,تلمسان,13,53.52,6666586,Q3575193,1.0,OpenStreetMap,2026-11-20
+1317,Beni Snous,بني سنوس,Beni Snous,13,Tlemcen,تلمسان,13,307.45,6666558,Q2895909,1.0,OpenStreetMap,2026-11-20
+1318,Bab El Assa,باب العسة,Bab El Assa,13,Tlemcen,تلمسان,13,76.99,6666552,Q2877665,1.0,OpenStreetMap,2026-11-20
+1319,Dar Yaghmouracene,دار يغمراسن,Dar Yaghmouracene,13,Tlemcen,تلمسان,13,57.44,6666561,Q1649386,1.0,OpenStreetMap,2026-11-20
+1320,Fellaoucene,فلاوسن,Fellaoucene,13,Tlemcen,تلمسان,13,74.27,6666564,Q3068186,1.0,OpenStreetMap,2026-11-20
+1321,Azails,العزايل,Azails,13,Tlemcen,تلمسان,13,134.39,6666545,Q1649234,1.0,OpenStreetMap,2026-11-20
+1322,Sebaa Chioukh,السبعة شيوخ,Sebaa Chioukh,13,Tlemcen,تلمسان,13,81.26,6666577,Q3476838,1.0,OpenStreetMap,2026-11-20
+1323,Terny Beni Hediel,تيرني بني هديل,,13,Tlemcen,تلمسان,13,196.49,6666584,Q3518499,1.0,OpenStreetMap,2026-11-20
+1324,Bensekrane,بن سكران,Bensekrane,13,Tlemcen,تلمسان,13,88.4,5836758,Q282544,1.0,OpenStreetMap,2026-11-20
+1325,Ain Nahala,عين نحالة,Ain Nahala,13,Tlemcen,تلمسان,13,127.38,5836689,Q2876358,1.0,OpenStreetMap,2026-11-20
+1326,Hennaya,الحناية,Hennaya,13,Tlemcen,تلمسان,13,98.92,6666567,Q3130297,1.0,OpenStreetMap,2026-11-20
+1327,Maghnia,مغنية,Maghnia,13,Tlemcen,تلمسان,13,242.23,6666570,Q179604,1.0,OpenStreetMap,2026-11-20
+1328,Hammam Boughrara,حمام بوغرارة,Hammam Boughrara,13,Tlemcen,تلمسان,13,160.28,6666566,Q3126496,1.0,OpenStreetMap,2026-11-20
+1329,Souahlia,السواحلية,Souahlia,13,Tlemcen,تلمسان,13,87.35,6666581,Q1650235,1.0,OpenStreetMap,2026-11-20
+1330,MSirda Fouaga,مسيردة الفواقة,Msirda Fouaga,13,Tlemcen,تلمسان,13,90.31,6666569,Q6930167,1.0,OpenStreetMap,2026-11-20
+1331,Aïn Fetah,عين فتاح,Aïn Fetah,13,Tlemcen,تلمسان,13,77.67,6666546,Q2876330,1.0,OpenStreetMap,2026-11-20
+1332,El Aricha,العريشة,Aricha,63,El Aricha,العريشة,13,747.04,6666587,Q3049715,1.0,OpenStreetMap,2026-11-20
+1333,Souk Tlata,سوق الثلاثاء,Souk Tlata,13,Tlemcen,تلمسان,13,81.6,6666583,Q3491586,1.0,OpenStreetMap,2026-11-20
+1334,Sidi Abdelli,سيدي العبدلي,Sidi Abdelli,13,Tlemcen,تلمسان,13,232.84,5836649,Q3483155,1.0,OpenStreetMap,2026-11-20
+1335,Sebdou,سبدو,Sebdou,13,Tlemcen,تلمسان,13,249.77,6666578,Q1649930,1.0,OpenStreetMap,2026-11-20
+1336,Beni Ouarsous,بني ورسوس,Beni Ouarsous,13,Tlemcen,تلمسان,13,169.34,6666556,Q2895907,1.0,OpenStreetMap,2026-11-20
+1337,Sidi Medjahed,سيدي مجاهد,Sidi Medjahed,13,Tlemcen,تلمسان,13,112.84,6666579,Q1649892,1.0,OpenStreetMap,2026-11-20
+1338,Beni Boussaid,بني بوسعيد,Beni Boussaid,13,Tlemcen,تلمسان,13,343.16,6666554,Q2895870,1.0,OpenStreetMap,2026-11-20
+1339,Marsa Ben M'Hidi,مرسى بن مھيدي,Marsa Ben M'Hidi,13,Tlemcen,تلمسان,13,68.43,4586232,Q3294976,1.0,OpenStreetMap,2026-11-20
+1340,Nedroma,ندرومة,Nedroma,13,Tlemcen,تلمسان,13,85.52,6666571,Q2670516,1.0,OpenStreetMap,2026-11-20
+1341,Sidi Djillali,سيدي الجيلالي,Sidi Djillali,63,El Aricha,العريشة,13,733.21,6666589,Q3483225,1.0,OpenStreetMap,2026-11-20
+1342,Beni Bahdel,بني بهدل,Beni Bahdel,13,Tlemcen,تلمسان,13,43.43,6666553,Q2895867,1.0,OpenStreetMap,2026-11-20
+1343,El Bouihi,البويھي,El Bouihi,63,El Aricha,العريشة,13,724.27,6666588,Q3049754,1.0,OpenStreetMap,2026-11-20
+1344,Honaïne,هنين,Honaïne,13,Tlemcen,تلمسان,13,61.97,6666568,Q953471,1.0,OpenStreetMap,2026-11-20
+1345,Tienet,تيانت,Tienet,13,Tlemcen,تلمسان,13,25.6,6666585,Q3528212,1.0,OpenStreetMap,2026-11-20
+1346,Oulad Riah,أولاد رياح,,13,Tlemcen,تلمسان,13,91.11,6666574,Q3358254,1.0,OpenStreetMap,2026-11-20
+1347,Bouhlou,بوحلو,Bouhlou,13,Tlemcen,تلمسان,13,128.36,6666559,Q16845185,1.0,OpenStreetMap,2026-11-20
+1348,Beni Khellad,بني خلاد,Beni khellad,13,Tlemcen,تلمسان,13,74.45,6666555,Q286134,1.0,OpenStreetMap,2026-11-20
+1349,Aïn Ghoraba,عين غرابة,Ain Ghoraba,13,Tlemcen,تلمسان,13,96.12,6666548,Q2876337,1.0,OpenStreetMap,2026-11-20
+1350,Chetouane,شتوان,Chetouane,13,Tlemcen,تلمسان,13,47.91,4589407,Q2962883,1.0,OpenStreetMap,2026-11-20
+1351,Mansourah,المنصورة,Mansourah,13,Tlemcen,تلمسان,13,25.23,4291183,Q3286584,1.0,OpenStreetMap,2026-11-20
+1352,Beni Semiel,بني صميل,Beni Semiel,13,Tlemcen,تلمسان,13,226.53,6666557,Q2895908,1.0,OpenStreetMap,2026-11-20
+1353,Aïn Kebira,العين الكبيرة,Ain Kebira,13,Tlemcen,تلمسان,13,67.8,6666549,Q2876341,1.0,OpenStreetMap,2026-11-20
+1401,Tiaret,تيارت,Tiaret,14,Tiaret,تيارت,14,123.16,6545450,Q565568,1.0,OpenStreetMap,2026-11-20
+1402,Medroussa,مدروسة,Medroussa,14,Tiaret,تيارت,14,214.7,6545433,Q1649268,1.0,OpenStreetMap,2026-11-20
+1403,Aïn Bouchekif,عين بوشقيف,Aïn Bouchekif,14,Tiaret,تيارت,14,150.73,6545416,Q1648601,1.0,OpenStreetMap,2026-11-20
+1404,Sidi Ali Mellal,سيدي علي ملال,Sidi Ali Mellal,14,Tiaret,تيارت,14,142.87,6545444,Q1650241,1.0,OpenStreetMap,2026-11-20
+1405,Aïn Zarit,عين دزاريت,Ain Dzarit,14,Tiaret,تيارت,14,169.4,6545415,Q1649140,1.0,OpenStreetMap,2026-11-20
+1406,Aïn Deheb,عين الذهب,Aïn Deheb,14,Tiaret,تيارت,14,1427.9,6545417,Q1649496,1.0,OpenStreetMap,2026-11-20
+1407,Sidi Bakhti,سيدي بختي,Sidi Bakhti,14,Tiaret,تيارت,14,214.89,6545445,Q1650021,1.0,OpenStreetMap,2026-11-20
+1408,Medrissa,مدريسة,Medrissa,14,Tiaret,تيارت,14,268.54,6545432,Q1649250,1.0,OpenStreetMap,2026-11-20
+1409,Zmalet El Emir Abdelkader,زمالة الأمير عبد القادر,Zmalet Emir Abdelkader,64,Ksar Chellala,قصر الشلالة,14,1188.76,4290303,Q1650876,1.0,OpenStreetMap,2026-11-20
+1410,Madna,مادنة,Madna,14,Tiaret,تيارت,14,515.24,6545429,Q761817,1.0,OpenStreetMap,2026-11-20
+1411,Sebt,السبت,Sebt,14,Tiaret,تيارت,14,72.22,6545434,Q1884800,1.0,OpenStreetMap,2026-11-20
+1412,Mellakou,ملاكو,Mellakou,14,Tiaret,تيارت,14,205.81,6545435,Q3305160,1.0,OpenStreetMap,2026-11-20
+1413,Dahmouni,دھمونى,Dahmouni,14,Tiaret,تيارت,14,163.94,6545422,Q1649360,1.0,OpenStreetMap,2026-11-20
+1414,Rahouia,رحوية,Rahouia,14,Tiaret,تيارت,14,277.41,6545439,Q1649911,1.0,OpenStreetMap,2026-11-20
+1415,Mahdia,المھدية,Mahdia,14,Tiaret,تيارت,14,142.97,6545430,Q3277676,1.0,OpenStreetMap,2026-11-20
+1416,Sougueur,السوقر,Sougueur,14,Tiaret,تيارت,14,256.96,6545447,Q1483423,1.0,OpenStreetMap,2026-11-20
+1417,Si Abdelghani,سيدي عبد الغنى,Si Abdelghani,14,Tiaret,تيارت,14,424.93,6545442,Q1650052,1.0,OpenStreetMap,2026-11-20
+1418,Aïn El Hadid,عين الحديد,Aïn El Hadid,14,Tiaret,تيارت,14,441.35,6545418,Q740664,1.0,OpenStreetMap,2026-11-20
+1419,Djebilet Rosfa,جبيلات رصفة,Djebilet Rosfa,14,Tiaret,تيارت,14,493.25,6545423,Q1649054,1.0,OpenStreetMap,2026-11-20
+1420,Naima,النعيمة,Naima,14,Tiaret,تيارت,14,1606.3,6545437,Q3335204,1.0,OpenStreetMap,2026-11-20
+1421,Meghila,مغيلة,Meghila,14,Tiaret,تيارت,14,108.77,6545483,Q1649119,1.0,OpenStreetMap,2026-11-20
+1422,Guertoufa,قرطوفة,Guertoufa,14,Tiaret,تيارت,14,180.13,6545427,Q1649565,1.0,OpenStreetMap,2026-11-20
+1423,Sidi Hosni,سيدي الحسني,Sidi Hosni,14,Tiaret,تيارت,14,230.56,6545446,Q1649900,1.0,OpenStreetMap,2026-11-20
+1424,Djillali Ben Amar,جيلالي بن عمار,Djillali Ben Amar,14,Tiaret,تيارت,14,149.69,6545424,Q673791,1.0,OpenStreetMap,2026-11-20
+1425,Sebaïne,سبعين,Sebaine,14,Tiaret,تيارت,14,268.7,6545441,Q3476931,1.0,OpenStreetMap,2026-11-20
+1426,Tousnina,توسنينة,Tousnina,14,Tiaret,تيارت,14,295.46,6545452,Q1650287,1.0,OpenStreetMap,2026-11-20
+1427,Frenda,فرندة,Frenda,14,Tiaret,تيارت,14,386.73,6545426,Q2215495,1.0,OpenStreetMap,2026-11-20
+1428,Aïn Kermes,عين كرمس,Aïn Kermes,14,Tiaret,تيارت,14,224.71,6545419,Q1649010,1.0,OpenStreetMap,2026-11-20
+1429,Ksar Chellala,قصر الشلالة,Ksar Chellala,64,Ksar Chellala,قصر الشلالة,14,133.48,4290194,Q1648944,1.0,OpenStreetMap,2026-11-20
+1430,Rechaiga,الرشايقة,Rechaiga,64,Ksar Chellala,قصر الشلالة,14,877.49,6545440,Q3421885,1.0,OpenStreetMap,2026-11-20
+1431,Nadorah,الناظورة,Nadorah,14,Tiaret,تيارت,14,651.85,6545436,Q1649167,1.0,OpenStreetMap,2026-11-20
+1432,Tagdemt,تاقدمت,Tagdemt,14,Tiaret,تيارت,14,148.68,6545448,Q1650254,1.0,OpenStreetMap,2026-11-20
+1433,Oued Lilli,وادى ليلى,Oued Lilli,14,Tiaret,تيارت,14,226.43,6545438,Q1649256,1.0,OpenStreetMap,2026-11-20
+1434,Mechraa Safa,مشرع الصفاء,Mechraa Safa,14,Tiaret,تيارت,14,301.78,6545431,Q1649372,1.0,OpenStreetMap,2026-11-20
+1435,Hamadia,حمادية,Hamadia,64,Ksar Chellala,قصر الشلالة,14,187.56,6545428,Q3126310,1.0,OpenStreetMap,2026-11-20
+1436,Chehaima,شحيمة,Chehaima,14,Tiaret,تيارت,14,2221.25,6545421,Q285281,1.0,OpenStreetMap,2026-11-20
+1437,Takhemaret,تاخمرت,Takhemaret,14,Tiaret,تيارت,14,566.69,6545449,Q2217482,1.0,OpenStreetMap,2026-11-20
+1438,Sidi Abderrahmane,سيدي عبد الرحمان,Sidi Abderrahmane,14,Tiaret,تيارت,14,1573.72,6545443,Q3483159,1.0,OpenStreetMap,2026-11-20
+1439,Serghine,سرغين,Serghine,64,Ksar Chellala,قصر الشلالة,14,366.38,4290220,Q1650075,1.0,OpenStreetMap,2026-11-20
+1440,Bougara,بوقرة,Bougara,64,Ksar Chellala,قصر الشلالة,14,114.86,6545420,Q2921548,1.0,OpenStreetMap,2026-11-20
+1441,Faidja,الفايجة,Faidja,14,Tiaret,تيارت,14,2292.53,6545425,Q1649285,1.0,OpenStreetMap,2026-11-20
+1442,Tidda,تيدة,Tidda,14,Tiaret,تيارت,14,103.53,6545451,Q1650299,1.0,OpenStreetMap,2026-11-20
+1501,Tizi Ouzou,تيزي وزو,Tizi Ouzou,15,Tizi Ouzou,تيزي وزو,15,101.34,3081643,Q277201,1.0,OpenStreetMap,2026-11-20
+1502,Aïn El Hammam,عین الحمام,Ain El Hammam,15,Tizi Ouzou,تيزي وزو,15,38.47,4288602,Q276935,1.0,OpenStreetMap,2026-11-20
+1503,Akbil,أقبيل,Akbil,15,Tizi Ouzou,تيزي وزو,15,37.45,4288635,Q2828962,1.0,OpenStreetMap,2026-11-20
+1504,Freha,فريحة,Freha,15,Tizi Ouzou,تيزي وزو,15,69.08,3079569,Q1895391,1.0,OpenStreetMap,2026-11-20
+1505,Souamaâ,الصوامع,Souamaa,15,Tizi Ouzou,تيزي وزو,15,39.87,4282805,Q3491437,1.0,OpenStreetMap,2026-11-20
+1506,Mechtras,مشطراس,Mechtras,15,Tizi Ouzou,تيزي وزو,15,17.5,4293793,Q3303859,1.0,OpenStreetMap,2026-11-20
+1507,Irdjen,إرجن,Irdjen,15,Tizi Ouzou,تيزي وزو,15,20.89,4285909,Q3154300,1.0,OpenStreetMap,2026-11-20
+1508,Timizart,تيميزارت,Timizart,15,Tizi Ouzou,تيزي وزو,15,65.6,3274799,Q3529010,1.0,OpenStreetMap,2026-11-20
+1509,Makouda,ماكودة,Makouda,15,Tizi Ouzou,تيزي وزو,15,57.76,3499472,Q3280947,1.0,OpenStreetMap,2026-11-20
+1510,Draâ El Mizan,ذراع الميزان,,15,Tizi Ouzou,تيزي وزو,15,81.22,4293703,Q4119323,1.0,OpenStreetMap,2026-11-20
+1511,Tizi Ghenif,تيزي غنيف,Tizi Ghenif,15,Tizi Ouzou,تيزي وزو,15,41.52,4293716,Q3529984,1.0,OpenStreetMap,2026-11-20
+1512,Bounouh,بونوح,Bounouh,15,Tizi Ouzou,تيزي وزو,15,27.05,4293695,Q2922209,1.0,OpenStreetMap,2026-11-20
+1513,Aït Chafâa,أيت شفعة,,15,Tizi Ouzou,تيزي وزو,15,85.44,4285400,Q2876476,1.0,OpenStreetMap,2026-11-20
+1514,Frikat,فريقات,Frikat,15,Tizi Ouzou,تيزي وزو,15,38.25,4293699,Q3087858,1.0,OpenStreetMap,2026-11-20
+1515,Beni Aïssi,بني عيسي,,15,Tizi Ouzou,تيزي وزو,15,21.65,4291589,Q2895858,1.0,OpenStreetMap,2026-11-20
+1516,Beni Zmenzer,بني زمنزر,Beni Zmenzer,15,Tizi Ouzou,تيزي وزو,15,20.62,4292527,Q2895921,1.0,OpenStreetMap,2026-11-20
+1517,Iferhounene,إيفرحونن,Iferhounene,15,Tizi Ouzou,تيزي وزو,15,32.79,2170762,Q3148092,1.0,OpenStreetMap,2026-11-20
+1518,Azazga,عزازقة,Azazga,15,Tizi Ouzou,تيزي وزو,15,77.59,4280112,Q2875118,1.0,OpenStreetMap,2026-11-20
+1519,Iloula Oumalou,إيلولة أمالو,Iloula Oumalou,15,Tizi Ouzou,تيزي وزو,15,51.56,2170761,Q778239,1.0,OpenStreetMap,2026-11-20
+1520,Yakouren,إعكوران,Yakouren,15,Tizi Ouzou,تيزي وزو,15,80.51,2177213,Q3571365,1.0,OpenStreetMap,2026-11-20
+1521,Larbaa N'Aït Irathen,الأربعاء نايث إيراثن,,15,Tizi Ouzou,تيزي وزو,15,39.18,4286304,Q764741,1.0,OpenStreetMap,2026-11-20
+1522,Tizi Rached,تيزي راشد,Tizi Rached,15,Tizi Ouzou,تيزي وزو,15,32.12,4285748,Q3529993,1.0,OpenStreetMap,2026-11-20
+1523,Zekri,زكري,Zekri,15,Tizi Ouzou,تيزي وزو,15,89.2,4285366,Q3575120,1.0,OpenStreetMap,2026-11-20
+1524,Ouaguenoun,واقنون,Ouaguenoun,15,Tizi Ouzou,تيزي وزو,15,40.17,3080287,Q1649382,1.0,OpenStreetMap,2026-11-20
+1525,Ain Zaouia,عين الزاوية,Aïn Zaouia,15,Tizi Ouzou,تيزي وزو,15,56.42,4293792,Q2876399,1.0,OpenStreetMap,2026-11-20
+1526,Mkira,مكيرة,Mkira,15,Tizi Ouzou,تيزي وزو,15,35.45,4293722,Q3272283,1.0,OpenStreetMap,2026-11-20
+1527,Ait Yahia,أيت يحي,Ait Yahia,15,Tizi Ouzou,تيزي وزو,15,52.55,2175824,Q2876538,1.0,OpenStreetMap,2026-11-20
+1528,Aït Mahmoud,أيت محمود,,15,Tizi Ouzou,تيزي وزو,15,25.78,4292443,Q2876508,1.0,OpenStreetMap,2026-11-20
+1529,Mâatkas,المعاتقة,,15,Tizi Ouzou,تيزي وزو,15,45.68,4293796,Q6949882,1.0,OpenStreetMap,2026-11-20
+1530,Aït Boumahdi,أيت بومهدي,,15,Tizi Ouzou,تيزي وزو,15,23.17,4289197,Q2423922,1.0,OpenStreetMap,2026-11-20
+1531,Abi Youcef,أبي يوسف,Abi Youcef,15,Tizi Ouzou,تيزي وزو,15,16.9,4279944,Q1648557,1.0,OpenStreetMap,2026-11-20
+1532,Beni Douala,بني دوالة,Beni Douala,15,Tizi Ouzou,تيزي وزو,15,35.4,4292506,Q2895885,1.0,OpenStreetMap,2026-11-20
+1533,Illilten,إليلتن,Illilten,15,Tizi Ouzou,تيزي وزو,15,26.77,2170759,Q3148723,1.0,OpenStreetMap,2026-11-20
+1534,Bouzguen,بوزغن,Bouzguen,15,Tizi Ouzou,تيزي وزو,15,69.0,2175826,Q2215269,1.0,OpenStreetMap,2026-11-20
+1535,Aït Aggouacha,أيت قواشة,,15,Tizi Ouzou,تيزي وزو,15,26.33,4288585,Q588461,1.0,OpenStreetMap,2026-11-20
+1536,Ouadhia,واضية,Ouadhia,15,Tizi Ouzou,تيزي وزو,15,32.82,4291973,Q2087312,1.0,OpenStreetMap,2026-11-20
+1537,Azeffoun,أزفون,Azeffoun,15,Tizi Ouzou,تيزي وزو,15,126.42,4285456,Q209443,1.0,OpenStreetMap,2026-11-20
+1538,Tigzirt,تيقزيرت,Tigzirt,15,Tizi Ouzou,تيزي وزو,15,38.31,4285531,Q3173842,1.0,OpenStreetMap,2026-11-20
+1539,Ait Aissa Mimoun,آيت عيسى ميمون,Ait Aissa Mimoun,15,Tizi Ouzou,تيزي وزو,15,36.97,3080944,Q3032817,1.0,OpenStreetMap,2026-11-20
+1540,Boghni,بوغني,Boghni,15,Tizi Ouzou,تيزي وزو,15,51.5,4293648,Q1649016,1.0,OpenStreetMap,2026-11-20
+1541,Ifigha,إيفيغاء,Ifigha,15,Tizi Ouzou,تيزي وزو,15,46.82,2175825,Q10772723,1.0,OpenStreetMap,2026-11-20
+1542,Aït Oumalou,أيت أومالو,,15,Tizi Ouzou,تيزي وزو,15,13.9,4285835,Q2876514,1.0,OpenStreetMap,2026-11-20
+1543,Tirmitine,تيرمتين,Tirmitine,15,Tizi Ouzou,تيزي وزو,15,32.87,4293797,Q3529393,1.0,OpenStreetMap,2026-11-20
+1544,Akerrou,أقرو,Akerrou,15,Tizi Ouzou,تيزي وزو,15,44.89,4285411,Q2828985,1.0,OpenStreetMap,2026-11-20
+1545,Yatafene,إعطافن,Yatafene,15,Tizi Ouzou,تيزي وزو,15,15.69,4288664,Q3572005,1.0,OpenStreetMap,2026-11-20
+1546,Beni Ziki,بني زيكي,Beni Ziki,15,Tizi Ouzou,تيزي وزو,15,20.58,2175827,Q674163,1.0,OpenStreetMap,2026-11-20
+1547,Draa Ben Khedda,ذراع بن خدة,Draa Ben Khedda,15,Tizi Ouzou,تيزي وزو,15,33.64,4285617,Q5306152,1.0,OpenStreetMap,2026-11-20
+1548,Ouacif,واسيف,Ouacif,15,Tizi Ouzou,تيزي وزو,15,17.23,4289193,Q3357887,1.0,OpenStreetMap,2026-11-20
+1549,Idjer,إجر,Idjer,15,Tizi Ouzou,تيزي وزو,15,74.7,2177075,Q3147876,1.0,OpenStreetMap,2026-11-20
+1550,Mekla,مقلع,Mekla,15,Tizi Ouzou,تيزي وزو,15,64.34,4285700,Q1649145,1.0,OpenStreetMap,2026-11-20
+1551,Tizi N'Tleta,تيزي نثلاثة,Tizi N'Tleta,15,Tizi Ouzou,تيزي وزو,15,27.17,4292807,Q3529987,1.0,OpenStreetMap,2026-11-20
+1552,Beni Yenni,بني يني,Beni Yenni,15,Tizi Ouzou,تيزي وزو,15,34.57,4289177,Q2223602,1.0,OpenStreetMap,2026-11-20
+1553,Aghrib,أغريب,Aghrib,15,Tizi Ouzou,تيزي وزو,15,65.62,4285438,Q1648638,1.0,OpenStreetMap,2026-11-20
+1554,Iflissen,إفليسن,Iflissen,15,Tizi Ouzou,تيزي وزو,15,66.68,4285481,Q5991212,1.0,OpenStreetMap,2026-11-20
+1555,Boudjima,بوجيمة,Boudjima,15,Tizi Ouzou,تيزي وزو,15,35.51,3274166,Q2921489,1.0,OpenStreetMap,2026-11-20
+1556,Ait Yahia Moussa,أيت يحي موسى,Ait Yahia Moussa,15,Tizi Ouzou,تيزي وزو,15,64.18,4293723,Q1649218,1.0,OpenStreetMap,2026-11-20
+1557,Souk El Tenine,سوق الإثنين,Souk El Tenine,15,Tizi Ouzou,تيزي وزو,15,20.77,4293795,Q3491580,1.0,OpenStreetMap,2026-11-20
+1558,Aït Khelili,أيت خليلي,,15,Tizi Ouzou,تيزي وزو,15,24.72,4285690,Q2876498,1.0,OpenStreetMap,2026-11-20
+1559,Sidi Naamane,سيدي نعمان,Sidi Naamane,15,Tizi Ouzou,تيزي وزو,15,43.55,4279910,Q3483275,1.0,OpenStreetMap,2026-11-20
+1560,Iboudraren,إبودرارن,Iboudraren,15,Tizi Ouzou,تيزي وزو,15,32.57,4288710,Q2223529,1.0,OpenStreetMap,2026-11-20
+1561,Agouni Gueghrane,أقني قغران,Agouni Gueghrane,15,Tizi Ouzou,تيزي وزو,15,40.54,4291805,Q522369,1.0,OpenStreetMap,2026-11-20
+1562,Mizrana,مزرانة,Mizrana,15,Tizi Ouzou,تيزي وزو,15,54.29,4285550,Q3317342,1.0,OpenStreetMap,2026-11-20
+1563,Imsouhal,أمسوحال,Imsouhal,15,Tizi Ouzou,تيزي وزو,15,24.57,2175823,Q3149574,1.0,OpenStreetMap,2026-11-20
+1564,Tadmaït,تادمايت,,15,Tizi Ouzou,تيزي وزو,15,62.3,4285627,Q3513734,1.0,OpenStreetMap,2026-11-20
+1565,Aït Bouadou,أيت بوعدو,,15,Tizi Ouzou,تيزي وزو,15,38.92,4292593,Q1648974,1.0,OpenStreetMap,2026-11-20
+1566,Assi Youcef,أسي يوسف,Assi Youcef,15,Tizi Ouzou,تيزي وزو,15,25.56,4293167,Q2867151,1.0,OpenStreetMap,2026-11-20
+1567,Aït Toudert,أيت تودرت,,15,Tizi Ouzou,تيزي وزو,15,34.59,4289238,Q2876520,1.0,OpenStreetMap,2026-11-20
+1601,Alger-Centre,الجزائر الوسطى,Alger-Centre,16,Alger,الجزائر,16,3.75,157183,Q2835683,1.0,OpenStreetMap,2026-11-20
+1602,Sidi M'Hamed,سيدي امحمد,Sidi M'Hamed,16,Alger,الجزائر,16,2.17,157182,Q1650084,1.0,OpenStreetMap,2026-11-20
+1603,El Madania,المدنية,El Madania,16,Alger,الجزائر,16,2.14,545892,Q1649753,1.0,OpenStreetMap,2026-11-20
+1604,Belouizdad,بلوزداد,Belouizdad,16,Alger,الجزائر,16,2.25,157175,Q634748,1.0,OpenStreetMap,2026-11-20
+1605,Bab El Oued,باب الوادي,Bab Al Wadi,16,Alger,الجزائر,16,1.2,157185,Q312019,1.0,OpenStreetMap,2026-11-20
+1606,Bologhine,بولوغين,Bulughin,16,Alger,الجزائر,16,2.73,548210,Q370406,1.0,OpenStreetMap,2026-11-20
+1607,Casbah,القصبة,Casbah,16,Alger,الجزائر,16,1.1,157184,Q2940826,1.0,OpenStreetMap,2026-11-20
+1608,Oued Koreiche,وادي قريش,Oued Koriche,16,Alger,الجزائر,16,2.5,157186,Q3181020,1.0,OpenStreetMap,2026-11-20
+1609,Bir Mourad Raïs,بئر مراد رايس,Bir Mourad Rais,16,Alger,الجزائر,16,3.9,545896,Q2534015,1.0,OpenStreetMap,2026-11-20
+1610,El Biar,الأبيار,El Biar,16,Alger,الجزائر,16,4.13,545878,Q2673474,1.0,OpenStreetMap,2026-11-20
+1611,Bouzaréah,بوزريعة,Bouzaréah,16,Alger,الجزائر,16,12.23,542498,Q612537,1.0,OpenStreetMap,2026-11-20
+1612,Birkhadem,بئر خادم,Birkhadem,16,Alger,الجزائر,16,9.21,546311,Q2904515,1.0,OpenStreetMap,2026-11-20
+1613,El Harrach,الحراش,El Harrach,16,Alger,الجزائر,16,9.79,542583,Q1021018,1.0,OpenStreetMap,2026-11-20
+1614,Baraki,براقي,Baraki,16,Alger,الجزائر,16,26.75,540550,Q2736044,1.0,OpenStreetMap,2026-11-20
+1615,Oued Smar,وادي السمار,Oued Smar,16,Alger,الجزائر,16,8.2,157521,Q335442,1.0,OpenStreetMap,2026-11-20
+1616,Bourouba,بوروبة,Bourouba,16,Alger,الجزائر,16,3.7,542584,Q2215522,1.0,OpenStreetMap,2026-11-20
+1617,Hussein Dey,حسين داي,Hussein Dey,16,Alger,الجزائر,16,4.67,157086,Q1252682,1.0,OpenStreetMap,2026-11-20
+1618,Kouba,القبة,Kouba,16,Alger,الجزائر,16,10.01,545895,Q3086863,1.0,OpenStreetMap,2026-11-20
+1619,Bachdjarah,باش جراح,Bachdjarah,16,Alger,الجزائر,16,3.35,542690,Q2878250,1.0,OpenStreetMap,2026-11-20
+1620,Dar El Beïda,الدار البيضاء,Dar El Beïda,16,Alger,الجزائر,16,29.58,157498,Q59419,1.0,OpenStreetMap,2026-11-20
+1621,Bab Ezzouar,باب الزوار,Bab Ezzouar,16,Alger,الجزائر,16,8.08,157508,Q59579,1.0,OpenStreetMap,2026-11-20
+1622,Ben Aknoun,بن عكنون,Ben Aknoun,16,Alger,الجزائر,16,3.72,544814,Q2895321,1.0,OpenStreetMap,2026-11-20
+1623,Dély Brahim,دالي إبراھيم,Dély Brahim,16,Alger,الجزائر,16,8.64,544840,Q3021980,1.0,OpenStreetMap,2026-11-20
+1624,Hammamet,الحمامات,Hammamet,16,Alger,الجزائر,16,8.9,542467,Q5645553,1.0,OpenStreetMap,2026-11-20
+1625,Raïs Hamidou,الرئيس حميدو,Rais Hamidou,16,Alger,الجزائر,16,4.8,548025,Q3421420,1.0,OpenStreetMap,2026-11-20
+1626,Gué de Constantine,جسر قسنطينة,Djasr Kasentina,16,Alger,الجزائر,16,14.2,2711708,Q335744,1.0,OpenStreetMap,2026-11-20
+1627,El Mouradia,المرادية,El Mouradia,16,Alger,الجزائر,16,1.93,545891,Q2918742,1.0,OpenStreetMap,2026-11-20
+1628,Hydra,حيدرة,Hydra,16,Alger,الجزائر,16,7.18,545879,Q1010749,1.0,OpenStreetMap,2026-11-20
+1629,Mohammadia,المحمدية,Al Muhammadiyya,16,Alger,الجزائر,16,7.93,157511,Q2741121,1.0,OpenStreetMap,2026-11-20
+1630,Bordj El Kiffan,برج الكيفان,Burj Al Kifan,16,Alger,الجزائر,16,21.85,157472,Q1184993,1.0,OpenStreetMap,2026-11-20
+1631,El Magharia,المقارية,El Magharia,16,Alger,الجزائر,16,1.45,542689,Q3050050,1.0,OpenStreetMap,2026-11-20
+1632,Beni Messous,بني مسوس,Beni Messous,16,Alger,الجزائر,16,7.64,542466,Q2895900,1.0,OpenStreetMap,2026-11-20
+1633,Eucalyptus,الكاليتوس,Eucalyptus,16,Alger,الجزائر,16,32.47,157532,Q648163,1.0,OpenStreetMap,2026-11-20
+1634,Birtouta,بئر توتة,Birtouta,16,Alger,الجزائر,16,27.41,540555,Q4917124,1.0,OpenStreetMap,2026-11-20
+1635,Tessala El Merdja,تسالة المرجة,Tessala El Merdja,16,Alger,الجزائر,16,20.93,540604,Q3519005,1.0,OpenStreetMap,2026-11-20
+1636,Ouled Chebel,أولاد شبل,Ouled Chebel,16,Alger,الجزائر,16,29.32,540556,Q3358214,1.0,OpenStreetMap,2026-11-20
+1637,Sidi Moussa,سيدي موسى,Sidi Moussa,16,Alger,الجزائر,16,39.89,540549,Q2215533,1.0,OpenStreetMap,2026-11-20
+1638,Aïn Taya,عين طاية,Ain Taya,16,Alger,الجزائر,16,9.52,157460,Q2876387,1.0,OpenStreetMap,2026-11-20
+1639,Bordj El Bahri,برج البحري,Bordj El Bahri,16,Alger,الجزائر,16,7.55,157478,Q2215503,1.0,OpenStreetMap,2026-11-20
+1640,El Marsa,المرسى,El Marsa,16,Alger,الجزائر,16,3.84,157462,Q3050046,1.0,OpenStreetMap,2026-11-20
+1641,Herraoua,هراوة,Herraoua,16,Alger,الجزائر,16,12.89,157456,Q3124660,1.0,OpenStreetMap,2026-11-20
+1642,Rouiba,الرويبة,Rouiba,16,Alger,الجزائر,16,41.37,157480,Q2215980,1.0,OpenStreetMap,2026-11-20
+1643,Reghaïa,الرغاية,Reghaia,16,Alger,الجزائر,16,26.53,157452,Q1649935,1.0,OpenStreetMap,2026-11-20
+1644,Aïn Benian,عين البنيان,Ain Benian,16,Alger,الجزائر,16,13.88,542350,Q2876264,1.0,OpenStreetMap,2026-11-20
+1645,Staoueli,سطاوالي,Staoueli,16,Alger,الجزائر,16,21.49,540527,Q2217496,1.0,OpenStreetMap,2026-11-20
+1646,Zéralda,زرالدة,Zéralda,16,Alger,الجزائر,16,31.07,241408,Q2215424,1.0,OpenStreetMap,2026-11-20
+1647,Mâalma,محالمة,Maalma,16,Alger,الجزائر,16,34.88,241459,Q2215331,1.0,OpenStreetMap,2026-11-20
+1648,Rahmania,الرحمانية,Rahmania,16,Alger,الجزائر,16,9.07,241470,Q7283491,1.0,OpenStreetMap,2026-11-20
+1649,Souidania,السويدانية,Souidania,16,Alger,الجزائر,16,14.36,540526,Q2215718,1.0,OpenStreetMap,2026-11-20
+1650,Chéraga,الشراقة,Chéraga,16,Alger,الجزائر,16,28.34,542318,Q335751,1.0,OpenStreetMap,2026-11-20
+1651,Ouled Fayet,أولاد فايت,Ouled Fayet,16,Alger,الجزائر,16,18.71,541087,Q2215680,1.0,OpenStreetMap,2026-11-20
+1652,El Achour,العاشور,El Achour,16,Alger,الجزائر,16,11.04,544815,Q2215090,1.0,OpenStreetMap,2026-11-20
+1653,Draria,درارية,Draria,16,Alger,الجزائر,16,10.83,544766,Q3039143,1.0,OpenStreetMap,2026-11-20
+1654,Douera,دويرة,Douera,16,Alger,الجزائر,16,40.53,540605,Q1649106,1.0,OpenStreetMap,2026-11-20
+1655,Baba Hassen,بابا حسن,Baba Hassen,16,Alger,الجزائر,16,9.43,541086,Q544912,1.0,OpenStreetMap,2026-11-20
+1656,Khraïssia,خرايسية,Khraissia,16,Alger,الجزائر,16,15.71,541085,Q2423749,1.0,OpenStreetMap,2026-11-20
+1657,Saoula,سحاولة,Saoula,16,Alger,الجزائر,16,19.48,541102,Q1884982,1.0,OpenStreetMap,2026-11-20
+1701,Djelfa,الجلفة,Djelfa,17,Djelfa,الجلفة,17,528.4,6533510,Q2794758,1.0,OpenStreetMap,2026-11-20
+1702,Moudjebara,مجبارة,Moudjebara,17,Djelfa,الجلفة,17,862.66,6533524,Q3325431,1.0,OpenStreetMap,2026-11-20
+1703,El Guedid,القديد,El Guedid,17,Djelfa,الجلفة,17,1153.21,6533512,Q2209170,1.0,OpenStreetMap,2026-11-20
+1704,Hassi Bahbah,حاسي بحبح,Hassi Bahbah,17,Djelfa,الجلفة,17,781.61,6533519,Q649908,1.0,OpenStreetMap,2026-11-20
+1705,Aïn Maabed,عين معبد,Aïn Maabed,17,Djelfa,الجلفة,17,477.38,6533501,Q1649157,1.0,OpenStreetMap,2026-11-20
+1706,Sed Rahal,سد رحال,Sed Rahal,66,Messaad,مسعد,17,950.24,6533526,Q619091,1.0,OpenStreetMap,2026-11-20
+1707,Faïdh El Botma,فيض البطمة,Feidh El Botma,66,Messaad,مسعد,17,907.33,6533515,Q2209190,1.0,OpenStreetMap,2026-11-20
+1708,Birine,البيرين,Perrin,65,Aïn Oussara,عين وسارة,17,805.8,6533505,Q1649303,1.0,OpenStreetMap,2026-11-20
+1709,Bouirat El Hedab,بويرة الأحداب,Bouira Lahdab,65,Aïn Oussara,عين وسارة,17,382.19,6533506,Q2921650,1.0,OpenStreetMap,2026-11-20
+1710,Zaccar,زكار,Zaccar,17,Djelfa,الجلفة,17,226.82,6533531,Q3574490,1.0,OpenStreetMap,2026-11-20
+1711,El Khemis,الخميس,El Khemis,65,Aïn Oussara,عين وسارة,17,494.52,6533514,Q1884835,1.0,OpenStreetMap,2026-11-20
+1712,Sidi Baizid,سيدي بايزيد,Sidi Baizid,17,Djelfa,الجلفة,17,500.79,6533528,Q3483191,1.0,OpenStreetMap,2026-11-20
+1713,M'Liliha,المليليحة,M'Liliha,17,Djelfa,الجلفة,17,914.21,6533522,Q619294,1.0,OpenStreetMap,2026-11-20
+1714,El Idrissia,الادريسية,El Idrissia,17,Djelfa,الجلفة,17,356.16,6533513,Q1884792,1.0,OpenStreetMap,2026-11-20
+1715,Douis,الدويس,Bordj Douis,17,Djelfa,الجلفة,17,513.95,6533511,Q2209202,1.0,OpenStreetMap,2026-11-20
+1716,Hassi El Euch,حاسى العش,Hassi El Euch,17,Djelfa,الجلفة,17,510.9,6533520,Q619886,1.0,OpenStreetMap,2026-11-20
+1717,Messaad,مسعد,Messaad,66,Messaad,مسعد,17,152.78,6533523,Q609487,1.0,OpenStreetMap,2026-11-20
+1718,Guettara,قطارة,Guettara,66,Messaad,مسعد,17,3157.69,6533517,Q3119232,1.0,OpenStreetMap,2026-11-20
+1719,Sidi Ladjel,سيدي لعجال,Sidi Ladjel,65,Aïn Oussara,عين وسارة,17,377.95,6533529,Q11222139,1.0,OpenStreetMap,2026-11-20
+1720,Had Sahary,حد الصحارى,Had Sahary,65,Aïn Oussara,عين وسارة,17,867.75,6533518,Q3125512,1.0,OpenStreetMap,2026-11-20
+1721,Guernini,ڨرنيني,Guernini,65,Aïn Oussara,عين وسارة,17,512.93,6533516,Q2209181,1.0,OpenStreetMap,2026-11-20
+1722,Selmana,سلمانة,Selmana,66,Messaad,مسعد,17,1940.14,6533527,Q3056310,1.0,OpenStreetMap,2026-11-20
+1723,Aïn Chouhada,عين الشهداء,Ain Chouhada,17,Djelfa,الجلفة,17,210.53,6533498,Q2876279,1.0,OpenStreetMap,2026-11-20
+1724,Oum Laadham,أم العظام,Oum Laadham,66,Messaad,مسعد,17,5122.88,6533525,Q3358294,1.0,OpenStreetMap,2026-11-20
+1725,Dar Chioukh,دار الشيوخ,Dar Chioukh,17,Djelfa,الجلفة,17,342.67,6533508,Q3015935,1.0,OpenStreetMap,2026-11-20
+1726,Charef,الشارف,Charef,17,Djelfa,الجلفة,17,592.08,6533507,Q1649151,1.0,OpenStreetMap,2026-11-20
+1727,Beni Yagoub,بنى يعقوب,Beni Yagoub,17,Djelfa,الجلفة,17,193.16,6533504,Q2895915,1.0,OpenStreetMap,2026-11-20
+1728,Zaafrane,الزعفران,Zaafrane,17,Djelfa,الجلفة,17,1210.25,6533532,Q3574435,1.0,OpenStreetMap,2026-11-20
+1729,Deldoul,دلدول,Deldoul,66,Messaad,مسعد,17,1842.31,6533509,Q3021530,1.0,OpenStreetMap,2026-11-20
+1730,Aïn El Bel,عين الابل,Ain El Ibel,17,Djelfa,الجلفة,17,605.16,6533499,Q599887,1.0,OpenStreetMap,2026-11-20
+1731,Aïn Oussara,عين وسارة,Aïn Oussara,65,Aïn Oussara,عين وسارة,17,739.14,6533502,Q651497,1.0,OpenStreetMap,2026-11-20
+1732,Benhar,بن ھار,Benhar,65,Aïn Oussara,عين وسارة,17,1079.17,6533503,Q2895844,1.0,OpenStreetMap,2026-11-20
+1733,Hassi Fedoul,حاسي فدول,Hassi Fedoul,65,Aïn Oussara,عين وسارة,17,498.58,6533521,Q1649459,1.0,OpenStreetMap,2026-11-20
+1734,Amourah,عمورة,Amourah,66,Messaad,مسعد,17,1054.49,6533497,Q1649726,1.0,OpenStreetMap,2026-11-20
+1735,Aïn Feka,عين أفقه,Aïn Feka,65,Aïn Oussara,عين وسارة,17,565.27,6533500,Q2876327,1.0,OpenStreetMap,2026-11-20
+1736,Tadmit,تاعظميت,Tadmit,17,Djelfa,الجلفة,17,922.97,6533530,Q3513736,1.0,OpenStreetMap,2026-11-20
+1801,Jijel,جيجل,Jijel,18,Jijel,جيجل,18,64.35,1982669,Q402726,1.0,OpenStreetMap,2026-11-20
+1802,Erraguene,إيراقن سويسي,Eraguene,18,Jijel,جيجل,18,136.87,5802951,Q3055956,1.0,OpenStreetMap,2026-11-20
+1803,El Aouana,العوانة,El Aouana,18,Jijel,جيجل,18,116.87,5806798,Q312108,1.0,OpenStreetMap,2026-11-20
+1804,Ziama Mansouriah,زيامة منصورية,Ziama Mansouriah,18,Jijel,جيجل,18,111.71,5806875,Q3575466,1.0,OpenStreetMap,2026-11-20
+1805,Taher,الطاهير,Taher,18,Jijel,جيجل,18,58.8,6024211,Q312095,1.0,OpenStreetMap,2026-11-20
+1806,Emir Abdelkader,الأمير عبد القادر,Emir Abdelkader,18,Jijel,جيجل,18,48.45,6024202,Q680713,1.0,OpenStreetMap,2026-11-20
+1807,Chekfa,الشقفة,Chekfa,18,Jijel,جيجل,18,61.98,6669721,Q1649364,1.0,OpenStreetMap,2026-11-20
+1808,Chahna,الشحنة,Chahna,18,Jijel,جيجل,18,85.53,6024234,Q1648938,1.0,OpenStreetMap,2026-11-20
+1809,El Milia,الميلية,El Milia,18,Jijel,جيجل,18,257.32,6669725,Q2215434,1.0,OpenStreetMap,2026-11-20
+1810,Sidi Maarouf,سيدي معروف,Sidi Maarouf,18,Jijel,جيجل,18,66.49,6669732,Q3483265,1.0,OpenStreetMap,2026-11-20
+1811,Settara,السطارة,Settara,18,Jijel,جيجل,18,71.91,6669730,Q674616,1.0,OpenStreetMap,2026-11-20
+1812,El Ancer,العنصر,El Ancer,18,Jijel,جيجل,18,112.34,6669723,Q1649524,1.0,OpenStreetMap,2026-11-20
+1813,Sidi Abdelaziz,سيدي عبد العزيز,Sidi Abdelaziz,18,Jijel,جيجل,18,43.1,6669731,Q1650017,1.0,OpenStreetMap,2026-11-20
+1814,Kaous,قاوس,Kaous,18,Jijel,جيجل,18,54.23,5803898,Q3057080,1.0,OpenStreetMap,2026-11-20
+1815,Ghebala,غبالة,Ghebala,18,Jijel,جيجل,18,125.21,6669726,Q3104820,1.0,OpenStreetMap,2026-11-20
+1816,Bouraoui Belhadef,بوراوي بلهادف,Bouraoui Belhadef,18,Jijel,جيجل,18,60.2,6669720,Q1649329,1.0,OpenStreetMap,2026-11-20
+1817,Djimla,جيملة,Djimla,18,Jijel,جيجل,18,64.02,6024221,Q2390470,1.0,OpenStreetMap,2026-11-20
+1818,Selma Ben Ziada,سلمى بن زيادة,Selma Ben Ziada,18,Jijel,جيجل,18,121.75,5806878,Q3056449,1.0,OpenStreetMap,2026-11-20
+1819,Boussif Ouled Askeur,بوسيف أولاد عسكر,Boussif Ouled Askeur,18,Jijel,جيجل,18,100.11,6024238,Q2921395,1.0,OpenStreetMap,2026-11-20
+1820,El Kennar Nouchfi,القنار نشفي,El Kennar Nouchfi,18,Jijel,جيجل,18,33.08,6669724,Q1884153,1.0,OpenStreetMap,2026-11-20
+1821,Ouled Yahia Khedrouche,أولاد يحيى خدروش,Ouled Yahia Khedrouche,18,Jijel,جيجل,18,82.27,6669729,Q3358273,1.0,OpenStreetMap,2026-11-20
+1822,Boudria Ben Yadjis,بودريعة بن ياجيس,Boudria Ben Yadjis,18,Jijel,جيجل,18,78.36,5802582,Q2921507,1.0,OpenStreetMap,2026-11-20
+1823,Kheïri Oued Adjoul,خيري وادي العجول,Kheiri Oued Adjoul,18,Jijel,جيجل,18,49.54,6669727,Q3196168,1.0,OpenStreetMap,2026-11-20
+1824,Texenna,تاكسنة,Texenna,18,Jijel,جيجل,18,162.79,5803876,Q2739507,1.0,OpenStreetMap,2026-11-20
+1825,Djemaa Beni Habibi,الجمعة بني حبيبي,Djemaa Beni Habibi,18,Jijel,جيجل,18,44.06,6669722,Q1649451,1.0,OpenStreetMap,2026-11-20
+1826,Bordj Tahar,برج الطهر,Bordj Tahar,18,Jijel,جيجل,18,50.41,6669719,Q2910782,1.0,OpenStreetMap,2026-11-20
+1827,Ouled Rabah,أولاد رابح,Ouled Rabah,18,Jijel,جيجل,18,77.36,6669728,Q1649500,1.0,OpenStreetMap,2026-11-20
+1828,Oudjana,وجانة,Oudjana,18,Jijel,جيجل,18,60.6,6024233,Q3357896,1.0,OpenStreetMap,2026-11-20
+1901,Sétif,سطيف,Setif,19,Sétif,سطيف,19,130.36,1617602,Q244004,1.0,OpenStreetMap,2026-11-20
+1902,Aïn El Kebira,عين الكبيرة,,19,Sétif,سطيف,19,65.15,1625323,Q1648920,1.0,OpenStreetMap,2026-11-20
+1903,Beni Aziz,بني عزيز,Beni Aziz,19,Sétif,سطيف,19,55.65,1618551,Q2895864,1.0,OpenStreetMap,2026-11-20
+1904,Ouled Si Ahmed,اوﻻد سي احمد,Ouled Si Ahmed,19,Sétif,سطيف,19,101.67,4307666,Q1649139,1.0,OpenStreetMap,2026-11-20
+1905,Boutaleb,بوطالب,Boutaleb,19,Sétif,سطيف,19,143.09,1625414,Q2922580,1.0,OpenStreetMap,2026-11-20
+1906,Aïn Roua,عين الروى,,19,Sétif,سطيف,19,118.19,1625347,Q2876366,1.0,OpenStreetMap,2026-11-20
+1907,Draa Kebila,ذراع قبيلة,Draa Kebila,19,Sétif,سطيف,19,58.79,1625410,Q3038464,1.0,OpenStreetMap,2026-11-20
+1908,Bir El Arch,بير العرش,Bir El Arch,19,Sétif,سطيف,19,141.67,1618480,Q2904333,1.0,OpenStreetMap,2026-11-20
+1909,Beni Chebana,بني شبانة,Beni Chebana,19,Sétif,سطيف,19,54.53,1625370,Q2895875,1.0,OpenStreetMap,2026-11-20
+1910,Ouled Tebben,اوﻻد تبان,Ouled Tebben,19,Sétif,سطيف,19,174.53,4308847,Q3358270,1.0,OpenStreetMap,2026-11-20
+1911,Hamma,الحامة,Hamma,19,Sétif,سطيف,19,99.21,1625413,Q3126482,1.0,OpenStreetMap,2026-11-20
+1912,Maaouia,معاوية,Maaouia,19,Sétif,سطيف,19,84.88,1618547,Q3273694,1.0,OpenStreetMap,2026-11-20
+1913,Aïn Legradj,عين لقراج,Ain Lagradj,19,Sétif,سطيف,19,73.74,1625385,Q2876352,1.0,OpenStreetMap,2026-11-20
+1914,Aïn Abessa,عين عباسة,,19,Sétif,سطيف,19,164.7,1620848,Q2876247,1.0,OpenStreetMap,2026-11-20
+1915,Dehamcha,الدهامشة,Dehamcha,19,Sétif,سطيف,19,103.78,1625322,Q3021292,1.0,OpenStreetMap,2026-11-20
+1916,Babor,بابور,Babor,19,Sétif,سطيف,19,142.48,1620770,Q2877944,1.0,OpenStreetMap,2026-11-20
+1917,Guidjel,قجال,Guidjel,19,Sétif,سطيف,19,234.89,1618383,Q3119405,1.0,OpenStreetMap,2026-11-20
+1918,Aïn Lahdjar,عين الحجر,,19,Sétif,سطيف,19,228.64,4308805,Q2876350,1.0,OpenStreetMap,2026-11-20
+1919,Bousselam,بوسلام,Bousselam,19,Sétif,سطيف,19,60.58,1625368,Q2922508,1.0,OpenStreetMap,2026-11-20
+1920,El Eulma,العلمة,El Eulma,19,Sétif,سطيف,19,75.02,1617600,Q401747,1.0,OpenStreetMap,2026-11-20
+1921,Djemila,جميلة,Djemila,19,Sétif,سطيف,19,157.02,1618540,Q3032880,1.0,OpenStreetMap,2026-11-20
+1922,Beni Ouartilane,بني ورتيﻻن,Beni Ouartilane,19,Sétif,سطيف,19,70.53,1625374,Q2263714,1.0,OpenStreetMap,2026-11-20
+1923,Rosfa,الرصفة,Rosfa,19,Sétif,سطيف,19,188.04,4308871,Q3419807,1.0,OpenStreetMap,2026-11-20
+1924,Ouled Addouane,أولاد عدوان,Ouled Addouane,19,Sétif,سطيف,19,28.69,1625325,Q731378,1.0,OpenStreetMap,2026-11-20
+1925,Belaa,بلاعة,Belaa,19,Sétif,سطيف,19,142.67,1618501,Q2894187,1.0,OpenStreetMap,2026-11-20
+1926,Aïn Arnat,عين أرنات,Aïn Arnat,19,Sétif,سطيف,19,202.39,1618289,Q2876253,1.0,OpenStreetMap,2026-11-20
+1927,Amoucha,عموشة,Amoucha,19,Sétif,سطيف,19,88.65,1625324,Q2843951,1.0,OpenStreetMap,2026-11-20
+1928,Aïn Oulmane,عين ولمان,Aïn Oulmane,19,Sétif,سطيف,19,162.31,4307775,Q2876362,1.0,OpenStreetMap,2026-11-20
+1929,Beïda Bordj,بيضا برج,Beïda Bordj,19,Sétif,سطيف,19,146.05,4297917,Q2893951,1.0,OpenStreetMap,2026-11-20
+1930,Bouandas,بوعنداس,Bouandas,19,Sétif,سطيف,19,38.41,2449042,Q2911931,1.0,OpenStreetMap,2026-11-20
+1931,Bazer Sakra,بازر سكرة,Bazer Sakra,19,Sétif,سطيف,19,160.39,1618476,Q2892409,1.0,OpenStreetMap,2026-11-20
+1932,Hammam Sokhna,حمام السخنة,Hammam Sokhna,19,Sétif,سطيف,19,184.57,1618534,Q3126503,1.0,OpenStreetMap,2026-11-20
+1933,Mezloug,مزلوق,Mezloug,19,Sétif,سطيف,19,137.53,1618321,Q3307759,1.0,OpenStreetMap,2026-11-20
+1934,Bir Haddada,بير حدادة,Bir Haddada,19,Sétif,سطيف,19,117.87,4307792,Q2904343,1.0,OpenStreetMap,2026-11-20
+1935,Serdj El Ghoul,سرج الغول,Serdj El Ghoul,19,Sétif,سطيف,19,97.14,1620746,Q3479128,1.0,OpenStreetMap,2026-11-20
+1936,Harbil,حربيل,Harbil,19,Sétif,سطيف,19,85.92,1625394,Q3127303,1.0,OpenStreetMap,2026-11-20
+1937,El Ouricia,أوريسيا,El Ouricia,19,Sétif,سطيف,19,118.11,1618273,Q3050153,1.0,OpenStreetMap,2026-11-20
+1938,Tizi N'Bechar,تيزى نبشار,Tizi N'Bechar,19,Sétif,سطيف,19,71.13,1620847,Q1650258,1.0,OpenStreetMap,2026-11-20
+1939,Salah Bey,صالح باي,Salah Bey,19,Sétif,سطيف,19,139.63,4308872,Q3469526,1.0,OpenStreetMap,2026-11-20
+1940,Aïn Azal,عين آزال,,19,Sétif,سطيف,19,256.56,4298137,Q2214101,1.0,OpenStreetMap,2026-11-20
+1941,Guenzet,قنزات,Guenzet,19,Sétif,سطيف,19,60.7,1625389,Q3118895,1.0,OpenStreetMap,2026-11-20
+1942,Tala Ifacene,تالة إيفاسن,Tala Ifacene,19,Sétif,سطيف,19,55.82,1625353,Q3514419,1.0,OpenStreetMap,2026-11-20
+1943,Bougaa,بوقاعة,Bougaa,19,Sétif,سطيف,19,60.93,1625406,Q2921542,1.0,OpenStreetMap,2026-11-20
+1944,Beni Fouda,بني فودة,Beni Fouda,19,Sétif,سطيف,19,162.27,1618261,Q747462,1.0,OpenStreetMap,2026-11-20
+1945,Tachouda,تاشودة,Tachouda,19,Sétif,سطيف,19,80.26,2670866,Q3513618,1.0,OpenStreetMap,2026-11-20
+1946,Beni Mouhli,بني محلي,Beni Mouhli,19,Sétif,سطيف,19,27.08,1625369,Q3382219,1.0,OpenStreetMap,2026-11-20
+1947,Ouled Sabor,أولاد صابر,Ouled Sabor,19,Sétif,سطيف,19,118.96,1617605,Q3358250,1.0,OpenStreetMap,2026-11-20
+1948,Guellal,قلال,Guellal,19,Sétif,سطيف,19,127.22,4298222,Q3118868,1.0,OpenStreetMap,2026-11-20
+1949,Aïn Sebt,عين السبت,,19,Sétif,سطيف,19,73.21,1618549,Q2876368,1.0,OpenStreetMap,2026-11-20
+1950,Hammam Guergour,حمام قرقور,Hammam Guergour,19,Sétif,سطيف,19,75.27,1625403,Q3126502,1.0,OpenStreetMap,2026-11-20
+1951,Aït Nawal M'zada,آيت نوال مزادة,,19,Sétif,سطيف,19,26.13,1625366,Q2876517,1.0,OpenStreetMap,2026-11-20
+1952,Ksar El Abtal,قصر الأبطال,Ksar El Abtal,19,Sétif,سطيف,19,114.06,4307617,Q1649530,1.0,OpenStreetMap,2026-11-20
+1953,Beni Hocine,بني حسين,Beni Hocine,19,Sétif,سطيف,19,55.8,1625407,Q2895890,1.0,OpenStreetMap,2026-11-20
+1954,Aït Tizi,آيت تيزي,,19,Sétif,سطيف,19,36.0,1625360,Q32477,1.0,OpenStreetMap,2026-11-20
+1955,Maoklane,موكلان,Maoklane,19,Sétif,سطيف,19,86.51,1625349,Q41325,1.0,OpenStreetMap,2026-11-20
+1956,Guelta Zerga,القلتة الزرقاء,Guelta Zerka,19,Sétif,سطيف,19,132.0,1618503,Q3118876,1.0,OpenStreetMap,2026-11-20
+1957,Oued El Bared,واد البارد,Oued El Bared,19,Sétif,سطيف,19,49.5,1620801,Q3358015,1.0,OpenStreetMap,2026-11-20
+1958,Taya,الطاية,Taya,19,Sétif,سطيف,19,146.53,1618535,Q7689736,1.0,OpenStreetMap,2026-11-20
+1959,El Oueldja,الولجة,El Oueldja,19,Sétif,سطيف,19,151.94,1618537,Q12194949,1.0,OpenStreetMap,2026-11-20
+1960,Tella,التلة,Tella,19,Sétif,سطيف,19,116.95,1618532,Q3517374,1.0,OpenStreetMap,2026-11-20
+2001,Saïda,سعيدة,Saïda,20,Saïda,سعيدة,20,76.66,5321733,Q401452,1.0,OpenStreetMap,2026-11-20
+2002,Doui Thabet,دوى ثابت,Doui Thabet,20,Saïda,سعيدة,20,216.69,6544865,Q3038080,1.0,OpenStreetMap,2026-11-20
+2003,Aïn El Hadjar,عين الحجر,Aïn El Hadjar,20,Saïda,سعيدة,20,415.06,6544862,Q2876297,1.0,OpenStreetMap,2026-11-20
+2004,Ouled Khaled,أولاد خالد,Ouled Khaled,20,Saïda,سعيدة,20,206.03,6544871,Q3358235,1.0,OpenStreetMap,2026-11-20
+2005,Moulay Larbi,مولاي العربي,Moulay Larbi,20,Saïda,سعيدة,20,419.02,6544869,Q3325548,1.0,OpenStreetMap,2026-11-20
+2006,Youb,يوب,Youb,20,Saïda,سعيدة,20,436.83,6544876,Q3572780,1.0,OpenStreetMap,2026-11-20
+2007,Hounet,هونت,Hounet,20,Saïda,سعيدة,20,174.27,6544867,Q3141310,1.0,OpenStreetMap,2026-11-20
+2008,Sidi Amar,سيدي عمار,Sidi Amar,20,Saïda,سعيدة,20,169.22,6544873,Q3483183,1.0,OpenStreetMap,2026-11-20
+2009,Sidi Boubekeur,سيدي بوبكر,Sidi Boubekeur,20,Saïda,سعيدة,20,246.29,6544874,Q3483205,1.0,OpenStreetMap,2026-11-20
+2010,El Hessasna,الحساسنة,El Hessasna,20,Saïda,سعيدة,20,579.1,6544866,Q3049957,1.0,OpenStreetMap,2026-11-20
+2011,Maamora,المعمورة,Maamora,20,Saïda,سعيدة,20,1218.47,6544868,Q3273688,1.0,OpenStreetMap,2026-11-20
+2012,Sidi Ahmed,سيدي أحمد,Sidi Ahmed,20,Saïda,سعيدة,20,1252.73,6544872,Q3483167,1.0,OpenStreetMap,2026-11-20
+2013,Aïn Skhouna,العين السخونة,Aïn Skhouna,20,Saïda,سعيدة,20,409.37,6544863,Q2876370,1.0,OpenStreetMap,2026-11-20
+2014,Ouled Brahim,أولاد ابراھيم,Ouled Brahim,20,Saïda,سعيدة,20,253.98,6544870,Q3358203,1.0,OpenStreetMap,2026-11-20
+2015,Tircine,تيرسين,Tircine,20,Saïda,سعيدة,20,425.0,6544875,Q3529351,1.0,OpenStreetMap,2026-11-20
+2016,Aïn Soltane,عين السلطان,Aïn Soltane,20,Saïda,سعيدة,20,259.73,6544864,Q2876371,1.0,OpenStreetMap,2026-11-20
+2101,Skikda,سكيكدة,Skikda,21,Skikda,سكيكدة,21,56.26,2514757,Q2292517,1.0,OpenStreetMap,2026-11-20
+2102,Aïn Zouit,عين زويت,Ain Zouit,21,Skikda,سكيكدة,21,113.25,6543278,Q1649026,1.0,OpenStreetMap,2026-11-20
+2103,El Hadaik,الحدائق,El Hadaik,21,Skikda,سكيكدة,21,51.4,6543286,Q3049911,1.0,OpenStreetMap,2026-11-20
+2104,Azzaba,عزابة,Azzaba,21,Skikda,سكيكدة,21,170.82,6543279,Q2214091,1.0,OpenStreetMap,2026-11-20
+2105,Djendel Saadi Mohamed,جندل السعدي محمد,Djendel Saadi Mohamed,21,Skikda,سكيكدة,21,215.74,5173305,Q1648899,1.0,OpenStreetMap,2026-11-20
+2106,Aïn Charchar,عين شرشار,Ain Charchar,21,Skikda,سكيكدة,21,114.17,6543276,Q1648592,1.0,OpenStreetMap,2026-11-20
+2107,Bekkouche Lakhdar,بكوش الأخضر,Bekkouche Lakhdar,21,Skikda,سكيكدة,21,149.52,6437423,Q1649315,1.0,OpenStreetMap,2026-11-20
+2108,Ben Azouz,بن عزوز,Ben Azouz,21,Skikda,سكيكدة,21,242.78,5170972,Q2895323,1.0,OpenStreetMap,2026-11-20
+2109,Es Sebt,السبت,Es Sebt,21,Skikda,سكيكدة,21,245.39,6543289,Q3057617,1.0,OpenStreetMap,2026-11-20
+2110,Collo,القل,Collo,21,Skikda,سكيكدة,21,23.96,6407308,Q2983525,1.0,OpenStreetMap,2026-11-20
+2111,Beni Zid,بنى زيد,Beni Zid,21,Skikda,سكيكدة,21,139.17,6543282,Q428519,1.0,OpenStreetMap,2026-11-20
+2112,Kerkera,الكركرة,Kerkera,21,Skikda,سكيكدة,21,85.6,6543291,Q1649432,1.0,OpenStreetMap,2026-11-20
+2113,Ouled Attia,أولاد عطية,Ouled Attia,21,Skikda,سكيكدة,21,107.14,6543295,Q1649314,1.0,OpenStreetMap,2026-11-20
+2114,Oued Zehour,وادي الزهور,Oued Zehour,21,Skikda,سكيكدة,21,85.91,6543293,Q3358054,1.0,OpenStreetMap,2026-11-20
+2115,Zitouna,الزيتونة,Zitouna,21,Skikda,سكيكدة,21,41.92,6543303,Q3575625,1.0,OpenStreetMap,2026-11-20
+2116,El Harrouch,الحروش,El Harrouch,21,Skikda,سكيكدة,21,101.91,6543287,Q947333,1.0,OpenStreetMap,2026-11-20
+2117,Zerdaza,زردازة,Zerdaza,21,Skikda,سكيكدة,21,99.56,6543302,Q8069381,1.0,OpenStreetMap,2026-11-20
+2118,Ouled Hbaba,أولاد حبابة,Ouled Hbaba,21,Skikda,سكيكدة,21,196.05,6543296,Q3358232,1.0,OpenStreetMap,2026-11-20
+2119,Sidi Mezghiche,سيدي مزغيش,Sidi Mezghiche,21,Skikda,سكيكدة,21,94.6,6543300,Q3483268,1.0,OpenStreetMap,2026-11-20
+2120,Emdjez Edchich,أمجاز الدشيش,Emdjez Edchich,21,Skikda,سكيكدة,21,77.61,6543288,Q3052141,1.0,OpenStreetMap,2026-11-20
+2121,Beni Oulbane,بنى ولبان,Beni Oulbane,21,Skikda,سكيكدة,21,160.05,6543281,Q954558,1.0,OpenStreetMap,2026-11-20
+2122,Ain Bouziane,عين بوزيان,Ain Bouziane,21,Skikda,سكيكدة,21,72.82,6543275,Q1648570,1.0,OpenStreetMap,2026-11-20
+2123,Ramdane Djamel,رمضان جمال,Ramdane Djamel,21,Skikda,سكيكدة,21,116.16,6543298,Q601410,1.0,OpenStreetMap,2026-11-20
+2124,Beni Bechir,بنى بشير,Beni Bechir,21,Skikda,سكيكدة,21,43.8,6543280,Q1648658,1.0,OpenStreetMap,2026-11-20
+2125,Salah Bouchaour,صالح بو الشعور,Salah Bouchaour,21,Skikda,سكيكدة,21,94.45,6543299,Q1650111,1.0,OpenStreetMap,2026-11-20
+2126,Tamalous,تمالوس,Tamalous,21,Skikda,سكيكدة,21,177.41,6543301,Q1650231,1.0,OpenStreetMap,2026-11-20
+2127,Aïn Kechra,عين قشرة,Ain Kechra,21,Skikda,سكيكدة,21,142.86,6543277,Q1648989,1.0,OpenStreetMap,2026-11-20
+2128,Oum Toub,أم الطوب,Oum Toub,21,Skikda,سكيكدة,21,179.51,6543297,Q1649213,1.0,OpenStreetMap,2026-11-20
+2129,Bin El Ouiden,بين الويدان,Bin El Ouiden,21,Skikda,سكيكدة,21,105.99,6543283,Q2903877,1.0,OpenStreetMap,2026-11-20
+2130,Filfila,فلفلة,Filfila,21,Skikda,سكيكدة,21,68.2,5174375,Q3071808,1.0,OpenStreetMap,2026-11-20
+2131,Cheraia,الشرائع,Cheraia,21,Skikda,سكيكدة,21,67.63,6407346,Q1649260,1.0,OpenStreetMap,2026-11-20
+2132,Kanoua,قنوع,Kanoua,21,Skikda,سكيكدة,21,67.6,6407549,Q1649381,1.0,OpenStreetMap,2026-11-20
+2133,El Ghedir,الغدير,El Ghedir,21,Skikda,سكيكدة,21,47.71,6543285,Q1649535,1.0,OpenStreetMap,2026-11-20
+2134,Bouchtata,بوشطاطة,Bouchtata,21,Skikda,سكيكدة,21,113.54,6543284,Q606479,1.0,OpenStreetMap,2026-11-20
+2135,Ouldja Boulballout,الولجة بو البلوط,Ouldja Boulballout,21,Skikda,سكيكدة,21,68.07,6543294,Q3358185,1.0,OpenStreetMap,2026-11-20
+2136,Kheneg Mayoum,خنق مايوم,Kheneg Mayoum,21,Skikda,سكيكدة,21,45.14,6543292,Q3196154,1.0,OpenStreetMap,2026-11-20
+2137,Hamadi Krouma,حمادي كرومة,Hamadi Krouma,21,Skikda,سكيكدة,21,35.88,6543290,Q1649336,1.0,OpenStreetMap,2026-11-20
+2138,El Marsa,المرسى,El Marsa,21,Skikda,سكيكدة,21,116.4,5170284,Q3050052,1.0,OpenStreetMap,2026-11-20
+2201,Sidi Bel Abbès,سيدي بلعباس,Sidi Bel Abbès,22,Sidi Bel Abbès,سيدي بلعباس,22,70.46,2361464,Q852276,1.0,OpenStreetMap,2026-11-20
+2202,Tessala,تسالة,Tessala,22,Sidi Bel Abbès,سيدي بلعباس,22,119.69,6662016,Q2381247,1.0,OpenStreetMap,2026-11-20
+2203,Sidi Brahim,سيدي ابراهيم,Sidi Brahim,22,Sidi Bel Abbès,سيدي بلعباس,22,38.52,6662004,Q1650068,1.0,OpenStreetMap,2026-11-20
+2204,Mostefa Ben Brahim,مصطفى بن إبراهيم,Mostefa Ben Brahim,22,Sidi Bel Abbès,سيدي بلعباس,22,94.02,6661993,Q3324981,1.0,OpenStreetMap,2026-11-20
+2205,Telagh,تلاغ,Telagh,22,Sidi Bel Abbès,سيدي بلعباس,22,169.61,6662015,Q2215476,1.0,OpenStreetMap,2026-11-20
+2206,Mezaourou,مزاورو,Mezaourou,22,Sidi Bel Abbès,سيدي بلعباس,22,164.91,6661992,Q1649368,1.0,OpenStreetMap,2026-11-20
+2207,Boukhanafis,بو خنيفيس,Boukhanafis,22,Sidi Bel Abbès,سيدي بلعباس,22,97.36,6661981,Q2921665,1.0,OpenStreetMap,2026-11-20
+2208,Sidi Ali Boussidi,سيدي على بوسيدى,Sidi Ali Boussidi,22,Sidi Bel Abbès,سيدي بلعباس,22,50.69,6662003,Q1650046,1.0,OpenStreetMap,2026-11-20
+2209,Badredine El Mokrani,بدر الدين المقرانى,Badredine El Mokrani,22,Sidi Bel Abbès,سيدي بلعباس,22,33.3,6661975,Q1649488,1.0,OpenStreetMap,2026-11-20
+2210,Marhoum,مرحوم,Marhoum,22,Sidi Bel Abbès,سيدي بلعباس,22,1260.98,6661990,Q3290834,1.0,OpenStreetMap,2026-11-20
+2211,Tafissour,تفسور,Tafissour,22,Sidi Bel Abbès,سيدي بلعباس,22,246.63,6662012,Q1650101,1.0,OpenStreetMap,2026-11-20
+2212,Amarnas,العمارنة,Amarnas,22,Sidi Bel Abbès,سيدي بلعباس,22,93.94,6661969,Q2841244,1.0,OpenStreetMap,2026-11-20
+2213,Tilmouni,تلمونى,Tilmouni,22,Sidi Bel Abbès,سيدي بلعباس,22,78.18,6662017,Q593522,1.0,OpenStreetMap,2026-11-20
+2214,Sidi Lahcene,سيدي لحسن,Sidi Lahcene,22,Sidi Bel Abbès,سيدي بلعباس,22,90.79,6662009,Q1650058,1.0,OpenStreetMap,2026-11-20
+2215,Aïn Thrid,عين الثريد,Aïn Thrid,22,Sidi Bel Abbès,سيدي بلعباس,22,124.08,6661973,Q2876386,1.0,OpenStreetMap,2026-11-20
+2216,Makedra,مقدرة,Makedra,22,Sidi Bel Abbès,سيدي بلعباس,22,45.05,6661989,Q3280742,1.0,OpenStreetMap,2026-11-20
+2217,Ténira,تنبرة,Tenira,22,Sidi Bel Abbès,سيدي بلعباس,22,161.0,6662018,Q1650283,1.0,OpenStreetMap,2026-11-20
+2218,Moulay Slissen,مولاى سليسن,Moulay Slissen,22,Sidi Bel Abbès,سيدي بلعباس,22,235.05,6661994,Q1649394,1.0,OpenStreetMap,2026-11-20
+2219,El Haçaiba,الحصيبة,El Hassaiba,22,Sidi Bel Abbès,سيدي بلعباس,22,77.68,6661984,Q1649318,1.0,OpenStreetMap,2026-11-20
+2220,Hassi Zahana,حاسى زهانة,Hassi Zahana,22,Sidi Bel Abbès,سيدي بلعباس,22,68.41,6661986,Q3128230,1.0,OpenStreetMap,2026-11-20
+2221,Tabia,طابية,Tabia,22,Sidi Bel Abbès,سيدي بلعباس,22,59.63,6662011,Q3512757,1.0,OpenStreetMap,2026-11-20
+2222,Merine,مرين,Merine,22,Sidi Bel Abbès,سيدي بلعباس,22,193.94,6661991,Q1649208,1.0,OpenStreetMap,2026-11-20
+2223,Ras El Ma,رأس الماء,Ras El Ma,22,Sidi Bel Abbès,سيدي بلعباس,22,144.91,6661998,Q3419771,1.0,OpenStreetMap,2026-11-20
+2224,Aïn Tindamine,عين تندامين,Aïn Tindamine,22,Sidi Bel Abbès,سيدي بلعباس,22,93.94,6661974,Q1649356,1.0,OpenStreetMap,2026-11-20
+2225,Aïn Kada,عين قادة,Aïn Kada,22,Sidi Bel Abbès,سيدي بلعباس,22,27.06,6661972,Q1648959,1.0,OpenStreetMap,2026-11-20
+2226,M'Cid,مسيد,M'Cid,22,Sidi Bel Abbès,سيدي بلعباس,22,135.21,6661988,Q1649181,1.0,OpenStreetMap,2026-11-20
+2227,Sidi Khaled,سيدي خالد,Sidi Khaled,22,Sidi Bel Abbès,سيدي بلعباس,22,60.76,6662008,Q3483243,1.0,OpenStreetMap,2026-11-20
+2228,Aïn El Berd,عين البرد,Aïn El Berd,22,Sidi Bel Abbès,سيدي بلعباس,22,84.75,6661971,Q1648951,1.0,OpenStreetMap,2026-11-20
+2229,Sfisef,سفيزف,Sfisef,22,Sidi Bel Abbès,سيدي بلعباس,22,124.86,6662001,Q3481104,1.0,OpenStreetMap,2026-11-20
+2230,Aïn Adden,عين عدان,Aïn Adden,22,Sidi Bel Abbès,سيدي بلعباس,22,90.86,6661970,Q1648648,1.0,OpenStreetMap,2026-11-20
+2231,Oued Taourira,وادى تاوريرة,Oued Taourira,22,Sidi Bel Abbès,سيدي بلعباس,22,382.76,6661997,Q1648972,1.0,OpenStreetMap,2026-11-20
+2232,Dhaya,الضاية,Dhaya,22,Sidi Bel Abbès,سيدي بلعباس,22,147.5,6661983,Q3025699,1.0,OpenStreetMap,2026-11-20
+2233,Zerouala,زروالة,Zerouala,22,Sidi Bel Abbès,سيدي بلعباس,22,133.34,6662019,Q1650844,1.0,OpenStreetMap,2026-11-20
+2234,Lamtar,لمطار,Lamtar,22,Sidi Bel Abbès,سيدي بلعباس,22,55.81,6661987,Q3216882,1.0,OpenStreetMap,2026-11-20
+2235,Sidi Chaib,سيدي شعيب,Sidi Chaib,22,Sidi Bel Abbès,سيدي بلعباس,22,299.45,6662005,Q3483218,1.0,OpenStreetMap,2026-11-20
+2236,Sidi Daho De Zairs,سيدي دحو الزاير,Sidi Daho De Zairs,22,Sidi Bel Abbès,سيدي بلعباس,22,93.45,6662006,Q3483219,1.0,OpenStreetMap,2026-11-20
+2237,Oued Sebaa,وادى السبع,Oued Sebaa,22,Sidi Bel Abbès,سيدي بلعباس,22,314.48,6661995,Q1649222,1.0,OpenStreetMap,2026-11-20
+2238,Boudjebaa El Bordj,بوجبع البرج,Boudjebaa El Bordj,22,Sidi Bel Abbès,سيدي بلعباس,22,102.57,6661980,Q1649089,1.0,OpenStreetMap,2026-11-20
+2239,Sehala Thaoura,سحالة ثاورة,Sehala Thaoura,22,Sidi Bel Abbès,سيدي بلعباس,22,56.84,6662000,Q1650094,1.0,OpenStreetMap,2026-11-20
+2240,Sidi Yacoub,سيدي يعقوب,Sidi Yacoub,22,Sidi Bel Abbès,سيدي بلعباس,22,34.35,6662010,Q1649961,1.0,OpenStreetMap,2026-11-20
+2241,Sidi Hamadouche,سيدي حمادوش,Sidi Hamadouche,22,Sidi Bel Abbès,سيدي بلعباس,22,127.33,6662007,Q1650247,1.0,OpenStreetMap,2026-11-20
+2242,Belarbi,بلعربى,Belarbi,22,Sidi Bel Abbès,سيدي بلعباس,22,107.98,6661976,Q1648915,1.0,OpenStreetMap,2026-11-20
+2243,Oued Sefioun,وادى سفيون,Oued Sefioun,22,Sidi Bel Abbès,سيدي بلعباس,22,311.94,6661996,Q942200,1.0,OpenStreetMap,2026-11-20
+2244,Teghalimet,تغاليمت,Teghalimet,22,Sidi Bel Abbès,سيدي بلعباس,22,192.53,6662014,Q3517138,1.0,OpenStreetMap,2026-11-20
+2245,Ben Badis,ابن باديس,Ben Badis,22,Sidi Bel Abbès,سيدي بلعباس,22,86.09,6661977,Q2895336,1.0,OpenStreetMap,2026-11-20
+2246,Sidi Ali Benyoub,سيدي على بن يوب,Sidi Ali Benyoub,22,Sidi Bel Abbès,سيدي بلعباس,22,132.94,6662002,Q1650029,1.0,OpenStreetMap,2026-11-20
+2247,Chettouane Belaila,شتوان بليلة,Chettouane Belaila,22,Sidi Bel Abbès,سيدي بلعباس,22,51.33,6661982,Q2962888,1.0,OpenStreetMap,2026-11-20
+2248,Bir El Hammam,بئر الحمام,Bir El Hammam,22,Sidi Bel Abbès,سيدي بلعباس,22,1338.69,6661979,Q1649716,1.0,OpenStreetMap,2026-11-20
+2249,Taoudmout,تاودموت,Taoudmout,22,Sidi Bel Abbès,سيدي بلعباس,22,146.21,6662013,Q1650293,1.0,OpenStreetMap,2026-11-20
+2250,Redjem Demouche,رجم دموش,Redjem Demouche,22,Sidi Bel Abbès,سيدي بلعباس,22,756.82,6661999,Q1650034,1.0,OpenStreetMap,2026-11-20
+2251,Benachiba Chelia,بن شيبة شيلية,Benachiba Chelia,22,Sidi Bel Abbès,سيدي بلعباس,22,91.51,6661978,Q2895636,1.0,OpenStreetMap,2026-11-20
+2252,Hassi Dahou,حاسى دحو,Hassi Dahou,22,Sidi Bel Abbès,سيدي بلعباس,22,77.39,6661985,Q1649152,1.0,OpenStreetMap,2026-11-20
+2301,Annaba,عنابة,Annaba,23,Annaba,عنابة,23,47.59,1616109,Q45942,1.0,OpenStreetMap,2026-11-20
+2302,Berrahal,برحال,Berrahal,23,Annaba,عنابة,23,180.19,1616145,Q1649131,1.0,OpenStreetMap,2026-11-20
+2303,El Hadjar,الحجار,El Hadjar,23,Annaba,عنابة,23,61.36,1616094,Q3043115,1.0,OpenStreetMap,2026-11-20
+2304,Eulma,العلمة,Eulma,23,Annaba,عنابة,23,161.1,1616083,Q3060336,1.0,OpenStreetMap,2026-11-20
+2305,El Bouni,البوني,El Bouni,23,Annaba,عنابة,23,93.22,1616108,Q2418278,1.0,OpenStreetMap,2026-11-20
+2306,Oued El Aneb,وادي العنب,Oued El Aneb,23,Annaba,عنابة,23,189.39,1616122,Q2215289,1.0,OpenStreetMap,2026-11-20
+2307,Cheurfa,الشرفة,Cheurfa,23,Annaba,عنابة,23,97.94,1616091,Q2962895,1.0,OpenStreetMap,2026-11-20
+2308,Seraïdi,سرايدي,Seraidi,23,Annaba,عنابة,23,136.06,1616121,Q2215851,1.0,OpenStreetMap,2026-11-20
+2309,Aïn Berda,عين الباردة,Ain Berda,23,Annaba,عنابة,23,138.31,1616090,Q2214591,1.0,OpenStreetMap,2026-11-20
+2310,Chetaïbi,شطايبي,Chetaibi,23,Annaba,عنابة,23,131.01,1616147,Q1649293,1.0,OpenStreetMap,2026-11-20
+2311,Sidi Amar,سيدي عمار,Sidi Amar,23,Annaba,عنابة,23,42.56,1616146,Q3503823,1.0,OpenStreetMap,2026-11-20
+2312,Treat,التريعات,Treat,23,Annaba,عنابة,23,125.83,1616127,Q1127306,1.0,OpenStreetMap,2026-11-20
+2401,Guelma,قالمة,Guelma,24,Guelma,قالمة,24,44.84,6537637,Q609871,1.0,OpenStreetMap,2026-11-20
+2402,Nechmaya,نشامية,Nechmaya,24,Guelma,قالمة,24,123.74,6537644,Q2377594,1.0,OpenStreetMap,2026-11-20
+2403,Bouati Mahmoud,بوعاتي محمود,Bouati Mahmoud,24,Guelma,قالمة,24,91.67,6537628,Q2911936,1.0,OpenStreetMap,2026-11-20
+2404,Oued Zenati,وادي الزناتي,Oued Zenati,24,Guelma,قالمة,24,138.1,6537646,Q2215467,1.0,OpenStreetMap,2026-11-20
+2405,Tamlouka,تاملوكة,Tamlouka,24,Guelma,قالمة,24,313.48,6537650,Q3271939,1.0,OpenStreetMap,2026-11-20
+2406,Oued Fragha,وادي فراغة,Oued Fragha,24,Guelma,قالمة,24,80.72,6537645,Q3272169,1.0,OpenStreetMap,2026-11-20
+2407,Ain Sandel,عين صندل,Ain Sandel,24,Guelma,قالمة,24,88.5,6537623,Q2876367,1.0,OpenStreetMap,2026-11-20
+2408,Ras El Agba,رأس العقبة,Ras El Agba,24,Guelma,قالمة,24,37.71,6537647,Q1650088,1.0,OpenStreetMap,2026-11-20
+2409,Dahouara,الدهوارة,Dahouara,24,Guelma,قالمة,24,68.26,6537633,Q3011981,1.0,OpenStreetMap,2026-11-20
+2410,Belkheir,بلخير,Belkheir,24,Guelma,قالمة,24,92.27,6674817,Q2894563,1.0,OpenStreetMap,2026-11-20
+2411,Bendjarah,بن جراح,Bendjarah,24,Guelma,قالمة,24,77.55,6537625,Q2895404,1.0,OpenStreetMap,2026-11-20
+2412,Bouhamdane,بوحمدان,Bouhamdane,24,Guelma,قالمة,24,161.08,6537631,Q2921596,1.0,OpenStreetMap,2026-11-20
+2413,Ain Makhlouf,عين مخلوف,Ain Makhlouf,24,Guelma,قالمة,24,192.03,6537621,Q2876356,1.0,OpenStreetMap,2026-11-20
+2414,Ain Ben Beida,عين بن بيضاء,Ain Ben Beida,24,Guelma,قالمة,24,133.74,6537618,Q1648628,1.0,OpenStreetMap,2026-11-20
+2415,Khezara,لخزارة,Khezara,24,Guelma,قالمة,24,73.26,6537641,Q3196167,1.0,OpenStreetMap,2026-11-20
+2416,Beni Mezline,بني مزلين,Beni Mezline,24,Guelma,قالمة,24,63.45,6537626,Q2895902,1.0,OpenStreetMap,2026-11-20
+2417,Bouhachana,بوحشانة,Bouhachana,24,Guelma,قالمة,24,65.09,6537630,Q2209220,1.0,OpenStreetMap,2026-11-20
+2418,Guelaat Bou Sbaa,قلعة بوصبع,Guelaat Bou Sbaa,24,Guelma,قالمة,24,36.25,6537636,Q3118865,1.0,OpenStreetMap,2026-11-20
+2419,Hammam Debagh,حمام دباغ,Hammam Debagh,24,Guelma,قالمة,24,56.09,6537638,Q3126494,1.0,OpenStreetMap,2026-11-20
+2420,El Fedjoudj,الفجوج,El Fedjoudj,24,Guelma,قالمة,24,66.15,6537635,Q3049855,1.0,OpenStreetMap,2026-11-20
+2421,Bordj Sabat,برج صباط,Bordj Sabat,24,Guelma,قالمة,24,197.46,6537627,Q2910778,1.0,OpenStreetMap,2026-11-20
+2422,Hammam Nbail,حمام النبايل,Hammam Nbail,24,Guelma,قالمة,24,163.97,6537639,Q2262942,1.0,OpenStreetMap,2026-11-20
+2423,Ain Larbi,عين العربي,Ain Larbi,24,Guelma,قالمة,24,166.03,6537620,Q2876353,1.0,OpenStreetMap,2026-11-20
+2424,Medjez Amar,مجاز عمار,Medjez Amar,24,Guelma,قالمة,24,38.68,6537642,Q3304079,1.0,OpenStreetMap,2026-11-20
+2425,Boucheghouf,بوشقوف,Boucheghouf,24,Guelma,قالمة,24,198.51,6537629,Q2921360,1.0,OpenStreetMap,2026-11-20
+2426,Heliopolis,هيليوبوليس,Heliopolis,24,Guelma,قالمة,24,76.79,6537640,Q3144664,1.0,OpenStreetMap,2026-11-20
+2427,Houari Boumediène,هواري بومدين,Houari Boumediene,24,Guelma,قالمة,24,50.11,6674818,Q867542,1.0,OpenStreetMap,2026-11-20
+2428,Roknia,الركنية,Roknia,24,Guelma,قالمة,24,202.3,6537648,Q1235954,1.0,OpenStreetMap,2026-11-20
+2429,Selloua Anouna,سلاوة عنونة,Selloua Anouna,24,Guelma,قالمة,24,96.1,6537649,Q1764621,1.0,OpenStreetMap,2026-11-20
+2430,Medjez Sfa,مجاز الصفاء,Medjez Sfa,24,Guelma,قالمة,24,140.55,6537643,Q3271986,1.0,OpenStreetMap,2026-11-20
+2431,Boumahra Ahmed,بومهرة أحمد,Boumahra Ahmed,24,Guelma,قالمة,24,72.2,6537632,Q1649113,1.0,OpenStreetMap,2026-11-20
+2432,Ain Regada,عين رقادة,Ain Regada,24,Guelma,قالمة,24,115.38,6537622,Q598729,1.0,OpenStreetMap,2026-11-20
+2433,Oued Cheham,وادي الشحم,Oued Cheham,24,Guelma,قالمة,24,95.92,6674824,Q1649505,1.0,OpenStreetMap,2026-11-20
+2434,Djebala Khemissi,جبالة لخميسي,Djebala Khemissi,24,Guelma,قالمة,24,65.88,6537634,Q3032814,1.0,OpenStreetMap,2026-11-20
+2501,Constantine,قسنطينة,Constantine,25,Constantine,قسنطينة,25,182.69,2245418,Q187346,1.0,OpenStreetMap,2026-11-20
+2502,Hamma Bouziane,حامة بوزيان,Hamma Bouziane,25,Constantine,قسنطينة,25,73.33,4434597,Q3126488,1.0,OpenStreetMap,2026-11-20
+2503,Ibn Badis,ابن باديس,Ibn Badis,25,Constantine,قسنطينة,25,322.23,4437665,Q3147437,1.0,OpenStreetMap,2026-11-20
+2504,Zighoud Youcef,زيغود يوسف,Zighoud Youcef,25,Constantine,قسنطينة,25,240.81,4437759,Q166370,1.0,OpenStreetMap,2026-11-20
+2505,Didouche Mourad,ديدوش مراد,Didouche Mourad,25,Constantine,قسنطينة,25,112.78,4437720,Q3027257,1.0,OpenStreetMap,2026-11-20
+2506,El Khroub,الخروب,El Khroub,25,Constantine,قسنطينة,25,257.03,4437507,Q391129,1.0,OpenStreetMap,2026-11-20
+2507,Aïn Abid,عين عبيد,Aïn Abid,25,Constantine,قسنطينة,25,308.03,4437624,Q2876252,1.0,OpenStreetMap,2026-11-20
+2508,Beni Hamidene,بني حميدان,Beni Hamidene,25,Constantine,قسنطينة,25,134.42,4437758,Q2895881,1.0,OpenStreetMap,2026-11-20
+2509,Ouled Rahmoun,أولاد رحمون,Ouled Rahmoun,25,Constantine,قسنطينة,25,212.16,4437575,Q3358247,1.0,OpenStreetMap,2026-11-20
+2510,Aïn Smara,عين سمارة,Aïn Smara,25,Constantine,قسنطينة,25,143.74,4434146,Q2876376,1.0,OpenStreetMap,2026-11-20
+2511,Messaoud Boudjriou,مسعود بوجريو,Messaoud Boudjriou,25,Constantine,قسنطينة,25,108.25,4437319,Q3306984,1.0,OpenStreetMap,2026-11-20
+2512,Ibn Ziad,ابن زياد,Ibn Ziad,25,Constantine,قسنطينة,25,148.7,4437296,Q3147465,1.0,OpenStreetMap,2026-11-20
+2601,Médéa,المدية,Médéa,26,Médéa,المدية,26,66.31,2563082,Q1982137,1.0,OpenStreetMap,2026-11-20
+2602,Ouzera,وزرة,Ouzera,26,Médéa,المدية,26,101.89,2586879,Q3358838,1.0,OpenStreetMap,2026-11-20
+2603,Ouled Maaref,أولاد معرف,Ouled Maaref,67,Ksar El Boukhari,ولاية قصر البخاري,26,199.11,2907908,Q3358240,1.0,OpenStreetMap,2026-11-20
+2604,Aïn Boucif,عين بوسيف,Aïn Boucif,67,Ksar El Boukhari,ولاية قصر البخاري,26,312.93,2903605,Q1702800,1.0,OpenStreetMap,2026-11-20
+2605,El Aïssaouia,العيساوية,El Aïssaouia,26,Médéa,المدية,26,124.23,2962879,Q1649457,1.0,OpenStreetMap,2026-11-20
+2606,Ouled Deide,أولاد دايد,Ouled Deide,26,Médéa,المدية,26,148.33,2594929,Q3358218,1.0,OpenStreetMap,2026-11-20
+2607,El Omaria,العمارية,El Omaria,26,Médéa,المدية,26,115.92,2588517,Q3050133,1.0,OpenStreetMap,2026-11-20
+2608,Derrag,دراق,Derrag,67,Ksar El Boukhari,ولاية قصر البخاري,26,206.08,2434897,Q3023970,1.0,OpenStreetMap,2026-11-20
+2609,El Guelb Kebir,القلب الكبير,El Guelb Kebir,26,Médéa,المدية,26,99.25,2915512,Q3049895,1.0,OpenStreetMap,2026-11-20
+2610,Bouaiche,بوعيش,Bouaiche,67,Ksar El Boukhari,ولاية قصر البخاري,26,596.73,2433345,Q748765,1.0,OpenStreetMap,2026-11-20
+2611,Mezerana,مزغنة,Mezerana,26,Médéa,المدية,26,69.93,2947376,Q3307744,1.0,OpenStreetMap,2026-11-20
+2612,Ouled Brahim,أولاد إبراهيم,Ouled Brahim,26,Médéa,المدية,26,62.36,2587075,Q1649202,1.0,OpenStreetMap,2026-11-20
+2613,Tizi Mahdi,تيزي المهدي,Tizi Mahdi,26,Médéa,المدية,26,39.47,2584701,Q3529986,1.0,OpenStreetMap,2026-11-20
+2614,Sidi Ziane,سيدي زيان,Sidi Ziane,26,Médéa,المدية,26,66.16,2898796,Q3483306,1.0,OpenStreetMap,2026-11-20
+2615,Tamesguida,تمزقيدة,Tamesguida,26,Médéa,المدية,26,99.15,2562432,Q3514798,1.0,OpenStreetMap,2026-11-20
+2616,El Hamdania,الحمدانية,El Hamdania,26,Médéa,المدية,26,142.61,2571726,Q788815,1.0,OpenStreetMap,2026-11-20
+2617,Kef Lakhdar,الكاف الأخضر,Kef Lakhdar,67,Ksar El Boukhari,ولاية قصر البخاري,26,99.52,2901631,Q3194649,1.0,OpenStreetMap,2026-11-20
+2618,Chelalat El Adhoura,شلالة العذاورة,Chelalat El Adhoura,67,Ksar El Boukhari,ولاية قصر البخاري,26,147.17,2897130,Q2962199,1.0,OpenStreetMap,2026-11-20
+2619,Bousekene,بوسكن,Bousekene,26,Médéa,المدية,26,99.74,2914188,Q1649441,1.0,OpenStreetMap,2026-11-20
+2620,Rebaia,الربعية,Rebaia,26,Médéa,المدية,26,157.16,2900032,Q3421670,1.0,OpenStreetMap,2026-11-20
+2621,Bouchrahil,بوشراحيل,Bouchrahil,26,Médéa,المدية,26,148.27,2964918,Q2921393,1.0,OpenStreetMap,2026-11-20
+2622,Ouled Hellal,أولاد هلال,Ouled Hellal,67,Ksar El Boukhari,ولاية قصر البخاري,26,210.11,2518403,Q1649485,1.0,OpenStreetMap,2026-11-20
+2623,Tafraout,تافراوت,Tafraout,67,Ksar El Boukhari,ولاية قصر البخاري,26,106.14,2897135,Q961923,1.0,OpenStreetMap,2026-11-20
+2624,Baata,بعطة,Baata,26,Médéa,المدية,26,123.0,2590266,Q2877650,1.0,OpenStreetMap,2026-11-20
+2625,Boghar,بوغار,Boghar,67,Ksar El Boukhari,ولاية قصر البخاري,26,124.94,2523191,Q2908678,1.0,OpenStreetMap,2026-11-20
+2626,Sidi Naamane,سيدي نعمان,Sidi Naamane,26,Médéa,المدية,26,111.75,2590284,Q3483276,1.0,OpenStreetMap,2026-11-20
+2627,Ouled Bouachra,أولاد بوعشرة,Ouled Bouachra,26,Médéa,المدية,26,103.66,2540223,Q3358201,1.0,OpenStreetMap,2026-11-20
+2628,Sidi Zahar,سيدي زهار,Sidi Zahar,26,Médéa,المدية,26,84.09,2898797,Q2377660,1.0,OpenStreetMap,2026-11-20
+2629,Oued Harbil,وادي حربيل,Oued Harbil,26,Médéa,المدية,26,64.49,2562272,Q3358024,1.0,OpenStreetMap,2026-11-20
+2630,Benchicao,بن شكاو,Benchicao,26,Médéa,المدية,26,61.41,2584955,Q2895687,1.0,OpenStreetMap,2026-11-20
+2631,Sidi Damed,سيدي دامد,Sidi Damed,67,Ksar El Boukhari,ولاية قصر البخاري,26,164.19,2907811,Q3483222,1.0,OpenStreetMap,2026-11-20
+2632,Aziz,عزيز,Aziz,67,Ksar El Boukhari,ولاية قصر البخاري,26,552.57,2433890,Q2875145,1.0,OpenStreetMap,2026-11-20
+2633,Souagui,السواقي,Souagui,26,Médéa,المدية,26,136.36,2898689,Q3491433,1.0,OpenStreetMap,2026-11-20
+2634,Zoubiria,الزبيرية,Zoubiria,26,Médéa,المدية,26,209.45,2529800,Q3576157,1.0,OpenStreetMap,2026-11-20
+2635,Ksar El Boukhari,قصر البخاري,Ksar El Boukhari,67,Ksar El Boukhari,ولاية قصر البخاري,26,53.03,2523204,Q3200144,1.0,OpenStreetMap,2026-11-20
+2636,El Azizia,العزيزية,El Azizia,26,Médéa,المدية,26,48.52,2924481,Q1847129,1.0,OpenStreetMap,2026-11-20
+2637,Djouab,جواب,Djouab,26,Médéa,المدية,26,105.29,2897143,Q596382,1.0,OpenStreetMap,2026-11-20
+2638,Chahbounia,الشهبونية,Chahbounia,67,Ksar El Boukhari,ولاية قصر البخاري,26,498.15,2432880,Q2947598,1.0,OpenStreetMap,2026-11-20
+2639,Meghraoua,مغراوة,Meghraoua,26,Médéa,المدية,26,68.75,2930390,Q3276830,1.0,OpenStreetMap,2026-11-20
+2640,Cheniguel,شنيقل,Cheniguel,67,Ksar El Boukhari,ولاية قصر البخاري,26,162.28,4463370,Q2962653,1.0,OpenStreetMap,2026-11-20
+2641,Aïn Ouksir,عين القصير,Aïn Ouksir,67,Ksar El Boukhari,ولاية قصر البخاري,26,243.3,2897101,Q2876361,1.0,OpenStreetMap,2026-11-20
+2642,Oum El Djalil,أم الجليل,Oum El Djalil,67,Ksar El Boukhari,ولاية قصر البخاري,26,75.55,2437644,Q3358293,1.0,OpenStreetMap,2026-11-20
+2643,Ouamri,وامري,Ouamri,26,Médéa,المدية,26,94.35,2561384,Q3357921,1.0,OpenStreetMap,2026-11-20
+2644,Si Mahdjoub,سي المحجوب,Si Mahdjoub,26,Médéa,المدية,26,52.07,2583963,Q3482811,1.0,OpenStreetMap,2026-11-20
+2645,Tlatet Eddouair,ثلاثة الدوائر,Tlatet Eddouair,26,Médéa,المدية,26,138.94,2908041,Q3530064,1.0,OpenStreetMap,2026-11-20
+2646,Beni Slimane,بني سليمان,Beni Slimane,26,Médéa,المدية,26,92.87,2914517,Q2895913,1.0,OpenStreetMap,2026-11-20
+2647,Berrouaghia,البرواقية,Berrouaghia,26,Médéa,المدية,26,136.17,2537784,Q2214965,1.0,OpenStreetMap,2026-11-20
+2648,Seghouane,سغوان,Seghouane,26,Médéa,المدية,26,76.25,2528015,Q1650042,1.0,OpenStreetMap,2026-11-20
+2649,Mefatha,مفاتحة,Mefatha,67,Ksar El Boukhari,ولاية قصر البخاري,26,150.35,2525270,Q3304190,1.0,OpenStreetMap,2026-11-20
+2650,Mihoub,ميهوب,Mihoub,26,Médéa,المدية,26,105.41,2938025,Q3313082,1.0,OpenStreetMap,2026-11-20
+2651,Boughezoul,بوغزول,Boughezoul,67,Ksar El Boukhari,ولاية قصر البخاري,26,478.75,2435706,Q2921560,1.0,OpenStreetMap,2026-11-20
+2652,Tablat,تابلاط,Tablat,26,Médéa,المدية,26,82.07,2957959,Q1649907,1.0,OpenStreetMap,2026-11-20
+2653,Deux Bassins,الحوضين,Deux Bassins,26,Médéa,المدية,26,41.8,2962878,Q3024885,1.0,OpenStreetMap,2026-11-20
+2654,Draa Esmar,ذراع السمار,Draa Esmar,26,Médéa,المدية,26,40.1,2562899,Q3038466,1.0,OpenStreetMap,2026-11-20
+2655,Sidi Errabia,سيدي الربيع,Sidi Errabia,26,Médéa,المدية,26,51.48,2957917,Q3483229,1.0,OpenStreetMap,2026-11-20
+2656,Bir Ben Abed,بئر بن عابد,Bir Ben Abed,26,Médéa,المدية,26,65.25,2920923,Q1649076,1.0,OpenStreetMap,2026-11-20
+2657,El Aouinet,العوينات,El Aouinet,67,Ksar El Boukhari,ولاية قصر البخاري,26,63.08,2907855,Q3050148,1.0,OpenStreetMap,2026-11-20
+2658,Ouled Antar,أولاد عنتر,Ouled Antar,67,Ksar El Boukhari,ولاية قصر البخاري,26,205.32,2522974,Q2379821,1.0,OpenStreetMap,2026-11-20
+2659,Bouaichoune,بوعيشون,Bouaichoune,26,Médéa,المدية,26,79.39,2548192,Q2911918,1.0,OpenStreetMap,2026-11-20
+2660,Hannacha,حناشة,Hannacha,26,Médéa,المدية,26,57.92,2561252,Q3126831,1.0,OpenStreetMap,2026-11-20
+2661,Sedraia,سدراية,Sedraia,26,Médéa,المدية,26,69.28,2922524,Q3477636,1.0,OpenStreetMap,2026-11-20
+2662,Moudjbar,مجبر,Moudjbar,26,Médéa,المدية,26,83.94,2525423,Q3325434,1.0,OpenStreetMap,2026-11-20
+2663,Khams Djouamaa,خمس جوامع,Khams Djouamaa,26,Médéa,المدية,26,64.6,2592263,Q3196055,1.0,OpenStreetMap,2026-11-20
+2664,Saneg,سانق,Saneg,67,Ksar El Boukhari,ولاية قصر البخاري,26,77.34,2525173,Q338820,1.0,OpenStreetMap,2026-11-20
+2701,Mostaganem,مستغانم,Mostaganem,27,Mostaganem,مستغانم,27,41.39,5752724,Q849524,1.0,OpenStreetMap,2026-11-20
+2702,Sayada,صيادة,Sayada,27,Mostaganem,مستغانم,27,45.7,5752725,Q3474709,1.0,OpenStreetMap,2026-11-20
+2703,Fornaka,فرناكة,Fornaka,27,Mostaganem,مستغانم,27,63.88,6660568,Q2404804,1.0,OpenStreetMap,2026-11-20
+2704,Stidia,ستيدية,Stidia,27,Mostaganem,مستغانم,27,52.93,6660577,Q1649899,1.0,OpenStreetMap,2026-11-20
+2705,Aïn Nouïssy,عين نويسى,Ain Nouissy,27,Mostaganem,مستغانم,27,31.85,6660565,Q2876359,1.0,OpenStreetMap,2026-11-20
+2706,Hassi Mameche,حاسي مماش,Hassi Mameche,27,Mostaganem,مستغانم,27,59.01,5752722,Q3055128,1.0,OpenStreetMap,2026-11-20
+2707,Aïn Tedles,عين تادلس,Ain Tedles,27,Mostaganem,مستغانم,27,85.6,5757183,Q4833297,1.0,OpenStreetMap,2026-11-20
+2708,Sour,صور,Sour,27,Mostaganem,مستغانم,27,97.76,6660583,Q3491847,1.0,OpenStreetMap,2026-11-20
+2709,Oued El Kheir,وادى الخير,Oued El Kheir,27,Mostaganem,مستغانم,27,82.43,6660573,Q3358016,1.0,OpenStreetMap,2026-11-20
+2710,Sidi Belattar,سيدي بلعاتر,Sidi Belattar,27,Mostaganem,مستغانم,27,83.93,6660579,Q3483193,1.0,OpenStreetMap,2026-11-20
+2711,Kheireddine,خير الدين,Kheireddine,27,Mostaganem,مستغانم,27,48.94,5757184,Q3196129,1.0,OpenStreetMap,2026-11-20
+2712,Sidi Ali,سيدي على,Sidi Ali,27,Mostaganem,مستغانم,27,204.7,6660578,Q3483174,1.0,OpenStreetMap,2026-11-20
+2713,Abdelmalek Ramdane,عبد المالك رمضان,Abdelmalek Ramdane,27,Mostaganem,مستغانم,27,79.57,6660562,Q4886789,1.0,OpenStreetMap,2026-11-20
+2714,Hadjadj,حجاج,Hadjadj,27,Mostaganem,مستغانم,27,74.63,6660569,Q3125557,1.0,OpenStreetMap,2026-11-20
+2715,Nekmaria,نقمارية,Nekmaria,27,Mostaganem,مستغانم,27,52.72,6660572,Q3337879,1.0,OpenStreetMap,2026-11-20
+2716,Sidi Lakhdar,سيدي لخضر,Sidi Lakhdar,27,Mostaganem,مستغانم,27,141.81,6660580,Q3483250,1.0,OpenStreetMap,2026-11-20
+2717,Achaacha,عشعاشة,Achaacha,27,Mostaganem,مستغانم,27,65.94,6660563,Q2822975,1.0,OpenStreetMap,2026-11-20
+2718,Khadra,خضراء,Khadra,27,Mostaganem,مستغانم,27,79.35,6660570,Q3195934,1.0,OpenStreetMap,2026-11-20
+2719,Bouguirat,بوقيراط,Bouguirat,27,Mostaganem,مستغانم,27,84.28,6660566,Q2921590,1.0,OpenStreetMap,2026-11-20
+2720,Sirat,سيرات,Sirat,27,Mostaganem,مستغانم,27,60.06,6660581,Q3485239,1.0,OpenStreetMap,2026-11-20
+2721,Ain Sidi Cherif,عين سيدي الشريف,Ain Sidi Cherif,27,Mostaganem,مستغانم,27,26.81,6660564,Q431108,1.0,OpenStreetMap,2026-11-20
+2722,Mesra,ماسرى,Mesra,27,Mostaganem,مستغانم,27,43.92,6674836,Q3306944,1.0,OpenStreetMap,2026-11-20
+2723,Mansourah,منصورة,Mansourah,27,Mostaganem,مستغانم,27,57.95,6660571,Q3286579,1.0,OpenStreetMap,2026-11-20
+2724,Souaflia,السوافلية,Souaflia,27,Mostaganem,مستغانم,27,54.48,6660582,Q728433,1.0,OpenStreetMap,2026-11-20
+2725,Ouled Boughalem,أولاد بوغالم,Ouled Boughalem,27,Mostaganem,مستغانم,27,44.93,6660574,Q3358205,1.0,OpenStreetMap,2026-11-20
+2726,Ouled Maaleh,أولاد مع الله,Ouled Maaleh,27,Mostaganem,مستغانم,27,87.09,6660575,Q7110452,1.0,OpenStreetMap,2026-11-20
+2727,Mazagran,مزغران,Mazagran,27,Mostaganem,مستغانم,27,18.82,5752723,Q2371825,1.0,OpenStreetMap,2026-11-20
+2728,Aïn Boudinar,عين بودينار,Ain Boudinar,27,Mostaganem,مستغانم,27,36.92,5757182,Q2876275,1.0,OpenStreetMap,2026-11-20
+2729,Tazgait,تزقايت,Tazgait,27,Mostaganem,مستغانم,27,101.04,6660584,Q3516519,1.0,OpenStreetMap,2026-11-20
+2730,Safsaf,صفصاف,Safsaf,27,Mostaganem,مستغانم,27,93.11,6660576,Q3461301,1.0,OpenStreetMap,2026-11-20
+2731,Touahria,الطواهيرية,Touahria,27,Mostaganem,مستغانم,27,29.42,6660585,Q3532765,1.0,OpenStreetMap,2026-11-20
+2732,El Hassiane,الحسيان,El Hassiane,27,Mostaganem,مستغانم,27,74.6,6660567,Q3049946,1.0,OpenStreetMap,2026-11-20
+2801,M'Sila,المسيلة,M'Sila,28,M'Sila,المسيلة,28,233.68,6547246,Q402825,1.0,OpenStreetMap,2026-11-20
+2802,Maadid,المعاضيد,Maadid,28,M'Sila,المسيلة,28,259.41,6547247,Q2585679,1.0,OpenStreetMap,2026-11-20
+2803,Hammam Delaa,حمام الضلعة,Hammam Dhalaa,28,M'Sila,المسيلة,28,381.3,6547241,Q3126500,1.0,OpenStreetMap,2026-11-20
+2804,Ouled Derradj,أولاد دراج,Ouled Derradj,28,M'Sila,المسيلة,28,150.77,6547254,Q3358219,1.0,OpenStreetMap,2026-11-20
+2805,Tarmount,تارمونت,Tarmount,28,M'Sila,المسيلة,28,190.92,6547266,Q3515755,1.0,OpenStreetMap,2026-11-20
+2806,M'Tarfa,المطارفة,M'Tarfa,28,M'Sila,المسيلة,28,223.32,6547245,Q3272300,1.0,OpenStreetMap,2026-11-20
+2807,Khoubana,خبانة,Khoubana,68,Bou Saâda,بوسعادة,28,379.13,6547243,Q3196216,1.0,OpenStreetMap,2026-11-20
+2808,M'Cif,مسيف,M'Cif,68,Bou Saâda,بوسعادة,28,585.29,6547244,Q3272276,1.0,OpenStreetMap,2026-11-20
+2809,Chellal,شلال,Chellal,28,M'Sila,المسيلة,28,452.66,6547237,Q2962198,1.0,OpenStreetMap,2026-11-20
+2810,Ouled Madhi,أولاد ماضي,Ouled Madhi,28,M'Sila,المسيلة,28,351.57,6547255,Q3358241,1.0,OpenStreetMap,2026-11-20
+2811,Magra,مقرة,Magra,28,M'Sila,المسيلة,28,222.78,6547249,Q3277385,1.0,OpenStreetMap,2026-11-20
+2812,Berhoum,برهوم,Berhoum,28,M'Sila,المسيلة,28,109.81,6547234,Q1648932,1.0,OpenStreetMap,2026-11-20
+2813,Aïn Khadra,عين خضرة,Ain Khadra,28,M'Sila,المسيلة,28,148.44,6547230,Q2876348,1.0,OpenStreetMap,2026-11-20
+2814,Ouled Addi Guebala,أولاد عدى القبالة,Ouled Addi Guebala,28,M'Sila,المسيلة,28,320.64,6547253,Q3358190,1.0,OpenStreetMap,2026-11-20
+2815,Belaiba,بلعايبة,Belaiba,28,M'Sila,المسيلة,28,174.71,6547231,Q2894197,1.0,OpenStreetMap,2026-11-20
+2816,Sidi Aïssa,سيدي عيسى,Sidi Aïssa,28,M'Sila,المسيلة,28,632.96,6547260,Q2214999,1.0,OpenStreetMap,2026-11-20
+2817,Aïn El Hadjel,عين الحجل,Ain El Hadjel,28,M'Sila,المسيلة,28,387.82,6547229,Q1649776,1.0,OpenStreetMap,2026-11-20
+2818,Sidi Hadjeres,سيدي ھجرس,Sidi Hadjeres,28,M'Sila,المسيلة,28,552.07,6547261,Q3483235,1.0,OpenStreetMap,2026-11-20
+2819,Ouanougha,ونوغة,Ouanougha,28,M'Sila,المسيلة,28,164.19,6547252,Q3357932,1.0,OpenStreetMap,2026-11-20
+2820,Bou Saâda,بوسعادة,Bou Saada,68,Bou Saâda,بوسعادة,28,249.93,6547235,Q401741,1.0,OpenStreetMap,2026-11-20
+2821,Ouled Sidi Brahim,أولاد سيدي ابراھيم,Ouled Sidi Brahim,68,Bou Saâda,بوسعادة,28,208.39,6547257,Q3358258,1.0,OpenStreetMap,2026-11-20
+2822,Sidi Ameur,سيدي عامر,Sidi Ameur,68,Bou Saâda,بوسعادة,28,917.0,6547259,Q3483187,1.0,OpenStreetMap,2026-11-20
+2823,Tamsa,تامسة,Tamsa,68,Bou Saâda,بوسعادة,28,577.48,6547263,Q3514888,1.0,OpenStreetMap,2026-11-20
+2824,Ben Srour,بن سرور,Ben Srour,68,Bou Saâda,بوسعادة,28,425.11,5559082,Q2895563,1.0,OpenStreetMap,2026-11-20
+2825,Ouled Slimane,أولاد سليمان,Ouled Slimane,68,Bou Saâda,بوسعادة,28,464.71,5558595,Q3358268,1.0,OpenStreetMap,2026-11-20
+2826,El Houamed,الحوامد,El Houamed,68,Bou Saâda,بوسعادة,28,688.63,6547240,Q3049980,1.0,OpenStreetMap,2026-11-20
+2827,El Hamel,الهامل,El Hamel,68,Bou Saâda,بوسعادة,28,171.03,6547239,Q3049938,1.0,OpenStreetMap,2026-11-20
+2828,Ouled Mansour,أولاد منصور,Ouled Mansour,28,M'Sila,المسيلة,28,258.4,6547256,Q3358242,1.0,OpenStreetMap,2026-11-20
+2829,Maarif,المعاريف,Maarif,28,M'Sila,المسيلة,28,246.68,6547248,Q3273702,1.0,OpenStreetMap,2026-11-20
+2830,Dehahna,دھاھنة,Dehahna,28,M'Sila,المسيلة,28,70.58,6547238,Q3021289,1.0,OpenStreetMap,2026-11-20
+2831,Bouti Sayah,بوطى السايح,Bouti Sayah,28,M'Sila,المسيلة,28,715.8,6547236,Q1583070,1.0,OpenStreetMap,2026-11-20
+2832,Khettouti Sed El Djir,خطوطي سد الجير,Khettouti Sed El Djir,28,M'Sila,المسيلة,28,390.88,6547242,Q3196166,1.0,OpenStreetMap,2026-11-20
+2833,Zerzour,الزرزور,Zerzour,68,Bou Saâda,بوسعادة,28,353.69,5558909,Q636617,1.0,OpenStreetMap,2026-11-20
+2834,Mohamed Boudiaf,محمد بوضياف,Mohamed Boudiaf,68,Bou Saâda,بوسعادة,28,635.76,5539319,Q3358005,1.0,OpenStreetMap,2026-11-20
+2835,Benzouh,بنزوه,Benzouh,68,Bou Saâda,بوسعادة,28,411.84,6547233,Q2896808,1.0,OpenStreetMap,2026-11-20
+2836,Bir Fodda,بير الفضة,Bir Foda,68,Bou Saâda,بوسعادة,28,445.61,5514983,Q2904340,1.0,OpenStreetMap,2026-11-20
+2837,Aïn Fares,عين فارس,Aïn Fares,68,Bou Saâda,بوسعادة,28,388.72,5538988,Q2876321,1.0,OpenStreetMap,2026-11-20
+2838,Sidi M'hamed,سيدي محمد,Sidi M'Hamed,68,Bou Saâda,بوسعادة,28,299.25,5528024,Q3483253,1.0,OpenStreetMap,2026-11-20
+2839,Ouled Atia,أولاد عطية,Ouled Atia,68,Bou Saâda,بوسعادة,28,247.03,6547251,Q3358191,1.0,OpenStreetMap,2026-11-20
+2840,Souamaa,السوامع,Souamaa,28,M'Sila,المسيلة,28,376.5,6547262,Q3491435,1.0,OpenStreetMap,2026-11-20
+2841,Aïn El Melh,عين الملح,Ain El Melh,68,Bou Saâda,بوسعادة,28,270.63,5544000,Q1649756,1.0,OpenStreetMap,2026-11-20
+2842,Medjedel,مجدل,Medjedel,68,Bou Saâda,بوسعادة,28,594.91,6547250,Q3304075,1.0,OpenStreetMap,2026-11-20
+2843,Slim,سليم,Slim,68,Bou Saâda,بوسعادة,28,390.1,5514905,Q3486672,1.0,OpenStreetMap,2026-11-20
+2844,Ain Errich,عين الريش,Aïn Errich,68,Bou Saâda,بوسعادة,28,1208.45,5526120,Q1648562,1.0,OpenStreetMap,2026-11-20
+2845,Beni Ilmene,بنى يلمان,Beni Ilmene,28,M'Sila,المسيلة,28,118.69,6547232,Q1648903,1.0,OpenStreetMap,2026-11-20
+2846,Oultem,ولتام,Oultem,68,Bou Saâda,بوسعادة,28,178.89,6547258,Q3358286,1.0,OpenStreetMap,2026-11-20
+2847,Djebel Messaad,جبل مسعد,Djebel Messaad,68,Bou Saâda,بوسعادة,28,691.91,5561173,Q3032841,1.0,OpenStreetMap,2026-11-20
+2901,Mascara,معسكر,Mascara,29,Mascara,معسكر,29,76.16,4571792,Q545707,1.0,OpenStreetMap,2026-11-20
+2902,Bouhanifia,بوحنيفية,Bouhanifia,29,Mascara,معسكر,29,199.17,5585374,Q2911890,1.0,OpenStreetMap,2026-11-20
+2903,Tizi,تيزي,Tizi,29,Mascara,معسكر,29,132.6,4652433,Q3529982,1.0,OpenStreetMap,2026-11-20
+2904,Hacine,حاسين,Hacine,29,Mascara,معسكر,29,139.22,6668176,Q757243,1.0,OpenStreetMap,2026-11-20
+2905,Maoussa,ماوسة,Maoussa,29,Mascara,معسكر,29,72.08,4589684,Q3287214,1.0,OpenStreetMap,2026-11-20
+2906,Tighennif,تغنيف,Tighennif,29,Mascara,معسكر,29,102.51,4596004,Q3528317,1.0,OpenStreetMap,2026-11-20
+2907,Hachem,الهاشم,Hachem,29,Mascara,معسكر,29,254.93,5348242,Q3125442,1.0,OpenStreetMap,2026-11-20
+2908,Sidi Kada,سيدي قادة,Sidi Kada,29,Mascara,معسكر,29,100.38,6668190,Q3483241,1.0,OpenStreetMap,2026-11-20
+2909,Zelmata,زلماطة,Zelmata,29,Mascara,معسكر,29,240.52,5349138,Q3575150,1.0,OpenStreetMap,2026-11-20
+2910,Oued El Abtal,وادي الأبطال,Oued El Abtal,29,Mascara,معسكر,29,202.4,5347304,Q3358012,1.0,OpenStreetMap,2026-11-20
+2911,Ain Ferah,عين فراح,Ain Ferah,29,Mascara,معسكر,29,215.99,5347189,Q2876329,1.0,OpenStreetMap,2026-11-20
+2912,Ghriss,غريس,Ghriss,29,Mascara,معسكر,29,110.95,5488962,Q2209212,1.0,OpenStreetMap,2026-11-20
+2913,Froha,فروحة,Froha,29,Mascara,معسكر,29,56.78,5488961,Q3088224,1.0,OpenStreetMap,2026-11-20
+2914,Matemor,مطمور,Matemor,29,Mascara,معسكر,29,51.03,5488963,Q3298418,1.0,OpenStreetMap,2026-11-20
+2915,Makdha,ماقضة,Makdha,29,Mascara,معسكر,29,124.4,6668178,Q3280683,1.0,OpenStreetMap,2026-11-20
+2916,Sidi Boussaid,سيدي بوسعيد,Sidi Boussaid,29,Mascara,معسكر,29,79.83,6668189,Q3483207,1.0,OpenStreetMap,2026-11-20
+2917,El Bordj,البرج,El Bordj,29,Mascara,معسكر,29,91.27,6668171,Q3049752,1.0,OpenStreetMap,2026-11-20
+2918,Ain Fekan,عين فكان,Ain Fekan,29,Mascara,معسكر,29,187.39,5482554,Q586071,1.0,OpenStreetMap,2026-11-20
+2919,Beniane,بنيان,Beniane,29,Mascara,معسكر,29,136.58,6668168,Q2895928,1.0,OpenStreetMap,2026-11-20
+2920,Khalouia,خلوية,Khalouia,29,Mascara,معسكر,29,16.8,6668177,Q3196046,1.0,OpenStreetMap,2026-11-20
+2921,El Menaouer,المناور,El Menaouer,29,Mascara,معسكر,29,86.27,6668173,Q3050075,1.0,OpenStreetMap,2026-11-20
+2922,Oued Taria,وادي التاغية,Oued Taria,29,Mascara,معسكر,29,152.57,6668183,Q1649134,1.0,OpenStreetMap,2026-11-20
+2923,Aouf,عوف,Aouf,29,Mascara,معسكر,29,161.92,6668167,Q2857994,1.0,OpenStreetMap,2026-11-20
+2924,Aïn Fares,عين فارس,Aïn Fares,29,Mascara,معسكر,29,81.71,4595944,Q4833277,1.0,OpenStreetMap,2026-11-20
+2925,Aïn Fras,عين فرس,Aïn Fras,29,Mascara,معسكر,29,132.91,5581838,Q2876332,1.0,OpenStreetMap,2026-11-20
+2926,Sig,سيق,Sig,29,Mascara,معسكر,29,114.04,6668191,Q2744832,1.0,OpenStreetMap,2026-11-20
+2927,Oggaz,عقاز,Oggaz,29,Mascara,معسكر,29,141.9,6668182,Q3349780,1.0,OpenStreetMap,2026-11-20
+2928,Alaïmia,العلايمية,Alaimia,29,Mascara,معسكر,29,57.38,6668166,Q2830738,1.0,OpenStreetMap,2026-11-20
+2929,El Gaada,القعدة,El Gaada,29,Mascara,معسكر,29,121.12,6668174,Q1649185,1.0,OpenStreetMap,2026-11-20
+2930,Zahana,زھانة,Zahana,29,Mascara,معسكر,29,161.81,6668192,Q1650864,1.0,OpenStreetMap,2026-11-20
+2931,Mohammadia,المحمدية,Mohammadia,29,Mascara,معسكر,29,156.1,6668180,Q2214777,1.0,OpenStreetMap,2026-11-20
+2932,Sidi Abdelmoumen,سيدي عبد المومن,Sidi Abdelmoumen,29,Mascara,معسكر,29,123.02,6668188,Q3483156,1.0,OpenStreetMap,2026-11-20
+2933,Ferraguig,فرقيق,Ferraguig,29,Mascara,معسكر,29,99.38,6668175,Q3069619,1.0,OpenStreetMap,2026-11-20
+2934,El Ghomri,الغمري,El Ghomri,29,Mascara,معسكر,29,119.84,6668172,Q3049881,1.0,OpenStreetMap,2026-11-20
+2935,Sedjerara,سجرارة,Sedjerara,29,Mascara,معسكر,29,113.31,6668185,Q3477618,1.0,OpenStreetMap,2026-11-20
+2936,Mocta Douz,مقطع دوز,Mocta Douz,29,Mascara,معسكر,29,185.81,6668179,Q787640,1.0,OpenStreetMap,2026-11-20
+2937,Bou Henni,بوهني,Bou Henni,29,Mascara,معسكر,29,127.49,6668169,Q2911895,1.0,OpenStreetMap,2026-11-20
+2938,El Guettana,القيطنة,El Guettana,29,Mascara,معسكر,29,96.93,5585377,Q3049894,1.0,OpenStreetMap,2026-11-20
+2939,Mamounia,المامونية,Mamounia,29,Mascara,معسكر,29,90.77,1334214,Q3285064,1.0,OpenStreetMap,2026-11-20
+2940,El Keurt,القرط,El Keurt,29,Mascara,معسكر,29,47.31,4652378,Q3050004,1.0,OpenStreetMap,2026-11-20
+2941,Gharrous,غروس,Gharrous,29,Mascara,معسكر,29,122.9,5349395,Q3104786,1.0,OpenStreetMap,2026-11-20
+2942,Guerdjoum,قرجوم,Guerdjoum,29,Mascara,معسكر,29,38.32,5481675,Q3118917,1.0,OpenStreetMap,2026-11-20
+2943,Chorfa,الشرفة,Chorfa,29,Mascara,معسكر,29,209.78,6668170,Q375670,1.0,OpenStreetMap,2026-11-20
+2944,Ras El Aïn Amirouche,رأس العين عميروش,Ras Ain Amirouche,29,Mascara,معسكر,29,113.08,6668184,Q3419770,1.0,OpenStreetMap,2026-11-20
+2945,Nesmoth,نسموط,Nesmoth,29,Mascara,معسكر,29,97.16,6668181,Q3338391,1.0,OpenStreetMap,2026-11-20
+2946,Sidi Abdeldjebar,سيدي عبد الجبار,Sidi Abdeldjebar,29,Mascara,معسكر,29,76.66,6668187,Q1650188,1.0,OpenStreetMap,2026-11-20
+2947,Sehailia,سحايلية,Sehaîlia,29,Mascara,معسكر,29,56.43,6668186,Q3477769,1.0,OpenStreetMap,2026-11-20
+3001,Ouargla,ورقلة,Ouargla,30,Ouargla,ورقلة,30,2839.88,4601326,Q852469,1.0,OpenStreetMap,2026-11-20
+3002,Aïn El Beïda,عين البيضاء,Aïn El Beïda,30,Ouargla,ورقلة,30,1985.86,4603105,Q2876256,1.0,OpenStreetMap,2026-11-20
+3003,N'Goussa,النقوسة,N'Goussa,30,Ouargla,ورقلة,30,2956.99,6542941,Q3334101,1.0,OpenStreetMap,2026-11-20
+3004,Hassi Messaoud,حاسي مسعود,Hassi Messaoud,30,Ouargla,ورقلة,30,69507.83,6542939,Q1000139,1.0,OpenStreetMap,2026-11-20
+3005,Rouissat,الرويسات,Rouissat,30,Ouargla,ورقلة,30,7526.04,4602355,Q1649802,1.0,OpenStreetMap,2026-11-20
+3006,Blidet Amor,بليدة عامر,Blidet Amor,55,Touggourt,تقرت,30,216.97,6542935,Q2906568,1.0,OpenStreetMap,2026-11-20
+3007,Tebesbest,تبسبست,Tebesbest,55,Touggourt,تقرت,30,24.83,5711076,Q601174,1.0,OpenStreetMap,2026-11-20
+3008,Nezla,نزلة,Nezla,55,Touggourt,تقرت,30,152.17,5711075,Q1650278,1.0,OpenStreetMap,2026-11-20
+3009,Zaouia El Abidia,الزاوية العابدية,Zaouia El Abidia,55,Touggourt,تقرت,30,31.02,5711078,Q3574795,1.0,OpenStreetMap,2026-11-20
+3010,Sidi Slimane,سيدي سليمان,Sidi Slimane,55,Touggourt,تقرت,30,639.33,6542942,Q3483291,1.0,OpenStreetMap,2026-11-20
+3011,Sidi Khouiled,سيدي خويلد,Sidi Khouiled,30,Ouargla,ورقلة,30,144.53,4603118,Q3483248,1.0,OpenStreetMap,2026-11-20
+3012,Hassi Ben Abdellah,حاسي بن عبد ﷲ,Hassi Ben Abdellah,30,Ouargla,ورقلة,30,3075.9,5129428,Q728663,1.0,OpenStreetMap,2026-11-20
+3013,Touggourt,تقرت,Touggourt,55,Touggourt,تقرت,30,231.6,5711077,Q852515,1.0,OpenStreetMap,2026-11-20
+3014,El Hadjira,الحجيرة,El Hadjira,55,Touggourt,تقرت,30,2499.26,6542937,Q3049930,1.0,OpenStreetMap,2026-11-20
+3015,Taïbet,الطيبات,Taibet,55,Touggourt,تقرت,30,3306.96,6542944,Q3513962,1.0,OpenStreetMap,2026-11-20
+3016,Tamacine,تماسين,Tamacine,55,Touggourt,تقرت,30,316.62,6542943,Q3514622,1.0,OpenStreetMap,2026-11-20
+3017,Benaceur,بن ناصر,Benaceur,55,Touggourt,تقرت,30,1869.38,6542934,Q2895635,1.0,OpenStreetMap,2026-11-20
+3018,M'Naguer,المنقر,M'Naguer,55,Touggourt,تقرت,30,2706.46,6542979,Q3272287,1.0,OpenStreetMap,2026-11-20
+3019,Magarine,مقارين,Magarine,55,Touggourt,تقرت,30,276.35,6542940,Q2384877,1.0,OpenStreetMap,2026-11-20
+3020,El Allia,العالية,El Allia,55,Touggourt,تقرت,30,6562.47,6542936,Q3049695,1.0,OpenStreetMap,2026-11-20
+3021,El Borma,البرمة,El Borma,30,Ouargla,ورقلة,30,47269.56,6542938,Q2413817,1.0,OpenStreetMap,2026-11-20
+3101,Oran,وهران,Oran,31,Oran,وهران,31,65.9,1259562,Q131818,1.0,OpenStreetMap,2026-11-20
+3102,Gdyel,قديل,Qudayyil,31,Oran,وهران,31,96.86,4270862,Q5529400,1.0,OpenStreetMap,2026-11-20
+3103,Bir el-Djir,بئر الجير,Bir el-Djir,31,Oran,وهران,31,39.3,2078699,Q401759,1.0,OpenStreetMap,2026-11-20
+3104,Hassi Bounif,حاسي بونيف,Hassi Bounif,31,Oran,وهران,31,31.87,2079112,Q3128219,1.0,OpenStreetMap,2026-11-20
+3105,Es Senia,السانية,Es Senia,31,Oran,وهران,31,52.49,1259764,Q649874,1.0,OpenStreetMap,2026-11-20
+3106,Arzew,أرزيو,Arzew,31,Oran,وهران,31,71.92,4271171,Q2084446,1.0,OpenStreetMap,2026-11-20
+3107,Bethioua,بطيوة,Bethioua,31,Oran,وهران,31,94.57,3170952,Q1649251,1.0,OpenStreetMap,2026-11-20
+3108,Mersat El Hadjadj,مرسى الحجاج,Mersat El Hadjadj,31,Oran,وهران,31,56.3,3170951,Q3294984,1.0,OpenStreetMap,2026-11-20
+3109,Aïn El Turk,عين الترك,Ain El Turk,31,Oran,وهران,31,30.12,1259773,Q740498,1.0,OpenStreetMap,2026-11-20
+3110,El Ançor,العنصر,El Ançor,31,Oran,وهران,31,65.12,4267290,Q3049709,1.0,OpenStreetMap,2026-11-20
+3111,Oued Tlelat,وادي تليلات,Oued Tlelat,31,Oran,وهران,31,86.23,4270377,Q3358055,1.0,OpenStreetMap,2026-11-20
+3112,Tafraoui,طفراوي,Tafraoui,31,Oran,وهران,31,185.8,4270346,Q1650295,1.0,OpenStreetMap,2026-11-20
+3113,Sidi Chahmi,سيدي الشحمي,Sidi Chahmi,31,Oran,وهران,31,69.76,2078700,Q2621177,1.0,OpenStreetMap,2026-11-20
+3114,Boufatis,بوفاطيس,Boufatis,31,Oran,وهران,31,99.92,4270795,Q2921527,1.0,OpenStreetMap,2026-11-20
+3115,Mers El Kebir,المرسى الكبير,Mers El Kebir,31,Oran,وهران,31,13.63,1259772,Q31085,1.0,OpenStreetMap,2026-11-20
+3116,Bousfer,بوسفر,Bousfer,31,Oran,وهران,31,46.07,4267270,Q1649264,1.0,OpenStreetMap,2026-11-20
+3117,El Kerma,الكرمة,El Kerma,31,Oran,وهران,31,62.38,4267830,Q616858,1.0,OpenStreetMap,2026-11-20
+3118,El Braya,البرية,El Braya,31,Oran,وهران,31,56.89,4270378,Q3049760,1.0,OpenStreetMap,2026-11-20
+3119,Hassi Ben Okba,حاسي بن عقبة,Hassi Ben Okba,31,Oran,وهران,31,37.06,4267303,Q3128217,1.0,OpenStreetMap,2026-11-20
+3120,Ben Freha,بن فريحة,Ben Freha,31,Oran,وهران,31,70.36,4270796,Q582107,1.0,OpenStreetMap,2026-11-20
+3121,Hassi Mefsoukh,حاسي مفسوخ,Hassi Mefsoukh,31,Oran,وهران,31,25.57,4270902,Q3128229,1.0,OpenStreetMap,2026-11-20
+3122,Sidi Ben Yebka,سيدي بن يبقى,Sidi Ben Yebka,31,Oran,وهران,31,49.67,4271172,Q3483197,1.0,OpenStreetMap,2026-11-20
+3123,Misserghin,مسرغين,Misserghin,31,Oran,وهران,31,428.66,1259561,Q1648956,1.0,OpenStreetMap,2026-11-20
+3124,Boutlelis,بوتليليس,Boutlelis,31,Oran,وهران,31,139.05,4267929,Q2922617,1.0,OpenStreetMap,2026-11-20
+3125,Aïn El Kerma,عين الكرمة,Ain El Kerma,31,Oran,وهران,31,106.24,4267928,Q2876312,1.0,OpenStreetMap,2026-11-20
+3126,Aïn El Bia,عين البية,Aïn El Bia,31,Oran,وهران,31,48.15,4268173,Q2876293,1.0,OpenStreetMap,2026-11-20
+3201,El Bayadh,البيض,El Bayadh,32,El Bayadh,البيض,32,463.51,6533981,Q648784,1.0,OpenStreetMap,2026-11-20
+3202,Rogassa,الرقاصة,Rogassa,32,El Bayadh,البيض,32,2428.72,6533988,Q1649896,1.0,OpenStreetMap,2026-11-20
+3203,Stitten,ستيتن,Stitten,32,El Bayadh,البيض,32,885.88,6533992,Q3499559,1.0,OpenStreetMap,2026-11-20
+3204,Brezina,برزينة,Brezina,32,El Bayadh,البيض,32,15697.19,6533977,Q2924791,1.0,OpenStreetMap,2026-11-20
+3205,Ghassoul,غسول,Ghassoul,32,El Bayadh,البيض,32,564.03,6533984,Q1649308,1.0,OpenStreetMap,2026-11-20
+3206,Boualem,بوعلام,Boualem,32,El Bayadh,البيض,32,529.99,6533974,Q2911916,1.0,OpenStreetMap,2026-11-20
+3207,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,El Abiodh Sidi Cheikh,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,15985.87,6533980,Q3049673,1.0,OpenStreetMap,2026-11-20
+3208,Aïn El Orak,عين العراك,Ain El Orak,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,767.91,6533973,Q2876302,1.0,OpenStreetMap,2026-11-20
+3209,Arbaouat,عربوات,Arbaouat,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,1370.26,6533972,Q2859625,1.0,OpenStreetMap,2026-11-20
+3210,Bougtob,بوقطب,Bougtob,32,El Bayadh,البيض,32,2017.35,6533975,Q2921589,1.0,OpenStreetMap,2026-11-20
+3211,El Kheiter,الخيثر,El Kheiter,32,El Bayadh,البيض,32,1039.02,6533982,Q3050008,1.0,OpenStreetMap,2026-11-20
+3212,Kef El Ahmar,كاف لحمر,Kef Lahmar,32,El Bayadh,البيض,32,1621.75,6533985,Q3194648,1.0,OpenStreetMap,2026-11-20
+3213,Boussemghoun,بوسمغون,Boussemghoun,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,588.04,6533976,Q1649516,1.0,OpenStreetMap,2026-11-20
+3214,Chellala,شلالة,Chellala,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,220.71,6533979,Q1649540,1.0,OpenStreetMap,2026-11-20
+3215,Krakda,كراكدة,Krakda,32,El Bayadh,البيض,32,833.82,6533986,Q3054778,1.0,OpenStreetMap,2026-11-20
+3216,Lebnoud,لبنود,Lebnoud,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,19314.59,6533987,Q3049743,1.0,OpenStreetMap,2026-11-20
+3217,Cheguig,الشقيق,Cheguig,32,El Bayadh,البيض,32,826.49,6533978,Q1649215,1.0,OpenStreetMap,2026-11-20
+3218,Sidi Ameur,سيدي عامر,Sidi Ameur,32,El Bayadh,البيض,32,1184.21,6533989,Q2784515,1.0,OpenStreetMap,2026-11-20
+3219,El Mehara,المھارة,El Mehara,69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,3073.22,6533983,Q3050067,1.0,OpenStreetMap,2026-11-20
+3220,Tousmouline,توسمولين,Tousmouline,32,El Bayadh,البيض,32,883.3,6533993,Q1650268,1.0,OpenStreetMap,2026-11-20
+3221,Sidi Slimane,سيدي سليمان,Sidi Slimane,32,El Bayadh,البيض,32,154.44,6533990,Q3483288,1.0,OpenStreetMap,2026-11-20
+3222,Sidi Taïfour,سيدي طيفور,Sidi Taifour,32,El Bayadh,البيض,32,1227.03,6533991,Q3483296,1.0,OpenStreetMap,2026-11-20
+3301,Illizi,إليزي,Illizi,33,Illizi,إليزي,33,76008.16,4174334,Q640740,1.0,OpenStreetMap,2026-11-20
+3302,Djanet,جانت,Djanet,56,Djanet,جانت,33,57461.14,4174333,Q1014380,1.0,OpenStreetMap,2026-11-20
+3303,Debdeb,الدبداب,Debdeb,33,Illizi,إليزي,33,32024.16,4174332,Q1649127,1.0,OpenStreetMap,2026-11-20
+3304,Bordj Omar Driss,برج عمر إدريس,Burj Umar Idris,33,Illizi,إليزي,33,83062.34,4174331,Q2910777,1.0,OpenStreetMap,2026-11-20
+3305,Bordj El Haouas,برج الحواس,Bordj El Haouas,56,Djanet,جانت,33,30751.35,4174330,Q2910767,1.0,OpenStreetMap,2026-11-20
+3306,In Amenas,عين أمناس,In Amenas,33,Illizi,إليزي,33,14709.72,4174335,Q3118424,1.0,OpenStreetMap,2026-11-20
+3401,Bordj Bou Arreridj,برج بوعريريج,Bordj Bou Arreridj,34,Bordj Bou Arreridj,برج بوعريريج,34,83.15,4309047,Q544733,1.0,OpenStreetMap,2026-11-20
+3402,Ras El Oued,رأس الوادي,Ras El Oued,34,Bordj Bou Arreridj,برج بوعريريج,34,140.55,4484758,Q655669,1.0,OpenStreetMap,2026-11-20
+3403,Bordj Zemoura,برج زمورة,Bordj Zemoura,34,Bordj Bou Arreridj,برج بوعريريج,34,88.28,4424825,Q1648662,1.0,OpenStreetMap,2026-11-20
+3404,Mansoura,منصورة,Mansoura,34,Bordj Bou Arreridj,برج بوعريريج,34,299.04,4474340,Q3286577,1.0,OpenStreetMap,2026-11-20
+3405,El Mehir,المهير,El Mehir,34,Bordj Bou Arreridj,برج بوعريريج,34,185.89,4474380,Q3050030,1.0,OpenStreetMap,2026-11-20
+3406,Bendaoud,بن داود,Bendaoud,34,Bordj Bou Arreridj,برج بوعريريج,34,119.36,4474388,Q2895395,1.0,OpenStreetMap,2026-11-20
+3407,El Achir,اليشير,El Achir,34,Bordj Bou Arreridj,برج بوعريريج,34,103.36,4474509,Q3049676,1.0,OpenStreetMap,2026-11-20
+3408,Aïn Taghrout,عين تاغروت,Aïn Taghrout,34,Bordj Bou Arreridj,برج بوعريريج,34,128.38,4470401,Q2876379,1.0,OpenStreetMap,2026-11-20
+3409,Bordj Ghedir,برج الغدير,Bordj Ghedir,34,Bordj Bou Arreridj,برج بوعريريج,34,103.85,4484898,Q2910772,1.0,OpenStreetMap,2026-11-20
+3410,Sidi Embarek,سيدي امبارك,Sidi Embarek,34,Bordj Bou Arreridj,برج بوعريريج,34,135.2,4472662,Q578440,1.0,OpenStreetMap,2026-11-20
+3411,El Hammadia,الحمادية,El Hammadia,34,Bordj Bou Arreridj,برج بوعريريج,34,125.02,4483586,Q3049932,1.0,OpenStreetMap,2026-11-20
+3412,Belimour,بليمور,Belimour,34,Bordj Bou Arreridj,برج بوعريريج,34,65.36,4484852,Q2894485,1.0,OpenStreetMap,2026-11-20
+3413,Medjana,مجانة,Medjana,34,Bordj Bou Arreridj,برج بوعريريج,34,199.92,4474256,Q1649448,1.0,OpenStreetMap,2026-11-20
+3414,Teniet Ennasr,ثنية النصر,Teniet Ennasr,34,Bordj Bou Arreridj,برج بوعريريج,34,128.74,4474260,Q3518092,1.0,OpenStreetMap,2026-11-20
+3415,Djaafra,جعافرة,Djaafra,34,Bordj Bou Arreridj,برج بوعريريج,34,93.41,4422302,Q3032726,1.0,OpenStreetMap,2026-11-20
+3416,El Main,الماين,El Main,34,Bordj Bou Arreridj,برج بوعريريج,34,74.47,4421437,Q3050042,1.0,OpenStreetMap,2026-11-20
+3417,Ouled Brahem,أولاد براهم,Ouled Brahem,34,Bordj Bou Arreridj,برج بوعريريج,34,70.23,4484474,Q3358209,1.0,OpenStreetMap,2026-11-20
+3418,Ouled Dahmane,أولاد دحمان,Ouled Dahmane,34,Bordj Bou Arreridj,برج بوعريريج,34,49.35,4424982,Q3358215,1.0,OpenStreetMap,2026-11-20
+3419,Hasnaoua,حسناوة,Hasnaoua,34,Bordj Bou Arreridj,برج بوعريريج,34,122.7,4472187,Q3128105,1.0,OpenStreetMap,2026-11-20
+3420,Khelil,خلـيل,Khelil,34,Bordj Bou Arreridj,برج بوعريريج,34,224.01,4463906,Q980903,1.0,OpenStreetMap,2026-11-20
+3421,Taglait,تقلعيت,Taglait,34,Bordj Bou Arreridj,برج بوعريريج,34,65.13,4484766,Q647705,1.0,OpenStreetMap,2026-11-20
+3422,Ksour,القصور,Ksour,34,Bordj Bou Arreridj,برج بوعريريج,34,108.32,4475315,Q3200166,1.0,OpenStreetMap,2026-11-20
+3423,Ouled Sidi Brahim,أولاد سيدي إبراهيم,Ouled Sidi Brahim,34,Bordj Bou Arreridj,برج بوعريريج,34,77.72,4474359,Q3358256,1.0,OpenStreetMap,2026-11-20
+3424,Tafreg,تفرڨ,Tafreg,34,Bordj Bou Arreridj,برج بوعريريج,34,41.58,4421860,Q3517130,1.0,OpenStreetMap,2026-11-20
+3425,Colla,القلة,Colla,34,Bordj Bou Arreridj,برج بوعريريج,34,50.44,4424696,Q2982706,1.0,OpenStreetMap,2026-11-20
+3426,Tixter,تكستار,Tixter,34,Bordj Bou Arreridj,برج بوعريريج,34,110.41,4484437,Q1650263,1.0,OpenStreetMap,2026-11-20
+3427,El Euch,العش,El Euch,34,Bordj Bou Arreridj,برج بوعريريج,34,371.39,4475450,Q12190223,1.0,OpenStreetMap,2026-11-20
+3428,El Annasser,العناصر,El Annasser,34,Bordj Bou Arreridj,برج بوعريريج,34,65.76,4484791,Q628038,1.0,OpenStreetMap,2026-11-20
+3429,Tassamert,تاسمرت,Tassamert,34,Bordj Bou Arreridj,برج بوعريريج,34,50.89,4424736,Q3515965,1.0,OpenStreetMap,2026-11-20
+3430,Aïn Tassera,عين تسرة,Aïn Tassera,34,Bordj Bou Arreridj,برج بوعريريج,34,117.95,4484871,Q2876384,1.0,OpenStreetMap,2026-11-20
+3431,Bir Kasdali,بئر قصد علي,Bir Kasdali,34,Bordj Bou Arreridj,برج بوعريريج,34,65.25,4473944,Q1649730,1.0,OpenStreetMap,2026-11-20
+3432,Ghilassa,غيلاسة,Ghilassa,34,Bordj Bou Arreridj,برج بوعريريج,34,46.14,4484899,Q3104853,1.0,OpenStreetMap,2026-11-20
+3433,Rabta,الرابطة,Rabta,34,Bordj Bou Arreridj,برج بوعريريج,34,69.03,4475556,Q3415972,1.0,OpenStreetMap,2026-11-20
+3434,Haraza,حرازة,Haraza,34,Bordj Bou Arreridj,برج بوعريريج,34,155.02,4474389,Q3127302,1.0,OpenStreetMap,2026-11-20
+3501,Boumerdès,بومرداس,Boumerdès,35,Boumerdès,بومرداس,35,19.64,4272680,Q770518,1.0,OpenStreetMap,2026-11-20
+3502,Boudouaou,بودواو,Boudouaou,35,Boumerdès,بومرداس,35,43.11,4272645,Q311984,1.0,OpenStreetMap,2026-11-20
+3504,Afir,عفير,Afir,35,Boumerdès,بومرداس,35,59.42,4274887,Q2826124,1.0,OpenStreetMap,2026-11-20
+3505,Bordj Menaiel,برج منايل,Bordj Menaiel,35,Boumerdès,بومرداس,35,96.07,4273869,Q2910781,1.0,OpenStreetMap,2026-11-20
+3506,Baghlia,بغلية,Baghlia,35,Boumerdès,بومرداس,35,60.61,4274938,Q311943,1.0,OpenStreetMap,2026-11-20
+3507,Sidi Daoud,سيدي داود,Sidi Daoud,35,Boumerdès,بومرداس,35,62.07,4274575,Q311809,1.0,OpenStreetMap,2026-11-20
+3508,Naciria,الناصرية,Naciria,35,Boumerdès,بومرداس,35,56.29,4274475,Q6957278,1.0,OpenStreetMap,2026-11-20
+3509,Djenet,جنات,Djenet,35,Boumerdès,بومرداس,35,72.38,4274526,Q3033013,1.0,OpenStreetMap,2026-11-20
+3510,Isser,يسر,Isser,35,Boumerdès,بومرداس,35,66.26,4273316,Q4119097,1.0,OpenStreetMap,2026-11-20
+3511,Zemmouri,زموري,Zemmouri,35,Boumerdès,بومرداس,35,54.69,1457972,Q3183565,1.0,OpenStreetMap,2026-11-20
+3512,Si Mustapha,سي مصطفى,Si Mustapha,35,Boumerdès,بومرداس,35,26.19,4272821,Q311886,1.0,OpenStreetMap,2026-11-20
+3513,Tidjelabine,تيجلابين,Tidjelabine,35,Boumerdès,بومرداس,35,41.48,4272917,Q1895428,1.0,OpenStreetMap,2026-11-20
+3514,Chaabet El Ameur,شعبة العامر,Chaabet El Ameur,35,Boumerdès,بومرداس,35,76.21,4273200,Q37926868,1.0,OpenStreetMap,2026-11-20
+3515,Thenia,الثنية,Thenia,35,Boumerdès,بومرداس,35,43.59,4272977,Q2225013,1.0,OpenStreetMap,2026-11-20
+3518,Timezrit,تيمزريت,Timezrit,35,Boumerdès,بومرداس,35,23.26,4273246,Q37928948,1.0,OpenStreetMap,2026-11-20
+3519,Corso,قورصو,Corso,35,Boumerdès,بومرداس,35,22.46,4272665,Q2998044,1.0,OpenStreetMap,2026-11-20
+3520,Ouled Moussa,أولاد موسى,Ouled Moussa,35,Boumerdès,بومرداس,35,26.05,3596000,Q3055250,1.0,OpenStreetMap,2026-11-20
+3521,Larbatache,لربعطاش,Larbatache,35,Boumerdès,بومرداس,35,51.43,4272511,Q1649334,1.0,OpenStreetMap,2026-11-20
+3522,Bouzegza Keddara,بوزقزة قدارة,Bouzegza Keddara,35,Boumerdès,بومرداس,35,46.23,4272865,Q1648978,1.0,OpenStreetMap,2026-11-20
+3525,Taourga,تورقة,Taourga,35,Boumerdès,بومرداس,35,26.9,4274939,Q970231,1.0,OpenStreetMap,2026-11-20
+3526,Ouled Aissa,أولاد عيسى,Ouled Aissa,35,Boumerdès,بومرداس,35,24.57,4274599,Q3358195,1.0,OpenStreetMap,2026-11-20
+3527,Ben Choud,بن شود,Ben Choud,35,Boumerdès,بومرداس,35,20.07,4274705,Q311960,1.0,OpenStreetMap,2026-11-20
+3528,Dellys,دلس,Dellys,35,Boumerdès,بومرداس,35,50.4,4274775,Q3021755,1.0,OpenStreetMap,2026-11-20
+3529,Ammal,عمال,Ammal,35,Boumerdès,بومرداس,35,57.57,4273110,Q2223551,1.0,OpenStreetMap,2026-11-20
+3530,Beni Amrane,بني عمران,Beni Amrane,35,Boumerdès,بومرداس,35,50.71,4273152,Q2223571,1.0,OpenStreetMap,2026-11-20
+3531,Souk El Had,سوق الحد,Souk El Had,35,Boumerdès,بومرداس,35,16.91,4273075,Q3491571,1.0,OpenStreetMap,2026-11-20
+3532,Boudouaou El Bahri,بودواو البحري,Boudouaou El Bahri,35,Boumerdès,بومرداس,35,14.43,3018662,Q2921497,1.0,OpenStreetMap,2026-11-20
+3533,Ouled Haddadj,أولاد هداج,Ouled Haddadj,35,Boumerdès,بومرداس,35,11.62,4272376,Q3056457,1.0,OpenStreetMap,2026-11-20
+3535,Leghata,لقاطة,Leghata,35,Boumerdès,بومرداس,35,50.48,4273218,Q3229078,1.0,OpenStreetMap,2026-11-20
+3536,Hammedi,حمادي,Hammedi,35,Boumerdès,بومرداس,35,26.52,1299269,Q3126515,1.0,OpenStreetMap,2026-11-20
+3537,Khemis El Khechna,خميس الخشنة,Khemis El Khechna,35,Boumerdès,بومرداس,35,82.81,1299268,Q3142813,1.0,OpenStreetMap,2026-11-20
+3538,Kherrouba,الخروبة,Kherrouba,35,Boumerdès,بومرداس,35,73.04,4272566,Q3050007,1.0,OpenStreetMap,2026-11-20
+3601,El Tarf,الطارف,El Tarf,36,El Tarf,الطارف,36,112.96,1614578,Q770653,1.0,OpenStreetMap,2026-11-20
+3602,Bouhadjar,بوحجار,Bouhadjar,36,El Tarf,الطارف,36,92.18,1614505,Q2921594,1.0,OpenStreetMap,2026-11-20
+3603,Ben M'Hidi,بن مهيدي,Ben M'Hidi,36,El Tarf,الطارف,36,153.9,1604920,Q253342,1.0,OpenStreetMap,2026-11-20
+3604,Bougous,بوقوس,Buqus,36,El Tarf,الطارف,36,214.69,1614539,Q2921579,1.0,OpenStreetMap,2026-11-20
+3605,El Kala,القالة,Al Qala,36,El Tarf,الطارف,36,286.46,1604275,Q3050005,1.0,OpenStreetMap,2026-11-20
+3606,Aïn El Assel,عين العسل,Aïn El Assel,36,El Tarf,الطارف,36,96.21,1614560,Q2876295,1.0,OpenStreetMap,2026-11-20
+3607,El Aioun,العيون,El Aioun,36,El Tarf,الطارف,36,44.9,1614575,Q3049682,1.0,OpenStreetMap,2026-11-20
+3608,Bouteldja,بوثلجة,Bouteldja,36,El Tarf,الطارف,36,115.2,1614602,Q1649478,1.0,OpenStreetMap,2026-11-20
+3609,Souarekh,السوارخ,Souarekh,36,El Tarf,الطارف,36,84.8,1604271,Q10820264,1.0,OpenStreetMap,2026-11-20
+3610,Berrihane,بريحان,Berrihane,36,El Tarf,الطارف,36,201.18,1604277,Q2899136,1.0,OpenStreetMap,2026-11-20
+3611,Lac des Oiseaux,بحيرة الطيور,Lac des Oiseaux,36,El Tarf,الطارف,36,85.9,1615225,Q3215674,1.0,OpenStreetMap,2026-11-20
+3612,Chefia,الشافية,Chefia,36,El Tarf,الطارف,36,191.84,1615226,Q2962063,1.0,OpenStreetMap,2026-11-20
+3613,Drean,الذرعان,Drean,36,El Tarf,الطارف,36,49.33,1614472,Q1924629,1.0,OpenStreetMap,2026-11-20
+3614,Chihani,الشيحاني,Chihani,36,El Tarf,الطارف,36,201.61,1614361,Q2963539,1.0,OpenStreetMap,2026-11-20
+3615,Chbaita Mokhtar,شبيطة مختار,Chbaita Mokhtar,36,El Tarf,الطارف,36,42.33,1614473,Q2961908,1.0,OpenStreetMap,2026-11-20
+3616,Besbes,البسباس,Besbes,36,El Tarf,الطارف,36,122.1,1605151,Q1649634,1.0,OpenStreetMap,2026-11-20
+3617,Asfour,عصفور,Asfour,36,El Tarf,الطارف,36,105.81,1614324,Q1649000,1.0,OpenStreetMap,2026-11-20
+3618,Echatt,الشط,Echatt,36,El Tarf,الطارف,36,62.13,1604928,Q3046940,1.0,OpenStreetMap,2026-11-20
+3619,Zerizer,زريزر,Zerizer,36,El Tarf,الطارف,36,30.05,1614312,Q3575268,1.0,OpenStreetMap,2026-11-20
+3620,Zitouna,الزيتونة,Zitouna,36,El Tarf,الطارف,36,161.4,1614533,Q3575622,1.0,OpenStreetMap,2026-11-20
+3621,Aïn Kerma,عين الكرمة,Aïn Kerma,36,El Tarf,الطارف,36,111.53,1614523,Q2876345,1.0,OpenStreetMap,2026-11-20
+3622,Oued Zitoun,واد الزيتون,Oued Zitoun,36,El Tarf,الطارف,36,50.91,1614484,Q3358058,1.0,OpenStreetMap,2026-11-20
+3623,Hammam Beni Salah,حمام بني صالح,Hammam Beni Salah,36,El Tarf,الطارف,36,210.07,1614443,Q3126492,1.0,OpenStreetMap,2026-11-20
+3624,Raml Souk,رمل السوق,Raml Souk,36,El Tarf,الطارف,36,50.05,1614561,Q3418500,1.0,OpenStreetMap,2026-11-20
+3701,Tindouf,تندوف,Tinduf,37,Tindouf,تندوف,37,74006.43,4101596,Q328510,1.0,OpenStreetMap,2026-11-20
+3702,Oum el Assel,أم العسل,Oum el Assel,37,Tindouf,تندوف,37,87585.9,4101595,Q2222648,1.0,OpenStreetMap,2026-11-20
+3801,Tissemsilt,تسمسيلت,Tissemsilt,38,Tissemsilt,تسمسيلت,38,223.37,6534595,Q770447,1.0,OpenStreetMap,2026-11-20
+3802,Bordj Bou Naama,برج بونعامة,Bordj Bounaama,38,Tissemsilt,تسمسيلت,38,64.18,6534578,Q941583,1.0,OpenStreetMap,2026-11-20
+3803,Theniet El Had,ثنية الأحد,Theniet El Had,38,Tissemsilt,تسمسيلت,38,288.24,6534594,Q3054256,1.0,OpenStreetMap,2026-11-20
+3804,Lazharia,الأزهرية,Lazharia,38,Tissemsilt,تسمسيلت,38,122.12,6534585,Q975914,1.0,OpenStreetMap,2026-11-20
+3805,Beni Chaib,بنى شعيب,Beni Chaib,38,Tissemsilt,تسمسيلت,38,116.45,6534576,Q2895873,1.0,OpenStreetMap,2026-11-20
+3806,Lardjem,لرجام,Lardjem,38,Tissemsilt,تسمسيلت,38,275.68,6534584,Q3217877,1.0,OpenStreetMap,2026-11-20
+3807,Melaab,ملعب,Melaab,38,Tissemsilt,تسمسيلت,38,141.43,6534587,Q3304871,1.0,OpenStreetMap,2026-11-20
+3808,Sidi Lantri,سيدي العنترى,Sidi Lantri,38,Tissemsilt,تسمسيلت,38,119.28,6534591,Q772927,1.0,OpenStreetMap,2026-11-20
+3809,Bordj El Emir Abdelkader,برج الأمير عبد القادر,Bordj El Emir Abdelkader,38,Tissemsilt,تسمسيلت,38,206.33,6534579,Q2910766,1.0,OpenStreetMap,2026-11-20
+3810,Laayoune,العيون,Laayoune,38,Tissemsilt,تسمسيلت,38,431.68,6534582,Q3219984,1.0,OpenStreetMap,2026-11-20
+3811,Khemisti,خميستى,Khemisti,38,Tissemsilt,تسمسيلت,38,187.49,6534581,Q632916,1.0,OpenStreetMap,2026-11-20
+3812,Ouled Bessam,أولاد بسام,Ouled Bessam,38,Tissemsilt,تسمسيلت,38,92.17,6534588,Q3358198,1.0,OpenStreetMap,2026-11-20
+3813,Ammari,عماري,عماری,38,Tissemsilt,تسمسيلت,38,141.04,6534575,Q2843623,1.0,OpenStreetMap,2026-11-20
+3814,Youssoufia,يوسوفية,Youssoufia,38,Tissemsilt,تسمسيلت,38,97.97,6534596,Q12195041,1.0,OpenStreetMap,2026-11-20
+3815,Sidi Boutouchent,سيدي بوتوشنت,Sidi Boutouchent,38,Tissemsilt,تسمسيلت,38,153.03,6534590,Q946333,1.0,OpenStreetMap,2026-11-20
+3816,Larbaâ,الاربعاء,Larbaa,38,Tissemsilt,تسمسيلت,38,70.26,6534583,Q3217834,1.0,OpenStreetMap,2026-11-20
+3817,Maacem,المعاصم,Maacem,38,Tissemsilt,تسمسيلت,38,62.55,6534586,Q3273641,1.0,OpenStreetMap,2026-11-20
+3818,Sidi Abed,سيدي عابد,Sidi Abed,38,Tissemsilt,تسمسيلت,38,164.65,6534589,Q3483164,1.0,OpenStreetMap,2026-11-20
+3819,Tamalaht,تاملاحت,Tamalaht,38,Tissemsilt,تسمسيلت,38,55.66,6534593,Q3514629,1.0,OpenStreetMap,2026-11-20
+3820,Sidi Slimane,سيدي سليمان,Sidi Slimane,38,Tissemsilt,تسمسيلت,38,52.57,6534592,Q3483292,1.0,OpenStreetMap,2026-11-20
+3821,Boucaïd,بوقائد,Boucaid,38,Tissemsilt,تسمسيلت,38,64.51,6534580,Q2912148,1.0,OpenStreetMap,2026-11-20
+3822,Beni Lahcene,بنى لحسن,Beni Lahcene,38,Tissemsilt,تسمسيلت,38,78.94,6534577,Q614809,1.0,OpenStreetMap,2026-11-20
+3901,El Oued,الوادي,El Oued,39,El Oued,الوادي,39,95.3,4318197,Q1642636,1.0,OpenStreetMap,2026-11-20
+3902,Robbah,الرباح,Robbah,39,El Oued,الوادي,39,491.56,5139596,Q2364827,1.0,OpenStreetMap,2026-11-20
+3903,Oued Allenda,وادي العلندة,,39,El Oued,الوادي,39,700.59,5139561,Q3358010,1.0,OpenStreetMap,2026-11-20
+3904,Bayadha,البياضة,Bayadha,39,El Oued,الوادي,39,138.04,4497229,Q2892189,1.0,OpenStreetMap,2026-11-20
+3905,Nekhla,النخلة,Nekhla,39,El Oued,الوادي,39,675.06,5139651,Q6960586,1.0,OpenStreetMap,2026-11-20
+3906,Guemar,قمار,Guemar,39,El Oued,الوادي,39,1260.76,5139191,Q3118881,1.0,OpenStreetMap,2026-11-20
+3907,Kouinine,كوينين,Kouinine,39,El Oued,الوادي,39,108.79,4424393,Q3199259,1.0,OpenStreetMap,2026-11-20
+3908,Reguiba,الرقيبة,Reguiba,39,El Oued,الوادي,39,1574.98,5139082,Q3325064,1.0,OpenStreetMap,2026-11-20
+3909,Hamraia,الحمراية,Hamraia,39,El Oued,الوادي,39,2499.12,5144163,Q3126588,1.0,OpenStreetMap,2026-11-20
+3910,Taghzout,تغزوت,Taghzout,39,El Oued,الوادي,39,367.58,4489521,Q3513839,1.0,OpenStreetMap,2026-11-20
+3911,Debila,الدبيلة,Debila,39,El Oued,الوادي,39,67.69,5139056,Q3020835,1.0,OpenStreetMap,2026-11-20
+3912,Hassani Abdelkrim,حساني عبد الكريم,Hassani Abdelkrim,39,El Oued,الوادي,39,56.9,5139039,Q3128195,1.0,OpenStreetMap,2026-11-20
+3913,Hassi Khelifa,حاسي خليفة,Hassi Khelifa,39,El Oued,الوادي,39,1097.07,5139378,Q682141,1.0,OpenStreetMap,2026-11-20
+3914,Taleb Larbi,طالب العربي,Talib Al Arabi,39,El Oued,الوادي,39,1116.75,5139474,Q3514460,1.0,OpenStreetMap,2026-11-20
+3915,Douar El Ma,دوار الماء,Douar El Ma,39,El Oued,الوادي,39,18308.45,5139619,Q3037409,1.0,OpenStreetMap,2026-11-20
+3916,Sidi Aoun,سيدي عون,Sidi Aoun,39,El Oued,الوادي,39,486.89,5139341,Q3325073,1.0,OpenStreetMap,2026-11-20
+3917,Trifaoui,الطريفاوي,Trifaoui,39,El Oued,الوادي,39,463.02,5139300,Q3539121,1.0,OpenStreetMap,2026-11-20
+3918,Magrane,المقرن,Magrane,39,El Oued,الوادي,39,655.04,5139359,Q3277387,1.0,OpenStreetMap,2026-11-20
+3919,Beni Guecha,بن قشة,Beni Guecha,39,El Oued,الوادي,39,2633.86,5139455,Q546210,1.0,OpenStreetMap,2026-11-20
+3920,Ourmes,ورماس,Ourmes,39,El Oued,الوادي,39,401.25,4489484,Q3325125,1.0,OpenStreetMap,2026-11-20
+3921,Still,اسطيل,Still,57,El M'Ghair,المغير,39,1011.64,5144111,Q3499461,1.0,OpenStreetMap,2026-11-20
+3922,M'Rara,مرارة,M'Rara,57,El M'Ghair,المغير,39,1154.35,4521831,Q3272294,1.0,OpenStreetMap,2026-11-20
+3923,Sidi Khelil,سيدي خليل,Sidi Khellil,57,El M'Ghair,المغير,39,653.43,5143617,Q3324543,1.0,OpenStreetMap,2026-11-20
+3924,Tendla,تندلة,Tendla,57,El M'Ghair,المغير,39,777.25,5143651,Q3325168,1.0,OpenStreetMap,2026-11-20
+3925,El Ogla,العقلة,El Ogla,39,El Oued,الوادي,39,1373.9,5139646,Q5351716,1.0,OpenStreetMap,2026-11-20
+3926,Mih Ouensa,اميه ونسة,,39,El Oued,الوادي,39,1071.66,5139492,Q3313049,1.0,OpenStreetMap,2026-11-20
+3927,El M'Ghair,المغير,El M'Ghair,57,El M'Ghair,المغير,39,1510.61,5143582,Q3050032,1.0,OpenStreetMap,2026-11-20
+3928,Djamaa,جامعة,Djamaa,57,El M'Ghair,المغير,39,590.26,4521856,Q3032751,1.0,OpenStreetMap,2026-11-20
+3929,Oum Tyour,أم الطيور,Oum Touyour,57,El M'Ghair,المغير,39,2080.93,5143571,Q3055304,1.0,OpenStreetMap,2026-11-20
+3930,Sidi Amrane,سيدي عمران,Sidi Amrane,57,El M'Ghair,المغير,39,308.9,4521670,Q3325140,1.0,OpenStreetMap,2026-11-20
+4001,Khenchela,خنشلة,Khenchela,40,Khenchela,خنشلة,40,31.66,6561885,Q1649570,1.0,OpenStreetMap,2026-11-20
+4002,M'Toussa,متوسة,M'Toussa,40,Khenchela,خنشلة,40,120.24,6561887,Q3272302,1.0,OpenStreetMap,2026-11-20
+4003,Kais,قايس,Kais,40,Khenchela,خنشلة,40,57.98,6561884,Q3191996,1.0,OpenStreetMap,2026-11-20
+4004,Baghaï,بغاي,Baghaï,40,Khenchela,خنشلة,40,154.56,6561875,Q2879031,1.0,OpenStreetMap,2026-11-20
+4005,El Hamma,الحامة,El Hamma,40,Khenchela,خنشلة,40,186.4,6561880,Q672190,1.0,OpenStreetMap,2026-11-20
+4006,Aïn Touila,عين الطويلة,Ain Touila,40,Khenchela,خنشلة,40,279.74,6561873,Q2876392,1.0,OpenStreetMap,2026-11-20
+4007,Taouzient,تاوزيانت,Taouzient,40,Khenchela,خنشلة,40,168.19,6561891,Q767005,1.0,OpenStreetMap,2026-11-20
+4008,Bouhmama,بوحمامة,Bouhmama,40,Khenchela,خنشلة,40,410.06,6561876,Q2921610,1.0,OpenStreetMap,2026-11-20
+4009,El Oueldja,الولجة,El Oueldja,40,Khenchela,خنشلة,40,350.67,6561882,Q3050146,1.0,OpenStreetMap,2026-11-20
+4010,Remila,الرميلة,Remila,40,Khenchela,خنشلة,40,245.71,6561889,Q3424517,1.0,OpenStreetMap,2026-11-20
+4011,Chechar,ششار,Chechar,40,Khenchela,خنشلة,40,935.5,6561877,Q374800,1.0,OpenStreetMap,2026-11-20
+4012,Djellal,جلال,Djellal,40,Khenchela,خنشلة,40,409.98,6561879,Q3032874,1.0,OpenStreetMap,2026-11-20
+4013,Babar,بابار,Babar,40,Khenchela,خنشلة,40,3551.3,6561874,Q2877771,1.0,OpenStreetMap,2026-11-20
+4014,Tamza,طامزة,Tamza,40,Khenchela,خنشلة,40,483.5,6561890,Q3514902,1.0,OpenStreetMap,2026-11-20
+4015,Ensigha,انسيغة,Ensigha,40,Khenchela,خنشلة,40,245.73,6561883,Q3054950,1.0,OpenStreetMap,2026-11-20
+4016,Ouled Rechache,أولاد رشاش,Ouled Rechache,40,Khenchela,خنشلة,40,287.62,6561888,Q3358249,1.0,OpenStreetMap,2026-11-20
+4017,El Mahmal,المحمل,El Mahmal,40,Khenchela,خنشلة,40,377.75,6561881,Q1649445,1.0,OpenStreetMap,2026-11-20
+4018,M'Sara,أمصارة,M'Sara,40,Khenchela,خنشلة,40,585.82,5846914,Q3272298,1.0,OpenStreetMap,2026-11-20
+4019,Yabous,يابوس,Yabous,40,Khenchela,خنشلة,40,159.98,6561892,Q3571239,1.0,OpenStreetMap,2026-11-20
+4020,Khirane,خيران,Khirane,40,Khenchela,خنشلة,40,381.51,6561886,Q3196179,1.0,OpenStreetMap,2026-11-20
+4021,Chélia,شلية,Chelia,40,Khenchela,خنشلة,40,152.43,6561878,Q2972032,1.0,OpenStreetMap,2026-11-20
+4101,Souk Ahras,سوق أهراس,Souk Ahras,41,Souk Ahras,سوق أهراس,41,44.59,6663208,Q402992,1.0,OpenStreetMap,2026-11-20
+4102,Sedrata,سدراتة,Sedrata,41,Souk Ahras,سوق أهراس,41,182.0,6663206,Q1649881,1.0,OpenStreetMap,2026-11-20
+4103,Hanancha,الحنانشة,Hanancha,41,Souk Ahras,سوق أهراس,41,205.9,6663193,Q3126673,1.0,OpenStreetMap,2026-11-20
+4104,Mechroha,المشروخة,Mechroha,41,Souk Ahras,سوق أهراس,41,222.53,6663197,Q3303853,1.0,OpenStreetMap,2026-11-20
+4105,Ouled Driss,أولاد ادريس,Ouled Driss,41,Souk Ahras,سوق أهراس,41,149.36,6663201,Q3358222,1.0,OpenStreetMap,2026-11-20
+4106,Tiffech,تيفاش,Tiffech,41,Souk Ahras,سوق أهراس,41,139.22,6663211,Q3026665,1.0,OpenStreetMap,2026-11-20
+4107,Zaarouria,الزعرورية,Zaarouria,41,Souk Ahras,سوق أهراس,41,161.58,6663212,Q1650300,1.0,OpenStreetMap,2026-11-20
+4108,Taoura,تاورة,Taoura,41,Souk Ahras,سوق أهراس,41,253.57,6663209,Q4120469,1.0,OpenStreetMap,2026-11-20
+4109,Drea,الدريعة,Drea,41,Souk Ahras,سوق أهراس,41,214.17,6663191,Q1648968,1.0,OpenStreetMap,2026-11-20
+4110,Haddada,الحدادة,Haddada,41,Souk Ahras,سوق أهراس,41,134.25,6663192,Q14413280,1.0,OpenStreetMap,2026-11-20
+4111,Kheddara,لخضارة,Kheddara,41,Souk Ahras,سوق أهراس,41,168.7,6663194,Q1649004,1.0,OpenStreetMap,2026-11-20
+4112,Merahna,المراهنة,Merahna,41,Souk Ahras,سوق أهراس,41,117.73,6663198,Q1649706,1.0,OpenStreetMap,2026-11-20
+4113,Ouled Moumen,أولاد مؤمن,Awlad Mu'min,41,Souk Ahras,سوق أهراس,41,124.71,6663202,Q1649437,1.0,OpenStreetMap,2026-11-20
+4114,Bir Bouhouche,بئر بوحوش,Bir Bouhouche,41,Souk Ahras,سوق أهراس,41,156.32,6663190,Q2904331,1.0,OpenStreetMap,2026-11-20
+4115,M'daourouch,مداوروش,M'daourouch,41,Souk Ahras,سوق أهراس,41,133.6,6663196,Q54205,1.0,OpenStreetMap,2026-11-20
+4116,Oum El Adhaim,أم الغظائم,Oum El Adhaim,41,Souk Ahras,سوق أهراس,41,222.2,6663203,Q1649300,1.0,OpenStreetMap,2026-11-20
+4117,Aïn Zana,عين الزانة,Ain Zana,41,Souk Ahras,سوق أهراس,41,161.45,6663189,Q1648928,1.0,OpenStreetMap,2026-11-20
+4118,Ain Soltane,عين السلطان,Ain Soltane,41,Souk Ahras,سوق أهراس,41,110.02,6663188,Q2876378,1.0,OpenStreetMap,2026-11-20
+4119,Ouillen,ويلان,Ouillen,41,Souk Ahras,سوق أهراس,41,152.79,6663200,Q1884809,1.0,OpenStreetMap,2026-11-20
+4120,Sidi Fredj,سيدي فرج,Sidi Fredj,41,Souk Ahras,سوق أهراس,41,280.0,6663207,Q3483231,1.0,OpenStreetMap,2026-11-20
+4121,Safel El Ouiden,سافل الويدان,Safel El Ouiden,41,Souk Ahras,سوق أهراس,41,147.46,6663205,Q3461267,1.0,OpenStreetMap,2026-11-20
+4122,Ragouba,الرقوبة,Ragouba,41,Souk Ahras,سوق أهراس,41,96.83,6663204,Q1649240,1.0,OpenStreetMap,2026-11-20
+4123,Khemissa,خميسة,Khemissa,41,Souk Ahras,سوق أهراس,41,55.77,6663195,Q3196148,1.0,OpenStreetMap,2026-11-20
+4124,Oued Kebrit,وادى الكبريت,Oued Kebrit,41,Souk Ahras,سوق أهراس,41,255.31,6663199,Q3358032,1.0,OpenStreetMap,2026-11-20
+4125,Terraguelt,ترقالت,Terraguelt,41,Souk Ahras,سوق أهراس,41,219.16,6663210,Q1650306,1.0,OpenStreetMap,2026-11-20
+4126,Zouabi,الزوابى,Zouabi,41,Souk Ahras,سوق أهراس,41,123.4,6663213,Q1650837,1.0,OpenStreetMap,2026-11-20
+4201,Tipaza,تيبازة,Tipaza,42,Tipaza,تيبازة,42,65.88,2312615,Q214843,1.0,OpenStreetMap,2026-11-20
+4202,Menaceur,مناصر,Menaceur,42,Tipaza,تيبازة,42,190.76,2316687,Q3305719,1.0,OpenStreetMap,2026-11-20
+4203,Larhat,الأرهاط,Larhat,42,Tipaza,تيبازة,42,62.31,2612369,Q3217918,1.0,OpenStreetMap,2026-11-20
+4204,Douaouda,دواودة,Douaouda,42,Tipaza,تيبازة,42,12.08,2280929,Q3037408,1.0,OpenStreetMap,2026-11-20
+4205,Bourkika,بورقيقة,Bourkika,42,Tipaza,تيبازة,42,66.48,2308420,Q2922390,1.0,OpenStreetMap,2026-11-20
+4206,Khemisti,خميستي,Khemisti,42,Tipaza,تيبازة,42,8.95,2300950,Q3196147,1.0,OpenStreetMap,2026-11-20
+4210,Aghbal,أغبال,,42,Tipaza,تيبازة,42,30.91,2612478,Q1648642,1.0,OpenStreetMap,2026-11-20
+4212,Hadjout,حجوط,Hadjout,42,Tipaza,تيبازة,42,52.29,2308454,Q3125565,1.0,OpenStreetMap,2026-11-20
+4213,Sidi Amar,سيدي عمار,Sidi Amar,42,Tipaza,تيبازة,42,46.95,2312607,Q607367,1.0,OpenStreetMap,2026-11-20
+4214,Gouraya,قوراية,Gouraya,42,Tipaza,تيبازة,42,87.56,2614802,Q3111694,1.0,OpenStreetMap,2026-11-20
+4215,Nador,الناظور,Nador,42,Tipaza,تيبازة,42,30.5,2312606,Q3325575,1.0,OpenStreetMap,2026-11-20
+4216,Chaïba,الشعيبة,Chaïba,42,Tipaza,تيبازة,42,28.77,2296879,Q2947619,1.0,OpenStreetMap,2026-11-20
+4217,Aïn Tagourait,عين تقورايت,Aïn Tagourait,42,Tipaza,تيبازة,42,26.39,2305516,Q2876381,1.0,OpenStreetMap,2026-11-20
+4222,Cherchell,شرشال,Cherchell,42,Tipaza,تيبازة,42,123.01,2312620,Q1617666,1.0,OpenStreetMap,2026-11-20
+4223,Damous,الداموس,Damous,42,Tipaza,تيبازة,42,75.95,2609923,Q3012978,1.0,OpenStreetMap,2026-11-20
+4224,Merad,مراد,Merad,42,Tipaza,تيبازة,42,131.16,2308455,Q3306250,1.0,OpenStreetMap,2026-11-20
+4225,Fouka,فوكة,Fouka,42,Tipaza,تيبازة,42,12.55,2280930,Q3079891,1.0,OpenStreetMap,2026-11-20
+4226,Bou Ismaïl,بو إسماعيل,Bou Ismaïl,42,Tipaza,تيبازة,42,14.04,2297203,Q1438489,1.0,OpenStreetMap,2026-11-20
+4227,Ahmer El Aïn,حمر العين,Ahmer El Aïn,42,Tipaza,تيبازة,42,61.6,2308419,Q2376161,1.0,OpenStreetMap,2026-11-20
+4230,Bouharoun,بوهارون,Bouharoun,42,Tipaza,تيبازة,42,8.99,2301021,Q2921597,1.0,OpenStreetMap,2026-11-20
+4232,Sidi Ghiles,سيدي غيلاس,Sidi Ghiles,42,Tipaza,تيبازة,42,38.25,2318188,Q1650062,1.0,OpenStreetMap,2026-11-20
+4233,Messelmoun,مسلمون,Messelmoun,42,Tipaza,تيبازة,42,199.44,2320421,Q3307029,1.0,OpenStreetMap,2026-11-20
+4234,Sidi Rached,سيدي راشد,Sidi Rached,42,Tipaza,تيبازة,42,48.9,2305517,Q3483283,1.0,OpenStreetMap,2026-11-20
+4235,Kolea,القليعة,Kolea,42,Tipaza,تيبازة,42,37.61,2280931,Q3198497,1.0,OpenStreetMap,2026-11-20
+4236,Attatba,حطاطبة,Attatba,42,Tipaza,تيبازة,42,71.17,2302521,Q2869935,1.0,OpenStreetMap,2026-11-20
+4240,Sidi Semiane,سيدي سميان,Sidi Semiane,42,Tipaza,تيبازة,42,72.71,2317935,Q3483287,1.0,OpenStreetMap,2026-11-20
+4241,Beni Mileuk,بني ميلك,,42,Tipaza,تيبازة,42,101.6,2611086,Q628315,1.0,OpenStreetMap,2026-11-20
+4242,Hadjret Ennous,حجرة النص,Hadjret Ennous,42,Tipaza,تيبازة,42,25.11,2318187,Q3125559,1.0,OpenStreetMap,2026-11-20
+4301,Mila,ميلة,Mila,43,Mila,ميلة,43,130.07,2239839,Q335676,1.0,OpenStreetMap,2026-11-20
+4302,Ferdjioua,فرجيوة,Ferdjioua,43,Mila,ميلة,43,76.0,2155365,Q1649348,1.0,OpenStreetMap,2026-11-20
+4303,Chelghoum Laïd,شلغوم العيد,Chelghoum Laïd,43,Mila,ميلة,43,258.53,2195009,Q2215445,1.0,OpenStreetMap,2026-11-20
+4304,Oued Athmania,وادي العثمانية,Oued Athmania,43,Mila,ميلة,43,273.84,2198535,Q3324813,1.0,OpenStreetMap,2026-11-20
+4305,Aïn Mellouk,عين الملوك,Aïn Mellouk,43,Mila,ميلة,43,122.59,2195010,Q2876357,1.0,OpenStreetMap,2026-11-20
+4306,Teleghma,التلاغمة,Teleghma,43,Mila,ميلة,43,194.71,2197207,Q3517295,1.0,OpenStreetMap,2026-11-20
+4307,Oued Seguen,وادي سقان,Oued Seguen,43,Mila,ميلة,43,149.38,2197217,Q1649377,1.0,OpenStreetMap,2026-11-20
+4308,Tadjenanet,تاجنانت,Tadjenanet,43,Mila,ميلة,43,210.91,2195008,Q2215457,1.0,OpenStreetMap,2026-11-20
+4309,Benyahia Abderrahmane,بن يحيى عبد الرحمان,Benyahia Abderrahmane,43,Mila,ميلة,43,110.49,2189769,Q1649162,1.0,OpenStreetMap,2026-11-20
+4310,Oued Endja,وادي النجاء,Oued Endja,43,Mila,ميلة,43,54.04,2239838,Q1649130,1.0,OpenStreetMap,2026-11-20
+4311,Ahmed Rachedi,أحمد راشدي,Ahmed Rachedi,43,Mila,ميلة,43,92.86,2204813,Q2827640,1.0,OpenStreetMap,2026-11-20
+4312,Ouled Khellouf,أولاد خلوف,Ouled Khellouf,43,Mila,ميلة,43,253.14,2196245,Q3358236,1.0,OpenStreetMap,2026-11-20
+4313,Tiberguent,تبرقنت,Tiberguent,43,Mila,ميلة,43,47.86,2262854,Q3324766,1.0,OpenStreetMap,2026-11-20
+4314,Bouhatem,بوحاتم,Bouhatem,43,Mila,ميلة,43,109.23,2189768,Q2921601,1.0,OpenStreetMap,2026-11-20
+4315,Rouached,الرواشد,Rouached,43,Mila,ميلة,43,97.94,2155364,Q1649916,1.0,OpenStreetMap,2026-11-20
+4316,Tassala Lemtaï,تسالة لمطاعي,Tassala Lemtai,43,Mila,ميلة,43,60.97,2255332,Q3519006,1.0,OpenStreetMap,2026-11-20
+4317,Grarem Gouga,القرارم قوقة,Grarem Gouga,43,Mila,ميلة,43,140.89,2240222,Q1149771,1.0,OpenStreetMap,2026-11-20
+4318,Sidi Mérouane,سيدي مروان,Sidi Merouane,43,Mila,ميلة,43,35.12,2502114,Q3483273,1.0,OpenStreetMap,2026-11-20
+4319,Tassadane Haddada,تسدان حدادة,Tassadane Haddada,43,Mila,ميلة,43,106.82,2155362,Q3324794,1.0,OpenStreetMap,2026-11-20
+4320,Derrahi Bousselah,دراحي بوصلاح,Derrahi Bousselah,43,Mila,ميلة,43,118.86,2163225,Q3023967,1.0,OpenStreetMap,2026-11-20
+4321,Minar Zarza,مينار زرزة,Minar Zarza,43,Mila,ميلة,43,61.24,2155363,Q3314727,1.0,OpenStreetMap,2026-11-20
+4322,Amira Arrès,عميرة أراس,Amira Arrès,43,Mila,ميلة,43,81.78,2254494,Q2843496,1.0,OpenStreetMap,2026-11-20
+4323,Terrai Bainen,ترعي باينان,Terrai Bainen,43,Mila,ميلة,43,80.47,2254248,Q3325119,1.0,OpenStreetMap,2026-11-20
+4324,Hamala,حمالة,Hamala,43,Mila,ميلة,43,63.65,2242607,Q3126328,1.0,OpenStreetMap,2026-11-20
+4325,Aïn Tinn,عين التين,Aïn Tinn,43,Mila,ميلة,43,38.27,2205276,Q2876394,1.0,OpenStreetMap,2026-11-20
+4326,M'Chira,المشيرة,El Mechira,43,Mila,ميلة,43,192.46,2196246,Q525205,1.0,OpenStreetMap,2026-11-20
+4327,Sidi Khelifa,سيدي خليفة,Sidi Khelifa,43,Mila,ميلة,43,46.31,2205192,Q3483245,1.0,OpenStreetMap,2026-11-20
+4328,Zeghaïa,زغاية,Zeghaïa,43,Mila,ميلة,43,60.05,2267408,Q3575101,1.0,OpenStreetMap,2026-11-20
+4329,El Ayadi Barbes,العياضي برباس,El Ayadi Barbes,43,Mila,ميلة,43,82.01,2155366,Q3050473,1.0,OpenStreetMap,2026-11-20
+4330,Aïn Beida Harriche,عين البيضاء حريش,Aïn Beida Harriche,43,Mila,ميلة,43,61.8,2162145,Q2876261,1.0,OpenStreetMap,2026-11-20
+4331,Yahia Beni Guecha,يحيى بنى قشة,Yahia Beni Guecha,43,Mila,ميلة,43,39.98,2261946,Q3325080,1.0,OpenStreetMap,2026-11-20
+4332,Chigara,الشيقارة,Chigara,43,Mila,ميلة,43,49.92,2242666,Q1649330,1.0,OpenStreetMap,2026-11-20
+4401,Aïn Defla,بلدية عين الدفلى,,44,Aïn Defla,عين الدفلى,44,105.99,21037899,,1.0,OpenStreetMap,2026-11-20
+4402,Miliana,مليانة,Miliana,44,Aïn Defla,عين الدفلى,44,39.31,2783389,Q48468,1.0,OpenStreetMap,2026-11-20
+4403,Boumedfaa,بومدفع,Boumedfaa,44,Aïn Defla,عين الدفلى,44,129.63,2625705,Q1649043,1.0,OpenStreetMap,2026-11-20
+4404,Khemis Milana,خميس مليانة,Khemis Milana,44,Aïn Defla,عين الدفلى,44,41.64,2658815,Q954285,1.0,OpenStreetMap,2026-11-20
+4405,Hammam Righa,حمام ريغة,Hammam Righa,44,Aïn Defla,عين الدفلى,44,81.68,2625844,Q1649044,1.0,OpenStreetMap,2026-11-20
+4406,Arib,عريب,Arib,44,Aïn Defla,عين الدفلى,44,219.73,2781482,Q2861226,1.0,OpenStreetMap,2026-11-20
+4407,Djelida,جليدة,Djelida,44,Aïn Defla,عين الدفلى,44,203.93,2737123,Q1649112,1.0,OpenStreetMap,2026-11-20
+4408,El Amra,العامرة,El Amra,44,Aïn Defla,عين الدفلى,44,181.15,2755387,Q5350753,1.0,OpenStreetMap,2026-11-20
+4409,Bourached,بوراشد,Bourached,44,Aïn Defla,عين الدفلى,44,121.22,2762966,Q2922230,1.0,OpenStreetMap,2026-11-20
+4410,El Attaf,العطاف,El Attaf,44,Aïn Defla,عين الدفلى,44,84.06,2744462,Q1029528,1.0,OpenStreetMap,2026-11-20
+4411,El Abadia,العبادية,El Abadia,44,Aïn Defla,عين الدفلى,44,105.86,2749875,Q1649058,1.0,OpenStreetMap,2026-11-20
+4412,Djendel,جندل,Djendel,44,Aïn Defla,عين الدفلى,44,162.2,2642511,Q1649075,1.0,OpenStreetMap,2026-11-20
+4413,Oued Chorfa,وادي الشرفاء,Wadi Ash Shurfaa,44,Aïn Defla,عين الدفلى,44,78.97,2645875,Q2215749,1.0,OpenStreetMap,2026-11-20
+4414,Aïn Lachiakh,عين لشياخ,Ain Lechiakh,44,Aïn Defla,عين الدفلى,44,134.8,2647524,Q1649082,1.0,OpenStreetMap,2026-11-20
+4415,Oued Djemaa,وادي الجمعة,Oued Djemaa,44,Aïn Defla,عين الدفلى,44,248.94,2648233,Q863819,1.0,OpenStreetMap,2026-11-20
+4416,Rouina,الروينة,Rouina,44,Aïn Defla,عين الدفلى,44,58.31,2756568,Q1885134,1.0,OpenStreetMap,2026-11-20
+4417,Zeddine,زدين,Zeddine,44,Aïn Defla,عين الدفلى,44,105.34,2759956,Q2217793,1.0,OpenStreetMap,2026-11-20
+4418,El Hassania,الحسنية,El Hassania,44,Aïn Defla,عين الدفلى,44,146.53,2740818,Q1657263,1.0,OpenStreetMap,2026-11-20
+4419,Bir Ouled Khelifa,بئر أولاد خليفة,Bir Ouled Khelifa,44,Aïn Defla,عين الدفلى,44,65.04,2656735,Q2904350,1.0,OpenStreetMap,2026-11-20
+4420,Aïn Soltane,عين سلطان,,44,Aïn Defla,عين الدفلى,44,105.0,2645628,Q2876374,1.0,OpenStreetMap,2026-11-20
+4421,Tarik Ibn Ziad,طارق بن زياد,Tarik Ibn Ziad,44,Aïn Defla,عين الدفلى,44,399.53,2656514,Q3327636,1.0,OpenStreetMap,2026-11-20
+4422,Bordj Emir Khaled,برج الأمير خالد,Bordj Emir Khaled,44,Aïn Defla,عين الدفلى,44,168.67,2654404,Q1649117,1.0,OpenStreetMap,2026-11-20
+4423,Aïn Torki,عين تركي,,44,Aïn Defla,عين الدفلى,44,100.47,2626770,Q2876388,1.0,OpenStreetMap,2026-11-20
+4424,Sidi Lakhdar,سيدي الأخضر,Sidi Lakhdar,44,Aïn Defla,عين الدفلى,44,35.67,2782513,Q3324751,1.0,OpenStreetMap,2026-11-20
+4425,Ben Allel,بن علال,Ben Allel,44,Aïn Defla,عين الدفلى,44,144.39,2782897,Q2895313,1.0,OpenStreetMap,2026-11-20
+4426,Aïn Benian,عين بنيان,,44,Aïn Defla,عين الدفلى,44,30.72,2626176,Q2876262,1.0,OpenStreetMap,2026-11-20
+4427,Hoceinia,حسينية,Hoceinia,44,Aïn Defla,عين الدفلى,44,71.66,2628695,Q1657341,1.0,OpenStreetMap,2026-11-20
+4428,Birbouche,بربوش,Birbouche,44,Aïn Defla,عين الدفلى,44,74.34,2647126,Q1649122,1.0,OpenStreetMap,2026-11-20
+4429,Djemaa Ouled Cheikh,جمعة ولاد الشيخ,Djemaa Ouled Cheikh,44,Aïn Defla,عين الدفلى,44,135.87,2738270,Q3032884,1.0,OpenStreetMap,2026-11-20
+4430,Mekhatria,المختارية,Mekhatria,44,Aïn Defla,عين الدفلى,44,105.56,2780991,Q1649292,1.0,OpenStreetMap,2026-11-20
+4431,Bathia,بطحية,Bathia,44,Aïn Defla,عين الدفلى,44,103.95,2742409,Q1657378,1.0,OpenStreetMap,2026-11-20
+4432,Tacheta Zoughagha,تاشتة زقاغة,Tacheta Zoughagha,44,Aïn Defla,عين الدفلى,44,182.89,2752239,Q1884634,1.0,OpenStreetMap,2026-11-20
+4433,Aïn Bouyahia,عين بويحيى,,44,Aïn Defla,عين الدفلى,44,136.16,2754069,Q2876274,1.0,OpenStreetMap,2026-11-20
+4434,El Maine,الماين,El Maine,44,Aïn Defla,عين الدفلى,44,173.53,2742666,Q1649126,1.0,OpenStreetMap,2026-11-20
+4435,Tiberkanine,تيبركانين,Tiberkanine,44,Aïn Defla,عين الدفلى,44,107.0,2743654,Q1657489,1.0,OpenStreetMap,2026-11-20
+4436,Belaas,بلعاص,Belaas,44,Aïn Defla,عين الدفلى,44,151.88,2742602,Q645812,1.0,OpenStreetMap,2026-11-20
+4501,Naâma,النــعـامـة,Naâma,45,Naâma,النعامة,45,2491.39,6544124,Q798212,1.0,OpenStreetMap,2026-11-20
+4502,Mécheria,المشرية,Mecheria,45,Naâma,النعامة,45,730.15,6544122,Q2606114,1.0,OpenStreetMap,2026-11-20
+4503,Aïn Séfra,عين الصفراء,Ain Sefra,45,Naâma,النعامة,45,1051.6,6544117,Q2745712,1.0,OpenStreetMap,2026-11-20
+4504,Tiout,تيوت,Tiout,45,Naâma,النعامة,45,812.08,6544126,Q1582877,1.0,OpenStreetMap,2026-11-20
+4505,Sfissifa,صفيصيفة,Sfissifa,45,Naâma,النعامة,45,2419.1,6544125,Q3324726,1.0,OpenStreetMap,2026-11-20
+4506,Moghrar,مغرار,Moghrar,45,Naâma,النعامة,45,1726.36,6544123,Q3318248,1.0,OpenStreetMap,2026-11-20
+4507,Assela,عسلة,Assela,45,Naâma,النعامة,45,2042.99,6544115,Q1581873,1.0,OpenStreetMap,2026-11-20
+4508,Djeniene Bourezg,جنيان بورزق,Djeniene Bourezg,45,Naâma,النعامة,45,1196.08,6544118,Q3032892,1.0,OpenStreetMap,2026-11-20
+4509,Aïn Ben Khellil,عين بن خليل,Ain Ben Khelil,45,Naâma,النعامة,45,3801.77,6544116,Q1648584,1.0,OpenStreetMap,2026-11-20
+4510,Makman Ben Ammar,مكمن بن عمار,Makman Ben Ammar,45,Naâma,النعامة,45,3330.75,6544121,Q3280871,1.0,OpenStreetMap,2026-11-20
+4511,Kasdir,قصدير,Kasdir,45,Naâma,النعامة,45,6393.72,6544120,Q3193678,1.0,OpenStreetMap,2026-11-20
+4512,El Biod,البيود,El Biod,45,Naâma,النعامة,45,3750.91,6544119,Q1653613,1.0,OpenStreetMap,2026-11-20
+4601,Aïn Témouchent,عين تموشنت,Ain Temouchent,46,Aïn Témouchent,عين تموشنت,46,78.15,6535198,Q770504,1.0,OpenStreetMap,2026-11-20
+4602,Chaabet El Leham,شعبة اللحم,Chaabet El Leham,46,Aïn Témouchent,عين تموشنت,46,67.67,6535203,Q788029,1.0,OpenStreetMap,2026-11-20
+4603,Ain Kihal,عين الكيحل,Ain Kihal,46,Aïn Témouchent,عين تموشنت,46,78.38,6535197,Q1649071,1.0,OpenStreetMap,2026-11-20
+4604,Hammam Bou Hadjar,حمام بوحجر,Hammam Bou Hadjar,46,Aïn Témouchent,عين تموشنت,46,178.88,6535209,Q887319,1.0,OpenStreetMap,2026-11-20
+4605,Bouzedjar,بوزجار,Bouzedjar,46,Aïn Témouchent,عين تموشنت,46,53.43,6535202,Q2215105,1.0,OpenStreetMap,2026-11-20
+4606,Oued Berkeche,وادي برقش,Oued Berkeche,46,Aïn Témouchent,عين تموشنت,46,42.54,6535213,Q1657310,1.0,OpenStreetMap,2026-11-20
+4607,Aghlal,آغلال,Aghlal,46,Aïn Témouchent,عين تموشنت,46,132.5,6535195,Q652161,1.0,OpenStreetMap,2026-11-20
+4608,Terga,تارقة,Terga,46,Aïn Témouchent,عين تموشنت,46,64.74,6535220,Q1962437,1.0,OpenStreetMap,2026-11-20
+4609,Ain El Arbaa,عين الأربعاء,Ain El Arbaa,46,Aïn Témouchent,عين تموشنت,46,70.83,6535196,Q1649088,1.0,OpenStreetMap,2026-11-20
+4610,Tamzoura,تامزوغة,Tamzoura,46,Aïn Témouchent,عين تموشنت,46,233.22,6535219,Q2217839,1.0,OpenStreetMap,2026-11-20
+4611,Chentouf,شنتوف,Chentouf,46,Aïn Témouchent,عين تموشنت,46,57.02,6535204,Q1657324,1.0,OpenStreetMap,2026-11-20
+4612,Sidi Ben Adda,سيدي بن عدة,Sidi Ben Adda,46,Aïn Témouchent,عين تموشنت,46,73.03,6535216,Q1657415,1.0,OpenStreetMap,2026-11-20
+4613,Aoubellil,عقب الليل,Aoubellil,46,Aïn Témouchent,عين تموشنت,46,81.15,6535200,Q1649048,1.0,OpenStreetMap,2026-11-20
+4614,El Mallah,المالح,Al Malih,46,Aïn Témouchent,عين تموشنت,46,69.17,6535207,Q1649298,1.0,OpenStreetMap,2026-11-20
+4615,Sidi Boumediene,سيدي بومدين,Sidi Boumediene,46,Aïn Témouchent,عين تموشنت,46,50.33,6535217,Q3324659,1.0,OpenStreetMap,2026-11-20
+4616,Oued Sebbah,وادي الصباح,Oued Sebbah,46,Aïn Témouchent,عين تموشنت,46,223.5,6535212,Q1657440,1.0,OpenStreetMap,2026-11-20
+4617,Ouled Boudjemaa,أولاد بوجمعة,Ouled Boudjemaa,46,Aïn Témouchent,عين تموشنت,46,82.75,6535214,Q1649064,1.0,OpenStreetMap,2026-11-20
+4618,Ain Tolba,عين الطلبة,Ain Tolba,46,Aïn Témouchent,عين تموشنت,46,65.17,6535199,Q1657300,1.0,OpenStreetMap,2026-11-20
+4619,El Amria,العامرية,El Amria,46,Aïn Témouchent,عين تموشنت,46,88.82,6535205,Q1657351,1.0,OpenStreetMap,2026-11-20
+4620,Hassi El Ghella,حاسي الغلة,Hassi El Ghella,46,Aïn Témouchent,عين تموشنت,46,59.94,6535211,Q1657465,1.0,OpenStreetMap,2026-11-20
+4621,Hassasna,الحساسنة,Hassasna,46,Aïn Témouchent,عين تموشنت,46,87.59,6535210,Q1657291,1.0,OpenStreetMap,2026-11-20
+4622,Ouled Kihal,اولاد كيحل,Ouled Kihal,46,Aïn Témouchent,عين تموشنت,46,33.33,6535215,Q1649052,1.0,OpenStreetMap,2026-11-20
+4623,Beni Saf,بني صاف,Bani Saf,46,Aïn Témouchent,عين تموشنت,46,61.77,6535201,Q80408,1.0,OpenStreetMap,2026-11-20
+4624,Sidi Safi,سيدي الصافي,Sidi Safi,46,Aïn Témouchent,عين تموشنت,46,65.54,6535218,Q1657331,1.0,OpenStreetMap,2026-11-20
+4625,Oulhaça El Gheraba,ولهاصة الغرابة,Oulhaça El Gheraba,46,Aïn Témouchent,عين تموشنت,46,85.74,5839815,Q1657453,1.0,OpenStreetMap,2026-11-20
+4626,Sidi Ouriache,سيدي ورياش,Sidi Ouriache,46,Aïn Témouchent,عين تموشنت,46,65.13,5839700,Q3483278,1.0,OpenStreetMap,2026-11-20
+4627,El Emir Abdelkader,الأمير عبد القادر,Al Amir Abd Al Qadir,46,Aïn Témouchent,عين تموشنت,46,46.79,6535206,Q3049839,1.0,OpenStreetMap,2026-11-20
+4628,El Messaid,المساعيد,El Messaid,46,Aïn Témouchent,عين تموشنت,46,89.7,6535208,Q1649280,1.0,OpenStreetMap,2026-11-20
+4701,Ghardaïa,غرداية,Ghardaia,47,Ghardaïa,غرداية,47,321.93,4503228,Q622841,1.0,OpenStreetMap,2026-11-20
+4702,El Menia,المنيعة,El Menia,58,El Meniaa,المنيعة,47,23942.14,5118960,Q1324185,1.0,OpenStreetMap,2026-11-20
+4703,Dayet Ben Dahoua,ضاية بن ضحوة,Dayet Ben Dahoua District,47,Ghardaïa,غرداية,47,2242.97,6823963,Q3025708,1.0,OpenStreetMap,2026-11-20
+4704,Berriane,بريان,Berriane,47,Ghardaïa,غرداية,47,2586.15,4873727,Q1649062,1.0,OpenStreetMap,2026-11-20
+4705,Metlili,متليلي الشعانبة,Metlili,47,Ghardaïa,غرداية,47,4943.16,5012152,Q3307398,1.0,OpenStreetMap,2026-11-20
+4706,El Guerrara,القرارة,El Guerrara,47,Ghardaïa,غرداية,47,3355.13,4874055,Q3049902,1.0,OpenStreetMap,2026-11-20
+4707,El Atteuf,العطف,El Atteuf,47,Ghardaïa,غرداية,47,710.62,4873693,Q1884169,1.0,OpenStreetMap,2026-11-20
+4708,Zelfana,زلفانة,Zelfana,47,Ghardaïa,غرداية,47,1945.03,4874098,Q3575136,1.0,OpenStreetMap,2026-11-20
+4709,Sebseb,سبسب,Sebseb,47,Ghardaïa,غرداية,47,4304.25,5012624,Q3325033,1.0,OpenStreetMap,2026-11-20
+4710,Bounoura,بونورة,Bounoura,47,Ghardaïa,غرداية,47,751.21,4873420,Q599165,1.0,OpenStreetMap,2026-11-20
+4711,Hassi Fehal,حاسي الفحل,Hassi Fehal,58,El Meniaa,المنيعة,47,6845.6,5117624,Q3128226,1.0,OpenStreetMap,2026-11-20
+4712,Hassi Gara,حاسي قارة,Hassi Gara,58,El Meniaa,المنيعة,47,27740.09,5118975,Q3128227,1.0,OpenStreetMap,2026-11-20
+4713,Mansoura,منصورة,Mansoura,58,El Meniaa,المنيعة,47,4786.06,5117521,Q950358,1.0,OpenStreetMap,2026-11-20
+4801,Relizane,غليزان,Relizane,48,Relizane,غليزان,48,109.66,6559416,Q402738,1.0,OpenStreetMap,2026-11-20
+4802,Oued Rhiou,وادي رهيو,Oued Rhiou,48,Relizane,غليزان,48,97.67,6559412,Q1571443,1.0,OpenStreetMap,2026-11-20
+4803,Belassel Bouzegza,بلعسل بوزقزة,Belassel Bouzegza,48,Relizane,غليزان,48,137.73,6559345,Q2894233,1.0,OpenStreetMap,2026-11-20
+4804,Sidi Saada,سيدي سعادة,Sidi Saada,48,Relizane,غليزان,48,73.67,6559421,Q1650079,1.0,OpenStreetMap,2026-11-20
+4805,Ouled Yaich,أولاد يعيش,Ouled Aiche,48,Relizane,غليزان,48,147.17,6559414,Q3324819,1.0,OpenStreetMap,2026-11-20
+4806,Sidi Lazreg,سيدي لزرق,Sidi Lazreg,48,Relizane,غليزان,48,142.78,6559418,Q3483254,1.0,OpenStreetMap,2026-11-20
+4807,El Hamadna,الحمادنة,El Hamadna,48,Relizane,غليزان,48,121.15,6559375,Q3049937,1.0,OpenStreetMap,2026-11-20
+4808,Sidi M'Hamed Ben Ali,سيدي امحمد بن علي,Sidi M'Hamed Ben Ali,48,Relizane,غليزان,48,80.24,6559419,Q3483256,1.0,OpenStreetMap,2026-11-20
+4809,Mediouna,مديونة,Mediouna,48,Relizane,غليزان,48,150.98,6559406,Q3304056,1.0,OpenStreetMap,2026-11-20
+4810,Sidi Khettab,سيدي خطاب,Sidi Khettab,48,Relizane,غليزان,48,206.6,6559417,Q3324780,1.0,OpenStreetMap,2026-11-20
+4811,Ammi Moussa,عمي موسى,Ammi Moussa,48,Relizane,غليزان,48,175.54,6559331,Q4747238,1.0,OpenStreetMap,2026-11-20
+4812,Zemmora,زمورة,Zemmora,48,Relizane,غليزان,48,231.7,6559424,Q3324824,1.0,OpenStreetMap,2026-11-20
+4813,Beni Dergoun,بني درقن,Beni Dergoun,48,Relizane,غليزان,48,105.05,6559354,Q2895876,1.0,OpenStreetMap,2026-11-20
+4814,Djdiouia,جديوية,Djdiouia,48,Relizane,غليزان,48,135.33,6559366,Q3032949,1.0,OpenStreetMap,2026-11-20
+4815,El Guettar,القطارة,El Guettar,48,Relizane,غليزان,48,54.27,6559371,Q3049900,1.0,OpenStreetMap,2026-11-20
+4816,Hamri,الحمري,Hamri,48,Relizane,غليزان,48,77.35,6559394,Q3126593,1.0,OpenStreetMap,2026-11-20
+4817,El Matmar,المطمر,El Matmar,48,Relizane,غليزان,48,48.91,6559382,Q1649028,1.0,OpenStreetMap,2026-11-20
+4818,Sidi M'Hamed Benaouda,سيدي بن عودة,Sidi M'Hamed Benaouda,48,Relizane,غليزان,48,288.85,6559420,Q7508772,1.0,OpenStreetMap,2026-11-20
+4819,Aïn Tarek,عين طارق,,48,Relizane,غليزان,48,177.93,6559342,Q1649492,1.0,OpenStreetMap,2026-11-20
+4820,Oued Essalem,وادي السالم,Oued Essalem,48,Relizane,غليزان,48,295.4,6559411,Q3325096,1.0,OpenStreetMap,2026-11-20
+4821,Ouarizane,واريزان,Ouarizane,48,Relizane,غليزان,48,87.89,6559409,Q1528316,1.0,OpenStreetMap,2026-11-20
+4822,Mazouna,مازونة,Mazouna,48,Relizane,غليزان,48,43.77,6559405,Q978267,1.0,OpenStreetMap,2026-11-20
+4823,Kalaa,قلعة,Kalaa,48,Relizane,غليزان,48,79.48,6559400,Q1649454,1.0,OpenStreetMap,2026-11-20
+4824,Aïn Rahma,عين الرحمة,,48,Relizane,غليزان,48,139.12,6559336,Q1649450,1.0,OpenStreetMap,2026-11-20
+4825,Yellel,يلل,Yellel,48,Relizane,غليزان,48,118.01,6559423,Q1650228,1.0,OpenStreetMap,2026-11-20
+4826,Oued El Djemaa,وادي الجمعة,Oued El Djemaa,48,Relizane,غليزان,48,179.52,6559410,Q1441796,1.0,OpenStreetMap,2026-11-20
+4827,Ramka,الرمكة,Ramka,48,Relizane,غليزان,48,157.03,6559415,Q1527459,1.0,OpenStreetMap,2026-11-20
+4828,Mendes,مندس,Mendes,48,Relizane,غليزان,48,179.88,6559407,Q3305767,1.0,OpenStreetMap,2026-11-20
+4829,Lahlef,لحلف,Lahlef,48,Relizane,غليزان,48,74.64,6559404,Q3216330,1.0,OpenStreetMap,2026-11-20
+4830,Beni Zentis,بني زنتيس,Beni Zentis,48,Relizane,غليزان,48,93.59,6559358,Q2895922,1.0,OpenStreetMap,2026-11-20
+4831,Souk El Had,سوق الحد,Souk El Had,48,Relizane,غليزان,48,51.36,6559422,Q3491576,1.0,OpenStreetMap,2026-11-20
+4832,Dar Ben Abdellah,دار بن عبد الله,Dar Ben Abdellah,48,Relizane,غليزان,48,111.69,6559362,Q3015925,1.0,OpenStreetMap,2026-11-20
+4833,El Hassi,الحاسي,El Hassi,48,Relizane,غليزان,48,125.98,6559378,Q3049956,1.0,OpenStreetMap,2026-11-20
+4834,Had Echkalla,حد الشقالة,Had Echkalla,48,Relizane,غليزان,48,162.49,6559390,Q3125517,1.0,OpenStreetMap,2026-11-20
+4835,Bendaoud,بن داود,Bendaoud,48,Relizane,غليزان,48,113.79,6559349,Q1649195,1.0,OpenStreetMap,2026-11-20
+4836,El Ouldja,العلجة,El Ouldja,48,Relizane,غليزان,48,141.57,6559386,Q3050151,1.0,OpenStreetMap,2026-11-20
+4837,Merdja Sidi Abed,مرجة سيدي عابد,Merdja Sidi Abed,48,Relizane,غليزان,48,67.59,6559408,Q736347,1.0,OpenStreetMap,2026-11-20
+4838,Ouled Sidi Mihoub,أولاد سيدي ميهوب,Ouled Sidi Mihoub,48,Relizane,غليزان,48,86.07,6559413,Q3325228,1.0,OpenStreetMap,2026-11-20
