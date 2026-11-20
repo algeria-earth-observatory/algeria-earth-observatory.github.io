@@ -5,10 +5,11 @@
  * series, crosshair + tooltip on hover, data table available elsewhere.
  */
 
-export const SERIES_COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4']; // fixed order, never cycled
-export const DRY = '#d03b3b';
-export const WET = '#2a78d6';
-const INK = '#202B33', MUTED = '#5b6872', GRID = '#e3e8ec', AXIS = '#9aa7b1';
+// dataviz reference palette, dark-mode steps (fixed order, never cycled)
+export const SERIES_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181'];
+export const DRY = '#e66767';
+export const WET = '#3987e5';
+const INK = '#e8f0f8', MUTED = '#8fa3b6', GRID = '#1c2a40', AXIS = '#3a5070';
 
 export interface LineSeries { name: string; keys: number[]; values: (number | null)[] }
 export interface LineOpts {
@@ -46,7 +47,7 @@ function frame(container: HTMLElement, title: string) {
   el('title', {}, svg).textContent = title;
   container.appendChild(svg);
   const tip = document.createElement('div');
-  tip.className = 'aeo-tip pointer-events-none absolute z-10 hidden rounded-md border border-line bg-white px-2.5 py-1.5 text-[0.78rem] shadow-sm';
+  tip.className = 'aeo-tip pointer-events-none absolute z-10 hidden rounded-md border border-line-strong bg-surface-2 px-2.5 py-1.5 text-[0.78rem] shadow-lg';
   container.appendChild(tip);
   return { svg, tip };
 }
@@ -183,7 +184,12 @@ export function svgString(svg: SVGSVGElement) {
   bg.setAttribute('width', '100%'); bg.setAttribute('height', '100%'); bg.setAttribute('fill', '#ffffff');
   clone.insertBefore(bg, clone.firstChild);
   clone.querySelectorAll('rect[fill="transparent"]').forEach((r) => r.remove());
-  return new XMLSerializer().serializeToString(clone);
+  // exports use the light (print) palette
+  const swap: Record<string, string> = { [INK]: '#202b33', [MUTED]: '#5b6872', [GRID]: '#e3e8ec', [AXIS]: '#9aa7b1',
+    '#3987e5': '#2a78d6', '#d95926': '#eb6834', '#199e70': '#1baf7a', '#c98500': '#eda100', '#d55181': '#e87ba4', '#e66767': '#d03b3b' };
+  let out = new XMLSerializer().serializeToString(clone);
+  for (const [a, b] of Object.entries(swap)) out = out.split(a).join(b);
+  return out;
 }
 
 export async function svgToPng(svg: SVGSVGElement, footer: string): Promise<Blob> {

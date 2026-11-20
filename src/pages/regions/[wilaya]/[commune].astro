@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import PrecipSummary from '../../../components/PrecipSummary.astro';
+import SpeiSummary from '../../../components/SpeiSummary.astro';
 import { loadRegions, fmtNum, BOUNDARY_VERSION, type Commune, type Wilaya } from '../../../lib/regions-data';
 
 export function getStaticPaths() {
@@ -24,10 +25,11 @@ const moved = c.code_1984 !== c.wilaya_code;
     <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
       <div class="min-w-0 space-y-8">
         <PrecipSummary stats={c.precip} areaLabel={`commune of ${c.name}`} analyzeHref={`/analyze/?level=admin2&unit=${c.code}`} level="admin2" />
-        <p class="text-[0.9rem] text-slate">Other indicators (temperature, drought indices, vegetation, cropland statistics) are not yet processed at commune level. Coarse climate data may never be meaningful for small communes; AEO will only publish commune values where the source resolution supports them.</p>
+        <SpeiSummary level="admin2" code={c.code} wilaya={c.wilaya_code} label={`commune of ${c.name}`} analyzeHref={`/analyze/?level=admin2&unit=${c.code}&var=spei&scale=12`} />
+        <p class="text-[0.9rem] text-slate">Other indicators (temperature, vegetation, cropland statistics) are not yet processed at commune level. Coarse climate data may never be meaningful for small communes; AEO will only publish commune values where the source resolution supports them.</p>
       </div>
       <aside>
-        <section class="rounded-md border border-line bg-white p-4 text-[0.88rem]">
+        <section class="rounded-md border border-line bg-surface p-4 text-[0.88rem]">
           <h2 class="font-semibold text-atlas">Facts</h2>
           <dl class="mt-2 space-y-2">
             <div><dt class="text-[0.78rem] text-slate">ONS code</dt><dd class="font-mono">{c.code}</dd></div>

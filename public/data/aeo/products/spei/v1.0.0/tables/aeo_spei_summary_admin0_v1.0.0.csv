@@ -1,0 +1,2 @@
+level,unit_code,unit_name,unit_name_ar,parent_code,normal_p_1991_2020_mm,hyper_arid,latest_month,latest_spei_3,latest_spei_12,pct_months_spei12_le_-1_2016_2025,min_spei_12,min_spei_12_month,weighted_area_km2
+admin0,DZ,Algeria,الجزائر,,75.6,True,2025-12,-0.98,-1.33,76.7,-3.09,2021-07,2313261.725

@@ -11,6 +11,7 @@
  */
 import gibs from './gibs-layers.json';
 import precipMap from '../../public/data/aeo/products/precipitation/v1.0.0/map/map.json';
+import speiMap from '../../public/data/aeo/products/spei/v1.0.0/map/map.json';
 import type { DomainId } from '../lib/domains';
 
 type GibsId = keyof typeof gibs.layers;
@@ -133,6 +134,8 @@ const GIBS_ATTR =
 
 export const BOUNDARY_VERSION = '2026-11-20';
 const BDIR = `/data/aeo/boundaries/${BOUNDARY_VERSION}`;
+/** World minus Algeria: drawn over every overlay so that only Algeria is shown. */
+export const OUTSIDE_MASK = `${BDIR}/dza_outside_mask.geojson`;
 
 export const MAP_LAYERS: MapLayer[] = [
   {
@@ -165,6 +168,38 @@ export const MAP_LAYERS: MapLayer[] = [
     attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL) · AEO processing',
     legend: { kind: 'line', caption: 'Commune boundary (community-mapped)' },
     caveat: 'Simplified for display (about 1.5 MB, loaded when switched on). Not an official delineation.',
+  },
+  {
+    id: 'spei-3',
+    title: 'Drought index SPEI-3 (AEO, TerraClimate), monthly',
+    summary: 'Seasonal (3-month) water balance anomaly. Standardised Precipitation–Evapotranspiration Index from the AEO SPEI product (TerraClimate P and PET, 1/30°, calibrated on 1991–2020). Use the month slider.',
+    domain: 'climate-drought',
+    type: 'image',
+    dataset: 'aeo-dza-spei-terraclimate',
+    nature: 'derived',
+    image: { url: '/data/aeo/products/spei/v1.0.0/map/spei3_{month}.png', coordinates: speiMap.coordinates as [number, number][] },
+    maxzoom: 22,
+    time: { periods: [`${speiMap.months[0]}-01/${speiMap.months[speiMap.months.length - 1]}-01/P1M`], default: `${speiMap.months[speiMap.months.length - 1]}-01`, step: 'month' },
+    opacity: 0.85,
+    attribution: 'SPEI: AEO from TerraClimate (Abatzoglou et al. 2018, CC0)',
+    legend: { kind: 'classes', caption: 'SPEI-3 (standard deviations); sand = hyper-arid, not shown', classes: [...speiMap.colors.map((c: string, i: number) => ({ color: c, label: speiMap.labels[i] })), { color: speiMap.hyper_arid.color, label: 'hyper-arid (normal P < 50 mm)' }] },
+    caveat: 'Hyper-arid cells (normal precipitation below 50 mm/year) are shown in sand: there SPEI only reflects evaporative demand. Display resampled to 4.5 km; use the GeoTIFF or statistics for analysis.',
+  },
+  {
+    id: 'spei-12',
+    title: 'Drought index SPEI-12 (AEO, TerraClimate), monthly',
+    summary: 'Annual (12-month) water balance anomaly. Standardised Precipitation–Evapotranspiration Index from the AEO SPEI product (TerraClimate P and PET, 1/30°, calibrated on 1991–2020). Use the month slider.',
+    domain: 'climate-drought',
+    type: 'image',
+    dataset: 'aeo-dza-spei-terraclimate',
+    nature: 'derived',
+    image: { url: '/data/aeo/products/spei/v1.0.0/map/spei12_{month}.png', coordinates: speiMap.coordinates as [number, number][] },
+    maxzoom: 22,
+    time: { periods: [`${speiMap.months[0]}-01/${speiMap.months[speiMap.months.length - 1]}-01/P1M`], default: `${speiMap.months[speiMap.months.length - 1]}-01`, step: 'month' },
+    opacity: 0.85,
+    attribution: 'SPEI: AEO from TerraClimate (Abatzoglou et al. 2018, CC0)',
+    legend: { kind: 'classes', caption: 'SPEI-12 (standard deviations); sand = hyper-arid, not shown', classes: [...speiMap.colors.map((c: string, i: number) => ({ color: c, label: speiMap.labels[i] })), { color: speiMap.hyper_arid.color, label: 'hyper-arid (normal P < 50 mm)' }] },
+    caveat: 'Hyper-arid cells (normal precipitation below 50 mm/year) are shown in sand: there SPEI only reflects evaporative demand. Display resampled to 4.5 km; use the GeoTIFF or statistics for analysis.',
   },
   {
     id: 'precip-annual',
@@ -344,6 +379,12 @@ export const MAP_LAYERS: MapLayer[] = [
 ];
 
 export const BASEMAPS = [
+  {
+    id: 'dark',
+    title: 'Dark (OpenStreetMap)',
+    style: 'https://tiles.openfreemap.org/styles/dark',
+    attribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
+  },
   {
     id: 'light',
     title: 'Light (OpenStreetMap)',

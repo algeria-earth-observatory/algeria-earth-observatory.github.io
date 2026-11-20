@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PrecipSummary from '../../components/PrecipSummary.astro';
+import SpeiSummary from '../../components/SpeiSummary.astro';
 import { loadRegions, fmtNum, fmtSigned, BOUNDARY_VERSION } from '../../lib/regions-data';
 const { national, wilayas, communes } = loadRegions();
 ---
@@ -9,7 +10,10 @@ const { national, wilayas, communes } = loadRegions();
   <PageHeader eyebrow="Regions" title="Algeria by wilaya and commune"
     lead={`Profiles for all ${wilayas.length} wilayas and ${communes.length.toLocaleString('en-US')} communes, using the administrative division of Loi n° 26-06 (2026). Each profile shows the indicators AEO has processed for that area and links to its data.`} />
   <div class="container-aeo space-y-10 py-10">
-    <PrecipSummary stats={national} areaLabel="Algeria" analyzeHref="/analyze/?level=admin0&unit=DZ" level="admin0" />
+    <div class="grid gap-6 lg:grid-cols-2">
+      <PrecipSummary stats={national} areaLabel="Algeria" analyzeHref="/analyze/?level=admin0&unit=DZ" level="admin0" />
+      <SpeiSummary level="admin0" code="DZ" label="Algeria" analyzeHref="/analyze/?level=admin0&unit=DZ&var=spei&scale=12" />
+    </div>
 
     <section aria-labelledby="w-h">
       <div class="flex flex-wrap items-end justify-between gap-3">
@@ -18,9 +22,9 @@ const { national, wilayas, communes } = loadRegions();
           <p class="mt-1 text-[0.9rem] text-slate">Boundaries: AEO version {BOUNDARY_VERSION} (OpenStreetMap, nested communes). Precipitation: calendar-year totals, CHIRPS v3.0.</p>
         </div>
         <label class="text-[0.85rem]"><span class="sr-only">Filter wilayas</span>
-          <input id="w-filter" type="search" placeholder="Filter by name or code…" class="w-64 rounded-md border border-[#b9c7d1] px-3 py-2" /></label>
+          <input id="w-filter" type="search" placeholder="Filter by name or code…" class="w-64 rounded-md border border-line-strong px-3 py-2" /></label>
       </div>
-      <div class="mt-4 overflow-x-auto rounded-md border border-line bg-white">
+      <div class="mt-4 overflow-x-auto rounded-md border border-line bg-surface">
         <table class="w-full text-left text-[0.88rem]">
           <thead class="bg-paper text-[0.78rem] uppercase tracking-wide text-slate">
             <tr><th class="px-3 py-2">Code</th><th class="px-3 py-2">Wilaya</th><th class="px-3 py-2" lang="ar">الاسم</th><th class="px-3 py-2 text-right">Communes</th><th class="px-3 py-2 text-right">Area (km²)</th><th class="px-3 py-2 text-right">Normal 1991–2020 (mm)</th><th class="px-3 py-2 text-right">Trend (mm/decade)</th></tr>
@@ -48,7 +52,7 @@ const { national, wilayas, communes } = loadRegions();
     <section aria-labelledby="c-h">
       <h2 id="c-h" class="text-xl font-semibold text-atlas">Find a commune</h2>
       <label class="mt-3 block max-w-md text-[0.85rem]"><span class="sr-only">Search communes</span>
-        <input id="c-search" type="search" placeholder="Commune name (French or Arabic) or ONS code…" class="w-full rounded-md border border-[#b9c7d1] px-3 py-2" /></label>
+        <input id="c-search" type="search" placeholder="Commune name (French or Arabic) or ONS code…" class="w-full rounded-md border border-line-strong px-3 py-2" /></label>
       <ul id="c-results" class="mt-3 grid gap-1 text-[0.9rem] sm:grid-cols-2 lg:grid-cols-3"></ul>
       <script type="application/json" id="c-index" set:html={JSON.stringify(communes.map((c) => [c.code, c.name, c.name_ar, c.wilaya_code, c.wilaya_name]))} />
     </section>

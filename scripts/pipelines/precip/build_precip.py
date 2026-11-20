@@ -64,9 +64,10 @@ NODATA = -9999.0
 
 # map colours (validated with the dataviz palette checks; see docs/METHODS_PRECIPITATION.md)
 SEQ_BREAKS = [25, 50, 100, 200, 400, 700]
-SEQ_COLORS = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
+# dark-surface sequential ramp: low values recede into the dark background
+SEQ_COLORS = ["#132a4a", "#184f95", "#256abf", "#3987e5", "#6da7ec", "#9ec5f4", "#cde2fb"]
 DIV_BREAKS = [-60, -40, -25, -10, 10, 25, 40, 60]
-DIV_COLORS = ["#6b1515", "#9e2424", "#d03b3b", "#ee8d81", "#e6e4df", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"]
+DIV_COLORS = ["#6b1515", "#9e2424", "#d03b3b", "#ee8d81", "#4a5260", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"]
 
 
 def slug(s: str) -> str:

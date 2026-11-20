@@ -7,11 +7,14 @@
  */
 import maplibregl, { type StyleSpecification, type LayerSpecification, type Map as MLMap } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, type MapLayer } from '../data/map-layers';
+import { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, OUTSIDE_MASK, type MapLayer } from '../data/map-layers';
 
 import { gacedProtocol } from './gaced-protocol';
 
-export { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS };
+export { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, OUTSIDE_MASK };
+
+/** Layer spec dimming everything outside Algeria (all AEO maps show Algeria only). */
+export const maskLayer = (source = 'aeo-outside') => ({ id: 'aeo-outside-mask', type: 'fill' as const, source, paint: { 'fill-color': '#050a14', 'fill-opacity': 0.82 } });
 
 maplibregl.addProtocol('aeo-gaced', gacedProtocol);
 export type BasemapId = (typeof BASEMAPS)[number]['id'];
@@ -69,7 +72,7 @@ export function stepDate(layer: MapLayer, current: string, dir: 1 | -1): string 
 }
 export const defaultDate = (l: MapLayer) => (l.time ? l.time.default ?? availableDates(l).at(-1) ?? null : null);
 const searchIds = new Map<string, string>();
-const imageUrl = (l: MapLayer, time: string | null) => (l.image?.url ?? '').replace('{year}', (time ?? '').slice(0, 4));
+const imageUrl = (l: MapLayer, time: string | null) => (l.image?.url ?? '').replace('{year}', (time ?? '').slice(0, 4)).replace('{month}', (time ?? '').slice(0, 7));
 const tileUrl = (l: MapLayer, time: string | null) =>
   (l.tiles ?? '').replace('{time}', time ?? '').replace('{search}', searchIds.get(l.id) ?? l.mosaic?.fallback ?? '');
 
@@ -131,10 +134,13 @@ export async function loadWilayas(): Promise<GeoJSON.FeatureCollection> {
 export async function buildStyle(state: MapState): Promise<StyleSpecification> {
   const s = await baseStyle(state.basemap);
   s.glyphs = s.glyphs ?? GLYPHS;
-  const firstSymbol = s.layers.findIndex((l) => l.type === 'symbol');
+  // insert overlays after the last non-label layer, so roads and borders of the basemap stay underneath
+  let lastNonSymbol = -1;
+  s.layers.forEach((l, i) => { if (l.type !== 'symbol') lastNonSymbol = i; });
+  const firstSymbol = lastNonSymbol + 1;
   const below: LayerSpecification[] = [];
   const above: LayerSpecification[] = [];
-  const dark = state.basemap === 'satellite';
+  const dark = state.basemap === 'satellite' || state.basemap === 'dark' || state.basemap === 'relief';
 
   for (const l of MAP_LAYERS) {
     const st = state.layers[l.id];
@@ -151,6 +157,9 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
       below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0, 'raster-resampling': 'nearest' } });
     }
   }
+  // Mask outside Algeria, above all data overlays and below boundaries.
+  s.sources['aeo-outside'] = { type: 'geojson', data: OUTSIDE_MASK };
+  above.push(maskLayer());
   // Commune boundaries: data are loaded only when the layer is switched on (1.5 MB).
   const cl = MAP_LAYERS.find((x) => x.id === 'communes');
   if (cl) {
@@ -180,7 +189,7 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
       layout: { visibility: wvis, 'text-field': ['get', 'name'], 'text-font': LABEL_FONT, 'text-size': 11.5, 'text-max-width': 8 },
       paint: { 'text-color': dark ? '#F7F9FA' : '#143B56', 'text-halo-color': dark ? '#0E2A3E' : '#FFFFFF', 'text-halo-width': 1.4 } },
   );
-  const at = firstSymbol < 0 ? s.layers.length : firstSymbol;
+  const at = Math.min(firstSymbol, s.layers.length);
   s.layers = [...s.layers.slice(0, at), ...below, ...s.layers.slice(at), ...above];
   return s;
 }

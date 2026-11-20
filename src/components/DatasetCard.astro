@@ -33,14 +33,14 @@ const providerShort = d.provider?.name?.replace(/\s*\(.*?\)\s*/g, ' ').replace(/
 >
   <div class="flex items-start justify-between gap-3">
     <Badges d={d} />
-    <span class="meta shrink-0">{d.origin !== 'external' && d.status !== 'in-preparation' ? 'Algeria-ready · ' : ''}{d.domain.map((x) => domainById(x)?.short).join(' · ')}</span>
+    <span class="meta min-w-0 text-right">{d.origin !== 'external' && d.status !== 'in-preparation' ? 'Algeria-ready · ' : ''}{d.domain.map((x) => domainById(x)?.short).join(' · ')}</span>
   </div>
   <H class="mt-3 text-[1.06rem] font-semibold leading-snug">
     <a href={`/data/${d.id}/`} class="text-atlas no-underline after:absolute after:inset-0 after:content-[''] group-hover:text-signal">{d.title}</a>
   </H>
   {!compact && <p class="mt-2 text-[0.92rem] leading-relaxed text-slate line-clamp-3">{d.description}</p>}
   {d.status === 'in-preparation' ? (
-    <p class="mt-auto pt-4 text-sm text-[#6b5228]">Planned product — no data released.</p>
+    <p class="mt-auto pt-4 text-sm text-sand">Planned product — no data released.</p>
   ) : (
     <dl class="mt-auto grid grid-cols-2 gap-x-4 gap-y-2 pt-4 text-[0.8rem]">
       <div><dt class="meta">Coverage</dt><dd class="text-graphite">{COVERAGE[d.spatial_extent?.coverage ?? ''] ?? '—'}{d.spatial_extent?.algeria_subset === 'extract' ? ' · subset' : ''}</dd></div>

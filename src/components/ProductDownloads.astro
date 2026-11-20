@@ -26,7 +26,7 @@ const payload = {
   communes: communes.map((c) => [c.code, c.name, c.wilaya_code]),
 };
 ---
-<section aria-labelledby="pd-h" class="rounded-md border border-line bg-white p-5" id="download-builder">
+<section aria-labelledby="pd-h" class="rounded-md border border-line bg-surface p-5" id="download-builder">
   <h2 id="pd-h" class="text-xl font-semibold">Download</h2>
   <p class="mt-1 text-[0.9rem] text-slate">Choose an area, then a period and format. Spatial files are published for Algeria and for each wilaya; communes get statistics tables (at ≈5.5 km resolution a commune holds only a few grid cells).</p>
 
@@ -34,27 +34,27 @@ const payload = {
     <fieldset>
       <legend class="meta uppercase tracking-wider">1 · Area</legend>
       <div class="mt-2 flex gap-1 text-[0.85rem]">
-        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-[#eef5fc]"><input type="radio" name="pd-level" value="admin0" class="sr-only" checked />Algeria</label>
-        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-[#eef5fc]"><input type="radio" name="pd-level" value="admin1" class="sr-only" />Wilaya</label>
-        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-[#eef5fc]"><input type="radio" name="pd-level" value="admin2" class="sr-only" />Commune</label>
+        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="pd-level" value="admin0" class="sr-only" checked />Algeria</label>
+        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="pd-level" value="admin1" class="sr-only" />Wilaya</label>
+        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="pd-level" value="admin2" class="sr-only" />Commune</label>
       </div>
       <label class="mt-2 block text-[0.85rem]" data-show="admin1 admin2" hidden><span class="text-slate">Wilaya</span>
-        <select id="pd-wilaya" class="mt-1 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2">{wilayas.map((w) => <option value={w.code}>{w.code} — {w.name}</option>)}</select></label>
+        <select id="pd-wilaya" class="mt-1 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">{wilayas.map((w) => <option value={w.code}>{w.code} — {w.name}</option>)}</select></label>
       <label class="mt-2 block text-[0.85rem]" data-show="admin2" hidden><span class="text-slate">Commune</span>
-        <select id="pd-commune" class="mt-1 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2"></select></label>
+        <select id="pd-commune" class="mt-1 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2"></select></label>
     </fieldset>
     <div class="space-y-3 text-[0.85rem]">
       <label class="block"><span class="meta uppercase tracking-wider">2 · Variable</span>
-        <select id="pd-var" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2">
+        <select id="pd-var" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">
           <option value="annual">Annual precipitation totals (mm), with anomalies</option>
           <option value="monthly">Monthly precipitation (mm), with anomalies</option>
         </select></label>
       <div class="grid grid-cols-2 gap-2">
-        <label><span class="meta uppercase tracking-wider">3 · From</span><select id="pd-from" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2 py-2"></select></label>
-        <label><span class="meta uppercase tracking-wider">To</span><select id="pd-to" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2 py-2"></select></label>
+        <label><span class="meta uppercase tracking-wider">3 · From</span><select id="pd-from" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2 py-2"></select></label>
+        <label><span class="meta uppercase tracking-wider">To</span><select id="pd-to" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2 py-2"></select></label>
       </div>
       <label class="block"><span class="meta uppercase tracking-wider">4 · Format</span>
-        <select id="pd-format" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2"></select></label>
+        <select id="pd-format" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2"></select></label>
     </div>
   </div>
   <div class="mt-5 flex flex-wrap items-center gap-3 border-t border-line pt-4">

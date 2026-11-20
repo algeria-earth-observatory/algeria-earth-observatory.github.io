@@ -16,22 +16,22 @@ const months = manifest.temporal_coverage.monthly as [string, string];
 
     <div class="mt-8 grid gap-8 lg:grid-cols-[19rem_1fr]">
       <!-- Controls -->
-      <form id="az-form" class="space-y-5 self-start rounded-md border border-line bg-white p-4 lg:sticky lg:top-20" aria-label="Analysis settings" onsubmit="return false">
+      <form id="az-form" class="space-y-5 self-start rounded-md border border-line bg-surface p-4 lg:sticky lg:top-20" aria-label="Analysis settings" onsubmit="return false">
         <fieldset>
           <legend class="meta uppercase tracking-wider">Area</legend>
           <div class="mt-2 grid grid-cols-3 gap-1 text-[0.85rem]" role="radiogroup">
-            <label class="flex cursor-pointer items-center justify-center rounded border border-line px-2 py-1.5 has-[:checked]:border-signal has-[:checked]:bg-[#eef5fc]"><input type="radio" name="level" value="admin0" class="sr-only" />Algeria</label>
-            <label class="flex cursor-pointer items-center justify-center rounded border border-line px-2 py-1.5 has-[:checked]:border-signal has-[:checked]:bg-[#eef5fc]"><input type="radio" name="level" value="admin1" class="sr-only" checked />Wilaya</label>
-            <label class="flex cursor-pointer items-center justify-center rounded border border-line px-2 py-1.5 has-[:checked]:border-signal has-[:checked]:bg-[#eef5fc]"><input type="radio" name="level" value="admin2" class="sr-only" />Commune</label>
+            <label class="flex cursor-pointer items-center justify-center rounded border border-line px-2 py-1.5 has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="level" value="admin0" class="sr-only" />Algeria</label>
+            <label class="flex cursor-pointer items-center justify-center rounded border border-line px-2 py-1.5 has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="level" value="admin1" class="sr-only" checked />Wilaya</label>
+            <label class="flex cursor-pointer items-center justify-center rounded border border-line px-2 py-1.5 has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="level" value="admin2" class="sr-only" />Commune</label>
           </div>
           <label class="mt-3 block text-[0.85rem]" id="wilaya-wrap">
             <span class="text-slate">Wilaya</span>
-            <select id="az-wilaya" class="mt-1 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2"></select>
+            <select id="az-wilaya" class="mt-1 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2"></select>
           </label>
           <div class="mt-3 hidden text-[0.85rem]" id="commune-wrap">
             <label for="az-commune-search" class="text-slate">Commune</label>
-            <input id="az-commune-search" type="search" placeholder="Search a commune…" autocomplete="off" class="mt-1 w-full rounded-md border border-[#b9c7d1] px-2.5 py-2" />
-            <select id="az-commune" size="6" class="mt-1 w-full rounded-md border border-[#b9c7d1] bg-white px-1 py-1 text-[0.85rem]" aria-label="Commune"></select>
+            <input id="az-commune-search" type="search" placeholder="Search a commune…" autocomplete="off" class="mt-1 w-full rounded-md border border-line-strong px-2.5 py-2" />
+            <select id="az-commune" size="6" class="mt-1 w-full rounded-md border border-line-strong bg-surface px-1 py-1 text-[0.85rem]" aria-label="Commune"></select>
             <p class="mt-1 text-[0.75rem] text-slate">Communes are listed within the selected wilaya; searching covers all 1,541.</p>
           </div>
         </fieldset>
@@ -39,7 +39,7 @@ const months = manifest.temporal_coverage.monthly as [string, string];
         <fieldset>
           <legend class="meta uppercase tracking-wider">Compare with</legend>
           <div class="mt-2 flex gap-1.5">
-            <select id="az-compare" class="min-w-0 flex-1 rounded-md border border-[#b9c7d1] bg-white px-2 py-1.5 text-[0.85rem]" aria-label="Area to compare"></select>
+            <select id="az-compare" class="min-w-0 flex-1 rounded-md border border-line-strong bg-surface px-2 py-1.5 text-[0.85rem]" aria-label="Area to compare"></select>
             <button type="button" id="az-compare-add" class="btn btn-secondary !px-3 !py-1.5 text-[0.85rem]">Add</button>
           </div>
           <ul id="az-compare-list" class="mt-2 flex flex-wrap gap-1.5"></ul>
@@ -48,22 +48,37 @@ const months = manifest.temporal_coverage.monthly as [string, string];
 
         <label class="block text-[0.85rem]">
           <span class="meta uppercase tracking-wider">Variable</span>
-          <select id="az-variable" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2">
+          <select id="az-variable" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">
             <option value="precip">Precipitation (CHIRPS v3.0)</option>
+            <option value="spei">Drought index SPEI (TerraClimate)</option>
           </select>
-          <span class="mt-1 block text-[0.75rem] text-slate">Only variables with processed AEO data are listed. Temperature, drought indices, vegetation and cropland are being added one by one.</span>
+          <span class="mt-1 block text-[0.75rem] text-slate">Only variables with processed AEO data are listed.</span>
         </label>
 
-        <label class="block text-[0.85rem]">
+        <div id="spei-controls" class="hidden space-y-3 text-[0.85rem]">
+          <label class="block"><span class="meta uppercase tracking-wider">Timescale</span>
+            <select id="az-scale" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">
+              <option value="1">SPEI-1 — monthly</option><option value="3" selected>SPEI-3 — seasonal</option>
+              <option value="6">SPEI-6 — half-year</option><option value="12">SPEI-12 — annual</option>
+            </select></label>
+          <label class="block"><span class="meta uppercase tracking-wider">Months</span>
+            <select id="az-month" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">
+              <option value="0">All months</option>
+              {['January','February','March','April','May','June','July','August','September','October','November','December'].map((m, i) => <option value={String(i + 1)}>Only {m} (one value per year)</option>)}
+            </select></label>
+          <p class="text-[0.75rem] leading-snug text-slate">SPEI ≤ −1 moderately dry, ≤ −1.5 severely, ≤ −2 extremely dry. Calibrated on 1991–2020. Communes: SPEI-3 and SPEI-12 from 1981.</p>
+        </div>
+
+        <label class="block text-[0.85rem]" id="agg-wrap">
           <span class="meta uppercase tracking-wider">Period type</span>
-          <select id="az-agg" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2.5 py-2">
+          <select id="az-agg" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">
             {AGGREGATIONS.map((a) => <option value={a.id}>{a.label}</option>)}
           </select>
         </label>
 
         <div class="grid grid-cols-2 gap-2 text-[0.85rem]">
-          <label><span class="meta uppercase tracking-wider">From</span><select id="az-from" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2 py-2"></select></label>
-          <label><span class="meta uppercase tracking-wider">To</span><select id="az-to" class="mt-2 w-full rounded-md border border-[#b9c7d1] bg-white px-2 py-2"></select></label>
+          <label><span class="meta uppercase tracking-wider">From</span><select id="az-from" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2 py-2"></select></label>
+          <label><span class="meta uppercase tracking-wider">To</span><select id="az-to" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2 py-2"></select></label>
         </div>
         <p class="text-[0.75rem] leading-snug text-slate">Data: monthly {months[0]} to {months[1]}; complete calendar years {years[0]}–{years[1]}. Normal: 1991–2020.</p>
       </form>
@@ -73,12 +88,12 @@ const months = manifest.temporal_coverage.monthly as [string, string];
         <div>
           <h2 id="az-title" class="text-xl font-semibold text-atlas">Loading…</h2>
           <p id="az-subtitle" class="mt-1 text-[0.92rem] text-slate"></p>
-          <p id="az-support" class="mt-2 hidden rounded-md border border-[#e9d8b4] bg-[#fbf6ea] px-3 py-2 text-[0.85rem] text-[#5f4716]"></p>
+          <p id="az-support" class="mt-2 hidden rounded-md border border-sand/40 bg-sand-100 px-3 py-2 text-[0.85rem] text-sand"></p>
         </div>
 
         <dl id="az-tiles" class="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6"></dl>
 
-        <section aria-labelledby="ts-h" class="rounded-md border border-line bg-white p-4">
+        <section aria-labelledby="ts-h" class="rounded-md border border-line bg-surface p-4">
           <div class="flex flex-wrap items-baseline justify-between gap-2">
             <h3 id="ts-h" class="font-semibold text-atlas">Time series</h3>
             <div class="flex gap-2 text-[0.8rem]">
@@ -95,12 +110,12 @@ const months = manifest.temporal_coverage.monthly as [string, string];
           </details>
         </section>
 
-        <section aria-labelledby="an-h" class="rounded-md border border-line bg-white p-4">
+        <section aria-labelledby="an-h" class="rounded-md border border-line bg-surface p-4">
           <div class="flex flex-wrap items-baseline justify-between gap-2">
             <h3 id="an-h" class="font-semibold text-atlas">Anomalies relative to 1991–2020</h3>
             <div class="flex items-center gap-3 text-[0.8rem]">
-              <label class="flex items-center gap-1"><input type="radio" name="anom-unit" value="mm" checked class="accent-[#176BBA]" /> mm</label>
-              <label class="flex items-center gap-1"><input type="radio" name="anom-unit" value="pct" class="accent-[#176BBA]" /> %</label>
+              <label data-precip-only class="flex items-center gap-1"><input type="radio" name="anom-unit" value="mm" checked class="accent-[#5aa9ff]" /> mm</label>
+              <label data-precip-only class="flex items-center gap-1"><input type="radio" name="anom-unit" value="pct" class="accent-[#5aa9ff]" /> %</label>
               <button type="button" class="link-btn" data-export="an" data-fmt="svg">SVG</button>
               <button type="button" class="link-btn" data-export="an" data-fmt="png">PNG</button>
             </div>
@@ -109,27 +124,27 @@ const months = manifest.temporal_coverage.monthly as [string, string];
           <div id="az-an" class="mt-2"></div>
         </section>
 
-        <section aria-labelledby="map-h" class="rounded-md border border-line bg-white p-4">
+        <section aria-labelledby="map-h" class="rounded-md border border-line bg-surface p-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <h3 id="map-h" class="font-semibold text-atlas">Map</h3>
             <div class="flex flex-wrap items-center gap-3 text-[0.8rem]">
-              <label class="flex items-center gap-1.5">Year <select id="az-map-year" class="rounded border border-line px-1.5 py-1"></select></label>
-              <label class="flex items-center gap-1.5">Show <select id="az-map-metric" class="rounded border border-line px-1.5 py-1"><option value="anomaly">anomaly (%)</option><option value="annual">total (mm)</option></select></label>
-              <label class="flex items-center gap-1"><input type="checkbox" id="az-map-grid" class="accent-[#176BBA]" /> 5 km grid</label>
+              <label class="flex items-center gap-1.5">Period <select id="az-map-year" class="rounded border border-line px-1.5 py-1"></select></label>
+              <label data-precip-only class="flex items-center gap-1.5">Show <select id="az-map-metric" class="rounded border border-line px-1.5 py-1"><option value="anomaly">anomaly (%)</option><option value="annual">total (mm)</option></select></label>
+              <label class="flex items-center gap-1"><input type="checkbox" id="az-map-grid" class="accent-[#5aa9ff]" /> 5 km grid</label>
             </div>
           </div>
-          <p class="mt-1 text-[0.8rem] text-slate">Calendar-year (January–December) values by <span id="az-map-level">wilaya</span>. Click an area to analyse it.</p>
-          <div class="relative mt-3 h-[26rem] overflow-hidden rounded border border-line"><div class="absolute inset-0"><div id="az-map" class="h-full w-full bg-[#dfe7ec]" role="region" aria-label="Map of the selected indicator"></div></div></div>
+          <p class="mt-1 text-[0.8rem] text-slate">Values by <span id="az-map-level">wilaya</span>. Only Algeria is shown. Click an area to analyse it.</p>
+          <div class="relative mt-3 h-[26rem] overflow-hidden rounded border border-line"><div class="absolute inset-0"><div id="az-map" class="h-full w-full bg-deep" role="region" aria-label="Map of the selected indicator"></div></div></div>
           <div id="az-map-legend" class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.75rem] text-graphite"></div>
         </section>
 
-        <section aria-labelledby="dl-h" class="rounded-md border border-line bg-white p-4">
+        <section aria-labelledby="dl-h" class="rounded-md border border-line bg-surface p-4">
           <h3 id="dl-h" class="font-semibold text-atlas">Download</h3>
           <ul id="az-downloads" class="mt-3 grid gap-2 text-[0.9rem] sm:grid-cols-2"></ul>
-          <p class="mt-3 text-[0.8rem] text-slate">Source: CHIRPS v3.0 (Climate Hazards Center, UC Santa Barbara; doi:10.15780/G2JQ0P; CC BY 4.0), processed by AEO — <a href={PRECIP.datasetPage}>product page</a>, <a href={PRECIP.methodPage}>method</a>.</p>
+          <p class="mt-3 text-[0.8rem] text-slate" id="az-source">Source: CHIRPS v3.0 (Climate Hazards Center, UC Santa Barbara; doi:10.15780/G2JQ0P; CC BY 4.0), processed by AEO — <a href={PRECIP.datasetPage}>product page</a>, <a href={PRECIP.methodPage}>method</a>.</p>
         </section>
 
-        <details class="rounded-md border border-line bg-white p-4">
+        <details class="rounded-md border border-line bg-surface p-4">
           <summary class="cursor-pointer font-semibold text-atlas">Data table</summary>
           <div class="mt-3 max-h-96 overflow-auto"><table id="az-table" class="w-full text-left text-[0.85rem]"></table></div>
         </details>
@@ -139,8 +154,8 @@ const months = manifest.temporal_coverage.monthly as [string, string];
 </Base>
 
 <style>
-  .link-btn { color: #176bba; text-decoration: underline; text-underline-offset: 2px; }
-  .link-btn:hover { color: #143b56; }
+  .link-btn { color: #5aa9ff; text-decoration: underline; text-underline-offset: 2px; }
+  .link-btn:hover { color: #8cc3ff; }
 </style>
 
 <script>
