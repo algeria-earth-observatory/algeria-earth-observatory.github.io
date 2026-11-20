@@ -2,7 +2,7 @@
   "id": "aeo-dza-precipitation-chirps3",
   "title": "Algeria Precipitation (CHIRPS v3.0), 1981–present: national, wilaya and commune",
   "title_fr": "Précipitations en Algérie (CHIRPS v3.0) : national, wilayas et communes",
-  "description": "Monthly (1981-01 to 2025-02) and annual (1981–2024) precipitation for Algeria at 0.05° (≈5.5 km), with 1991–2020 normals, anomalies and trend statistics, aggregated to Algeria's 69 wilayas and 1,541 communes. Prepared by AEO from CHIRPS v3.0.",
+  "description": "Monthly (1981-01 to 2026-10) and annual (1981–2025) precipitation for Algeria at 0.05° (≈5.5 km), with 1991–2020 normals, anomalies and trend statistics, aggregated to Algeria's 69 wilayas and 1,541 communes. Prepared by AEO from CHIRPS v3.0.",
   "purpose": "The reference AEO product: an Algeria-ready precipitation record for drought monitoring, agricultural seasons and climate analysis at national, wilaya and commune levels.",
   "domain": [
     "climate-drought",
@@ -66,10 +66,10 @@
   },
   "temporal_extent": {
     "start": "1981-01-01",
-    "end": "2025-02-28",
+    "end": "2026-10-31",
     "ongoing": true,
     "frequency": "monthly; annual totals for complete years",
-    "description": "Monthly 1981-01 to 2025-02; annual totals 1981–2024 (complete calendar years only). Reference period 1991–2020."
+    "description": "Monthly 1981-01 to 2026-10; annual totals 1981–2025 (complete calendar years only). Reference period 1991–2020."
   },
   "resolution": {
     "spatial": "0.05° (≈5.5 km); statistics per administrative unit",
@@ -110,7 +110,7 @@
       "description": "adequate (≥ 4 effective cells), limited (1–4), very limited (< 1)"
     }
   ],
-  "processing": "Monthly CHIRPS v3.0 final data for the Algeria window, taken for v1.0.0 from the official CHC yearly NetCDF files (local copy, file date 2025; identical to the server COGs for all 26 months compared) because the CHC data server was unreachable; QC (complete series, no negative values, stable mask); annual totals for complete years; 1991–2020 normals and anomalies; area-weighted zonal means using cell coverage fractions (10×10 supersampling) × geodesic cell area, with wilaya and national weights as unions of commune weights; Theil–Sen / Mann–Kendall trends; export to COG, CSV, Parquet and JSON with SHA-256 manifest. Full method: /docs/method-precipitation/.",
+  "processing": "Monthly CHIRPS v3.0 final COGs read over the Algeria window with HTTP range requests; QC (complete series, no negative values, stable mask); annual totals for complete years; 1991–2020 normals and anomalies; area-weighted zonal means using cell coverage fractions (10×10 supersampling) × geodesic cell area, with wilaya and national weights as unions of commune weights; Theil–Sen / Mann–Kendall trends; export to COG, CSV, Parquet and JSON with SHA-256 manifest. Full method: /docs/method-precipitation/.",
   "validation": "Automated checks (tests/python/test_precip_product.py): coverage of every cell inside Algeria, CRS/resolution/no-data, complete series, value ranges, anomaly consistency, annual = sum of months, national mean = area-weighted mean of wilaya means, file checksums. No independent validation against Algerian station data by AEO; see the CHIRPS v3.0 paper for the provider's evaluation.",
   "limitations": [
     "Satellite–gauge estimate: few gauges in the Sahara and high plateaus; convective and orographic rainfall in the Tell and Atlas is uncertain.",
@@ -123,28 +123,28 @@
   "version": "1.0.0",
   "published_date": "2026-11-20",
   "updated_date": "2026-11-20",
-  "download_url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2024_v1.0.0.tif",
+  "download_url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2025_v1.0.0.tif",
   "preview_url": null,
   "access": [
     {
-      "label": "Algeria — annual precipitation 1981–2024 (GeoTIFF, one band per year)",
-      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2024_v1.0.0.tif",
+      "label": "Algeria — annual precipitation 1981–2025 (GeoTIFF, one band per year)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2025_v1.0.0.tif",
       "kind": "download",
       "format": "Cloud Optimized GeoTIFF",
       "requires_login": false,
       "notes": "mm; 0.05°; EPSG:4326; −9999 outside Algeria",
-      "sha256": "fa63d55b2d76a0ade6ee9738a04a54a4b2d3e9e7311bd4bdb5e0061adccc4fb3",
-      "size_bytes": 8988992
+      "sha256": "5898c68e27ba7b295a7f20b161f99d4cf1a15942c0ca317c9694be0fa2021460",
+      "size_bytes": 9167869
     },
     {
-      "label": "Algeria — annual anomaly (% of 1991–2020) 1981–2024 (GeoTIFF)",
-      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_anomaly_pct_1981_2024_v1.0.0.tif",
+      "label": "Algeria — annual anomaly (% of 1991–2020) 1981–2025 (GeoTIFF)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_anomaly_pct_1981_2025_v1.0.0.tif",
       "kind": "download",
       "format": "Cloud Optimized GeoTIFF",
       "requires_login": false,
       "notes": "Not computed where the normal is below 1 mm",
-      "sha256": "aa2989d26b29297c534595989f659abebdc43532d66eea06e8c085ad9e36f789",
-      "size_bytes": 10045699
+      "sha256": "1991f09b3aa3384663f955263a53b30aaf8bd7b9b3c312c7ae3e762c9b0a5224",
+      "size_bytes": 10265399
     },
     {
       "label": "Algeria — mean annual precipitation 1991–2020 (GeoTIFF)",
@@ -157,34 +157,34 @@
       "size_bytes": 212481
     },
     {
-      "label": "Wilaya statistics — annual 1981–2024 (CSV)",
+      "label": "Wilaya statistics — annual 1981–2025 (CSV)",
       "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin1_v1.0.0.csv",
       "kind": "download",
       "format": "CSV",
       "requires_login": false,
       "notes": "69 wilayas; area-weighted mean, anomaly, valid-area share",
-      "sha256": "18c77d0692d2e378c7fdc945eb91c38038e0cd81b74c942282e5b93ebf1b9019",
-      "size_bytes": 174559
+      "sha256": "49a71b2b1dc173ff429546fd5366e994cdcba4f207453f8e7e2eddf419dbe4f9",
+      "size_bytes": 175405
     },
     {
-      "label": "Commune statistics — annual 1981–2024 (CSV)",
+      "label": "Commune statistics — annual 1981–2025 (CSV)",
       "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin2_v1.0.0.csv",
       "kind": "download",
       "format": "CSV",
       "requires_login": false,
       "notes": "1,541 communes; see support class in the summary table",
-      "sha256": "10d78e98122801d8958234d590e110ee012222a96e47e989b36a62ab498e8655",
-      "size_bytes": 4127754
+      "sha256": "2478b6de9bec1e7ab80635ca5100650dc86c3fc201f6cb1b42a6545c3e01ec7f",
+      "size_bytes": 4152532
     },
     {
-      "label": "Commune statistics — monthly 1981-01 to 2025-02 (Parquet)",
+      "label": "Commune statistics — monthly 1981-01 to 2026-10 (Parquet)",
       "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin2_v1.0.0.parquet",
       "kind": "download",
       "format": "Parquet",
       "requires_login": false,
       "notes": "1,541 communes × all months",
-      "sha256": "e31cb34ee8f69dfafb81b4820e37ea9f5111de19aa88100c0e9552ecd48b36fc",
-      "size_bytes": 2788677
+      "sha256": "6e603ff84aa0d7a57d3a9ce4b7f3627db85a56aac8ad0b8684d961b8726e3529",
+      "size_bytes": 2881504
     },
     {
       "label": "Wilaya summary — normal, trend, support (CSV)",
@@ -193,8 +193,8 @@
       "format": "CSV",
       "requires_login": false,
       "notes": "Theil–Sen slope with 95 % interval, Mann–Kendall p",
-      "sha256": "6d6faa727393673a20adb5f9f86266a150f0bc005bf56f3df0f1ea1c43675c79",
-      "size_bytes": 9086
+      "sha256": "959ef90de26beede5f38bfa86a422946c18a6be087a0c96eff6a6cdae1983061",
+      "size_bytes": 9012
     },
     {
       "label": "CHIRPS v3.0 data server (source)",

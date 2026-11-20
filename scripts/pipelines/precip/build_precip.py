@@ -32,6 +32,7 @@ import shutil
 import sys
 import unicodedata
 from datetime import date
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import geopandas as gpd
@@ -395,7 +396,8 @@ def main() -> None:
         "product_id": PRODUCT_ID, "version": VERSION, "created": date.today().isoformat(),
         "source": {"name": "CHIRPS v3.0 final monthly, global COG", "base_url": index["source"], "retrieved": index["retrieved"],
                    "window": index["window"], "files": len(source_files),
-                   "last_modified_range": [min((f["last_modified"] or "") for f in source_files), max((f["last_modified"] or "") for f in source_files)]},
+                   "last_modified_range": (lambda ds: [min(ds).isoformat(), max(ds).isoformat()] if ds else None)(
+                       [parsedate_to_datetime(f["last_modified"]) for f in source_files if f.get("last_modified")])},
         "boundaries": f"/data/aeo/boundaries/{BOUNDARY_VERSION}/ (aeo-dza-admin-boundaries)",
         "qc": qc,
         "supersample": 10,
