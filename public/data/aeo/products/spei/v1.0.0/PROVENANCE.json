@@ -1,0 +1,23 @@
+{
+ "product_id": "aeo-dza-spei-terraclimate",
+ "version": "1.0.0",
+ "created": "2026-11-20",
+ "source": {
+  "name": "TerraClimate",
+  "base": "http://thredds.northwestknowledge.net:8080/thredds/dodsC/TERRACLIMATE_ALL/data/TerraClimate_{var}_{year}.nc",
+  "retrieved": "2026-11-20",
+  "files": 130,
+  "box": "9W-12.5E, 18.5N-37.5N"
+ },
+ "boundaries": "/data/aeo/boundaries/2026-11-20/",
+ "qc": [
+  "Monthly P and PET 1961-01 to 2025-12 (780 months, 65 complete years)",
+  "P within [0, 1299] mm/month, PET within [0, 430] mm/month",
+  "Same valid-cell mask for P and PET in every month",
+  "Weights: Algeria 2,313,262 km²; 0 commune(s) below one sub-cell use a representative-point cell",
+  "SPEI computed for 1611 units at scales (1, 3, 6, 12); reference 1991-2020",
+  "16 wilayas and 121 communes flagged hyper-arid (normal P < 100 mm/year)",
+  "Grid SPEI-3/12 for 192807 cells; 140168 hyper-arid cells (normal P < 50 mm) masked on maps"
+ ],
+ "validation": "Python implementation (scripts/pipelines/aeo/spei.py) reproduces the R package SPEI 1.8.1 (log-Logistic, ub-pwm, ref.start/ref.end) to 1e-13 on synthetic series, except values beyond ±3.09 which AEO clips (tests/validation/spei_vs_r)."
+}

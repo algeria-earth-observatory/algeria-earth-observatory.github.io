@@ -1,0 +1,168 @@
+{
+ "product_id": "aeo-dza-spei-terraclimate",
+ "title": "Algeria Drought Index SPEI (TerraClimate): SPEI-1, 3, 6, 12 for Algeria, wilayas and communes",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1",
+  "admin2"
+ ],
+ "spatial_products_levels": [
+  "admin0"
+ ],
+ "boundary_version": "2026-11-20",
+ "source_product": "TerraClimate monthly precipitation and reference evapotranspiration (University of Idaho / Climatology Lab)",
+ "source_version": "TerraClimate 1961–2025 (retrieved 2026-11-20)",
+ "source_doi": "10.1038/sdata.2017.191",
+ "source_license": "CC0 1.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "monthly": [
+   "1961-01",
+   "2025-12"
+  ],
+  "annual": [
+   1961,
+   2025
+  ]
+ },
+ "reference_period": [
+  1991,
+  2020
+ ],
+ "scales": [
+  1,
+  3,
+  6,
+  12
+ ],
+ "spatial_resolution": "1/30° (≈3.7 km); statistics are computed on area-weighted unit water balances",
+ "crs": "EPSG:4326",
+ "units": "SPEI (dimensionless, standard normal)",
+ "formats": [
+  "COG",
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/spei/",
+ "methodology_url": "/docs/method-spei/",
+ "created": "2026-11-20",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei12_december_1961_2025_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "title": "SPEI-12 in December 1961–2025, Algeria (one band per year)",
+   "bytes": 11037779,
+   "sha256": "e62fc9c5ea2adae2be53fe2b1c68369699397369bf1ec4e364f44f25062d9447"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei3_last12_2025-01_2025-12_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "title": "SPEI-3, last 12 months, Algeria",
+   "bytes": 2211845,
+   "sha256": "3638b1d8ea9afbd32758526ef36278a7c1630268b684ddb38cd2641ac2194b33"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei12_last12_2025-01_2025-12_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "title": "SPEI-12, last 12 months, Algeria",
+   "bytes": 1785042,
+   "sha256": "87619ce8b556ccbcb5c79c2ff2d3e28c7636ae2caa4f578d5d33c046ee4bba42"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_precip_normal_terraclimate_1991_2020_v1.0.0.tif",
+   "role": "data",
+   "format": "COG",
+   "level": "admin0",
+   "title": "TerraClimate normal annual precipitation 1991–2020 (hyper-arid mask)",
+   "bytes": 117931,
+   "sha256": "e98a2f549ad6335f7e127873454c2dfc4b25ff2403c6b4142e409a7c03738e7e"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin0_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin0",
+   "title": "Monthly SPEI statistics, admin0",
+   "bytes": 47565,
+   "sha256": "6ee3b1581c27eab25d63987649581133ea644dec3f421ae548d2a13ced252ef3"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin0_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin0",
+   "title": "Monthly SPEI statistics, admin0",
+   "bytes": 34272,
+   "sha256": "b12b956faec383c73b35f8f7ebf7a8d256a2336c92731057c472dba7d21cdc42"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin1_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin1",
+   "title": "Monthly SPEI statistics, admin1",
+   "bytes": 3379817,
+   "sha256": "b7bb1d834de9317f0c42b879d3f2e88c8d19793101e5a798eaa089346f56c61c"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin1_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin1",
+   "title": "Monthly SPEI statistics, admin1",
+   "bytes": 739643,
+   "sha256": "bb7dad4a4d3b427f0be56c6adad2d7fc4cec2a06bb1f59115312ba236bddf325"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin2_v1.0.0.parquet",
+   "role": "statistics",
+   "format": "PARQUET",
+   "level": "admin2",
+   "title": "Monthly SPEI statistics, admin2",
+   "bytes": 13733610,
+   "sha256": "ece3e599ba94540eb5b7257b121673ace6b0077a1fdacb6ba88bda64b0cbb40c"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_summary_admin0_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin0",
+   "title": "Summary SPEI statistics, admin0",
+   "bytes": 305,
+   "sha256": "30c4eba7532a37c97792e74e81703293c8e761e90a07b2f194cb06f40db69dd3"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_summary_admin1_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin1",
+   "title": "Summary SPEI statistics, admin1",
+   "bytes": 6936,
+   "sha256": "74df4a7dcb62e632eb7ab447da8e061ce6d8042dbb19f7dbe436be0d062980c9"
+  },
+  {
+   "href": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_summary_admin2_v1.0.0.csv",
+   "role": "statistics",
+   "format": "CSV",
+   "level": "admin2",
+   "title": "Summary SPEI statistics, admin2",
+   "bytes": 155804,
+   "sha256": "44716c713a4c27a93d830f08a73cc55ca93d9a360b47c9814837e80d1a738c5d"
+  }
+ ],
+ "web_assets": {
+  "admin0": "/data/aeo/products/spei/v1.0.0/web/admin0.json",
+  "admin1": "/data/aeo/products/spei/v1.0.0/web/admin1.json",
+  "admin2": "/data/aeo/products/spei/v1.0.0/web/admin2/{wilaya_code}.json",
+  "map": "/data/aeo/products/spei/v1.0.0/map/map.json"
+ }
+}

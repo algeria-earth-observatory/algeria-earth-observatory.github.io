@@ -4,22 +4,32 @@ export const STATUS: Record<Dataset['status'], { label: string; help: string; cl
   available: {
     label: 'Available',
     help: 'Distributed by AEO with a direct download, version and checksum.',
-    cls: 'bg-[#e3f4ee] text-[#0b5d45] border-[#9fd6c2]',
+    cls: 'bg-[#0d2a24] text-[#5be0b3] border-[#1d5c4b]',
   },
   external: {
     label: 'External source',
     help: 'Held by the original provider. AEO documents it and links to the source; it does not host the files.',
-    cls: 'bg-[#e8f1fa] text-[#124f87] border-[#a9c9ea]',
+    cls: 'bg-[#0d2238] text-[#8cc3ff] border-[#24486f]',
+  },
+  experimental: {
+    label: 'Experimental',
+    help: 'An AEO product released for testing. Files are real, but the method may change and validation is incomplete.',
+    cls: 'bg-[#2c1c0c] text-[#f5b56b] border-[#6b4419]',
+  },
+  'under-validation': {
+    label: 'Under validation',
+    help: 'An AEO product whose method is fixed and whose validation is in progress.',
+    cls: 'bg-[#1d1838] text-[#b9a8ff] border-[#3d3478]',
   },
   'in-preparation': {
-    label: 'In preparation',
+    label: 'Planned',
     help: 'A planned AEO product. No data are released until scientific review is complete.',
-    cls: 'bg-sand-100 text-[#6b5228] border-sand',
+    cls: 'bg-sand-100 text-sand border-sand/40',
   },
   archived: {
-    label: 'Archived',
+    label: 'Deprecated',
     help: 'Kept for reference; superseded or no longer maintained.',
-    cls: 'bg-[#eef0f2] text-[#4a5a66] border-[#cfd6dc]',
+    cls: 'bg-[#141c28] text-[#8fa3b6] border-[#2b3f5c]',
   },
 };
 

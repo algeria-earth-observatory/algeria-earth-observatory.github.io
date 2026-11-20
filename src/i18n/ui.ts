@@ -24,7 +24,7 @@ export const ui = {
     'nav.about': 'About',
     'status.available': 'Available',
     'status.external': 'External source',
-    'status.in-preparation': 'In preparation',
+    'status.in-preparation': 'Planned',
     'status.archived': 'Archived',
     'action.access': 'Access at source',
     'action.download': 'Download',

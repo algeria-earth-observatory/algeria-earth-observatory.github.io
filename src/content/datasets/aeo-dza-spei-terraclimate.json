@@ -1,0 +1,222 @@
+{
+  "id": "aeo-dza-spei-terraclimate",
+  "title": "Algeria Drought Index SPEI (TerraClimate), 1961–2025: national, wilaya and commune",
+  "title_fr": "Indice de sécheresse SPEI pour l'Algérie (TerraClimate)",
+  "description": "Standardised Precipitation–Evapotranspiration Index at 1, 3, 6 and 12 months, monthly 1961-01 to 2025-12, for Algeria, its 69 wilayas and 1,541 communes, plus SPEI-3 and SPEI-12 maps at 1/30°. Computed by AEO from TerraClimate precipitation and Penman–Monteith reference evapotranspiration, calibrated on 1991–2020.",
+  "purpose": "Monitor meteorological and agricultural drought in Algeria, including the effect of evaporative demand that rainfall-only indices miss.",
+  "domain": [
+    "climate-drought",
+    "agriculture",
+    "water"
+  ],
+  "categories": [
+    "Drought indices",
+    "Climate indicators"
+  ],
+  "keywords": [
+    "SPEI",
+    "drought",
+    "water balance",
+    "evapotranspiration",
+    "TerraClimate",
+    "wilaya",
+    "commune",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Climatology Lab, University of California Merced / University of Idaho (TerraClimate); Algeria Earth Observatory (SPEI computation)",
+    "url": "https://www.climatologylab.org/terraclimate.html"
+  },
+  "creator": "Algeria Earth Observatory maintainers (SPEI computation); Abatzoglou et al. (TerraClimate)",
+  "source_url": "http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html",
+  "documentation_url": "https://doi.org/10.1038/sdata.2017.191",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "TerraClimate is released under CC0 (public domain). AEO SPEI outputs are CC BY 4.0: cite AEO, TerraClimate and the SPEI method.",
+  "citation": "Algeria Earth Observatory (2026). Algeria Drought Index SPEI (TerraClimate), version 1.0.0. https://algeria-earth-observatory.github.io/data/aeo-dza-spei-terraclimate/ — from Abatzoglou, J.T. et al. (2018), TerraClimate, Sci Data 5, 170191, doi:10.1038/sdata.2017.191; method: Vicente-Serrano, S.M. et al. (2010), J. Climate 23, 1696–1718, doi:10.1175/2009JCLI2909.1.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Abatzoglou, J.T., Dobrowski, S.Z., Parks, S.A. & Hegewisch, K.C. (2018). TerraClimate. Scientific Data 5, 170191.",
+      "doi": "10.1038/sdata.2017.191"
+    },
+    {
+      "citation": "Vicente-Serrano, S.M., Beguería, S. & López-Moreno, J.I. (2010). A multiscalar drought index sensitive to global warming: the SPEI. Journal of Climate 23, 1696–1718.",
+      "doi": "10.1175/2009JCLI2909.1"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Algeria (AEO boundaries 2026-11-20): 1 country, 69 wilayas, 1,541 communes; maps at 1/30°.",
+    "algeria_subset": "native",
+    "bbox": [
+      -9.0,
+      18.5,
+      12.5,
+      37.5
+    ]
+  },
+  "temporal_extent": {
+    "start": "1961-01-01",
+    "end": "2025-12-31",
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "Monthly 1961-01 to 2025-12; updated yearly when TerraClimate adds a year. Calibration 1991–2020."
+  },
+  "resolution": {
+    "spatial": "1/30° (≈3.7 km) maps; statistics per administrative unit",
+    "spatial_m": 3700,
+    "temporal": "monthly"
+  },
+  "format": [
+    "Cloud Optimized GeoTIFF",
+    "CSV",
+    "Parquet",
+    "JSON"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "spei_1, spei_3, spei_6, spei_12",
+      "units": null,
+      "description": "SPEI for 1-, 3-, 6- and 12-month water balances (standard normal; ≤ −1 dry, ≤ −1.5 severe, ≤ −2 extreme)"
+    },
+    {
+      "name": "p_mm, pet_mm, d_mm",
+      "units": "mm/month",
+      "description": "Area-weighted precipitation, reference evapotranspiration and water balance P − PET"
+    },
+    {
+      "name": "hyper_arid",
+      "units": null,
+      "description": "Normal annual precipitation 1991–2020 below 100 mm: SPEI reflects evaporative-demand anomalies only"
+    }
+  ],
+  "processing": "TerraClimate monthly P and PET read over OPeNDAP for the Algeria window; QC; area-weighted unit means with nested commune weights; SPEI on unit water balances (log-logistic, unbiased PWM, fitted per calendar month on 1991–2020, clipped at ±3.09); grid SPEI-3/12 for maps; exports with SHA-256 manifest. Method: /docs/method-spei/.",
+  "validation": "SPEI code reproduces the R package SPEI 1.8.1 to 1e-13 (synthetic series; differences only beyond the ±3.09 clip). Automated tests: standardisation over 1991–2020 (mean ≈ 0, sd ≈ 1 for every wilaya and scale), completeness, water balance = P − PET, checksums. No independent comparison with Algerian station-based indices yet.",
+  "limitations": [
+    "TerraClimate is an interpolated climate product (WorldClim climatology + reanalysis anomalies); station density in Algeria is low, especially in the south.",
+    "In hyper-arid areas (normal P < 100 mm/year: much of the Sahara) SPEI is driven by evaporative demand only and does not indicate water-supply drought; these units are flagged and masked on maps.",
+    "With a fixed 1991–2020 calibration and rising evaporative demand, recent years tend to be drier and early decades wetter: SPEI includes the warming signal by design.",
+    "The national SPEI is dominated by the large Saharan wilayas and is not representative of the agricultural north; use wilaya or commune series.",
+    "Values beyond ±3.09 are clipped."
+  ],
+  "alert": null,
+  "version": "1.0.0",
+  "published_date": "2026-11-20",
+  "updated_date": "2026-11-20",
+  "download_url": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei12_december_1961_2025_v1.0.0.tif",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Algeria — SPEI-12 in December, 1961–2025 (GeoTIFF, one band per year)",
+      "url": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei12_december_1961_2025_v1.0.0.tif",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "int16 × 0.01; 1/30°; EPSG:4326",
+      "sha256": "e62fc9c5ea2adae2be53fe2b1c68369699397369bf1ec4e364f44f25062d9447",
+      "size_bytes": 11037779
+    },
+    {
+      "label": "Algeria — SPEI-3, last 12 months (GeoTIFF)",
+      "url": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei3_last12_2025-01_2025-12_v1.0.0.tif",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "int16 × 0.01",
+      "sha256": "3638b1d8ea9afbd32758526ef36278a7c1630268b684ddb38cd2641ac2194b33",
+      "size_bytes": 2211845
+    },
+    {
+      "label": "Algeria — SPEI-12, last 12 months (GeoTIFF)",
+      "url": "/data/aeo/products/spei/v1.0.0/raster/aeo_dza_spei12_last12_2025-01_2025-12_v1.0.0.tif",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "int16 × 0.01",
+      "sha256": "87619ce8b556ccbcb5c79c2ff2d3e28c7636ae2caa4f578d5d33c046ee4bba42",
+      "size_bytes": 1785042
+    },
+    {
+      "label": "Wilaya SPEI-1/3/6/12 and water balance, monthly 1961-01–2025-12 (CSV)",
+      "url": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "69 wilayas",
+      "sha256": "b7bb1d834de9317f0c42b879d3f2e88c8d19793101e5a798eaa089346f56c61c",
+      "size_bytes": 3379817
+    },
+    {
+      "label": "Commune SPEI-1/3/6/12 and water balance, monthly 1961-01–2025-12 (Parquet)",
+      "url": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin2_v1.0.0.parquet",
+      "kind": "download",
+      "format": "Parquet",
+      "requires_login": false,
+      "notes": "1,541 communes",
+      "sha256": "ece3e599ba94540eb5b7257b121673ace6b0077a1fdacb6ba88bda64b0cbb40c",
+      "size_bytes": 13733610
+    },
+    {
+      "label": "Wilaya summary — latest SPEI, recent drought frequency, worst drought (CSV)",
+      "url": "/data/aeo/products/spei/v1.0.0/tables/aeo_spei_summary_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "Includes the hyper-arid flag",
+      "sha256": "74df4a7dcb62e632eb7ab447da8e061ce6d8042dbb19f7dbe436be0d062980c9",
+      "size_bytes": 6936
+    },
+    {
+      "label": "TerraClimate data server (source)",
+      "url": "http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html",
+      "kind": "external",
+      "format": "NetCDF (OPeNDAP)",
+      "requires_login": false,
+      "notes": "Global yearly files by variable."
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/spei",
+  "algeria_notes": "For rainfed cereals, SPEI-3 at the end of winter and spring and SPEI-6 for the agricultural year are the most informative; SPEI-12 summarises annual water balance and multi-year droughts such as 2020–2024.",
+  "map_layers": [
+    "spei-3",
+    "spei-12"
+  ],
+  "featured": true,
+  "added_date": "2026-11-20",
+  "verification": {
+    "checked": "2026-11-20",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html",
+      "https://www.climatologylab.org/terraclimate.html"
+    ],
+    "notes": "Resolution checked from the files (1/30°). Product files verified by checksum at build."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/spei/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1",
+      "admin2"
+    ],
+    "spatial_levels": [
+      "admin0"
+    ],
+    "variables": [
+      "spei"
+    ],
+    "analyze": true
+  }
+}

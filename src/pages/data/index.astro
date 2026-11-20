@@ -1,109 +1,69 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import DatasetCard from '../../components/DatasetCard.astro';
+import Badges from '../../components/Badges.astro';
 import { getDatasets } from '../../lib/catalog';
-import { DOMAINS } from '../../lib/domains';
-import {
-  RES_BUCKETS, PERIOD_BUCKETS, COVERAGE, NATURE, STATUS, formatFamilies, accessMode, resolutionBucket, periodBuckets,
-} from '../../lib/format';
-import { issueUrl } from '../../config/site';
+import { domainById } from '../../lib/domains';
+import { period, fmtDate } from '../../lib/format';
 
 const all = await getDatasets();
-const count = (fn: (d: (typeof all)[number]) => boolean) => all.filter(fn).length;
-
-const providers = [...new Set(all.map((d) => d.provider?.name).filter(Boolean) as string[])].sort();
-const formats = [...new Set(all.flatMap(formatFamilies))].sort();
-
-type Facet = { key: string; label: string; options: { value: string; label: string; n: number }[] };
-const facets: Facet[] = [
-  { key: 'domain', label: 'Scientific domain', options: DOMAINS.map((x) => ({ value: x.id, label: x.title, n: count((d) => d.domain.includes(x.id)) })) },
-  { key: 'status', label: 'Status', options: (Object.keys(STATUS) as (keyof typeof STATUS)[]).map((k) => ({ value: k, label: STATUS[k].label, n: count((d) => d.status === k) })) },
-  { key: 'access', label: 'Access', options: [
-    { value: 'direct', label: 'Direct download', n: count((d) => accessMode(d) === 'direct') },
-    { value: 'external', label: 'Access at source (portal / login)', n: count((d) => accessMode(d) === 'external') },
-  ] },
-  { key: 'nature', label: 'Data nature', options: (Object.keys(NATURE) as (keyof typeof NATURE)[]).map((k) => ({ value: k, label: NATURE[k].label, n: count((d) => d.data_nature === k) })) },
-  { key: 'res', label: 'Spatial resolution', options: RES_BUCKETS.map((b) => ({ value: b, label: b, n: count((d) => resolutionBucket(d) === b) })) },
-  { key: 'period', label: 'Temporal period', options: PERIOD_BUCKETS.map((b) => ({ value: b, label: b, n: count((d) => periodBuckets(d).includes(b)) })) },
-  { key: 'coverage', label: 'Geographic coverage', options: Object.entries(COVERAGE).map(([k, v]) => ({ value: k, label: v, n: count((d) => d.spatial_extent?.coverage === k) })) },
-  { key: 'format', label: 'File format', options: formats.map((f) => ({ value: f, label: f, n: count((d) => formatFamilies(d).includes(f)) })) },
-  { key: 'provider', label: 'Data source', options: providers.map((p) => ({ value: p, label: p, n: count((d) => d.provider?.name === p) })) },
-];
+const products = all.filter((d) => d.origin !== 'external' && d.status !== 'in-preparation');
+const planned = all.filter((d) => d.status === 'in-preparation');
+const nSources = all.filter((d) => d.origin === 'external').length;
+const LEVEL: Record<string, string> = { admin0: 'Algeria', admin1: '69 wilayas', admin2: '1,541 communes' };
+const shortSource = (name = '') => { const m = name.match(/\(([^)]*)\)/); return m && !/source|processing/i.test(m[1]) ? m[1] : name.split('(')[0].split(';')[0].trim(); };
 ---
-<Base title="Data catalog" description="Search and filter documented Earth observation and environmental datasets for Algeria: source, licence, coverage, resolution, limitations and access.">
-  <PageHeader
-    eyebrow="Data catalog"
-    title="Find environmental data for Algeria"
-    lead="Each record documents the original source, licence, coverage, resolution, scientific limitations and how to access the data. Most datasets are global products held by their providers: AEO links to the source and states when you must extract the Algeria subset yourself."
-  />
-
-  <div class="container-aeo py-8 lg:py-10">
-    <div class="lg:grid lg:grid-cols-[17rem_1fr] lg:gap-10">
-      <!-- Filters -->
-      <aside aria-labelledby="filters-title" class="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-2">
-        <div class="flex items-center justify-between">
-          <h2 id="filters-title" class="text-base font-semibold">Filters</h2>
-          <button type="button" id="f-reset" class="text-sm text-signal hover:underline">Clear all</button>
-        </div>
-        <button type="button" id="f-toggle" class="mt-3 w-full rounded border border-line px-3 py-2 text-left text-sm font-medium text-atlas lg:hidden" aria-expanded="false" aria-controls="f-panel">Show filters</button>
-        <form id="f-panel" class="mt-3 hidden space-y-5 lg:block" onsubmit="return false">
-          {facets.map((f) => (
-            <fieldset class="border-t border-line pt-4">
-              <legend class="meta mb-2 uppercase tracking-wider">{f.label}</legend>
-              <div class:list={['space-y-1.5', f.key === 'provider' && 'max-h-56 overflow-y-auto pr-1']}>
-                {f.options.map((o) => (
-                  <label class="flex cursor-pointer items-start gap-2 text-[0.88rem] leading-snug text-graphite">
-                    <input type="checkbox" name={f.key} value={o.value} class="mt-0.5 h-4 w-4 shrink-0 accent-[#176BBA]" />
-                    <span class="flex-1">{o.label}</span>
-                    <span class="meta" data-facet-count={`${f.key}::${o.value}`}>{o.n}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-          ))}
-        </form>
-      </aside>
-
-      <!-- Results -->
-      <section aria-labelledby="results-title" class="mt-8 lg:mt-0">
-        <h2 id="results-title" class="sr-only">Results</h2>
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div class="flex-1">
-            <label for="q" class="meta uppercase tracking-wider">Search</label>
-            <input id="q" type="search" autocomplete="off" placeholder="e.g. cropland, SPEI, Sentinel-2, soil moisture"
-              class="mt-1 w-full rounded-md border border-[#b9c7d1] bg-white px-3.5 py-2.5 text-[0.95rem] focus:border-signal focus:outline-none" />
-          </div>
-          <div>
-            <label for="sort" class="meta uppercase tracking-wider">Sort by</label>
-            <select id="sort" class="mt-1 block w-full rounded-md border border-[#b9c7d1] bg-white px-3 py-2.5 text-[0.95rem] sm:w-60">
-              <option value="relevance">Default (published first)</option>
-              <option value="name">Name (A–Z)</option>
-              <option value="published">Publication date (newest)</option>
-              <option value="updated">Recently updated</option>
-            </select>
-          </div>
-        </div>
-        <p class="mt-4 text-sm text-slate" aria-live="polite" id="result-count">Showing {all.length} of {all.length} records</p>
-
-        <div id="results" class="mt-4 grid gap-4 md:grid-cols-2">
-          {all.map((d) => <DatasetCard d={d} />)}
-        </div>
-        <div id="no-results" class="mt-6 hidden rounded-md border border-dashed border-[#b9c7d1] p-6 text-center text-slate">
-          <p class="font-medium text-atlas">No records match these filters.</p>
-          <p class="mt-1 text-sm">Clear a filter, or <a href={issueUrl('dataset-proposal.yml')}>propose a dataset</a> that should be here.</p>
-        </div>
-
-        <div class="mt-10 grid gap-4 rounded-md bg-paper p-5 text-sm text-slate sm:grid-cols-2">
-          <p><strong class="text-atlas">Geographic browsing.</strong> Every current record covers the whole of Algeria. Wilaya-level subsetting and downloads are planned; use the <a href="/map/">map explorer</a> to locate wilayas and inspect layers.</p>
-          <p><strong class="text-atlas">Machine-readable.</strong> The full catalog is available as <a href="/catalog.json">JSON</a> and as a static <a href="/stac/catalog.json">STAC catalog</a>. Each record also has its own JSON and STAC file.</p>
-        </div>
-      </section>
+<Base title="Data" description="Algeria-ready environmental data products: precipitation, drought index SPEI, administrative boundaries and more — prepared for Algeria, its wilayas and communes, with checksums and reproducible code.">
+  <section class="eo-grid border-b border-line bg-paper">
+    <div class="container-aeo py-12">
+      <p class="eo-readout"><span class="eo-dot mr-2 align-middle"></span>Algeria-ready data</p>
+      <h1 class="mt-3 text-[2.2rem] font-semibold leading-tight text-atlas">Prepared for Algeria. Ready to download.</h1>
+      <p class="mt-3 max-w-3xl text-graphite">Every product below is processed by AEO for Algeria and its administrative units: national grids, wilaya subsets and commune statistics, each with a version, checksums, provenance and the code that produced it.</p>
+      <div class="mt-6 flex flex-wrap gap-3 text-[0.9rem]">
+        <a href="/analyze/" class="btn btn-primary">Analyze</a>
+        <a href="/map/" class="btn btn-secondary">Open the map</a>
+        <a href="/data/sources/" class="btn btn-secondary">Source library ({nSources})</a>
+      </div>
     </div>
-  </div>
-</Base>
+  </section>
 
-<script>
-  import { initCatalog } from '../../scripts/catalog';
-  initCatalog();
-</script>
+  <section class="container-aeo py-10" aria-labelledby="p-h">
+    <h2 id="p-h" class="sr-only">Products</h2>
+    <div class="grid gap-5 lg:grid-cols-2">
+      {products.map((d) => (
+        <article class="card eo-tick relative flex flex-col p-6">
+          <div class="flex items-start justify-between gap-3">
+            <Badges d={d} />
+            <span class="eo-readout">{d.domain.map((x) => domainById(x)?.short).join(' · ')}</span>
+          </div>
+          <h3 class="mt-3 text-xl font-semibold leading-snug"><a href={`/data/${d.id}/`} class="text-atlas no-underline hover:text-signal">{d.title}</a></h3>
+          <p class="mt-2 text-[0.93rem] text-graphite">{d.description}</p>
+          <dl class="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-line pt-4 font-mono text-[0.78rem] sm:grid-cols-4">
+            <div><dt class="text-slate">SOURCE</dt><dd class="text-atlas">{shortSource(d.provider?.name)}</dd></div>
+            <div><dt class="text-slate">RESOLUTION</dt><dd class="text-atlas">{d.resolution?.spatial?.split(';')[0] ?? '—'}</dd></div>
+            <div><dt class="text-slate">PERIOD</dt><dd class="text-atlas">{period(d)}</dd></div>
+            <div><dt class="text-slate">VERSION</dt><dd class="text-atlas">{d.product?.product_version ?? d.version}</dd></div>
+            <div class="col-span-2"><dt class="text-slate">LEVELS</dt><dd class="text-atlas">{d.product ? d.product.levels.map((l) => LEVEL[l]).join(' · ') : 'Algeria · wilayas · communes'}</dd></div>
+            <div class="col-span-2"><dt class="text-slate">FORMATS</dt><dd class="text-atlas">{d.format.join(' · ')}</dd></div>
+          </dl>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <a href={`/data/${d.id}/#access`} class="btn btn-primary !py-2 text-[0.88rem]">Download</a>
+            {d.product?.analyze && <a href={`/analyze/?var=${d.product.variables.includes('spei') ? 'spei' : 'precip'}`} class="btn btn-secondary !py-2 text-[0.88rem]">Analyze</a>}
+            {d.map_layers.length > 0 && <a href={`/map/?layers=${d.map_layers[0]}`} class="btn btn-secondary !py-2 text-[0.88rem]">Map</a>}
+          </div>
+          <p class="meta mt-3">Updated {fmtDate(d.updated_date ?? d.published_date)}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-paper" aria-labelledby="pl-h">
+    <div class="container-aeo py-10">
+      <h2 id="pl-h" class="text-xl font-semibold text-atlas">Planned products</h2>
+      <p class="mt-1 text-[0.92rem] text-slate">Announced, not released: no data exist for these yet.</p>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {planned.map((d) => <li class="card p-4"><a href={`/data/${d.id}/`} class="font-medium">{d.title}</a><p class="mt-1 text-[0.85rem] text-slate">{d.description.split('. ')[0]}.</p></li>)}
+      </ul>
+      <p class="mt-6 text-[0.92rem]"><a href="/data/sources/">Source library →</a> <span class="text-slate">{nSources} upstream datasets documented with licence, coverage and limitations.</span></p>
+    </div>
+  </section>
+</Base>

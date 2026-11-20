@@ -1,0 +1,104 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PrecipSummary from '../../../components/PrecipSummary.astro';
+import SpeiSummary from '../../../components/SpeiSummary.astro';
+import { loadRegions, wilayaOrigin, fmtNum, fmtSigned, BOUNDARY_VERSION, type Wilaya, type Commune } from '../../../lib/regions-data';
+import manifest from '../../../../public/data/aeo/products/precipitation/v1.0.0/manifest.json';
+
+export function getStaticPaths() {
+  const { wilayas, communes } = loadRegions();
+  return wilayas.map((w) => ({ params: { wilaya: w.code }, props: { w, communes: communes.filter((c) => c.wilaya_code === w.code) } }));
+}
+const { w, communes } = Astro.props as { w: Wilaya; communes: Commune[] };
+const cog = (manifest.download_assets as any[]).find((a) => a.level === 'admin1' && a.unit_code === w.code);
+const mb = (b: number) => `${(b / 1e6).toFixed(1)} MB`;
+const kb = (b: number) => (b > 1e6 ? mb(b) : `${Math.round(b / 1e3)} kB`);
+const rows = communes.map((c) => ({ code: c.code, name: c.name, name_ar: c.name_ar, area_km2: c.area_km2, normal_1991_2020_mm: c.precip?.normal ?? null,
+  trend_mm_per_decade: c.precip?.trend.slope_mm_per_decade ?? null, trend_mk_p: c.precip?.trend.mk_p ?? null, statistical_support: c.precip?.support ?? null }));
+---
+<Base title={`${w.name} (wilaya ${w.code})`} description={`Environmental profile of the wilaya of ${w.name}, Algeria: area, communes and precipitation statistics (normal, anomalies, trend) from the Algeria Earth Observatory.`}>
+  <div class="container-aeo py-8">
+    <nav aria-label="Breadcrumb" class="text-[0.85rem] text-slate"><a href="/regions/">Algeria</a> <span aria-hidden="true">›</span> <span aria-current="page">{w.name}</span></nav>
+    <header class="mt-3 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">Wilaya {w.code}</p>
+        <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{w.name} <span lang="ar" dir="rtl" class="ml-2 text-[1.6rem] font-normal text-slate">{w.name_ar}</span></h1>
+      </div>
+      <a class="btn btn-primary" href={`/analyze/?level=admin1&unit=${w.code}`}>Analyze this wilaya</a>
+    </header>
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
+      <div class="min-w-0 space-y-8">
+        <PrecipSummary stats={w.precip} areaLabel={`wilaya of ${w.name}`} analyzeHref={`/analyze/?level=admin1&unit=${w.code}`} level="admin1" />
+        <SpeiSummary level="admin1" code={w.code} label={`wilaya of ${w.name}`} analyzeHref={`/analyze/?level=admin1&unit=${w.code}&var=spei&scale=12`} />
+
+        <section aria-labelledby="ind-h" class="rounded-md border border-line bg-surface p-5">
+          <h2 id="ind-h" class="text-lg font-semibold text-atlas">Other indicators</h2>
+          <ul class="mt-2 space-y-1.5 text-[0.9rem] text-graphite">
+            <li><strong>Cropland 2000–2024:</strong> map display only (GACED30 year slider in the <a href="/map/?layers=gaced30-cropland">map explorer</a>); wilaya statistics not yet computed.</li>
+            <li><strong>Temperature, vegetation condition, surface water:</strong> not yet processed by AEO for wilayas.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="com-h">
+          <div class="flex flex-wrap items-end justify-between gap-3">
+            <h2 id="com-h" class="text-lg font-semibold text-atlas">{communes.length} communes</h2>
+            <button type="button" id="dl-communes" class="btn btn-secondary !py-1.5 text-[0.85rem]">Download this table (CSV)</button>
+          </div>
+          <div class="mt-3 overflow-x-auto rounded-md border border-line bg-surface">
+            <table class="w-full text-left text-[0.88rem]">
+              <thead class="bg-paper text-[0.78rem] uppercase tracking-wide text-slate"><tr><th class="px-3 py-2">ONS code</th><th class="px-3 py-2">Commune</th><th class="px-3 py-2" lang="ar">الاسم</th><th class="px-3 py-2 text-right">Area (km²)</th><th class="px-3 py-2 text-right">Normal (mm)</th><th class="px-3 py-2 text-right">Trend (mm/decade)</th><th class="px-3 py-2">Support</th></tr></thead>
+              <tbody>
+                {communes.map((c) => (
+                  <tr class="border-t border-line">
+                    <td class="px-3 py-1.5 font-mono">{c.code}</td>
+                    <td class="px-3 py-1.5"><a href={`/regions/${w.code}/${c.code}/`}>{c.name}</a></td>
+                    <td class="px-3 py-1.5" lang="ar" dir="rtl">{c.name_ar}</td>
+                    <td class="px-3 py-1.5 text-right">{fmtNum(c.area_km2, 1)}</td>
+                    <td class="px-3 py-1.5 text-right">{fmtNum(c.precip?.normal)}</td>
+                    <td class="px-3 py-1.5 text-right">{fmtSigned(c.precip?.trend.slope_mm_per_decade, 1)}{c.precip?.trend.mk_p != null && c.precip.trend.mk_p < 0.05 ? ' *' : ''}</td>
+                    <td class="px-3 py-1.5 text-[0.8rem] text-slate">{c.precip?.support ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-2 text-[0.8rem] text-slate">* Mann–Kendall p &lt; 0.05. Support = how many ≈5.5 km CHIRPS cells cover the commune (adequate ≥ 4, limited 1–4, very limited &lt; 1).</p>
+          <script type="application/json" id="commune-rows" set:html={JSON.stringify(rows)} />
+        </section>
+      </div>
+
+      <aside class="space-y-6">
+        <section class="rounded-md border border-line bg-surface p-4 text-[0.88rem]">
+          <h2 class="font-semibold text-atlas">Facts</h2>
+          <dl class="mt-2 space-y-2">
+            <div><dt class="text-slate text-[0.78rem]">Code (2026)</dt><dd class="font-mono">{w.code}</dd></div>
+            {w.iso && <div><dt class="text-slate text-[0.78rem]">ISO 3166-2</dt><dd class="font-mono">{w.iso}</dd></div>}
+            <div><dt class="text-slate text-[0.78rem]">Communes</dt><dd>{w.n_communes}</dd></div>
+            <div><dt class="text-slate text-[0.78rem]">Area of the boundary polygon</dt><dd>{fmtNum(w.area_km2)} km² <span class="text-slate">(computed, not official)</span></dd></div>
+            <div><dt class="text-slate text-[0.78rem]">Legal basis</dt><dd>{wilayaOrigin(w.code)}</dd></div>
+            <div><dt class="text-slate text-[0.78rem]">Boundary source</dt><dd>OpenStreetMap (<a href={`https://www.openstreetmap.org/relation/${w.osm_relation}`}>relation {w.osm_relation}</a>), AEO version {BOUNDARY_VERSION}; community-mapped, not a legal delineation.</dd></div>
+          </dl>
+        </section>
+        <section class="rounded-md border border-line bg-surface p-4 text-[0.88rem]">
+          <h2 class="font-semibold text-atlas">Downloads</h2>
+          <ul class="mt-2 space-y-2">
+            {cog && <li><a href={cog.href} download>Annual precipitation grids {manifest.temporal_coverage.annual[0]}–{manifest.temporal_coverage.annual[1]} (GeoTIFF)</a> <span class="text-slate">{kb(cog.bytes)}</span></li>}
+            <li><a href={`/analyze/?level=admin1&unit=${w.code}`}>Time series CSV (from Analyze)</a></li>
+            <li><a href={`/data/aeo/boundaries/${BOUNDARY_VERSION}/dza_adm2_communes.geojson`} download>All commune boundaries (GeoJSON, national)</a></li>
+            <li><a href="/data/aeo-dza-precipitation-chirps3/">Precipitation product page</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { toCsv, download } from '../../../lib/precip';
+  document.getElementById('dl-communes')?.addEventListener('click', () => {
+    const rows = JSON.parse(document.getElementById('commune-rows')!.textContent!);
+    const code = location.pathname.split('/').filter(Boolean).pop();
+    download(`aeo_wilaya_${code}_communes_precip_summary.csv`, toCsv(rows));
+  });
+</script>

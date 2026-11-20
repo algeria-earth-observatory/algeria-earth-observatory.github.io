@@ -1,5 +1,5 @@
 import {
-  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml,
+  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml, communePopupHtml,
   setLayerVisible, setLayerOpacity, setLayerTime, resolveMosaic, refreshTiles, snapDate, stepDate, availableDates, defaultDate, escapeHtml,
   type MapState, type BasemapId,
 } from './map-core';
@@ -11,7 +11,7 @@ export async function initExplorer() {
   // ---------------------------------------------------------------- state
   const params = new URLSearchParams(location.search);
   const requested = (params.get('layers') ?? '').split(',').filter(Boolean);
-  const state: MapState = { basemap: (params.get('basemap') as BasemapId) || 'light', layers: {} };
+  const state: MapState = { basemap: (params.get('basemap') as BasemapId) || 'dark', layers: {} };
   for (const l of MAP_LAYERS) {
     const on = requested.length ? requested.includes(l.id) || l.id === 'wilayas' : !!l.defaultOn;
     state.layers[l.id] = { on, opacity: l.opacity, time: defaultDate(l) };
@@ -23,7 +23,7 @@ export async function initExplorer() {
     const p = new URLSearchParams();
     const on = MAP_LAYERS.filter((l) => state.layers[l.id].on && l.id !== 'wilayas').map((l) => l.id);
     if (on.length) p.set('layers', on.join(','));
-    if (state.basemap !== 'light') p.set('basemap', state.basemap);
+    if (state.basemap !== 'dark') p.set('basemap', state.basemap);
     const qs = p.toString();
     history.replaceState(null, '', `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`);
   };
@@ -109,6 +109,20 @@ export async function initExplorer() {
     map.getCanvas().style.cursor = '';
   });
 
+  // communes: registered after the wilaya handler so a commune click wins
+  let hoveredC: string | null = null;
+  map.on('click', 'aeo-communes-fill', (e) => {
+    const f = e.features?.[0];
+    if (f) popup.setLngLat(e.lngLat).setHTML(communePopupHtml(f.properties ?? {})).addTo(map);
+  });
+  map.on('mousemove', 'aeo-communes-fill', (e) => {
+    const id = String(e.features?.[0]?.properties?.commune_code ?? '');
+    if (hoveredC && hoveredC !== id) map.setFeatureState({ source: 'aeo-communes', id: hoveredC }, { hover: false });
+    hoveredC = id;
+    map.setFeatureState({ source: 'aeo-communes', id }, { hover: true });
+  });
+  map.on('mouseleave', 'aeo-communes-fill', () => { if (hoveredC) map.setFeatureState({ source: 'aeo-communes', id: hoveredC }, { hover: false }); hoveredC = null; });
+
   const coords = document.getElementById('coords');
   map.on('mousemove', (e) => {
     if (coords) coords.textContent = `${e.lngLat.lat.toFixed(4)}°, ${e.lngLat.lng.toFixed(4)}°`;
@@ -139,7 +153,7 @@ export async function initExplorer() {
       if (l.legend.kind === 'image' && l.legend.url) body = `<img src="${escapeHtml(l.legend.url)}" alt="Colour scale for ${escapeHtml(l.title)} (${escapeHtml(l.legend.caption ?? '')})" class="mt-1 w-full" loading="lazy" />`;
       else if (l.legend.kind === 'gradient' && l.legend.stops) body = `<div class="mt-1 h-2.5 rounded" style="background:linear-gradient(90deg,${l.legend.stops.join(',')})"></div><div class="mt-0.5 flex justify-between text-[0.7rem] text-slate"><span>${escapeHtml(l.legend.labels?.[0])}</span><span>${escapeHtml(l.legend.labels?.[1])}</span></div>`;
       else if (l.legend.kind === 'classes' && l.legend.classes) body = `<ul class="mt-1 grid grid-cols-1 gap-x-2 gap-y-0.5 sm:grid-cols-2">${l.legend.classes.map((c) => `<li class="flex items-center gap-1.5 text-[0.7rem] leading-tight text-graphite"><span class="inline-block h-2.5 w-2.5 shrink-0 rounded-sm border border-black/15" style="background:${escapeHtml(c.color)}"></span>${escapeHtml(c.label)}</li>`).join('')}</ul>`;
-      else if (l.legend.kind === 'line') body = `<div class="mt-1 flex items-center gap-2"><span class="inline-block h-0 w-6 border-t-2 border-atlas"></span><span class="text-[0.72rem] text-slate">${escapeHtml(l.legend.caption)}</span></div>`;
+      else if (l.legend.kind === 'line') body = `<div class="mt-1 flex items-center gap-2"><span class="inline-block h-0 w-6 border-t-2 border-[#e8f0f8]"></span><span class="text-[0.72rem] text-slate">${escapeHtml(l.legend.caption)}</span></div>`;
       const cap = l.legend.kind === 'line' ? '' : `<p class="mt-0.5 text-[0.7rem] text-slate">${escapeHtml(l.legend.caption)}</p>`;
       return `<div class="mt-2.5 border-t border-line pt-2"><p class="font-medium text-atlas leading-snug">${escapeHtml(l.title)}</p>${t ? `<p class="font-mono text-[0.7rem] text-teal-700">${l.time?.step === 'year' ? t.slice(0, 4) : t}</p>` : ''}${body}${cap}</div>`;
     }).join('');

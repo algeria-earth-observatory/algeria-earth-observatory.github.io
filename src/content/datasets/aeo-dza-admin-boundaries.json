@@ -1,9 +1,9 @@
 {
   "id": "aeo-dza-admin-boundaries",
-  "title": "Algeria national and wilaya boundaries (69 wilayas, OSM snapshot)",
+  "title": "Algeria administrative boundaries: national, 69 wilayas, 1,541 communes (OSM)",
   "title_fr": "Limites nationales et des wilayas de l'Algérie (69 wilayas, instantané OSM)",
   "title_ar": "حدود الجزائر الوطنية وحدود الولايات (69 ولاية، لقطة من OpenStreetMap)",
-  "description": "Polygons for Algeria's national territory and its 69 wilayas, extracted from OpenStreetMap on 19 November 2026, assembled, clipped to land and checked for overlaps by AEO. The 69-wilaya configuration was established by Loi n° 26-06 of 4 April 2026 (JO n° 25); wilayas 59–69 were named by Décret présidentiel n° 26-206 (JO n° 40).",
+  "description": "Nested polygons for Algeria, its 69 wilayas and its 1,541 communes, built by AEO from an OpenStreetMap snapshot of 20 November 2026. Communes carry their ONS codes and French and Arabic names; wilayas are the union of their communes. The division follows Loi n° 26-06 of 4 April 2026 (JO n° 25): 69 wilayas and 1,541 communes; wilayas 59–69 were named by Décret présidentiel n° 26-206 (JO n° 40).",
   "purpose": "A versioned, openly licensed reference geography for summarising gridded data by wilaya, for the AEO map explorer, and for future wilaya-level search and downloads.",
   "domain": [
     "reference"
@@ -38,7 +38,7 @@
     "url": "https://opendatacommons.org/licenses/odbl/1-0/"
   },
   "license_notes": "Derived from OpenStreetMap. Attribute as “© OpenStreetMap contributors” and share derived databases under ODbL.",
-  "citation": "Algeria Earth Observatory (2026). Algeria national and wilaya boundaries (69 wilayas), OpenStreetMap snapshot 2026-11-19, version 2026-11-19. Data © OpenStreetMap contributors, ODbL 1.0. https://algeria-earth-observatory.github.io/data/aeo-dza-admin-boundaries/",
+  "citation": "Algeria Earth Observatory (2026). Algeria administrative boundaries: national, 69 wilayas and 1,541 communes, OpenStreetMap snapshot 2026-11-20, version 2026-11-20. Data © OpenStreetMap contributors, ODbL 1.0. https://algeria-earth-observatory.github.io/data/aeo-dza-admin-boundaries/",
   "doi": null,
   "references": [],
   "spatial_extent": {
@@ -54,10 +54,10 @@
   },
   "temporal_extent": {
     "start": "2026-11-19",
-    "end": "2026-11-19",
+    "end": "2026-11-20",
     "ongoing": false,
     "frequency": "single snapshot",
-    "description": "State of OpenStreetMap on 19 November 2026. New snapshots are published as new versions; earlier versions remain downloadable."
+    "description": "State of OpenStreetMap on 20 November 2026 (communes and wilayas); previous version: 19 November 2026 (wilayas only). Earlier versions remain downloadable."
   },
   "resolution": {
     "spatial": "Vector (full detail as mapped in OSM); display file simplified",
@@ -95,23 +95,94 @@
       "description": "Planimetric polygon area in a Lambert azimuthal equal-area projection (not an official statistic)"
     }
   ],
-  "processing": "Boundary relations (admin_level 2 for Algeria and admin_level 4 within it) were downloaded from the Overpass API with member-way geometries. Rings were assembled with shapely.polygonize, clipped to land using the OSM-derived geoBoundaries DZA ADM0 polygon as a coastline mask, and repaired. One overlap left by an incomplete OSM edit (El Aricha, 63, still included in Tlemcen, 13) was resolved by giving precedence to the newer wilaya. A display version was simplified with mapshaper (topology-preserving).",
-  "validation": "Automated checks at build: 69 valid polygons; no overlaps above 1 km² after the documented fix; gap against the national land outline below 200 km² (coastline differences). Boundaries have not been checked against official legal texts or survey data.",
+  "processing": "Commune boundary relations (admin_level 8 in Algeria, plus three commune relations tagged inconsistently in OSM: Birtouta 1634, Souk Oufella 0630, Dayet Ben Dahoua 4703) were downloaded from the Overpass API, assembled with shapely.polygonize and clipped to land with the OSM-derived geoBoundaries DZA ADM0 coastline mask. A Greek municipality carrying ref=4703 was excluded. Each commune was assigned to the 2026 wilaya covering most of its area (all communes ≥ 90 % inside one wilaya). Wilayas and the national outline are the union of their communes. Display versions were simplified with mapshaper (topology preserved).",
+  "validation": "Automated checks at build (scripts/processing/build_admin.py): 1,541 communes with unique ONS codes; commune counts of wilayas 59–69 equal the lists in law 26-06 (Aflou 12, Barika 8, El Kantara 5, Bir El Ater 4, El Aricha 4, Ksar Chellala 6, Aïn Ouessara 10, Messaad 8, Ksar El Boukhari 21, Bou Saâda 23, El Abiodh Sidi Cheikh 7); each commune of wilayas 49–69 carries the ONS prefix of its mother wilaya; no commune overlaps above 0.01 km²; wilayas built from communes are identical to the OSM wilaya polygons (0 km² difference). Boundaries have not been checked against official survey data.",
   "limitations": [
-    "Community-mapped boundaries: not an official, legal or cadastral delineation. Positional accuracy varies, particularly for wilayas 59–69 created in 2026.",
-    "Transition period: under Loi n° 26-06 the former (mother) wilayas hand over powers to the new wilayas by 31 December 2026 at the latest; statistics published during the transition may still use 48 or 58 units.",
+    "Community-mapped boundaries: not an official, legal or cadastral delineation. Positional accuracy varies.",
+    "Total polygon area is 2,309,832 km² (geodesic), about 3 % below the commonly cited official area of 2,381,741 km²; the difference comes from the OSM national outline and coastline, not from AEO processing, and is not adjusted.",
+    "commune_code is the ONS code; its first two digits are the wilaya of the 1984 organisation (wilaya_code_1984), not the 2026 wilaya (wilaya_code).",
+    "Transition period: under Loi n° 26-06 the mother wilayas hand over powers to the new wilayas by 31 December 2026; statistics published during the transition may still use 48 or 58 units.",
     "Wilaya code 63 (El Aricha) has no ISO 3166-2 tag in OSM at snapshot time; the field is left empty rather than inferred.",
-    "The simplified display file is for web maps only; use the full-detail file for analysis.",
-    "Computed areas depend on the polygon detail and projection and will differ from official area figures."
+    "Simplified display files are for web maps only; use the full-detail files for analysis."
   ],
-  "version": "2026-11-19",
+  "version": "2026-11-20",
   "published_date": "2026-11-19",
-  "updated_date": "2026-11-19",
-  "download_url": "/data/aeo/boundaries/2026-11-19/dza_adm1_wilayas.geojson",
+  "updated_date": "2026-11-20",
+  "download_url": "/data/aeo/boundaries/2026-11-20/dza_adm2_communes.geojson",
   "preview_url": null,
   "access": [
     {
+      "label": "Communes — full detail (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-20/dza_adm2_communes.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "1,541 features, EPSG:4326; commune_code (ONS), names (fr, ar, en), wilaya_code (2026), wilaya_code_1984, area_km2, OSM relation, Wikidata",
+      "sha256": "19293d490952442478e9d8d966a59e22f40f258b62c63246188a288a99114d2d",
+      "size_bytes": 25671135
+    },
+    {
       "label": "Wilayas — full detail (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-20/dza_adm1_wilayas.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "69 features = union of communes",
+      "sha256": "d6092e2f2513c027db49d59205a83da1f12092ef86acfddd43d79d78d623c55d",
+      "size_bytes": 7464509
+    },
+    {
+      "label": "National boundary — full detail (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-20/dza_adm0.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "Union of all communes",
+      "sha256": "40aebcaae5eb7a2e556e2098caf408c638e801da6af00371a9325990c6db30c8",
+      "size_bytes": 1849621
+    },
+    {
+      "label": "Administrative units table (CSV)",
+      "url": "/data/aeo/boundaries/2026-11-20/dza_admin_units.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "One row per commune with its codes, names and wilaya",
+      "sha256": "77d7f05ef7591bf76ed34bebdcff39e3cbe52f66890bb5bfc895f622f6b4cedc",
+      "size_bytes": 192783
+    },
+    {
+      "label": "Communes — simplified for web maps (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-20/dza_adm2_communes_display.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "Display only",
+      "sha256": "da4eff1aa3a7389a2364acefc313d50bab298b227b9d34b0cbb94ff3d4546675",
+      "size_bytes": 1546929
+    },
+    {
+      "label": "Wilayas — simplified for web maps (GeoJSON)",
+      "url": "/data/aeo/boundaries/2026-11-20/dza_adm1_wilayas_display.geojson",
+      "kind": "download",
+      "format": "GeoJSON",
+      "requires_login": false,
+      "notes": "Display only",
+      "sha256": "a512a6cce0de594117d0334fcd3077aea15c54898bc4a56ea2827b44cd83edfb",
+      "size_bytes": 353072
+    },
+    {
+      "label": "Provenance and legal checks (JSON)",
+      "url": "/data/aeo/boundaries/2026-11-20/PROVENANCE.json",
+      "kind": "download",
+      "format": "JSON",
+      "requires_login": false,
+      "notes": "Inputs, fixes, checks against law 26-06",
+      "sha256": "2ccd37a4bca62aa2b044e91273a8c4cfb3836f627de9ca37c7e3a59d7104cbc7",
+      "size_bytes": 3951
+    },
+    {
+      "label": "Previous version 2026-11-19 — wilayas — full detail (GeoJSON)",
       "url": "/data/aeo/boundaries/2026-11-19/dza_adm1_wilayas.geojson",
       "kind": "download",
       "format": "GeoJSON",
@@ -121,7 +192,7 @@
       "size_bytes": 7457673
     },
     {
-      "label": "Wilayas — simplified for web maps (GeoJSON)",
+      "label": "Previous version 2026-11-19 — wilayas — simplified for web maps (GeoJSON)",
       "url": "/data/aeo/boundaries/2026-11-19/dza_adm1_wilayas_display.geojson",
       "kind": "download",
       "format": "GeoJSON",
@@ -131,7 +202,7 @@
       "size_bytes": 249644
     },
     {
-      "label": "National boundary — full detail (GeoJSON)",
+      "label": "Previous version 2026-11-19 — national boundary — full detail (GeoJSON)",
       "url": "/data/aeo/boundaries/2026-11-19/dza_adm0.geojson",
       "kind": "download",
       "format": "GeoJSON",
@@ -141,7 +212,7 @@
       "size_bytes": 1846211
     },
     {
-      "label": "Provenance record (JSON)",
+      "label": "Previous version 2026-11-19 — provenance (JSON)",
       "url": "/data/aeo/boundaries/2026-11-19/PROVENANCE.json",
       "kind": "download",
       "format": "JSON",
@@ -151,22 +222,25 @@
       "size_bytes": 1525
     }
   ],
-  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/blob/main/scripts/processing/build_boundaries.py",
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/blob/main/scripts/processing/build_admin.py",
   "algeria_notes": "Algeria moved from 48 to 58 wilayas (Loi n° 19-12, 2019; names by Décret n° 21-117, 2021) and to 69 wilayas (Loi n° 26-06, 2026). Other open boundary sets checked by AEO (geoBoundaries, OCHA COD-AB, GADM) still show 48 wilayas. Check which configuration your statistics use before joining tables to polygons.",
   "map_layers": [
-    "wilayas"
+    "wilayas",
+    "communes"
   ],
   "featured": true,
   "added_date": "2026-11-19",
   "verification": {
-    "checked": "2026-11-19",
+    "checked": "2026-11-20",
     "urls_checked": true,
     "unverified_fields": [],
     "sources_consulted": [
       "https://overpass-api.de/api/interpreter",
       "https://www.geoboundaries.org/api/current/gbOpen/DZA/ADM1/",
-      "https://www.joradp.dz/"
+      "https://www.joradp.dz/",
+      "https://www.joradp.dz/FTP/jo-francais/2026/F2026025.pdf",
+      "https://www.wikidata.org/wiki/Q3025708"
     ],
-    "notes": "Processing log and fixes in PROVENANCE.json. Legal references verified in Journal Officiel PDFs (see research/wilaya_geography.md)."
+    "notes": "Processing log, fixes and legal checks in PROVENANCE.json of each version. Legal references verified in Journal Officiel PDFs (see research/wilaya_geography.md)."
   }
 }

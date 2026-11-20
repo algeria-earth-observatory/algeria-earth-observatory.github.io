@@ -7,11 +7,14 @@
  */
 import maplibregl, { type StyleSpecification, type LayerSpecification, type Map as MLMap } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, type MapLayer } from '../data/map-layers';
+import { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, OUTSIDE_MASK, type MapLayer } from '../data/map-layers';
 
 import { gacedProtocol } from './gaced-protocol';
 
-export { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS };
+export { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, OUTSIDE_MASK };
+
+/** Layer spec dimming everything outside Algeria (all AEO maps show Algeria only). */
+export const maskLayer = (source = 'aeo-outside') => ({ id: 'aeo-outside-mask', type: 'fill' as const, source, paint: { 'fill-color': '#050a14', 'fill-opacity': 0.82 } });
 
 maplibregl.addProtocol('aeo-gaced', gacedProtocol);
 export type BasemapId = (typeof BASEMAPS)[number]['id'];
@@ -69,6 +72,7 @@ export function stepDate(layer: MapLayer, current: string, dir: 1 | -1): string 
 }
 export const defaultDate = (l: MapLayer) => (l.time ? l.time.default ?? availableDates(l).at(-1) ?? null : null);
 const searchIds = new Map<string, string>();
+const imageUrl = (l: MapLayer, time: string | null) => (l.image?.url ?? '').replace('{year}', (time ?? '').slice(0, 4)).replace('{month}', (time ?? '').slice(0, 7));
 const tileUrl = (l: MapLayer, time: string | null) =>
   (l.tiles ?? '').replace('{time}', time ?? '').replace('{search}', searchIds.get(l.id) ?? l.mosaic?.fallback ?? '');
 
@@ -130,10 +134,13 @@ export async function loadWilayas(): Promise<GeoJSON.FeatureCollection> {
 export async function buildStyle(state: MapState): Promise<StyleSpecification> {
   const s = await baseStyle(state.basemap);
   s.glyphs = s.glyphs ?? GLYPHS;
-  const firstSymbol = s.layers.findIndex((l) => l.type === 'symbol');
+  // insert overlays after the last non-label layer, so roads and borders of the basemap stay underneath
+  let lastNonSymbol = -1;
+  s.layers.forEach((l, i) => { if (l.type !== 'symbol') lastNonSymbol = i; });
+  const firstSymbol = lastNonSymbol + 1;
   const below: LayerSpecification[] = [];
   const above: LayerSpecification[] = [];
-  const dark = state.basemap === 'satellite';
+  const dark = state.basemap === 'satellite' || state.basemap === 'dark' || state.basemap === 'relief';
 
   for (const l of MAP_LAYERS) {
     const st = state.layers[l.id];
@@ -145,7 +152,25 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
         maxzoom: l.maxzoom, attribution: l.attribution,
       };
       below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0 } });
+    } else if (l.type === 'image' && l.image) {
+      s.sources[`aeo-${l.id}`] = { type: 'image', url: imageUrl(l, st?.time ?? defaultDate(l)), coordinates: l.image.coordinates as any };
+      below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0, 'raster-resampling': 'nearest' } });
     }
+  }
+  // Mask outside Algeria, above all data overlays and below boundaries.
+  s.sources['aeo-outside'] = { type: 'geojson', data: OUTSIDE_MASK };
+  above.push(maskLayer());
+  // Commune boundaries: data are loaded only when the layer is switched on (1.5 MB).
+  const cl = MAP_LAYERS.find((x) => x.id === 'communes');
+  if (cl) {
+    const cst = state.layers.communes;
+    const cvis = cst?.on ? 'visible' : 'none';
+    s.sources['aeo-communes'] = { type: 'geojson', data: cst?.on ? cl.data! : { type: 'FeatureCollection', features: [] }, promoteId: 'commune_code', attribution: cl.attribution };
+    above.push(
+      { id: 'aeo-communes-fill', type: 'fill', source: 'aeo-communes', layout: { visibility: cvis }, paint: { 'fill-color': '#176BBA', 'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.12, 0] } },
+      { id: 'aeo-communes-line', type: 'line', source: 'aeo-communes', layout: { visibility: cvis }, paint: { 'line-color': dark ? '#d8e2ea' : '#5b6872', 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.3, 10, 1], 'line-opacity': (cst?.opacity ?? 1) * 0.7 } },
+      { id: 'aeo-communes-label', type: 'symbol', source: 'aeo-communes', minzoom: 9, layout: { visibility: cvis, 'text-field': ['get', 'name'], 'text-font': LABEL_FONT, 'text-size': 10.5, 'text-max-width': 7 }, paint: { 'text-color': dark ? '#F7F9FA' : '#3a4852', 'text-halo-color': dark ? '#0E2A3E' : '#FFFFFF', 'text-halo-width': 1.2 } },
+    );
   }
   // Wilaya boundaries (vector) always sit on top of raster overlays.
   const w = MAP_LAYERS.find((x) => x.id === 'wilayas')!;
@@ -164,21 +189,33 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
       layout: { visibility: wvis, 'text-field': ['get', 'name'], 'text-font': LABEL_FONT, 'text-size': 11.5, 'text-max-width': 8 },
       paint: { 'text-color': dark ? '#F7F9FA' : '#143B56', 'text-halo-color': dark ? '#0E2A3E' : '#FFFFFF', 'text-halo-width': 1.4 } },
   );
-  const at = firstSymbol < 0 ? s.layers.length : firstSymbol;
+  const at = Math.min(firstSymbol, s.layers.length);
   s.layers = [...s.layers.slice(0, at), ...below, ...s.layers.slice(at), ...above];
   return s;
 }
 
 // ---------------------------------------------------------------- live updates
+const communesLoaded = new WeakSet<MLMap>();
 export function setLayerVisible(map: MLMap, id: string, on: boolean) {
-  const ids = id === 'wilayas' ? ['aeo-wilayas-fill', 'aeo-wilayas-line', 'aeo-wilayas-selected', 'aeo-wilayas-label'] : [`aeo-${id}`];
+  if (id === 'communes' && on && !communesLoaded.has(map)) {
+    const src = map.getSource('aeo-communes') as maplibregl.GeoJSONSource | undefined;
+    src?.setData(MAP_LAYERS.find((x) => x.id === 'communes')!.data!);
+    communesLoaded.add(map);
+  }
+  const ids = id === 'wilayas' ? ['aeo-wilayas-fill', 'aeo-wilayas-line', 'aeo-wilayas-selected', 'aeo-wilayas-label']
+    : id === 'communes' ? ['aeo-communes-fill', 'aeo-communes-line', 'aeo-communes-label'] : [`aeo-${id}`];
   for (const lid of ids) if (map.getLayer(lid)) map.setLayoutProperty(lid, 'visibility', on ? 'visible' : 'none');
 }
 export function setLayerOpacity(map: MLMap, id: string, v: number) {
   if (id === 'wilayas') { if (map.getLayer('aeo-wilayas-line')) map.setPaintProperty('aeo-wilayas-line', 'line-opacity', v * 0.8); return; }
+  if (id === 'communes') { if (map.getLayer('aeo-communes-line')) map.setPaintProperty('aeo-communes-line', 'line-opacity', v * 0.7); return; }
   if (map.getLayer(`aeo-${id}`)) map.setPaintProperty(`aeo-${id}`, 'raster-opacity', v);
 }
 export function setLayerTime(map: MLMap, layer: MapLayer, time: string) {
+  if (layer.type === 'image' && layer.image) {
+    (map.getSource(`aeo-${layer.id}`) as maplibregl.ImageSource | undefined)?.updateImage({ url: imageUrl(layer, time), coordinates: layer.image.coordinates as any });
+    return;
+  }
   const src = map.getSource(`aeo-${layer.id}`) as maplibregl.RasterTileSource | undefined;
   if (src && 'setTiles' in src) src.setTiles([tileUrl(layer, time)]);
 }
@@ -199,6 +236,16 @@ export function escapeHtml(s: unknown) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 }
 
+export function communePopupHtml(p: Record<string, unknown>) {
+  return `<div class="aeo-pop">
+    <p class="aeo-pop-k">Commune ${escapeHtml(p.commune_code)} · wilaya ${escapeHtml(p.wilaya_code)}</p>
+    <p class="aeo-pop-t">${escapeHtml(p.name)}</p>
+    ${p.name_ar ? `<p class="aeo-pop-ar" lang="ar" dir="rtl">${escapeHtml(p.name_ar)}</p>` : ''}
+    <dl><dt>Wilaya</dt><dd>${escapeHtml(p.wilaya_name)}</dd><dt>Area (computed)</dt><dd>${Number(p.area_km2).toLocaleString('en-US')} km²</dd></dl>
+    <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/${escapeHtml(p.commune_code)}/">Commune profile</a> · <a href="/analyze/?level=admin2&unit=${escapeHtml(p.commune_code)}">Analyze</a></p>
+  </div>`;
+}
+
 export function wilayaPopupHtml(p: Record<string, unknown>) {
   return `<div class="aeo-pop">
     <p class="aeo-pop-k">Wilaya ${escapeHtml(p.wilaya_code)}</p>
@@ -210,7 +257,7 @@ export function wilayaPopupHtml(p: Record<string, unknown>) {
       <dt>Source</dt><dd><a href="https://www.openstreetmap.org/relation/${escapeHtml(p.osm_relation)}" target="_blank" rel="noopener">OSM relation ${escapeHtml(p.osm_relation)}</a></dd>
       <dt>Snapshot</dt><dd>${escapeHtml(p.snapshot)}</dd>
     </dl>
-    <p class="aeo-pop-n">Simplified display geometry. <a href="/data/aeo-dza-admin-boundaries/">Boundary dataset</a></p>
+    <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/">Wilaya profile</a> · <a href="/analyze/?level=admin1&unit=${escapeHtml(p.wilaya_code)}">Analyze</a> · <a href="/data/aeo-dza-admin-boundaries/">Boundaries</a></p>
   </div>`;
 }
 

@@ -1,0 +1,166 @@
+---
+/**
+ * Download interface for an Algeria-ready AEO product.
+ * Country → Wilaya → Commune → Variable → Time period → Format → Download.
+ * Every option either links to a file listed in the product manifest (size + SHA-256)
+ * or generates a CSV in the browser from the product's published statistics.
+ */
+import type { Dataset } from '../content.config';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { loadRegions } from '../lib/regions-data';
+interface Props { d: Dataset }
+const { d } = Astro.props;
+const manifest = JSON.parse(readFileSync(join(process.cwd(), 'public', d.product!.manifest), 'utf-8'));
+const { wilayas, communes } = loadRegions();
+const years: [number, number] = manifest.temporal_coverage.annual;
+const assets = manifest.download_assets as { href: string; format: string; level: string | null; unit_code?: string; title: string; bytes: number; sha256: string }[];
+const mb = (b: number) => (b >= 1e6 ? `${(b / 1e6).toFixed(1)} MB` : `${Math.max(1, Math.round(b / 1e3))} kB`);
+const national = assets.filter((a) => a.level === 'admin0');
+const tables = assets.filter((a) => a.format === 'CSV' || a.format === 'PARQUET');
+const base = d.product!.manifest.replace(/manifest\.json$/, '');
+const payload = {
+  base, years, product: d.id, version: manifest.version,
+  wilayaFiles: Object.fromEntries(assets.filter((a) => a.level === 'admin1' && a.unit_code).map((a) => [a.unit_code, { href: a.href, bytes: a.bytes, sha256: a.sha256 }])),
+  wilayas: wilayas.map((w) => [w.code, w.name]),
+  communes: communes.map((c) => [c.code, c.name, c.wilaya_code]),
+};
+---
+<section aria-labelledby="pd-h" class="rounded-md border border-line bg-surface p-5" id="download-builder">
+  <h2 id="pd-h" class="text-xl font-semibold">Download</h2>
+  <p class="mt-1 text-[0.9rem] text-slate">Choose an area, then a period and format. Spatial files are published for Algeria and for each wilaya; communes get statistics tables (at ≈5.5 km resolution a commune holds only a few grid cells).</p>
+
+  <div class="mt-5 grid gap-4 md:grid-cols-2">
+    <fieldset>
+      <legend class="meta uppercase tracking-wider">1 · Area</legend>
+      <div class="mt-2 flex gap-1 text-[0.85rem]">
+        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="pd-level" value="admin0" class="sr-only" checked />Algeria</label>
+        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="pd-level" value="admin1" class="sr-only" />Wilaya</label>
+        <label class="flex-1 cursor-pointer rounded border border-line px-2 py-1.5 text-center has-[:checked]:border-signal has-[:checked]:bg-signal/15"><input type="radio" name="pd-level" value="admin2" class="sr-only" />Commune</label>
+      </div>
+      <label class="mt-2 block text-[0.85rem]" data-show="admin1 admin2" hidden><span class="text-slate">Wilaya</span>
+        <select id="pd-wilaya" class="mt-1 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">{wilayas.map((w) => <option value={w.code}>{w.code} — {w.name}</option>)}</select></label>
+      <label class="mt-2 block text-[0.85rem]" data-show="admin2" hidden><span class="text-slate">Commune</span>
+        <select id="pd-commune" class="mt-1 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2"></select></label>
+    </fieldset>
+    <div class="space-y-3 text-[0.85rem]">
+      <label class="block"><span class="meta uppercase tracking-wider">2 · Variable</span>
+        <select id="pd-var" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2">
+          <option value="annual">Annual precipitation totals (mm), with anomalies</option>
+          <option value="monthly">Monthly precipitation (mm), with anomalies</option>
+        </select></label>
+      <div class="grid grid-cols-2 gap-2">
+        <label><span class="meta uppercase tracking-wider">3 · From</span><select id="pd-from" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2 py-2"></select></label>
+        <label><span class="meta uppercase tracking-wider">To</span><select id="pd-to" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2 py-2"></select></label>
+      </div>
+      <label class="block"><span class="meta uppercase tracking-wider">4 · Format</span>
+        <select id="pd-format" class="mt-2 w-full rounded-md border border-line-strong bg-surface px-2.5 py-2"></select></label>
+    </div>
+  </div>
+  <div class="mt-5 flex flex-wrap items-center gap-3 border-t border-line pt-4">
+    <button type="button" id="pd-go" class="btn btn-primary">Download</button>
+    <p id="pd-note" class="text-[0.85rem] text-slate" aria-live="polite"></p>
+  </div>
+
+  <details class="mt-5 text-[0.9rem]">
+    <summary class="cursor-pointer font-medium text-atlas">All files ({assets.length}) and metadata</summary>
+    <h3 class="mt-3 font-semibold text-atlas">Algeria</h3>
+    <ul class="mt-1 space-y-1">{national.filter((a) => a.format === 'COG').map((a) => <li><a href={a.href} download>{a.title}</a> <span class="meta">GeoTIFF (COG) · {mb(a.bytes)} · SHA-256 {a.sha256.slice(0, 12)}…</span></li>)}</ul>
+    <h3 class="mt-3 font-semibold text-atlas">Statistics tables</h3>
+    <ul class="mt-1 space-y-1">{tables.map((a) => <li><a href={a.href} download>{a.title}</a> <span class="meta">{a.format} · {mb(a.bytes)}</span></li>)}</ul>
+    <h3 class="mt-3 font-semibold text-atlas">Metadata</h3>
+    <ul class="mt-1 space-y-1">
+      <li><a href={d.product!.manifest}>Product manifest (JSON)</a> — every file with size and SHA-256</li>
+      <li><a href={`${base}PROVENANCE.json`}>Provenance and quality checks (JSON)</a></li>
+      <li><a href={`/data/${d.id}.stac.json`}>STAC collection</a> · <a href={`/data/${d.id}.json`}>catalog record (JSON)</a></li>
+    </ul>
+    <p class="mt-2 text-[0.8rem] text-slate">{Object.keys(payload.wilayaFiles).length} wilaya GeoTIFFs are listed in the manifest and offered in the builder above.</p>
+  </details>
+  <script type="application/json" id="pd-data" set:html={JSON.stringify(payload)} />
+</section>
+
+<script>
+  import { toCsv, download } from '../lib/precip';
+  const P = JSON.parse(document.getElementById('pd-data')!.textContent!);
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const lvl = () => (document.querySelector<HTMLInputElement>('input[name="pd-level"]:checked')!.value);
+  const wSel = $<HTMLSelectElement>('pd-wilaya'), cSel = $<HTMLSelectElement>('pd-commune');
+  const fSel = $<HTMLSelectElement>('pd-format'), vSel = $<HTMLSelectElement>('pd-var');
+  const from = $<HTMLSelectElement>('pd-from'), to = $<HTMLSelectElement>('pd-to');
+  const yrs: number[] = []; for (let y = P.years[0]; y <= P.years[1]; y++) yrs.push(y);
+  from.innerHTML = yrs.map((y) => `<option>${y}</option>`).join(''); to.innerHTML = from.innerHTML; to.value = String(P.years[1]);
+  const fillCommunes = () => { cSel.innerHTML = P.communes.filter((c: string[]) => c[2] === wSel.value).map((c: string[]) => `<option value="${c[0]}">${c[1]} (${c[0]})</option>`).join(''); };
+  const kb = (b: number) => (b >= 1e6 ? `${(b / 1e6).toFixed(1)} MB` : `${Math.round(b / 1e3)} kB`);
+
+  function formats(): [string, string][] {
+    const l = lvl();
+    const out: [string, string][] = [['csv', 'CSV — statistics for the selected period (generated from the published tables)']];
+    if (vSel.value === 'annual' && l === 'admin0') out.push(['cog-nat', 'GeoTIFF — Algeria annual grids, all years (one band per year)'], ['cog-anom', 'GeoTIFF — Algeria annual anomalies (%), all years'], ['cog-normal', 'GeoTIFF — 1991–2020 normal']);
+    if (vSel.value === 'annual' && l === 'admin1') out.push(['cog-w', 'GeoTIFF — wilaya annual grids, all years']);
+    out.push(['table', `Full ${l === 'admin0' ? 'national' : l === 'admin1' ? 'wilaya' : 'commune'} table, all units and years (CSV / Parquet)`]);
+    return out;
+  }
+  function update() {
+    const l = lvl();
+    document.querySelectorAll<HTMLElement>('[data-show]').forEach((el) => { el.hidden = !el.dataset.show!.split(' ').includes(l); });
+    const keep = fSel.value;
+    fSel.innerHTML = formats().map(([v, t]) => `<option value="${v}">${t}</option>`).join('');
+    if ([...fSel.options].some((o) => o.value === keep)) fSel.value = keep;
+    const f = fSel.value;
+    const note = $('pd-note');
+    from.disabled = to.disabled = f.startsWith('cog') || f === 'table';
+    if (f === 'cog-w') { const a = P.wilayaFiles[wSel.value]; note.textContent = a ? `${kb(a.bytes)} · SHA-256 ${a.sha256.slice(0, 16)}…` : 'not available'; }
+    else if (f === 'table') note.textContent = 'Links to the published table for every unit at this level.';
+    else if (f.startsWith('cog')) note.textContent = 'Full period; select years in GIS software (band descriptions name the years).';
+    else note.textContent = l === 'admin2' ? 'Commune values are area means of ≈5.5 km cells; see the support column in the summary table.' : '';
+  }
+  async function go() {
+    const l = lvl(), f = fSel.value, v = vSel.value;
+    const unit = l === 'admin0' ? 'DZ' : l === 'admin1' ? wSel.value : cSel.value;
+    if (f === 'cog-nat' || f === 'cog-anom' || f === 'cog-normal') {
+      const m = await (await fetch(`${P.base}manifest.json`)).json();
+      const key = f === 'cog-nat' ? '_annual_' : f === 'cog-anom' ? '_anomaly_' : '_normal_';
+      const a = m.download_assets.find((x: any) => x.level === 'admin0' && x.format === 'COG' && x.href.includes(key));
+      if (a) location.href = a.href;
+      return;
+    }
+    if (f === 'cog-w') { const a = P.wilayaFiles[wSel.value]; if (a) location.href = a.href; return; }
+    if (f === 'table') {
+      const m = await (await fetch(`${P.base}manifest.json`)).json();
+      const a = m.download_assets.find((x: any) => x.level === l && x.format === 'CSV' && x.href.includes(v === 'monthly' && l !== 'admin2' ? '_monthly_' : '_annual_'))
+        ?? m.download_assets.find((x: any) => x.level === l && x.format === 'PARQUET' && x.href.includes(`_${v}_`));
+      if (a) location.href = a.href;
+      return;
+    }
+    // CSV for one unit and period, from the web JSON
+    const y0 = Number(from.value), y1 = Number(to.value);
+    const rows: Record<string, unknown>[] = [];
+    if (v === 'annual') {
+      const j = await (await fetch(`${P.base}web/annual_${l}.json`)).json();
+      const i = j.units.findIndex((u: any) => u.code === unit);
+      j.years.forEach((y: number, k: number) => {
+        if (y < y0 || y > y1) return;
+        const val = j.annual[i][k], n = j.normal[i];
+        rows.push({ level: l, unit_code: unit, unit_name: j.units[i].name, year: y, precip_mm: val, normal_1991_2020_mm: n,
+          anomaly_mm: val === null ? null : Math.round((val - n) * 10) / 10, anomaly_pct: val === null || n < 1 ? null : Math.round((1000 * (val - n)) / n) / 10 });
+      });
+    } else {
+      const url = l === 'admin2' ? `${P.base}web/monthly_admin2/${wSel.value}.json` : `${P.base}web/monthly_${l}.json`;
+      const j = await (await fetch(url)).json();
+      const i = j.units.indexOf(unit);
+      j.months.forEach((m: string, k: number) => {
+        const y = Number(m.slice(0, 4)), mo = Number(m.slice(5));
+        if (y < y0 || y > y1) return;
+        const val = j.monthly[i][k], n = j.normal_monthly[i][mo - 1];
+        rows.push({ level: l, unit_code: unit, year: y, month: mo, precip_mm: val, normal_1991_2020_mm: n, anomaly_mm: val === null ? null : Math.round((val - n) * 10) / 10 });
+      });
+    }
+    rows.forEach((r) => { r.source = 'CHIRPS v3.0 (doi:10.15780/G2JQ0P), CC BY 4.0'; r.product = `${P.product} v${P.version}`; });
+    download(`${P.product}_v${P.version}_${l}_${unit}_${v}_${y0}-${y1}.csv`, toCsv(rows));
+  }
+  document.querySelectorAll('input[name="pd-level"]').forEach((r) => r.addEventListener('change', update));
+  wSel.addEventListener('change', () => { fillCommunes(); update(); });
+  [fSel, vSel].forEach((s) => s.addEventListener('change', update));
+  $('pd-go').addEventListener('click', go);
+  fillCommunes(); update();
+</script>

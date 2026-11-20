@@ -1,0 +1,60 @@
+---
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+interface Props { level: 'admin0' | 'admin1' | 'admin2'; code: string; wilaya?: string; analyzeHref: string; label: string }
+const { level, code, wilaya, analyzeHref, label } = Astro.props;
+
+// build-time: read the published summary table (cached across pages)
+const g = globalThis as any;
+g.__speiSummary ??= {};
+function table(lvl: string): Record<string, Record<string, string>> {
+  if (g.__speiSummary[lvl]) return g.__speiSummary[lvl];
+  const p = join(process.cwd(), 'public', 'data', 'aeo', 'products', 'spei', 'v1.0.0', 'tables', `aeo_spei_summary_${lvl}_v1.0.0.csv`);
+  const out: Record<string, Record<string, string>> = {};
+  if (existsSync(p)) {
+    const lines = readFileSync(p, 'utf-8').trim().split(/\r?\n/);
+    const split = (line: string) => { const r: string[] = []; let cur = '', q = false; for (const ch of line) { if (ch === '"') q = !q; else if (ch === ',' && !q) { r.push(cur); cur = ''; } else cur += ch; } r.push(cur); return r; };
+    const head = split(lines[0]);
+    for (const l of lines.slice(1)) { const v = split(l); const row = Object.fromEntries(head.map((h, i) => [h, v[i]])); out[row.unit_code] = row; }
+  }
+  return (g.__speiSummary[lvl] = out);
+}
+const row = table(level)[code];
+const recentKey = row ? Object.keys(row).find((k) => k.startsWith('pct_months_spei12_le_-1_')) : undefined;
+const recentPeriod = recentKey?.replace('pct_months_spei12_le_-1_', '').replace('_', '–');
+const num = (v?: string) => (v === undefined || v === '' ? null : Number(v));
+const s = (v: number | null) => (v === null ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(2)}`);
+const cls = (v: number | null) => v === null ? '' : v <= -2 ? 'extremely dry' : v <= -1.5 ? 'severely dry' : v <= -1 ? 'moderately dry' : v < 1 ? 'near normal' : v < 1.5 ? 'moderately wet' : v < 2 ? 'very wet' : 'extremely wet';
+const hyper = row?.hyper_arid === 'True';
+const payload = JSON.stringify({ level, code, wilaya: wilaya ?? null, label });
+---
+<section aria-labelledby={`spei-h-${code}`} class="card p-5">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 id={`spei-h-${code}`} class="text-lg font-semibold text-atlas">Drought index (SPEI)</h2>
+    <p class="meta">AEO product · TerraClimate · water balance P − PET</p>
+  </div>
+  {row ? (
+    <>
+      {hyper && <p class="mt-3 rounded-md border border-sand/40 bg-sand-100 px-3 py-2 text-[0.85rem] text-sand">Hyper-arid (normal precipitation {Number(row.normal_p_1991_2020_mm).toFixed(0)} mm/year): SPEI here reflects evaporative-demand (heat) anomalies, not rainfall drought.</p>}
+      <dl class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div><dt class="text-[0.75rem] text-slate">SPEI-3, {row.latest_month}</dt><dd class="text-[1.15rem] font-semibold text-atlas">{s(num(row.latest_spei_3))}</dd><dd class="text-[0.75rem] text-slate">{cls(num(row.latest_spei_3))}</dd></div>
+        <div><dt class="text-[0.75rem] text-slate">SPEI-12, {row.latest_month}</dt><dd class="text-[1.15rem] font-semibold text-atlas">{s(num(row.latest_spei_12))}</dd><dd class="text-[0.75rem] text-slate">{cls(num(row.latest_spei_12))}</dd></div>
+        <div><dt class="text-[0.75rem] text-slate">Months with SPEI-12 ≤ −1, {recentPeriod}</dt><dd class="text-[1.15rem] font-semibold text-atlas">{recentKey ? `${Number(row[recentKey]).toFixed(0)} %` : '—'}</dd><dd class="text-[0.75rem] text-slate">≈ 16 % expected in 1991–2020</dd></div>
+        <div><dt class="text-[0.75rem] text-slate">Driest SPEI-12</dt><dd class="text-[1.15rem] font-semibold text-atlas">{s(num(row.min_spei_12))}</dd><dd class="text-[0.75rem] text-slate">{row.min_spei_12_month}</dd></div>
+      </dl>
+      <div class="mt-4" data-spei-chart={payload}></div>
+      <p class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[0.9rem]"><a href={analyzeHref}>Analyse SPEI by timescale and month →</a><a href="/docs/method-spei/">Method</a></p>
+    </>
+  ) : <p class="mt-3 text-slate">SPEI statistics are not available in this build.</p>}
+</section>
+
+<script>
+  import { lineChart } from '../lib/charts';
+  import { loadSpei, speiSeries } from '../lib/spei';
+  document.querySelectorAll<HTMLElement>('[data-spei-chart]').forEach(async (el) => {
+    const d = JSON.parse(el.dataset.speiChart!);
+    const f = await loadSpei(d.level, d.wilaya ?? undefined);
+    const s = speiSeries(f, d.code, 12, 0, 1961, 2100);
+    lineChart(el, [{ name: 'SPEI-12', keys: s.keys, values: s.values }], { yLabel: 'SPEI-12', reference: { value: -1, label: 'dry threshold −1' }, format: (v: number) => v.toFixed(1), keyLabel: (k: number) => String(Math.floor(k + 1e-9)) }, `SPEI-12, ${d.label}`);
+  });
+</script>

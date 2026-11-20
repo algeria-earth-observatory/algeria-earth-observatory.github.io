@@ -41,7 +41,7 @@ export const datasetSchema = z
     domain: z.array(z.enum(DOMAIN_IDS)).min(1),
     categories: z.array(z.string()).default([]),
     keywords: z.array(z.string()).default([]),
-    status: z.enum(['available', 'external', 'in-preparation', 'archived']),
+    status: z.enum(['available', 'experimental', 'under-validation', 'external', 'in-preparation', 'archived']),
     origin: z.enum(['external', 'aeo-derived', 'aeo-original']),
     data_nature: z.enum(['observed', 'derived', 'modeled']).nullish(),
     data_type: z.enum(['raster', 'vector', 'tabular', 'imagery', 'point']).nullish(),
@@ -115,6 +115,18 @@ export const datasetSchema = z
       notes: z.string().nullish(),
     }),
     stac: z.record(z.any()).nullish(),
+    /** Algeria-ready AEO product: machine-readable manifest and supported admin levels. */
+    product: z
+      .object({
+        manifest: z.string().startsWith('/'),
+        product_version: z.string().regex(/^\d+\.\d+\.\d+$/, 'semantic version, e.g. 1.0.0'),
+        boundary_version: z.string(),
+        levels: z.array(z.enum(['admin0', 'admin1', 'admin2'])).min(1),
+        spatial_levels: z.array(z.enum(['admin0', 'admin1', 'admin2'])).default([]),
+        variables: z.array(z.string()).default([]),
+        analyze: z.boolean().default(false),
+      })
+      .nullish(),
   })
   .superRefine((d, ctx) => {
     const fail = (path: string, message: string) =>
@@ -135,6 +147,10 @@ export const datasetSchema = z
       }
       if (d.format.length === 0) fail('format', `at least one format required for status "${d.status}"`);
       if (d.access.length === 0) fail('access', 'at least one verified access route is required');
+    }
+    if (d.product && d.origin === 'external') fail('product', 'product manifests are only for AEO products');
+    if ((d.status === 'experimental' || d.status === 'under-validation') && d.origin === 'external') {
+      fail('origin', `status "${d.status}" is for AEO products`);
     }
     if (d.status === 'available') {
       if (d.origin === 'external') fail('origin', '"available" is reserved for files distributed by AEO; use "external"');

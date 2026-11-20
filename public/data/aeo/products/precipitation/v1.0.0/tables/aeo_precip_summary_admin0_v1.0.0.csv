@@ -1,0 +1,2 @@
+level,unit_code,unit_name,unit_name_ar,parent_code,normal_1991_2020_mm,weighted_area_km2,cells_touched,effective_cells,statistical_support,trend_period,trend_n,trend_slope_mm_per_decade,trend_ci95_low,trend_ci95_high,trend_mk_tau,trend_mk_p,trend_lag1_autocorrelation,trend_autocorrelation_corrected
+admin0,DZ,Algeria,الجزائر,,100.4,2313296.694,85965,85116.26,adequate,1981-2024,44,0.6,-4.5,6.4,0.03,0.8493,0.356,True
