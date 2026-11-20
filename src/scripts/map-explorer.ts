@@ -1,6 +1,6 @@
 import {
   maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml,
-  setLayerVisible, setLayerOpacity, setLayerTime, snapDate, stepDate, availableDates, defaultDate, escapeHtml,
+  setLayerVisible, setLayerOpacity, setLayerTime, resolveMosaic, refreshTiles, snapDate, stepDate, availableDates, defaultDate, escapeHtml,
   type MapState, type BasemapId,
 } from './map-core';
 
@@ -29,6 +29,8 @@ export async function initExplorer() {
   };
 
   // ---------------------------------------------------------------- map
+  // Mosaic layers requested in the URL get their tile search before the first render.
+  await Promise.all(MAP_LAYERS.filter((l) => l.mosaic && state.layers[l.id].on).map(resolveMosaic));
   const map = createMap(el, await buildStyle(state), { hash: 'view' });
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: false }), 'top-right');
   map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
@@ -117,6 +119,8 @@ export async function initExplorer() {
     const src: string | undefined = e?.sourceId ?? e?.source?.id;
     if (!src?.startsWith('aeo-')) return;
     const id = src.slice(4);
+    const layer = MAP_LAYERS.find((l) => l.id === id);
+    if (layer?.emptyTiles404 && e?.error?.status === 404) return; // no data here (e.g. sea), not a failure
     const box = document.querySelector<HTMLElement>(`[data-error="${id}"]`);
     if (box) {
       box.textContent = 'Some tiles could not be loaded from the provider (no data for this date or area, or the service is unavailable).';
@@ -134,6 +138,7 @@ export async function initExplorer() {
       let body = '';
       if (l.legend.kind === 'image' && l.legend.url) body = `<img src="${escapeHtml(l.legend.url)}" alt="Colour scale for ${escapeHtml(l.title)} (${escapeHtml(l.legend.caption ?? '')})" class="mt-1 w-full" loading="lazy" />`;
       else if (l.legend.kind === 'gradient' && l.legend.stops) body = `<div class="mt-1 h-2.5 rounded" style="background:linear-gradient(90deg,${l.legend.stops.join(',')})"></div><div class="mt-0.5 flex justify-between text-[0.7rem] text-slate"><span>${escapeHtml(l.legend.labels?.[0])}</span><span>${escapeHtml(l.legend.labels?.[1])}</span></div>`;
+      else if (l.legend.kind === 'classes' && l.legend.classes) body = `<ul class="mt-1 grid grid-cols-1 gap-x-2 gap-y-0.5 sm:grid-cols-2">${l.legend.classes.map((c) => `<li class="flex items-center gap-1.5 text-[0.7rem] leading-tight text-graphite"><span class="inline-block h-2.5 w-2.5 shrink-0 rounded-sm border border-black/15" style="background:${escapeHtml(c.color)}"></span>${escapeHtml(c.label)}</li>`).join('')}</ul>`;
       else if (l.legend.kind === 'line') body = `<div class="mt-1 flex items-center gap-2"><span class="inline-block h-0 w-6 border-t-2 border-atlas"></span><span class="text-[0.72rem] text-slate">${escapeHtml(l.legend.caption)}</span></div>`;
       const cap = l.legend.kind === 'line' ? '' : `<p class="mt-0.5 text-[0.7rem] text-slate">${escapeHtml(l.legend.caption)}</p>`;
       return `<div class="mt-2.5 border-t border-line pt-2"><p class="font-medium text-atlas leading-snug">${escapeHtml(l.title)}</p>${t ? `<p class="font-mono text-[0.7rem] text-teal-700">${t}</p>` : ''}${body}${cap}</div>`;
@@ -141,16 +146,21 @@ export async function initExplorer() {
   }
 
   // ---------------------------------------------------------------- panel wiring
-  const showControls = (id: string, on: boolean) =>
+  const showControls = (id: string, on: boolean) => {
     document.querySelector(`[data-layer-controls="${id}"]`)?.classList.toggle('hidden', !on);
+  };
 
   for (const l of MAP_LAYERS) {
     const chk = document.querySelector<HTMLInputElement>(`[data-layer-toggle="${l.id}"]`);
     if (chk) chk.checked = state.layers[l.id].on;
     showControls(l.id, state.layers[l.id].on);
-    chk?.addEventListener('change', () => {
+    chk?.addEventListener('change', async () => {
       state.layers[l.id].on = chk.checked;
-      setLayerVisible(map, l.id, chk.checked);
+      if (chk.checked && l.mosaic) {
+        await resolveMosaic(l);
+        refreshTiles(map, l, state.layers[l.id].time);
+      }
+      setLayerVisible(map, l.id, state.layers[l.id].on);
       showControls(l.id, chk.checked);
       renderLegend();
       syncUrl();

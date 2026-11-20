@@ -10,7 +10,7 @@ const all = await getDatasets();
 const published = all.filter((d) => d.status !== 'in-preparation');
 
 const notIncorporated = [
-  { item: 'ESA WorldCover map tiles (Terrascope WMTS) as a map layer', reason: 'The tile service could not be reached from AEO’s verification environment on 2026-11-19 (connection reset). The dataset is catalogued; the map layer was not added because it could not be verified.' },
+  { item: 'ESA WorldCover tiles from the ESA Terrascope WMTS', reason: 'The tile service could not be reached from AEO’s verification environment (connection reset, 2026-11-19 and 2026-11-20). The WorldCover map layers instead use tiles rendered by Microsoft Planetary Computer from the same ESA files, verified on 2026-11-20.' },
   { item: 'HydroBASINS clipped to Algeria as an AEO-hosted layer', reason: 'The HydroSHEDS v1 licence does not allow redistribution as a stand-alone product. AEO links to the source instead.' },
   { item: 'geoBoundaries / OCHA COD-AB / GADM as the wilaya layer', reason: 'All represent 48 wilayas, not the 69-wilaya configuration in force since Loi n° 26-06 (2026). GADM is also restricted to non-commercial use. geoBoundaries is catalogued for reference.' },
   { item: 'NASA FIRMS live fire map layer', reason: 'The FIRMS API requires a personal MAP_KEY that cannot be published in a static site. FIRMS is catalogued with links to its own map and archive download.' },

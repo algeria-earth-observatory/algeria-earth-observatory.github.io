@@ -107,7 +107,7 @@ const jsonLd = planned ? undefined : {
             </a>
           )}
           <a href="#citation" class="btn btn-secondary">Cite this dataset</a>
-          {layers.length > 0 && <a href={`/map/?layers=${layers.map((l) => l.id).join(',')}`} class="btn btn-secondary">Open in map</a>}
+          {layers.length > 0 && <a href={`/map/?layers=${layers[0].id}${layers[0].focusView ? `#view=${layers[0].focusView}` : ''}`} class="btn btn-secondary">Open in map</a>}
         </div>
       )}
     </div>
@@ -268,7 +268,7 @@ const jsonLd = planned ? undefined : {
                 <p class="font-medium text-atlas">{l.title}</p>
                 <p class="mt-1 text-[0.92rem] text-slate">{l.summary}</p>
                 {l.caveat && <p class="mt-1 text-[0.85rem] text-slate">{l.caveat}</p>}
-                <a href={`/map/?layers=${l.id}`} class="mt-2 inline-block text-[0.92rem] font-medium">Open this layer in the map explorer →</a>
+                <a href={`/map/?layers=${l.id}${l.focusView ? `#view=${l.focusView}` : ''}`} class="mt-2 inline-block text-[0.92rem] font-medium">Open this layer in the map explorer →</a>
               </li>
             ))}
           </ul>

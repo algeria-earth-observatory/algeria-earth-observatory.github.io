@@ -64,7 +64,32 @@ export function stepDate(layer: MapLayer, current: string, dir: 1 | -1): string 
   return ds[Math.min(ds.length - 1, Math.max(0, (i < 0 ? ds.length - 1 : i) + dir))];
 }
 export const defaultDate = (l: MapLayer) => (l.time ? l.time.default ?? availableDates(l).at(-1) ?? null : null);
-const tileUrl = (l: MapLayer, time: string | null) => (l.tiles ?? '').replace('{time}', time ?? '');
+const searchIds = new Map<string, string>();
+const tileUrl = (l: MapLayer, time: string | null) =>
+  (l.tiles ?? '').replace('{time}', time ?? '').replace('{search}', searchIds.get(l.id) ?? l.mosaic?.fallback ?? '');
+
+const pending = new Map<string, Promise<void>>();
+/** Register a Planetary Computer mosaic search for the layer (once per page load). */
+export function resolveMosaic(l: MapLayer): Promise<void> {
+  if (!l.mosaic) return Promise.resolve();
+  if (!pending.has(l.id)) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 8000);
+    pending.set(l.id, fetch(l.mosaic.register, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(l.mosaic.body), signal: ctl.signal,
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { searchid?: string } | null) => { if (j?.searchid) searchIds.set(l.id, j.searchid); })
+      .catch(() => {})
+      .finally(() => clearTimeout(timer)));
+  }
+  return pending.get(l.id)!;
+}
+/** Point a live raster source at its current tile URL (after a mosaic was resolved). */
+export function refreshTiles(map: MLMap, l: MapLayer, time: string | null) {
+  const src = map.getSource(`aeo-${l.id}`) as maplibregl.RasterTileSource | undefined;
+  if (src && 'setTiles' in src) src.setTiles([tileUrl(l, time)]);
+}
 
 // ---------------------------------------------------------------- style
 const styleCache = new Map<string, StyleSpecification>();
@@ -112,6 +137,7 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
     if (l.type === 'raster') {
       s.sources[`aeo-${l.id}`] = {
         type: 'raster', tiles: [tileUrl(l, st?.time ?? defaultDate(l))], tileSize: 256,
+        ...(l.minzoom ? { minzoom: l.minzoom } : {}),
         maxzoom: l.maxzoom, attribution: l.attribution,
       };
       below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0 } });

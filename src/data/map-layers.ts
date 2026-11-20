@@ -15,10 +15,12 @@ import type { DomainId } from '../lib/domains';
 type GibsId = keyof typeof gibs.layers;
 
 export interface Legend {
-  kind: 'image' | 'gradient' | 'line' | 'none';
+  kind: 'image' | 'gradient' | 'line' | 'classes' | 'none';
   url?: string;
   stops?: string[];
   labels?: [string, string];
+  /** Categorical legend entries (kind 'classes'). */
+  classes?: { color: string; label: string }[];
   caption?: string;
 }
 
@@ -42,6 +44,65 @@ export interface MapLayer {
   legend: Legend;
   caveat?: string;
   defaultOn?: boolean;
+  /** Provider answers HTTP 404 for tiles with no data (e.g. sea); do not report these as errors. */
+  emptyTiles404?: boolean;
+  /** Map view (MapLibre hash "zoom/lat/lng") used when the layer is opened from a dataset page. */
+  focusView?: string;
+  /**
+   * Planetary Computer mosaic: the browser registers `body` at `register` when the layer
+   * is first shown and substitutes the returned search id for `{search}` in `tiles`
+   * (search ids expire after about 24 h, so they cannot be stored in a static site).
+   * `fallback` is used if registration fails.
+   */
+  mosaic?: { register: string; body: unknown; fallback: string };
+}
+
+// ESA WorldCover, served as mosaic tiles by Microsoft Planetary Computer (STAC
+// collection `esa-worldcover`). The ESA Terrascope WMTS could not be reached from
+// the verification environment; Planetary Computer was verified on 2026-11-20
+// (tiles render from zoom 6; CORS open; colormap = official WorldCover palette).
+const PC_DATA = 'https://planetarycomputer.microsoft.com/api/data/v1';
+const WORLDCOVER_CLASSES = [
+  { color: '#006400', label: 'Tree cover' },
+  { color: '#ffbb22', label: 'Shrubland' },
+  { color: '#ffff4c', label: 'Grassland' },
+  { color: '#f096ff', label: 'Cropland' },
+  { color: '#fa0000', label: 'Built-up' },
+  { color: '#b4b4b4', label: 'Bare / sparse vegetation' },
+  { color: '#f0f0f0', label: 'Snow and ice' },
+  { color: '#0064c8', label: 'Permanent water bodies' },
+  { color: '#0096a0', label: 'Herbaceous wetland' },
+  { color: '#00cf75', label: 'Mangroves' },
+  { color: '#fae6a0', label: 'Moss and lichen' },
+];
+function worldcover({ id, year, version, hash }: { id: string; year: 2020 | 2021; version: string; hash: string }): MapLayer {
+  return {
+    id,
+    title: `Land cover ${year} (ESA WorldCover ${version}), 10 m`,
+    summary: `ESA WorldCover ${year} ${version}: 11 land-cover classes at 10 m from Sentinel-1 and Sentinel-2. Tiles rendered by Microsoft Planetary Computer from the ESA files.`,
+    domain: 'land-ecosystems',
+    type: 'raster',
+    dataset: 'esa-worldcover',
+    nature: 'derived',
+    tiles: `${PC_DATA}/mosaic/{search}/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?collection=esa-worldcover&assets=map&colormap_name=esa-worldcover&format=png`,
+    minzoom: 6,
+    maxzoom: 13,
+    opacity: 0.85,
+    attribution: `© ESA WorldCover project ${year} / Contains modified Copernicus Sentinel data (${year}) processed by ESA WorldCover consortium · tiles: <a href="https://planetarycomputer.microsoft.com/dataset/esa-worldcover" target="_blank" rel="noopener">Microsoft Planetary Computer</a>`,
+    legend: { kind: 'classes', classes: WORLDCOVER_CLASSES, caption: 'Land-cover class' },
+    caveat: 'At national scale the map is a coarse overview; zoom in for 10 m detail. Olive groves, date palms and fallow are often not mapped as cropland, so “Cropland” understates agricultural land in Algeria. Global overall accuracy (validation reports): 76.7% for 2021, 74.4% for 2020. 2020 and 2021 used different algorithms; differences between the two maps are not reliable change.',
+    emptyTiles404: true,
+    focusView: '8/36.55/2.95',
+    mosaic: {
+      register: `${PC_DATA}/mosaic/register`,
+      fallback: hash,
+      body: {
+        collections: ['esa-worldcover'],
+        'filter-lang': 'cql2-json',
+        filter: { op: 'anyinteracts', args: [{ property: 'datetime' }, { interval: [`${year}-01-01T00:00:00Z`, `${year}-12-31T23:59:59Z`] }] },
+      },
+    },
+  };
 }
 
 const g = (id: GibsId) => gibs.layers[id] as {
@@ -151,6 +212,12 @@ export const MAP_LAYERS: MapLayer[] = [
     legend: { kind: 'image', url: g('SMAP_L3_Passive_Enhanced_Day_Soil_Moisture').legend_url ?? undefined, caption: 'Volumetric soil moisture' },
     caveat: 'Daily swaths leave gaps between orbits; retrievals are flagged over steep terrain. Very dry desert soils sit near the retrieval lower bound.',
   },
+  worldcover({
+    id: 'worldcover-2021', year: 2021, version: 'v200', hash: '940d56fc80d1d9dc292442a5ab8bcfee',
+  }),
+  worldcover({
+    id: 'worldcover-2020', year: 2020, version: 'v100', hash: '6b387e3254d00636ef84e72ea3a6f639',
+  }),
   {
     id: 'gsw-occurrence',
     title: 'Surface water occurrence, 1984–2021',

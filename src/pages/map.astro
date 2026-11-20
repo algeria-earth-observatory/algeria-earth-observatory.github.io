@@ -15,7 +15,7 @@ const groups = [
 ].map((g) => ({ ...g, layers: MAP_LAYERS.filter((l) => l.domain === g.id) })).filter((g) => g.layers.length);
 const natureLabel: Record<string, string> = { observed: 'Observed', derived: 'Derived', modeled: 'Modeled', reference: 'Reference' };
 ---
-<Base title="Map explorer" description="Interactive map of Algeria with wilaya boundaries and documented environmental layers: vegetation, precipitation, land surface temperature, soil moisture, surface water and dust." noFooter>
+<Base title="Map explorer" description="Interactive map of Algeria with wilaya boundaries and documented environmental layers: land cover, vegetation, precipitation, land surface temperature, soil moisture, surface water and dust." noFooter>
   <div class="relative flex h-[calc(100dvh-4rem)] flex-col lg:flex-row">
     <!-- Panel -->
     <aside id="map-panel" aria-label="Map layers and controls"

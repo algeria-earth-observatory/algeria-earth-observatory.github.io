@@ -5,7 +5,7 @@
 Algeria Earth Observatory (AEO) is an open scientific initiative dedicated to making Earth observation and environmental information about Algeria accessible, discoverable, reusable, and scientifically documented.
 
 - 🗂️ **[Data catalog](https://algeria-earth-observatory.github.io/data/)**: documented datasets on agriculture, climate and drought, water, land, hazards and human change. Each record gives its source, licence, coverage, limitations and citation.
-- 🗺️ **[Map explorer](https://algeria-earth-observatory.github.io/map/)**: all 69 wilayas with vegetation, precipitation, temperature, soil moisture, surface water and dust layers.
+- 🗺️ **[Map explorer](https://algeria-earth-observatory.github.io/map/)**: all 69 wilayas with land cover, vegetation, precipitation, temperature, soil moisture, surface water and dust layers.
 - 📘 **[Methods](https://algeria-earth-observatory.github.io/docs/)**: guides and tested Python, R and QGIS tutorials.
 
 AEO is an independent initiative in its initial development phase. It is not a government service and is not affiliated with or endorsed by any institution.

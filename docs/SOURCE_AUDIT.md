@@ -15,7 +15,7 @@ Status at **2026-11-19**. This document records which data products and services
 | Cropland | ESA WorldCereal | Incorporated (external) | `esa-worldcereal-2021` |
 | Cropland | GLAD cropland products | Incorporated (external); **no data licence stated by provider** | `glad-global-cropland` |
 | Cropland | GACED30 | Incorporated (external); identified as Global 30-m Annual Cropland Extent Dynamics (Liao et al. 2026, ESSD) | `gaced30` |
-| Land cover | ESA WorldCover | Incorporated (external). Map layer **not** added: Terrascope WMTS unreachable from the verification environment | `esa-worldcover` |
+| Land cover | ESA WorldCover | Incorporated (external). Map layers 2020 and 2021 via Microsoft Planetary Computer tiles (Terrascope WMTS unreachable from the verification environment) | `esa-worldcover` |
 | Satellite imagery | Sentinel-2 | Incorporated (external, Copernicus Data Space login) | `copernicus-sentinel-2-l2a` |
 | Satellite imagery | Landsat | Incorporated (external, Collection 2 Level-2) | `usgs-landsat-c2-l2` |
 | Vegetation | MODIS vegetation products | Incorporated (MOD13Q1 v061); map layer via NASA GIBS | `modis-mod13q1-v061` |
@@ -50,7 +50,7 @@ Status at **2026-11-19**. This document records which data products and services
 | NASA GIBS WMTS (EPSG:3857) | GetCapabilities parsed by `scripts/fetch_gibs_layers.py`; sample tiles HTTP 200 | NDVI, IMERG, LST, SMAP, MERRA-2 dust, VIIRS true colour, Blue Marble, ASTER relief |
 | JRC GSW tiles (`tiles2021/occurrence`) | Sample tiles HTTP 200; colour ramp sampled | Surface water occurrence layer |
 | OpenFreeMap styles (Positron, Liberty) | HTTP 200 | Basemaps |
-| ESA WorldCover WMTS (Terrascope) | Connection reset (2026-11-19) | Not used |
+| ESA WorldCover WMTS (Terrascope) | Connection reset (2026-11-19, 2026-11-20) | Not used; Planetary Computer mosaic tiles used instead (verified 2026-11-20) |
 
 ## Administrative geography
 

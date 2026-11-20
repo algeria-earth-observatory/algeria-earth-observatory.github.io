@@ -122,6 +122,14 @@
       "notes": "Visualisation, statistics and download by administrative area or custom region (per PUM v2.0). Login requirement for download not verified."
     },
     {
+      "label": "Microsoft Planetary Computer: esa-worldcover",
+      "url": "https://planetarycomputer.microsoft.com/dataset/esa-worldcover",
+      "kind": "api",
+      "format": "Cloud Optimized GeoTIFF (STAC API)",
+      "requires_login": false,
+      "notes": "Third-party distribution of the ESA files (2020 v100 and 2021 v200) with a STAC API and tile rendering; source of the AEO map preview tiles."
+    },
+    {
       "label": "Zenodo: WorldCover 2021 v200",
       "url": "https://zenodo.org/records/7254221",
       "kind": "download",
@@ -162,9 +170,15 @@
       "https://esa-worldcover.s3.amazonaws.com/v200/2021/docs/WorldCover_PVR_V2.0.pdf",
       "https://esa-worldcover.s3.amazonaws.com/v100/2020/docs/WorldCover_PVR_V1.1.pdf",
       "https://esa-worldcover.org/en",
-      "https://esa-worldcover.org/en/data-access"
+      "https://esa-worldcover.org/en/data-access",
+      "https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover",
+      "https://planetarycomputer.microsoft.com/api/data/v1/mosaic/info?collection=esa-worldcover"
     ],
-    "notes": "Record covers both versions; doi and citation refer to the more recent v200 (2021), v100 is listed in references. published_date is the v100 Zenodo date (2021-10-20); updated_date is the v200 release (2022-10-28, also stated in PUM v2.0). Continental OA values were not transcribed because the PDF table text extraction was ambiguous. The alternative viewer worldcover2021.esa.int mentioned in the PUM did not respond. All other URLs returned HTTP 200."
+    "notes": "Record covers both versions; doi and citation refer to the more recent v200 (2021), v100 is listed in references. published_date is the v100 Zenodo date (2021-10-20); updated_date is the v200 release (2022-10-28, also stated in PUM v2.0). Continental OA values were not transcribed because the PDF table text extraction was ambiguous. The alternative viewer worldcover2021.esa.int mentioned in the PUM did not respond. All other URLs returned HTTP 200. Map preview (2026-11-20): the ESA Terrascope WMTS reset connections from the verification environment, so map tiles are rendered by Microsoft Planetary Computer from its esa-worldcover STAC collection (licence CC-BY-4.0 in the collection metadata). Tiles verified for 2020 and 2021 over northern Algeria; the service renders zoom 6 and above (the map scales these tiles down for the national view); its colour map matches the official WorldCover class palette."
   },
-  "featured": true
+  "featured": true,
+  "map_layers": [
+    "worldcover-2021",
+    "worldcover-2020"
+  ]
 }
