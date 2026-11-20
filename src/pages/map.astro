@@ -15,7 +15,7 @@ const groups = [
 ].map((g) => ({ ...g, layers: MAP_LAYERS.filter((l) => l.domain === g.id) })).filter((g) => g.layers.length);
 const natureLabel: Record<string, string> = { observed: 'Observed', derived: 'Derived', modeled: 'Modeled', reference: 'Reference' };
 ---
-<Base title="Map explorer" description="Interactive map of Algeria with wilaya boundaries and documented environmental layers: land cover, vegetation, precipitation, land surface temperature, soil moisture, surface water and dust." noFooter>
+<Base title="Map explorer" description="Interactive map of Algeria with wilaya boundaries and documented environmental layers: cropland by year, land cover, vegetation, precipitation, land surface temperature, soil moisture, surface water and dust." noFooter>
   <div class="relative flex h-[calc(100dvh-4rem)] flex-col lg:flex-row">
     <!-- Panel -->
     <aside id="map-panel" aria-label="Map layers and controls"
@@ -67,7 +67,19 @@ const natureLabel: Record<string, string> = { observed: 'Observed', derived: 'De
                         <span class="w-14 shrink-0">Opacity</span>
                         <input type="range" min="0.1" max="1" step="0.05" value={l.opacity} data-opacity={l.id} class="w-full accent-[#176BBA]" aria-label={`Opacity of ${l.title}`} />
                       </label>
-                      {l.time && (
+                      {l.time?.step === 'year' && (
+                        <div class="text-[0.8rem] text-slate">
+                          <div class="flex items-center gap-1.5">
+                            <span class="w-14 shrink-0">Year</span>
+                            <button type="button" class="rounded border border-line px-1.5 py-0.5" data-step={l.id} data-dir="-1" aria-label={`Previous year for ${l.title}`}>‹</button>
+                            <input type="range" min="0" max="0" step="1" value="0" data-year={l.id} class="min-w-0 flex-1 accent-[#176BBA]" aria-label={`Year for ${l.title}`} />
+                            <button type="button" class="rounded border border-line px-1.5 py-0.5" data-step={l.id} data-dir="1" aria-label={`Next year for ${l.title}`}>›</button>
+                            <output class="w-10 text-right font-mono text-[0.85rem] font-semibold text-atlas" data-year-label={l.id}></output>
+                          </div>
+                          <p class="mt-1 pl-16 text-[0.74rem]" data-date-note={l.id} aria-live="polite"></p>
+                        </div>
+                      )}
+                      {l.time && l.time.step !== 'year' && (
                         <div class="text-[0.8rem] text-slate">
                           <div class="flex items-center gap-1.5">
                             <span class="w-14 shrink-0">Date</span>

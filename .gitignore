@@ -8,3 +8,5 @@ dist/
 Thumbs.db
 # raw/intermediate geodata (never commit large source files)
 data-work/
+__pycache__/
+*.pyc

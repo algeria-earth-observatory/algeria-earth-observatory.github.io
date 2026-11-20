@@ -83,7 +83,8 @@
     "Recently published (ESSD, September 2026); independent evaluation by other groups, particularly in North Africa, is not yet available. The paper gives no accuracy figures specific to North Africa or Algeria.",
     "The authors report spectral confusion between active fallow and natural bare land, and larger map discrepancies in semi-arid and transitional regions.",
     "Cropland includes perennial woody crops, active fallow and greenhouses but excludes temporary meadows and pastures, so totals differ by definition from GLAD (no woody crops) and WorldCereal temporary crops.",
-    "Intermediate cropping frequencies reported in some drylands may reflect rotation, fallow or classification variability rather than true cultivation changes."
+    "Intermediate cropping frequencies reported in some drylands may reflect rotation, fallow or classification variability rather than true cultivation changes.",
+    "Observed by AEO when clipping the data to Algeria (2026-11-20): in 2003–2006 the source maps large patches (about 15–35 km across, e.g. around 3.8–4.2°E, 31.5–31.9°N between Ghardaïa and Ouargla) as cropland only in those four years; cropland pixels in a 3.0–5.5°E, 30.5–32.6°N window rise from about 600 (sampled) in 2000–2002 to 6,000–13,600 in 2003–2006 and back to about 600 in 2007. These are probably classification artefacts; check them before analysing change in the northern Sahara."
   ],
   "version": "v1",
   "published_date": "2026-01-09",
@@ -128,5 +129,8 @@
     ],
     "notes": "GACED30 is confirmed as 'Global 30-m Annual Cropland Extent Dynamics' (Zenodo title). Concept DOI is 10.5281/zenodo.18199674; v1 (10.5281/zenodo.18199675) is the latest version at the check date. published_date = Zenodo publication date; updated_date = Zenodo record last modification (2026-08-04), which may be a metadata-only change. The ESSD article (preprint essd-2025-838) was published 25 September 2026; figures above are from the final article abstract. Zenodo and the ESSD DOI returned HTTP 200; the iEarth link did not respond."
   },
-  "featured": true
+  "featured": true,
+  "map_layers": [
+    "gaced30-cropland"
+  ]
 }

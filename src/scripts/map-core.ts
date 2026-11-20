@@ -9,7 +9,11 @@ import maplibregl, { type StyleSpecification, type LayerSpecification, type Map 
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, type MapLayer } from '../data/map-layers';
 
+import { gacedProtocol } from './gaced-protocol';
+
 export { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS };
+
+maplibregl.addProtocol('aeo-gaced', gacedProtocol);
 export type BasemapId = (typeof BASEMAPS)[number]['id'];
 
 const GLYPHS = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';

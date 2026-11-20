@@ -14,7 +14,7 @@ Status at **2026-11-19**. This document records which data products and services
 |---|---|---|---|
 | Cropland | ESA WorldCereal | Incorporated (external) | `esa-worldcereal-2021` |
 | Cropland | GLAD cropland products | Incorporated (external); **no data licence stated by provider** | `glad-global-cropland` |
-| Cropland | GACED30 | Incorporated (external); identified as Global 30-m Annual Cropland Extent Dynamics (Liao et al. 2026, ESSD) | `gaced30` |
+| Cropland | GACED30 | Incorporated (external); identified as Global 30-m Annual Cropland Extent Dynamics (Liao et al. 2026, ESSD). Map year slider from AEO display tiles (2026-11-20); Algeria clip prepared for release `gaced30-dza-v1` | `gaced30` |
 | Land cover | ESA WorldCover | Incorporated (external). Map layers 2020 and 2021 via Microsoft Planetary Computer tiles (Terrascope WMTS unreachable from the verification environment) | `esa-worldcover` |
 | Satellite imagery | Sentinel-2 | Incorporated (external, Copernicus Data Space login) | `copernicus-sentinel-2-l2a` |
 | Satellite imagery | Landsat | Incorporated (external, Collection 2 Level-2) | `usgs-landsat-c2-l2` |

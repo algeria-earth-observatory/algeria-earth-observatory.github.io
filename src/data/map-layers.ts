@@ -149,6 +149,32 @@ export const MAP_LAYERS: MapLayer[] = [
     defaultOn: true,
   },
   {
+    id: 'gaced30-cropland',
+    title: 'Cropland extent by year (GACED30), 2000–2024',
+    summary: 'GACED30 annual 30 m cropland extent for Algeria, one map per year from 2000 to 2024. Use the year slider; cropland mapped in other years is shown in light sand to reveal expansion, fallow and abandonment.',
+    domain: 'agriculture',
+    type: 'raster',
+    dataset: 'gaced30',
+    nature: 'derived',
+    tiles: 'aeo-gaced:///data/aeo/gaced30/v1/gaced30_dza_2000_2024.pmtiles/{z}/{x}/{y}?t={time}',
+    minzoom: 4,
+    maxzoom: 11,
+    time: { periods: ['2000-01-01/2024-01-01/P1Y'], default: '2024-01-01', step: 'year' },
+    opacity: 0.9,
+    attribution: 'Cropland: <a href="https://doi.org/10.5281/zenodo.18199675" target="_blank" rel="noopener">GACED30 v1</a> (CC BY 4.0) · display tiles: AEO',
+    legend: {
+      kind: 'classes',
+      // Colours must match ON / OTHER in src/scripts/gaced-protocol.ts.
+      classes: [
+        { color: '#c85200', label: 'Cropland in the selected year' },
+        { color: '#d6be96', label: 'Cropland in another year only' },
+      ],
+      caption: 'GACED30 cropland / non-cropland',
+    },
+    caveat: 'AEO display tiles, about 60 m at the finest zoom: each pixel shows the majority GACED30 class, so small or scattered fields can disappear when zoomed out. Year-to-year changes include classification noise, especially fallow versus bare land in drylands. In 2003–2006 large patches (15–35 km) between Ghardaïa and Ouargla are mapped as cropland in the source data only for those years; they are probably classification artefacts. Use the 30 m files for analysis.',
+    focusView: '8/35.9/1.2',
+  },
+  {
     id: 'ndvi-16day',
     title: 'Vegetation index (NDVI), 16-day',
     summary: 'MODIS Terra NDVI 16-day composite (MOD13Q1 family) — vegetation greenness for crop and rangeland condition.',

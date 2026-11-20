@@ -1,0 +1,42 @@
+{
+  "product": "GACED30 cropland extent, Algeria 2000-2024 \u2014 AEO map display tiles (PMTiles)",
+  "created": "2026-11-20",
+  "file": {
+    "name": "gaced30_dza_2000_2024.pmtiles",
+    "sha256": "5b85d81a6fa7410a4ec2975951d2591c9fadcbc603c85faed3935011a81bf239",
+    "bytes": 50788986
+  },
+  "input": "The 25 AEO Algeria clips of GACED30 v1 (gaced30_dza_<year>_v1.tif); see the dataset aeo-gaced30-dza and source doi:10.5281/zenodo.18199675 (CC BY 4.0).",
+  "input_sha256": {
+    "gaced30_dza_2000_v1.tif": "cbbfef909c55c1a7f124b4c8040a581cd8f3f98d642c87846dbcf7bfce7c776e",
+    "gaced30_dza_2001_v1.tif": "c27a775f276226fa900fb46ea3aff93faf4ed22189dc455c14a0f3cbccd8f99e",
+    "gaced30_dza_2002_v1.tif": "ebd5f67644eb45827610b68ed92cb985889783a13c86849e05b1d699f4a7b519",
+    "gaced30_dza_2003_v1.tif": "65d8ad4ed6db8cb381b0f048b84c3d8906c1558718dc6d6186d025bc5ce58a25",
+    "gaced30_dza_2004_v1.tif": "928ea93587a58e8ef36928aab052808f00e2b08d39e54cfb1ae3cd1cd8393072",
+    "gaced30_dza_2005_v1.tif": "2cac6c79ef243eed5a5cb4116979840211739005fa6997605a0545cdd6cbaedc",
+    "gaced30_dza_2006_v1.tif": "f0cfcc174f351430377513557a1cf9ab81372461aab1d2031f1bdb242739d552",
+    "gaced30_dza_2007_v1.tif": "ec0d6248ea80f2c0340e6d6d17091199dbde5c09e9d4d360978389d17f94b88d",
+    "gaced30_dza_2008_v1.tif": "35151bdb0f338004309e56303c01d1537fbf5365afcb2b3fa738a361e922ce9e",
+    "gaced30_dza_2009_v1.tif": "616721a78692adcba33a2e8abc88224e938ae50d89c8808b7932f2190f723c3f",
+    "gaced30_dza_2010_v1.tif": "b3241764ab1a7af9a2523396a4cd3207c503e90f7585e58e2d17b2c33938659b",
+    "gaced30_dza_2011_v1.tif": "3347060dfd64cdcfabe2d1c170d526a07320c4de5054d00ef00b46b5fb98d1df",
+    "gaced30_dza_2012_v1.tif": "7dc35e1728a0f320cbac35517626707d2d1f1b2b2d075a1979ce7104c22d92c7",
+    "gaced30_dza_2013_v1.tif": "2b90781b5d879c9906bef668f2987aafb6045500beb2a7295c6e2a876f29f615",
+    "gaced30_dza_2014_v1.tif": "57bd0aab2323d2d387a3dade71c31f39d1ffecfdd78d524f451f6d15335efc63",
+    "gaced30_dza_2015_v1.tif": "bc8d51ca1b8f73115afbc006ef48a09012755ea519860f6eb2547ef3e413e470",
+    "gaced30_dza_2016_v1.tif": "8f58572fc250794f7d9a52788f5a3eff0a5ee7e191e2b7e6ff453e0ad1bf32bb",
+    "gaced30_dza_2017_v1.tif": "796ee860c7e17d5b1c7ae619bd746008b65a4b4cb21bbe98d5d1d49150d946e4",
+    "gaced30_dza_2018_v1.tif": "8885e447f95ca32777dffe3939992082475bb2db758f941bf3fb105564ff355f",
+    "gaced30_dza_2019_v1.tif": "8d8822ebdc93e6c6a0257460f44e71727edf9f217ee9907dd4e9664d88cda833",
+    "gaced30_dza_2020_v1.tif": "b9eb0729a1d996aaf3ba4eaf9000f303bd694f270b3d1590554155fa09f73b90",
+    "gaced30_dza_2021_v1.tif": "ceab86e67407e8c8572b66ff0a84bcc9098c45ad449e3008d0a161d0e475b76f",
+    "gaced30_dza_2022_v1.tif": "a292982afe7f3d1735f5596a3e4f4d3c6f7260b4e827a07567b1301fdbcb229e",
+    "gaced30_dza_2023_v1.tif": "0c61afb8d130a2d817eaa6fa51b530bd0dbe47b55cec08fbf7b981d55401de90",
+    "gaced30_dza_2024_v1.tif": "97e9ca23173df3d8cb55a9e8f31769cc2752b0dc0992e144d6104d147e1aba9b"
+  },
+  "tiling": "Web Mercator (EPSG:3857) 256 x 256 tiles, zoom 4-11; 3,361 non-empty tiles; tiles without cropland in any year omitted.",
+  "encoding": "Each tile: zlib-compressed little-endian uint32[65536]; bit i (0-24) set when the pixel is cropland in year 2000+i. Decoded in the browser by src/scripts/gaced-protocol.ts.",
+  "resampling": "Zoom 11 (~60-75 m pixels): GDAL mode of the GACED30 classes covered by each pixel (no data ignored). Zoom 4-10: a year is cropland where at least 2 of the 4 finer pixels are cropland in that year.",
+  "purpose": "Visual overview for the map explorer year slider only. Use the 30 m GeoTIFFs for analysis.",
+  "code": "scripts/processing/build_gaced30_tiles.py"
+}

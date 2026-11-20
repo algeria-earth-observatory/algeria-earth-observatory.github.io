@@ -141,7 +141,7 @@ export async function initExplorer() {
       else if (l.legend.kind === 'classes' && l.legend.classes) body = `<ul class="mt-1 grid grid-cols-1 gap-x-2 gap-y-0.5 sm:grid-cols-2">${l.legend.classes.map((c) => `<li class="flex items-center gap-1.5 text-[0.7rem] leading-tight text-graphite"><span class="inline-block h-2.5 w-2.5 shrink-0 rounded-sm border border-black/15" style="background:${escapeHtml(c.color)}"></span>${escapeHtml(c.label)}</li>`).join('')}</ul>`;
       else if (l.legend.kind === 'line') body = `<div class="mt-1 flex items-center gap-2"><span class="inline-block h-0 w-6 border-t-2 border-atlas"></span><span class="text-[0.72rem] text-slate">${escapeHtml(l.legend.caption)}</span></div>`;
       const cap = l.legend.kind === 'line' ? '' : `<p class="mt-0.5 text-[0.7rem] text-slate">${escapeHtml(l.legend.caption)}</p>`;
-      return `<div class="mt-2.5 border-t border-line pt-2"><p class="font-medium text-atlas leading-snug">${escapeHtml(l.title)}</p>${t ? `<p class="font-mono text-[0.7rem] text-teal-700">${t}</p>` : ''}${body}${cap}</div>`;
+      return `<div class="mt-2.5 border-t border-line pt-2"><p class="font-medium text-atlas leading-snug">${escapeHtml(l.title)}</p>${t ? `<p class="font-mono text-[0.7rem] text-teal-700">${l.time?.step === 'year' ? t.slice(0, 4) : t}</p>` : ''}${body}${cap}</div>`;
     }).join('');
   }
 
@@ -170,7 +170,31 @@ export async function initExplorer() {
       state.layers[l.id].opacity = v;
       setLayerOpacity(map, l.id, v);
     });
-    if (l.time) {
+    if (l.time?.step === 'year') {
+      const range = document.querySelector<HTMLInputElement>(`[data-year="${l.id}"]`)!;
+      const label = document.querySelector<HTMLOutputElement>(`[data-year-label="${l.id}"]`)!;
+      const note = document.querySelector<HTMLElement>(`[data-date-note="${l.id}"]`)!;
+      const ds = availableDates(l);
+      range.max = String(ds.length - 1);
+      let timer: number | undefined;
+      const apply = (wanted: string, immediate = true) => {
+        const snapped = snapDate(l, wanted);
+        if (!snapped) return;
+        state.layers[l.id].time = snapped;
+        range.value = String(ds.indexOf(snapped));
+        label.value = snapped.slice(0, 4);
+        note.textContent = `Showing ${snapped.slice(0, 4)} (${ds[0].slice(0, 4)}–${ds[ds.length - 1].slice(0, 4)})`;
+        document.querySelector(`[data-error="${l.id}"]`)?.classList.add('hidden');
+        window.clearTimeout(timer);
+        const go = () => { setLayerTime(map, l, snapped); renderLegend(); };
+        if (immediate) go(); else timer = window.setTimeout(go, 120);
+      };
+      apply(state.layers[l.id].time ?? ds[ds.length - 1]);
+      range.addEventListener('input', () => apply(ds[Number(range.value)], false));
+      document.querySelectorAll<HTMLButtonElement>(`[data-step="${l.id}"]`).forEach((b) =>
+        b.addEventListener('click', () => apply(stepDate(l, state.layers[l.id].time ?? ds[ds.length - 1], Number(b.dataset.dir) as 1 | -1))),
+      );
+    } else if (l.time) {
       const input = document.querySelector<HTMLInputElement>(`[data-date="${l.id}"]`)!;
       const note = document.querySelector<HTMLElement>(`[data-date-note="${l.id}"]`)!;
       const ds = availableDates(l);
