@@ -1,0 +1,244 @@
+{
+  "id": "aeo-dza-precipitation-chirps3",
+  "title": "Algeria Precipitation (CHIRPS v3.0), 1981–present: national, wilaya and commune",
+  "title_fr": "Précipitations en Algérie (CHIRPS v3.0) : national, wilayas et communes",
+  "description": "Monthly (1981-01 to 2026-10) and annual (1981–2025) precipitation for Algeria at 0.05° (≈5.5 km), with 1991–2020 normals, anomalies and trend statistics, aggregated to Algeria's 69 wilayas and 1,541 communes. Prepared by AEO from CHIRPS v3.0.",
+  "purpose": "The reference AEO product: an Algeria-ready precipitation record for drought monitoring, agricultural seasons and climate analysis at national, wilaya and commune levels.",
+  "domain": [
+    "climate-drought",
+    "agriculture",
+    "water"
+  ],
+  "categories": [
+    "Precipitation",
+    "Climate indicators"
+  ],
+  "keywords": [
+    "precipitation",
+    "rainfall",
+    "CHIRPS",
+    "anomaly",
+    "drought",
+    "wilaya",
+    "commune",
+    "trend",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Climate Hazards Center, UC Santa Barbara (CHIRPS v3.0); Algeria Earth Observatory (processing)",
+    "url": "https://www.chc.ucsb.edu/data/chirps3"
+  },
+  "creator": "Algeria Earth Observatory maintainers (processing); Climate Hazards Center (CHIRPS v3.0)",
+  "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/",
+  "documentation_url": "https://doi.org/10.1038/s41597-026-07096-4",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "CHIRPS v3.0 is licensed CC BY 4.0 (the provider also waives rights to the extent possible). AEO outputs are CC BY 4.0; cite CHIRPS v3.0 and AEO.",
+  "citation": "Algeria Earth Observatory (2026). Algeria Precipitation (CHIRPS v3.0), version 1.0.0. https://algeria-earth-observatory.github.io/data/aeo-dza-precipitation-chirps3/ — derived from Climate Hazards Center (2025), CHIRPS v3.0, doi:10.15780/G2JQ0P; Funk, C. et al. (2026), Sci Data 13, 718, doi:10.1038/s41597-026-07096-4.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Climate Hazards Center Infrared Precipitation with Stations version 3 (CHIRPS3) Data Repository (2025).",
+      "doi": "10.15780/G2JQ0P"
+    },
+    {
+      "citation": "Funk, C. et al. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. Scientific Data 13, 718.",
+      "doi": "10.1038/s41597-026-07096-4"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Algeria (AEO boundaries 2026-11-20). Rasters cover the cells touching Algeria; statistics for 1 country, 69 wilayas, 1,541 communes.",
+    "algeria_subset": "native",
+    "bbox": [
+      -9.0,
+      18.5,
+      12.5,
+      37.5
+    ]
+  },
+  "temporal_extent": {
+    "start": "1981-01-01",
+    "end": "2026-10-31",
+    "ongoing": true,
+    "frequency": "monthly; annual totals for complete years",
+    "description": "Monthly 1981-01 to 2026-10; annual totals 1981–2025 (complete calendar years only). Reference period 1991–2020."
+  },
+  "resolution": {
+    "spatial": "0.05° (≈5.5 km); statistics per administrative unit",
+    "spatial_m": 5500,
+    "temporal": "monthly, annual"
+  },
+  "format": [
+    "Cloud Optimized GeoTIFF",
+    "CSV",
+    "Parquet",
+    "JSON"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "precip_mm",
+      "units": "mm",
+      "description": "Precipitation total for the month or calendar year (area-weighted mean depth for units)"
+    },
+    {
+      "name": "normal_1991_2020_mm",
+      "units": "mm",
+      "description": "Mean of the same period over 1991–2020"
+    },
+    {
+      "name": "anomaly_mm / anomaly_pct",
+      "units": "mm / %",
+      "description": "Departure from the 1991–2020 normal; % not computed where the normal is below 1 mm"
+    },
+    {
+      "name": "trend_*",
+      "units": "mm per decade",
+      "description": "Theil–Sen slope with 95 % Sen interval; Mann–Kendall p (Yue–Wang correction when lag-1 autocorrelation is significant)"
+    },
+    {
+      "name": "statistical_support",
+      "units": null,
+      "description": "adequate (≥ 4 effective cells), limited (1–4), very limited (< 1)"
+    }
+  ],
+  "processing": "Monthly CHIRPS v3.0 final COGs read over the Algeria window with HTTP range requests; QC (complete series, no negative values, stable mask); annual totals for complete years; 1991–2020 normals and anomalies; area-weighted zonal means using cell coverage fractions (10×10 supersampling) × geodesic cell area, with wilaya and national weights as unions of commune weights; Theil–Sen / Mann–Kendall trends; export to COG, CSV, Parquet and JSON with SHA-256 manifest. Full method: /docs/method-precipitation/.",
+  "validation": "Automated checks (tests/python/test_precip_product.py): coverage of every cell inside Algeria, CRS/resolution/no-data, complete series, value ranges, anomaly consistency, annual = sum of months, national mean = area-weighted mean of wilaya means, file checksums. No independent validation against Algerian station data by AEO; see the CHIRPS v3.0 paper for the provider's evaluation.",
+  "limitations": [
+    "Satellite–gauge estimate: few gauges in the Sahara and high plateaus; convective and orographic rainfall in the Tell and Atlas is uncertain.",
+    "Relative anomalies are unstable where the normal is small (most of the Sahara).",
+    "Commune values describe the commune area at ≈5.5 km resolution; many Tell communes cover fewer than 4 grid cells (see support class).",
+    "CHIRPS v3.0 is wetter than v2.0 (gauge undercatch correction); do not mix versions.",
+    "The national mean is dominated by the dry south and is not representative of the agricultural north."
+  ],
+  "alert": null,
+  "version": "1.0.0",
+  "published_date": "2026-11-20",
+  "updated_date": "2026-11-20",
+  "download_url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2025_v1.0.0.tif",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Algeria — annual precipitation 1981–2025 (GeoTIFF, one band per year)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_annual_1981_2025_v1.0.0.tif",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "mm; 0.05°; EPSG:4326; −9999 outside Algeria",
+      "sha256": "5898c68e27ba7b295a7f20b161f99d4cf1a15942c0ca317c9694be0fa2021460",
+      "size_bytes": 9167869
+    },
+    {
+      "label": "Algeria — annual anomaly (% of 1991–2020) 1981–2025 (GeoTIFF)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_anomaly_pct_1981_2025_v1.0.0.tif",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "Not computed where the normal is below 1 mm",
+      "sha256": "1991f09b3aa3384663f955263a53b30aaf8bd7b9b3c312c7ae3e762c9b0a5224",
+      "size_bytes": 10265399
+    },
+    {
+      "label": "Algeria — mean annual precipitation 1991–2020 (GeoTIFF)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/raster/aeo_dza_precip_normal_1991_2020_v1.0.0.tif",
+      "kind": "download",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "WMO standard normal period",
+      "sha256": "f5dd809ca0fb7fcbf112a289f3cc6043e017b7cf0f2b2404c6b7a6ba63c00d85",
+      "size_bytes": 212481
+    },
+    {
+      "label": "Wilaya statistics — annual 1981–2025 (CSV)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "69 wilayas; area-weighted mean, anomaly, valid-area share",
+      "sha256": "49a71b2b1dc173ff429546fd5366e994cdcba4f207453f8e7e2eddf419dbe4f9",
+      "size_bytes": 175405
+    },
+    {
+      "label": "Commune statistics — annual 1981–2025 (CSV)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_annual_admin2_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "1,541 communes; see support class in the summary table",
+      "sha256": "2478b6de9bec1e7ab80635ca5100650dc86c3fc201f6cb1b42a6545c3e01ec7f",
+      "size_bytes": 4152532
+    },
+    {
+      "label": "Commune statistics — monthly 1981-01 to 2026-10 (Parquet)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_monthly_admin2_v1.0.0.parquet",
+      "kind": "download",
+      "format": "Parquet",
+      "requires_login": false,
+      "notes": "1,541 communes × all months",
+      "sha256": "6e603ff84aa0d7a57d3a9ce4b7f3627db85a56aac8ad0b8684d961b8726e3529",
+      "size_bytes": 2881504
+    },
+    {
+      "label": "Wilaya summary — normal, trend, support (CSV)",
+      "url": "/data/aeo/products/precipitation/v1.0.0/tables/aeo_precip_summary_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "Theil–Sen slope with 95 % interval, Mann–Kendall p",
+      "sha256": "959ef90de26beede5f38bfa86a422946c18a6be087a0c96eff6a6cdae1983061",
+      "size_bytes": 9012
+    },
+    {
+      "label": "CHIRPS v3.0 data server (source)",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/",
+      "kind": "external",
+      "format": "GeoTIFF, COG, NetCDF",
+      "requires_login": false,
+      "notes": "Original global and Africa files from the Climate Hazards Center."
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/precip",
+  "algeria_notes": "The agricultural year (September–August) and the winter season are available in Analyze; they matter more than the calendar year for rainfed cereals in the Tell and high plateaus.",
+  "map_layers": [
+    "precip-annual",
+    "precip-anomaly"
+  ],
+  "featured": true,
+  "added_date": "2026-11-20",
+  "verification": {
+    "checked": "2026-11-20",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://www.chc.ucsb.edu/data/chirps3",
+      "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/README-CHIRPSv3.0.txt"
+    ],
+    "notes": "Licence, data DOI and paper DOI from the CHC CHIRPS3 page; product files verified by checksum at build."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/precipitation/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1",
+      "admin2"
+    ],
+    "spatial_levels": [
+      "admin0",
+      "admin1"
+    ],
+    "variables": [
+      "precipitation"
+    ],
+    "analyze": true
+  }
+}

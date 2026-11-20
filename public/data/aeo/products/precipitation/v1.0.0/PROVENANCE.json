@@ -1,0 +1,38 @@
+{
+ "product_id": "aeo-dza-precipitation-chirps3",
+ "version": "1.0.0",
+ "created": "2026-11-20",
+ "source": {
+  "name": "CHIRPS v3.0 final monthly, global COG",
+  "base_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/cogs/",
+  "retrieved": "2026-11-20",
+  "window": {
+   "west": -9.0,
+   "north": 37.5,
+   "res_deg": 0.05,
+   "ncol": 430,
+   "nrow": 380
+  },
+  "files": 550,
+  "last_modified_range": [
+   "Fri, 12 Sep 2025 23:39:32 GMT",
+   "Wed, 27 Aug 2025 19:04:03 GMT"
+  ]
+ },
+ "boundaries": "/data/aeo/boundaries/2026-11-20/ (aeo-dza-admin-boundaries)",
+ "qc": [
+  "Monthly series complete: 1981.01 to 2026.10 (550 months, no gaps)",
+  "Same valid-cell mask in every month",
+  "Values within [0, 1698.8] mm/month; no negative values",
+  "Annual totals for complete years 1981-2025 (45 years); partial year(s) excluded: [2026]",
+  "0 commune(s) smaller than a 0.005° sub-cell use their representative-point cell: []",
+  "Algeria area from cell weights: 2,313,297 km² (boundary polygon, geodesic: see boundary PROVENANCE)",
+  "National annual mean equals the area-weighted mean of wilaya means (max difference 0.06 mm, rounding only)"
+ ],
+ "supersample": 10,
+ "support_classes": "effective cells = sum of CHIRPS cell fractions inside the unit; adequate >= 4, limited 1-4, very limited < 1",
+ "steps": [
+  "fetch_chirps3.py: window read from each monthly COG (HTTP range requests); -9999 -> missing",
+  "build_precip.py: QC, annual totals (complete years), 1991-2020 normals, anomalies, zonal statistics, trends, exports"
+ ]
+}
