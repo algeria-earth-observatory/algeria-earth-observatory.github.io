@@ -42,7 +42,7 @@ def main() -> None:
     ap.add_argument("--boundaries", required=True, help="boundary version folder, e.g. 2026-11-19")
     ap.add_argument("--layer", default="BlueMarble_ShadedRelief_Bathymetry")
     ap.add_argument("--width", type=int, default=2400)
-    ap.add_argument("--style", choices=["overlay", "plate"], default="overlay",
+    ap.add_argument("--style", choices=["overlay", "plate", "pixel"], default="overlay",
                     help="plate: no boundaries or graticule; surroundings faded towards the page colour")
     a = ap.parse_args()
 
@@ -83,6 +83,43 @@ def main() -> None:
 
     arr = np.asarray(base).astype(np.float32)
     grey = arr.mean(axis=2, keepdims=True)
+    if a.style == "pixel":
+        # Pixel Atlas: outside Algeria, imagery is averaged into square cells that thin out
+        # and fade into limestone with distance from the border (cell colour = true block mean).
+        from scipy.ndimage import distance_transform_edt
+        lime = np.array([242, 239, 231], dtype=np.float32)
+        m2 = np.asarray(mask).astype(np.float32) / 255.0
+        dist = distance_transform_edt(m2 < 0.5)
+        B, gap = 30, 2
+        out = np.empty_like(arr); out[:] = lime
+        rng = np.random.default_rng(7)
+        dmax = width * 0.16
+        for y in range(0, height, B):
+            for x in range(0, width, B):
+                blk = arr[y:y + B, x:x + B]
+                d = float(dist[y:y + B, x:x + B].min())
+                a_ = max(0.0, 1 - d / dmax) ** 1.3
+                if a_ <= 0.04 or rng.random() > 0.35 + 0.65 * a_:
+                    continue
+                col = blk.reshape(-1, 3).mean(0)
+                out[y:y + B - gap, x:x + B - gap] = col * a_ + lime * (1 - a_)
+        mm = m2[..., None]
+        out = np.clip(arr * mm + out * (1 - mm), 0, 255).astype(np.uint8)
+        img = Image.fromarray(out)
+        dest = ROOT / "public" / "images" / "hero"
+        for w in (1800, 1000):
+            im = img.resize((w, round(w * height / width)), Image.LANCZOS)
+            im.save(dest / f"algeria-pixel-{w}.webp", quality=86, method=6)
+            im.save(dest / f"algeria-pixel-{w}.jpg", quality=86, optimize=True, progressive=True)
+        (dest / "SOURCE-pixel.json").write_text(json.dumps({
+            "imagery": "NASA Blue Marble: Next Generation with shaded relief and bathymetry (GIBS layer " + a.layer + ")",
+            "imagery_credit": "NASA Earth Observatory / NASA EOSDIS GIBS", "request": url,
+            "projection": "EPSG:3857 (Web Mercator)", "bbox_wgs84": [W, S, E, N],
+            "processing": "Pixels inside Algeria unchanged. Outside Algeria: 30-px cells holding the mean colour of the imagery beneath, faded towards limestone #F2EFE7 with distance from the border and thinned at random (seed 7). National outline (AEO boundaries " + a.boundaries + ") used as a mask only, not drawn.",
+            "code": "scripts/processing/build_hero_image.py --style pixel",
+        }, indent=2) + "\n", encoding="utf-8")
+        print("ok pixel", width, height)
+        return
     if a.style == "plate":
         chalk = np.array([247, 247, 243], dtype=np.float32)
         faded = 0.22 * grey + 0.78 * chalk

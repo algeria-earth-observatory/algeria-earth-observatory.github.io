@@ -13,7 +13,8 @@ All values are defined once in `src/styles/global.css` (`@theme`). Never put raw
 | Primary text, navigation | `--color-midnight` | `#17252C` | Text, header, map workspaces |
 | Main background | `--color-limestone` | `#F2EFE7` | Page background |
 | Primary action | `--color-cobalt` | `#3458D4` | Buttons, links, selected states |
-| Artistic accent | `--color-oxide` | `#B6503C` | Monogram lozenge, active navigation marker, geometric bands. **Never** for errors, warnings or data |
+| Artistic accent | `--color-oxide` | `#B6503C` | Monogram A, active navigation marker, geometric bands. **Never** for errors, warnings or data |
+| Supporting neutral | `--color-clay` | `#C9B8A4` | Editorial accents (pattern bands, report covers). Never for text or control boundaries |
 | Neutral surface | `--color-white` | `#FFFFFF` | Panels, tables |
 | Subtle border | `--color-border` | `#D8D3C8` | Rules and separators (decorative) |
 | Secondary text | `--color-secondary` | `#586268` | Labels, captions |
@@ -73,14 +74,15 @@ These scales are defined in the product pipelines and validated with the dataviz
 
 ## 4. Logo and wordmark
 
-- **Monogram.** Built on a 2-unit pixel grid in a 46 × 16 viewBox:
-  - **A** — triangle with crossbar;
-  - **E** — three bars, the middle one shorter;
-  - **O** — lozenge with a central pixel, in oxide.
-- **Files.** `src/components/Logo.astro` (inline SVG), `public/images/aeo-mark.svg` and `public/favicon.svg` (32 × 32: midnight square, white A and oxide lozenge).
-- **Wordmark.** "Algeria Earth Observatory" in IBM Plex Sans 400, set to the right of the monogram. It is hidden at the smallest widths, where the monogram stands alone.
-- **Clear space.** At least the height of the monogram on every side. Minimum size: 46 × 16 px on screen.
-- **Do not:** recolour the lozenge, add effects, place the mark on imagery without a solid midnight or limestone field, or set the mark inside a globe, seal or badge.
+- **Monogram** (as in the approved overview). Built in a 58 × 18 viewBox:
+  - **A** — two nested chevrons (layered triangles) in oxide;
+  - **E** — Ξ: three bars, the middle one shorter, in midnight (white on dark);
+  - **O** — an open circle, stroke equal to the bar height, in midnight (white on dark).
+- **Lock-up.** Monogram, a 1 px vertical divider, then the wordmark.
+- **Files.** `src/components/Logo.astro` (inline SVG; `inverse` for dark surfaces), `public/images/aeo-mark.svg` (oxide A on limestone) and `public/favicon.svg` (32 × 32: midnight square, lightened oxide A `#D46A52`, white Ξ and O).
+- **Wordmark.** "Algeria Earth Observatory" in IBM Plex Sans 400, to the right of the divider. It is hidden at the smallest widths, where the monogram stands alone.
+- **Clear space.** At least the height of the monogram on every side. Minimum size: 58 × 18 px on screen.
+- **Do not:** recolour the chevron A, add effects, place the mark on imagery without a solid midnight or limestone field, or set the mark inside a globe, seal or badge.
 
 ### Cultural note
 
@@ -100,7 +102,9 @@ Before the identity is formally adopted, AEO should seek review by Amazigh cultu
 | Element | Rule |
 |---|---|
 | Buttons | `.btn-primary` (cobalt) for the one primary action in a region; `.btn-secondary` otherwise. **Download** always uses `.btn-primary` with the label "Download". |
-| Status | `.status` + `.status-*`: a small square and a text label, so status never depends on colour alone. Available = filled cobalt square; Planned = dashed outline; Experimental / under validation = filled warning square. |
+| Status | `.status` + `.status-*`: a pill that always carries a text label, so status never depends on colour alone. Available = green success pill; Planned = dashed outline; Experimental / under validation = warning pill. |
+| Language | EN / FR / AR markers in the header. EN is current; FR and AR are marked "in preparation" (not links) until translations exist. |
+| Tabs | Analyze uses an ARIA tab list (Time series, Map, Statistics, Report) with arrow-key, Home and End navigation and a cobalt underline on the selected tab. |
 | Forms | `.field` for inputs and selects. Selects are compact; segmented controls use a midnight fill for the selected state. |
 | Notes | `.note` (neutral) and `.note-warn` (caveats such as limited spatial support or hyper-arid areas). |
 | Progressive disclosure | Technical metadata, advanced analysis settings and methods go in `<details>`. Units, legends, sources and data availability stay visible. |
@@ -112,12 +116,13 @@ Before the identity is formally adopted, AEO should seek review by Amazigh cultu
 
 | Screen | Dominant element |
 |---|---|
-| Home | Identity and the satellite plate of Algeria (NASA Blue Marble, credited). |
-| Explore | The map: compact layer panel on the left, inspector on the right (wide screens), drawer and popup on mobile. |
-| Data | The searchable product index. |
-| Analyze | Charts and the map, in the order Configure → Visualize → Interpret → Download. |
+| Home | Identity and the pixel-atlas image of Algeria (NASA Blue Marble, credited) with a meridian arc. |
+| Explore | The map on a satellite basemap: collapsible layer categories on the left, white legend card at the bottom right, inspector on the right (wide screens), drawer and popup on mobile. |
+| Data | The searchable product index: search field, domain pills, availability filter, sorting, download buttons. |
+| Analyze | Configuration on the left; tabs (Time series, Map, Statistics, Report); summary cards (Mean, Trend, Change) and "Download results". Order: Configure → Visualize → Interpret → Download. |
 
 ## 8. Imagery
 
 - Use only genuine, credited Earth observation data.
-- The homepage plate (`scripts/processing/build_hero_image.py --style plate`) leaves pixels inside Algeria unchanged and fades the surroundings towards limestone. No administrative lines are drawn on it.
+- The homepage image (`scripts/processing/build_hero_image.py --style pixel`) leaves pixels inside Algeria unchanged. Outside Algeria, it averages the imagery into 30 px cells that fade into limestone and thin out with distance from the border (true block-mean colours, fixed random seed). No administrative lines are drawn on it. Provenance: `public/images/hero/SOURCE-pixel.json`.
+- The meridian arc on the homepage is a single thin midnight line at 28 % opacity. It is decoration, not data, and it is never drawn on maps or charts.

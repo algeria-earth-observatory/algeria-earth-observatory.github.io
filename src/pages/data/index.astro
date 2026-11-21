@@ -30,43 +30,48 @@ const label = 'font-mono text-[0.72rem] uppercase tracking-[0.06em] text-slate';
   <section class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12" aria-labelledby="idx-h">
     <h2 id="idx-h" class="sr-only">Product index</h2>
     <form id="cat-controls" class="flex flex-wrap items-end gap-x-6 gap-y-3 border-y border-line py-4 text-[0.875rem]" onsubmit="return false" aria-label="Filter and sort products">
-      <label class="min-w-[14rem] flex-1"><span class={label}>Search</span>
-        <input id="cat-q" type="search" placeholder="Product, variable, source" class="field mt-1.5" /></label>
+      <label class="relative min-w-[14rem] flex-1"><span class={label}>Search</span>
+        <svg class="pointer-events-none absolute bottom-[0.7rem] left-3 h-4 w-4 text-slate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4.5 4.5" /></svg>
+        <input id="cat-q" type="search" placeholder="Search Algeria datasets" class="field mt-1.5 !pl-9" /></label>
       <fieldset><legend class={label}>Availability</legend>
         <div class="mt-1.5 flex border border-line-strong" style="border-radius:var(--radius-control)">
           {[['all', 'All'], ['available', 'Available'], ['planned', 'Planned']].map(([v, t], i) => (
             <label class="flex min-h-9 cursor-pointer items-center border-r border-line-strong px-3 last:border-r-0 has-[:checked]:bg-midnight has-[:checked]:text-white"><input type="radio" name="cat-avail" value={v} class="sr-only" checked={i === 0} />{t}</label>
           ))}
         </div></fieldset>
-      <label><span class={label}>Domain</span>
-        <select id="cat-domain" class="field mt-1.5 min-h-9"><option value="">All domains</option>{THEMATIC_DOMAINS.map((d) => <option value={d.id}>{d.title}</option>)}</select></label>
+      <fieldset class="basis-full"><legend class={label}>Domain</legend>
+        <div class="mt-1.5 flex flex-wrap gap-1.5">
+          {[{ id: '', short: 'All' }, ...THEMATIC_DOMAINS].map((d, i) => (
+            <label class="flex min-h-8 cursor-pointer items-center border border-line-strong bg-surface px-3 text-[0.8125rem] has-[:checked]:border-midnight has-[:checked]:bg-midnight has-[:checked]:text-white" style="border-radius:var(--radius-control)"><input type="radio" name="cat-domain" value={d.id} class="sr-only" checked={i === 0} />{d.short}</label>
+          ))}
+        </div></fieldset>
       <label><span class={label}>Sort</span>
         <select id="cat-sort" class="field mt-1.5 min-h-9"><option value="default">Available first</option><option value="name">Name (A–Z)</option><option value="start">Period start</option><option value="updated">Recently updated</option></select></label>
       <p id="cat-count" class="tabular ml-auto font-mono text-[0.75rem] text-slate" aria-live="polite">{rows.length} products</p>
     </form>
 
-    <div class="hidden grid-cols-12 gap-4 border-b border-midnight pb-3 pt-6 lg:grid" aria-hidden="true">
-      <span class:list={[label, 'col-span-4']}>Product</span><span class:list={[label, 'col-span-2']}>Period</span><span class:list={[label, 'col-span-2']}>Resolution</span>
-      <span class:list={[label, 'col-span-2']}>Geographic level</span><span class:list={[label, 'col-span-1']}>Availability</span><span class:list={[label, 'col-span-1 text-right']}>Download</span>
+    <div class="hidden grid-cols-[minmax(0,4fr)_minmax(0,2fr)_minmax(0,2fr)_minmax(0,2fr)_minmax(0,1.2fr)_minmax(6.75rem,auto)] gap-4 border-b border-midnight pb-3 pt-6 lg:grid" aria-hidden="true">
+      <span class:list={[label]}>Product</span><span class:list={[label]}>Period</span><span class:list={[label]}>Resolution</span>
+      <span class:list={[label]}>Geographic level</span><span class:list={[label]}>Availability</span><span class:list={[label, 'text-right']}>Download</span>
     </div>
     <ul id="cat-list">
       {rows.map((d, i) => (
         <li class="border-b border-line" data-avail={avail(d)} data-domain={d.domain.join('|')} data-name={d.title.toLowerCase()} data-start={start(d)}
           data-updated={d.updated_date ?? d.published_date ?? ''} data-order={i} data-search={`${d.title} ${d.description} ${d.keywords.join(' ')} ${d.provider?.name ?? ''}`.toLowerCase()}>
-          <div class="grid gap-x-4 gap-y-2 py-6 lg:grid-cols-12 lg:items-baseline">
-            <div class="lg:col-span-4">
+          <div class="grid gap-x-4 gap-y-2 py-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,2fr)_minmax(0,2fr)_minmax(0,2fr)_minmax(0,1.2fr)_minmax(6.75rem,auto)] lg:items-baseline">
+            <div class="">
               <a href={`/data/${d.id}/`} class:list={['text-[1.0625rem] font-medium leading-snug no-underline hover:text-cobalt', d.status === 'in-preparation' ? 'text-graphite' : 'text-atlas']}>{d.title.split(':')[0]}</a>
               <p class="mt-1.5 max-w-md text-[0.875rem] leading-relaxed text-slate">{d.description.split('. ')[0].replace(/\.$/, '')}.</p>
               {d.status !== 'in-preparation' && <p class="meta mt-2 !text-[0.72rem]">{short(d.provider?.name)} · {d.domain.map((x) => domainById(x)?.short).join(', ')}</p>}
             </div>
-            <p class="tabular font-mono text-[0.8125rem] text-graphite lg:col-span-2"><span class="text-slate lg:hidden">Period </span>{d.status === 'in-preparation' ? '—' : period(d)}</p>
-            <p class="font-mono text-[0.8125rem] text-graphite lg:col-span-2"><span class="text-slate lg:hidden">Resolution </span>{d.status === 'in-preparation' ? '—' : res(d)}</p>
-            <p class="text-[0.875rem] text-graphite lg:col-span-2">{levels(d)}</p>
-            <p class="lg:col-span-1"><span class:list={['status', STATUS[d.status].cls]} title={STATUS[d.status].help}>{STATUS[d.status].label}</span></p>
-            <p class="lg:col-span-1 lg:text-right">
+            <p class="tabular font-mono text-[0.8125rem] text-graphite"><span class="text-slate lg:hidden">Period </span>{d.status === 'in-preparation' ? '—' : period(d)}</p>
+            <p class="font-mono text-[0.8125rem] text-graphite"><span class="text-slate lg:hidden">Resolution </span>{d.status === 'in-preparation' ? '—' : res(d)}</p>
+            <p class="text-[0.875rem] text-graphite">{levels(d)}</p>
+            <p class=""><span class:list={['status', STATUS[d.status].cls]} title={STATUS[d.status].help}>{STATUS[d.status].label}</span></p>
+            <p class="lg:text-right">
               {d.status === 'in-preparation'
                 ? <span class="text-[0.8125rem] text-slate">Not released</span>
-                : <a href={`/data/${d.id}/#access`} class="btn btn-primary !px-3 !py-1.5 !text-[0.8125rem]">Download</a>}
+                : <a href={`/data/${d.id}/#access`} class="btn btn-primary !px-3 !py-1.5 !text-[0.8125rem]" aria-label={`Download ${d.title.split(':')[0]}`}><svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>Download</a>}
             </p>
           </div>
           {d.status !== 'in-preparation' && (
@@ -107,19 +112,19 @@ const label = 'font-mono text-[0.72rem] uppercase tracking-[0.06em] text-slate';
   const list = document.getElementById('cat-list')!;
   const items = [...list.querySelectorAll<HTMLLIElement>('li[data-avail]')];
   const q = document.getElementById('cat-q') as HTMLInputElement;
-  const dom = document.getElementById('cat-domain') as HTMLSelectElement;
+  const domVal = () => (document.querySelector('input[name="cat-domain"]:checked') as HTMLInputElement).value;
   const sort = document.getElementById('cat-sort') as HTMLSelectElement;
   const count = document.getElementById('cat-count')!;
   const empty = document.getElementById('cat-empty')!;
   const params = new URLSearchParams(location.search);
   if (params.get('q')) q.value = params.get('q')!;
-  if (params.get('domain')) dom.value = params.get('domain')!;
+  if (params.get('domain')) { const r = document.querySelector<HTMLInputElement>(`input[name="cat-domain"][value="${params.get('domain')}"]`); if (r) r.checked = true; }
   function apply() {
     const avail = (document.querySelector('input[name="cat-avail"]:checked') as HTMLInputElement).value;
     const text = q.value.trim().toLowerCase();
     let n = 0;
     for (const li of items) {
-      const ok = (avail === 'all' || li.dataset.avail === avail) && (!dom.value || li.dataset.domain!.split('|').includes(dom.value)) && (!text || li.dataset.search!.includes(text));
+      const ok = (avail === 'all' || li.dataset.avail === avail) && (!domVal() || li.dataset.domain!.split('|').includes(domVal())) && (!text || li.dataset.search!.includes(text));
       li.hidden = !ok;
       if (ok) n++;
     }

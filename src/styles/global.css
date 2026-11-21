@@ -17,6 +17,7 @@
   --color-white: #ffffff;        /* neutral surface */
   --color-border: #d8d3c8;       /* subtle border */
   --color-secondary: #586268;    /* secondary text */
+  --color-clay: #c9b8a4;         /* warm neutral (illustration, dividers) */
 
   /* aliases used across components */
   --color-obsidian: #17252c;
@@ -85,8 +86,8 @@
   color-scheme: dark;
 }
 
-/* Map popups are light even inside a dark workspace */
-.maplibregl-popup-content {
+/* Map popups and legend cards are light even inside a dark workspace */
+.maplibregl-popup-content, .theme-light {
   --color-atlas: #17252c; --color-graphite: #26343a; --color-slate: #586268; --color-line: #d8d3c8;
   --color-line-strong: #b9b3a6; --color-surface: #ffffff; --color-signal: #3458d4; --color-mist: #ebe7dd;
   color: #26343a; color-scheme: light;
@@ -164,15 +165,14 @@
   .field { width: 100%; border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); background: var(--color-surface); padding: .5rem .625rem; font-size: .875rem; color: var(--color-atlas); }
   .field:hover { border-color: var(--color-slate); }
 
-  /* status mark: neutral text with a small square; colour only where it carries meaning */
-  .status { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .02em; color: var(--color-atlas); white-space: nowrap; }
-  .status::before { content: ""; width: .5rem; height: .5rem; border: 1px solid currentColor; flex: none; }
-  .status-available::before { background: var(--color-cobalt); border-color: var(--color-cobalt); }
+  /* status pill: always a text label; colour only adds meaning (success / warning) */
+  .status { display: inline-flex; align-items: center; gap: .35rem; font-size: .75rem; line-height: 1; padding: .3rem .5rem; border: 1px solid var(--color-line); border-radius: var(--radius-control); color: var(--color-slate); background: var(--color-surface); white-space: nowrap; }
+  .status-available { color: var(--color-success); background: #e7f2ea; border-color: #b6d8c1; }
   .status-external { color: var(--color-slate); }
-  .status-in-preparation { color: var(--color-slate); }
-  .status-in-preparation::before { border-style: dashed; }
-  .status-experimental::before, .status-under-validation::before { background: var(--color-warn); border-color: var(--color-warn); }
-  .status-archived { color: var(--color-slate); }
+  .status-in-preparation { border-style: dashed; border-color: var(--color-line-strong); color: var(--color-slate); background: transparent; }
+  .status-experimental, .status-under-validation { color: var(--color-warn); background: var(--color-warn-bg); border-color: #e3cf9c; }
+  .status-archived { color: var(--color-slate); background: transparent; }
+  .icon-download { width: 1em; height: 1em; flex: none; }
 
   .note { border-left: 2px solid var(--color-line-strong); padding: .5rem .875rem; background: var(--color-surface-2); color: var(--color-graphite); font-size: .875rem; }
   .note-warn { border-left-color: var(--color-warn); background: var(--color-warn-bg); }

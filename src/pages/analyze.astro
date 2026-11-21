@@ -19,7 +19,7 @@ const seg = 'flex cursor-pointer items-center justify-center border-r border-lin
       <p class="max-w-xl text-[0.875rem] text-slate">Computed in your browser from the published AEO statistics tables — the same files you can download.</p>
     </header>
 
-    <div class="mt-6 grid gap-8 xl:grid-cols-[16.5rem_minmax(0,1fr)_19rem]">
+    <div class="mt-6 grid gap-8 xl:grid-cols-[17rem_minmax(0,1fr)]">
       <!-- Configuration -->
       <form id="az-form" class="space-y-5 self-start text-[0.8125rem] xl:sticky xl:top-20" aria-label="Analysis configuration" onsubmit="return false">
         <p class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.72rem] text-white">1</span>Configure</p>
@@ -82,79 +82,102 @@ const seg = 'flex cursor-pointer items-center justify-center border-r border-lin
         <p class="border-t border-line pt-3 font-mono text-[0.68rem] leading-snug text-slate">Precipitation: monthly {months[0]} to {months[1]}; years {years[0]}–{years[1]}. Normal 1991–2020.</p>
       </form>
 
-      <!-- Visualisation -->
-      <div class="min-w-0 space-y-8" aria-live="polite">
+      <!-- Visualisation, interpretation, download -->
+      <div class="min-w-0 space-y-6" aria-live="polite">
         <p class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.72rem] text-white">2</span>Visualize</p>
         <div>
           <h2 id="az-title" class="text-[1.375rem] leading-tight">Loading…</h2>
           <p id="az-subtitle" class="mt-1 text-[0.8125rem] text-slate"></p>
           <p id="az-support" class="note note-warn mt-3 hidden"></p>
         </div>
-        <section aria-labelledby="ts-h" class="border-t border-atlas pt-4">
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <h3 id="ts-h" class="text-[1rem]">Time series</h3>
-            <div class="flex gap-3 font-mono text-[0.72rem]">
-              <button type="button" class="link-btn" data-export="ts" data-fmt="svg">SVG</button>
-              <button type="button" class="link-btn" data-export="ts" data-fmt="png">PNG</button>
+        <div class="flex flex-wrap gap-x-1 border-b border-line" role="tablist" aria-label="Views">
+          <button type="button" role="tab" id="tab-ts" aria-controls="panel-ts" aria-selected="true" tabindex="0" data-tab="ts" class="az-tab">Time series</button>
+          <button type="button" role="tab" id="tab-map" aria-controls="panel-map" aria-selected="false" tabindex="-1" data-tab="map" class="az-tab">Map</button>
+          <button type="button" role="tab" id="tab-stats" aria-controls="panel-stats" aria-selected="false" tabindex="-1" data-tab="stats" class="az-tab">Statistics</button>
+          <button type="button" role="tab" id="tab-report" aria-controls="panel-report" aria-selected="false" tabindex="-1" data-tab="report" class="az-tab">Report</button>
+        </div>
+        <div id="panel-ts" role="tabpanel" aria-labelledby="tab-ts" class="space-y-8">
+          <section aria-labelledby="ts-h" class="pt-1">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 id="ts-h" class="text-[1rem]">Time series</h3>
+              <div class="flex gap-3 font-mono text-[0.72rem]">
+                <button type="button" class="link-btn" data-export="ts" data-fmt="svg">SVG</button>
+                <button type="button" class="link-btn" data-export="ts" data-fmt="png">PNG</button>
+              </div>
             </div>
-          </div>
-          <ul id="az-legend" class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.78rem] text-graphite"></ul>
-          <div id="az-ts" class="mt-2"></div>
-        </section>
-        <section aria-labelledby="an-h" class="border-t border-atlas pt-4">
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <h3 id="an-h" class="text-[1rem]">Anomalies relative to 1991–2020</h3>
-            <div class="flex items-center gap-3 font-mono text-[0.72rem]">
-              <label data-precip-only class="flex items-center gap-1"><input type="radio" name="anom-unit" value="mm" checked class="accent-[#3458d4]" /> mm</label>
-              <label data-precip-only class="flex items-center gap-1"><input type="radio" name="anom-unit" value="pct" class="accent-[#3458d4]" /> %</label>
-              <button type="button" class="link-btn" data-export="an" data-fmt="svg">SVG</button>
-              <button type="button" class="link-btn" data-export="an" data-fmt="png">PNG</button>
+            <ul id="az-legend" class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.78rem] text-graphite"></ul>
+            <div id="az-ts" class="mt-2"></div>
+          </section>
+          <section aria-labelledby="an-h" class="border-t border-atlas pt-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 id="an-h" class="text-[1rem]">Anomalies relative to 1991–2020</h3>
+              <div class="flex items-center gap-3 font-mono text-[0.72rem]">
+                <label data-precip-only class="flex items-center gap-1"><input type="radio" name="anom-unit" value="mm" checked class="accent-[#3458d4]" /> mm</label>
+                <label data-precip-only class="flex items-center gap-1"><input type="radio" name="anom-unit" value="pct" class="accent-[#3458d4]" /> %</label>
+                <button type="button" class="link-btn" data-export="an" data-fmt="svg">SVG</button>
+                <button type="button" class="link-btn" data-export="an" data-fmt="png">PNG</button>
+              </div>
             </div>
-          </div>
-          <p class="mt-1 text-[0.75rem] text-slate"><span class="mr-1 inline-block h-2 w-2 align-middle" style="background:#2a78d6"></span>wetter · <span class="mr-1 inline-block h-2 w-2 align-middle" style="background:#d03b3b"></span>drier <span id="az-an-unit-note"></span></p>
-          <div id="az-an" class="mt-2"></div>
-        </section>
-        <section aria-labelledby="map-h" class="border-t border-atlas pt-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h3 id="map-h" class="text-[1rem]">Map of the indicator</h3>
-            <div class="flex flex-wrap items-center gap-3 text-[0.75rem]">
-              <label class="flex items-center gap-1.5 text-slate">Period <select id="az-map-year" class="field !w-auto !py-1 !text-[0.75rem]"></select></label>
-              <label data-precip-only class="flex items-center gap-1.5 text-slate">Show <select id="az-map-metric" class="field !w-auto !py-1 !text-[0.75rem]"><option value="anomaly">anomaly (%)</option><option value="annual">total (mm)</option></select></label>
-              <label class="flex items-center gap-1 text-slate"><input type="checkbox" id="az-map-grid" class="accent-[#3458d4]" /> grid cells</label>
+            <p class="mt-1 text-[0.75rem] text-slate"><span class="mr-1 inline-block h-2 w-2 align-middle" style="background:#2a78d6"></span>wetter · <span class="mr-1 inline-block h-2 w-2 align-middle" style="background:#d03b3b"></span>drier <span id="az-an-unit-note"></span></p>
+            <div id="az-an" class="mt-2"></div>
+          </section>
+        </div>
+        <div id="panel-map" role="tabpanel" aria-labelledby="tab-map" hidden>
+          <section aria-labelledby="map-h" class="pt-1">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 id="map-h" class="text-[1rem]">Map of the indicator</h3>
+              <div class="flex flex-wrap items-center gap-3 text-[0.75rem]">
+                <label class="flex items-center gap-1.5 text-slate">Period <select id="az-map-year" class="field !w-auto !py-1 !text-[0.75rem]"></select></label>
+                <label data-precip-only class="flex items-center gap-1.5 text-slate">Show <select id="az-map-metric" class="field !w-auto !py-1 !text-[0.75rem]"><option value="anomaly">anomaly (%)</option><option value="annual">total (mm)</option></select></label>
+                <label class="flex items-center gap-1 text-slate"><input type="checkbox" id="az-map-grid" class="accent-[#3458d4]" /> grid cells</label>
+              </div>
             </div>
+            <p class="mt-1 text-[0.75rem] text-slate">Values by <span id="az-map-level">wilaya</span>. Algeria only. Select an area to analyse it.</p>
+            <div class="theme-dark relative mt-3 h-[28rem]"><div class="absolute inset-0"><div id="az-map" class="h-full w-full" role="region" aria-label="Map of the selected indicator"></div></div></div>
+            <div id="az-map-legend" class="tabular mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] text-graphite"></div>
+          </section>
+        </div>
+        <div id="panel-stats" role="tabpanel" aria-labelledby="tab-stats" hidden class="space-y-6">
+          <section aria-labelledby="res-h">
+            <h3 id="res-h" class={label}>Summary statistics</h3>
+            <dl id="az-tiles" class="tabular mt-2 grid gap-x-8 border-t border-line sm:grid-cols-2 lg:grid-cols-3"></dl>
+          </section>
+          <section aria-labelledby="tr-h">
+            <h3 id="tr-h" class={label}>Trend</h3>
+            <p id="az-trend" class="tabular mt-2 max-w-3xl text-[0.875rem] leading-relaxed text-graphite"></p>
+            <details class="mt-2 text-[0.75rem] text-slate">
+              <summary class="cursor-pointer">Method</summary>
+              <p class="mt-2">Theil–Sen slope with Sen's 95 % interval and a two-sided Mann–Kendall test with tie correction (at least 8 values). If the lag-1 autocorrelation of the detrended series is significant, the test variance is inflated (Yue &amp; Wang 2004). Significant only when p &lt; 0.05. Missing years are skipped, never interpolated. <a href="/docs/method-precipitation/#trends">Method</a></p>
+            </details>
+          </section>
+          <section aria-labelledby="tbl-h">
+            <h3 id="tbl-h" class={label}>Data table</h3>
+            <div class="mt-2 max-h-[28rem] overflow-auto border-t border-line"><table id="az-table" class="tabular w-full text-left text-[0.8125rem]"></table></div>
+          </section>
+        </div>
+        <div id="panel-report" role="tabpanel" aria-labelledby="tab-report" hidden class="space-y-5">
+          <section aria-labelledby="rep-h" class="max-w-3xl">
+            <h3 id="rep-h" class={label}>Report</h3>
+            <p id="az-report" class="mt-2 text-[0.9375rem] leading-relaxed text-atlas"></p>
+            <p class="mt-3"><button type="button" id="az-print" class="btn btn-secondary">Print or save as PDF</button></p>
+          </section>
+          <section aria-labelledby="dl-h" class="max-w-3xl border-t border-line pt-4">
+            <h3 id="dl-h" class={label}>Downloads</h3>
+            <ul id="az-downloads" class="mt-2 space-y-2 text-[0.875rem]"></ul>
+            <p class="mt-3 text-[0.72rem] leading-snug text-slate" id="az-source">Source: CHIRPS v3.0 (Climate Hazards Center, UC Santa Barbara; doi:10.15780/G2JQ0P; CC BY 4.0), processed by AEO — <a href={PRECIP.datasetPage}>product page</a>, <a href={PRECIP.methodPage}>method</a>.</p>
+          </section>
+        </div>
+
+        <!-- Interpret -->
+        <section aria-labelledby="int-h" class="border-t border-midnight pt-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h2 id="int-h" class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.72rem] text-white">3</span>Interpret</h2>
+            <p class="flex items-center gap-3"><span class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.72rem] text-white">4</span><span class="sr-only">Download</span></span>
+              <button type="button" id="az-dl-results" class="btn btn-primary"><svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>Download results <span class="font-mono text-[0.72rem]">CSV</span></button></p>
           </div>
-          <p class="mt-1 text-[0.75rem] text-slate">Values by <span id="az-map-level">wilaya</span>. Algeria only. Select an area to analyse it.</p>
-          <div class="theme-dark relative mt-3 h-[28rem]"><div class="absolute inset-0"><div id="az-map" class="h-full w-full" role="region" aria-label="Map of the selected indicator"></div></div></div>
-          <div id="az-map-legend" class="tabular mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] text-graphite"></div>
+          <dl id="az-cards" class="tabular mt-4 grid gap-3 sm:grid-cols-3"></dl>
         </section>
       </div>
-
-      <!-- Results -->
-      <aside class="min-w-0 space-y-6 self-start xl:sticky xl:top-20" aria-label="Results">
-        <p class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.72rem] text-white">3</span>Interpret</p>
-        <section aria-labelledby="res-h">
-          <h3 id="res-h" class={label}>Summary</h3>
-          <dl id="az-tiles" class="tabular mt-2 grid grid-cols-2 gap-x-6 border-t border-line xl:grid-cols-1"></dl>
-        </section>
-        <section aria-labelledby="tr-h" class="border-t border-line pt-4">
-          <h3 id="tr-h" class={label}>Trend</h3>
-          <p id="az-trend" class="tabular mt-2 text-[0.8125rem] leading-relaxed text-graphite"></p>
-          <details class="mt-2 text-[0.75rem] text-slate">
-            <summary class="cursor-pointer">Method</summary>
-            <p class="mt-2">Theil–Sen slope with Sen's 95 % interval and a two-sided Mann–Kendall test with tie correction (at least 8 values). If the lag-1 autocorrelation of the detrended series is significant, the test variance is inflated (Yue &amp; Wang 2004). Significant only when p &lt; 0.05. Missing years are skipped, never interpolated. <a href="/docs/method-precipitation/#trends">Method</a></p>
-          </details>
-        </section>
-        <section aria-labelledby="dl-h" class="border-t border-midnight pt-4">
-          <p class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.72rem] text-white">4</span>Download</p>
-          <h3 id="dl-h" class="sr-only">Download</h3>
-          <ul id="az-downloads" class="mt-2 space-y-2 text-[0.8125rem]"></ul>
-          <p class="mt-3 text-[0.72rem] leading-snug text-slate" id="az-source">Source: CHIRPS v3.0 (Climate Hazards Center, UC Santa Barbara; doi:10.15780/G2JQ0P; CC BY 4.0), processed by AEO — <a href={PRECIP.datasetPage}>product page</a>, <a href={PRECIP.methodPage}>method</a>.</p>
-        </section>
-        <details class="border-t border-line pt-4">
-          <summary class={`${label} cursor-pointer`}>Data table</summary>
-          <div class="mt-3 max-h-96 overflow-auto"><table id="az-table" class="tabular w-full text-left text-[0.78rem]"></table></div>
-        </details>
-      </aside>
     </div>
   </div>
 </Base>
@@ -162,6 +185,13 @@ const seg = 'flex cursor-pointer items-center justify-center border-r border-lin
 <style>
   .link-btn { color: var(--color-cobalt); text-decoration: underline; text-underline-offset: 2px; }
   .link-btn:hover { color: var(--color-cobalt-hover); }
+  .az-tab { min-height: 2.5rem; padding: 0 .9rem; margin-bottom: -1px; font-size: .875rem; color: var(--color-slate); border-bottom: 2px solid transparent; }
+  .az-tab:hover { color: var(--color-midnight); }
+  .az-tab[aria-selected='true'] { color: var(--color-midnight); font-weight: 500; border-bottom-color: var(--color-cobalt); }
+  @media print {
+    :global(header), :global(footer), #az-form, [role='tablist'], #az-print, #az-dl-results { display: none !important; }
+    [role='tabpanel'] { display: block !important; }
+  }
 </style>
 
 <script>

@@ -42,8 +42,11 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
       </div>
 
       {groups.map((g) => (
-        <section aria-labelledby={`grp-${g.id}`} class="border-b border-line" data-layer-group>
-          <h2 id={`grp-${g.id}`} class="overline px-4 pb-1 pt-3 !text-[0.68rem]">{g.title}</h2>
+        <details class="group/grp border-b border-line" data-layer-group open={g.id === 'reference' || g.id === 'climate-drought' || g.layers.some((l) => l.defaultOn)}>
+          <summary class="flex min-h-10 cursor-pointer list-none items-center gap-2 px-4 text-[0.8125rem] font-medium text-atlas hover:bg-mist">
+            <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform group-open/grp:rotate-90"><path d="M3 1.5 L7 5 L3 8.5" fill="none" stroke="currentColor" stroke-width="1.4" /></svg>
+            <span id={`grp-${g.id}`}>{g.title}</span><span class="ml-auto font-mono text-[0.68rem] text-slate">{g.layers.length}</span>
+          </summary>
           <ul class="pb-2">
             {g.layers.map((l) => (
               <li data-layer-item={l.id} data-search={`${l.title} ${l.summary} ${g.title}`.toLowerCase()}>
@@ -93,7 +96,7 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
               </li>
             ))}
           </ul>
-        </section>
+        </details>
       ))}
       <p id="layer-empty" class="hidden px-4 py-3 text-[0.8rem] text-slate">No layer matches.</p>
     </aside>
@@ -102,7 +105,7 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
     <div class="relative min-h-0">
       <button type="button" id="drawer-open" aria-controls="map-panel" aria-expanded="false" class="absolute right-2 top-2 z-20 min-h-10 border border-line-strong bg-obsidian px-3 text-[0.8125rem] text-white lg:hidden" style="border-radius:var(--radius-control)">Layers</button>
       <div class="absolute inset-0"><div id="map" class="h-full w-full bg-obsidian" role="region" aria-label="Interactive map of Algeria"></div></div>
-      <div id="legend" class="tabular pointer-events-auto absolute bottom-8 left-2 z-10 hidden max-h-[28%] w-[12.5rem] text-[0.68rem] sm:max-h-[40%] max-w-[calc(100%-1rem)] overflow-y-auto border border-line bg-obsidian/92 p-3 text-[0.72rem] text-graphite sm:w-[17rem]" aria-label="Legend"></div>
+      <div id="legend" class="theme-light tabular pointer-events-auto absolute bottom-8 right-2 z-10 hidden max-h-[28%] w-[12.5rem] max-w-[calc(100%-1rem)] overflow-y-auto border border-line bg-white p-3 text-[0.72rem] text-graphite sm:max-h-[42%] sm:w-[16rem]" style="border-radius:var(--radius-card)" aria-label="Legend"></div>
       <div id="coords" class="tabular pointer-events-none absolute left-2 top-2 z-10 bg-obsidian/85 px-2 py-1 font-mono text-[0.7rem] text-graphite empty:hidden" aria-hidden="true"></div>
       <noscript><p class="absolute inset-0 grid place-items-center p-6 text-center">The map explorer requires JavaScript. All products remain available in <a href="/data/">Data</a>.</p></noscript>
     </div>

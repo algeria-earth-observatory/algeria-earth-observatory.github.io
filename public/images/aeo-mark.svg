@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Algeria Earth Observatory">
-  <rect width="32" height="32" rx="4" fill="#17252C"/>
-  <path d="M4 25 L10 9 L16 25" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="square"/>
-  <path d="M7.2 19.5 H12.8" stroke="#FFFFFF" stroke-width="2.4"/>
-  <path d="M23 10 L29 17 L23 24 L17 17 Z" fill="none" stroke="#B6503C" stroke-width="2.4"/>
-  <rect x="21.8" y="15.8" width="2.4" height="2.4" fill="#B6503C"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Algeria Earth Observatory">
+  <rect width="64" height="64" rx="10" fill="#F2EFE7"/>
+  <g transform="translate(14 14) scale(2)">
+    <path d="M0 18 L9 0 L18 18 H14.4 L9 7.2 L3.6 18 Z" fill="#B6503C"/>
+    <path d="M5.6 18 L9 11.2 L12.4 18 H10.3 L9 15.4 L7.7 18 Z" fill="#B6503C"/>
+  </g>
 </svg>
