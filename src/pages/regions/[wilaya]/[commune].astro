@@ -2,6 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import PrecipSummary from '../../../components/PrecipSummary.astro';
 import SpeiSummary from '../../../components/SpeiSummary.astro';
+import RegionDataDownloader from '../../../components/RegionDataDownloader.astro';
 import { loadRegions, fmtNum, BOUNDARY_VERSION, type Commune, type Wilaya } from '../../../lib/regions-data';
 
 export function getStaticPaths() {
@@ -20,12 +21,13 @@ const moved = c.code_1984 !== c.wilaya_code;
         <p class="eyebrow">Commune {c.code} · wilaya {w.code}</p>
         <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{c.name} <span lang="ar" dir="rtl" class="ml-2 text-[1.6rem] font-normal text-slate">{c.name_ar}</span></h1>
       </div>
-      <a class="btn btn-primary" href={`/analyze/?level=admin2&unit=${c.code}`}>Analyze this commune</a>
+      <div class="flex flex-wrap gap-2"><a class="btn btn-primary" href="#download">Download data for {c.name}</a><a class="btn btn-secondary" href={`/analyze/?level=admin2&unit=${c.code}`}>Analyze this commune</a></div>
     </header>
     <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
       <div class="min-w-0 space-y-8">
         <PrecipSummary stats={c.precip} areaLabel={`commune of ${c.name}`} analyzeHref={`/analyze/?level=admin2&unit=${c.code}`} level="admin2" />
         <SpeiSummary level="admin2" code={c.code} wilaya={c.wilaya_code} label={`commune of ${c.name}`} analyzeHref={`/analyze/?level=admin2&unit=${c.code}&var=spei&scale=12`} />
+        <div class="scroll-mt-24 rounded-md border border-line bg-limestone p-5"><RegionDataDownloader compact level="admin2" wilaya={c.wilaya_code} commune={c.code} heading={`Download data for ${c.name}`} intro="Precipitation, drought (SPEI) or the boundary of this commune. Values are commune averages of grid cells; see the notes before use." /></div>
         <p class="text-[0.9rem] text-slate">Other indicators (temperature, vegetation, cropland statistics) are not yet processed at commune level. Coarse climate data may never be meaningful for small communes; AEO will only publish commune values where the source resolution supports them.</p>
       </div>
       <aside>

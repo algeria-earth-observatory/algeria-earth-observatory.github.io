@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -30,7 +32,7 @@ jobs:
       - run: pip install -r scripts/pipelines/requirements.txt
       - name: Statistics and product QA tests (Python)
         run: python -m pytest tests/python -q
-      - name: Browser statistics parity tests (JavaScript)
+      - name: Browser statistics parity and regional download tests (JavaScript)
         run: node --test tests/js/*.test.mjs
 
   build:
@@ -46,6 +48,16 @@ jobs:
       # Validates every catalog record, builds the static site, and checks internal links.
       - run: npm run build
       - run: npm run check
+      # Deploy only if the complete download workflow and accessibility checks pass on the built site.
+      - run: npx playwright install --with-deps chromium
+      - name: End-to-end download journeys and accessibility (Playwright + axe-core)
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

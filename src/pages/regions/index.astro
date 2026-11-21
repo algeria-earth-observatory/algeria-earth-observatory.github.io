@@ -24,9 +24,9 @@ const { national, wilayas, communes } = loadRegions();
         <label class="text-[0.85rem]"><span class="sr-only">Filter wilayas</span>
           <input id="w-filter" type="search" placeholder="Filter by name or code…" class="w-64 rounded-md border border-line-strong px-3 py-2" /></label>
       </div>
-      <div class="mt-4 overflow-x-auto rounded-md border border-line bg-surface">
+      <div class="relative mt-4 overflow-x-auto rounded-md border border-line bg-surface" tabindex="0" role="region" aria-label="Wilayas table">
         <table class="w-full text-left text-[0.88rem]">
-          <thead class="bg-paper text-[0.78rem] uppercase tracking-wide text-slate">
+          <thead class="bg-paper text-[0.875rem] font-medium text-slate">
             <tr><th class="px-3 py-2">Code</th><th class="px-3 py-2">Wilaya</th><th class="px-3 py-2" lang="ar">الاسم</th><th class="px-3 py-2 text-right">Communes</th><th class="px-3 py-2 text-right">Area (km²)</th><th class="px-3 py-2 text-right">Normal 1991–2020 (mm)</th><th class="px-3 py-2 text-right">Trend (mm/decade)</th></tr>
           </thead>
           <tbody id="w-body">

@@ -10,3 +10,6 @@ Thumbs.db
 data-work/
 __pycache__/
 *.pyc
+# Playwright
+test-results/
+playwright-report/

@@ -217,7 +217,7 @@ export async function initAnalyze() {
       [`Latest (${s0.keys[lastIdx] !== undefined ? periodLabel(state.agg, s0.keys[lastIdx]) : '—'})`, `${fmt0(s0.values[lastIdx])} mm`, s0.anomaliesPct[lastIdx] !== null ? `${sign(s0.anomaliesPct[lastIdx])} % vs normal` : ''],
       ['Variability (CV)', sum.cv !== null ? `${sum.cv.toFixed(0)} %` : '—', 'std. dev. / mean'],
     ];
-    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.72rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
+    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.8125rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
 
     // trend
     const ts = sum.ts, mk = sum.mk;
@@ -441,7 +441,7 @@ export async function initAnalyze() {
       ['Expected share ≤ −1', '≈ 16 %', 'in the 1991–2020 reference'],
       ['Timescale', `SPEI-${state.scale}`, `${state.scale}-month water balance`],
     ];
-    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.72rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
+    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.8125rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
     if (state.month) {
       const ts = theilSen(s0.values, s0.keys), mk = mannKendall(s0.values);
       $('az-trend').innerHTML = ts.slope === null || mk.p === null ? 'Trend: too few years (at least 8 needed).'
@@ -524,10 +524,27 @@ export async function initAnalyze() {
     busy = true;
     try {
       do { pending = false; await compute(); await updateMap(); } while (pending);
+      $('az-announce').textContent = `Updated: ${$('az-title').textContent}. ${$('az-subtitle').textContent?.split(' · ')[0] ?? ''}.`;
+      syncDownloader();
     } catch (err) {
       $('az-title').textContent = 'Could not load the data';
       $('az-subtitle').textContent = String(err);
+      $('az-announce').textContent = 'The data could not be loaded.';
     } finally { busy = false; }
   }
+
+  // Keep the page's RegionDataDownloader on the same area, indicator and period.
+  function syncDownloader() {
+    const wilaya = state.level === 'admin1' ? state.unit : state.level === 'admin2' ? (unitOf('admin2', state.unit)?.parent ?? '') : '';
+    const detail: Record<string, string> = {
+      level: state.level, wilaya, commune: state.level === 'admin2' ? state.unit : '',
+      indicator: state.variable,
+    };
+    if (state.variable === 'spei') Object.assign(detail, { step: 'monthly', from: `${state.from}-01`, to: `${state.to}-12`, scale: String(state.scale) });
+    else if (state.agg === 'year') Object.assign(detail, { step: 'annual', from: String(state.from), to: String(state.to) });
+    else Object.assign(detail, { step: 'monthly', from: `${state.from}-01`, to: `${state.to}-12` }); // analysis years end at the last complete year
+    window.dispatchEvent(new CustomEvent('aeo:rdd-set', { detail }));
+  }
+  $('az-dl-table').addEventListener('click', () => (document.getElementById('dl-csv') as HTMLButtonElement | null)?.click());
   refresh(true);
 }
