@@ -35,7 +35,7 @@ const payload = JSON.stringify({ level, code, wilaya: wilaya ?? null, label });
   </div>
   {row ? (
     <>
-      {hyper && <p class="mt-3 rounded-md border border-sand/40 bg-sand-100 px-3 py-2 text-[0.85rem] text-sand">Hyper-arid (normal precipitation {Number(row.normal_p_1991_2020_mm).toFixed(0)} mm/year): SPEI here reflects evaporative-demand (heat) anomalies, not rainfall drought.</p>}
+      {hyper && <p class="note note-warn mt-3">Hyper-arid (normal precipitation {Number(row.normal_p_1991_2020_mm).toFixed(0)} mm/year): SPEI here reflects evaporative-demand (heat) anomalies, not rainfall drought.</p>}
       <dl class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div><dt class="text-[0.75rem] text-slate">SPEI-3, {row.latest_month}</dt><dd class="text-[1.15rem] font-semibold text-atlas">{s(num(row.latest_spei_3))}</dd><dd class="text-[0.75rem] text-slate">{cls(num(row.latest_spei_3))}</dd></div>
         <div><dt class="text-[0.75rem] text-slate">SPEI-12, {row.latest_month}</dt><dd class="text-[1.15rem] font-semibold text-atlas">{s(num(row.latest_spei_12))}</dd><dd class="text-[0.75rem] text-slate">{cls(num(row.latest_spei_12))}</dd></div>

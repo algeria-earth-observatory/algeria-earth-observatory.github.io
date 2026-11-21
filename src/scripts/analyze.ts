@@ -96,7 +96,7 @@ export async function initAnalyze() {
       : `<option value="">Choose…</option>` + opts.filter((u) => u.code !== state.unit).map((u) => `<option value="${u.code}">${esc(u.name)} (${u.code})</option>`).join('');
     cmpSel.disabled = state.level === 'admin0';
     $<HTMLUListElement>('az-compare-list').innerHTML = state.compare.map((c, i) =>
-      `<li class="flex items-center gap-1 rounded-full border border-line py-0.5 pl-2 pr-1 text-[0.78rem]"><span class="inline-block h-2 w-2 rounded-full" style="background:${SERIES_COLORS[i + 1]}"></span>${esc(unitOf(state.level, c)?.name)}<button type="button" data-remove="${c}" class="rounded-full px-1 text-slate hover:bg-mist" aria-label="Remove ${esc(unitOf(state.level, c)?.name)}">×</button></li>`).join('');
+      `<li class="flex items-center gap-1 border border-line py-0.5 pl-2 pr-1 text-[0.75rem]"><span class="inline-block h-2 w-2 rounded-full" style="background:${SERIES_COLORS[i + 1]}"></span>${esc(unitOf(state.level, c)?.name)}<button type="button" data-remove="${c}" class="rounded-full px-1 text-slate hover:bg-mist" aria-label="Remove ${esc(unitOf(state.level, c)?.name)}">×</button></li>`).join('');
   };
   const currentWilaya = () => (state.level === 'admin2' ? unitOf('admin2', state.unit)?.parent ?? '19' : state.level === 'admin1' ? state.unit : wSel.value);
 
@@ -128,6 +128,7 @@ export async function initAnalyze() {
     [...$<HTMLSelectElement>('az-scale').options].forEach((o) => { o.disabled = state.level === 'admin2' && (o.value === '1' || o.value === '6'); });
     $<HTMLSelectElement>('az-month').value = String(state.month);
     $('spei-controls').classList.toggle('hidden', state.variable !== 'spei');
+    document.querySelectorAll<HTMLElement>('[data-spei-only]').forEach((e) => e.classList.toggle('hidden', state.variable !== 'spei'));
     $('agg-wrap').classList.toggle('hidden', state.variable === 'spei');
     document.querySelectorAll<HTMLElement>('[data-precip-only]').forEach((e) => e.classList.toggle('hidden', state.variable === 'spei'));
     const ys = $<HTMLSelectElement>('az-map-year');
@@ -213,7 +214,7 @@ export async function initAnalyze() {
       [`Latest (${s0.keys[lastIdx] !== undefined ? periodLabel(state.agg, s0.keys[lastIdx]) : '—'})`, `${fmt0(s0.values[lastIdx])} mm`, s0.anomaliesPct[lastIdx] !== null ? `${sign(s0.anomaliesPct[lastIdx])} % vs normal` : ''],
       ['Variability (CV)', sum.cv !== null ? `${sum.cv.toFixed(0)} %` : '—', 'std. dev. / mean'],
     ];
-    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="rounded-md border border-line bg-surface px-3 py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.15rem] font-semibold text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.75rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
+    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.72rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
 
     // trend
     const ts = sum.ts, mk = sum.mk;
@@ -396,7 +397,7 @@ export async function initAnalyze() {
       ['Expected share ≤ −1', '≈ 16 %', 'in the 1991–2020 reference'],
       ['Timescale', `SPEI-${state.scale}`, `${state.scale}-month water balance`],
     ];
-    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="rounded-md border border-line bg-surface px-3 py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.15rem] font-semibold text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.75rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
+    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.72rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
     if (state.month) {
       const ts = theilSen(s0.values, s0.keys), mk = mannKendall(s0.values);
       $('az-trend').innerHTML = ts.slope === null || mk.p === null ? 'Trend: too few years (at least 8 needed).'

@@ -2,8 +2,8 @@
 interface Props { eyebrow?: string; title: string; lead?: string; crumbs?: { href: string; label: string }[] }
 const { eyebrow, title, lead, crumbs } = Astro.props;
 ---
-<section class="border-b border-line bg-paper">
-  <div class="container-aeo py-10 sm:py-14">
+<section class="border-b border-line">
+  <div class="container-aeo pb-10 pt-12 sm:pb-12 sm:pt-16">
     {crumbs && (
       <nav aria-label="Breadcrumb" class="mb-4">
         <ol class="flex flex-wrap items-center gap-1.5 text-sm text-slate">
@@ -13,8 +13,8 @@ const { eyebrow, title, lead, crumbs } = Astro.props;
       </nav>
     )}
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1 class="mt-2 text-3xl sm:text-[2.35rem] font-semibold max-w-4xl">{title}</h1>
-    {lead && <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate">{lead}</p>}
+    <h1 class="h-section mt-4 max-w-4xl !text-[clamp(2.1rem,3.8vw,3.1rem)]">{title}</h1>
+    {lead && <p class="mt-5 max-w-2xl text-[1.0625rem] leading-relaxed text-slate">{lead}</p>}
     <slot />
   </div>
 </section>

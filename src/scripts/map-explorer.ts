@@ -1,8 +1,9 @@
 import {
-  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml, communePopupHtml,
+  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf,
   setLayerVisible, setLayerOpacity, setLayerTime, resolveMosaic, refreshTiles, snapDate, stepDate, availableDates, defaultDate, escapeHtml,
   type MapState, type BasemapId,
 } from './map-core';
+import { inspectorHtml, type Selection } from './inspector';
 
 export async function initExplorer() {
   const el = document.getElementById('map');
@@ -71,10 +72,23 @@ export async function initExplorer() {
   let selected: string | null = null;
   let hovered: string | null = null;
   const popup = new maplibregl.Popup({ maxWidth: '300px', closeButton: true });
+  const wide = window.matchMedia('(min-width: 1280px)');
+  const inspectorBody = document.getElementById('inspector-body');
+  let current: { sel: Selection; at: [number, number] } | null = null;
+  async function showInspector(sel: Selection, at: [number, number]) {
+    current = { sel, at };
+    const html = await inspectorHtml(sel, state);
+    if (current?.sel !== sel) return;
+    if (wide.matches && inspectorBody) { inspectorBody.innerHTML = html; popup.remove(); }
+    else popup.setLngLat(at).setHTML(`<div class="aeo-pop">${html}</div>`).addTo(map);
+  }
+  const refreshInspector = () => { if (current) showInspector(current.sel, current.at); };
   function clearSelection() {
     if (selected && map.getSource('aeo-wilayas')) map.setFeatureState({ source: 'aeo-wilayas', id: selected }, { selected: false });
     selected = null;
+    current = null;
     popup.remove();
+    if (inspectorBody) inspectorBody.textContent = 'Select a wilaya or commune on the map to see its indicators.';
   }
   function selectWilaya(code: string, fly: boolean) {
     const f = fc.features.find((x) => String(x.properties?.wilaya_code) === code);
@@ -84,17 +98,18 @@ export async function initExplorer() {
     map.setFeatureState({ source: 'aeo-wilayas', id: code }, { selected: true });
     if (fly) map.fitBounds(bboxOf(f), { padding: 40, maxZoom: 9 });
     const b = bboxOf(f);
-    if (fly) popup.setLngLat([(b[0] + b[2]) / 2, (b[1] + b[3]) / 2]).setHTML(wilayaPopupHtml(f.properties ?? {})).addTo(map);
+    if (fly) showInspector({ kind: 'wilaya', props: f.properties ?? {} }, [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2]);
   }
   sel.addEventListener('change', () => (sel.value ? selectWilaya(sel.value, true) : (clearSelection(), map.fitBounds(ALGERIA_BOUNDS, { padding: 24 }))));
 
   map.on('click', 'aeo-wilayas-fill', (e) => {
     const f = e.features?.[0];
     if (!f) return;
+    if (state.layers.communes?.on && map.queryRenderedFeatures(e.point, { layers: ['aeo-communes-fill'] }).length) return;
     const code = String(f.properties?.wilaya_code);
     selectWilaya(code, false);
     sel.value = code;
-    popup.setLngLat(e.lngLat).setHTML(wilayaPopupHtml(f.properties ?? {})).addTo(map);
+    showInspector({ kind: 'wilaya', props: f.properties ?? {} }, [e.lngLat.lng, e.lngLat.lat]);
   });
   map.on('mousemove', 'aeo-wilayas-fill', (e) => {
     const id = String(e.features?.[0]?.properties?.wilaya_code ?? '');
@@ -113,7 +128,7 @@ export async function initExplorer() {
   let hoveredC: string | null = null;
   map.on('click', 'aeo-communes-fill', (e) => {
     const f = e.features?.[0];
-    if (f) popup.setLngLat(e.lngLat).setHTML(communePopupHtml(f.properties ?? {})).addTo(map);
+    if (f) showInspector({ kind: 'commune', props: f.properties ?? {} }, [e.lngLat.lng, e.lngLat.lat]);
   });
   map.on('mousemove', 'aeo-communes-fill', (e) => {
     const id = String(e.features?.[0]?.properties?.commune_code ?? '');
@@ -178,6 +193,7 @@ export async function initExplorer() {
       showControls(l.id, chk.checked);
       renderLegend();
       syncUrl();
+      refreshInspector();
     });
     document.querySelector<HTMLInputElement>(`[data-opacity="${l.id}"]`)?.addEventListener('input', (e) => {
       const v = Number((e.target as HTMLInputElement).value);
@@ -200,7 +216,7 @@ export async function initExplorer() {
         note.textContent = `Showing ${snapped.slice(0, 4)} (${ds[0].slice(0, 4)}–${ds[ds.length - 1].slice(0, 4)})`;
         document.querySelector(`[data-error="${l.id}"]`)?.classList.add('hidden');
         window.clearTimeout(timer);
-        const go = () => { setLayerTime(map, l, snapped); renderLegend(); };
+        const go = () => { setLayerTime(map, l, snapped); renderLegend(); refreshInspector(); };
         if (immediate) go(); else timer = window.setTimeout(go, 120);
       };
       apply(state.layers[l.id].time ?? ds[ds.length - 1]);
@@ -223,6 +239,7 @@ export async function initExplorer() {
         document.querySelector(`[data-error="${l.id}"]`)?.classList.add('hidden');
         setLayerTime(map, l, snapped);
         renderLegend();
+        refreshInspector();
       };
       input.value = state.layers[l.id].time ?? ds[ds.length - 1];
       note.textContent = `Latest available: ${ds[ds.length - 1]}`;
@@ -250,6 +267,29 @@ export async function initExplorer() {
       syncUrl();
     });
   });
+
+  // ---------------------------------------------------------------- layer search, basemap select
+  const search = document.getElementById('layer-search') as HTMLInputElement | null;
+  search?.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>('[data-layer-item]').forEach((li) => {
+      const hit = !q || (li.dataset.search ?? '').includes(q);
+      li.hidden = !hit;
+      if (hit) shown++;
+    });
+    document.querySelectorAll<HTMLElement>('[data-layer-group]').forEach((g) => { g.hidden = !g.querySelector('[data-layer-item]:not([hidden])'); });
+    document.getElementById('layer-empty')?.classList.toggle('hidden', shown > 0);
+  });
+  const bsel = document.getElementById('basemap-select') as HTMLSelectElement | null;
+  if (bsel) {
+    bsel.value = state.basemap;
+    bsel.addEventListener('change', () => {
+      const r = document.querySelector<HTMLInputElement>(`input[name="basemap"][value="${bsel.value}"]`);
+      if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
+    });
+  }
+  wide.addEventListener('change', refreshInspector);
 
   renderLegend();
   syncUrl();

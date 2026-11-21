@@ -42,6 +42,8 @@ def main() -> None:
     ap.add_argument("--boundaries", required=True, help="boundary version folder, e.g. 2026-11-19")
     ap.add_argument("--layer", default="BlueMarble_ShadedRelief_Bathymetry")
     ap.add_argument("--width", type=int, default=2400)
+    ap.add_argument("--style", choices=["overlay", "plate"], default="overlay",
+                    help="plate: no boundaries or graticule; surroundings faded towards the page colour")
     a = ap.parse_args()
 
     x0, x1, y0, y1 = mx(W), mx(E), my(S), my(N)
@@ -81,6 +83,25 @@ def main() -> None:
 
     arr = np.asarray(base).astype(np.float32)
     grey = arr.mean(axis=2, keepdims=True)
+    if a.style == "plate":
+        chalk = np.array([247, 247, 243], dtype=np.float32)
+        faded = 0.22 * grey + 0.78 * chalk
+        m = (np.asarray(mask).astype(np.float32) / 255.0)[..., None]
+        out = Image.fromarray(np.clip(arr * m + faded * (1 - m), 0, 255).astype(np.uint8))
+        dest = ROOT / "public" / "images" / "hero"
+        for w in (1800, 1000):
+            im = out.resize((w, round(w * height / width)), Image.LANCZOS)
+            im.save(dest / f"algeria-plate-{w}.webp", quality=84, method=6)
+            im.save(dest / f"algeria-plate-{w}.jpg", quality=86, optimize=True, progressive=True)
+        (dest / "SOURCE-plate.json").write_text(json.dumps({
+            "imagery": "NASA Blue Marble: Next Generation with shaded relief and bathymetry (GIBS layer " + a.layer + ")",
+            "imagery_credit": "NASA Earth Observatory / NASA EOSDIS GIBS",
+            "request": url, "projection": "EPSG:3857 (Web Mercator)", "bbox_wgs84": [W, S, E, N],
+            "processing": "Pixels inside Algeria unchanged; outside Algeria converted to grey and faded towards #F7F7F3 (national outline: AEO boundaries " + a.boundaries + ", used as a mask only, not drawn).",
+            "code": "scripts/processing/build_hero_image.py --style plate",
+        }, indent=2) + "\n", encoding="utf-8")
+        print("ok plate", width, height)
+        return
     dim = (0.35 * arr + 0.65 * grey) * 0.42 + np.array([20, 59, 86], dtype=np.float32) * 0.22
     m = (np.asarray(mask).astype(np.float32) / 255.0)[..., None]
     out = Image.fromarray(np.clip(arr * m + dim * (1 - m), 0, 255).astype(np.uint8))

@@ -31,13 +31,11 @@ export const SITE = {
 } as const;
 
 export const NAV = [
-  { href: '/', label: 'Home' },
+  { href: '/map/', label: 'Explore' },
   { href: '/data/', label: 'Data' },
-  { href: '/map/', label: 'Map' },
   { href: '/analyze/', label: 'Analyze' },
   { href: '/regions/', label: 'Regions' },
   { href: '/docs/', label: 'Methods' },
-  { href: '/contribute/', label: 'Contribute' },
   { href: '/about/', label: 'About' },
 ] as const;
 

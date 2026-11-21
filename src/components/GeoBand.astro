@@ -1,0 +1,23 @@
+---
+/**
+ * AZIM supporting pattern: a thin band of alternating triangles and lozenges on a
+ * 12 px module. Editorial transitions and footer detail only — never behind maps,
+ * charts, tables or form controls (docs/BRAND.md).
+ */
+interface Props { tone?: 'oxide' | 'muted' }
+const { tone = 'oxide' } = Astro.props;
+const stroke = tone === 'oxide' ? '#B6503C' : '#D8D3C8';
+const id = `geo-${tone}`;
+---
+<div aria-hidden="true" class="h-3 w-full">
+  <svg width="100%" height="12" class="block">
+    <defs>
+      <pattern id={id} width="48" height="12" patternUnits="userSpaceOnUse">
+        <path d="M0 11 L6 1 L12 11" fill="none" stroke={stroke} stroke-width="1.2" />
+        <path d="M24 1 L30 6 L24 11 L18 6 Z" fill="none" stroke={stroke} stroke-width="1.2" />
+        <path d="M36 11 L42 1 L48 11" fill="none" stroke={stroke} stroke-width="1.2" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="12" fill={`url(#${id})`} />
+  </svg>
+</div>
