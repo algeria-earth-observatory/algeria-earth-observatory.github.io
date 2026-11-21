@@ -1,0 +1,147 @@
+{
+  "id": "ggcmi-phase3-crop-calendar",
+  "title": "GGCMI Phase 3 Global Crop Calendar (0.5°, 18 crops)",
+  "description": "A composite global crop calendar prepared for the Global Gridded Crop Model Intercomparison (GGCMI) Phase 3, giving for every 0.5° land grid cell the planting day, maturity day and growing-season length of 18 crops, separately for rainfed and irrigated systems (with winter and spring wheat and two rice seasons). It merges observational calendars (MIRCA2000, SAGE, Iizumi et al. 2019, Dimou et al. 2018, national statistics and others), with gap-filling and spatial extrapolation outside cultivated areas.",
+  "purpose": "Provides gridded planting and maturity dates for Algerian wheat, barley and other crops to define seasonal windows for drought, NDVI and evapotranspiration analysis where no national gridded crop calendar is openly available.",
+  "domain": [
+    "agriculture"
+  ],
+  "categories": [
+    "Crop calendars",
+    "Crop phenology"
+  ],
+  "keywords": [
+    "crop calendar",
+    "planting date",
+    "maturity date",
+    "growing season",
+    "GGCMI",
+    "AgMIP",
+    "MIRCA2000",
+    "SAGE",
+    "wheat",
+    "barley"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "GGCMI / AgMIP (Jägermeyr, Müller, Minoli, Ray, Siebert), published on Zenodo",
+    "url": "https://zenodo.org/records/5062513"
+  },
+  "creator": "Jägermeyr, J., Müller, C., Minoli, S., Ray, D., Siebert, S.",
+  "source_url": "https://zenodo.org/records/5062513",
+  "documentation_url": "https://www.nature.com/articles/s43016-021-00400-y",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Zenodo record and DataCite metadata: Creative Commons Attribution 4.0 International, open access.",
+  "citation": "Jägermeyr, J., Müller, C., Minoli, S., Ray, D., Siebert, S. (2021). GGCMI Phase 3 crop calendar [Data set]. Zenodo. https://doi.org/10.5281/zenodo.5062513",
+  "doi": "10.5281/zenodo.5062513",
+  "references": [
+    {
+      "citation": "Jägermeyr, J., Müller, C., Ruane, A. C., Elliott, J., Balkovic, J., Castillo, O., Faye, B., Foster, I., et al. (2021). Climate impacts on global agriculture emerge earlier in new generation of climate and crop models. Nature Food, 2, 873–885.",
+      "doi": "10.1038/s43016-021-00400-y",
+      "url": "https://www.nature.com/articles/s43016-021-00400-y"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land at 0.5°; cells outside currently cultivated areas are spatially extrapolated, so values exist even over the Algerian Sahara and must be masked with a cropland map.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "static (multi-year average)",
+    "description": "Static growing periods representing multi-year average conditions; one season per crop and cell (two for wheat types and rice). An annual calendar with yearly dates was announced as in preparation."
+  },
+  "resolution": {
+    "spatial": "0.5° x 0.5°",
+    "spatial_m": 55660,
+    "temporal": "static"
+  },
+  "format": [
+    "NetCDF-4 (one file per crop and water regime, e.g. wwh_rf_ggcmi_crop_calendar_phase3_v1.01.nc4)"
+  ],
+  "crs": "EPSG:4326 (regular latitude–longitude grid)",
+  "variables": [
+    {
+      "name": "planting_day",
+      "units": "day of year",
+      "description": "Planting day (rainfed or irrigated)"
+    },
+    {
+      "name": "maturity_day",
+      "units": "day of year",
+      "description": "Maturity day"
+    },
+    {
+      "name": "growing_season_length",
+      "units": "days",
+      "description": "Length of the growing season"
+    },
+    {
+      "name": "data_source_used",
+      "units": "code",
+      "description": "1 MIRCA; 2 SAGE; 3 Iizumi et al. 2019; 4 RiceAtlas; 5 Dimou et al. 2018; 6 ChinCropPhen; 7 IndiaAgStat; 8 Brazil CONAB; 9 Australia ABARES"
+    }
+  ],
+  "processing": "Observed crop calendars from several sources are selected per region, harmonised to 0.5°, gap-filled and extrapolated to non-cultivated cells, following Jägermeyr et al. (2021). Crops: wheat (winter/spring), maize, rice (two seasons), soybean, sorghum, millet, barley, rye, rapeseed, sunflower, groundnut, cassava, potato, pulses (peas, beans), sugar beet, sugarcane and cotton, each rainfed and irrigated.",
+  "validation": "No validation statistics are given on the Zenodo record; the calendar is an input harmonisation for crop-model intercomparison rather than an independently validated product.",
+  "limitations": [
+    "Static average dates: no inter-annual variation in sowing, which in Algeria depends strongly on autumn rainfall.",
+    "Coarse 0.5° cells and regional source calendars; within-wilaya differences (coastal plains vs High Plateaux) are only partly represented.",
+    "Values are extrapolated outside cultivated areas (e.g. Saharan cells have wheat dates), so a cropland mask is mandatory.",
+    "Sampled Algerian cells show abrupt source changes: rainfed winter wheat and barley in the Mitidja cell (3.0°E, 36.6°N) come from MIRCA (planting day 305, maturity day 205, i.e. about 1 November to 24 July), while Sétif and Batna cells use Dimou et al. 2018 (planting day 325, maturity day 153, about 21 November to 2 June); the late-July maturity in the coastal cell should be checked against local knowledge.",
+    "Only one season per crop is represented; double cropping and vegetable rotations in irrigated perimeters are not."
+  ],
+  "version": "v1.01",
+  "published_date": "2021-07-02",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Zenodo record (all crop files)",
+      "url": "https://zenodo.org/records/5062513",
+      "kind": "external",
+      "format": "NetCDF-4 (.nc4)",
+      "requires_login": false,
+      "notes": "40 files of 50–145 kB each; e.g. wwh_rf (winter wheat rainfed), bar_rf (barley rainfed)."
+    },
+    {
+      "label": "Zenodo REST API record",
+      "url": "https://zenodo.org/api/records/5062513",
+      "kind": "api",
+      "format": "JSON with file links",
+      "requires_login": false,
+      "notes": "Machine-readable file list and download links."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful as a default seasonal window for winter cereals (planting November, maturity late May–June in the High Plateaux per the Dimou et al. 2018 source) when computing season-integrated NDVI, rainfall or ET over Algeria. Replace with Algerian agricultural calendars where available and mask with a cropland map (e.g. ESA WorldCereal or GLAD cropland). The older SAGE crop calendar (Sacks et al. 2010) gives only one national calendar per crop for Algeria (from FAO GIEWS) and states no licence.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "validation",
+      "full source attribution per Algerian cell (only five cells sampled)"
+    ],
+    "sources_consulted": [
+      "https://zenodo.org/api/records/5062513",
+      "https://api.datacite.org/dois/10.5281/zenodo.5062513",
+      "https://api.crossref.org/works/10.1038/s43016-021-00400-y",
+      "wwh_rf_ggcmi_crop_calendar_phase3_v1.01.nc4 and bar_rf_ggcmi_crop_calendar_phase3_v1.01.nc4 (downloaded 2026-11-21)",
+      "https://sage.nelson.wisc.edu/data-and-models/datasets/crop-calendar-dataset/",
+      "https://sage-public-files.s3.amazonaws.com/crop-calendar-dataset/All_data_with_climate.csv"
+    ],
+    "notes": "Variables, units and the data_source_used legend were read from the NetCDF files; Algerian values were sampled at five grid cells (Mitidja, Sétif, Sidi Bel Abbès, Batna/Khenchela, central Sahara). The crop list in 'processing' follows the Zenodo file names (wwh, swh, mai, ri1, ri2, soy, sor, mil, bar, rye, rap, sun, nut, cas, pot, pea, bea, sgb, sgc, cot). The SAGE dataset was checked as an alternative (Algeria: national-level winter wheat, barley, rice, sorghum and sugar beet calendars from GIEWS) but not given a record because no licence is stated. GEOGLAM crop calendars and MIRCA2000 were not separately verified."
+  }
+}

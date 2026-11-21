@@ -1,0 +1,178 @@
+{
+  "id": "gleam4-evaporation",
+  "title": "GLEAM4 Global Land Evaporation and Soil Moisture (0.1°, daily)",
+  "description": "The Global Land Evaporation Amsterdam Model (GLEAM), fourth generation, estimates daily actual evaporation and its components (transpiration, interception loss, bare-soil evaporation, open-water evaporation, sublimation), potential evaporation, evaporative stress, root-zone and surface soil moisture and sensible heat flux on a 0.1° global grid. GLEAM4.3a (1980–2024) uses satellite and reanalysis inputs; GLEAM4.3b (2003–2024) is based on satellite data.",
+  "purpose": "An independent, observation-driven estimate of actual evaporation and soil moisture for Algeria's water balance and agricultural drought analysis, complementary to model reanalyses (ERA5-Land) and to MODIS MOD16 and WaPOR.",
+  "domain": [
+    "water",
+    "climate-drought",
+    "agriculture"
+  ],
+  "categories": [
+    "Evapotranspiration",
+    "Soil moisture",
+    "Water balance components"
+  ],
+  "keywords": [
+    "GLEAM",
+    "evaporation",
+    "transpiration",
+    "potential evaporation",
+    "evaporative stress",
+    "root-zone soil moisture",
+    "Priestley-Taylor",
+    "Penman",
+    "Ghent University"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "GLEAM team (Hydro-Climate Extremes Lab, Ghent University)",
+    "url": "https://www.gleam.eu/"
+  },
+  "creator": "Miralles, D. G., Bonte, O., Koppa, A., Baez-Villanueva, O. M., Tronquo, E., Zhong, F., Beck, H. E., Hulsman, P., et al.",
+  "source_url": "https://www.gleam.eu/",
+  "documentation_url": "https://www.nature.com/articles/s41597-025-04610-y",
+  "license": {
+    "name": "GLEAM user policy: freely available; commercial use only after approval by the GLEAM team",
+    "spdx": null,
+    "url": "https://www.gleam.eu/#downloads"
+  },
+  "license_notes": "gleam.eu 'User policy': 'GLEAM4 datasets are freely available; GLEAM datasets can only be used for commercial purposes after internal approval'. The GLEAM4 data descriptor (Miralles et al. 2025) states the data are on a public SFTP server 'under a CC BY licence' without naming a version; this record follows the provider website, which adds the commercial-use condition. Registration (name, e-mail) is required to receive SFTP credentials.",
+  "citation": "Miralles, D. G., Bonte, O., Koppa, A., Baez-Villanueva, O. M., Tronquo, E., Zhong, F., Beck, H. E., Hulsman, P., et al. (2025). GLEAM4: global land evaporation and soil moisture dataset at 0.1° resolution from 1980 to near present. Scientific Data, 12, 416. https://doi.org/10.1038/s41597-025-04610-y",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Miralles, D. G., Bonte, O., Koppa, A., et al. (2025). GLEAM4: global land evaporation and soil moisture dataset at 0.1° resolution from 1980 to near present. Scientific Data, 12, 416.",
+      "doi": "10.1038/s41597-025-04610-y",
+      "url": "https://www.nature.com/articles/s41597-025-04610-y"
+    },
+    {
+      "citation": "Miralles, D. G., Holmes, T. R. H., de Jeu, R. A. M., Gash, J. H., Meesters, A. G. C. A., and Dolman, A. J. (2011). Global land-surface evaporation estimated from satellite-based observations. Hydrology and Earth System Sciences, 15, 453–469.",
+      "doi": "10.5194/hess-15-453-2011",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land on a 0.1° latitude–longitude grid; Algeria must be subset from global files.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "1980-01-01",
+    "end": "2024-12-31",
+    "ongoing": true,
+    "frequency": "daily",
+    "description": "GLEAM4.3a: 1 January 1980 – 31 December 2024; GLEAM4.3b: 2003–2024 per the website Datasets section (the website highlights also say 4.3b 'covers up to the end of 2025' — check the README on the server). Monthly and yearly aggregates are also provided. New releases have extended the record periodically (4.2 described in the 2025 paper covered 1980–2023)."
+  },
+  "resolution": {
+    "spatial": "0.1° x 0.1°",
+    "spatial_m": 11132,
+    "temporal": "daily; monthly and yearly aggregates"
+  },
+  "format": [
+    "NetCDF"
+  ],
+  "crs": "EPSG:4326 (regular latitude–longitude grid)",
+  "variables": [
+    {
+      "name": "E",
+      "units": "mm/day",
+      "description": "Actual evaporation"
+    },
+    {
+      "name": "Et",
+      "units": "mm/day",
+      "description": "Transpiration"
+    },
+    {
+      "name": "Ei",
+      "units": "mm/day",
+      "description": "Interception loss"
+    },
+    {
+      "name": "Eb",
+      "units": "mm/day",
+      "description": "Bare-soil evaporation"
+    },
+    {
+      "name": "Ew",
+      "units": "mm/day",
+      "description": "Open-water evaporation"
+    },
+    {
+      "name": "Ep",
+      "units": "mm/day",
+      "description": "Potential evaporation"
+    },
+    {
+      "name": "S",
+      "units": "dimensionless",
+      "description": "Evaporative stress factor"
+    },
+    {
+      "name": "SMrz / SMs",
+      "units": "m3 m-3",
+      "description": "Root-zone and surface soil moisture"
+    },
+    {
+      "name": "H",
+      "units": "W m-2",
+      "description": "Sensible heat flux"
+    }
+  ],
+  "processing": "Potential evaporation is computed with Penman's equation (including aerodynamic demand, new in GLEAM4) and reduced to actual evaporation through an evaporative stress factor learned from eddy-covariance and sap-flow data (hybrid machine-learning; GLEAM4.3 replaced the deep neural network with an XGBoost implementation). A multi-layer soil water balance accounts for plant access to groundwater, and ESA CCI surface soil moisture is assimilated with a Newtonian nudging scheme. Inputs are resampled to 0.1° by bilinear interpolation.",
+  "validation": "Miralles et al. (2025): validation against 473 eddy-covariance sites gives a median correlation of 0.73, root-mean-square error of 0.95 mm/day and Kling–Gupta efficiency of 0.49 (GLEAM4.2).",
+  "limitations": [
+    "Download requires registration and SFTP access (port 2225), so it cannot be scripted anonymously.",
+    "Commercial use requires prior approval by the GLEAM team.",
+    "Few eddy-covariance sites exist in North Africa, so the learned stress function is weakly constrained for Algerian steppe, oases and desert; the validation statistics are global.",
+    "The GLEAM documentation reviewed here does not describe irrigation as a water input; if it is absent, evaporation over irrigated perimeters and oases may be underestimated.",
+    "Precipitation and radiation forcing errors in data-sparse regions propagate to all outputs; version changes (4.2 → 4.3) modify values, so record the version used."
+  ],
+  "version": "GLEAM4.3a / GLEAM4.3b",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GLEAM website: datasets and download registration",
+      "url": "https://www.gleam.eu/",
+      "kind": "external",
+      "format": "NetCDF via SFTP",
+      "requires_login": true,
+      "notes": "Fill in the form under 'Downloads' to receive SFTP credentials by e-mail; data organised by archive (a/b) and temporal resolution (daily, monthly, yearly)."
+    },
+    {
+      "label": "GLEAM4 data descriptor (Scientific Data, 2025)",
+      "url": "https://www.nature.com/articles/s41597-025-04610-y",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Methods, inputs (Table 1), validation and file structure."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful for comparing evaporation estimates across the Tell, High Plateaux and oases, and for root-zone soil moisture in drought analysis. In the hyper-arid Sahara evaporation is close to zero and dominated by rare rain events, so relative anomalies there are noisy. Compare with MODIS MOD16, WaPOR v3 and ERA5-Land before drawing conclusions on irrigated areas.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "GLEAM4.3b end date (website gives 2024 and 'end of 2025')",
+      "variable units (from general GLEAM documentation, not read from file headers)",
+      "irrigation limitation (inferred from the model description, not a provider statement)"
+    ],
+    "sources_consulted": [
+      "https://www.gleam.eu/",
+      "https://www.nature.com/articles/s41597-025-04610-y",
+      "https://api.crossref.org/works/10.1038/s41597-025-04610-y",
+      "https://api.crossref.org/works/10.5194/hess-15-453-2011"
+    ],
+    "notes": "Versions, periods, variables, SFTP access and user policy were read from gleam.eu; validation figures, CC BY statement and processing from the 2025 data descriptor (which describes v4.2). No dataset DOI found; the paper DOI is used in the citation. Files were not downloaded (registration required)."
+  }
+}

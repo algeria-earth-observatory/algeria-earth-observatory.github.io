@@ -51,7 +51,13 @@ Branch `science-gateway`. This report lists what was built in response to the br
   - **Available from external sources** (Visit source | Documentation | Publication; never a Download button);
   - **Under development**.
 - **Soil domain:** "Soil & Land Properties" is now a primary domain.
-- **External records and Algerian institutions:** added after verification (see the agent reports in the commit history), with honest access descriptions.
+- **External records:** 21 new verified records, so the catalog now holds 61 records (49 external).
+  - Soil (8): FAO GSOCmap, HWSD v2.2, WoSIS profiles, OpenLandMap-soildb, iSDAsoil, FAO GSOCseq, FAO DSMW, JRC Soil Atlas of Africa.
+  - Climate, water, vegetation and agriculture (13): ERA5, C3S seasonal forecasts, CRU TS, GLEAM, ESA CCI Soil Moisture, GRACE mascons, AQUASTAT, Global Dam Watch, Hansen Global Forest Change, MODIS GPP/NPP, FAO WaPOR, Copernicus NDVI 300 m, GGCMI crop calendar.
+  - Every URL was fetched, every DOI was checked as registered (doi.org) and against Crossref or DataCite, and Algeria coverage was checked by reading the data where possible.
+  - Licence conflicts between official sources are recorded with the most restrictive reading, for example GSOCseq.
+  - The live WoSIS service lists only 10 soil profiles for Algeria; this is now cited in the soil method.
+- **Algerian institutions:** 6 institutions (ONM, ASAL, ONS, MADRP, DGF, CRSTRA), each with what is openly available ("publications only", "on request" or "no public data found"). ANRH, ANBT and INSID were left out because their sites could not be reached or verified. No partnership is implied.
 
 ### Science
 - **Overview:** methods, data guides, and a table of the ten open-science standards for each product. It shows "partial" or "not yet" where true (reproducible environment, quantitative uncertainty, software DOI).
@@ -65,7 +71,7 @@ Branch `science-gateway`. This report lists what was built in response to the br
   - Agricultural drought exposure is listed as planned.
 
 ## Tests (all passing on the branch)
-- **Python (93 passed, 1 network test skipped):**
+- **Python (93 passed, 1 network test skipped); build validates all 61 records and 276 regional partitions:**
   - SPI against R;
   - soil product QA (checksums, completeness, ranges, quantile order, national vs wilaya, stock totals);
   - regional partitions;

@@ -1,0 +1,167 @@
+{
+  "id": "grace-jpl-mascon-rl06",
+  "title": "GRACE and GRACE-FO JPL Mascon Terrestrial Water Storage Anomalies (RL06.3Mv04, CRI)",
+  "description": "Monthly anomalies of total terrestrial water storage (equivalent water thickness, cm, relative to a time mean) derived from the GRACE (2002–2017) and GRACE-FO (2018– ) satellite gravimetry missions and processed at NASA JPL with the mascon approach: 4,551 equal-area 3° spherical-cap mass concentrations, provided on a 0.5° grid, with a Coastal Resolution Improvement filter, uncertainties, land mask and optional gain (scale) factors.",
+  "purpose": "The only global observation of total water-storage change (groundwater + soil moisture + surface water), relevant to monitoring long-term storage trends in Algeria's large aquifer systems and to drought impacts at basin scale.",
+  "domain": [
+    "water",
+    "climate-drought"
+  ],
+  "categories": [
+    "Terrestrial water storage",
+    "Groundwater (indirect)",
+    "Satellite gravimetry"
+  ],
+  "keywords": [
+    "GRACE",
+    "GRACE-FO",
+    "mascon",
+    "terrestrial water storage",
+    "TWS",
+    "equivalent water height",
+    "groundwater",
+    "JPL",
+    "PO.DAAC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Jet Propulsion Laboratory (JPL); distributed by NASA PO.DAAC",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/pocloud-tellus-grac-grfo-mascon-cri-grid-rl06.3-v4-RL06.3Mv04"
+  },
+  "creator": "D. N. Wiese, D.-N. Yuan, C. Boening, F. W. Landerer, M. M. Watkins (JPL)",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/pocloud-tellus-grac-grfo-mascon-cri-grid-rl06.3-v4-RL06.3Mv04",
+  "documentation_url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-docs/gracefo/open/docs/GRACE_GRACE-FO_ReleaseNotes_JPL_MASCON.txt",
+  "license": {
+    "name": "NASA Earth science data – openly shared without restriction (EOSDIS Data Use and Citation Guidance)",
+    "spdx": null,
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "NASA Earthdata catalog page: 'This dataset is openly shared, without restriction, in accordance with the EOSDIS Data Use and Citation Guidance.' The CMR record carries no dataset-specific use constraint. Cite the dataset DOI and the PO.DAAC citation guidelines.",
+  "citation": "Wiese, D. N., Yuan, D.-N., Boening, C., Landerer, F. W., and Watkins, M. M. (2024). JPL GRACE and GRACE-FO Mascon Ocean, Ice, and Hydrology Equivalent Water Height CRI Filtered RL06.3Mv04. NASA Physical Oceanography Distributed Active Archive Center. https://doi.org/10.5067/TEMSC-3JC634",
+  "doi": "10.5067/TEMSC-3JC634",
+  "references": [
+    {
+      "citation": "Watkins, M. M., Wiese, D. N., Yuan, D.-N., Boening, C., and Landerer, F. W. (2015). Improved methods for observing Earth's time variable mass distribution with GRACE using spherical cap mascons. Journal of Geophysical Research: Solid Earth, 120, 2648–2671.",
+      "doi": "10.1002/2014JB011547",
+      "url": null
+    },
+    {
+      "citation": "Wiese, D. N., Landerer, F. W., and Watkins, M. M. (2016). Quantifying and reducing leakage errors in the JPL RL05M GRACE mascon solution. Water Resources Research, 52, 7490–7502.",
+      "doi": "10.1002/2016WR019344",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global (CMR bounding rectangle −180/−90/180/90) on a 0.5° grid; the underlying resolution is set by the 3° equal-area mascons (about 300 km), so Algeria (about 2.4 million km2) is represented by roughly two dozen independent mascons (AEO estimate from area, not a provider statement). Users subset the single global file.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2002-04-04",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "April 2002 to present; the single file available on 2026-11-21 (GRCTellus.JPL.200204_202609.GLO.RL06.3M.MSCNv04CRI) runs to September 2026. The record has missing months, including the gap between the GRACE and GRACE-FO missions."
+  },
+  "resolution": {
+    "spatial": "0.5° grid; effective resolution of 3° equal-area mascons",
+    "spatial_m": 55660,
+    "temporal": "monthly"
+  },
+  "format": [
+    "NetCDF-4 (single global file, appended monthly)"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.5° grid)",
+  "variables": [
+    {
+      "name": "lwe_thickness",
+      "units": "cm",
+      "description": "Liquid water equivalent thickness anomaly relative to the time mean"
+    },
+    {
+      "name": "uncertainty",
+      "units": "cm",
+      "description": "1-sigma uncertainty per mascon"
+    },
+    {
+      "name": "scale_factor (gain factors)",
+      "units": "dimensionless",
+      "description": "Optional gain factors for land hydrology, provided with the solution"
+    },
+    {
+      "name": "land_mask / mascon_ID",
+      "units": "-",
+      "description": "Land mask used by the CRI filter and mascon identifiers"
+    }
+  ],
+  "processing": "Monthly gravity-field variations are solved directly on geolocated spherical-cap mascons using K-band range-rate and GPS data, with geophysical a-priori constraints that remove correlated errors, so no de-striping or smoothing is needed. GIA is modelled with ICE-6G_D, the C20 coefficient is replaced following TN-14 and the geocenter follows TN-13 processing standards (release notes). RL06.3Mv04 uses the ACX2 accelerometer-transplant bundle for GRACE-FO months in wide dead-band pointing; the 21 October 2026 release fixed two minor bugs from the August 2026 solution onward.",
+  "validation": "Uncertainties are provided per mascon and were recalibrated for the GRACE-FO period in v4.0 (release notes). No single accuracy figure is given on the catalogue page; Watkins et al. (2015) and Wiese et al. (2016) describe the method and leakage-error assessment.",
+  "limitations": [
+    "Measures total water storage change only; separating groundwater requires subtracting soil moisture, snow and surface-water storage from models or other observations, which adds large uncertainty.",
+    "Effective resolution of about 300 km: individual Algerian basins, dams or irrigated perimeters cannot be resolved; signals near the Mediterranean coast are affected by land–ocean leakage despite the CRI filter.",
+    "Anomalies are relative to a time mean; absolute storage is not provided.",
+    "Missing months and the 2017–2018 inter-mission gap must be handled in trend analysis; processing updates (e.g. v4.0 in 2024, bug fixes in 2025 and 2026) slightly change earlier values.",
+    "Downloads require a free NASA Earthdata Login."
+  ],
+  "version": "RL06.3Mv04 (CRI filtered)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NASA Earthdata catalog page",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/pocloud-tellus-grac-grfo-mascon-cri-grid-rl06.3-v4-RL06.3Mv04",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "Landing page (DOI target). Cloud collection C3195527175-POCLOUD; download requires Earthdata Login."
+    },
+    {
+      "label": "NASA Earthdata Search (collection C3195527175-POCLOUD)",
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C3195527175-POCLOUD",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "Single global granule, replaced as months are added."
+    },
+    {
+      "label": "JPL mascon release notes",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-docs/gracefo/open/docs/GRACE_GRACE-FO_ReleaseNotes_JPL_MASCON.txt",
+      "kind": "external",
+      "format": "text",
+      "requires_login": false,
+      "notes": "Change log of RL06.x versions, including the 2026 bug fixes."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Relevant for regional storage trends over the North-Western Sahara Aquifer System shared with Tunisia and Libya and over the Tell basins, but only at a scale of several hundred kilometres. Interpret Saharan signals together with irrigation and abstraction information, and treat any groundwater estimate derived from GRACE as a model-dependent residual, not a measurement.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "published_date",
+      "variable names (from JPL mascon documentation conventions, not read from the file)",
+      "inter-mission gap months (not checked in the file)"
+    ],
+    "sources_consulted": [
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+      "https://cmr.earthdata.nasa.gov/search/granules.umm_json?collection_concept_id=C3195527175-POCLOUD",
+      "https://www.earthdata.nasa.gov/data/catalog/pocloud-tellus-grac-grfo-mascon-cri-grid-rl06.3-v4-RL06.3Mv04",
+      "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-docs/gracefo/open/docs/GRACE_GRACE-FO_ReleaseNotes_JPL_MASCON.txt",
+      "https://api.datacite.org/dois/10.5067/TEMSC-3JC634",
+      "https://api.crossref.org/works/10.1002/2014JB011547",
+      "https://api.crossref.org/works/10.1002/2016WR019344"
+    ],
+    "notes": "The PO.DAAC dataset page (podaac.jpl.nasa.gov) timed out repeatedly and the JPL GRACE 'jpl_global_mascons' page returned HTTP 404, so the Earthdata catalog page (DOI landing page) is used as source. DataCite lists the DOI as issued in 2024 with creators 'GRACE-FO, D. N. Wiese'; the citation follows the CMR creator list. Latest granule end date (2026-09-16) from CMR granule search."
+  }
+}

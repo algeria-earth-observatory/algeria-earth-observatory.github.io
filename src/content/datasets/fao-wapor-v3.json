@@ -1,0 +1,206 @@
+{
+  "id": "fao-wapor-v3",
+  "title": "FAO WaPOR v3: Water Productivity through Open Access of Remotely Sensed Data",
+  "description": "WaPOR version 3 is FAO's open database of remotely sensed evapotranspiration and biomass production. Level 1 (300 m, global) and Level 2 (100 m, Northern and sub-Saharan Africa and the Near East) provide dekadal, monthly and annual actual evapotranspiration and interception (AETI) and its components (transpiration, evaporation, interception), net primary production, total biomass production, biomass water productivity and relative soil moisture from 2018 onward, plus reference evapotranspiration and precipitation layers. Level 3 (20 m) covers selected irrigation areas, including Mitidja in Algeria.",
+  "purpose": "Quantifies actual crop water use and biomass production over Algeria's irrigated perimeters and rainfed cereal areas at 100 m, supporting irrigation performance and water-productivity analysis.",
+  "domain": [
+    "water",
+    "agriculture"
+  ],
+  "categories": [
+    "Evapotranspiration",
+    "Water productivity",
+    "Biomass production"
+  ],
+  "keywords": [
+    "WaPOR",
+    "FAO",
+    "evapotranspiration",
+    "AETI",
+    "transpiration",
+    "water productivity",
+    "biomass",
+    "ETLook",
+    "irrigation",
+    "Mitidja"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Food and Agriculture Organization of the United Nations (FAO) – WaPOR programme",
+    "url": "https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data/en"
+  },
+  "creator": "FAO WaPOR programme; data components developed in collaboration with eLEAF (WaPOR-ETLook model)",
+  "source_url": "https://data.apps.fao.org/wapor/?lang=en",
+  "documentation_url": "https://github.com/un-fao/wapor-et-look/wiki",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "FAO data catalog entries for WaPOR v3 Level 1 (Global) and Level 2 (National) layers: 'This work is made available under the Creative Commons Attribution 4.0 International licence (CC-BY-4.0)'; suggested citation 'FAO WaPOR database. [Accessed on [Day/Month/Year]]. [URL] Licence: CC-BY-4.0'. Level 3 (20 m) entries, including 'Mitidja, Algeria - WaPOR v3', are listed as CC-BY-SA-4.0 (share-alike).",
+  "citation": "FAO WaPOR database. [Accessed on DD/MM/YYYY]. https://data.apps.fao.org/wapor/ Licence: CC-BY-4.0",
+  "doi": null,
+  "references": [
+    {
+      "citation": "FAO WaPOR-ETLook methodology documentation (wiki).",
+      "doi": null,
+      "url": "https://github.com/un-fao/wapor-et-look/wiki"
+    },
+    {
+      "citation": "FAO data catalog: Actual evapotranspiration and interception (Global - Annual - 300 m) - WaPOR v3.",
+      "doi": null,
+      "url": "https://data.apps.fao.org/catalog/dataset/b860007a-6c03-4210-b16b-3b2ecba5f029"
+    },
+    {
+      "citation": "FAO data catalog: Mitidja, Algeria - WaPOR v3 (Level 3, 20 m).",
+      "doi": null,
+      "url": "https://data.apps.fao.org/catalog/dataset/mitidja-algeria-wapor-v3"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Level 1: global 300 m rasters (extent −180/−90/180/90). Level 2: 100 m rasters with extent −180/−60/180/60 but data only for Northern and sub-Saharan Africa and the Near East; values were confirmed over northern and southern Algeria and are nodata over the USA and France. Level 3: 20 m for selected areas, including Mitidja (Algeria).",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2018-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "dekadal (10-day), monthly, annual",
+    "description": "From January 2018 to present; annual AETI rasters exist for 2018–2025 at Level 1 and Level 2. New dekadal layers are released about 5 days after each dekad and replaced by a higher-quality final version after 6 dekads; a final annual aggregate for the latest year is produced only after the end of February."
+  },
+  "resolution": {
+    "spatial": "Level 1: 300 m (1/341.33°); Level 2: 100 m (1/1024°); Level 3: 20 m; RET ~30 km, precipitation ~5 km",
+    "spatial_m": 300,
+    "temporal": "dekadal, monthly, annual (daily for some precipitation and RET layers)"
+  },
+  "format": [
+    "Cloud Optimized GeoTIFF (BigTIFF, LZW)",
+    "WMTS"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic)",
+  "variables": [
+    {
+      "name": "AETI (L1/L2-AETI-D/M/A)",
+      "units": "mm/day (dekadal), mm/month, mm/year; scale factor 0.1",
+      "description": "Actual evapotranspiration and interception (E + T + I)"
+    },
+    {
+      "name": "T, E, I",
+      "units": "mm/day or mm/year; scale factor 0.1",
+      "description": "Transpiration, soil evaporation, interception"
+    },
+    {
+      "name": "NPP",
+      "units": "gC/m2/day; scale factor 0.001",
+      "description": "Net primary production"
+    },
+    {
+      "name": "TBP",
+      "units": "kg/ha/year",
+      "description": "Total biomass production (annual)"
+    },
+    {
+      "name": "GBWP / NBWP",
+      "units": "kg/m3",
+      "description": "Gross / net biomass water productivity (annual)"
+    },
+    {
+      "name": "RSM",
+      "units": "-",
+      "description": "Relative soil moisture (dekadal)"
+    },
+    {
+      "name": "RET, PCP",
+      "units": "mm/day",
+      "description": "Reference evapotranspiration (~30 km) and precipitation (~5 km)"
+    }
+  ],
+  "processing": "Evapotranspiration components are computed with the WaPOR-ETLook model (FAO/eLEAF), documented in the methodology wiki. Annual totals sum dekadal values (mm/day × days per dekad). From v3, the scale factor is stored in the GeoTIFF metadata.",
+  "validation": "Not summarised on the catalog pages consulted; FAO publishes validation reports for WaPOR versions, which were not read for this record.",
+  "limitations": [
+    "Model-based estimates: AETI depends on ETLook parameterisation, cloud gap-filling and meteorological inputs; values for small fields are mixed at 100–300 m.",
+    "Near-real-time dekadal layers are provisional and are replaced after about 6 dekads; recent monthly and annual aggregates change accordingly.",
+    "Level 2 'National' coverage is limited to Africa and the Near East; Level 3 exists only for selected schemes (for Algeria: Mitidja) and is licensed CC-BY-SA-4.0.",
+    "The v3 record starts in 2018, which is short for drought climatologies; data from the earlier WaPOR v2 should not be mixed with v3 without checking consistency."
+  ],
+  "version": "WaPOR v3",
+  "published_date": "2023-09-13",
+  "updated_date": "2026-07-28",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "WaPOR v3 portal",
+      "url": "https://data.apps.fao.org/wapor/?lang=en",
+      "kind": "viewer",
+      "format": "GeoTIFF download by area",
+      "requires_login": false,
+      "notes": "Layer comparison, analysis and download for predefined or uploaded areas."
+    },
+    {
+      "label": "WaPOR v3 catalogue API (GISMGR 2.0) – mapsets",
+      "url": "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/WAPOR-3/mapsets",
+      "kind": "api",
+      "format": "JSON listing with COG download URLs",
+      "requires_login": false,
+      "notes": "No API key needed (FAO). Each raster item gives a downloadUrl on Google Cloud Storage, e.g. WAPOR-3.L1-AETI-A.2024.tif."
+    },
+    {
+      "label": "FAO data catalog: L1 annual AETI entry (licence, lineage)",
+      "url": "https://data.apps.fao.org/catalog/dataset/b860007a-6c03-4210-b16b-3b2ecba5f029",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Similar entries exist for every L1/L2 layer (e.g. L2 annual AETI: 16ef37f6-7334-4563-9e01-239b0f8e1af8)."
+    },
+    {
+      "label": "FAO data catalog: Mitidja, Algeria (Level 3, 20 m)",
+      "url": "https://data.apps.fao.org/catalog/dataset/mitidja-algeria-wapor-v3",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Level 3 layers (E, T, I, AETI ...) for the Mitidja plain; CC-BY-SA-4.0."
+    },
+    {
+      "label": "WaPOR access options (FAO)",
+      "url": "https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data-access/en",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Portal, API, Python package 'wapordl' and Google Earth Engine (Level 1 public catalogue; Level 2 via COG collection IDs)."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Algeria is covered at Level 1 and Level 2: sampled 2024 annual AETI values were about 183 mm (Mitidja, 3.0°E 36.6°N), 219 mm (Sétif high plains), 70 mm (Biskra area) and 5 mm (central Sahara) at Level 2; Level 1 gave about 282, 233, 117 and 3 mm at the same points, showing that the two levels can differ substantially for the same location. Level 3 (20 m) exists for the Mitidja irrigated plain. Use Level 2 for wilaya-scale water-use analysis of irrigated perimeters and compare with MOD16 and GLEAM.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation",
+      "variable units for TBP, GBWP/NBWP and RSM (not read from mapset metadata)",
+      "Level 3 Mitidja temporal coverage"
+    ],
+    "sources_consulted": [
+      "https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data/en",
+      "https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data-access/en",
+      "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/WAPOR-3/mapsets",
+      "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/WAPOR-3/mapsets/L1-AETI-A/rasters",
+      "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/WAPOR-3/mapsets/L2-AETI-A/rasters",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=b860007a-6c03-4210-b16b-3b2ecba5f029",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=16ef37f6-7334-4563-9e01-239b0f8e1af8",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=mitidja-algeria-wapor-v3",
+      "https://developers.google.com/earth-engine/datasets/catalog/FAO_WAPOR_3_L1_AETI_D"
+    ],
+    "notes": "Algeria coverage was verified by reading pixel values from the 2024 (and 2018) L1 and L2 annual AETI COGs on Google Cloud Storage via HTTP range requests (GDAL/rasterio), at points in the Mitidja, Sétif, Biskra and Oran areas and at several Saharan points; L2 returned nodata over the USA and Paris, confirming its regional mask. The FAO WaPOR page lists Algeria among Level 3 countries (as of April 2026). Pixel values quoted are raw values × 0.1. published_date is the catalog 'Data publication' date of the L1 annual AETI layer; updated_date is that entry's metadata modification date."
+  }
+}

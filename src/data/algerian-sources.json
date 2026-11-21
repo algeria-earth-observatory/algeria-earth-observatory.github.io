@@ -1,0 +1,95 @@
+[
+  {
+    "id": "onm",
+    "name": "National Meteorological Office (Météo Algérie)",
+    "name_fr": "Office National de la Météorologie",
+    "acronym": "ONM",
+    "domain": [
+      "climate-drought",
+      "hazards"
+    ],
+    "url": "https://www.meteo.dz/",
+    "what_is_public": "The website publishes weather forecasts, wilaya-level weather warnings (vigilance) and information pages (e.g. 'Le climat de l'Algérie', seasonal forecasting); no downloadable station or gridded climate data were found. ONM also hosts the Algiers data-services node of the WMO North Africa RCC-Network (https://rcc-network.meteo.dz/), which describes quality-controlled GTS-SYNOP data, ETCCDI climate indices and seasonal products, but its download links are placeholders.",
+    "access": "publications only",
+    "checked": "2026-11-21",
+    "notes": "meteo.dz is a JavaScript (Angular) application: the static HTML is empty, so section names were read from the application bundle (routes include 'prevision', 'vigilance', 'bms', 'espace-client'). The RCC-Network page shows a 'Log In' option; whether data are available to registered users was not verified. The address http://rcc-network.meteo.dz/index_data.php cited by WMO returned HTTP 404."
+  },
+  {
+    "id": "asal",
+    "name": "Algerian Space Agency",
+    "name_fr": "Agence Spatiale Algérienne",
+    "acronym": "ASAL",
+    "domain": [
+      "reference",
+      "land-ecosystems",
+      "hazards"
+    ],
+    "url": "https://asal.dz/",
+    "what_is_public": "Information pages on the Alsat-1, Alsat-1B, Alsat-2A/2B and Alcomsat-1 satellites and image specifications. Alsat-2 imagery is ordered through a page (https://www.asal.dz/?page_id=172) offering a technical specification, a price list ('Les prix des produits ALSAT-2A') and an order form; no open image catalogue or geoportal was found.",
+    "access": "on request",
+    "checked": "2026-11-21",
+    "notes": "The existence of a price list indicates that Alsat-2 products are not free by default; ordering conditions and eligible users are not stated on the page (contents of the PDFs not read)."
+  },
+  {
+    "id": "ons",
+    "name": "National Office of Statistics",
+    "name_fr": "Office National des Statistiques",
+    "acronym": "ONS",
+    "domain": [
+      "agriculture",
+      "land-ecosystems",
+      "human-change"
+    ],
+    "url": "https://www.ons.dz/",
+    "what_is_public": "Statistical publications downloadable as PDF (and one XLS): an 'Environnement' section containing only the 'Compendium Algérie 2006' of environment statistics, and an Agriculture section with plant production tables for 2005–2009 (cereals and pulses, irrigated crops, market gardening, arboriculture, fodder, industrial crops), animal production 2000–2009 and forest statistics 2008–2011 (XLS and PDF).",
+    "access": "publications only",
+    "checked": "2026-11-21",
+    "notes": "The HTTPS certificate failed verification with Python requests, but the site was read with a browser-type fetch. Environmental and agricultural series on the site are old (latest years 2009–2011); no geographic level was stated on the pages. Price indices, national accounts and the 2022 census (RGPH) pages are more recent."
+  },
+  {
+    "id": "madr",
+    "name": "Ministry of Agriculture, Rural Development and Fisheries",
+    "name_fr": "Ministère de l'Agriculture, du Développement Rural et de la Pêche",
+    "acronym": "MADRP",
+    "domain": [
+      "agriculture"
+    ],
+    "url": "https://madr.gov.dz/",
+    "what_is_public": "News, press releases and regulations; a page on the 2024 General Agricultural Census (RGA 2024) describing the operation but with no results; and a daily agricultural price bulletin page ('Mercuriale des prix') whose content did not appear in a static fetch. No agricultural statistics series (e.g. 'Série B' area, production and yield tables) were found on the current site.",
+    "access": "no public data found",
+    "checked": "2026-11-21",
+    "notes": "The homepage links no statistics section; the 'publications' section lists only press releases. A FEWS NET knowledge-base page reports that some annual crop statistics reports (2016–2019) were once available on the MADR website; they were not found on the site as fetched. The ministry's statistics directorate is mentioned in news items."
+  },
+  {
+    "id": "dgf",
+    "name": "Directorate General of Forests",
+    "name_fr": "Direction Générale des Forêts",
+    "acronym": "DGF",
+    "domain": [
+      "land-ecosystems",
+      "hazards"
+    ],
+    "url": "http://www.dgf.org.dz/",
+    "what_is_public": "The site returned only a placeholder page ('Our website is under development') with the DGF logo; no data or publications were available.",
+    "access": "no public data found",
+    "checked": "2026-11-21",
+    "notes": "The HTTPS version has an expired certificate; dgf.gov.dz did not resolve. That www.dgf.org.dz is the current official domain is inferred from the logo on the placeholder page. Forest-fire news from the forestry sector appears on the MADRP site; ONS publishes forest statistics for 2008–2011."
+  },
+  {
+    "id": "crstra",
+    "name": "Scientific and Technical Research Centre on Arid Regions",
+    "name_fr": "Centre de Recherche Scientifique et Technique sur les Régions Arides",
+    "acronym": "CRSTRA",
+    "domain": [
+      "land-ecosystems",
+      "soil",
+      "water",
+      "agriculture"
+    ],
+    "url": "https://www.crstra.dz/",
+    "what_is_public": "Institutional pages, seminar programmes, project pages (e.g. RESOIL ARID), a library catalogue and a list of monitoring/experimental stations (e.g. M'Sila, Biskra); the 'Algerian Journal of Arid Regions', maps and technical sheets are listed but their links point to '#'. No open datasets or geoportal were found.",
+    "access": "publications only",
+    "checked": "2026-11-21",
+    "notes": "The site is mainly in Arabic; the French name used here follows the institution's usual name (the site spells it 'Techniques'). No station data from the observation sites were found online."
+  }
+]
