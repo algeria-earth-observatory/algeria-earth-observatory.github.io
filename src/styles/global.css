@@ -52,7 +52,7 @@
   /* type */
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --text-2xs: 0.6875rem;
+  --text-2xs: 0.75rem;
 
   /* shape */
   --radius-card: 4px;
@@ -127,10 +127,10 @@
 
   /* technical labels */
   .eyebrow, .overline {
-    font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em;
+    font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--color-slate); font-weight: 400;
   }
-  .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-slate); }
+  .meta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-slate); }
   .tabular { font-variant-numeric: tabular-nums; }
 
   /* type scale */
@@ -154,7 +154,11 @@
   .btn-ghost:hover { text-decoration: underline; }
   .btn-on-dark { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
   .btn-on-dark:hover { border-color: #fff; color: #fff; }
-  .link-arrow { text-decoration: none; font-weight: 500; }
+  .link-arrow { text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; min-height: 1.5rem; }
+  summary { min-height: 1.5rem; }
+  nav[aria-label="Breadcrumb"] a { display: inline-block; padding-block: .1875rem; }
+  .maplibregl-ctrl-scale { font-size: .75rem !important; }
+  input[type="range"] { min-height: 1.5rem; }
   .link-arrow::after { content: " \2192"; }
 
   .card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-card); }
@@ -204,7 +208,7 @@
 
   /* Map popups (light, on dark map workspaces) */
   .aeo-pop { font-family: var(--font-sans); min-width: 12.5rem; color: #17252c; }
-  .aeo-pop-k { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: #586268; }
+  .aeo-pop-k { font-size: .8125rem; font-weight: 500; color: #586268; }
   .aeo-pop-t { font-weight: 500; font-size: 1rem; margin-top: .1rem; }
   .aeo-pop-ar { font-size: .95rem; }
   .aeo-pop dl { display: grid; grid-template-columns: auto 1fr; gap: .15rem .7rem; margin-top: .45rem; font-size: .76rem; font-variant-numeric: tabular-nums; }
@@ -219,7 +223,7 @@
   /* Legacy EO chrome — neutralised */
   .eo-grid { background-image: none; }
   .eo-panel { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-card); }
-  .eo-readout { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--color-slate); }
+  .eo-readout { font-family: var(--font-mono); font-size: .8125rem; color: var(--color-slate); }
   .eo-dot { display: inline-block; width: .45rem; height: .45rem; background: var(--color-cobalt); }
   .eo-tick { position: relative; }
 }

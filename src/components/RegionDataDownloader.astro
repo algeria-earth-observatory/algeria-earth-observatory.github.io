@@ -1,0 +1,158 @@
+---
+/**
+ * RegionDataDownloader — Location → Indicator → Period → Format → Download.
+ *
+ * One instance per page. Options and files are resolved in the browser from the product
+ * manifests, the boundary record and the regional partition indexes
+ * (src/lib/region-download.js); nothing is offered that is not published.
+ * Presets come from props; other scripts can change the selection with
+ *   window.dispatchEvent(new CustomEvent('aeo:rdd-set', { detail: { indicator: 'spei' } }))
+ */
+import { getDatasets } from '../lib/catalog';
+import { indicatorsFromRecords } from '../lib/region-download.js';
+
+interface Props {
+  heading?: string;
+  intro?: string;
+  headingLevel?: 2 | 3;
+  level?: 'admin0' | 'admin1' | 'admin2';
+  wilaya?: string;
+  commune?: string;
+  indicator?: 'precip' | 'spei' | 'boundaries';
+  compact?: boolean;
+}
+const {
+  heading = 'Download data for a place',
+  intro = 'Choose a place, an indicator, a period and a format. You get only the data for that place, taken from the published AEO files.',
+  headingLevel = 2, level = 'admin1', wilaya = '', commune = '', indicator = 'precip', compact = false,
+} = Astro.props;
+const { available, planned } = indicatorsFromRecords(await getDatasets());
+const config = { indicators: available, preset: { level, wilaya, commune, indicator } };
+const H = `h${headingLevel}` as 'h2' | 'h3';
+const legend = 'flex items-center gap-2 text-[0.9375rem] font-medium text-atlas';
+const num = 'tabular grid h-6 w-6 shrink-0 place-items-center bg-midnight font-mono text-[0.75rem] text-white';
+const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r border-line-strong px-3 text-[0.875rem] last:border-r-0 has-[:checked]:bg-midnight has-[:checked]:text-white has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cobalt';
+const lab = 'block text-[0.875rem] font-medium text-atlas';
+---
+<section class="rdd" aria-labelledby="rdd-h" id="download" data-rdd>
+  <div class:list={['flex flex-wrap items-end justify-between gap-x-8 gap-y-2', compact ? '' : 'mb-2']}>
+    <H id="rdd-h" class:list={[compact ? 'h-sub' : 'h-section']}>{heading}</H>
+    <p class="max-w-2xl text-[1rem] leading-relaxed text-slate">{intro}</p>
+  </div>
+  <noscript><p class="note mt-4">The download assistant needs JavaScript. All files are listed on the product pages: <a href="/data/aeo-dza-precipitation-chirps3/">precipitation</a>, <a href="/data/aeo-dza-spei-terraclimate/">drought (SPEI)</a>, <a href="/data/aeo-dza-admin-boundaries/">boundaries</a>.</p></noscript>
+
+  <form id="rdd-form" class:list={['mt-6 grid gap-x-10 gap-y-8 border-t border-midnight pt-6 lg:grid-cols-2', !compact && 'xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.1fr)]']} novalidate aria-describedby="rdd-loading">
+    <p id="rdd-loading" class="text-[0.9375rem] text-slate lg:col-span-full" role="status">Loading the list of places and files…</p>
+
+    <!-- 1 Location -->
+    <fieldset class="min-w-0 space-y-4" data-step="location">
+      <legend class={legend}><span class={num} aria-hidden="true">1</span>Location</legend>
+      <div class="grid grid-cols-3 border border-line-strong bg-surface" style="border-radius:var(--radius-control)" role="radiogroup" aria-label="Geographic level">
+        <label class={seg}><input type="radio" name="rdd-level" value="admin0" class="sr-only" />Algeria</label>
+        <label class={seg}><input type="radio" name="rdd-level" value="admin1" class="sr-only" />Wilaya</label>
+        <label class={seg}><input type="radio" name="rdd-level" value="admin2" class="sr-only" />Commune</label>
+      </div>
+      <div class="rdd-cb" data-when="admin1 admin2">
+        <label for="rdd-wilaya" class={lab}>Wilaya</label>
+        <p id="rdd-wilaya-help" class="mt-0.5 text-[0.8125rem] text-slate">Type a name or a code, for example “Sétif” or “19”.</p>
+        <div class="relative mt-1.5">
+          <input id="rdd-wilaya" class="field rdd-input" type="text" aria-describedby="rdd-wilaya-help" placeholder="Search 69 wilayas" />
+          <svg class="rdd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+          <ul id="rdd-wilaya-list" class="rdd-list" hidden aria-label="Wilayas"></ul>
+        </div>
+      </div>
+      <div class="rdd-cb" data-when="admin2">
+        <label for="rdd-commune" class={lab}>Commune</label>
+        <p id="rdd-commune-help" class="mt-0.5 text-[0.8125rem] text-slate">Only the communes of the selected wilaya are listed.</p>
+        <div class="relative mt-1.5">
+          <input id="rdd-commune" class="field rdd-input" type="text" aria-describedby="rdd-commune-help" placeholder="Search communes" />
+          <svg class="rdd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+          <ul id="rdd-commune-list" class="rdd-list" hidden aria-label="Communes"></ul>
+        </div>
+      </div>
+      <p id="rdd-area" class="tabular text-[0.8125rem] leading-snug text-slate" aria-live="polite"></p>
+    </fieldset>
+
+    <!-- 2 Indicator -->
+    <fieldset class="min-w-0 space-y-3" data-step="indicator">
+      <legend class={legend}><span class={num} aria-hidden="true">2</span>Indicator</legend>
+      <div class="space-y-2">
+        {available.map((i) => (
+          <label class="rdd-choice"><input type="radio" name="rdd-indicator" value={i.id} class="accent-[#3458d4]" />
+            <span><span class="block font-medium text-atlas">{i.label}</span>
+              <span class="block text-[0.8125rem] text-slate">{i.id === 'precip' ? 'Rainfall totals and anomalies, CHIRPS v3.0' : i.id === 'spei' ? 'Drought index from rainfall and evaporative demand, TerraClimate' : 'Polygons of Algeria, wilayas and communes, OpenStreetMap'}</span></span></label>
+        ))}
+      </div>
+      {planned.length > 0 && <details class="text-[0.8125rem] text-slate">
+        <summary class="min-h-6 cursor-pointer">Planned, not yet available ({planned.length})</summary>
+        <ul class="mt-2 list-disc space-y-1 pl-5">{planned.map((p) => <li>{p.title}</li>)}</ul>
+      </details>}
+    </fieldset>
+
+    <!-- 3 Period + 4 Format -->
+    <div class:list={['min-w-0 lg:col-span-2', compact ? 'grid gap-8 md:grid-cols-2' : 'space-y-8 xl:col-span-1']}>
+      <fieldset class="min-w-0 space-y-3" data-step="period" aria-describedby="rdd-period-err">
+        <legend class={legend}><span class={num} aria-hidden="true">3</span>Period</legend>
+        <p id="rdd-period-static" class="text-[0.875rem] text-slate" hidden></p>
+        <div id="rdd-step-wrap" class="grid grid-cols-2 border border-line-strong bg-surface" style="border-radius:var(--radius-control)" role="radiogroup" aria-label="Time step">
+          <label class={seg}><input type="radio" name="rdd-step" value="annual" class="sr-only" />Annual</label>
+          <label class={seg}><input type="radio" name="rdd-step" value="monthly" class="sr-only" />Monthly</label>
+        </div>
+        <div id="rdd-range" class="grid grid-cols-2 gap-3">
+          <div><span class={lab} id="rdd-from-l">From</span>
+            <div class="mt-1.5 flex gap-1.5"><select id="rdd-from-y" class="field" aria-labelledby="rdd-from-l rdd-from-y-l"></select><select id="rdd-from-m" class="field" aria-labelledby="rdd-from-l rdd-from-m-l"></select></div>
+            <span id="rdd-from-y-l" hidden>year</span><span id="rdd-from-m-l" hidden>month</span></div>
+          <div><span class={lab} id="rdd-to-l">To</span>
+            <div class="mt-1.5 flex gap-1.5"><select id="rdd-to-y" class="field" aria-labelledby="rdd-to-l rdd-to-y-l"></select><select id="rdd-to-m" class="field" aria-labelledby="rdd-to-l rdd-to-m-l"></select></div>
+            <span id="rdd-to-y-l" hidden>year</span><span id="rdd-to-m-l" hidden>month</span></div>
+        </div>
+        <label id="rdd-scale-wrap" class="block" hidden><span class={lab}>SPEI timescale</span>
+          <select id="rdd-scale" class="field mt-1.5"><option value="all">All: 1, 3, 6 and 12 months</option><option value="1">SPEI-1 (1 month)</option><option value="3">SPEI-3 (3 months)</option><option value="6">SPEI-6 (6 months)</option><option value="12">SPEI-12 (12 months)</option></select></label>
+        <p id="rdd-period-err" class="rdd-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="min-w-0 space-y-2" data-step="format">
+        <legend class={legend}><span class={num} aria-hidden="true">4</span>Format</legend>
+        <div id="rdd-formats" class="space-y-2"></div>
+        <label id="rdd-layer-wrap" class="block pt-1" hidden><span class={lab}>File</span>
+          <select id="rdd-layer" class="field mt-1.5"></select></label>
+      </fieldset>
+    </div>
+
+    <!-- 5 Result -->
+    <div class="min-w-0 lg:col-span-full" data-step="download">
+      <div id="rdd-result" class="rdd-result" aria-live="polite" aria-atomic="true"></div>
+      <p id="rdd-status" class="mt-3 text-[0.9375rem] text-atlas" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+  <script type="application/json" id="rdd-config" set:html={JSON.stringify(config)} />
+</section>
+
+<style is:global>
+  .rdd-choice { display: flex; gap: .75rem; align-items: flex-start; padding: .625rem .75rem; border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); background: var(--color-surface); cursor: pointer; }
+  .rdd-choice input { margin-top: .2rem; width: 1rem; height: 1rem; flex: none; }
+  .rdd-choice:has(:checked) { border-color: var(--color-cobalt); box-shadow: inset 0 0 0 1px var(--color-cobalt); }
+  .rdd-choice:has(:focus-visible) { outline: 2px solid var(--color-cobalt); outline-offset: 2px; }
+  .rdd-choice[data-unavailable] .rdd-fmt-label { color: var(--color-slate); }
+  .rdd-input { padding-right: 2.25rem; min-height: 2.75rem; font-size: 1rem; }
+  .rdd-chev { position: absolute; right: .75rem; top: 50%; width: 1rem; height: 1rem; transform: translateY(-50%); pointer-events: none; color: var(--color-slate); }
+  .rdd-list { position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 4px); max-height: 18rem; overflow-y: auto; background: var(--color-surface); border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); box-shadow: 0 8px 24px rgb(23 37 44 / .12); padding: .25rem 0; }
+  .rdd-opt { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .75rem; min-height: 2.25rem; cursor: pointer; font-size: .9375rem; color: var(--color-atlas); }
+  .rdd-opt[aria-selected='true'] { background: var(--color-cobalt); color: #fff; }
+  .rdd-opt[aria-selected='true'] .rdd-opt-hint { color: #fff; }
+  .rdd-opt:hover:not([aria-selected='true']) { background: var(--color-paper); }
+  .rdd-opt-hint { color: var(--color-slate); font-size: .875rem; }
+  .rdd-opt-empty { padding: .5rem .75rem; font-size: .875rem; color: var(--color-slate); }
+  .rdd-error { color: var(--color-error); font-size: .875rem; font-weight: 500; }
+  .rdd-result { border: 1px solid var(--color-line-strong); border-radius: var(--radius-card); background: var(--color-surface); padding: 1.25rem; }
+  .rdd-result dl { display: grid; grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr); gap: .5rem 1.25rem; font-size: .9375rem; }
+  .rdd-result dt { color: var(--color-slate); }
+  .rdd-result dd { color: var(--color-atlas); overflow-wrap: anywhere; }
+  .rdd-unavailable { border-color: var(--color-warn); background: var(--color-warn-bg); }
+  @media (max-width: 40rem) { .rdd-result dl { grid-template-columns: minmax(0, 1fr); gap: .125rem; } .rdd-result dd { margin-bottom: .5rem; } }
+</style>
+
+<script>
+  import { initRegionDownloader } from '../scripts/region-downloader';
+  initRegionDownloader();
+</script>

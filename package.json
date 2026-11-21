@@ -15,7 +15,9 @@
     "check": "astro check",
     "check:data": "node scripts/validate-catalog.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "checksums": "node scripts/checksums.mjs"
+    "checksums": "node scripts/checksums.mjs",
+    "test:js": "node --test tests/js/*.test.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.4.2",
@@ -23,12 +25,15 @@
     "@fontsource/ibm-plex-sans": "5.2.8",
     "@tailwindcss/vite": "4.1.18",
     "astro": "5.18.2",
+    "hyparquet": "1.33.1",
     "maplibre-gl": "5.24.1",
     "pmtiles": "4.5.0",
     "tailwindcss": "4.1.18"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.1",
     "typescript": "5.9.3"
   }
 }

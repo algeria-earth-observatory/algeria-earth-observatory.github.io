@@ -34,10 +34,10 @@ export async function inspectorHtml(sel: Selection, state: MapState): Promise<st
       const v = i >= 0 && yi >= 0 ? f.annual[i][yi] : null;
       const n = i >= 0 ? f.normal[i] : null;
       const pct = v !== null && n !== null && n >= 1 ? (100 * (v - n)) / n : null;
-      rows.push(`<div class="border-t border-line py-3"><p class="text-graphite">Precipitation <span class="font-mono text-[0.72rem] text-slate">${esc(t.slice(0, 4))}</span></p>
+      rows.push(`<div class="border-t border-line py-3"><p class="text-graphite">Precipitation <span class="font-mono text-[0.8125rem] text-slate">${esc(t.slice(0, 4))}</span></p>
         <p class="tabular mt-1 text-[1.25rem] text-atlas">${num(v)} <span class="text-[0.8rem] text-slate">mm</span></p>
-        <p class="tabular font-mono text-[0.72rem] text-slate">${signed(pct)} % vs 1991–2020 normal (${num(n)} mm)</p>
-        <p class="mt-1 text-[0.72rem] text-slate">CHIRPS v3.0 · area-weighted mean of 0.05° cells${!isW ? ' · commune support: ' + esc(f.units[i]?.support) : ''}</p></div>`);
+        <p class="tabular font-mono text-[0.8125rem] text-slate">${signed(pct)} % vs 1991–2020 normal (${num(n)} mm)</p>
+        <p class="mt-1 text-[0.8125rem] text-slate">CHIRPS v3.0 · area-weighted mean of 0.05° cells${!isW ? ' · commune support: ' + esc(f.units[i]?.support) : ''}</p></div>`);
     } else if (l.id === 'spei-3' || l.id === 'spei-12') {
       const k = l.id === 'spei-3' ? '3' : '12';
       const f = await loadSpei(level, isW ? undefined : wilaya);
@@ -45,11 +45,11 @@ export async function inspectorHtml(sel: Selection, state: MapState): Promise<st
       const mi = f.months.indexOf(t.slice(0, 7));
       const v = i >= 0 && mi >= 0 ? f.spei[k]?.[i]?.[mi] ?? null : null;
       const arid = i >= 0 && f.units[i].hyper_arid;
-      rows.push(`<div class="border-t border-line py-3"><p class="text-graphite">SPEI-${k} <span class="font-mono text-[0.72rem] text-slate">${esc(t.slice(0, 7))}</span></p>
+      rows.push(`<div class="border-t border-line py-3"><p class="text-graphite">SPEI-${k} <span class="font-mono text-[0.8125rem] text-slate">${esc(t.slice(0, 7))}</span></p>
         <p class="tabular mt-1 text-[1.25rem] text-atlas">${signed(v, 2)}</p>
         <p class="text-[0.75rem] text-slate">${esc(speiClass(v)?.label ?? 'no value')}</p>
-        ${arid ? '<p class="mt-1 text-[0.72rem] text-[#e6c46f]">Hyper-arid: reflects evaporative demand only.</p>' : ''}
-        <p class="mt-1 text-[0.72rem] text-slate">TerraClimate · unit water balance P − PET · 1991–2020 calibration</p></div>`);
+        ${arid ? '<p class="mt-1 text-[0.8125rem] text-[#e6c46f]">Hyper-arid: reflects evaporative demand only.</p>' : ''}
+        <p class="mt-1 text-[0.8125rem] text-slate">TerraClimate · unit water balance P − PET · 1991–2020 calibration</p></div>`);
       analyze = `/analyze/?level=${level}&unit=${code}&var=spei&scale=${k}`;
     } else {
       display.push(l.title);
@@ -59,12 +59,12 @@ export async function inspectorHtml(sel: Selection, state: MapState): Promise<st
     ? `<dt>Code</dt><dd class="font-mono">${esc(code)}</dd><dt>Communes</dt><dd>${esc(p.n_communes ?? '—')}</dd><dt>Area</dt><dd>${num(Number(p.area_km2))} km²</dd>`
     : `<dt>ONS code</dt><dd class="font-mono">${esc(code)}</dd><dt>Wilaya</dt><dd>${esc(p.wilaya_name)} (${esc(wilaya)})</dd><dt>Area</dt><dd>${num(Number(p.area_km2), 1)} km²</dd>`;
   return `
-    <p class="font-mono text-[0.68rem] uppercase tracking-[0.08em] text-slate">${isW ? 'Wilaya' : 'Commune'}</p>
+    <p class="text-[0.875rem] font-medium text-slate">${isW ? 'Wilaya' : 'Commune'}</p>
     <p class="mt-1 text-[1.25rem] font-medium leading-tight text-atlas">${esc(p.name)}</p>
     ${p.name_ar ? `<p class="text-[1rem] text-graphite" lang="ar" dir="rtl">${esc(p.name_ar)}</p>` : ''}
     <dl class="tabular mt-3 grid grid-cols-[6rem_1fr] gap-y-1 text-[0.78rem] [&_dt]:text-slate [&_dd]:text-graphite">${facts}</dl>
     <div class="mt-4">${rows.join('') || '<p class="border-t border-line py-3 text-[0.78rem] text-slate">Switch on a precipitation or SPEI layer to see values for this area.</p>'}</div>
-    ${display.length ? `<p class="border-t border-line py-3 text-[0.72rem] text-slate">Display only, no AEO statistics: ${display.map(esc).join(', ')}.</p>` : ''}
+    ${display.length ? `<p class="border-t border-line py-3 text-[0.8125rem] text-slate">Display only, no AEO statistics: ${display.map(esc).join(', ')}.</p>` : ''}
     <div class="mt-2 flex flex-col gap-2 border-t border-line pt-4 text-[0.8125rem]">
       <a href="${analyze}" class="btn btn-primary justify-center !py-2">Open analysis</a>
       <a href="/regions/${esc(wilaya)}/${isW ? '' : esc(code) + '/'}" class="btn btn-secondary justify-center !py-2">${isW ? 'Wilaya' : 'Commune'} profile</a>

@@ -1,47 +1,49 @@
 ---
 import Base from '../layouts/Base.astro';
 import GeoBand from '../components/GeoBand.astro';
+import RegionDataDownloader from '../components/RegionDataDownloader.astro';
 import { getDatasets } from '../lib/catalog';
-import { STATUS, period } from '../lib/format';
+import { period } from '../lib/format';
 import { SITE } from '../config/site';
 import { loadRegions, fmtNum, fmtSigned } from '../lib/regions-data';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import manifest from '../../public/data/aeo/products/precipitation/v1.0.0/manifest.json';
 import mapMeta from '../../public/data/aeo/products/precipitation/v1.0.0/map/map.json';
 
 const all = await getDatasets();
-const products = all.filter((d) => d.origin !== 'external' && d.status !== 'in-preparation');
-const planned = all.filter((d) => d.status === 'in-preparation').slice(0, 2);
-const index = [...products, ...planned];
+const products = all.filter((d) => d.origin !== 'external' && d.status === 'available');
+const plannedCount = all.filter((d) => d.status === 'in-preparation').length;
 const { wilayas } = loadRegions();
 const setif = wilayas.find((w) => w.code === '19')!;
 const [y0, y1] = manifest.temporal_coverage.annual;
 const short = (name = '') => { const m = name.match(/\(([^)]*)\)/); return m && !/source|processing/i.test(m[1]) ? m[1] : name.split('(')[0].split(';')[0].trim(); };
-const res = (d: (typeof all)[number]) => (d.resolution?.spatial ?? '—').split(';')[0].replace(/\s*\(.*\)$/, '');
+const LEVELS: Record<string, string> = { admin0: 'Algeria', admin1: 'Wilayas', admin2: 'Communes' };
+const FMT: Record<string, string> = { COG: 'GeoTIFF', CSV: 'CSV', PARQUET: 'Parquet' };
+const readManifest = (p: string) => JSON.parse(readFileSync(join(process.cwd(), 'public', p), 'utf-8'));
+const levelsOf = (d: (typeof all)[number]) => (d.product ? readManifest(d.product.manifest).available_levels.map((l: string) => LEVELS[l]).join(', ') : 'Algeria, Wilayas, Communes');
+const formatsOf = (d: (typeof all)[number]) => (d.product ? readManifest(d.product.manifest).formats.map((f: string) => FMT[f] ?? f).join(', ') : d.format.join(', '));
 const jsonLd = { '@context': 'https://schema.org', '@type': 'DataCatalog', name: SITE.name, url: SITE.url, description: SITE.description, inLanguage: 'en' };
 const mapUnits = wilayas.map((w) => [w.code, w.name, w.precip?.normal ?? null]);
-const ICONS: Record<string, string> = {
-  Explore: '<path d="M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2z M9 3v16 M15 5v16" />',
-  Analyze: '<path d="M4 20V10 M9 20V4 M14 20v-7 M19 20V8 M3 20h18" />',
-  Download: '<path d="M12 3v12 M7 10l5 5 5-5 M4 20h16" />',
-};
 const steps = [
   ['Source data', 'Satellite, gauge and reanalysis products from their original providers, with versions and licences recorded.'],
-  ['Algeria processing', 'Subset to Algeria and aggregated to 69 wilayas and 1,541 communes with area-weighted, nested weights.'],
+  ['Algeria processing', 'Subset to Algeria and averaged over 69 wilayas and 1,541 communes, weighted by area.'],
   ['Derived indicators', 'Normals, anomalies, drought indices and trends with documented statistical methods.'],
-  ['Quality control', 'Automated tests for coverage, units, completeness, aggregation and checksums before every release.'],
+  ['Quality control', 'Automated tests for coverage, units, completeness and checksums before every release.'],
   ['Downloads', 'GeoTIFF, CSV and Parquet with manifests, provenance and the code that produced them.'],
 ];
+const card = 'border border-line bg-surface p-4';
 ---
 <Base description="Environmental observations, derived indicators and geographic analysis, prepared for Algeria: national, wilaya and commune data on precipitation, drought and land." jsonLd={jsonLd}>
-  <!-- Hero: editorial split -->
-  <section class="mx-auto grid max-w-[90rem] items-center gap-10 px-5 pb-16 pt-12 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:pb-24 lg:pt-20">
+  <!-- 1 Identity -->
+  <section class="mx-auto grid max-w-[90rem] items-center gap-10 px-5 pb-12 pt-10 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:pb-16 lg:pt-16">
     <div class="lg:col-span-5">
       <p class="overline">Earth observation / Algeria</p>
       <h1 class="display mt-6">A clearer view of Algeria.</h1>
-      <p class="lede mt-6">Environmental observations, derived indicators, and geographic analysis—prepared for Algeria.</p>
-      <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/data/" class="btn btn-primary">Explore data</a>
-        <a href="/analyze/" class="btn btn-secondary">Open analysis</a>
+      <p class="lede mt-6">Rainfall and drought data for Algeria, each of its 69 wilayas and 1,541 communes. Free to download, with sources and methods.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#download" class="btn btn-primary">Download data for a place</a>
+        <a href="/map/" class="btn btn-secondary">Explore the map</a>
       </div>
     </div>
     <figure class="relative lg:col-span-7">
@@ -53,111 +55,116 @@ const steps = [
         <img src="/images/hero/algeria-pixel-1000.jpg" width="1000" height="913" fetchpriority="high" class="h-auto w-full"
           alt="Satellite composite of Algeria: the green Tell along the Mediterranean coast, the Saharan Atlas, the ergs and the Hoggar and Tassili massifs in the south. Surrounding areas are shown as fading raster cells." />
       </picture>
-      <figcaption class="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 font-mono text-[0.72rem] text-slate">
-        <span>NASA Blue Marble: Next Generation, shaded relief · NASA EOSDIS GIBS · cells outside Algeria: block means</span>
-        <span>Web Mercator · 17.0°N–38.6°N, 11.5°W–15.5°E</span>
-      </figcaption>
+      <figcaption class="mt-3 text-[0.8125rem] text-slate">Satellite image: NASA Blue Marble, NASA EOSDIS GIBS. Outside Algeria the image is shown as averaged cells.</figcaption>
     </figure>
   </section>
 
   <div class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
 
-  <!-- The Observatory -->
-  <section class="border-y border-line bg-surface" aria-labelledby="obs-h">
-    <div class="mx-auto grid max-w-[90rem] px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
-      <h2 id="obs-h" class="overline py-8 lg:col-span-3 lg:py-12">The Observatory</h2>
-      <ul class="grid divide-y divide-line lg:col-span-9 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-        {[
-          ['Explore', 'Layered maps of precipitation, drought, land cover and cropland, shown for Algeria only.', '/map/'],
-          ['Analyze', 'Time series, anomalies and trends for the country, any wilaya or any commune.', '/analyze/'],
-          ['Download', 'Algeria-ready grids and statistics tables with versions, checksums and code.', '/data/'],
-        ].map(([t, d, h]) => (
-          <li class="py-8 lg:px-8 lg:py-12 lg:first:pl-0">
-            <a href={h} class="flex items-center gap-3 text-[1.25rem] font-medium text-atlas no-underline hover:text-cobalt">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true" set:html={ICONS[t]} />{t}</a>
-            <p class="mt-2 max-w-xs text-[0.9375rem] leading-relaxed text-slate">{d}</p>
-          </li>
-        ))}
-      </ul>
+  <!-- 2 Region-first data access -->
+  <div class="border-b border-line bg-surface">
+    <div class="mx-auto max-w-[90rem] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
+      <RegionDataDownloader />
     </div>
-  </section>
+  </div>
 
-  <!-- Featured geographic intelligence -->
+  <!-- 3 Featured map -->
   <section class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12" aria-labelledby="geo-h">
     <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
-      <div class="lg:col-span-7">
-        <p class="overline">Geographic intelligence</p>
-        <h2 id="geo-h" class="h-section mt-4">Mean annual precipitation, 1991–2020</h2>
-      </div>
-      <p class="text-[0.9375rem] text-slate lg:col-span-5">Area-weighted means for the 69 wilayas from CHIRPS v3.0. Select a wilaya to see its annual series.</p>
+      <h2 id="geo-h" class="h-section lg:col-span-7">Mean annual precipitation, 1991–2020</h2>
+      <p class="text-[1rem] text-slate lg:col-span-5">Average yearly rainfall of each wilaya (CHIRPS v3.0). Choose a wilaya on the map or in the list.</p>
     </div>
-    <div class="mt-10 grid border border-line lg:grid-cols-12">
-      <div class="theme-dark relative min-h-[26rem] lg:col-span-8 lg:min-h-[36rem]">
-        <div class="absolute inset-0"><div id="home-map" class="h-full w-full" role="region" aria-label="Map of mean annual precipitation by wilaya"></div></div>
-        <div id="home-legend" class="tabular absolute bottom-3 left-3 z-10 flex flex-wrap items-center gap-x-3 gap-y-1 bg-obsidian/85 px-3 py-2 font-mono text-[0.68rem] text-[#d9dee1]"></div>
+    <div class="mt-8 grid border border-line lg:grid-cols-12">
+      <div class="theme-dark relative min-h-[24rem] lg:col-span-8 lg:min-h-[34rem]">
+        <div class="absolute inset-0"><div id="home-map" class="h-full w-full" role="region" aria-label="Map of mean annual precipitation by wilaya. The same values are in the table below the map."></div></div>
+        <div id="home-legend" class="tabular absolute bottom-3 left-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-wrap items-center gap-x-3 gap-y-1 bg-obsidian/90 px-3 py-2 font-mono text-[0.75rem] text-[#e3e7ea]"></div>
       </div>
-      <div class="flex flex-col border-t border-line bg-surface p-6 lg:col-span-4 lg:border-l lg:border-t-0" aria-live="polite">
-        <dl class="grid grid-cols-[7.5rem_1fr] gap-y-2 text-[0.875rem]">
-          <dt class="text-slate">Selected region</dt><dd id="hp-name" class="text-atlas">{setif.name}</dd>
-          <dt class="text-slate">Indicator</dt><dd class="text-atlas">Annual precipitation</dd>
-          <dt class="text-slate">Period</dt><dd class="tabular text-atlas">{y0}–{y1}</dd>
+      <div class="flex flex-col gap-5 border-t border-line bg-surface p-6 lg:col-span-4 lg:border-l lg:border-t-0">
+        <label class="block"><span class="block text-[0.875rem] font-medium text-atlas">Wilaya</span>
+          <select id="hp-select" class="field mt-1.5 !text-[1rem]">{wilayas.map((w) => <option value={w.code} selected={w.code === '19'}>{w.code} — {w.name}</option>)}</select></label>
+        <dl class="tabular grid grid-cols-[minmax(0,1fr)_auto] gap-y-2 border-t border-line pt-4 text-[0.9375rem]" aria-live="polite">
+          <dt class="text-slate">Mean annual precipitation</dt><dd id="hp-normal" class="text-right font-medium text-atlas">{fmtNum(setif.precip?.normal)} mm</dd>
+          <dt class="text-slate">Period</dt><dd class="text-right text-atlas">1991–2020</dd>
+          <dt class="text-slate">Source</dt><dd class="text-right text-atlas">CHIRPS v3.0</dd>
         </dl>
-        <div id="hp-chart" class="mt-6" data-series={JSON.stringify({ years: setif.precip?.years, values: setif.precip?.annual, normal: setif.precip?.normal })}></div>
-        <dl class="tabular mt-4 grid grid-cols-3 border-t border-line pt-4 text-[0.8125rem]">
-          <div><dt class="text-slate">Normal</dt><dd id="hp-normal" class="mt-1 text-[1.125rem] text-atlas">{fmtNum(setif.precip?.normal)} mm</dd></div>
-          <div><dt class="text-slate">{y1}</dt><dd id="hp-last" class="mt-1 text-[1.125rem] text-atlas">{fmtSigned(setif.precip?.last.anomaly_pct)} %</dd></div>
-          <div><dt class="text-slate">Trend</dt><dd id="hp-trend" class="mt-1 text-[1.125rem] text-atlas">{fmtSigned(setif.precip?.trend.slope_mm_per_decade)} mm/10 yr</dd></div>
-        </dl>
-        <p id="hp-sig" class="mt-2 text-[0.75rem] text-slate">Theil–Sen slope; Mann–Kendall p = {setif.precip?.trend.mk_p?.toFixed(2)}{setif.precip?.trend.mk_p != null && setif.precip.trend.mk_p < 0.05 ? ' (significant)' : ' (not significant)'}.</p>
-        <a id="hp-link" href="/analyze/?level=admin1&unit=19" class="link-arrow mt-auto pt-6 text-[0.9375rem]">Open in the analysis workspace</a>
+        <div class="mt-auto flex flex-col gap-2">
+          <button type="button" id="hp-dl" class="btn btn-primary justify-center">Download data for <span id="hp-dl-name">{setif.name}</span></button>
+          <a id="hp-profile" href="/regions/19/" class="btn btn-secondary justify-center">Wilaya profile</a>
+        </div>
       </div>
     </div>
+    <details class="mt-4 text-[0.9375rem]">
+      <summary class="min-h-6 cursor-pointer font-medium text-atlas">Values for all 69 wilayas (table)</summary>
+      <div class="relative mt-3 max-h-96 overflow-auto border border-line bg-surface" tabindex="0" role="region" aria-label="Mean annual precipitation by wilaya, table">
+        <table class="tabular w-full text-left text-[0.9375rem]">
+          <caption class="sr-only">Mean annual precipitation 1991–2020 by wilaya, CHIRPS v3.0</caption>
+          <thead class="sticky top-0 bg-paper"><tr><th scope="col" class="px-3 py-2 font-medium">Code</th><th scope="col" class="px-3 py-2 font-medium">Wilaya</th><th scope="col" class="px-3 py-2 text-right font-medium">Mean annual precipitation (mm)</th></tr></thead>
+          <tbody>{wilayas.map((w) => <tr class="border-t border-line"><td class="px-3 py-1.5 font-mono">{w.code}</td><td class="px-3 py-1.5"><a href={`/regions/${w.code}/`}>{w.name}</a></td><td class="px-3 py-1.5 text-right">{fmtNum(w.precip?.normal)}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </details>
     <script type="application/json" id="home-data" set:html={JSON.stringify({ units: mapUnits, meta: mapMeta })} />
   </section>
 
-  <!-- Data products: editorial index -->
+  <!-- 4 Available products -->
   <section class="border-t border-line bg-surface" aria-labelledby="prod-h">
     <div class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12">
       <div class="flex flex-wrap items-end justify-between gap-4">
-        <div><p class="overline">Data products</p><h2 id="prod-h" class="h-section mt-4">Prepared for Algeria</h2></div>
-        <a href="/data/" class="link-arrow text-[0.9375rem]">All data</a>
+        <h2 id="prod-h" class="h-section">Available for Algeria</h2>
+        <a href="/data/" class="link-arrow text-[1rem]">All data</a>
       </div>
-      <div class="mt-10 overflow-x-auto">
-        <table class="w-full min-w-[46rem] border-collapse text-left text-[0.9375rem]">
-          <thead><tr class="border-b border-atlas font-mono text-[0.72rem] uppercase tracking-[0.06em] text-slate">
-            <th class="py-3 pr-6 font-normal">Product</th><th class="py-3 pr-6 font-normal">Category</th><th class="py-3 pr-6 font-normal">Period</th>
-            <th class="py-3 pr-6 font-normal">Resolution</th><th class="py-3 pr-6 font-normal">Status</th><th class="py-3 font-normal">Access</th></tr></thead>
-          <tbody>
-            {index.map((d) => (
-              <tr class="border-b border-line align-top">
-                <td class="py-4 pr-6"><a href={`/data/${d.id}/`} class="text-atlas no-underline hover:text-cobalt">{d.title.split(':')[0].split(' (')[0]}</a><div class="meta mt-1 !text-[0.72rem]">{d.status === 'in-preparation' ? 'AEO product family' : short(d.provider?.name)}</div></td>
-                <td class="py-4 pr-6 text-slate">{d.categories[0] ?? '—'}</td>
-                <td class="tabular py-4 pr-6 font-mono text-[0.8125rem] text-graphite">{d.status === 'in-preparation' ? '—' : period(d)}</td>
-                <td class="py-4 pr-6 font-mono text-[0.8125rem] text-graphite">{d.status === 'in-preparation' ? '—' : res(d)}</td>
-                <td class="py-4 pr-6"><span class:list={['status', STATUS[d.status].cls]}>{STATUS[d.status].label}</span></td>
-                <td class="py-4 text-[0.875rem]">{d.status === 'in-preparation' ? <span class="text-slate">Not released</span> : <a href={`/data/${d.id}/#access`}>Download</a>}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div class="mt-8 hidden gap-4 border-b border-atlas pb-3 text-[0.875rem] font-medium text-slate lg:grid lg:grid-cols-[minmax(0,2.4fr)_minmax(0,1.2fr)_minmax(0,1.6fr)_minmax(0,1.4fr)_auto]" aria-hidden="true">
+        <span>Product</span><span>Time period</span><span>Geographic levels</span><span>Formats</span><span class="w-[7.5rem]"></span>
+      </div>
+      <ul class="mt-6 border-t border-atlas lg:mt-0 lg:border-t-0" aria-labelledby="prod-h">
+        {products.map((d) => (
+          <li class="grid gap-x-4 gap-y-1.5 border-b border-line py-4 lg:grid-cols-[minmax(0,2.4fr)_minmax(0,1.2fr)_minmax(0,1.6fr)_minmax(0,1.4fr)_auto] lg:items-baseline">
+            <div><a href={`/data/${d.id}/`} class="font-medium">{d.title.split(':')[0].split(' (')[0]}</a><div class="mt-1 text-[0.875rem] text-slate">{short(d.provider?.name)}</div></div>
+            <p class="tabular text-[0.9375rem] text-graphite"><span class="text-slate lg:sr-only">Time period: </span>{period(d)}</p>
+            <p class="text-[0.9375rem] text-graphite"><span class="text-slate lg:sr-only">Geographic levels: </span>{levelsOf(d)}</p>
+            <p class="text-[0.9375rem] text-graphite"><span class="text-slate lg:sr-only">Formats: </span>{formatsOf(d)}</p>
+            <p class="pt-1 lg:w-[7.5rem] lg:pt-0 lg:text-right"><a href={`/data/${d.id}/#download`} class="btn btn-secondary !py-1.5 whitespace-nowrap">Download<span class="sr-only"> {d.title.split(':')[0]}</span></a></p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-4 text-[0.9375rem] text-slate">{plannedCount} more AEO products are planned. They will be listed as available only when their data are published. <a href="/data/#planned">See planned products</a>.</p>
+    </div>
+  </section>
+
+  <!-- 5 Featured analysis -->
+  <section class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12" aria-labelledby="fa-h">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <h2 id="fa-h" class="h-section lg:col-span-7">Annual precipitation in <span id="fa-name">{setif.name}</span>, {y0}–{y1}</h2>
+      <p class="text-[1rem] text-slate lg:col-span-5">Yearly totals against the 1991–2020 normal (dashed line). Follows the wilaya chosen above.</p>
+    </div>
+    <div class="mt-8 grid gap-8 lg:grid-cols-12">
+      <div id="hp-chart" class="lg:col-span-8" data-series={JSON.stringify({ years: setif.precip?.years, values: setif.precip?.annual, normal: setif.precip?.normal })}></div>
+      <div class="lg:col-span-4">
+        <dl class="tabular grid gap-3" aria-live="polite">
+          <div class={card} style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Normal 1991–2020</dt><dd id="hp-normal2" class="mt-1 text-[1.5rem] font-medium text-atlas">{fmtNum(setif.precip?.normal)} mm</dd></div>
+          <div class={card} style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">{y1} compared with the normal</dt><dd id="hp-last" class="mt-1 text-[1.5rem] font-medium text-atlas">{fmtSigned(setif.precip?.last.anomaly_pct)} %</dd></div>
+          <div class={card} style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Trend {y0}–{y1}</dt><dd id="hp-trend" class="mt-1 text-[1.5rem] font-medium text-atlas">{fmtSigned(setif.precip?.trend.slope_mm_per_decade)} mm per decade</dd>
+            <dd id="hp-sig" class="mt-1 text-[0.875rem] text-slate">{setif.precip?.trend.mk_p != null && setif.precip.trend.mk_p < 0.05 ? 'Statistically significant' : 'Not statistically significant'} (Mann–Kendall p = {setif.precip?.trend.mk_p?.toFixed(2)}).</dd></div>
+        </dl>
+        <a id="hp-link" href="/analyze/?level=admin1&unit=19" class="link-arrow mt-5 inline-flex text-[1rem]">Open in the analysis workspace</a>
       </div>
     </div>
   </section>
 
-  <!-- Methodology workflow -->
+  <!-- 6 Methodology -->
   <section class="border-t border-line bg-surface" aria-labelledby="meth-h">
     <div class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12">
       <div class="flex flex-wrap items-end justify-between gap-4">
-        <div><p class="overline">Scientific methodology</p><h2 id="meth-h" class="h-section mt-4">From source to download</h2></div>
-        <a href="/docs/" class="link-arrow text-[0.9375rem]">Methods</a>
+        <h2 id="meth-h" class="h-section">From source to download</h2>
+        <a href="/docs/" class="link-arrow text-[1rem]">Methods</a>
       </div>
-      <ol class="mt-12 grid gap-8 md:grid-cols-5 md:gap-0">
+      <ol class="mt-10 grid gap-8 md:grid-cols-5 md:gap-0">
         {steps.map(([t, d], i) => (
           <li class="relative border-t border-atlas pt-5 md:pr-6">
             <span class="absolute -top-[5px] left-0 h-[9px] w-[9px] bg-cobalt" aria-hidden="true"></span>
-            <p class="tabular font-mono text-[0.72rem] text-slate">{String(i + 1).padStart(2, '0')}</p>
+            <p class="tabular font-mono text-[0.8125rem] text-slate">{String(i + 1).padStart(2, '0')}</p>
             <h3 class="mt-2 text-[1.0625rem]">{t}</h3>
-            <p class="mt-2 text-[0.875rem] leading-relaxed text-slate">{d}</p>
+            <p class="mt-2 text-[0.9375rem] leading-relaxed text-slate">{d}</p>
           </li>
         ))}
       </ol>
@@ -175,6 +182,7 @@ const steps = [
   const { units, meta } = JSON.parse(document.getElementById('home-data')!.textContent!);
   const chartEl = document.getElementById('hp-chart')!;
   const $ = (id: string) => document.getElementById(id)!;
+  const sel = $('hp-select') as HTMLSelectElement;
   const draw = (d: { years: number[]; values: (number | null)[]; normal: number | null }, label: string) =>
     lineChart(chartEl, [{ name: 'Annual precipitation', keys: d.years, values: d.values }],
       { yLabel: 'mm', reference: d.normal !== null ? { value: d.normal, label: 'normal' } : null }, `Annual precipitation, ${label}`);
@@ -188,41 +196,52 @@ const steps = [
   const expr: unknown[] = ['match', ['get', 'wilaya_code']];
   for (const [code, , normal] of units) expr.push(code, color(normal));
   expr.push('#3d4c55');
-  const legend = $('home-legend');
-  legend.innerHTML = '<span>mm/yr</span>' + meta.annual.colors.map((c: string, i: number) => {
+  $('home-legend').innerHTML = '<span>mm per year</span>' + meta.annual.colors.map((c: string, i: number) => {
     const lo = i ? meta.annual.breaks[i - 1] : null, hi = i < meta.annual.breaks.length ? meta.annual.breaks[i] : null;
-    return `<span class="flex items-center gap-1"><span class="inline-block h-2 w-3" style="background:${c}"></span>${lo === null ? `<${hi}` : hi === null ? `≥${lo}` : `${lo}–${hi}`}</span>`;
+    return `<span class="flex items-center gap-1"><span class="inline-block h-2.5 w-3.5" style="background:${c}"></span>${lo === null ? `under ${hi}` : hi === null ? `${lo} or more` : `${lo}–${hi}`}</span>`;
   }).join('');
 
-  const map = new maplibregl.Map({ container: box, style: 'https://tiles.openfreemap.org/styles/dark', bounds: [-8.7, 18.9, 12.0, 37.2], fitBoundsOptions: { padding: 24 }, attributionControl: { compact: true }, cooperativeGestures: true });
+  $('hp-dl').addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('aeo:rdd-set', { detail: { level: 'admin1', wilaya: sel.value, focus: true } }));
+  });
+
+  const annualP = loadAnnual('admin1');
+  let map: maplibregl.Map | null = null;
+  async function choose(code: string) {
+    const annual = await annualP;
+    const i = annual.units.findIndex((u) => u.code === code);
+    if (i < 0) return;
+    const u = annual.units[i], t = annual.trend[i], vals = annual.annual[i], n = annual.normal[i];
+    const lastV = vals[vals.length - 1];
+    sel.value = code;
+    map?.setFilter('w-sel', ['==', ['get', 'wilaya_code'], code]);
+    const normal = `${n === null ? '—' : Math.round(n).toLocaleString('en-US')} mm`;
+    $('hp-normal').textContent = normal; $('hp-normal2').textContent = normal;
+    $('hp-dl-name').textContent = u.name; $('fa-name').textContent = u.name;
+    ($('hp-profile') as HTMLAnchorElement).href = `/regions/${code}/`;
+    $('hp-last').textContent = lastV === null || n === null || n < 1 ? '—' : `${lastV >= n ? '+' : '−'}${Math.abs(Math.round((100 * (lastV - n)) / n))} %`;
+    $('hp-trend').textContent = t.slope_mm_per_decade === null ? '—' : `${t.slope_mm_per_decade >= 0 ? '+' : '−'}${Math.abs(Math.round(t.slope_mm_per_decade))} mm per decade`;
+    $('hp-sig').textContent = t.mk_p === null ? '' : `${t.mk_p < 0.05 ? 'Statistically significant' : 'Not statistically significant'} (Mann–Kendall p = ${t.mk_p.toFixed(2)}).`;
+    ($('hp-link') as HTMLAnchorElement).href = `/analyze/?level=admin1&unit=${code}`;
+    draw({ years: annual.years, values: vals, normal: n }, u.name);
+  }
+  sel.addEventListener('change', () => choose(sel.value));
+
+  map = new maplibregl.Map({ container: box, style: 'https://tiles.openfreemap.org/styles/dark', bounds: [-8.7, 18.9, 12.0, 37.2], fitBoundsOptions: { padding: 24 }, attributionControl: { compact: true }, cooperativeGestures: true });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   map.on('load', async () => {
+    const m = map!;
     const data = await (await fetch('/data/aeo/boundaries/2026-11-20/dza_adm1_wilayas_display.geojson')).json();
-    let last = -1; map.getStyle().layers.forEach((l, i) => { if (l.type !== 'symbol') last = i; });
-    const before = map.getStyle().layers[last + 1]?.id;
-    map.addSource('w', { type: 'geojson', data, promoteId: 'wilaya_code' });
-    map.addLayer({ id: 'w-fill', type: 'fill', source: 'w', paint: { 'fill-color': expr as any, 'fill-opacity': 0.9 } }, before);
-    map.addLayer({ id: 'w-line', type: 'line', source: 'w', paint: { 'line-color': '#17252c', 'line-width': 0.6 } }, before);
-    map.addLayer({ id: 'w-sel', type: 'line', source: 'w', paint: { 'line-color': '#ffffff', 'line-width': 2 }, filter: ['==', ['get', 'wilaya_code'], '19'] });
-    map.addSource('outside', { type: 'geojson', data: '/data/aeo/boundaries/2026-11-20/dza_outside_mask.geojson' });
-    map.addLayer({ id: 'outside-mask', type: 'fill', source: 'outside', paint: { 'fill-color': '#17252c', 'fill-opacity': 0.82 } }, before);
-    const annual = await loadAnnual('admin1');
-    map.on('mousemove', 'w-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
-    map.on('mouseleave', 'w-fill', () => { map.getCanvas().style.cursor = ''; });
-    map.on('click', 'w-fill', (e) => {
-      const code = String(e.features?.[0]?.properties?.wilaya_code ?? '');
-      const i = annual.units.findIndex((u) => u.code === code);
-      if (i < 0) return;
-      const u = annual.units[i], t = annual.trend[i], vals = annual.annual[i], n = annual.normal[i];
-      const lastV = vals[vals.length - 1];
-      map.setFilter('w-sel', ['==', ['get', 'wilaya_code'], code]);
-      $('hp-name').textContent = u.name;
-      $('hp-normal').textContent = `${n === null ? '—' : Math.round(n).toLocaleString('en-US')} mm`;
-      $('hp-last').textContent = lastV === null || n === null || n < 1 ? '—' : `${lastV >= n ? '+' : '−'}${Math.abs(Math.round((100 * (lastV - n)) / n))} %`;
-      $('hp-trend').textContent = t.slope_mm_per_decade === null ? '—' : `${t.slope_mm_per_decade >= 0 ? '+' : '−'}${Math.abs(Math.round(t.slope_mm_per_decade))} mm/10 yr`;
-      $('hp-sig').textContent = t.mk_p === null ? '' : `Theil–Sen slope; Mann–Kendall p = ${t.mk_p.toFixed(2)} (${t.mk_p < 0.05 ? 'significant' : 'not significant'}).`;
-      ($('hp-link') as HTMLAnchorElement).href = `/analyze/?level=admin1&unit=${code}`;
-      draw({ years: annual.years, values: vals, normal: n }, u.name);
-    });
+    let last = -1; m.getStyle().layers.forEach((l, i) => { if (l.type !== 'symbol') last = i; });
+    const before = m.getStyle().layers[last + 1]?.id;
+    m.addSource('w', { type: 'geojson', data, promoteId: 'wilaya_code' });
+    m.addLayer({ id: 'w-fill', type: 'fill', source: 'w', paint: { 'fill-color': expr as any, 'fill-opacity': 0.9 } }, before);
+    m.addLayer({ id: 'w-line', type: 'line', source: 'w', paint: { 'line-color': '#17252c', 'line-width': 0.6 } }, before);
+    m.addLayer({ id: 'w-sel', type: 'line', source: 'w', paint: { 'line-color': '#ffffff', 'line-width': 2 }, filter: ['==', ['get', 'wilaya_code'], sel.value] });
+    m.addSource('outside', { type: 'geojson', data: '/data/aeo/boundaries/2026-11-20/dza_outside_mask.geojson' });
+    m.addLayer({ id: 'outside-mask', type: 'fill', source: 'outside', paint: { 'fill-color': '#17252c', 'fill-opacity': 0.82 } }, before);
+    m.on('mousemove', 'w-fill', () => { m.getCanvas().style.cursor = 'pointer'; });
+    m.on('mouseleave', 'w-fill', () => { m.getCanvas().style.cursor = ''; });
+    m.on('click', 'w-fill', (e) => choose(String(e.features?.[0]?.properties?.wilaya_code ?? '')));
   });
 </script>

@@ -89,8 +89,37 @@ function checkManifest(f, rec) {
   }
 }
 
+// Regional partitions (scripts/pipelines/partition_regional.py): every partition matches
+// its recorded size and SHA-256, and the index's source SHA-256 equals the published file's.
+const sha = (p) => createHash('sha256').update(readFileSync(p)).digest('hex');
+const pub = (href) => join(root, 'public', href);
+function walkIndexes(d) {
+  const out = [];
+  if (!existsSync(d)) return out;
+  for (const e of readdirSync(d, { withFileTypes: true })) {
+    const p = join(d, e.name);
+    if (e.isDirectory()) out.push(...walkIndexes(p));
+    else if (e.name === 'index.json' && p.includes('by_wilaya')) out.push(p);
+  }
+  return out;
+}
+let nParts = 0;
+for (const ip of walkIndexes(join(root, 'public', 'data', 'aeo'))) {
+  const idx = JSON.parse(readFileSync(ip, 'utf8'));
+  const sources = idx.source ? [idx.source] : Object.values(idx.sources ?? {});
+  for (const s of sources) {
+    if (!existsSync(pub(s.href))) { errors.push(`${ip}: source ${s.href} missing`); continue; }
+    if (sha(pub(s.href)) !== s.sha256) errors.push(`${ip}: source ${s.href} changed since partitioning (re-run scripts/pipelines/partition_regional.py)`);
+  }
+  for (const p of idx.partitions ?? []) {
+    nParts++;
+    if (!existsSync(pub(p.href))) { errors.push(`${ip}: partition ${p.href} missing`); continue; }
+    if (statSync(pub(p.href)).size !== p.bytes || sha(pub(p.href)) !== p.sha256) errors.push(`${ip}: partition ${p.href} does not match its index`);
+  }
+}
+
 if (errors.length) {
   console.error(`\nCatalog validation failed (${errors.length} problem(s)):\n  - ` + errors.join('\n  - ') + '\n');
   process.exit(1);
 }
-console.log(`catalog: ${ids.size} records passed pre-build checks`);
+console.log(`catalog: ${ids.size} records passed pre-build checks; ${nParts} regional partitions verified`);

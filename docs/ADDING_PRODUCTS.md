@@ -73,6 +73,13 @@ npm run build
 - **Map:** add layers to `src/data/map-layers.ts`.
 - **Analyze:** add the variable to the variable list only when the web JSON exists. The UI must never list a variable without data.
 - **Regions:** add the indicator to `src/lib/regions-data.ts` and the profile pages.
+- **Regional downloads** (`RegionDataDownloader`):
+  - Add the product's plain-language name to `PLAIN` in `src/lib/region-download.js`. Formats, levels, periods and files are then read from the manifest.
+  - Publish one Parquet statistics table per level and time step, named `*_{annual|monthly}_{level}_*.parquet`, with the columns `level`, `unit_code`, `parent_code`, `year` (and `month`).
+  - If a commune-level table is larger than 1.5 MB, run `python scripts/pipelines/partition_regional.py` after the build (add the table to `TABLES` there).
+    - The script writes per-wilaya partitions and an index that records the source file's SHA-256.
+    - The site uses a partition only if that SHA-256 equals the manifest's. `validate-catalog.mjs` and `tests/python/test_partitions.py` fail if a source changes without re-partitioning.
+  - Extend `tests/js/region-download.test.mjs` and `tests/e2e/downloads.spec.ts` with a journey for the new product.
 
 ## 6. Review checklist
 

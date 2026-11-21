@@ -37,7 +37,7 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
         </div>
         <fieldset class="hidden">
           <legend>Basemap</legend>
-          {BASEMAPS.map((b, i) => <input type="radio" name="basemap" value={b.id} checked={i === 0} />)}
+          {BASEMAPS.map((b, i) => <input type="radio" name="basemap" value={b.id} checked={i === 0} aria-label={b.title} tabindex="-1" />)}
         </fieldset>
       </div>
 
@@ -45,7 +45,7 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
         <details class="group/grp border-b border-line" data-layer-group open={g.id === 'reference' || g.id === 'climate-drought' || g.layers.some((l) => l.defaultOn)}>
           <summary class="flex min-h-10 cursor-pointer list-none items-center gap-2 px-4 text-[0.8125rem] font-medium text-atlas hover:bg-mist">
             <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform group-open/grp:rotate-90"><path d="M3 1.5 L7 5 L3 8.5" fill="none" stroke="currentColor" stroke-width="1.4" /></svg>
-            <span id={`grp-${g.id}`}>{g.title}</span><span class="ml-auto font-mono text-[0.68rem] text-slate">{g.layers.length}</span>
+            <span id={`grp-${g.id}`}>{g.title}</span><span class="ml-auto font-mono text-[0.8125rem] text-slate">{g.layers.length}</span>
           </summary>
           <ul class="pb-2">
             {g.layers.map((l) => (
@@ -54,9 +54,9 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
                   <input type="checkbox" id={`chk-${l.id}`} data-layer-toggle={l.id} class="mt-[3px] h-3.5 w-3.5 shrink-0 accent-[#8aa6ff]" checked={l.defaultOn} />
                   <label for={`chk-${l.id}`} class="min-w-0 flex-1 cursor-pointer text-[0.8125rem] leading-snug text-atlas">
                     {l.title}
-                    <span class="mt-0.5 block font-mono text-[0.66rem] text-slate">{natureLabel[l.nature]}{aeoLayer(l.id) ? ' · AEO' : ''}{l.time ? ` · ${l.time.step}` : ''}</span>
+                    <span class="mt-0.5 block font-mono text-[0.8125rem] text-slate">{natureLabel[l.nature]}{aeoLayer(l.id) ? ' · AEO' : ''}{l.time ? ` · ${l.time.step}` : ''}</span>
                   </label>
-                  <button type="button" class="-my-1 grid h-6 w-6 shrink-0 place-items-center font-mono text-[0.7rem] text-slate hover:text-atlas" aria-expanded="false" aria-controls={`info-${l.id}`} data-info-toggle={l.id} aria-label={`About ${l.title}`}>i</button>
+                  <button type="button" class="-my-1 grid h-6 w-6 shrink-0 place-items-center font-mono text-[0.8125rem] text-slate hover:text-atlas" aria-expanded="false" aria-controls={`info-${l.id}`} data-info-toggle={l.id} aria-label={`About ${l.title}`}>i</button>
                 </div>
                 <div class="hidden space-y-2 px-4 pb-2 pl-10 pt-1" data-layer-controls={l.id}>
                   <label class="flex items-center gap-2 text-[0.75rem] text-slate">
@@ -72,7 +72,7 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
                         <button type="button" class="border border-line px-1.5" data-step={l.id} data-dir="1" aria-label={`Next year for ${l.title}`}>›</button>
                         <output class="tabular w-9 text-right font-mono text-atlas" data-year-label={l.id}></output>
                       </div>
-                      <p class="mt-1 pl-14 font-mono text-[0.68rem]" data-date-note={l.id} aria-live="polite"></p>
+                      <p class="mt-1 pl-14 font-mono text-[0.8125rem]" data-date-note={l.id} aria-live="polite"></p>
                     </div>
                   )}
                   {l.time && l.time.step !== 'year' && (
@@ -83,10 +83,10 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
                         <input type="date" data-date={l.id} class="field min-w-0 flex-1 !px-1.5 !py-0.5 !text-[0.75rem]" aria-label={`Date for ${l.title}`} />
                         <button type="button" class="border border-line px-1.5" data-step={l.id} data-dir="1" aria-label={`Next date for ${l.title}`}>›</button>
                       </div>
-                      <p class="mt-1 pl-14 font-mono text-[0.68rem]" data-date-note={l.id} aria-live="polite"></p>
+                      <p class="mt-1 pl-14 font-mono text-[0.8125rem]" data-date-note={l.id} aria-live="polite"></p>
                     </div>
                   )}
-                  <p class="hidden text-[0.72rem] text-[#f0b39a]" data-error={l.id} role="status"></p>
+                  <p class="hidden text-[0.8125rem] text-[#f0b39a]" data-error={l.id} role="status"></p>
                 </div>
                 <div id={`info-${l.id}`} class="hidden px-4 pb-3 pl-10 text-[0.75rem] leading-relaxed text-graphite">
                   <p>{l.summary}</p>
@@ -102,18 +102,24 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
     </aside>
 
     <!-- Centre: map -->
-    <div class="relative min-h-0">
-      <button type="button" id="drawer-open" aria-controls="map-panel" aria-expanded="false" class="absolute right-2 top-2 z-20 min-h-10 border border-line-strong bg-obsidian px-3 text-[0.8125rem] text-white lg:hidden" style="border-radius:var(--radius-control)">Layers</button>
+    <div class="flex min-h-0 flex-col">
+      <div class="flex items-end gap-2 border-b border-line bg-obsidian px-3 py-2 lg:hidden">
+        <label class="min-w-0 flex-1"><span class="block text-[0.8125rem] text-slate">Region</span>
+          <select id="wilaya-select-m" class="field mt-1 !min-h-10"><option value="">All of Algeria</option></select></label>
+        <button type="button" id="drawer-open" aria-controls="map-panel" aria-expanded="false" class="min-h-10 border border-line-strong bg-obsidian px-3 text-[0.875rem] text-white" style="border-radius:var(--radius-control)">Layers</button>
+      </div>
+      <div class="relative min-h-0 flex-1">
       <div class="absolute inset-0"><div id="map" class="h-full w-full bg-obsidian" role="region" aria-label="Interactive map of Algeria"></div></div>
-      <div id="legend" class="theme-light tabular pointer-events-auto absolute bottom-8 right-2 z-10 hidden max-h-[28%] w-[12.5rem] max-w-[calc(100%-1rem)] overflow-y-auto border border-line bg-white p-3 text-[0.72rem] text-graphite sm:max-h-[42%] sm:w-[16rem]" style="border-radius:var(--radius-card)" aria-label="Legend"></div>
-      <div id="coords" class="tabular pointer-events-none absolute left-2 top-2 z-10 bg-obsidian/85 px-2 py-1 font-mono text-[0.7rem] text-graphite empty:hidden" aria-hidden="true"></div>
+      <div id="legend" class="theme-light tabular pointer-events-auto absolute bottom-8 right-2 z-10 hidden max-h-[28%] w-[12.5rem] max-w-[calc(100%-1rem)] overflow-y-auto border border-line bg-white p-3 text-[0.8125rem] text-graphite sm:max-h-[42%] sm:w-[16rem]" style="border-radius:var(--radius-card)" aria-label="Legend"></div>
+      <div id="coords" class="tabular pointer-events-none absolute left-2 top-2 z-10 bg-obsidian/85 px-2 py-1 font-mono text-[0.8125rem] text-graphite empty:hidden" aria-hidden="true"></div>
       <noscript><p class="absolute inset-0 grid place-items-center p-6 text-center">The map explorer requires JavaScript. All products remain available in <a href="/data/">Data</a>.</p></noscript>
+      </div>
     </div>
 
     <!-- Right: inspector -->
     <aside id="inspector" aria-label="Inspector" aria-live="polite" class="hidden border-l border-line xl:block xl:overflow-y-auto">
       <div class="px-4 py-4">
-        <p class="overline !text-[0.68rem]">Inspector</p>
+        <p class="overline ">Inspector</p>
         <div id="inspector-body" class="mt-3 text-[0.8125rem] text-slate">Select a wilaya or commune on the map to see its indicators.</div>
       </div>
     </aside>
@@ -124,6 +130,14 @@ const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.tes
   import { initExplorer } from '../scripts/map-explorer';
   initExplorer();
   // mobile drawer (accessible: aria-expanded, Escape, focus in/out)
+  // mobile region selector mirrors the panel's wilaya selector (filled by map-explorer)
+  const wMain = document.getElementById('wilaya-select') as HTMLSelectElement;
+  const wMob = document.getElementById('wilaya-select-m') as HTMLSelectElement;
+  const copyOpts = () => { if (wMob.options.length !== wMain.options.length) wMob.innerHTML = wMain.innerHTML; wMob.value = wMain.value; };
+  new MutationObserver(copyOpts).observe(wMain, { childList: true });
+  wMain.addEventListener('change', copyOpts);
+  wMob.addEventListener('change', () => { wMain.value = wMob.value; wMain.dispatchEvent(new Event('change', { bubbles: true })); });
+  copyOpts();
   const panel = document.getElementById('map-panel')!;
   const open = document.getElementById('drawer-open') as HTMLButtonElement;
   const close = document.getElementById('drawer-close') as HTMLButtonElement;
