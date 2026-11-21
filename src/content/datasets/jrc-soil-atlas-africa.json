@@ -1,0 +1,150 @@
+{
+  "id": "jrc-soil-atlas-africa",
+  "title": "Soil Map of the Soil Atlas of Africa (JRC / ESDAC)",
+  "description": "Harmonised continental soil map of Africa classified in the World Reference Base (WRB): each polygon carries the Reference Soil Group code and name with one or two prefix qualifiers. It was produced by the European Commission Joint Research Centre for the Soil Atlas of Africa (2013), harmonised at about 1:3 million and derived from the Harmonized World Soil Database and related sources. The shapefile is distributed by the European Soil Data Centre (ESDAC) on request. The atlas itself is a free PDF.",
+  "purpose": "WRB-based continental soil map consistent across Algeria and its neighbours, plus explanatory atlas pages for education and communication on Algerian soils (e.g. Calcisols, Gypsisols, Solonchaks, Arenosols, Leptosols).",
+  "domain": [
+    "soil",
+    "reference"
+  ],
+  "categories": [
+    "Soil maps and databases",
+    "Soil classification"
+  ],
+  "keywords": [
+    "Soil Atlas of Africa",
+    "JRC",
+    "ESDAC",
+    "WRB",
+    "Reference Soil Groups",
+    "soil map",
+    "Africa"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "European Commission Joint Research Centre - European Soil Data Centre (ESDAC)",
+    "url": "https://esdac.jrc.ec.europa.eu/content/soil-map-soil-atlas-africa"
+  },
+  "creator": "European Commission Joint Research Centre (Jones, Breuning-Madsen, Brossard, Dampha, Deckers, Dewitte, Gallali and co-editors) with Lovell Johns Ltd",
+  "source_url": "https://esdac.jrc.ec.europa.eu/content/soil-map-soil-atlas-africa",
+  "documentation_url": "https://esdac.jrc.ec.europa.eu/Library/Maps/Africa_Atlas/Documents/JRC_africa_soil_atlas_part1.pdf",
+  "license": {
+    "name": "ESDAC data licence on request (JRC terms; not an open licence)",
+    "spdx": null,
+    "url": "https://esdac.jrc.ec.europa.eu/content/soil-map-soil-atlas-africa"
+  },
+  "license_notes": "Restrictive. ESDAC page: 'Registration is requested: Yes'. The shapefile is released after a Request Form is submitted. The terms say the data were prepared for JRC research, the JRC accepts no liability, recipients may not pass the data to third parties, the data 'can be used for any purpose, including commercial gain', and users must cite the source and report errors or omissions. AEO cannot redistribute the file. The atlas PDF states: 'Reproduction authorised for the sole purpose of teaching or scientific research provided the source is acknowledged.'",
+  "citation": "Jones, A., Breuning-Madsen, H., Brossard, M., Dampha, A., Deckers, J., Dewitte, O., Gallali, T., Hallett, S., Jones, R., Kilasara, M., Le Roux, P., Micheli, E., Montanarella, L., Spaargaren, O., Thiombiano, L., Van Ranst, E., Yemefack, M., and Zougmore, R. (eds.) (2013). Soil Atlas of Africa. European Commission, Publications Office of the European Union, Luxembourg. 176 pp. ISBN 978-92-79-26715-4.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Dewitte, O., Jones, A., Spaargaren, O., Breuning-Madsen, H., Brossard, M., et al. (2013). Harmonisation of the soil map of Africa at the continental scale. Geoderma, 211-212, 138-153.",
+      "doi": "10.1016/j.geoderma.2013.07.007",
+      "url": null
+    },
+    {
+      "citation": "Panagos, P., Van Liedekerke, M., Borrelli, P., Koninger, J., Ballabio, C., et al. (2022). European Soil Data Centre 2.0: Soil data and knowledge in support of the EU policies. European Journal of Soil Science, 73(6), e13315.",
+      "doi": "10.1111/ejss.13315",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "continental",
+    "description": "African continent. Algeria is covered: the atlas treats the whole continent, including Algeria (named in the country overview of Part 1). The shapefile itself was not obtained (registration required), so polygon coverage of Algeria was not checked in the file.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "static",
+    "description": "Atlas published 2013. The map is compiled from HWSD v1.1 (2009), the Soil Geographical Database of Eurasia (1:1 million) and the FAO-UNESCO 1:5 million Soil Map of the World (1974), per the atlas' soil-data statement; it has no reference year."
+  },
+  "resolution": {
+    "spatial": "Harmonised for 1:3,000,000 atlas sheets (vector)",
+    "spatial_m": null,
+    "temporal": "static"
+  },
+  "format": [
+    "ESRI Shapefile (on request)",
+    "PDF atlas (free download)"
+  ],
+  "crs": "WGS 1984 (geographic)",
+  "variables": [
+    {
+      "name": "WRB Reference Soil Group",
+      "units": "code / name",
+      "description": "Dominant Reference Soil Group per polygon"
+    },
+    {
+      "name": "WRB prefix qualifiers",
+      "units": "code / name",
+      "description": "One or two prefix qualifiers per polygon"
+    }
+  ],
+  "processing": "JRC harmonised existing continental and global soil data (HWSD, the Soil Geographical Database of Eurasia, the FAO-UNESCO Soil Map of the World) into a WRB-classified map for the atlas sheets (Dewitte et al. 2013). The ESDAC page says that soil properties (texture, pH, organic carbon, carbonates) are not in the shapefile and can be retrieved from HWSD.",
+  "validation": "None reported on the ESDAC page. Accuracy is limited by the source maps (largely 1:5 million in North Africa).",
+  "limitations": [
+    "Access requires an ESDAC request form; redistribution to third parties is not allowed, so AEO can only link to it.",
+    "Classification map only (WRB groups and qualifiers); no soil property values.",
+    "Derived largely from HWSD v1.1 and the FAO-UNESCO map, so it adds a WRB legend and cartographic harmonisation rather than new field data for Algeria.",
+    "Coarse scale (1:3 million atlas sheets; sources down to 1:5 million)."
+  ],
+  "version": "2013 atlas edition",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "ESDAC: Soil Map of the Soil Atlas of Africa (request form)",
+      "url": "https://esdac.jrc.ec.europa.eu/content/soil-map-soil-atlas-africa",
+      "kind": "external",
+      "format": "ESRI Shapefile",
+      "requires_login": true,
+      "notes": "Registration via the page's Request Form tab; data released under JRC conditions (no redistribution)."
+    },
+    {
+      "label": "Soil Atlas of Africa - Part 1 (PDF)",
+      "url": "https://esdac.jrc.ec.europa.eu/Library/Maps/Africa_Atlas/Documents/JRC_africa_soil_atlas_part1.pdf",
+      "kind": "external",
+      "format": "PDF (about 260 MB)",
+      "requires_login": false,
+      "notes": "Free; Parts 2 and 3 and a French version are linked from the ESDAC page."
+    },
+    {
+      "label": "Soil Atlas of Africa - Part 3 (PDF)",
+      "url": "https://esdac.jrc.ec.europa.eu/Library/Maps/Africa_Atlas/Documents/JRC_africa_soil_atlas_part3.pdf",
+      "kind": "external",
+      "format": "PDF",
+      "requires_login": false,
+      "notes": "Free."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Gives a WRB view of Algerian soils (e.g. calcareous, gypsiferous and saline soils of the steppe and Sahara) that matches neighbouring countries. Because the shapefile cannot be redistributed and adds no new Algerian field data, it is best used for reference and teaching, with HWSD v2.2 for properties.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "published_date (only the year 2013 is given)",
+      "polygon coverage of Algeria in the shapefile (file not obtained)",
+      "doi (the atlas prints 'doi 10.2788/52319', but neither Crossref nor DataCite resolves it, so it is not recorded)"
+    ],
+    "sources_consulted": [
+      "https://esdac.jrc.ec.europa.eu/content/soil-map-soil-atlas-africa",
+      "https://esdac.jrc.ec.europa.eu/Library/Maps/Africa_Atlas/Documents/JRC_africa_soil_atlas_part1.pdf (publishing details, soil data sources, country overview)",
+      "https://esdac.jrc.ec.europa.eu/Library/Maps/Africa_Atlas/Documents/JRC_africa_soil_atlas_part3.pdf (HTTP status only)",
+      "https://api.crossref.org/works/10.2788/52319 (not found)",
+      "https://api.datacite.org/dois/10.2788/52319 (not found)",
+      "https://api.crossref.org/works/10.1016/j.geoderma.2013.07.007",
+      "https://api.crossref.org/works/10.1111/ejss.13315"
+    ],
+    "notes": "The ESDAC page says the map 'has been derived from the Harmonized World Soil Database (HWSD)'; the atlas lists HWSD v1.1, the Soil Geographical Database of Eurasia and the FAO-UNESCO Soil Map of the World as sources. The ESDAC page links HWSD v2.0 to the old FAO Soils Portal URL, which now returns 404. requires_login is set to true for the shapefile because a request form must be submitted. https://doi.org/10.1111/ejss.13315 resolves to Wiley, which returned HTTP 403 to automated requests; the DOI metadata were confirmed via Crossref."
+  }
+}

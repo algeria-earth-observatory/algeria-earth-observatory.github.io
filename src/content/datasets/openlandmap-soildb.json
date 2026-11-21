@@ -1,0 +1,211 @@
+{
+  "id": "openlandmap-soildb",
+  "title": "OpenLandMap-soildb: global soil properties at 30 m for 2000-2022 (OpenGeoHub)",
+  "description": "Global spatiotemporal machine-learning predictions of soil organic carbon content and density, pH in water, bulk density of the fine earth, clay/silt/sand fractions and USDA soil-type (suborder) probabilities. Maps are at 30 m (mean) and about 120 m (mean plus 16th/84th percentile bounds), for three depth intervals (0-30, 30-60, 60-100 cm). SOC and pH are mapped for 5-year periods from 2000 to 2022; texture and bulk density only for 2020-2022. Produced by the OpenGeoHub Foundation within Land & Carbon Lab and distributed as Cloud-Optimized GeoTIFFs through the OpenLandMap STAC catalogue and Zenodo.",
+  "purpose": "High-resolution, time-aware soil property maps, e.g. for detecting SOC change between 2000-2005 and 2020-2022 in northern Algerian croplands and rangelands, or as fine-scale covariates.",
+  "domain": [
+    "soil",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil properties",
+    "Digital soil mapping"
+  ],
+  "keywords": [
+    "OpenLandMap",
+    "OpenGeoHub",
+    "soildb",
+    "soil organic carbon",
+    "pH",
+    "bulk density",
+    "texture",
+    "USDA soil taxonomy",
+    "30 m",
+    "spatiotemporal machine learning",
+    "STAC",
+    "COG"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "OpenGeoHub Foundation (OpenLandMap)",
+    "url": "https://openlandmap.org/"
+  },
+  "creator": "OpenGeoHub Foundation (Hengl, Consoli, Tian, Isik, Simoes and co-authors)",
+  "source_url": "https://stac.openlandmap.org/",
+  "documentation_url": "https://essd.copernicus.org/articles/18/989/2026/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Every OpenLandMap-soildb STAC collection checked (SOC content, SOC density, pH, bulk density, sand, silt, clay, soil types) states license 'CC-BY-4.0', and the Zenodo/DataCite records give cc-by-4.0.",
+  "citation": "Hengl, T., Consoli, D., Tian, X., Nauman, T. W., Nussbaum, M., Isik, M. S., Parente, L., Ho, Y.-F., Simoes, R., Gupta, S., Samuel-Rosa, A., Zborowski Horst, T., Safanelli, J. L., and Harris, N. (2026). OpenLandMap-soildb: global soil information at 30 m spatial resolution for 2000-2022+ based on spatiotemporal Machine Learning and harmonized legacy soil samples and observations. Earth System Science Data, 18, 989-1036. https://doi.org/10.5194/essd-18-989-2026",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Hengl, T., Consoli, D., Tian, X., et al. (2026). OpenLandMap-soildb: global soil information at 30 m spatial resolution for 2000-2022+ based on spatiotemporal Machine Learning and harmonized legacy soil samples and observations. Earth System Science Data, 18(2), 989-1036.",
+      "doi": "10.5194/essd-18-989-2026",
+      "url": "https://essd.copernicus.org/articles/18/989/2026/"
+    },
+    {
+      "citation": "Hengl, T. and Tian, X. (2025). openlandmap/soildb: v0.0.2 (software). Zenodo.",
+      "doi": "10.5281/zenodo.15608971",
+      "url": "https://github.com/openlandmap/soildb"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Nominally global between 56 S and 76 N, but deserts and permanent ice are masked out (Zenodo: 'masking out permanent ice and deserts'). Algeria is only partly covered: on a 1-degree grid inside Algeria (213 points), the 2020-2022 SOC 0-30 cm layer (about 120 m) had valid values at 16.9% of points, 52.9% north of 32 N and 5.6% south of it. Most of the Algerian Sahara (e.g. the Grand Erg Oriental) is no-data. Users must subset Algeria themselves.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -56,
+      180,
+      76
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-01-01",
+    "end": "2022-12-31",
+    "ongoing": false,
+    "frequency": "5-year periods (2000-2005, 2005-2010, 2010-2015, 2015-2020, 2020-2022) for SOC and pH; 2020-2022 only for texture and bulk density; static for soil types",
+    "description": "Periods and coverage from the STAC collections (SOC content, SOC density, pH: 5 items 2000-2022; bulk density, sand, silt, clay: one 2020-2022 item). Zenodo archives only the first and last periods (2000-2005 and 2020-2022)."
+  },
+  "resolution": {
+    "spatial": "30 m (mean, STAC/GEE) and about 120 m (mean with 16th/84th percentiles; read as 0.001 degree on 2026-11-21, while Zenodo states 0.00075 degree)",
+    "spatial_m": 30,
+    "temporal": "5-year periods (SOC, pH); single period 2020-2022 (texture, bulk density)"
+  },
+  "format": [
+    "Cloud Optimized GeoTIFF (COG)",
+    "STAC catalogue",
+    "Google Earth Engine assets"
+  ],
+  "crs": "EPSG:4326 (WGS84 geographic)",
+  "variables": [
+    {
+      "name": "oc_iso.10694.1995.wpml",
+      "units": "g/kg (stored x10; STAC scale factor 0.1)",
+      "description": "Soil organic carbon content (dry combustion), depths 0-30, 30-60, 60-100 cm, 5-year periods; mean, p16, p84"
+    },
+    {
+      "name": "oc_iso.10694.1995.mg.cm3",
+      "units": "kg/m3 (STAC scale factor 0.1)",
+      "description": "Soil organic carbon density"
+    },
+    {
+      "name": "ph.h2o_iso.10390.2021.index",
+      "units": "pH (STAC scale factor 0.1)",
+      "description": "Soil pH in water"
+    },
+    {
+      "name": "bd.core_iso.11272.2017.g.cm3",
+      "units": "STAC layer_unit kg/m3, scale factor 0.01 (check before use)",
+      "description": "Bulk density of the fine earth, 2020-2022"
+    },
+    {
+      "name": "clay.tot_iso.11277.2020.wpct / silt.tot_iso.11277.2020.wpct / sand.tot_iso.11277.2020.wpct",
+      "units": "%",
+      "description": "Soil texture fractions, 2020-2022"
+    },
+    {
+      "name": "soil.types_ensemble_probabilities",
+      "units": "%",
+      "description": "Probability of USDA soil taxonomy suborders (static, 2000-2022)"
+    }
+  ],
+  "processing": "Tree-based spatiotemporal machine learning (Random Forest according to the Zenodo records) trained on harmonised legacy soil samples (ESSD abstract: e.g. 408,000 samples for SOC content, 272,000 for pH, 363,000 for texture, 134,000 for bulk density), with covariates from digital terrain models, vegetation and tillage indices and climatic variables. Predictions are block averages for depth intervals and multi-year periods. Uncertainty is given as 16th/84th percentiles (68% interval) at about 120 m. Code: github.com/openlandmap/soildb.",
+  "validation": "ESSD abstract (global cross-validation): SOC density RMSE 17.7 kg/m3, CCC 0.88; SOC content RMSE 51.3 g/kg, CCC 0.87; bulk density RMSE 0.15 t/m3, CCC 0.92; pH RMSE 0.51, CCC 0.91; clay RMSE 8.4%, CCC 0.87; sand RMSE 12.6%, CCC 0.84. No Algeria-specific accuracy is given. Section 2.2 of the paper says 'We mask out the world's deserts and permanent ice' and suggests fixed gap-fill values for shifting sands (e.g. 0 SOC, 100% sand, 1.6 t/m3 bulk density).",
+  "limitations": [
+    "Deserts and permanent ice are masked: most of the Algerian Sahara has no prediction (about 17% of a 1-degree Algeria grid is covered, mostly north of 32 N).",
+    "Model predictions, not measurements. Very few training profiles exist in Algeria (WoSIS serves 10), so local accuracy in Algeria is unknown and likely lower than the global cross-validation figures.",
+    "Apparent change over time in SOC or pH can partly reflect changing covariates and model artefacts; check the 16th-84th percentile range before interpreting trends.",
+    "Very large files (Zenodo 120 m SOC 0-30 cm mean file about 17 GB); use HTTP range reads/COG windowing or GEE for Algeria.",
+    "Zenodo DOIs are per layer (property x depth x period), not one dataset DOI; Zenodo descriptions also state 0.00075 degree for the 120 m layers, while the COG read on 2026-11-21 had 0.001 degree pixels.",
+    "Released in 2025 and published in 2026; version strings differ between collections (v20250204, v20250523)."
+  ],
+  "version": "v20250204 (SOC, pH, bulk density layers) and v20250523 (texture collections) as listed in STAC",
+  "published_date": "2026-02-06",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "OpenLandMap STAC browser",
+      "url": "https://stac.openlandmap.org/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Browser over the OpenLandMap STAC catalogue (collections titled 'OpenLandMap-soildb: ...')."
+    },
+    {
+      "label": "OpenLandMap STAC API (OpenGeoHub)",
+      "url": "https://stac.opengeohub.org/v1/cat/openlandmap",
+      "kind": "api",
+      "format": "STAC API (JSON)",
+      "requires_login": false,
+      "notes": "Catalogue endpoint configured in the STAC browser."
+    },
+    {
+      "label": "OpenLandMap static STAC catalogue (JSON)",
+      "url": "https://s3.eu-central-1.wasabisys.com/stac/openlandmap/catalog.json",
+      "kind": "api",
+      "format": "STAC (JSON)",
+      "requires_login": false,
+      "notes": "Collection and item JSON with direct COG asset links on s3.opengeohub.org."
+    },
+    {
+      "label": "Example COG: SOC content 0-30 cm, 2020-2022, about 120 m mean",
+      "url": "https://s3.opengeohub.org/global-soil/global_soil_props_v20250204_mosaics/oc_iso.10694.1995.wpml_m_120m_b0cm..30cm_20200101_20221231_g_epsg.4326_v20250204.tif",
+      "kind": "external",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "Hosted by OpenGeoHub; read successfully over HTTP range requests on 2026-11-21."
+    },
+    {
+      "label": "Zenodo archive record (SOC content 2000-2005, 0-30 cm; links to all sub-datasets)",
+      "url": "https://zenodo.org/records/15535756",
+      "kind": "external",
+      "format": "GeoTIFF (COG)",
+      "requires_login": false,
+      "notes": "Zenodo archives the 120 m layers for 2000-2005 and 2020-2022 only; each property/depth/period has its own DOI."
+    },
+    {
+      "label": "ESSD data paper",
+      "url": "https://essd.copernicus.org/articles/18/989/2026/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Methods, accuracy and data availability."
+    }
+  ],
+  "code_url": "https://github.com/openlandmap/soildb",
+  "algeria_notes": "Usable mainly for the Tell, the High Plateaux and parts of the steppe north of about 32 N. Large Saharan areas are masked. The 30 m resolution fits field-scale cereal and rangeland studies, but Algerian soil samples behind the model are very sparse; check against GSOCmap, SoilGrids or local data before use.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "bulk density units/scale (STAC layer_unit kg/m3 vs scale factor 0.01)",
+      "doi (no single dataset DOI; ESSD paper DOI in references)",
+      "Google Earth Engine asset path (Zenodo gives projects/global-pasture-watch/assets/gsm-30m; the Code Editor requires a Google login, so it was not checked)"
+    ],
+    "sources_consulted": [
+      "https://openlandmap.org/",
+      "https://stac.openlandmap.org/ (config.js -> https://stac.opengeohub.org/v1/cat/openlandmap)",
+      "https://stac.opengeohub.org/v1/cat/openlandmap",
+      "https://s3.eu-central-1.wasabisys.com/stac/openlandmap/catalog.json",
+      "https://s3.eu-central-1.wasabisys.com/stac/openlandmap/oc_iso.10694.1995.wpml/collection.json (and the other 7 soildb collections)",
+      "https://s3.eu-central-1.wasabisys.com/stac/openlandmap/oc_iso.10694.1995.wpml/oc_iso.10694.1995.wpml_20200101_20221231/oc_iso.10694.1995.wpml_20200101_20221231.json",
+      "https://s3.opengeohub.org/global-soil/global_soil_props_v20250204_mosaics/oc_iso.10694.1995.wpml_m_120m_b0cm..30cm_20200101_20221231_g_epsg.4326_v20250204.tif",
+      "https://zenodo.org/api/records/15535756",
+      "https://api.datacite.org/dois/10.5281/zenodo.15535756 (and 15470432, 15471103, 15471053, 15528399, 15528411, 15528423, 15481407, 15470431, 15608971)",
+      "https://api.crossref.org/works/10.5194/essd-18-989-2026",
+      "https://essd.copernicus.org/articles/18/989/2026/",
+      "https://github.com/openlandmap/soildb"
+    ],
+    "notes": "Selected as the maintained OpenLandMap soil product. The older OpenLandMap 'long-term' 250 m soil layers (Hengl 2018, e.g. organic.carbon_usda.6a1c, ph.h2o_usda.4c1a2a, sand/clay, texture class) are still listed in the static STAC catalogue but are not described here. Algeria coverage was checked by sampling the COG on a 1-degree grid inside the AEO ADM0 boundary. published_date is the ESSD issue date from Crossref (2026-02-06)."
+  }
+}

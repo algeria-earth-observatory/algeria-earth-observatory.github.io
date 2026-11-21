@@ -1,0 +1,213 @@
+{
+  "id": "isdasoil",
+  "title": "iSDAsoil - African soil property and nutrient maps at 30 m",
+  "description": "Continental 30 m predictions of more than 20 soil properties and nutrients (pH, organic and total carbon, total nitrogen, extractable P, K, Ca, Mg, S, Fe, Zn and Al, effective CEC, texture fractions and class, bulk density, stone content, bedrock depth, fertility capability classification) for 0-20 cm and 20-50 cm, each with a model-error layer (one standard deviation). Produced by Innovative Solutions for Decision Agriculture (iSDA) with two-scale ensemble machine learning and published on the AWS Registry of Open Data.",
+  "purpose": "Fine-resolution soil fertility layers (nutrients, pH, texture) for agronomic analysis. In Algeria they can be used for the northern cropping and steppe zones where predictions exist.",
+  "domain": [
+    "soil",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil properties",
+    "Soil nutrients",
+    "Digital soil mapping"
+  ],
+  "keywords": [
+    "iSDAsoil",
+    "iSDA",
+    "Africa",
+    "soil nutrients",
+    "30 m",
+    "pH",
+    "phosphorus",
+    "potassium",
+    "soil organic carbon",
+    "machine learning",
+    "AWS Open Data"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "Innovative Solutions for Decision Agriculture (iSDA)",
+    "url": "https://www.isda-africa.com/isdasoil/"
+  },
+  "creator": "Innovative Solutions for Decision Agriculture (iSDA); model and maps described by Hengl, Miller, Krizan, Shepherd, Sila, Kilibarda and co-authors (2021)",
+  "source_url": "https://www.isda-africa.com/isdasoil/",
+  "documentation_url": "https://www.isda-africa.com/isdasoil/technical-information/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "iSDAsoil FAQ: 'All data are freely available under a Creative Commons Attribution 4.0 International License.' The AWS Registry of Open Data entry also states 'License: CC-BY 4.0'. The iSDAsoil web API was not assessed (registration terms not checked).",
+  "citation": "Hengl, T., Miller, M. A. E., Krizan, J., Shepherd, K. D., Sila, A., Kilibarda, M., Antonijevic, O., Glusica, L., Dobermann, A., Haefele, S. M., McGrath, S. P., Acquah, G. E., Collinson, J., Parente, L., Sheykhmousa, M., Saito, K., Johnson, J.-M., Chamberlin, J., Silatsa, F. B. T., Yemefack, M., Wendt, J., MacMillan, R. A., Wheeler, I., and Crouch, J. (2021). African soil properties and nutrients mapped at 30 m spatial resolution using two-scale ensemble machine learning. Scientific Reports, 11, 6130. https://doi.org/10.1038/s41598-021-85639-y",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Hengl, T., Miller, M. A. E., Krizan, J., Shepherd, K. D., et al. (2021). African soil properties and nutrients mapped at 30 m spatial resolution using two-scale ensemble machine learning. Scientific Reports, 11, 6130.",
+      "doi": "10.1038/s41598-021-85639-y",
+      "url": "https://www.nature.com/articles/s41598-021-85639-y"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "continental",
+    "description": "African continent (STAC bbox -31.46, -34.89, 57.08, 37.65). iSDA states it covers 'all areas suitable for agriculture across Africa' and that 'for the majority of properties, we have not made predictions for locations classed as deserts or water bodies'. Algeria is partly covered: on a 1-degree grid inside Algeria (213 points) the pH layer had valid values at 14.1% of points, 56.9% north of 32 N and 0.6% south of it. Isolated Saharan oases and towns (e.g. Adrar, Tamanrasset) have values; ergs and most of the Sahara are no-data.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -31.4642367,
+      -34.8912103,
+      57.0817127,
+      37.6498099
+    ]
+  },
+  "temporal_extent": {
+    "start": "2001-01-01",
+    "end": "2017-01-01",
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Static predictions. The STAC metadata of the soil layers give start_datetime 2001-01-01 and end_datetime 2017-01-01. The technical page mentions 2018-2019 satellite imagery among the covariates."
+  },
+  "resolution": {
+    "spatial": "30 m",
+    "spatial_m": 30,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "Cloud Optimized GeoTIFF (one file per property, 4 bands)",
+    "STAC catalogue"
+  ],
+  "crs": "EPSG:3857 (Web Mercator, 30 m pixels)",
+  "variables": [
+    {
+      "name": "Bands per property file",
+      "units": null,
+      "description": "mean_0_20, mean_20_50, stdev_0_20, stdev_20_50 (predicted mean and model error at 0-20 and 20-50 cm)"
+    },
+    {
+      "name": "ph",
+      "units": "pH (stored as integers; back-transformation required)",
+      "description": "Soil pH"
+    },
+    {
+      "name": "carbon_organic, carbon_total, nitrogen_total",
+      "units": "see layer metadata (organic carbon is stored log-transformed)",
+      "description": "Organic carbon, total carbon, total nitrogen"
+    },
+    {
+      "name": "phosphorous_extractable, potassium_extractable, calcium_extractable, magnesium_extractable, sulphur_extractable, iron_extractable, zinc_extractable, aluminium_extractable",
+      "units": "ppm (FAQ table; stored transformed)",
+      "description": "Extractable nutrients"
+    },
+    {
+      "name": "cation_exchange_capacity",
+      "units": "see layer metadata",
+      "description": "Effective cation exchange capacity"
+    },
+    {
+      "name": "clay_content, silt_content, sand_content, texture_class",
+      "units": "% / class",
+      "description": "Texture fractions and USDA texture class"
+    },
+    {
+      "name": "bulk_density, stone_content, bedrock_depth, fcc",
+      "units": "see layer metadata",
+      "description": "Bulk density, stone content, depth to bedrock, fertility capability classification"
+    }
+  ],
+  "processing": "Two-scale ensemble machine learning: models at 250 m with coarse covariates and at 30 m with fine covariates (Sentinel-2, Landsat), trained on more than 100,000 soil sites from over 20 datasets (about 30,000-150,000 cleaned training samples depending on the variable, Hengl et al. 2021). Predictions at 0, 20 and 50 cm are aggregated to 0-20 and 20-50 cm. Uncertainty is the model variance of the ensemble learners.",
+  "validation": "Accuracy assessed with 5-fold spatial block cross-validation with refitting (iSDA technical page). The FAQ notes that models had minimum accuracy thresholds and that layers that were not accurate enough were excluded. No Algeria-specific validation.",
+  "limitations": [
+    "Only partial coverage of Algeria: deserts are not predicted, so about 86% of a 1-degree Algeria grid is no-data. Coverage is mostly north of 32 N.",
+    "Training data come mostly from sub-Saharan agricultural surveys (AfSIS, TAMASA, AfricaRice and others); North African calcareous, gypsiferous and saline soils are likely under-represented, so treat Algerian predictions with caution and check the stdev bands.",
+    "Most layers are stored transformed (integer scaling or log); back-transformation is required (see the per-layer metadata and the iSDAsoil tutorial).",
+    "Native EPSG:3857 projection distorts area at Algeria's latitudes; reproject before area-based analysis.",
+    "Very large continental COGs (order of 10-20 GiB per property); use windowed reads for Algeria."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "iSDAsoil home page",
+      "url": "https://www.isda-africa.com/isdasoil/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive map and links."
+    },
+    {
+      "label": "iSDAsoil on AWS (documentation)",
+      "url": "https://www.isda-africa.com/isdasoil/isdasoil-on-aws/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Bucket structure and band layout."
+    },
+    {
+      "label": "AWS Registry of Open Data entry",
+      "url": "https://registry.opendata.aws/isdasoil/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "S3 bucket arn:aws:s3:::isdasoil (us-west-2), licence CC-BY 4.0."
+    },
+    {
+      "label": "iSDAsoil STAC browser",
+      "url": "https://isdasoil.s3.amazonaws.com/index.html",
+      "kind": "viewer",
+      "format": "STAC",
+      "requires_login": false,
+      "notes": "STAC catalogue at https://isdasoil.s3.amazonaws.com/catalog.json"
+    },
+    {
+      "label": "Example COG: soil pH (0-20 and 20-50 cm)",
+      "url": "https://isdasoil.s3.amazonaws.com/soil_data/ph/ph.tif",
+      "kind": "external",
+      "format": "Cloud Optimized GeoTIFF",
+      "requires_login": false,
+      "notes": "Hosted on AWS by iSDA; read successfully via HTTP range requests on 2026-11-21. Other properties follow soil_data/<property>/<property>.tif."
+    },
+    {
+      "label": "iSDAsoil FAQ",
+      "url": "https://www.isda-africa.com/isdasoil/faq/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Licence, coverage and accuracy notes."
+    }
+  ],
+  "code_url": "https://github.com/iSDA-Africa/isdasoil-tutorial",
+  "algeria_notes": "Included because predictions do exist for part of Algeria, mainly the Tell, High Plateaux and steppe north of about 32 N, plus scattered oases. The Sahara is largely not predicted. The model was trained mostly on sub-Saharan data, so check Algerian values (e.g. pH, which should usually be alkaline in calcareous soils) against local measurements.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "version",
+      "published_date",
+      "back-transformation formulas per layer (not stated on the pages read)",
+      "units of cation_exchange_capacity, bulk_density, stone_content, bedrock_depth",
+      "iSDAsoil API access conditions",
+      "doi (no dataset DOI found; paper DOI used in citation)"
+    ],
+    "sources_consulted": [
+      "https://www.isda-africa.com/isdasoil/",
+      "https://www.isda-africa.com/isdasoil/faq/",
+      "https://www.isda-africa.com/isdasoil/technical-information/",
+      "https://www.isda-africa.com/isdasoil/isdasoil-on-aws/",
+      "https://registry.opendata.aws/isdasoil/",
+      "https://raw.githubusercontent.com/awslabs/open-data-registry/main/datasets/isdasoil.yaml",
+      "https://isdasoil.s3.amazonaws.com/catalog.json",
+      "https://isdasoil.s3.amazonaws.com/?list-type=2&prefix=soil_data/",
+      "https://isdasoil.s3.amazonaws.com/soil_data/ph/ph.json",
+      "https://isdasoil.s3.amazonaws.com/soil_data/carbon_organic/carbon_organic.json",
+      "https://isdasoil.s3.amazonaws.com/soil_data/ph/ph.tif",
+      "https://www.nature.com/articles/s41598-021-85639-y",
+      "https://api.crossref.org/works/10.1038/s41598-021-85639-y"
+    ],
+    "notes": "The task asked to include iSDAsoil only if its predictions cover Algeria. Checks on 2026-11-21: point samples returned valid pH values at Algiers/Mitidja, Setif, Tlemcen, Djelfa, Biskra, Ghardaia, Ouargla, Adrar and Tamanrasset, and no-data in the Grand Erg Oriental and at In Salah. A 1-degree grid inside the AEO ADM0 boundary gave 14.1% valid. The Sci. Rep. paper notes that 'shifting sand areas such as Sahara are excluded'. Crossref lists 24 authors; the article licence is CC BY 4.0."
+  }
+}

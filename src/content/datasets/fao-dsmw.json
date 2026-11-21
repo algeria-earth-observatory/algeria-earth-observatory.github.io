@@ -1,0 +1,164 @@
+{
+  "id": "fao-dsmw",
+  "title": "FAO Digital Soil Map of the World (DSMW) v3.6",
+  "description": "Global vector soil map digitised from the 1:5,000,000 FAO-UNESCO Soil Map of the World (published 1971-1981), in geographic coordinates. It holds soil mapping units (dominant soil, associated soils and inclusions per the FAO-UNESCO 1974 legend), texture and slope classes, and phases, with country codes. Distributed by FAO as shapefile, ERDAS and IDRISI packages, with a high-resolution PDF map.",
+  "purpose": "Historical reference map of soil units for Algeria and a common base for many later global products (HWSD, GSOCmap gap-filling, Soil Atlas of Africa). Useful for small-scale soil-unit context and legacy comparisons.",
+  "domain": [
+    "soil",
+    "reference"
+  ],
+  "categories": [
+    "Soil maps and databases",
+    "Legacy soil maps"
+  ],
+  "keywords": [
+    "DSMW",
+    "Digital Soil Map of the World",
+    "FAO-UNESCO Soil Map of the World",
+    "FAO 1974 legend",
+    "soil mapping units",
+    "legacy soil map"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "Food and Agriculture Organization of the United Nations (FAO) - Land and Water Division",
+    "url": "https://data.apps.fao.org/catalog/dataset/446ed430-8383-11db-b9b2-000d939bc5d8"
+  },
+  "creator": "FAO (digitised from the FAO-UNESCO Soil Map of the World, 1971-1981)",
+  "source_url": "https://data.apps.fao.org/catalog/dataset/446ed430-8383-11db-b9b2-000d939bc5d8",
+  "documentation_url": "https://data.apps.fao.org/catalog/iso/446ed430-8383-11db-b9b2-000d939bc5d8",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "FAO data catalogue record 'Digital Soil Map of the World v.3.6': 'This work is made available under the Creative Commons Attribution 4.0 International licence (CC-BY-4.0)'. No registration required.",
+  "citation": "FAO (2007). Digital Soil Map of the World, version 3.6 (data revision 2007-02-28). Food and Agriculture Organization of the United Nations, Rome. https://data.apps.fao.org/catalog/iso/446ed430-8383-11db-b9b2-000d939bc5d8",
+  "doi": null,
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surface. Algeria is covered: the DSMW.shp attribute table has 295 polygons with COUNTRY = 'ALGERIA' (CNTNAME 'AG'). For Africa, national boundaries were derived from the original FAO-UNESCO map (FAO catalogue), so they do not match current official boundaries exactly.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "static",
+    "description": "Source map sheets published 1971-1981 (FAO-UNESCO Soil Map of the World, 10 volumes, 19 sheets; the FAO catalogue says 1972-1977), based on older surveys. Digital version 3.6, data revision 2007-02-28."
+  },
+  "resolution": {
+    "spatial": "1:5,000,000 map scale (vector); FAO also mentions a 5 arc-minute raster version",
+    "spatial_m": null,
+    "temporal": "static"
+  },
+  "format": [
+    "ESRI Shapefile (ZIP)",
+    "ERDAS (ZIP)",
+    "IDRISI (ZIP)",
+    "PDF map (ZIP)",
+    "OGC WMS"
+  ],
+  "crs": "Geographic coordinates, WGS84 (FAO catalogue: 'WGS 1984')",
+  "variables": [
+    {
+      "name": "FAOSOIL",
+      "units": "code",
+      "description": "Soil mapping unit symbol (dominant soil, association number, texture class, slope class), e.g. 'Rd4-1/2a'"
+    },
+    {
+      "name": "DOMSOI",
+      "units": "code",
+      "description": "Dominant soil unit (FAO-UNESCO 1974 legend)"
+    },
+    {
+      "name": "PHASE1, PHASE2, MISCLU1, MISCLU2, PERMAFROST",
+      "units": "code",
+      "description": "Soil phases and miscellaneous land units"
+    },
+    {
+      "name": "SNUM",
+      "units": "id",
+      "description": "Mapping unit number linking to the composition tables (SU_Info.xls, WORLD764.xls etc. in the ZIP)"
+    },
+    {
+      "name": "CNTCODE, CNTNAME, COUNTRY, SQKM",
+      "units": "code / km2",
+      "description": "Country code, name and polygon area"
+    }
+  ],
+  "processing": "Digitised from the FAO-UNESCO Soil Map of the World at 1:5,000,000, intersected with hydrography (coasts, lakes, glaciers, dual-course rivers) and, outside Africa, with World Data Bank II national boundaries (FAO catalogue). The derived-properties tables (readme, SoilData.doc and xls files) are included in the ZIP.",
+  "validation": "None reported. This is a legacy cartographic product; its accuracy is limited by the 1:5,000,000 scale and the age of the surveys.",
+  "limitations": [
+    "Very coarse scale (1:5,000,000): mapping units are soil associations covering large areas; unsuitable for local or field-scale analysis in Algeria.",
+    "Based on surveys and compilations from before the 1970s; uses the 1974 FAO-UNESCO legend, not current WRB.",
+    "African boundaries come from the original map and are indicative only.",
+    "Soil properties are not given directly; they must be derived from the soil-unit tables or taken from HWSD, which inherits DSMW in many regions."
+  ],
+  "version": "3.6",
+  "published_date": null,
+  "updated_date": "2007-02-28",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "FAO data catalogue record (DSMW v3.6)",
+      "url": "https://data.apps.fao.org/catalog/dataset/446ed430-8383-11db-b9b2-000d939bc5d8",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Metadata, licence and download links."
+    },
+    {
+      "label": "DSMW shapefile (ZIP)",
+      "url": "https://storage.googleapis.com/fao-maps-catalog-data/uuid/446ed430-8383-11db-b9b2-000d939bc5d8/resources/DSMW.zip",
+      "kind": "external",
+      "format": "ESRI Shapefile + xls/doc tables",
+      "requires_login": false,
+      "size_bytes": 23088839,
+      "notes": "Hosted by FAO. Downloaded and inspected on 2026-11-21 (DSMW.shp, 34,112 polygons)."
+    },
+    {
+      "label": "DSMW high-resolution map (PDF in ZIP)",
+      "url": "https://storage.googleapis.com/fao-maps-catalog-data/uuid/446ed430-8383-11db-b9b2-000d939bc5d8/resources/SoilMap_hires.zip",
+      "kind": "external",
+      "format": "PDF (ZIP)",
+      "requires_login": false,
+      "size_bytes": 28595456,
+      "notes": "Hosted by FAO."
+    },
+    {
+      "label": "FAO WMS (layer dsmw_14116)",
+      "url": "https://data.apps.fao.org/map/gsrv/gsrv1/geonetwork/wms",
+      "kind": "api",
+      "format": "OGC WMS",
+      "requires_login": false,
+      "notes": "Listed in the FAO catalogue record."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "295 Algerian polygons. Useful for historical soil-unit context and to understand what HWSD and other global products inherit in North Africa. For any quantitative use prefer HWSD v2.2 (same lineage, harmonised properties) or modern digital soil maps.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "published_date",
+      "citation (FAO gives no formal citation string; composed from catalogue metadata)"
+    ],
+    "sources_consulted": [
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=446ed430-8383-11db-b9b2-000d939bc5d8",
+      "https://data.apps.fao.org/catalog/dataset/446ed430-8383-11db-b9b2-000d939bc5d8",
+      "https://data.apps.fao.org/catalog/iso/446ed430-8383-11db-b9b2-000d939bc5d8",
+      "https://storage.googleapis.com/fao-maps-catalog-data/uuid/446ed430-8383-11db-b9b2-000d939bc5d8/resources/DSMW.zip",
+      "https://storage.googleapis.com/fao-maps-catalog-data/uuid/446ed430-8383-11db-b9b2-000d939bc5d8/resources/SoilMap_hires.zip",
+      "https://data.apps.fao.org/map/gsrv/gsrv1/geonetwork/wms?service=WMS&request=GetCapabilities (layer dsmw_14116 listed)"
+    ],
+    "notes": "DSMW.zip was downloaded and its attribute table read (pyogrio) to confirm Algerian polygons. The catalogue's links to the old FAO Soils Portal pages are dead (404). data_nature 'derived' because the map is compiled from soil surveys."
+  }
+}

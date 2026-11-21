@@ -14,7 +14,7 @@ This page documents product `aeo-dza-soil-soilgrids`, version 1.0.0. The code is
 - It predicts soil properties at 250 m with machine-learning models.
 - The models are trained on soil profiles (WoSIS) and environmental covariates.
 - They are **model predictions, not field measurements**.
-- In Algeria few profiles were available to the model, so the prediction uncertainty is large. AEO therefore publishes it next to every value.
+- In Algeria few profiles were available to the model: the live WoSIS service lists only 10 soil profiles for Algeria (4 from 1971–72, 6 undated, none in the Sahara; queried 2026-11-21; see the [WoSIS record](/data/wosis-soil-profiles/)). The prediction uncertainty is therefore large, and AEO publishes it next to every value.
 
 AEO does not change the predictions. It averages them over administrative units and reports their uncertainty.
 

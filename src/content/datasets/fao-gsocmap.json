@@ -1,0 +1,167 @@
+{
+  "id": "fao-gsocmap",
+  "title": "FAO Global Soil Organic Carbon Map (GSOCmap) v1.5",
+  "description": "Global 30 arc-second (about 1 km) raster of soil organic carbon stocks in the 0-30 cm topsoil (t/ha), compiled by the FAO Global Soil Partnership (GSP) from national SOC maps prepared by member countries under ITPS/GSP guidelines, with GSP gap-filling for countries that did not submit a map. Version 1.5.0 is the version openly distributed as a GeoTIFF through the FAO data catalogue.",
+  "purpose": "Gives a consistent baseline of topsoil organic carbon stocks for land-degradation and SDG 15.3.1 type assessments, carbon accounting and comparison with model-based products such as SoilGrids or OpenLandMap-soildb in Algeria.",
+  "domain": [
+    "soil",
+    "land-ecosystems"
+  ],
+  "categories": [
+    "Soil organic carbon",
+    "Digital soil mapping"
+  ],
+  "keywords": [
+    "soil organic carbon",
+    "SOC stock",
+    "GSOCmap",
+    "FAO",
+    "Global Soil Partnership",
+    "GLOSIS",
+    "topsoil",
+    "SDG 15.3.1"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "Food and Agriculture Organization of the United Nations (FAO) - Global Soil Partnership",
+    "url": "https://www.fao.org/global-soil-partnership/soil-data/global-soil-organic-carbon-map-gsocmap/en"
+  },
+  "creator": "FAO Global Soil Partnership and the Intergovernmental Technical Panel on Soils (ITPS), from national SOC maps submitted by member countries and GSP gap-filling",
+  "source_url": "https://www.fao.org/global-soil-partnership/soil-data/global-soil-organic-carbon-map-gsocmap/en",
+  "documentation_url": "https://doi.org/10.4060/ca7597en",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "FAO data catalogue record 'Global Soil Organic Carbon Map v1.5 (GSOC)': 'This work is made available under the Creative Commons Attribution 4.0 International licence (CC-BY-4.0)'. The accompanying technical reports (v1.5, 2020; v1.6, 2022) are published separately under CC BY-NC-SA 3.0 IGO; that licence applies to the reports, not to the map data.",
+  "citation": "FAO and ITPS (2020). Global Soil Organic Carbon Map V1.5: Technical Report. Rome, FAO. https://doi.org/10.4060/ca7597en",
+  "doi": null,
+  "references": [
+    {
+      "citation": "FAO and ITPS (2020). Global Soil Organic Carbon Map (GSOCmap) Version 1.5: Technical Report. Rome, FAO. ISBN 978-92-5-132144-7.",
+      "doi": "10.4060/ca7597en",
+      "url": "https://openknowledge.fao.org/handle/20.500.14283/ca7597en"
+    },
+    {
+      "citation": "FAO (2022). Global Soil Organic Carbon Map - GSOCmap v.1.6. Technical report. Rome, FAO. ISBN 978-92-5-135899-3.",
+      "doi": "10.4060/cb9015en",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surface. Algeria is fully covered: a 1-degree grid check of the v1.5.0 GeoTIFF on 2026-11-21 returned valid values at all 213 sample points inside Algeria, including the Sahara. Algeria did not submit a national map; its layer is GSP gap-filling (see algeria_notes). Users must clip Algeria themselves.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "Static map without a single reference year; it combines national maps and gap-filled areas built from soil samples collected over many decades (for Algeria, 16 samples from 1971-1972 according to the v1.5 technical report). FAO metadata give a data revision date of 2019-06-01 for v1.5."
+  },
+  "resolution": {
+    "spatial": "30 arc-seconds (about 1 km)",
+    "spatial_m": 1000,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "GeoTIFF (single global file, about 797 MB)",
+    "OGC WMS / WMTS"
+  ],
+  "crs": "EPSG:4326 (WGS84 geographic)",
+  "variables": [
+    {
+      "name": "SOC stock 0-30 cm",
+      "units": "t/ha",
+      "description": "Soil organic carbon stock of the 0-30 cm layer (map code GSOCMAP1-5-0; FAO metadata state nodata -3 and scale factor 1.0; the GeoTIFF header read on 2026-11-21 reported nodata -3.4e38)"
+    }
+  ],
+  "processing": "Country-driven: member countries produced national 1 km SOC stock maps for 0-30 cm following GSP/ITPS technical specifications; the GSP Secretariat harmonised them and filled gaps with its own modelling or external datasets (e.g. SoilGrids). For Algeria the v1.5 report (Annex A.3) states: map source 'GSP Gap-Filling', 16 point samples (1971-1972, Walkley-Black wet oxidation), Support Vector Machines model fitted to the pooled data of 19 arid countries (Algeria, Chad, Egypt, Iraq, Jordan, Lebanon, Libya, Mali, Mauritania, Morocco, Niger, Oman, Qatar, Saudi Arabia, Sudan, Syria, UAE, Western Sahara, Yemen), with WoSIS (Batjes et al. 2017) cited as point data source.",
+  "validation": "The v1.5 report gives 'Validation statistics: No Data' for Algeria. The v1.6 report gives MAE = 6.8 t/ha and RMSE = 10.94 t/ha for the regional model used for Algeria. Globally, the v1.5 report compares GSOCmap with HWSD and SoilGrids and finds GSOCmap almost unbiased (mean bias -0.39 t/ha) against the evaluation data used there.",
+  "limitations": [
+    "Algeria's layer is a GSP gap-fill based on only 16 soil samples from 1971-1972 and a regional model; it is not a national product and should not be used for local or field-scale decisions.",
+    "Version 1.6.0 (2022 technical report) updated the Algerian gap-filling (regional DSM plus global CLM5), but the openly downloadable file in the FAO catalogue on 2026-11-21 was still v1.5.0; no v1.6.0 GeoTIFF was found.",
+    "No per-pixel uncertainty layer is provided for the Algerian gap-filled area.",
+    "Mixes national maps produced with different methods, sample dates and SOC analytical methods; cross-border discontinuities are possible (e.g. Morocco submitted a national map, Algeria did not).",
+    "Topsoil (0-30 cm) stock only; no deeper layers and no SOC concentration."
+  ],
+  "version": "1.5.0 (map code GSOCMAP1-5-0)",
+  "published_date": null,
+  "updated_date": "2019-06-01",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GSOCmap page (FAO Global Soil Partnership)",
+      "url": "https://www.fao.org/global-soil-partnership/soil-data/global-soil-organic-carbon-map-gsocmap/en",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Description, contributors table and technical reports."
+    },
+    {
+      "label": "FAO data catalogue record (v1.5)",
+      "url": "https://data.apps.fao.org/catalog/dataset/7730e747-eb73-49c9-bfe6-84ebae718743",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Metadata, licence statement and links to the GeoTIFF, WMS and WMTS."
+    },
+    {
+      "label": "GSOCmap v1.5.0 GeoTIFF (FAO Google Cloud Storage)",
+      "url": "https://storage.googleapis.com/fao-gismgr-gsocseq-data/DATA/GSOCSEQ/MAP/GSOCSEQ.GSOCMAP1-5-0.tif",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "size_bytes": 797037710,
+      "notes": "Global file hosted by FAO (not by AEO). Supports HTTP range reads."
+    },
+    {
+      "label": "FAO WMS (layer GSOCmap1.5.0)",
+      "url": "https://data.apps.fao.org/map/gsrv/gsrv1/gsoc/wms",
+      "kind": "api",
+      "format": "OGC WMS",
+      "requires_login": false,
+      "notes": "GetCapabilities checked; lists layer 'GSOCmap1.5.0'."
+    },
+    {
+      "label": "GLOSIS / GSOCmap web viewer",
+      "url": "https://data.apps.fao.org/glosis/?share=f-6756da2a-5c1d-4ac9-9b94-297d1f105e83&lang=en",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive FAO viewer linked from the GSP page."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Algeria is covered wall-to-wall, but only by GSP gap-filling: 16 samples (1971-1972) and a regional SVM model for 19 arid countries. Treat it as a coarse baseline. It can usefully be compared with SoilGrids and OpenLandMap-soildb; differences between them show where Algerian SOC is poorly constrained.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "published_date (FAO gives only a 2019-06-01 revision date for the data)",
+      "doi (no dataset DOI found; technical report DOI used in citation)",
+      "variables nodata value (metadata say -3; file header reports -3.4e38)"
+    ],
+    "sources_consulted": [
+      "https://www.fao.org/global-soil-partnership/soil-data/global-soil-organic-carbon-map-gsocmap/en",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=7730e747-eb73-49c9-bfe6-84ebae718743",
+      "https://data.apps.fao.org/catalog/dataset/7730e747-eb73-49c9-bfe6-84ebae718743",
+      "https://storage.googleapis.com/fao-gismgr-gsocseq-data/DATA/GSOCSEQ/MAP/GSOCSEQ.GSOCMAP1-5-0.tif",
+      "https://data.apps.fao.org/map/gsrv/gsrv1/gsoc/wms?service=WMS&request=GetCapabilities",
+      "https://data.apps.fao.org/glosis/?share=f-6756da2a-5c1d-4ac9-9b94-297d1f105e83&lang=en",
+      "https://api.crossref.org/works/10.4060/ca7597en",
+      "https://api.crossref.org/works/10.4060/cb9015en",
+      "http://www.fao.org/3/ca7597en/ca7597en.pdf (v1.5 technical report, Annex A.3 Algeria)",
+      "https://www.fao.org/3/cb9015en/cb9015en.pdf (v1.6 technical report, Annex D3 Algeria and changelog)"
+    ],
+    "notes": "The old FAO Soils Portal GSOCmap URL returns 404; the GSP 'soil-data' page is current. Coverage of Algeria was checked by sampling the GeoTIFF over HTTP range reads on a 1-degree grid inside the AEO ADM0 boundary. v1.6 report changelog: 'Updated gap-filling: ... DZA, TUN, LBY, EGY ... (regional DSM + global CLM5)'. Crossref lists no authors for the FAO reports; the 'FAO and ITPS' author string comes from the v1.5 report's required citation."
+  }
+}
