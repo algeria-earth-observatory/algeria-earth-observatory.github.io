@@ -178,6 +178,17 @@
   .status-archived { color: var(--color-slate); background: transparent; }
   .icon-download { width: 1em; height: 1em; flex: none; }
 
+  /* searchable select (combobox): RegionDataDownloader, Explore */
+  .rdd-input { padding-right: 2.25rem; min-height: 2.75rem; font-size: 1rem; }
+  .rdd-chev { position: absolute; right: .75rem; top: 50%; width: 1rem; height: 1rem; transform: translateY(-50%); pointer-events: none; color: var(--color-slate); }
+  .rdd-list { position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 4px); max-height: 18rem; overflow-y: auto; background: var(--color-surface); border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); box-shadow: 0 8px 24px rgb(23 37 44 / .12); padding: .25rem 0; }
+  .rdd-opt { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .75rem; min-height: 2.25rem; cursor: pointer; font-size: .9375rem; color: var(--color-atlas); }
+  .rdd-opt[aria-selected='true'] { background: var(--color-cobalt); color: #fff; }
+  .rdd-opt[aria-selected='true'] .rdd-opt-hint { color: #fff; }
+  .rdd-opt:hover:not([aria-selected='true']) { background: var(--color-paper); }
+  .rdd-opt-hint { color: var(--color-slate); font-size: .875rem; }
+  .rdd-opt-empty { padding: .5rem .75rem; font-size: .875rem; color: var(--color-slate); }
+
   .note { border-left: 2px solid var(--color-line-strong); padding: .5rem .875rem; background: var(--color-surface-2); color: var(--color-graphite); font-size: .875rem; }
   .note-warn { border-left-color: var(--color-warn); background: var(--color-warn-bg); }
 

@@ -3,16 +3,12 @@
  * Location → Indicator → Period → Format → resolved download.
  */
 import { Combobox, searchKey, escapeHtml as esc } from './combobox';
-import { makeContext, resolve, formatsFor, coverage, periodError, mb } from '../lib/region-download.js';
+import { resolve, formatsFor, coverage, periodError, mb } from '../lib/region-download.js';
+import { getDownloadContext } from './download-context';
 
 type Sel = { level: 'admin0' | 'admin1' | 'admin2'; wilaya: string; commune: string; indicator: string; step: string; from: string; to: string; format: string; layer?: string; scale?: string };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const cache = new Map<string, Promise<any>>();
-const getJson = (url: string) => {
-  if (!cache.has(url)) cache.set(url, fetch(url).then((r) => { if (!r.ok) throw new Error(`${r.status} ${url}`); return r.json(); }));
-  return cache.get(url)!;
-};
 
 export async function initRegionDownloader() {
   const root = document.querySelector<HTMLElement>('[data-rdd]');
@@ -27,13 +23,7 @@ export async function initRegionDownloader() {
 
   let ctx: any;
   try {
-    const [units, boundaryRecord, ...mans] = await Promise.all([
-      getJson('/data/admin-units.json'),
-      getJson(cfg.indicators.find((i: any) => i.kind === 'boundaries')?.record ?? '/data/aeo-dza-admin-boundaries.json'),
-      ...cfg.indicators.filter((i: any) => i.manifest).map((i: any) => getJson(i.manifest)),
-    ]);
-    const manifests = Object.fromEntries(cfg.indicators.filter((i: any) => i.manifest).map((i: any, k: number) => [i.id, mans[k]]));
-    ctx = makeContext({ indicators: cfg.indicators, manifests, boundaryRecord, units, load: getJson });
+    ctx = await getDownloadContext(cfg.indicators);
   } catch (e) {
     loading.textContent = 'The list of files could not be loaded. Check your connection and reload the page. All files are also listed on the product pages.';
     loading.classList.add('rdd-error');
@@ -135,9 +125,12 @@ export async function initRegionDownloader() {
     // period
     const steps: string[] = ind.steps;
     const stepWrap = $('rdd-step-wrap'), range = $('rdd-range'), stat = $('rdd-period-static');
-    if (ind.kind === 'boundaries') {
+    if (ind.kind === 'boundaries' || steps[0] === 'stats') {
       stepWrap.hidden = true; range.hidden = true; stat.hidden = false;
-      stat.textContent = `Boundaries are a single snapshot: version ${ctx.boundaryVersion}. No period to choose.`;
+      if (ind.kind !== 'boundaries') sel.step = 'stats';
+      stat.textContent = ind.kind === 'boundaries'
+        ? `Boundaries are a single snapshot: version ${ctx.boundaryVersion}. No period to choose.`
+        : `${ind.label}: model predictions without a time dimension. All properties at 0–5, 5–15 and 15–30 cm, and the 0–30 cm carbon stock.`;
     } else {
       if (!steps.includes(sel.step)) setStep(steps[0], false);
       stepWrap.hidden = steps.length < 2;
@@ -147,7 +140,7 @@ export async function initRegionDownloader() {
       range.hidden = false;
       fm.hidden = tm.hidden = sel.step !== 'monthly';
     }
-    $('rdd-scale-wrap').hidden = ind.id !== 'spei';
+    $('rdd-scale-wrap').hidden = ind.id !== 'spei' && ind.id !== 'spi';
     // formats
     const fmts = formatsFor(ctx, sel);
     if (!fmts.some((f: any) => f.id === sel.format)) sel.format = fmts[0]?.id ?? '';
@@ -159,7 +152,7 @@ export async function initRegionDownloader() {
       ? `Algeria (code DZ) · boundaries ${ctx.boundaryVersion}`
       : a ? `${esc(a.name)}${a.name_ar ? ` · <span lang="ar" dir="rtl">${esc(a.name_ar)}</span>` : ''} · ${sel.level === 'admin1' ? 'wilaya' : 'commune'} code ${a.code} · boundaries ${ctx.boundaryVersion}` : '';
     // period validation (shown next to the fields)
-    const perr = ind.kind === 'boundaries' || sel.format !== 'csv' ? null : periodError(ctx, sel);
+    const perr = ind.kind === 'boundaries' || sel.step === 'stats' || sel.format !== 'csv' ? null : periodError(ctx, sel);
     const err = $('rdd-period-err');
     err.hidden = !perr; err.textContent = perr ? `${perr}` : '';
     [fy, fm, ty, tm].forEach((s) => (perr ? s.setAttribute('aria-invalid', 'true') : s.removeAttribute('aria-invalid')));
@@ -186,7 +179,7 @@ export async function initRegionDownloader() {
     if (!r.ok) {
       const alts = (r.alternatives ?? []).map((x: any, i: number) => `<li><button type="button" class="btn btn-secondary !py-2 text-left" data-alt="${i}">${esc(x.label)}</button></li>`).join('');
       result.innerHTML = r.kind === 'unavailable'
-        ? `<${hl} class="text-[1.0625rem] font-medium text-atlas">Not available for this selection</${hl}><p class="mt-2 max-w-3xl text-[0.9375rem] text-atlas">${esc(r.reason)}</p>${alts ? `<p class="mt-4 text-[0.875rem] font-medium text-atlas">Available instead:</p><ul class="mt-2 flex flex-wrap gap-2">${alts}</ul>` : ''}`
+        ? `<${hl} class="text-[1.0625rem] font-medium text-atlas">Not available for this selection</${hl}><p class="mt-2 max-w-3xl text-[0.9375rem] text-atlas">${esc(r.reason)}</p>${r.external ? `<p class="mt-3"><a class="btn btn-secondary" href="${esc(r.external.url)}" target="_blank" rel="noopener">${esc(r.external.label)} <span aria-hidden="true">↗</span></a>${r.external.documentation ? ` <a class="ml-3" href="${esc(r.external.documentation)}" target="_blank" rel="noopener">Documentation</a>` : ''}</p>` : ''}${alts ? `<p class="mt-4 text-[0.875rem] font-medium text-atlas">Available instead:</p><ul class="mt-2 flex flex-wrap gap-2">${alts}</ul>` : ''}`
         : `<p class="text-[0.9375rem] text-slate">${esc(r.reason)}</p>`;
       result.querySelectorAll<HTMLButtonElement>('[data-alt]').forEach((b) => b.addEventListener('click', () => apply(r.alternatives[Number(b.dataset.alt)].patch)));
       return;

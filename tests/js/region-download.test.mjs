@@ -12,6 +12,7 @@ import { runExtract } from '../../src/lib/region-extract.js';
 const ROOT = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const PUB = join(ROOT, 'public');
 const pub = (href) => join(PUB, href);
+const pub_ = pub;
 const json = (p) => JSON.parse(readFileSync(p, 'utf8'));
 const buf = (href) => { const b = readFileSync(pub(href)); return b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength); };
 
@@ -37,11 +38,42 @@ const parseCsv = (t) => { const [h, ...r] = t.trim().split(/\r?\n/); const k = h
 const num = (v) => (v === '' ? null : Number(v));
 
 test('indicators: only available AEO products; planned ones listed separately', () => {
-  assert.deepEqual(available.map((i) => i.id), ['precip', 'spei', 'boundaries']);
+  assert.deepEqual(available.map((i) => i.id), ['precip', 'spei', 'spi', 'soil', 'boundaries']);
   assert.ok(planned.length > 0 && planned.every((p) => !available.some((a) => a.id === p.id)));
   const c = ctx();
   assert.deepEqual(c.indicators.find((i) => i.id === 'precip').steps, ['annual', 'monthly']);
   assert.deepEqual(c.indicators.find((i) => i.id === 'spei').steps, ['monthly']);
+  assert.deepEqual(c.indicators.find((i) => i.id === 'spi').steps, ['monthly']);
+  assert.deepEqual(c.indicators.find((i) => i.id === 'soil').steps, ['stats']);
+});
+
+test('SPI: a commune extract comes from the verified wilaya partition and equals the published table', async () => {
+  const r = await resolve(ctx(), sel({ indicator: 'spi', level: 'admin2', commune: '1901', step: 'monthly', from: '2020-01', to: '2020-12', scale: '3' }));
+  assert.equal(r.ok, true);
+  assert.match(r.readFrom.href, /by_wilaya\/aeo_spi_monthly_admin2_v1\.0\.0\/19\.parquet$/);
+  const got = parseCsv((await runExtract(r, io)).text);
+  assert.equal(got.length, 12);
+  assert.ok('spi_3' in got[0] && !('spi_12' in got[0]) && 'arid' in got[0]);
+  const src = (await parquetReadObjects({ file: buf('/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin2_v1.0.0.parquet') }))
+    .filter((x) => x.unit_code === '1901' && Number(x.year) === 2020);
+  for (const [i, x] of got.entries()) assert.equal(num(x.spi_3), src[i].spi_3);
+});
+
+test('soil: static statistics for a wilaya, every property and depth, unchanged', async () => {
+  const c = ctx();
+  const r = await resolve(c, sel({ indicator: 'soil', step: 'stats', format: 'csv' }));
+  assert.equal(r.ok, true); assert.equal(r.rowsExpected, 28);
+  assert.equal(r.filename, 'aeo_w19-setif_soil_v1.0.0.csv');
+  const got = parseCsv((await runExtract(r, io)).text);
+  assert.equal(got.length, 28);
+  const pub = parseCsv(readFileSync(pub_('/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin1_v1.0.0.csv'), 'utf8')).filter((x) => x.unit_code === '19');
+  for (const g of got) {
+    const p = pub.find((x) => x.property === g.property && x.depth === g.depth);
+    assert.equal(num(g.mean), num(p.mean)); assert.equal(g.units, p.units);
+  }
+  // soil rasters are not redistributed: GeoTIFF is explained, with a link to the provider
+  const t = await resolve(c, sel({ indicator: 'soil', step: 'stats', format: 'geotiff' }));
+  assert.equal(t.ok, false); assert.match(t.external.url, /^https:\/\/files\.isric\.org\//);
 });
 
 test('journey 1: annual precipitation statistics for Sétif (wilaya 19)', async () => {

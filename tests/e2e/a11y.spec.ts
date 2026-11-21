@@ -5,8 +5,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { openDownloader, pickFromCombobox } from './helpers';
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
-const PAGES = ['/', '/data/', '/data/aeo-dza-precipitation-chirps3/', '/data/aeo-dza-spei-terraclimate/', '/data/aeo-dza-admin-boundaries/',
-  '/map/', '/analyze/', '/regions/', '/regions/19/', '/regions/19/1901/', '/about/'];
+const PAGES = ['/', '/data/', '/data/aeo-dza-precipitation-chirps3/', '/data/aeo-dza-spei-terraclimate/', '/data/aeo-dza-spi-chirps3/', '/data/aeo-dza-soil-soilgrids/', '/data/aeo-dza-admin-boundaries/',
+  '/map/', '/drought/', '/science/', '/science/publications/', '/regions/', '/regions/19/', '/regions/19/1901/', '/about/'];
 
 const scan = async (page: import('@playwright/test').Page) => {
   const r = await new AxeBuilder({ page }).withTags(TAGS).exclude('.maplibregl-canvas').analyze();
@@ -27,7 +27,7 @@ for (const path of PAGES) {
 }
 
 test('axe: download assistant with the combobox open and in the unavailable state', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await page.locator('#rdd-wilaya').click();
   await page.locator('#rdd-wilaya').fill('se');
   expect(await scan(page)).toEqual([]);
@@ -38,7 +38,7 @@ test('axe: download assistant with the combobox open and in the unavailable stat
 });
 
 test('focus is visible on the download assistant controls', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   for (const sel of ['#rdd-wilaya', 'input[name="rdd-indicator"]:checked', '#rdd-from-y']) {
     await page.locator(sel).focus();
     const style = await page.locator(sel).evaluate((el) => {
@@ -52,7 +52,7 @@ test('focus is visible on the download assistant controls', async ({ page }) => 
 test('reduced motion is respected', async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: 'reduce' });
   const page = await ctx.newPage();
-  await page.goto('/');
+  await page.goto('/data/');
   const d = await page.locator('.btn-primary').first().evaluate((el) => getComputedStyle(el).transitionDuration);
   expect(['0s', '1e-05s', '0.00001s']).toContain(d);
   await ctx.close();

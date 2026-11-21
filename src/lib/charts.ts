@@ -16,9 +16,14 @@ export interface LineOpts {
   yLabel: string; reference?: { value: number; label: string } | null;
   trend?: { slope: number; intercept: number; from: number; to: number } | null;
   format?: (v: number) => string; keyLabel?: (k: number) => string;
+  compact?: boolean;
 }
 
-const W = 760, H = 300, M = { t: 18, r: 18, b: 34, l: 58 };
+interface Dims { W: number; H: number }
+const FULL: Dims = { W: 760, H: 300 };
+/** Narrow panels (e.g. the region inspector): drawn at about their display size so text stays legible. */
+const COMPACT: Dims = { W: 380, H: 230 };
+const M = { t: 18, r: 18, b: 34, l: 58 };
 const svgNs = 'http://www.w3.org/2000/svg';
 
 function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number>, parent?: Element) {
@@ -40,10 +45,11 @@ function niceTicks(min: number, max: number, count = 5) {
   return { lo, hi, ticks };
 }
 
-function frame(container: HTMLElement, title: string) {
+function frame(container: HTMLElement, title: string, d: Dims = FULL) {
+  const { W, H } = d;
   container.innerHTML = '';
   container.classList.add('relative');
-  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': title, class: 'w-full h-auto', 'font-family': 'Inter Variable, Inter, system-ui, sans-serif', 'font-variant-numeric': 'tabular-nums' });
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': title, class: 'w-full h-auto', 'font-family': 'IBM Plex Sans, system-ui, sans-serif', 'font-variant-numeric': 'tabular-nums' });
   el('title', {}, svg).textContent = title;
   container.appendChild(svg);
   const tip = document.createElement('div');
@@ -52,7 +58,8 @@ function frame(container: HTMLElement, title: string) {
   return { svg, tip };
 }
 
-function axes(svg: SVGSVGElement, x: (k: number) => number, y: (v: number) => number, keys: number[], yt: number[], yLabel: string, fmt: (v: number) => string, keyLabel: (k: number) => string) {
+function axes(svg: SVGSVGElement, x: (k: number) => number, y: (v: number) => number, keys: number[], yt: number[], yLabel: string, fmt: (v: number) => string, keyLabel: (k: number) => string, d: Dims = FULL) {
+  const { W, H } = d;
   const g = el('g', { 'font-size': 11, fill: MUTED }, svg);
   for (const t of yt) {
     el('line', { x1: M.l, x2: W - M.r, y1: y(t), y2: y(t), stroke: GRID, 'stroke-width': 1 }, g);
@@ -71,7 +78,8 @@ function axes(svg: SVGSVGElement, x: (k: number) => number, y: (v: number) => nu
   yl.textContent = yLabel;
 }
 
-function hover(container: HTMLElement, svg: SVGSVGElement, tip: HTMLElement, keys: number[], x: (k: number) => number, html: (k: number) => string, markers: (k: number) => { y: number; color: string }[]) {
+function hover(container: HTMLElement, svg: SVGSVGElement, tip: HTMLElement, keys: number[], x: (k: number) => number, html: (k: number) => string, markers: (k: number) => { y: number; color: string }[], d: Dims = FULL) {
+  const { W, H } = d;
   const cross = el('line', { y1: M.t, y2: H - M.b, stroke: AXIS, 'stroke-dasharray': '3 3', visibility: 'hidden' }, svg);
   const dots = el('g', {}, svg);
   const overlay = el('rect', { x: M.l, y: M.t, width: W - M.l - M.r, height: H - M.t - M.b, fill: 'transparent' }, svg);
@@ -105,6 +113,8 @@ function hover(container: HTMLElement, svg: SVGSVGElement, tip: HTMLElement, key
 }
 
 export function lineChart(container: HTMLElement, series: LineSeries[], opts: LineOpts, title: string) {
+  const d = opts.compact ? COMPACT : FULL;
+  const { W, H } = d;
   const fmt = opts.format ?? ((v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }));
   const keyLabel = opts.keyLabel ?? ((k: number) => String(k));
   const keys = [...new Set(series.flatMap((s) => s.keys))].sort((a, b) => a - b);
@@ -113,8 +123,8 @@ export function lineChart(container: HTMLElement, series: LineSeries[], opts: Li
   const { lo, hi, ticks } = niceTicks(Math.min(0, ...vals), Math.max(...vals));
   const x = (k: number) => M.l + (keys.length === 1 ? 0.5 : (k - keys[0]) / (keys[keys.length - 1] - keys[0])) * (W - M.l - M.r);
   const y = (v: number) => H - M.b - ((v - lo) / (hi - lo)) * (H - M.t - M.b);
-  const { svg, tip } = frame(container, title);
-  axes(svg, x, y, keys, ticks, opts.yLabel, fmt, keyLabel);
+  const { svg, tip } = frame(container, title, d);
+  axes(svg, x, y, keys, ticks, opts.yLabel, fmt, keyLabel, d);
   if (opts.reference) {
     el('line', { x1: M.l, x2: W - M.r, y1: y(opts.reference.value), y2: y(opts.reference.value), stroke: INK, 'stroke-width': 1.25, 'stroke-dasharray': '5 4' }, svg);
     const t = el('text', { x: W - M.r - 4, y: y(opts.reference.value) - 6, 'text-anchor': 'end', 'font-size': 11, fill: INK }, svg);
@@ -144,7 +154,9 @@ export function lineChart(container: HTMLElement, series: LineSeries[], opts: Li
   return svg;
 }
 
-export function anomalyChart(container: HTMLElement, keys: number[], values: (number | null)[], opts: { yLabel: string; format?: (v: number) => string; keyLabel?: (k: number) => string }, title: string) {
+export function anomalyChart(container: HTMLElement, keys: number[], values: (number | null)[], opts: { yLabel: string; format?: (v: number) => string; keyLabel?: (k: number) => string; compact?: boolean }, title: string) {
+  const d = opts.compact ? COMPACT : FULL;
+  const { W, H } = d;
   const fmt = opts.format ?? ((v: number) => `${v > 0 ? '+' : ''}${v.toLocaleString('en-US', { maximumFractionDigits: 0 })}`);
   const keyLabel = opts.keyLabel ?? ((k: number) => String(k));
   const vals = values.filter((v): v is number => v !== null);
@@ -154,8 +166,8 @@ export function anomalyChart(container: HTMLElement, keys: number[], values: (nu
   const band = (W - M.l - M.r) / Math.max(n, 1);
   const x = (k: number) => M.l + (keys.indexOf(k) + 0.5) * band;
   const y = (v: number) => H - M.b - ((v - lo) / (hi - lo)) * (H - M.t - M.b);
-  const { svg, tip } = frame(container, title);
-  axes(svg, x, y, keys, ticks, opts.yLabel, fmt, keyLabel);
+  const { svg, tip } = frame(container, title, d);
+  axes(svg, x, y, keys, ticks, opts.yLabel, fmt, keyLabel, d);
   el('line', { x1: M.l, x2: W - M.r, y1: y(0), y2: y(0), stroke: INK, 'stroke-width': 1 }, svg);
   const bw = Math.max(2, band - 2);
   keys.forEach((k, i) => {
@@ -179,7 +191,8 @@ export function anomalyChart(container: HTMLElement, keys: number[], values: (nu
 export function svgString(svg: SVGSVGElement) {
   const clone = svg.cloneNode(true) as SVGSVGElement;
   clone.setAttribute('xmlns', svgNs);
-  clone.setAttribute('width', String(W)); clone.setAttribute('height', String(H));
+  const vb = svg.viewBox.baseVal;
+  clone.setAttribute('width', String(vb.width)); clone.setAttribute('height', String(vb.height));
   const bg = document.createElementNS(svgNs, 'rect');
   bg.setAttribute('width', '100%'); bg.setAttribute('height', '100%'); bg.setAttribute('fill', '#ffffff');
   clone.insertBefore(bg, clone.firstChild);
@@ -192,12 +205,13 @@ export async function svgToPng(svg: SVGSVGElement, footer: string): Promise<Blob
   const img = new Image();
   const url = URL.createObjectURL(new Blob([svgString(svg)], { type: 'image/svg+xml' }));
   await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = url; });
+  const { width: W, height: H } = svg.viewBox.baseVal;
   const canvas = document.createElement('canvas');
   canvas.width = W * scale; canvas.height = (H + 26) * scale;
   const ctx = canvas.getContext('2d')!;
   ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(img, 0, 0, W * scale, H * scale);
-  ctx.fillStyle = MUTED; ctx.font = `${11 * scale}px Inter, system-ui, sans-serif`;
+  ctx.fillStyle = MUTED; ctx.font = `${11 * scale}px IBM Plex Sans, system-ui, sans-serif`;
   ctx.fillText(footer, M.l * scale, (H + 16) * scale);
   URL.revokeObjectURL(url);
   return new Promise((res) => canvas.toBlob((b) => res(b!), 'image/png'));

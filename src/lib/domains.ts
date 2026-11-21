@@ -2,6 +2,7 @@ export const DOMAIN_IDS = [
   'agriculture',
   'climate-drought',
   'water',
+  'soil',
   'land-ecosystems',
   'hazards',
   'human-change',
@@ -19,13 +20,16 @@ export interface Domain {
   priority?: 'initial priority' | 'future expansion';
   /** Cross-cutting data (boundaries, base imagery) not shown as a domain card. */
   crossCutting?: boolean;
+  /** One of the five main environmental domains shown on the homepage and in Explore. */
+  primary?: boolean;
 }
 
 export const DOMAINS: Domain[] = [
   {
     id: 'agriculture',
-    title: 'Agriculture & Cropland',
+    title: 'Agriculture & Land Use',
     short: 'Agriculture',
+    primary: true,
     priority: 'initial priority',
     summary:
       'Cropland extent and change, winter cereals, irrigated and rainfed systems, crop condition and agricultural drought in Algeria’s dryland farming systems.',
@@ -46,6 +50,7 @@ export const DOMAINS: Domain[] = [
     id: 'climate-drought',
     title: 'Climate & Drought',
     short: 'Climate',
+    primary: true,
     summary:
       'Precipitation, temperature, evapotranspiration, soil moisture and drought indices from monthly to long-term scales, including projections.',
     topics: [
@@ -63,6 +68,7 @@ export const DOMAINS: Domain[] = [
     id: 'water',
     title: 'Water Resources',
     short: 'Water',
+    primary: true,
     summary:
       'Surface water and reservoirs, river basins, wetlands, hydrological drought and irrigation-related water pressure.',
     topics: [
@@ -76,19 +82,37 @@ export const DOMAINS: Domain[] = [
     ],
   },
   {
-    id: 'land-ecosystems',
-    title: 'Land & Ecosystems',
-    short: 'Land',
+    id: 'soil',
+    title: 'Soil & Land Properties',
+    short: 'Soil',
+    primary: true,
     summary:
-      'Land cover, vegetation dynamics, forests, soils, rangelands, desertification and land degradation.',
+      'Soil organic carbon and carbon stocks, texture, pH, bulk density, nutrients, coarse fragments, salinity and water-holding properties, from soil maps, model predictions and profile measurements.',
+    topics: [
+      'Soil organic carbon and stocks',
+      'Texture (sand, silt, clay)',
+      'pH, cation exchange capacity, nitrogen',
+      'Bulk density and coarse fragments',
+      'Soil depth and water-holding properties',
+      'Salinity',
+      'Soil profile observations',
+      'Terrain and elevation',
+    ],
+  },
+  {
+    id: 'land-ecosystems',
+    title: 'Vegetation & Ecosystems',
+    short: 'Vegetation',
+    primary: true,
+    summary:
+      'Land cover, vegetation greenness and productivity, forests, rangelands, wildfire, desertification and land degradation.',
     topics: [
       'Land-cover maps',
-      'Vegetation dynamics',
+      'Vegetation indices (NDVI, EVI) and productivity',
       'Forest cover and change',
+      'Wildfire and burned area',
       'Desertification and land degradation',
-      'Soil properties',
       'Rangelands and grazing systems',
-      'Terrain and elevation',
     ],
   },
   {
@@ -132,5 +156,6 @@ export const DOMAINS: Domain[] = [
 ];
 
 export const THEMATIC_DOMAINS = DOMAINS.filter((d) => !d.crossCutting);
+export const PRIMARY_DOMAINS = DOMAINS.filter((d) => d.primary);
 
 export const domainById = (id: string) => DOMAINS.find((d) => d.id === id);

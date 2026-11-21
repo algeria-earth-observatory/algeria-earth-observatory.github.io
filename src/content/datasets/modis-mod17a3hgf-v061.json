@@ -1,0 +1,177 @@
+{
+  "id": "modis-mod17a3hgf-v061",
+  "title": "MODIS/Terra Gap-Filled Annual Net and Gross Primary Production 500 m (MOD17A3HGF v061)",
+  "description": "MOD17A3HGF Version 6.1 provides annual gross primary production (GPP) and net primary production (NPP) at 500 m, computed as the year-end sum of the gap-filled 8-day MODIS GPP and net photosynthesis products (MOD17A2HGF). It uses a light-use-efficiency model driven by MODIS FPAR/LAI, land cover and daily GMAO meteorology, with year-end gap filling of poor-quality FPAR/LAI inputs.",
+  "purpose": "A consistent annual indicator of vegetation carbon uptake across Algeria's croplands, steppe and forests since 2001, useful for drought-impact and rangeland productivity analysis; the 8-day MOD17A2HGF companion gives intra-annual GPP.",
+  "domain": [
+    "land-ecosystems",
+    "agriculture",
+    "climate-drought"
+  ],
+  "categories": [
+    "Vegetation productivity",
+    "Carbon fluxes"
+  ],
+  "keywords": [
+    "MODIS",
+    "Terra",
+    "MOD17",
+    "GPP",
+    "NPP",
+    "primary production",
+    "light use efficiency",
+    "LP DAAC",
+    "gap-filled"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Land Processes Distributed Active Archive Center (LP DAAC)",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod17a3hgf-061"
+  },
+  "creator": "Running, S., Zhao, M. (MODIS Land Team, University of Montana / NASA)",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod17a3hgf-061",
+  "documentation_url": "https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf",
+  "license": {
+    "name": "NASA Earth science data – openly shared without restriction (EOSDIS Data Use and Citation Guidance; CC0 unless otherwise marked)",
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "NASA Earthdata catalog page: 'This dataset is openly shared, without restriction, in accordance with the EOSDIS Data Use and Citation Guidance.' NASA ESDIS guidance licenses unmarked data from NASA-led missions as CC0; citation of the DOI is strongly requested.",
+  "citation": "Running, S., Zhao, M. (2021). MODIS/Terra Net Primary Production Gap-Filled Yearly L4 Global 500m SIN Grid V061 [Data set]. NASA Land Processes Distributed Active Archive Center. https://doi.org/10.5067/MODIS/MOD17A3HGF.061",
+  "doi": "10.5067/MODIS/MOD17A3HGF.061",
+  "references": [
+    {
+      "citation": "Running, S., Zhao, M. (2021). MODIS/Terra Gross Primary Productivity Gap-Filled 8-Day L4 Global 500m SIN Grid V061 (MOD17A2HGF) [Data set]. NASA LP DAAC.",
+      "doi": "10.5067/MODIS/MOD17A2HGF.061",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod17a2hgf-061"
+    },
+    {
+      "citation": "Running, S. W., Zhao, M. (2021). User's Guide: Daily GPP and Annual NPP (MOD17A2H/A3H) and Year-end Gap-Filled (MOD17A2HGF/A3HGF) Products, NASA Earth Observing System MODIS Land Algorithm (For Collection 6.1), Version 1.0.",
+      "doi": null,
+      "url": "https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global vegetated land in MODIS Sinusoidal 10° x 10° tiles (CMR bounding rectangle global). Algeria spans several tiles (approximately h17–h19, v05–v07); mosaic and subset, or extract with AppEEARS.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2001-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "annual",
+    "description": "2001 to present; produced once a year after the full year of 8-day FPAR/LAI is available (latest granules in CMR on 2026-11-21: year 2025, produced February 2026). The 8-day MOD17A2HGF starts 2000-01-01. NASA announced that Terra MODIS acquisitions cease on 1 December 2026, so the record is expected to end with 2026."
+  },
+  "resolution": {
+    "spatial": "500 m (MODIS Sinusoidal grid)",
+    "spatial_m": 500,
+    "temporal": "annual (8-day in MOD17A2HGF)"
+  },
+  "format": [
+    "HDF-EOS2"
+  ],
+  "crs": "MODIS Sinusoidal tiling system (SIN grid)",
+  "variables": [
+    {
+      "name": "Gpp_500m",
+      "units": "kgC/m2/yr (scale factor 0.0001)",
+      "description": "Annual sum of GPP (uint16; fill values 65529–65535, e.g. 65533 barren/very sparsely vegetated)"
+    },
+    {
+      "name": "Npp_500m",
+      "units": "kgC/m2/yr (scale factor 0.0001)",
+      "description": "Annual sum of NPP (int16; fill values 32761–32767, e.g. 32765 barren/very sparsely vegetated, 32766 water)"
+    },
+    {
+      "name": "Npp_QC_500m",
+      "units": "%",
+      "description": "Percentage of growing-season days for which gap-filled FPAR/LAI inputs had to be used"
+    }
+  ],
+  "processing": "Daily GPP = ε × APAR, where APAR is MODIS FPAR times incident PAR from GMAO/NASA meteorology and the light-use efficiency ε is reduced by minimum temperature and vapour-pressure-deficit scalars from a biome look-up table (BPLUT). Net photosynthesis subtracts leaf and fine-root maintenance respiration; annual NPP further subtracts growth and live-wood respiration. In the year-end gap-filled version, poor-quality FPAR/LAI pixels are replaced by linear interpolation; GMAO meteorology is spatially interpolated from the four nearest cells.",
+  "validation": "The MOD17 User's Guide (C6.1) describes a validation strategy against eddy-covariance flux towers and refers to the MODIS Land validation pages; it does not give a single global accuracy figure.",
+  "limitations": [
+    "Barren and very sparsely vegetated pixels — most of the Algerian Sahara — carry fill values (e.g. 32765 / 65533), not zero; area averages must exclude fill codes.",
+    "Biome parameters are constant in space and time: the guide notes that 'a semi-desert grassland in Mongolia is treated the same as a tallgrass prairie', which limits accuracy for Algerian steppe and irrigated cropland.",
+    "Meteorological forcing comes from coarse (about half-degree) GMAO reanalysis, which is uncertain where weather stations are sparse.",
+    "Not available in near-real time: produced only after the end of each year.",
+    "Terra observations cease on 1 December 2026; NASA points users to the equivalent VIIRS products VJ217A3GF (primary) or VJ117A3GF (secondary)."
+  ],
+  "alert": "NASA has announced that Terra MODIS acquisitions cease on 1 December 2026. The archive remains available, but the time series will not be extended; NASA points users to the VIIRS products VJ217A3GF / VJ117A3GF.",
+  "version": "Collection 6.1 (V061)",
+  "published_date": "2021-03-15",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NASA Earthdata catalog page (MOD17A3HGF v061)",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod17a3hgf-061",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "Landing page (the former LP DAAC product page redirects here). Cloud collection C2565791034-LPCLOUD; Earthdata Login required for download."
+    },
+    {
+      "label": "NASA Earthdata Search",
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C2565791034-LPCLOUD",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "Tile search and download."
+    },
+    {
+      "label": "AppEEARS (area extraction and reprojection)",
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "kind": "api",
+      "format": "GeoTIFF / NetCDF",
+      "requires_login": true,
+      "notes": "Extract an Algeria polygon with reprojection to geographic coordinates."
+    },
+    {
+      "label": "Google Earth Engine (MODIS/061/MOD17A3HGF)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD17A3HGF",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Third-party mirror; Earth Engine account required."
+    },
+    {
+      "label": "8-day companion product MOD17A2HGF v061",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod17a2hgf-061",
+      "kind": "external",
+      "format": "HDF-EOS2",
+      "requires_login": true,
+      "notes": "8-day GPP and net photosynthesis (DOI 10.5067/MODIS/MOD17A2HGF.061), 2000 to present; last composite of each year covers 5 or 6 days."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Informative for the Tell and High Plateaux (rainfed cereals, forests, alfa steppe), where inter-annual NPP tracks rainfall. Irrigated oases and pivots are small relative to 500 m pixels and use generic cropland parameters. Exclude barren fill codes when averaging over wilayas that extend into the Sahara.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "updated_date"
+    ],
+    "sources_consulted": [
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=MOD17A3HGF&version=061",
+      "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=MOD17A2HGF&version=061",
+      "https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod17a3hgf-061",
+      "https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf",
+      "https://www.earthdata.nasa.gov/data/alerts-outages/new-terra-observations-cease-december-1-2026",
+      "https://api.datacite.org/dois/10.5067/MODIS/MOD17A3HGF.061",
+      "https://api.datacite.org/dois/10.5067/MODIS/MOD17A2HGF.061"
+    ],
+    "notes": "Scale factors, fill values, QC definition, BPLUT and GMAO statements are from the MOD17 C6.1 User's Guide (Tables 4.1–4.2, sections 2.2 and 2.5). published_date = CMR citation release date (2021-03-15). The tile range for Algeria is AEO's approximation from the standard Sinusoidal tiling, as in the existing MOD16 record. One record covers both MOD17A3HGF (annual, record DOI) and the 8-day MOD17A2HGF (listed as a companion access route) to avoid duplication."
+  }
+}

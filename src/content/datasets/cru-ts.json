@@ -1,0 +1,202 @@
+{
+  "id": "cru-ts",
+  "title": "CRU TS Monthly High-Resolution Gridded Climate Dataset (v4.10)",
+  "description": "CRU TS (Climatic Research Unit gridded Time Series) is a monthly 0.5° grid of ten climate variables over all land areas except Antarctica, derived by interpolating monthly anomalies from weather-station observations with angular-distance weighting. Version 4.10 covers 1901–2025 and includes precipitation, mean/minimum/maximum temperature, diurnal temperature range, vapour pressure, cloud cover, wet-day and frost-day frequency and potential evapotranspiration, with per-cell station counts.",
+  "purpose": "A long, station-based climate reference for Algeria back to 1901, widely used to compute drought indices (e.g. SPEI) and to evaluate reanalyses and satellite rainfall; the station-count field shows where values are actually supported by observations.",
+  "domain": [
+    "climate-drought",
+    "water",
+    "agriculture"
+  ],
+  "categories": [
+    "Gridded station climatology",
+    "Climate time series"
+  ],
+  "keywords": [
+    "CRU TS",
+    "Climatic Research Unit",
+    "University of East Anglia",
+    "gridded climate",
+    "precipitation",
+    "temperature",
+    "PET",
+    "station data",
+    "angular distance weighting"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Climatic Research Unit (CRU), University of East Anglia; archived by CEDA",
+    "url": "https://crudata.uea.ac.uk/cru/data/hrg/"
+  },
+  "creator": "Climatic Research Unit, University of East Anglia (Harris, Osborn, Jones, Lister; v4.10 updates by A. Friedman and T. Osborn, NCAS-Climate)",
+  "source_url": "https://crudata.uea.ac.uk/cru/data/hrg/",
+  "documentation_url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/Release_Notes_CRU_TS_4.10.txt",
+  "license": {
+    "name": "Open Data Commons Open Database License 1.0 (contents: Database Contents License 1.0)",
+    "spdx": "ODbL-1.0",
+    "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "license_notes": "CRU page: 'These datasets are made available under the Open Database License. Any rights in individual contents of the datasets are licensed under the Database Contents License under the conditions of Attribution and Share-Alike.' Required attribution: 'Climatic Research Unit, University of East Anglia'. ODbL is share-alike for publicly used adapted databases.",
+  "citation": "Harris, I., Osborn, T. J., Jones, P., and Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data, 7, 109. https://doi.org/10.1038/s41597-020-0453-3 (dataset: CRU-TS v4.10, Climatic Research Unit, University of East Anglia)",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Harris, I., Osborn, T. J., Jones, P., and Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data, 7, 109.",
+      "doi": "10.1038/s41597-020-0453-3",
+      "url": "https://www.nature.com/articles/s41597-020-0453-3"
+    },
+    {
+      "citation": "CEDA Dataset Record: CRU TS4.09: Climatic Research Unit (CRU) Time-Series (TS) version 4.09 of high-resolution gridded data of month-by-month variation in climate (previous version; v4.10 not yet on CEDA at check date).",
+      "doi": null,
+      "url": "https://catalogue.ceda.ac.uk/uuid/9cf07e92afaa405da4f40b6733f362d3"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "All global land areas except Antarctica on a 0.5° grid. Algeria is covered; users subset it from the global files.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "1901-01-01",
+    "end": "2025-12-31",
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "v4.10 covers 1901–2025 (released 25 June 2026); the dataset is updated annually with a new version number."
+  },
+  "resolution": {
+    "spatial": "0.5° x 0.5°",
+    "spatial_m": 55660,
+    "temporal": "monthly"
+  },
+  "format": [
+    "NetCDF (gzip-compressed)",
+    "ASCII grid (gzip-compressed)",
+    "Google Earth KML interface"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.5° grid)",
+  "variables": [
+    {
+      "name": "pre",
+      "units": "mm/month",
+      "description": "Precipitation"
+    },
+    {
+      "name": "tmp",
+      "units": "°C",
+      "description": "Mean near-surface temperature"
+    },
+    {
+      "name": "tmn / tmx",
+      "units": "°C",
+      "description": "Monthly average daily minimum / maximum temperature"
+    },
+    {
+      "name": "dtr",
+      "units": "°C",
+      "description": "Diurnal temperature range"
+    },
+    {
+      "name": "vap",
+      "units": "hPa",
+      "description": "Vapour pressure"
+    },
+    {
+      "name": "cld",
+      "units": "%",
+      "description": "Cloud cover"
+    },
+    {
+      "name": "wet",
+      "units": "days",
+      "description": "Wet-day frequency"
+    },
+    {
+      "name": "frs",
+      "units": "days",
+      "description": "Frost-day frequency"
+    },
+    {
+      "name": "pet",
+      "units": "mm/day",
+      "description": "Potential evapotranspiration (Penman–Monteith)"
+    },
+    {
+      "name": "stn",
+      "units": "count (0–8)",
+      "description": "Number of stations supporting each cell value; 0 means the climatology was inserted"
+    }
+  ],
+  "processing": "Monthly station anomalies (relative to 1961–1990) are interpolated to the 0.5° grid with angular-distance weighting within a variable-specific correlation decay distance (e.g. 450 km for precipitation, 1200 km for temperature) and converted to actual values with the CRU CL v1.0 climatology. Secondary variables are derived where observations are lacking; PET is computed with a Penman–Monteith formula. The interpolation algorithm is unchanged since v4.03; v4.10 adds 2025 CLIMAT/MCDW observations passed through CRU quality control.",
+  "validation": "Harris et al. (2020) provide diagnostics (station counts per cell and time step) rather than a single accuracy figure, and caution that trend analysis should be restricted to well-observed regions or masked using the station counts.",
+  "limitations": [
+    "Where no station lies within the correlation decay distance, the value is replaced by the 1961–1990 climatology (Harris et al. 2020), which suppresses variability; this is likely over large parts of the Algerian Sahara and should be checked with the 'stn' field.",
+    "The number and location of contributing stations change over time, which can introduce artificial trends.",
+    "Secondary variables (vap, wet, cld) and derived variables (tmn, tmx, frs, pet) depend partly on precursor variables (Harris et al. 2020, Table 1), so they carry less independent observational information than pre, tmp and dtr.",
+    "At 0.5° (about 55 km) orographic rainfall in the Tell Atlas and Kabylie is smoothed.",
+    "No version DOI is available yet for v4.10 (CRU page: 'doi not yet available'); the CEDA archive currently holds v4.09."
+  ],
+  "version": "4.10",
+  "published_date": "2026-06-25",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CRU high-resolution gridded datasets page",
+      "url": "https://crudata.uea.ac.uk/cru/data/hrg/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Overview, licence, citation and links to each version."
+    },
+    {
+      "label": "CRU TS v4.10 data directory (UEA)",
+      "url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/cruts.2604091129.v4.10/",
+      "kind": "external",
+      "format": "NetCDF / ASCII (.gz)",
+      "requires_login": false,
+      "notes": "One folder per variable with full-length (1901–2025) and decadal files plus station-count files. CRU asks users to prefer CEDA when the version is available there."
+    },
+    {
+      "label": "CEDA archive record (v4.09)",
+      "url": "https://catalogue.ceda.ac.uk/uuid/9cf07e92afaa405da4f40b6733f362d3",
+      "kind": "external",
+      "format": "NetCDF / ASCII",
+      "requires_login": false,
+      "notes": "Previous version; v4.10 to be added to CEDA later."
+    },
+    {
+      "label": "CRU TS v4.10 Google Earth interface",
+      "url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/ge/",
+      "kind": "viewer",
+      "format": "KML",
+      "requires_login": false,
+      "notes": "Station and grid-cell time series browser."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Northern Algeria has a reasonable station network in CRU TS, but the Sahara is sparsely observed; for southern Algeria inspect the station-count variable before interpreting anomalies or trends, since cells with zero stations carry the 1961–1990 climatology. CRU TS precipitation and PET are commonly used inputs to SPEI (see the existing speibase record).",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "variable units (from general CRU TS documentation; not re-read from v4.10 file headers)",
+      "Algerian station density (not checked in the stn files)"
+    ],
+    "sources_consulted": [
+      "https://crudata.uea.ac.uk/cru/data/hrg/",
+      "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/",
+      "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/Release_Notes_CRU_TS_4.10.txt",
+      "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/cruts.2604091129.v4.10/pre/",
+      "https://www.nature.com/articles/s41597-020-0453-3",
+      "https://api.crossref.org/works/10.1038/s41597-020-0453-3",
+      "https://catalogue.ceda.ac.uk/uuid/9cf07e92afaa405da4f40b6733f362d3"
+    ],
+    "notes": "Release date (25 June 2026), licence text and 'doi not yet available' were read from the CRU page; period 1901–2025 and file formats (NetCDF and ASCII in parallel, decadal and full-length files) from the v4.10 release notes and directory listing. Climatology-fallback, ADW, CDD values and station-count metadata are from the Harris et al. (2020) article text."
+  }
+}

@@ -1,0 +1,70 @@
+level,unit_code,unit_name,parent_code,arid,year,month,latest_spi_3,latest_spi_12,pct_months_spi12_le_-1_2016_2025
+admin1,01,Adrar,DZ,True,2026,10,1.187,1.223,19.2
+admin1,02,Chlef,DZ,False,2026,10,-1.083,1.914,40.0
+admin1,03,Laghouat,DZ,False,2026,10,-0.134,1.988,30.0
+admin1,04,Oum El Bouaghi,DZ,False,2026,10,-1.374,0.297,51.7
+admin1,05,Batna,DZ,False,2026,10,-2.222,0.051,54.2
+admin1,06,Béjaïa,DZ,False,2026,10,-1.525,0.061,35.8
+admin1,07,Biskra,DZ,False,2026,10,-1.137,0.19,62.5
+admin1,08,Béchar,DZ,False,2026,10,1.223,1.445,20.0
+admin1,09,Blida,DZ,False,2026,10,-2.025,1.345,34.2
+admin1,10,Bouira,DZ,False,2026,10,-2.054,0.65,24.2
+admin1,11,Tamanrasset,DZ,True,2026,10,0.948,1.036,20.0
+admin1,12,Tébessa,DZ,False,2026,10,-1.586,0.317,62.5
+admin1,13,Tlemcen,DZ,False,2026,10,-1.347,0.356,54.2
+admin1,14,Tiaret,DZ,False,2026,10,-1.56,1.413,50.0
+admin1,15,Tizi Ouzou,DZ,False,2026,10,-1.12,0.274,35.0
+admin1,16,Alger,DZ,False,2026,10,-1.778,0.857,33.3
+admin1,17,Djelfa,DZ,False,2026,10,-1.698,1.644,45.0
+admin1,18,Jijel,DZ,False,2026,10,-1.336,0.105,47.5
+admin1,19,Sétif,DZ,False,2026,10,-2.426,0.471,48.3
+admin1,20,Saïda,DZ,False,2026,10,-1.437,0.702,52.5
+admin1,21,Skikda,DZ,False,2026,10,-1.037,-0.113,50.0
+admin1,22,Sidi Bel Abbès,DZ,False,2026,10,-1.516,0.512,60.8
+admin1,23,Annaba,DZ,False,2026,10,-1.47,0.233,40.0
+admin1,24,Guelma,DZ,False,2026,10,-1.414,0.213,52.5
+admin1,25,Constantine,DZ,False,2026,10,-1.362,-0.185,60.0
+admin1,26,Médéa,DZ,False,2026,10,-1.95,1.51,41.7
+admin1,27,Mostaganem,DZ,False,2026,10,-1.214,0.637,47.5
+admin1,28,M'Sila,DZ,False,2026,10,-2.986,0.479,45.0
+admin1,29,Mascara,DZ,False,2026,10,-1.363,0.636,66.7
+admin1,30,Ouargla,DZ,True,2026,10,1.117,0.712,59.2
+admin1,31,Oran,DZ,False,2026,10,-1.258,0.166,58.3
+admin1,32,El Bayadh,DZ,False,2026,10,-0.223,1.647,32.5
+admin1,33,Illizi,DZ,True,2026,10,1.193,0.785,34.2
+admin1,34,Bordj Bou Arreridj,DZ,False,2026,10,-2.387,0.367,42.5
+admin1,35,Boumerdès,DZ,False,2026,10,-1.762,0.685,28.3
+admin1,36,El Tarf,DZ,False,2026,10,-1.365,0.671,34.2
+admin1,37,Tindouf,DZ,False,2026,10,0.957,0.711,23.3
+admin1,38,Tissemsilt,DZ,False,2026,10,-1.087,1.997,41.7
+admin1,39,El Oued,DZ,False,2026,10,-0.082,0.355,61.7
+admin1,40,Khenchela,DZ,False,2026,10,-1.441,-0.217,63.3
+admin1,41,Souk Ahras,DZ,False,2026,10,-0.976,0.724,48.3
+admin1,42,Tipaza,DZ,False,2026,10,-1.17,2.023,41.7
+admin1,43,Mila,DZ,False,2026,10,-1.612,0.534,51.7
+admin1,44,Aïn Defla,DZ,False,2026,10,-1.048,2.217,43.3
+admin1,45,Naâma,DZ,False,2026,10,0.038,1.439,39.2
+admin1,46,Aïn Témouchent,DZ,False,2026,10,-1.249,0.183,69.2
+admin1,47,Ghardaïa,DZ,False,2026,10,0.301,1.73,31.7
+admin1,48,Relizane,DZ,False,2026,10,-1.335,1.24,53.3
+admin1,49,Timimoune,DZ,True,2026,10,1.21,1.096,25.0
+admin1,50,Bordj Badji Mokhtar,DZ,True,2026,10,1.098,1.123,11.7
+admin1,51,Ouled Djellal,DZ,False,2026,10,-1.569,1.056,44.2
+admin1,52,Béni Abbès,DZ,False,2026,10,1.972,1.649,13.3
+admin1,53,In Salah,DZ,True,2026,10,1.442,0.549,57.5
+admin1,54,In Guezzam,DZ,True,2026,10,-0.583,-0.499,0.0
+admin1,55,Touggourt,DZ,True,2026,10,0.479,0.96,51.7
+admin1,56,Djanet,DZ,True,2026,10,2.09,2.046,27.5
+admin1,57,El M'Ghair,DZ,False,2026,10,-0.506,0.601,46.7
+admin1,58,El Meniaa,DZ,True,2026,10,1.257,1.238,33.3
+admin1,59,Aflou,DZ,False,2026,10,-0.985,1.741,34.2
+admin1,60,Barika,DZ,False,2026,10,-3.043,0.129,52.5
+admin1,61,El Kantara,DZ,False,2026,10,-1.82,0.046,57.5
+admin1,62,Bir El Ater,DZ,False,2026,10,-1.551,0.226,53.3
+admin1,63,El Aricha,DZ,False,2026,10,-1.622,0.52,45.8
+admin1,64,Ksar Chellala,DZ,False,2026,10,-1.88,1.47,33.3
+admin1,65,Aïn Oussara,DZ,False,2026,10,-2.012,1.346,36.7
+admin1,66,Messaad,DZ,False,2026,10,-0.742,1.684,41.7
+admin1,67,Ksar El Boukhari,DZ,False,2026,10,-1.794,1.431,33.3
+admin1,68,Bou Saâda,DZ,False,2026,10,-2.403,0.865,43.3
+admin1,69,El Abiodh Sidi Cheikh,DZ,False,2026,10,0.654,1.393,17.5

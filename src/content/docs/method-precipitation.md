@@ -48,7 +48,7 @@ Version 3.0 replaced version 2.0 in 2025. v2.0 production ends after December 20
 
 ## Seasons and periods in Analyze
 
-[Analyze](/analyze/) sums the published monthly unit means:
+[Drought](/drought/) sums the published monthly unit means:
 - **Agricultural year:** September of the previous year to August.
 - **Seasons:** autumn SON, winter DJF (December of the previous year), spring MAM, summer JJA.
 - **Single months.**

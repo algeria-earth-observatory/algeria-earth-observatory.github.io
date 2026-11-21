@@ -1,0 +1,256 @@
+---
+import Base from '../layouts/Base.astro';
+import RegionDataDownloader from '../components/RegionDataDownloader.astro';
+import { AGGREGATIONS, PRECIP } from '../lib/precip';
+import manifest from '../../public/data/aeo/products/precipitation/v1.0.0/manifest.json';
+import spei0 from '../../public/data/aeo/products/spei/v1.0.0/web/admin0.json';
+import spei1 from '../../public/data/aeo/products/spei/v1.0.0/web/admin1.json';
+import spi0 from '../../public/data/aeo/products/spi/v1.0.0/web/admin0.json';
+import { speiClass } from '../lib/spei';
+
+// Latest conditions, read from the published SPEI product (no value is computed here).
+const lastI = spei0.months.length - 1;
+const lastMonth = spei0.months[lastI];
+const nat = (k: '3' | '12') => (spei0 as any).spei[k][0][lastI] as number | null;
+const w12 = (spei1 as any).units.map((u: any, i: number) => ({ code: u.code, name: u.name, arid: u.hyper_arid, v: (spei1 as any).spei['12'][i][lastI] as number | null }));
+const humidW = w12.filter((w: any) => !w.arid && w.v !== null);
+const dryW = humidW.filter((w: any) => w.v <= -1);
+const driest = [...humidW].sort((a: any, b: any) => a.v - b.v).slice(0, 5);
+const spiLast = (spi0 as any).months[(spi0 as any).months.length - 1] as string;
+const spiNat = (k: '3' | '12') => (spi0 as any).spi[k][0][(spi0 as any).months.length - 1] as number | null;
+const sgn = (v: number | null) => (v === null ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(2)}`);
+
+const years = manifest.temporal_coverage.annual as [number, number];
+const months = manifest.temporal_coverage.monthly as [string, string];
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const label = 'block text-[0.875rem] font-medium text-atlas';
+const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r border-line-strong px-2 last:border-r-0 has-[:checked]:bg-obsidian has-[:checked]:text-white has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cobalt';
+---
+<Base title="Drought" description="Drought monitoring for Algeria: latest SPEI conditions, historical drought time series and statistics for the country, its 69 wilayas and 1,541 communes, with downloads.">
+  <div class="mx-auto max-w-[90rem] px-5 pb-16 pt-8 sm:px-8 lg:px-12">
+    <header class="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-5">
+      <div>
+        <p class="overline">Drought</p>
+        <h1 class="mt-2 text-[1.75rem] leading-tight">Drought monitoring for Algeria</h1>
+      </div>
+      <p class="max-w-xl text-[1rem] text-slate">Observed drought from the climatic water balance (SPEI) and precipitation anomalies, for the country, each wilaya and each commune.</p>
+    </header>
+
+    <section aria-labelledby="now-h" class="mt-6 grid gap-6 border-b border-line pb-8 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h2 id="now-h" class="h-sub">Latest conditions: {lastMonth}</h2>
+        <p class="mt-2 text-[0.9375rem] text-slate">Latest month of the published SPEI product (TerraClimate). Observed conditions, not a forecast.</p>
+      </div>
+      <dl class="tabular grid gap-3 sm:grid-cols-3 lg:col-span-8">
+        <div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Algeria, SPEI-3 (3 months)</dt><dd class="mt-1 font-mono text-[1.5rem] text-atlas">{sgn(nat('3'))}</dd><dd class="text-[0.875rem] text-slate">{speiClass(nat('3'))?.label}</dd></div>
+        <div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Algeria, SPEI-12 (12 months)</dt><dd class="mt-1 font-mono text-[1.5rem] text-atlas">{sgn(nat('12'))}</dd><dd class="text-[0.875rem] text-slate">{speiClass(nat('12'))?.label}</dd></div>
+        <div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Wilayas with SPEI-12 ≤ −1</dt><dd class="mt-1 font-mono text-[1.5rem] text-atlas">{dryW.length} <span class="font-sans text-[1rem] text-slate">of {humidW.length}</span></dd><dd class="text-[0.875rem] text-slate">hyper-arid wilayas excluded</dd></div>
+      </dl>
+      <div class="text-[0.9375rem] lg:col-span-8 lg:col-start-5">
+        <p class="text-slate">Lowest SPEI-12 in {lastMonth}: {driest.map((w: any, i: number) => <><a href={`/drought/?level=admin1&unit=${w.code}&var=spei&scale=12`}>{w.name}</a> {sgn(w.v)}{i < driest.length - 1 ? ', ' : '.'}</>)}</p>
+        <p class="mt-1 text-slate">More recent, rainfall only (CHIRPS v3.0): Algeria SPI-3 in {spiLast} is <span class="font-mono text-atlas">{sgn(spiNat('3'))}</span> ({speiClass(spiNat('3'))?.label}), SPI-12 <span class="font-mono text-atlas">{sgn(spiNat('12'))}</span>. SPI ignores evaporative demand.</p>
+        <p class="mt-1 text-slate">On a map: <a href={`/map/?ind=spei-12&t=${lastMonth}`}>SPEI-12 in Explore</a> · <a href={`/map/?ind=spei-3&t=${lastMonth}`}>SPEI-3</a> · <a href={`/map/?ind=spi-3&t=${spiLast}`}>SPI-3 by wilaya</a>.</p>
+      </div>
+    </section>
+
+    <h2 class="sr-only">Drought analysis workspace</h2>
+
+    <div class="mt-6 grid gap-8 xl:grid-cols-[17rem_minmax(0,1fr)]">
+      <!-- Configuration -->
+      <form id="az-form" data-default-var="spei" class="space-y-5 self-start text-[0.9375rem] xl:sticky xl:top-20" aria-label="Analysis configuration" onsubmit="return false">
+        <p class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.75rem] text-white">1</span>Select</p>
+        <fieldset>
+          <legend class={label}>Area</legend>
+          <div class="mt-2 grid grid-cols-3 border border-line-strong bg-surface" role="radiogroup" style="border-radius:var(--radius-control)">
+            <label class={seg}><input type="radio" name="level" value="admin0" class="sr-only" />Algeria</label>
+            <label class={seg}><input type="radio" name="level" value="admin1" class="sr-only" checked />Wilaya</label>
+            <label class={seg}><input type="radio" name="level" value="admin2" class="sr-only" />Commune</label>
+          </div>
+          <label class="mt-3 block" id="wilaya-wrap"><span class="text-slate">Wilaya</span>
+            <select id="az-wilaya" class="field mt-1"></select></label>
+          <div class="mt-3 hidden" id="commune-wrap">
+            <label for="az-commune-search" class="text-slate">Commune</label>
+            <input id="az-commune-search" type="search" placeholder="Search 1,541 communes" autocomplete="off" class="field mt-1" />
+            <select id="az-commune" size="6" class="field mt-1 !py-1" aria-label="Commune"></select>
+          </div>
+        </fieldset>
+        <label class="block"><span class={label}>Variable</span>
+          <select id="az-variable" class="field mt-2">
+            <option value="precip">Precipitation (CHIRPS v3.0)</option>
+            <option value="spei">Drought index SPEI (TerraClimate)</option>
+            <option value="spi">Precipitation index SPI (CHIRPS v3.0)</option>
+          </select>
+          <span class="mt-1 block text-[0.8125rem] text-slate">Only variables with processed AEO data are listed.</span></label>
+        <div id="spei-controls" class="hidden space-y-3">
+          <label class="block"><span class={label}>Timescale</span>
+            <select id="az-scale" class="field mt-2">
+              <option value="1">SPEI-1 — monthly</option><option value="3" selected>SPEI-3 — seasonal</option>
+              <option value="6">SPEI-6 — half-year</option><option value="12">SPEI-12 — annual</option>
+            </select></label>
+          <p class="text-[0.8125rem] leading-snug text-slate">≤ −1 moderately, ≤ −1.5 severely, ≤ −2 extremely dry. Calibrated on 1991–2020. Communes: SPEI-3 and SPEI-12 from 1981.</p>
+        </div>
+        <label class="block" id="agg-wrap"><span class={label}>Period type</span>
+          <select id="az-agg" class="field mt-2">{AGGREGATIONS.map((a) => <option value={a.id}>{a.label}</option>)}</select></label>
+        <div class="grid grid-cols-2 gap-2">
+          <label><span class={label}>From</span><select id="az-from" class="field mt-2"></select></label>
+          <label><span class={label}>To</span><select id="az-to" class="field mt-2"></select></label>
+        </div>
+        <details class="border-t border-line pt-3">
+          <summary class="flex min-h-6 cursor-pointer items-center text-[0.8125rem] text-atlas">Advanced settings</summary>
+          <div class="mt-3 space-y-4">
+            <fieldset>
+          <legend class={label}>Compare with</legend>
+          <div class="mt-2 flex gap-1.5">
+            <select id="az-compare" class="field min-w-0 flex-1" aria-label="Area to compare"></select>
+            <button type="button" id="az-compare-add" class="btn btn-secondary !px-3 !py-1.5 !text-[0.8125rem]">Add</button>
+          </div>
+          <ul id="az-compare-list" class="mt-2 flex flex-wrap gap-1.5"></ul>
+          <p class="mt-1 text-[0.8125rem] text-slate">Up to 4 areas of the same level.</p>
+        </fieldset>
+            <div id="adv-spei-months" data-spei-only class="hidden">
+          <label class="block"><span class={label}>SPEI months</span>
+            <select id="az-month" class="field mt-2">
+              <option value="0">All months</option>
+              {MONTHS.map((m, i) => <option value={String(i + 1)}>{m} only</option>)}
+            </select></label>
+            </div>
+          </div>
+        </details>
+        <p class="border-t border-line pt-3 font-mono text-[0.8125rem] leading-snug text-slate">Precipitation: monthly {months[0]} to {months[1]}; years {years[0]}–{years[1]}. Normal 1991–2020.</p>
+      </form>
+
+      <!-- Visualisation, interpretation, download -->
+      <div class="min-w-0 space-y-6">
+        <p id="az-announce" class="sr-only" role="status" aria-live="polite"></p>
+        <p class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.75rem] text-white">2</span>Visualize</p>
+        <div class="z-20 -mx-2 bg-limestone/95 px-2 py-2 backdrop-blur xl:sticky xl:top-[3.55rem]">
+          <h2 id="az-title" class="text-[1.375rem] leading-tight">Loading…</h2>
+          <p id="az-subtitle" class="mt-1 text-[0.9375rem] text-slate"></p>
+          <p id="az-support" class="note note-warn mt-3 hidden"></p>
+        </div>
+        <div class="flex flex-wrap gap-x-1 border-b border-line" role="tablist" aria-label="Views">
+          <button type="button" role="tab" id="tab-ts" aria-controls="panel-ts" aria-selected="true" tabindex="0" data-tab="ts" class="az-tab">Time series</button>
+          <button type="button" role="tab" id="tab-map" aria-controls="panel-map" aria-selected="false" tabindex="-1" data-tab="map" class="az-tab">Map</button>
+          <button type="button" role="tab" id="tab-stats" aria-controls="panel-stats" aria-selected="false" tabindex="-1" data-tab="stats" class="az-tab">Statistics</button>
+          <button type="button" role="tab" id="tab-report" aria-controls="panel-report" aria-selected="false" tabindex="-1" data-tab="report" class="az-tab">Report</button>
+        </div>
+        <div id="panel-ts" role="tabpanel" aria-labelledby="tab-ts" class="space-y-8">
+          <section aria-labelledby="ts-h" class="pt-1">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 id="ts-h" class="text-[1rem]">Time series</h3>
+              <div class="flex items-center gap-3 text-[0.875rem] text-slate"><span aria-hidden="true">Download chart:</span>
+                <button type="button" class="link-btn min-h-6" data-export="ts" data-fmt="svg" aria-label="Download the time series chart as SVG">SVG</button>
+                <button type="button" class="link-btn min-h-6" data-export="ts" data-fmt="png" aria-label="Download the time series chart as PNG">PNG</button>
+              </div>
+            </div>
+            <ul id="az-legend" class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.78rem] text-graphite"></ul>
+            <div id="az-ts" class="mt-2"></div>
+          </section>
+          <section aria-labelledby="an-h" class="border-t border-atlas pt-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 id="an-h" class="text-[1rem]">Anomalies relative to 1991–2020</h3>
+              <div class="flex flex-wrap items-center gap-3 text-[0.875rem] text-slate">
+                <fieldset data-precip-only class="flex items-center gap-3"><legend class="sr-only">Anomaly unit</legend>
+                <label class="flex min-h-6 items-center gap-1.5"><input type="radio" name="anom-unit" value="mm" checked class="accent-[#3458d4]" /> mm</label>
+                <label class="flex min-h-6 items-center gap-1.5"><input type="radio" name="anom-unit" value="pct" class="accent-[#3458d4]" /> % of normal</label></fieldset>
+                <span aria-hidden="true">Download chart:</span>
+                <button type="button" class="link-btn min-h-6" data-export="an" data-fmt="svg" aria-label="Download the anomaly chart as SVG">SVG</button>
+                <button type="button" class="link-btn min-h-6" data-export="an" data-fmt="png" aria-label="Download the anomaly chart as PNG">PNG</button>
+              </div>
+            </div>
+            <p class="mt-1 text-[0.875rem] text-slate"><span class="mr-1 inline-block h-2.5 w-2.5 align-middle" style="background:#2a78d6"></span>bars above zero: wetter · <span class="mr-1 inline-block h-2.5 w-2.5 align-middle" style="background:#d03b3b"></span>bars below zero: drier <span id="az-an-unit-note"></span></p>
+            <div id="az-an" class="mt-2"></div>
+          </section>
+        </div>
+        <div id="panel-map" role="tabpanel" aria-labelledby="tab-map" hidden>
+          <section aria-labelledby="map-h" class="pt-1">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 id="map-h" class="text-[1rem]">Map of the indicator</h3>
+              <div class="flex flex-wrap items-center gap-3 text-[0.875rem]">
+                <label class="flex items-center gap-1.5 text-slate">Period <select id="az-map-year" class="field !w-auto !py-1.5"></select></label>
+                <label data-precip-only class="flex items-center gap-1.5 text-slate">Show <select id="az-map-metric" class="field !w-auto !py-1.5"><option value="anomaly">anomaly (%)</option><option value="annual">total (mm)</option></select></label>
+                <label class="flex min-h-6 items-center gap-1.5 text-slate"><input type="checkbox" id="az-map-grid" class="accent-[#3458d4]" /> grid cells</label>
+              </div>
+            </div>
+            <p class="mt-1 text-[0.875rem] text-slate">Values by <span id="az-map-level">wilaya</span>, Algeria only. Select an area on the map to analyse it, or use the selector on the left. The same values are in the Statistics tab.</p>
+            <div class="theme-dark relative mt-3 h-[28rem]"><div class="absolute inset-0"><div id="az-map" class="h-full w-full" role="region" aria-label="Map of the selected indicator"></div></div></div>
+            <div id="az-map-legend" class="tabular mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.8125rem] text-graphite"></div>
+          </section>
+        </div>
+        <div id="panel-stats" role="tabpanel" aria-labelledby="tab-stats" hidden class="space-y-6">
+          <section aria-labelledby="res-h">
+            <h3 id="res-h" class={label}>Summary statistics</h3>
+            <dl id="az-tiles" class="tabular mt-2 grid gap-x-8 border-t border-line sm:grid-cols-2 lg:grid-cols-3"></dl>
+          </section>
+          <section aria-labelledby="tr-h">
+            <h3 id="tr-h" class={label}>Trend</h3>
+            <p id="az-trend" class="tabular mt-2 max-w-3xl text-[0.9375rem] leading-relaxed text-graphite"></p>
+            <details class="mt-2 text-[0.875rem] text-slate">
+              <summary class="min-h-6 cursor-pointer">How the trend is tested</summary>
+              <p class="mt-2">Theil–Sen slope with Sen's 95 % interval and a two-sided Mann–Kendall test with tie correction (at least 8 values). If the lag-1 autocorrelation of the detrended series is significant, the test variance is inflated (Yue &amp; Wang 2004). Significant only when p &lt; 0.05. Missing years are skipped, never interpolated. <a href="/docs/method-precipitation/#trends">Method</a></p>
+            </details>
+          </section>
+          <section aria-labelledby="tbl-h">
+            <div class="flex flex-wrap items-center justify-between gap-3"><h3 id="tbl-h" class={label}>Data table</h3>
+              <button type="button" id="az-dl-table" class="btn btn-secondary !py-1.5">Download this table (CSV)</button></div>
+            <div class="relative mt-2 max-h-[28rem] overflow-auto border-t border-line" tabindex="0" role="region" aria-labelledby="tbl-h"><table id="az-table" class="tabular w-full text-left text-[0.875rem]"></table></div>
+          </section>
+        </div>
+        <div id="panel-report" role="tabpanel" aria-labelledby="tab-report" hidden class="space-y-5">
+          <section aria-labelledby="rep-h" class="max-w-3xl">
+            <h3 id="rep-h" class={label}>Report</h3>
+            <p id="az-report" class="mt-2 text-[0.9375rem] leading-relaxed text-atlas"></p>
+            <p class="mt-3"><button type="button" id="az-print" class="btn btn-secondary">Print or save as PDF</button></p>
+          </section>
+          <section aria-labelledby="dl-h" class="max-w-3xl border-t border-line pt-4">
+            <h3 id="dl-h" class={label}>Downloads</h3>
+            <ul id="az-downloads" class="mt-2 space-y-2 text-[0.9375rem]"></ul>
+            <p class="mt-3 text-[0.9375rem]"><a href="#download">Download data for another place, period or format</a></p>
+            <p class="mt-3 text-[0.875rem] leading-snug text-slate" id="az-source">Source: CHIRPS v3.0 (Climate Hazards Center, UC Santa Barbara; doi:10.15780/G2JQ0P; CC BY 4.0), processed by AEO — <a href={PRECIP.datasetPage}>product page</a>, <a href={PRECIP.methodPage}>method</a>.</p>
+          </section>
+        </div>
+
+        <!-- Interpret -->
+        <section aria-labelledby="int-h" class="border-t border-midnight pt-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h2 id="int-h" class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.75rem] text-white">3</span>Interpret</h2>
+            <p class="flex items-center gap-3"><span class="flex items-center gap-2 text-[0.875rem] font-medium text-atlas"><span class="tabular grid h-6 w-6 place-items-center bg-midnight font-mono text-[0.75rem] text-white">4</span><span class="sr-only">Download</span></span>
+              <button type="button" id="az-dl-results" class="btn btn-primary"><svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>Download results (CSV)</button></p>
+          </div>
+          <dl id="az-cards" class="tabular mt-4 grid gap-3 sm:grid-cols-3"></dl>
+        </section>
+      </div>
+    </div>
+    <section aria-labelledby="outlook-h" class="mt-16 grid gap-6 border-t border-line pt-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h2 id="outlook-h" class="h-sub">Drought outlook <span class="status status-in-preparation ml-1 align-middle">Experimental, not yet published</span></h2>
+      </div>
+      <div class="space-y-3 text-[0.9375rem] leading-relaxed text-graphite lg:col-span-8">
+        <p>AEO plans seasonal drought outlooks from documented ensemble forecast systems (for example ECMWF SEAS5 through the Copernicus Climate Data Store), calibrated against their hindcasts.</p>
+        <p><strong class="font-medium text-atlas">No forecast is published yet.</strong> Probabilities will be shown only after hindcast verification for Algeria (reliability and skill scores against observed SPEI), and always separately from observed drought.</p>
+        <p class="text-slate">Agricultural drought exposure (drought over cropland) is also in preparation and depends on a validated cropland mask.</p>
+      </div>
+    </section>
+
+    <div class="mt-16 border-t border-midnight pt-10">
+      <RegionDataDownloader compact heading="Download data for this place" intro="Follows the area, indicator and period of your analysis. You can change any of them here." />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .link-btn { color: var(--color-cobalt); text-decoration: underline; text-underline-offset: 2px; }
+  .link-btn:hover { color: var(--color-cobalt-hover); }
+  .az-tab { min-height: 2.5rem; padding: 0 .9rem; margin-bottom: -1px; font-size: .875rem; color: var(--color-slate); border-bottom: 2px solid transparent; }
+  .az-tab:hover { color: var(--color-midnight); }
+  .az-tab[aria-selected='true'] { color: var(--color-midnight); font-weight: 500; border-bottom-color: var(--color-cobalt); }
+  @media print {
+    :global(header), :global(footer), #az-form, [role='tablist'], #az-print, #az-dl-results { display: none !important; }
+    [role='tabpanel'] { display: block !important; }
+  }
+</style>
+
+<script>
+  import { initAnalyze } from '../scripts/analyze';
+  initAnalyze();
+</script>

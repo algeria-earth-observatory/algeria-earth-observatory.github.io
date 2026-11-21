@@ -1,0 +1,145 @@
+{
+  "id": "cgls-ndvi-300m-v3",
+  "title": "Copernicus Global Land NDVI 300 m, 10-daily (version 3, 2014–present)",
+  "description": "The Copernicus Land Monitoring Service Normalised Difference Vegetation Index (NDVI) is a global 10-daily composite at about 300 m (1/336°), computed from BRDF-normalised top-of-canopy reflectances of PROBA-V (2014–2018) and Sentinel-3 OLCI (from 2019), delivered in near real time with quality flags. Version 3 reprocesses the full series from January 2014.",
+  "purpose": "Near-real-time vegetation greenness monitoring at 300 m for crop-season and rangeland condition in northern Algeria, with a consistent dekadal time step suitable for anomaly-based early warning.",
+  "domain": [
+    "agriculture",
+    "land-ecosystems",
+    "climate-drought"
+  ],
+  "categories": [
+    "Vegetation indices",
+    "Vegetation monitoring"
+  ],
+  "keywords": [
+    "NDVI",
+    "Copernicus Land Monitoring Service",
+    "CLMS",
+    "Copernicus Global Land",
+    "PROBA-V",
+    "Sentinel-3",
+    "OLCI",
+    "300 m",
+    "dekadal"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Copernicus Land Monitoring Service (European Commission Joint Research Centre)",
+    "url": "https://land.copernicus.eu/en/products/vegetation/normalised-difference-vegetation-index-v3-0-300m"
+  },
+  "creator": "Copernicus Land Monitoring Service (owner: European Commission; publisher: European Commission's Joint Research Centre)",
+  "source_url": "https://land.copernicus.eu/en/products/vegetation/normalised-difference-vegetation-index-v3-0-300m",
+  "documentation_url": "https://land.copernicus.eu/en/products/vegetation/normalised-difference-vegetation-index-v3-0-300m",
+  "license": {
+    "name": "Copernicus Land Monitoring Service data policy: full, open and free access (Commission Delegated Regulation (EU) No 1159/2013; Regulation (EU) 2021/696)",
+    "spdx": null,
+    "url": "https://land.copernicus.eu/en/data-policy"
+  },
+  "license_notes": "Product metadata: 'The Copernicus land monitoring products and services are made available on a principle of full, open and free access, as established by the Commission Delegated Regulation (EU) No 1159/2013', on condition that users inform the public of the source when distributing, state clearly when products have been adapted or modified, and do not convey the impression of official EU endorsement.",
+  "citation": "Copernicus Land Monitoring Service (2025): Normalised Difference Vegetation Index 2014-present (raster 300 m), global, 10-daily – version 3. https://doi.org/10.2909/905223f4-2c3d-4cb6-ad8c-d6d065707465",
+  "doi": "10.2909/905223f4-2c3d-4cb6-ad8c-d6d065707465",
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land between 80°N and 60°S (file footprint in the CDSE index). Algeria must be subset from global files.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -60,
+      180,
+      80
+    ]
+  },
+  "temporal_extent": {
+    "start": "2014-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "10-daily (dekadal)",
+    "description": "January 2014 to present. In the CDSE file index, PROBA-V-based files run from 2014-01-01 to the last dekad of 2018 and Sentinel-3 OLCI-based files from 2019-01-01; the latest dekad listed in the index on 2026-11-21 was 2026-09-21 (index file updated 2026-10-01), while the metadata states a timeliness of 'within 2 days after synthesis period'."
+  },
+  "resolution": {
+    "spatial": "1/336° (about 300 m)",
+    "spatial_m": 331,
+    "temporal": "10-daily"
+  },
+  "format": [
+    "NetCDF (CLMS distribution format)",
+    "Cloud Optimized GeoTIFF (CDSE)"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic)",
+  "variables": [
+    {
+      "name": "NDVI",
+      "units": "dimensionless (−1 to 1, stored scaled)",
+      "description": "(NIR − Red)/(NIR + Red) from broad-band red and NIR reflectances"
+    },
+    {
+      "name": "Quality flags",
+      "units": "bit flag",
+      "description": "Indicates use of less-than-optimal input reflectances, sea and missing pixels"
+    }
+  ],
+  "processing": "NDVI is computed from global 10-daily BRDF-normalised top-of-canopy reflectances; for OLCI the two narrow red and two narrow NIR bands are averaged to broad red and NIR before computing the index. Sea pixels, out-of-range and missing reflectances are filtered, and sub-optimal inputs are flagged.",
+  "validation": "The product metadata states 'Validated'; validation reports are among the CLMS technical documents, which were not read for this record.",
+  "limitations": [
+    "Sensor change from PROBA-V to Sentinel-3 OLCI (between 2018 and 2019 in the file series) can introduce discontinuities in long-term anomalies; check consistency before computing trends across the transition.",
+    "NDVI over sparse vegetation and bright soils (steppe, Sahara) is dominated by soil background and is a weak indicator of biomass.",
+    "300 m pixels mix fields, orchards and bare soil in fragmented Algerian farmland.",
+    "Near-real-time dekads may be affected by persistent cloud in winter over the Tell; inspect the quality flags.",
+    "Global files are large (about 2–3.3 GB per dekad as COG); downloading via CDSE requires handling of large files or the S3/OData interfaces."
+  ],
+  "version": "3.0 (files V3.0.1)",
+  "published_date": null,
+  "updated_date": "2026-09-16",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CLMS product page",
+      "url": "https://land.copernicus.eu/en/products/vegetation/normalised-difference-vegetation-index-v3-0-300m",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Description, technical documents and download options."
+    },
+    {
+      "label": "CDSE CSV catalogue of NDVI 300 m v3 files",
+      "url": "https://csv.dataspace.copernicus.eu/CLMS/bio-geophysical/vegetation_indices/ndvi_global_300m_10daily_v3/",
+      "kind": "external",
+      "format": "CSV index (COG and NetCDF)",
+      "requires_login": false,
+      "notes": "File lists with S3 paths (/eodata/CLMS/bio-geophysical/vegetation_indices/ndvi_global_300m_10daily_v3); downloading files from CDSE requires a free account."
+    },
+    {
+      "label": "Copernicus Browser (CDSE)",
+      "url": "https://browser.dataspace.copernicus.eu/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Visualisation; account needed for downloads."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Suited to dekadal monitoring of the cereal season (November–May) in the Tell and High Plateaux and of steppe green-up. For long baselines before 2014 use MODIS MOD13Q1 (existing record). Over the Sahara NDVI is near the noise level except in oases and after rare rain events.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "published_date",
+      "validation",
+      "NDVI scaling and flag bit definitions (product user manual not read)"
+    ],
+    "sources_consulted": [
+      "https://land.copernicus.eu/api/en/products/vegetation/normalised-difference-vegetation-index-v3-0-300m",
+      "https://land.copernicus.eu/en/products/vegetation/normalised-difference-vegetation-index-v3-0-300m",
+      "https://api.datacite.org/dois/10.2909/905223f4-2c3d-4cb6-ad8c-d6d065707465",
+      "https://s3.waw3-1.cloudferro.com/swift/v1/CatalogueCSV/bio-geophysical/vegetation_indices/ndvi_global_300m_10daily_v3/ndvi_global_300m_10daily_v3_cog.csv",
+      "https://land.copernicus.eu/en/data-policy"
+    ],
+    "notes": "Description, sensors, lineage, timeliness, CRS, resolution (1°/336), access constraints and DOI were read from the CLMS product API (metadata modified 2026-09-16). Sensor periods, file sizes, footprint and latest dekad come from the CDSE COG file index (459 files). DataCite lists the DOI (version 3.0, created 2025-11-26). The CLMS Fraction of green Vegetation Cover (FCOVER) 300 m product was not added to keep the set focused."
+  }
+}

@@ -33,9 +33,9 @@ export const SITE = {
 export const NAV = [
   { href: '/map/', label: 'Explore' },
   { href: '/data/', label: 'Data' },
-  { href: '/analyze/', label: 'Analyze' },
-  { href: '/regions/', label: 'Regions' },
-  { href: '/docs/', label: 'Methods' },
+  { href: '/drought/', label: 'Drought' },
+  { href: '/science/', label: 'Science' },
+  { href: '/contribute/', label: 'Contribute' },
   { href: '/about/', label: 'About' },
 ] as const;
 

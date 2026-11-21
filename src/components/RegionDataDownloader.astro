@@ -80,7 +80,7 @@ const lab = 'block text-[0.875rem] font-medium text-atlas';
         {available.map((i) => (
           <label class="rdd-choice"><input type="radio" name="rdd-indicator" value={i.id} class="accent-[#3458d4]" />
             <span><span class="block font-medium text-atlas">{i.label}</span>
-              <span class="block text-[0.8125rem] text-slate">{i.id === 'precip' ? 'Rainfall totals and anomalies, CHIRPS v3.0' : i.id === 'spei' ? 'Drought index from rainfall and evaporative demand, TerraClimate' : 'Polygons of Algeria, wilayas and communes, OpenStreetMap'}</span></span></label>
+              <span class="block text-[0.8125rem] text-slate">{i.id === 'precip' ? 'Rainfall totals and anomalies, CHIRPS v3.0' : i.id === 'spei' ? 'Drought index from rainfall and evaporative demand, TerraClimate' : i.id === 'spi' ? 'Drought index from rainfall only, CHIRPS v3.0' : i.id === 'soil' ? 'Organic carbon, texture, pH and more, 0–30 cm, SoilGrids 2.0 model' : 'Polygons of Algeria, wilayas and communes, OpenStreetMap'}</span></span></label>
         ))}
       </div>
       {planned.length > 0 && <details class="text-[0.8125rem] text-slate">
@@ -106,8 +106,8 @@ const lab = 'block text-[0.875rem] font-medium text-atlas';
             <div class="mt-1.5 flex gap-1.5"><select id="rdd-to-y" class="field" aria-labelledby="rdd-to-l rdd-to-y-l"></select><select id="rdd-to-m" class="field" aria-labelledby="rdd-to-l rdd-to-m-l"></select></div>
             <span id="rdd-to-y-l" hidden>year</span><span id="rdd-to-m-l" hidden>month</span></div>
         </div>
-        <label id="rdd-scale-wrap" class="block" hidden><span class={lab}>SPEI timescale</span>
-          <select id="rdd-scale" class="field mt-1.5"><option value="all">All: 1, 3, 6 and 12 months</option><option value="1">SPEI-1 (1 month)</option><option value="3">SPEI-3 (3 months)</option><option value="6">SPEI-6 (6 months)</option><option value="12">SPEI-12 (12 months)</option></select></label>
+        <label id="rdd-scale-wrap" class="block" hidden><span class={lab}>Timescale</span>
+          <select id="rdd-scale" class="field mt-1.5"><option value="all">All: 1, 3, 6 and 12 months</option><option value="1">1 month</option><option value="3">3 months</option><option value="6">6 months</option><option value="12">12 months</option></select></label>
         <p id="rdd-period-err" class="rdd-error" hidden></p>
       </fieldset>
 
@@ -134,15 +134,6 @@ const lab = 'block text-[0.875rem] font-medium text-atlas';
   .rdd-choice:has(:checked) { border-color: var(--color-cobalt); box-shadow: inset 0 0 0 1px var(--color-cobalt); }
   .rdd-choice:has(:focus-visible) { outline: 2px solid var(--color-cobalt); outline-offset: 2px; }
   .rdd-choice[data-unavailable] .rdd-fmt-label { color: var(--color-slate); }
-  .rdd-input { padding-right: 2.25rem; min-height: 2.75rem; font-size: 1rem; }
-  .rdd-chev { position: absolute; right: .75rem; top: 50%; width: 1rem; height: 1rem; transform: translateY(-50%); pointer-events: none; color: var(--color-slate); }
-  .rdd-list { position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 4px); max-height: 18rem; overflow-y: auto; background: var(--color-surface); border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); box-shadow: 0 8px 24px rgb(23 37 44 / .12); padding: .25rem 0; }
-  .rdd-opt { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .75rem; min-height: 2.25rem; cursor: pointer; font-size: .9375rem; color: var(--color-atlas); }
-  .rdd-opt[aria-selected='true'] { background: var(--color-cobalt); color: #fff; }
-  .rdd-opt[aria-selected='true'] .rdd-opt-hint { color: #fff; }
-  .rdd-opt:hover:not([aria-selected='true']) { background: var(--color-paper); }
-  .rdd-opt-hint { color: var(--color-slate); font-size: .875rem; }
-  .rdd-opt-empty { padding: .5rem .75rem; font-size: .875rem; color: var(--color-slate); }
   .rdd-error { color: var(--color-error); font-size: .875rem; font-weight: 500; }
   .rdd-result { border: 1px solid var(--color-line-strong); border-radius: var(--radius-card); background: var(--color-surface); padding: 1.25rem; }
   .rdd-result dl { display: grid; grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr); gap: .5rem 1.25rem; font-size: .9375rem; }

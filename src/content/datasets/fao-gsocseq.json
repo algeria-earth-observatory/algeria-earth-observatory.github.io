@@ -1,0 +1,184 @@
+{
+  "id": "fao-gsocseq",
+  "title": "FAO Global Soil Organic Carbon Sequestration Potential Map (GSOCseq)",
+  "description": "Global 30 arc-second (about 1 km) maps of the topsoil (0-30 cm) organic carbon sequestration potential of current agricultural land, produced by the FAO Global Soil Partnership from national submissions and GSP gap-filling. Layers include initial SOC stocks in 2020 (T0), SOC stocks projected for 2040 under business-as-usual (BAU) and three sustainable soil management scenarios (SSM1/2/3: +5, +10 and +20% carbon inputs), relative sequestration rates compared with BAU, and uncertainty layers.",
+  "purpose": "Scenario-based indication of where improved management of Algerian cropland and grazing land could raise topsoil organic carbon, e.g. for carbon-farming, land restoration or NDC discussions.",
+  "domain": [
+    "soil",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil organic carbon",
+    "Carbon sequestration",
+    "Scenario modelling"
+  ],
+  "keywords": [
+    "GSOCseq",
+    "soil organic carbon",
+    "sequestration potential",
+    "sustainable soil management",
+    "FAO",
+    "Global Soil Partnership",
+    "agricultural land"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "Food and Agriculture Organization of the United Nations (FAO) - Global Soil Partnership",
+    "url": "https://www.fao.org/global-soil-partnership/soil-data/global-soil-sequestration-potential-gsocseqmap/en"
+  },
+  "creator": "FAO Global Soil Partnership, from national submissions and GSP gap-filling",
+  "source_url": "https://www.fao.org/global-soil-partnership/soil-data/global-soil-sequestration-potential-gsocseqmap/en",
+  "documentation_url": "https://doi.org/10.4060/cb9002en",
+  "license": {
+    "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (as stated in the FAO catalogue records' resource constraints; licence fields conflict)",
+    "spdx": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "license_notes": "Unclear and conflicting. The FAO catalogue records for the global 1 km layers (e.g. 'GSOCseq - Relative soil organic carbon sequestration rates (Global - 1 km)', edition 'Version 2.0', 2025-01-07) carry the licence tag CC-BY-SA-4.0, but their resource-constraints text reads 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)'. Older catalogue records for the same layers (2022) are tagged CC-BY-4.0 with no constraint text. This record uses the most restrictive stated terms (non-commercial, share-alike) until FAO clarifies; confirm with the GSP Secretariat before commercial use.",
+  "citation": "FAO (2022). Global Soil Organic Carbon Sequestration Potential Map - GSOCseq v.1.1. Technical report. Rome. https://doi.org/10.4060/cb9002en",
+  "doi": null,
+  "references": [
+    {
+      "citation": "FAO (2022). Global Soil Organic Carbon Sequestration Potential Map - GSOCseq v.1.1. Technical report. Rome, FAO.",
+      "doi": "10.4060/cb9002en",
+      "url": "https://openknowledge.fao.org/handle/20.500.14283/cb9002en"
+    },
+    {
+      "citation": "FAO (2022). Global soil organic carbon sequestration potential map (GSOCseq v1.1) - Technical manual. Rome, FAO.",
+      "doi": "10.4060/cb2642en",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, but only on current agricultural land as defined by the GSOCseq land-use input, at 0-30 cm. Algeria is included as a 'Gap-filling Layer' (GSOCseq v1.1 report, Annex A3). On a 1-degree grid inside Algeria the 2020 SOC stock layer (SOCS T0X) had values at 5.2% of points: 21.6% north of 32 N, 0% further south. Values exist only on agricultural pixels of the north.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single release (baseline plus 20-year projection)",
+    "description": "Baseline SOC stocks represent 2020 (T0). Scenario layers are projections for 2040, after 20 years of BAU or SSM management. These are model projections, not observations."
+  },
+  "resolution": {
+    "spatial": "30 arc-seconds (about 1 km)",
+    "spatial_m": 1000,
+    "temporal": "baseline 2020 and 20-year projection (2040)"
+  },
+  "format": [
+    "GeoTIFF (one global file per layer)",
+    "OGC WMTS / WMS"
+  ],
+  "crs": "EPSG:4326 (WGS84 geographic)",
+  "variables": [
+    {
+      "name": "SOCS T0X",
+      "units": "t C/ha",
+      "description": "Initial SOC stock 0-30 cm in 2020 (nodata -999)"
+    },
+    {
+      "name": "SOCS BAU, SSM1, SSM2, SSM3",
+      "units": "t C/ha",
+      "description": "Projected SOC stock 0-30 cm in 2040 under business-as-usual and +5/+10/+20% carbon-input scenarios"
+    },
+    {
+      "name": "RSR SSM1, SSM2, SSM3",
+      "units": "t C/ha/yr",
+      "description": "Relative sequestration rate: mean annual SOC stock change over 20 years under SSM compared with BAU"
+    },
+    {
+      "name": "Uncertainty layers",
+      "units": "t C/ha or t C/ha/yr",
+      "description": "Separate FAO catalogue records for projected-stock and RSR uncertainties (Global - 1 km)"
+    }
+  ],
+  "processing": "Country-driven product following the GSOCseq technical manual (v1.1). Countries, or the GSP for gap-filled countries, run a SOC turnover model on agricultural land using national or default inputs (SOC baseline, land cover/use (default ESA CCI), clay content, climate (e.g. TerraClimate)), for BAU and three SSM scenarios over 20 years. For Algeria the v1.1 report lists the layer source as 'Gap-filling Layer' with no national experts named.",
+  "validation": "No independent validation for Algeria is reported; uncertainty layers are provided. The v1.1 report tables list Algeria among the NENA countries with the highest total relative sequestration rates under SSM3, with map source 'Gap-filled'.",
+  "limitations": [
+    "Covers only current agricultural land; most of Algeria (non-agricultural land, Sahara) has no values.",
+    "Algeria is gap-filled by the GSP, not a national submission; inputs are global defaults, so results are indicative.",
+    "Scenario projections assume uniform percentage increases in carbon inputs; they show potential, not achievable or observed sequestration.",
+    "Licence information in the FAO catalogue is inconsistent (CC BY-SA / CC BY-NC-SA / CC BY across records).",
+    "Version labelling is inconsistent: the technical report describes v1.1 (2022), while the 2025 global 1 km catalogue records state edition 'Version 2.0'; the GeoTIFFs in the FAO bucket are dated 2024-01-21."
+  ],
+  "version": "GSOCseq v1.1 (technical report, 2022); FAO catalogue global 1 km records labelled 'Version 2.0' (2025-01-07)",
+  "published_date": "2022-03-21",
+  "updated_date": "2025-01-07",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GSOCseq page (FAO Global Soil Partnership)",
+      "url": "https://www.fao.org/global-soil-partnership/soil-data/global-soil-sequestration-potential-gsocseqmap/en",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Description, scenarios and technical documents."
+    },
+    {
+      "label": "FAO catalogue: relative sequestration rates (Global - 1 km)",
+      "url": "https://data.apps.fao.org/catalog/dataset/1dfa4baf-2ee8-49c0-bc40-554fc6bc79c8",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Metadata, licence text and WMTS link (map code RSR)."
+    },
+    {
+      "label": "FAO catalogue: projected SOC stocks (Global - 1 km)",
+      "url": "https://data.apps.fao.org/catalog/dataset/c193ddc7-ab00-4823-896b-092ea16d80da",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Metadata for T0 (2020) and 2040 BAU/SSM stocks (map code SOCS)."
+    },
+    {
+      "label": "GeoTIFF: initial SOC stocks 2020 (SOCS T0X)",
+      "url": "https://storage.googleapis.com/fao-gismgr-gsocseq-data/DATA/GSOCSEQ/MAPSET/SOCS/GSOCSEQ.SOCS.T0X.tif",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "size_bytes": 388691424,
+      "notes": "FAO-hosted public file. Others in the same folders: SOCS/GSOCSEQ.SOCS.{BAU,SSM1,SSM2,SSM3}.tif and RSR/GSOCSEQ.RSR.{SSM1,SSM2,SSM3}.tif. The catalogue's 'Google Cloud Storage' console link needs a Google login; the direct storage.googleapis.com file URLs do not."
+    },
+    {
+      "label": "GLOSIS data platform (viewer)",
+      "url": "https://data.apps.fao.org/glosis/?lang=en",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Linked from the GSP page as the GSOCseq data platform."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Values exist only for agricultural pixels in northern Algeria (about one in five 1-degree grid points north of 32 N). Algeria was gap-filled by the GSP. Use as an indicative, scenario-based screening layer for cereal and agro-pastoral zones, not as an estimate of achievable sequestration.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "license (conflicting statements in FAO catalogue records)",
+      "version (v1.1 report vs 'Version 2.0' catalogue edition)",
+      "spatial_extent.bbox",
+      "uncertainty layer file paths",
+      "doi (no dataset DOI; technical report DOI in citation)"
+    ],
+    "sources_consulted": [
+      "https://www.fao.org/global-soil-partnership/soil-data/global-soil-sequestration-potential-gsocseqmap/en",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=1dfa4baf-2ee8-49c0-bc40-554fc6bc79c8",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=c193ddc7-ab00-4823-896b-092ea16d80da",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=7df85ff9-5675-46ae-afb8-8d68a5b6b4fa",
+      "https://storage.googleapis.com/storage/v1/b/fao-gismgr-gsocseq-data/o?prefix=DATA/GSOCSEQ/MAPSET/ (public object listing)",
+      "https://storage.googleapis.com/fao-gismgr-gsocseq-data/DATA/GSOCSEQ/MAPSET/SOCS/GSOCSEQ.SOCS.T0X.tif",
+      "https://storage.googleapis.com/fao-gismgr-gsocseq-data/DATA/GSOCSEQ/MAPSET/RSR/GSOCSEQ.RSR.SSM2.tif",
+      "https://data.apps.fao.org/glosis/?lang=en",
+      "https://api.crossref.org/works/10.4060/cb9002en",
+      "https://api.crossref.org/works/10.4060/cb2642en",
+      "https://www.fao.org/3/cb9002en/cb9002en.pdf (Annex A3 Algeria; NENA tables)"
+    ],
+    "notes": "Algeria coverage was checked by sampling the T0X and RSR SSM2 GeoTIFFs on a 1-degree grid and over a northern Algeria window (37.6% of 1 km pixels valid in -2..9 E, 34..37 N). published_date is the Crossref date of the v1.1 technical report (2022-03-21); updated_date is the 2025-01-07 publication date of the 'Version 2.0' global 1 km catalogue records. The report table layout is garbled in text extraction; one global table appears to list Algeria as 'National Submission', which contradicts Annex A3 ('Gap-filling Layer') and the NENA tables ('Gap-filled'). The annex is taken as authoritative."
+  }
+}

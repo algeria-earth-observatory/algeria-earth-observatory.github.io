@@ -1,0 +1,163 @@
+{
+  "id": "hansen-global-forest-change",
+  "title": "Hansen/UMD Global Forest Change 2000–2025 (v1.13)",
+  "description": "Global 30 m maps of tree canopy cover in 2000 and of annual gross forest cover loss from 2001 to 2025, derived from Landsat time-series analysis by the University of Maryland GLAD laboratory with Google, USGS and NASA. Layers include tree cover 2000 (% canopy closure of vegetation taller than 5 m), year of loss (stand-replacement disturbance), forest gain 2000–2012, a data mask, and cloud-free Landsat reference composites.",
+  "purpose": "Locates and dates tree-cover loss in Algeria's northern forests (cork oak, Aleppo pine, cedar) from wildfires, clearing and dieback, providing a consistent annual series for burned-forest assessment and reforestation monitoring.",
+  "domain": [
+    "land-ecosystems",
+    "hazards",
+    "human-change"
+  ],
+  "categories": [
+    "Forest cover change",
+    "Land cover change"
+  ],
+  "keywords": [
+    "Global Forest Change",
+    "Hansen",
+    "GLAD",
+    "University of Maryland",
+    "tree cover",
+    "forest loss",
+    "Landsat",
+    "deforestation",
+    "wildfire"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "University of Maryland, Global Land Analysis and Discovery (GLAD) laboratory, with Google, USGS and NASA",
+    "url": "https://glad.earthengine.app/view/global-forest-change"
+  },
+  "creator": "Hansen, M. C., Potapov, P. V., Moore, R., Hancher, M., Turubanova, S. A., Tyukavina, A., Thau, D., Stehman, S. V., Goetz, S. J., Loveland, T. R., Kommareddy, A., Egorov, A., Chini, L., Justice, C. O., Townshend, J. R. G.",
+  "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13/download.html",
+  "documentation_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13/download.html",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Download page: 'This work is licensed under a Creative Commons Attribution 4.0 International License.' Requested display credit: 'Source: Hansen/UMD/Google/USGS/NASA'. Cite Hansen et al. (2013) and the data URL.",
+  "citation": "Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. High-Resolution Global Maps of 21st-Century Forest Cover Change. Science 342 (15 November): 850–53. Data available on-line from: https://glad.earthengine.app/view/global-forest-change (version 1.13, 2000–2025).",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Hansen, M. C., Potapov, P. V., Moore, R., Hancher, M., Turubanova, S. A., Tyukavina, A., Thau, D., Stehman, S. V., et al. (2013). High-Resolution Global Maps of 21st-Century Forest Cover Change. Science, 342, 850–853.",
+      "doi": "10.1126/science.1244693",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "10° x 10° tiles spanning 180°W–180°E and 80°N–60°S. Algeria lies in tiles with top-left corners 40N_010W, 40N_000E, 30N_000E and neighbours (tiles 40N_000E, 40N_010W and 30N_000E were confirmed to exist for v1.13).",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -60,
+      180,
+      80
+    ]
+  },
+  "temporal_extent": {
+    "start": "2000-01-01",
+    "end": "2025-12-31",
+    "ongoing": true,
+    "frequency": "annual (loss year)",
+    "description": "Tree cover baseline for 2000; annual loss for 2001–2025; gain only for 2000–2012. Only the 'lossyear' and 'last' layers are updated annually, with a new version number each year."
+  },
+  "resolution": {
+    "spatial": "1 arc-second (about 30 m at the equator)",
+    "spatial_m": 30,
+    "temporal": "annual"
+  },
+  "format": [
+    "GeoTIFF tiles (10° x 10°, unsigned 8-bit)"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic, 1 arc-second)",
+  "variables": [
+    {
+      "name": "treecover2000",
+      "units": "%",
+      "description": "Canopy closure in 2000 of vegetation taller than 5 m (0–100)"
+    },
+    {
+      "name": "lossyear",
+      "units": "year code",
+      "description": "0 = no loss; otherwise year of gross loss minus 2000 (2001–2025)"
+    },
+    {
+      "name": "gain",
+      "units": "0/1",
+      "description": "Forest gain during 2000–2012"
+    },
+    {
+      "name": "datamask",
+      "units": "class",
+      "description": "0 no data, 1 mapped land, 2 persistent water (2000–2012)"
+    },
+    {
+      "name": "first / last",
+      "units": "reflectance",
+      "description": "Landsat red, NIR, SWIR1, SWIR2 composites for ~2000 and ~2025"
+    }
+  ],
+  "processing": "Supervised classification of Landsat time-series metrics on Google Earth Engine. Version 1.13 reprocesses 2011 onward with Landsat 8 and 9 data and a revised model; earlier years were not reprocessed. Loss is defined as a stand-replacement disturbance (forest to non-forest), and gain as the inverse of loss within 2000–2012.",
+  "validation": "Accuracy assessment is reported in Hansen et al. (2013). The v1.13 page warns that the maps are a relative indicator of trends and that 'definitive area estimation should not be made using pixels counts from the forest loss layers'; sample-based estimation is required for area statistics.",
+  "limitations": [
+    "Pixel counts of loss are biased area estimates; use a probability sample for official-style statistics.",
+    "Changes in sensors (Landsat 7 scan-line failure, Landsat 8/9), data volume and algorithm (v1.0 for 2000–2012 vs v1.13 for 2011–2025) make year-to-year comparisons uncertain; the provider recommends caution and temporal smoothing (e.g. 3-year averages).",
+    "'Tree cover' is any vegetation taller than 5 m, so orchards, olive groves and date-palm plantations may be included; it is not a legal forest definition.",
+    "Loss includes all stand-replacing causes (fire, clearing, harvest, dieback) without attribution of driver; gain is only available for 2000–2012.",
+    "Vegetation lower than 5 m (matorral, shrubland) is by definition not tree cover, and loss in sparse woodland depends on the canopy threshold chosen by the user."
+  ],
+  "version": "GFC-2025-v1.13",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GFC v1.13 download page (tiles and URL lists)",
+      "url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13/download.html",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "notes": "Per-layer text files list all tile URLs (e.g. lossyear.txt); select Algerian tiles."
+    },
+    {
+      "label": "GLAD Global Forest Change viewer",
+      "url": "https://glad.earthengine.app/view/global-forest-change",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive map."
+    },
+    {
+      "label": "Google Earth Engine (UMD/hansen/global_forest_change_2025_v1_13)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2025_v1_13",
+      "kind": "api",
+      "format": "Earth Engine Image",
+      "requires_login": true,
+      "notes": "Earth Engine account required; v1.12 is marked deprecated."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Forest and pre-forest cover is concentrated in the Tell Atlas (Kabylie, El Kala, Aurès, Ouarsenis). Loss years coincide with major fire seasons, but loss is not attributed to fire; cross-check with MODIS MCD64A1 burned area or FIRMS. Post-fire regrowth after 2012 is not captured, because the gain layer covers only 2000–2012. Saharan tiles contain essentially no tree cover.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "published_date",
+      "validation figures (not transcribed from Hansen et al. 2013)"
+    ],
+    "sources_consulted": [
+      "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13/download.html",
+      "https://glad.earthengine.app/view/global-forest-change",
+      "https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2025_v1_13",
+      "https://api.crossref.org/works/10.1126/science.1244693"
+    ],
+    "notes": "Licence, layers, definitions, caveats and tiling were read from the v1.13 download page. The page text for 'lossyear' still says 'a value in the range 1-20, representing loss detected primarily in the year 2001-2025' — the range appears not to have been updated; codes are year minus 2000. Tile existence over Algeria was confirmed with HTTP HEAD requests (40N_000E, 40N_010W, 30N_000E lossyear files, HTTP 200). The glad.umd.edu dataset page returned HTTP 404 and was not used."
+  }
+}

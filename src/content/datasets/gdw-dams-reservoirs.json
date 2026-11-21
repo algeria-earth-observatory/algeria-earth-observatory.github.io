@@ -1,0 +1,183 @@
+{
+  "id": "gdw-dams-reservoirs",
+  "title": "Global Dam Watch (GDW) Database of River Barriers and Reservoirs v1.0",
+  "description": "The Global Dam Watch consensus database (v1.0) harmonises earlier global dam datasets — including GRanD, GOODD and dams derived from the JRC Global Surface Water dataset — into 41,145 georeferenced river barriers (points) and 35,295 associated reservoir polygons, with attributes such as dam name, river, year, height, reservoir area and storage capacity, main use and a quality index. It supersedes the Global Reservoir and Dam database (GRanD).",
+  "purpose": "Provides an open, harmonised inventory of Algerian dams and reservoir outlines (location, capacity, year, use) to link reservoir-based water supply with surface-water, drought and hydrological basin data.",
+  "domain": [
+    "water",
+    "human-change"
+  ],
+  "categories": [
+    "Dams and reservoirs",
+    "Water infrastructure"
+  ],
+  "keywords": [
+    "Global Dam Watch",
+    "GDW",
+    "GRanD",
+    "GOODD",
+    "dams",
+    "reservoirs",
+    "river barriers",
+    "storage capacity",
+    "HydroSHEDS",
+    "HydroLAKES"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "Global Dam Watch (GDW) consortium; database lead McGill University (B. Lehner)",
+    "url": "https://www.globaldamwatch.org/database"
+  },
+  "creator": "Lehner, B., Beames, P., Mulligan, M., Zarfl, C., De Felice, L., van Soesbergen, A., Thieme, M., Garcia de Leaniz, C., et al.",
+  "source_url": "https://www.globaldamwatch.org/database",
+  "documentation_url": "https://www.nature.com/articles/s41597-024-03752-9",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Technical Documentation v1.0, section 4.1: 'licensed under a Creative Commons Attribution 4.0 International License'; the figshare record also lists CC BY 4.0. The authors ask users 'to refrain from redistributing the data in whole in its original format on other websites without the explicit written permission from the authors', and request the attribution 'This product incorporates data from the GDW database © Global Dam Watch (2024).' Data are provided without warranty.",
+  "citation": "Lehner, B., Beames, P., Mulligan, M., Zarfl, C., De Felice, L., van Soesbergen, A., Thieme, M., Garcia de Leaniz, C., et al. (2024). The Global Dam Watch database of river barrier and reservoir information for large-scale applications. Scientific Data, 11. https://doi.org/10.1038/s41597-024-03752-9",
+  "doi": "10.6084/m9.figshare.25988293",
+  "references": [
+    {
+      "citation": "Lehner, B., Beames, P., Mulligan, M., et al. (2024). The Global Dam Watch database of river barrier and reservoir information for large-scale applications. Scientific Data, 11.",
+      "doi": "10.1038/s41597-024-03752-9",
+      "url": "https://www.nature.com/articles/s41597-024-03752-9"
+    },
+    {
+      "citation": "Lehner, B., Liermann, C. R., Revenga, C., Vörösmarty, C., Fekete, B., Crouzet, P., Döll, P., Endejan, M., et al. (2011). High-resolution mapping of the world's reservoirs and dams for sustainable river-flow management. Frontiers in Ecology and the Environment, 9(9), 494–502. (GRanD, now superseded by GDW)",
+      "doi": "10.1890/100125",
+      "url": "https://www.globaldamwatch.org/grand"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global inventory; 88 barriers have COUNTRY = 'Algeria' (from GRanD 50, GOODD 25, JRC-GSW 13), located in the Tell, High Plateaux and Saharan Atlas basins (e.g. Beni Haroun, Koudiat Acerdoune, Taksebt, Gargar, Djorf Torba). Users filter the attribute table by country.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single release",
+    "description": "Static v1.0 inventory (figshare record created 2024-07-25). Dam construction years for Algerian entries range from 1932 to 2021; dams commissioned after the compilation are missing. A removal-year field is included."
+  },
+  "resolution": {
+    "spatial": "point locations (barriers) and reservoir polygons",
+    "spatial_m": null,
+    "temporal": "static"
+  },
+  "format": [
+    "Esri Shapefile (ZIP)",
+    "Esri File Geodatabase (ZIP)",
+    "CSV of barrier attributes"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic)",
+  "variables": [
+    {
+      "name": "DAM_NAME / RES_NAME",
+      "units": null,
+      "description": "Dam and reservoir names"
+    },
+    {
+      "name": "YEAR_DAM",
+      "units": "year",
+      "description": "Year of construction or completion"
+    },
+    {
+      "name": "CAP_MCM",
+      "units": "million m3",
+      "description": "Reservoir storage capacity (best estimate)"
+    },
+    {
+      "name": "AREA_SKM",
+      "units": "km2",
+      "description": "Reservoir surface area"
+    },
+    {
+      "name": "DAM_HGT_M",
+      "units": "m",
+      "description": "Dam height"
+    },
+    {
+      "name": "MAIN_USE / USE_*",
+      "units": null,
+      "description": "Main and secondary uses (irrigation, supply, hydropower, flood control, ...)"
+    },
+    {
+      "name": "QUALITY",
+      "units": null,
+      "description": "Quality index (Verified, Good, Fair, Poor, Unreliable)"
+    },
+    {
+      "name": "ORIG_SRC / POLY_SRC",
+      "units": null,
+      "description": "Original source of the record and of the reservoir polygon"
+    }
+  ],
+  "processing": "Records from multiple global and regional datasets were consolidated, de-duplicated and manually inspected; locations were co-registered to HydroSHEDS/RiverATLAS and reservoir polygons to HydroLAKES v1.1 (for Algerian records the POLY_SRC field lists SWBD for 51, JRC-GSW for 32 plus 1 modified, and McGill for 4). A generic quality indicator was assigned to each record.",
+  "validation": "The Technical Documentation (section 2.9) describes uncertainty handling and a five-level quality flag; no quantitative accuracy statistic is given for attributes.",
+  "limitations": [
+    "Not a time series: it gives capacity and outline, not reservoir filling or water level.",
+    "Algerian coverage (88 barriers) may be incomplete relative to the national dam inventory, especially for recent dams and small hill reservoirs (retenues collinaires); it could not be compared with ANBT data, whose website was unreachable.",
+    "Attributes such as capacity or year may come from secondary sources and can differ from official Algerian figures; check the QUALITY and source fields.",
+    "Reservoir polygons are static outlines from specific source dates and do not reflect current filling levels or siltation.",
+    "Download is through a request form on the GDW website or the figshare record; the authors ask that the full dataset not be re-hosted without permission."
+  ],
+  "version": "1.0",
+  "published_date": "2024-07-25",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GDW database page (download form)",
+      "url": "https://www.globaldamwatch.org/database",
+      "kind": "external",
+      "format": "Shapefile / File Geodatabase",
+      "requires_login": false,
+      "notes": "Download via a Google Form linked from the page."
+    },
+    {
+      "label": "figshare record 'Global Dam Watch database version 1.0'",
+      "url": "https://doi.org/10.6084/m9.figshare.25988293",
+      "kind": "external",
+      "format": "ZIP (Shapefile, Geodatabase, CSV, PDF documentation)",
+      "requires_login": false,
+      "notes": "Files: GDW_v1_0_shp.zip (69.7 MB), GDW_v1_0_gdb.zip (57.5 MB), GDW_TechDoc_v1_0.pdf."
+    },
+    {
+      "label": "GDW viewer",
+      "url": "https://gdw-viewer.web.app/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive map of barriers and reservoirs."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "The 88 Algerian records total about 9,370 million m3 of reported storage capacity (sum of CAP_MCM in GDW v1.0, not an official figure). Use GDW to locate dams and outline reservoirs, then combine with JRC Global Surface Water or Sentinel-2 to monitor water extent over time; reservoir filling rates are published nationally (ANBT) but could not be accessed for this check.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "completeness relative to the Algerian national dam inventory"
+    ],
+    "sources_consulted": [
+      "https://www.globaldamwatch.org/database",
+      "https://www.globaldamwatch.org/grand",
+      "https://api.figshare.com/v2/articles/25988293",
+      "https://api.datacite.org/dois/10.6084/m9.figshare.25988293",
+      "https://api.crossref.org/works/10.1038/s41597-024-03752-9",
+      "https://api.crossref.org/works/10.1890/100125",
+      "GDW_TechDoc_v1_0.pdf and GDW_barriers_v1_0.txt (from GDW_v1_0_shp.zip, downloaded 2026-11-21)"
+    ],
+    "notes": "The shapefile package was downloaded from figshare and the barrier attribute table filtered on COUNTRY = 'Algeria' to count records (88), sources, capacities and years. The figshare landing page returns HTTP 202 to scripted requests (bot protection), so the record was verified through the figshare API and DataCite; the DOI URL is listed for access. GRanD was not given a separate record because the GDW site states that GRanD 'is now superseded by the GDW database'. DAHITI (reservoir water levels) was considered but Algerian targets could not be confirmed without registration."
+  }
+}

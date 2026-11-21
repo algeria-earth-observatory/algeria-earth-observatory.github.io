@@ -14,6 +14,7 @@ BDIR = PUB / "data" / "aeo" / "boundaries" / "2026-11-20"
 TABLES = [
     ("precipitation", "aeo_precip_monthly_admin2_v1.0.0"),
     ("spei", "aeo_spei_monthly_admin2_v1.0.0"),
+    ("spi", "aeo_spi_monthly_admin2_v1.0.0"),
 ]
 
 

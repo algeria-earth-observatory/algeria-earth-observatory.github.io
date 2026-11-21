@@ -13,8 +13,8 @@ import { gacedProtocol } from './gaced-protocol';
 
 export { MAP_LAYERS, BASEMAPS, ALGERIA_BOUNDS, OUTSIDE_MASK };
 
-/** Layer spec dimming everything outside Algeria (all AEO maps show Algeria only). */
-export const maskLayer = (source = 'aeo-outside') => ({ id: 'aeo-outside-mask', type: 'fill' as const, source, paint: { 'fill-color': '#050a14', 'fill-opacity': 0.82 } });
+/** Layer spec fading everything outside Algeria (all AEO maps show Algeria only). */
+export const maskLayer = (source = 'aeo-outside', dark = false) => ({ id: 'aeo-outside-mask', type: 'fill' as const, source, paint: { 'fill-color': dark ? '#050a14' : '#f2efe7', 'fill-opacity': dark ? 0.82 : 0.86 } });
 
 maplibregl.addProtocol('aeo-gaced', gacedProtocol);
 export type BasemapId = (typeof BASEMAPS)[number]['id'];
@@ -22,7 +22,7 @@ export type BasemapId = (typeof BASEMAPS)[number]['id'];
 const GLYPHS = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
 const LABEL_FONT = ['Noto Sans Regular'];
 
-export interface LayerState { on: boolean; opacity: number; time: string | null }
+export interface LayerState { on: boolean; opacity: number; time: string | null; variant?: string | null }
 export interface MapState { basemap: BasemapId; layers: Record<string, LayerState> }
 
 // ---------------------------------------------------------------- time axis
@@ -72,7 +72,8 @@ export function stepDate(layer: MapLayer, current: string, dir: 1 | -1): string 
 }
 export const defaultDate = (l: MapLayer) => (l.time ? l.time.default ?? availableDates(l).at(-1) ?? null : null);
 const searchIds = new Map<string, string>();
-const imageUrl = (l: MapLayer, time: string | null) => (l.image?.url ?? '').replace('{year}', (time ?? '').slice(0, 4)).replace('{month}', (time ?? '').slice(0, 7));
+const imageUrl = (l: MapLayer, time: string | null, variant?: string | null) => (l.image?.url ?? '')
+  .replace('{year}', (time ?? '').slice(0, 4)).replace('{month}', (time ?? '').slice(0, 7)).replace('{variant}', variant ?? l.variants?.default ?? '');
 const tileUrl = (l: MapLayer, time: string | null) =>
   (l.tiles ?? '').replace('{time}', time ?? '').replace('{search}', searchIds.get(l.id) ?? l.mosaic?.fallback ?? '');
 
@@ -108,6 +109,12 @@ async function baseStyle(id: BasemapId): Promise<StyleSpecification> {
   if ('style' in b) {
     const res = await fetch(b.style);
     s = (await res.json()) as StyleSpecification;
+    if ('relief' in b && b.relief) {
+      // subtle shaded relief between the land background and the basemap's water, roads and labels
+      s.sources['base-relief'] = { type: 'raster', tiles: [b.relief], tileSize: 256, maxzoom: 12 };
+      const at = Math.max(1, s.layers.findIndex((l) => l.id.startsWith('water')));
+      s.layers.splice(at, 0, { id: 'base-relief', type: 'raster', source: 'base-relief', paint: { 'raster-opacity': 0.22, 'raster-saturation': -1, 'raster-contrast': 0.1 } });
+    }
   } else {
     s = {
       version: 8,
@@ -140,7 +147,7 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
   const firstSymbol = lastNonSymbol + 1;
   const below: LayerSpecification[] = [];
   const above: LayerSpecification[] = [];
-  const dark = state.basemap === 'satellite' || state.basemap === 'dark' || state.basemap === 'relief';
+  const dark = state.basemap === 'satellite' || state.basemap === 'relief';
 
   for (const l of MAP_LAYERS) {
     const st = state.layers[l.id];
@@ -153,13 +160,13 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
       };
       below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0 } });
     } else if (l.type === 'image' && l.image) {
-      s.sources[`aeo-${l.id}`] = { type: 'image', url: imageUrl(l, st?.time ?? defaultDate(l)), coordinates: l.image.coordinates as any };
+      s.sources[`aeo-${l.id}`] = { type: 'image', url: imageUrl(l, st?.time ?? defaultDate(l), st?.variant), coordinates: l.image.coordinates as any };
       below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0, 'raster-resampling': 'nearest' } });
     }
   }
   // Mask outside Algeria, above all data overlays and below boundaries.
   s.sources['aeo-outside'] = { type: 'geojson', data: OUTSIDE_MASK };
-  above.push(maskLayer());
+  above.push(maskLayer('aeo-outside', dark));
   // Commune boundaries: data are loaded only when the layer is switched on (1.5 MB).
   const cl = MAP_LAYERS.find((x) => x.id === 'communes');
   if (cl) {
@@ -178,6 +185,13 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
   const wvis = wst?.on ? 'visible' : 'none';
   s.sources['aeo-wilayas'] = { type: 'geojson', data: await loadWilayas(), promoteId: 'wilaya_code', attribution: w.attribution };
   const line = dark ? '#F7F9FA' : '#143B56';
+  for (const l of MAP_LAYERS.filter((x) => x.type === 'choropleth' && x.choropleth)) {
+    const c = l.choropleth!;
+    const step: unknown[] = ['step', ['feature-state', 'v'], c.colors[0]];
+    c.breaks.forEach((b, i) => step.push(b, c.colors[i + 1]));
+    above.push({ id: `aeo-${l.id}`, type: 'fill', source: 'aeo-wilayas', layout: { visibility: state.layers[l.id]?.on ? 'visible' : 'none' },
+      paint: { 'fill-color': ['case', ['boolean', ['feature-state', 'flag'], false], c.flagColor, ['==', ['typeof', ['feature-state', 'v']], 'number'], step, 'rgba(0,0,0,0)'] as any, 'fill-opacity': state.layers[l.id]?.opacity ?? l.opacity } });
+  }
   above.push(
     { id: 'aeo-wilayas-fill', type: 'fill', source: 'aeo-wilayas', layout: { visibility: wvis },
       paint: { 'fill-color': '#176BBA', 'fill-opacity': ['case', ['boolean', ['feature-state', 'selected'], false], 0.18, ['boolean', ['feature-state', 'hover'], false], 0.08, 0] } },
@@ -209,11 +223,27 @@ export function setLayerVisible(map: MLMap, id: string, on: boolean) {
 export function setLayerOpacity(map: MLMap, id: string, v: number) {
   if (id === 'wilayas') { if (map.getLayer('aeo-wilayas-line')) map.setPaintProperty('aeo-wilayas-line', 'line-opacity', v * 0.8); return; }
   if (id === 'communes') { if (map.getLayer('aeo-communes-line')) map.setPaintProperty('aeo-communes-line', 'line-opacity', v * 0.7); return; }
-  if (map.getLayer(`aeo-${id}`)) map.setPaintProperty(`aeo-${id}`, 'raster-opacity', v);
+  const lyr = MAP_LAYERS.find((x) => x.id === id);
+  if (map.getLayer(`aeo-${id}`)) map.setPaintProperty(`aeo-${id}`, lyr?.type === 'choropleth' ? 'fill-opacity' : 'raster-opacity', v);
 }
-export function setLayerTime(map: MLMap, layer: MapLayer, time: string) {
+
+const choroCache = new Map<string, Promise<any>>();
+/** Colour the wilaya polygons with a choropleth layer's values for one month (feature state). */
+export async function setChoropleth(map: MLMap, layer: MapLayer, time: string | null) {
+  const c = layer.choropleth;
+  if (!c || !time) return;
+  if (!choroCache.has(c.url)) choroCache.set(c.url, fetch(c.url).then((r) => r.json()));
+  const f = await choroCache.get(c.url)!;
+  const t = f.months.indexOf(time.slice(0, 7));
+  f.units.forEach((u: any, i: number) => {
+    const v = t < 0 ? null : f[c.key]?.[c.scale]?.[i]?.[t] ?? null;
+    map.setFeatureState({ source: 'aeo-wilayas', id: u.code }, { v: v === null ? null : v, flag: !!u[c.flag] });
+  });
+}
+export function setLayerTime(map: MLMap, layer: MapLayer, time: string | null, variant?: string | null) {
+  if (layer.type === 'choropleth') { setChoropleth(map, layer, time); return; }
   if (layer.type === 'image' && layer.image) {
-    (map.getSource(`aeo-${layer.id}`) as maplibregl.ImageSource | undefined)?.updateImage({ url: imageUrl(layer, time), coordinates: layer.image.coordinates as any });
+    (map.getSource(`aeo-${layer.id}`) as maplibregl.ImageSource | undefined)?.updateImage({ url: imageUrl(layer, time, variant), coordinates: layer.image.coordinates as any });
     return;
   }
   const src = map.getSource(`aeo-${layer.id}`) as maplibregl.RasterTileSource | undefined;
@@ -242,7 +272,7 @@ export function communePopupHtml(p: Record<string, unknown>) {
     <p class="aeo-pop-t">${escapeHtml(p.name)}</p>
     ${p.name_ar ? `<p class="aeo-pop-ar" lang="ar" dir="rtl">${escapeHtml(p.name_ar)}</p>` : ''}
     <dl><dt>Wilaya</dt><dd>${escapeHtml(p.wilaya_name)}</dd><dt>Area (computed)</dt><dd>${Number(p.area_km2).toLocaleString('en-US')} km²</dd></dl>
-    <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/${escapeHtml(p.commune_code)}/">Commune profile</a> · <a href="/analyze/?level=admin2&unit=${escapeHtml(p.commune_code)}">Analyze</a></p>
+    <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/${escapeHtml(p.commune_code)}/">Commune profile</a> · <a href="/drought/?level=admin2&unit=${escapeHtml(p.commune_code)}">Analyze</a></p>
   </div>`;
 }
 
@@ -257,7 +287,7 @@ export function wilayaPopupHtml(p: Record<string, unknown>) {
       <dt>Source</dt><dd><a href="https://www.openstreetmap.org/relation/${escapeHtml(p.osm_relation)}" target="_blank" rel="noopener">OSM relation ${escapeHtml(p.osm_relation)}</a></dd>
       <dt>Snapshot</dt><dd>${escapeHtml(p.snapshot)}</dd>
     </dl>
-    <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/">Wilaya profile</a> · <a href="/analyze/?level=admin1&unit=${escapeHtml(p.wilaya_code)}">Analyze</a> · <a href="/data/aeo-dza-admin-boundaries/">Boundaries</a></p>
+    <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/">Wilaya profile</a> · <a href="/drought/?level=admin1&unit=${escapeHtml(p.wilaya_code)}">Analyze</a> · <a href="/data/aeo-dza-admin-boundaries/">Boundaries</a></p>
   </div>`;
 }
 

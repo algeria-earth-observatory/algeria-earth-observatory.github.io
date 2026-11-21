@@ -1,0 +1,196 @@
+{
+  "id": "era5-single-levels",
+  "title": "ERA5 Reanalysis on Single Levels (hourly and monthly, 0.25°)",
+  "description": "ERA5 is the fifth-generation ECMWF atmospheric reanalysis of the global climate from 1940 to present, produced for the Copernicus Climate Change Service. This catalogue entry covers the single-level (surface and vertically integrated) fields: near-surface temperature and humidity, precipitation, radiation, wind, pressure, cloud cover, evaporation and other variables, distributed hourly on a regular 0.25° grid, with a separate monthly-averaged product and a 10-member ensemble for uncertainty.",
+  "purpose": "Provides the full atmospheric reanalysis behind ERA5-Land: variables not in ERA5-Land (e.g. boundary-layer height, total cloud cover, 100 m wind, ensemble spread), a longer record from 1940, and the ensemble uncertainty estimate. Useful as consistent climate context over all of Algeria where station records are sparse.",
+  "domain": [
+    "climate-drought",
+    "hazards",
+    "water"
+  ],
+  "categories": [
+    "Reanalysis",
+    "Atmospheric climate"
+  ],
+  "keywords": [
+    "ERA5",
+    "reanalysis",
+    "ECMWF",
+    "Copernicus Climate Change Service",
+    "C3S",
+    "single levels",
+    "2 m temperature",
+    "precipitation",
+    "wind",
+    "radiation",
+    "ERA5T"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "Copernicus Climate Change Service (C3S), implemented by ECMWF",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+  },
+  "creator": "European Centre for Medium-Range Weather Forecasts (ECMWF) for the Copernicus Climate Change Service",
+  "source_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+  "documentation_url": "https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "The CDS catalogue (STAC API) lists the licence as 'CC-BY-4.0'. The CDS citation guidelines require users to cite the catalogue entry and to attribute the Copernicus programme: 'Generated using or contains modified Copernicus Climate Change Service information <YYYY>. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains.'",
+  "citation": "Copernicus Climate Change Service (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.adbb2d47 (Accessed on DD-MMM-YYYY)",
+  "doi": "10.24381/cds.adbb2d47",
+  "references": [
+    {
+      "citation": "Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A., Muñoz-Sabater, J., Nicolas, J., Peubey, C., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999–2049.",
+      "doi": "10.1002/qj.3803",
+      "url": null
+    },
+    {
+      "citation": "Copernicus Climate Change Service (2019): ERA5 monthly averaged data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS).",
+      "doi": "10.24381/cds.f17050d7",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global regular latitude–longitude grid. The CDS form allows an area sub-set, so an Algeria box can be requested directly; the user must define it.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -89,
+      180,
+      89
+    ]
+  },
+  "temporal_extent": {
+    "start": "1940-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "hourly",
+    "description": "1940 to present (CDS temporal interval on 2026-11-21: 1940-01-01 to 2026-11-15). Updated daily with a latency of about 5 days; this early release (ERA5T) can differ from the final release 2–3 months later if serious flaws are found. Monthly averages: DOI 10.24381/cds.f17050d7 (to 2026-10 on the check date)."
+  },
+  "resolution": {
+    "spatial": "0.25° x 0.25° (atmosphere); ensemble mean, spread and members 0.5°",
+    "spatial_m": 27830,
+    "temporal": "hourly; monthly averages"
+  },
+  "format": [
+    "GRIB",
+    "NetCDF4 (conversion on the CDS)"
+  ],
+  "crs": "EPSG:4326 (WGS 84, regular latitude–longitude grid as distributed by the CDS)",
+  "variables": [
+    {
+      "name": "2 metre temperature (t2m)",
+      "units": "K",
+      "description": "Air temperature at 2 m above the surface"
+    },
+    {
+      "name": "2 metre dewpoint temperature (d2m)",
+      "units": "K",
+      "description": "Dew point at 2 m, for humidity and vapour-pressure deficit"
+    },
+    {
+      "name": "Total precipitation (tp)",
+      "units": "m",
+      "description": "Accumulated liquid and frozen precipitation from the forecast model"
+    },
+    {
+      "name": "10 metre and 100 metre wind components (u10, v10, u100, v100)",
+      "units": "m s-1",
+      "description": "Eastward/northward wind at 10 m and 100 m"
+    },
+    {
+      "name": "Surface solar radiation downwards (ssrd)",
+      "units": "J m-2",
+      "description": "Accumulated downward shortwave radiation at the surface"
+    },
+    {
+      "name": "Boundary layer height (blh)",
+      "units": "m",
+      "description": "Height of the atmospheric boundary layer"
+    },
+    {
+      "name": "Total cloud cover (tcc)",
+      "units": "0–1",
+      "description": "Fraction of the grid box covered by cloud"
+    },
+    {
+      "name": "Mean sea level pressure (msl)",
+      "units": "Pa",
+      "description": "Surface pressure reduced to mean sea level"
+    }
+  ],
+  "processing": "Four-dimensional variational data assimilation (ECMWF IFS) combining a forecast model with observations from across the world; hourly analyses and short-range forecasts. An uncertainty estimate is sampled by an underlying 10-member ensemble at three-hourly intervals, with pre-computed ensemble mean and spread. The CDS product is a regridded subset of the native-resolution ERA5 data.",
+  "validation": "No single accuracy figure is given on the CDS page; the CDS quality-assurance tab and Hersbach et al. (2020) describe evaluation against observations and earlier reanalyses. The ensemble spread is offered as an uncertainty estimate.",
+  "limitations": [
+    "Precipitation is a model forecast quantity, not an observation; in the Algerian Tell and Atlas it should be checked against gauges or gauge-based products (e.g. CHIRPS, CRU TS).",
+    "At 0.25° (about 28 km) the orography of the Tell and Saharan Atlas, Aurès and Hoggar is smoothed; local temperature and rainfall gradients are not resolved (ERA5-Land offers 0.1° for land variables).",
+    "ERA5T (most recent ~3 months) is preliminary and may be revised in the final release.",
+    "The observing system changes strongly over time (sparse pre-satellite observations before the 1970s), so long-term trends from early decades must be treated with caution; ensemble spread is larger in data-sparse periods.",
+    "Hourly global downloads are large; requests are queued and need a CDS account."
+  ],
+  "version": "ERA5 (consolidated) with ERA5T near-real-time extension",
+  "published_date": "2018-06-14",
+  "updated_date": "2026-11-21",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CDS: ERA5 hourly data on single levels",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "kind": "external",
+      "format": "GRIB / NetCDF4",
+      "requires_login": true,
+      "notes": "Free ECMWF/CDS account and acceptance of the CC-BY licence required; requests are queued."
+    },
+    {
+      "label": "CDS: ERA5 monthly averaged data on single levels",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means",
+      "kind": "external",
+      "format": "GRIB / NetCDF4",
+      "requires_login": true,
+      "notes": "DOI 10.24381/cds.f17050d7; published 2019-04-18, updated 2026-11-06 per CDS catalogue."
+    },
+    {
+      "label": "CDS API (cdsapi / retrieve endpoint)",
+      "url": "https://cds.climate.copernicus.eu/api/retrieve/v1/processes/reanalysis-era5-single-levels",
+      "kind": "api",
+      "format": "GRIB / NetCDF4",
+      "requires_login": true,
+      "notes": "Requires a personal CDS API key."
+    },
+    {
+      "label": "Google Earth Engine (ECMWF/ERA5/MONTHLY)",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY",
+      "kind": "api",
+      "format": "Earth Engine ImageCollection",
+      "requires_login": true,
+      "notes": "Third-party mirror of monthly aggregates; check its temporal coverage, which may lag the CDS."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Distinct from the existing ERA5-Land record: use ERA5 single levels for atmospheric variables (cloud, boundary layer, 100 m wind, dewpoint), for the 1940–1949 decade and for ensemble uncertainty; use ERA5-Land for higher-resolution land-surface variables. Over the Sahara, ERA5 is often the only gap-free source, but precipitation there is rare and model-based.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation (no quantitative figure transcribed)"
+    ],
+    "sources_consulted": [
+      "https://cds.climate.copernicus.eu/api/catalogue/v1/collections/reanalysis-era5-single-levels",
+      "https://cds.climate.copernicus.eu/api/catalogue/v1/collections/reanalysis-era5-single-levels-monthly-means",
+      "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation",
+      "https://api.datacite.org/dois/10.24381/cds.adbb2d47",
+      "https://api.datacite.org/dois/10.24381/cds.f17050d7",
+      "https://api.crossref.org/works/10.1002/qj.3803"
+    ],
+    "notes": "Licence, DOIs, dates, temporal interval and the overview table (0.25° atmosphere, 0.5° ensemble, GRIB, hourly, daily updates) were read from the CDS STAC catalogue and the layout JSON. The CDS spatial extent is given as 0–360°E, 89°S–89°N; the bbox is that extent in −180/180 form. The citation year (2023) is as printed by the CDS, while DataCite records the DOI as issued in 2018. Variable list is a selection from the CDS 'main variables' table; the CDS lists many more."
+  }
+}

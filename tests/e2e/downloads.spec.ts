@@ -7,7 +7,7 @@ const PRECIP_ANNUAL_W = '/data/aeo/products/precipitation/v1.0.0/tables/aeo_prec
 const SPEI_MONTHLY_W = '/data/aeo/products/spei/v1.0.0/tables/aeo_spei_monthly_admin1_v1.0.0.csv';
 
 test('1. annual precipitation statistics for Sétif', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await pickFromCombobox(page, '#rdd-wilaya', 'setif', '19');
   await expect(page.locator('#rdd-area')).toContainText('wilaya code 19');
   await expect(page.locator('#rdd-result')).toContainText('45 rows expected');
@@ -25,7 +25,7 @@ test('1. annual precipitation statistics for Sétif', async ({ page }) => {
 });
 
 test('2. monthly precipitation statistics for a commune', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await page.getByRole('radio', { name: 'Commune', exact: true }).check({ force: true });
   await pickFromCombobox(page, '#rdd-wilaya', '19', '19');
   await pickFromCombobox(page, '#rdd-commune', 'El Eulma', '1920');
@@ -43,7 +43,7 @@ test('2. monthly precipitation statistics for a commune', async ({ page }) => {
 });
 
 test('3. available wilaya precipitation GeoTIFF', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await pickFromCombobox(page, '#rdd-wilaya', 'Sétif', '19');
   await page.locator('input[name="rdd-format"][value="geotiff"]').check({ force: true });
   const asset = manifest('precipitation').download_assets.find((a: any) => a.level === 'admin1' && a.unit_code === '19');
@@ -56,7 +56,7 @@ test('3. available wilaya precipitation GeoTIFF', async ({ page }) => {
 });
 
 test('4. wilaya SPEI statistics', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await pickFromCombobox(page, '#rdd-wilaya', 'setif', '19');
   await page.getByRole('radio', { name: /Drought \(SPEI\)/ }).check();
   await page.selectOption('#rdd-scale', '12');
@@ -73,7 +73,7 @@ test('4. wilaya SPEI statistics', async ({ page }) => {
 });
 
 test('5. unavailable SPEI wilaya GeoTIFF is explained, with working alternatives', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await pickFromCombobox(page, '#rdd-wilaya', 'setif', '19');
   await page.getByRole('radio', { name: /Drought \(SPEI\)/ }).check();
   await page.locator('input[name="rdd-format"][value="geotiff"]').check({ force: true });
@@ -87,7 +87,7 @@ test('5. unavailable SPEI wilaya GeoTIFF is explained, with working alternatives
 });
 
 test('6. switching between map and time series keeps the selection', async ({ page }) => {
-  await page.goto('/analyze/?level=admin1&unit=19');
+  await page.goto('/drought/?level=admin1&unit=19&var=precip');
   await expect(page.locator('#az-title')).toContainText('Sétif');
   await page.selectOption('#az-wilaya', '05');
   await expect(page.locator('#az-title')).toContainText('Batna');
@@ -109,7 +109,7 @@ test('6. switching between map and time series keeps the selection', async ({ pa
 });
 
 test('7a. keyboard only: Sétif statistics', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await page.locator('#rdd-h').evaluate((h) => { h.setAttribute('tabindex', '-1'); (h as HTMLElement).focus(); });
   await tabTo(page, 'input[name="rdd-level"]');
   await tabTo(page, '#rdd-wilaya');
@@ -129,7 +129,7 @@ test('7a. keyboard only: Sétif statistics', async ({ page }) => {
 });
 
 test('7b. keyboard only: unavailable SPEI GeoTIFF, then an alternative', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await page.locator('#rdd-h').evaluate((h) => { h.setAttribute('tabindex', '-1'); (h as HTMLElement).focus(); });
   await tabTo(page, '#rdd-wilaya');
   await page.keyboard.type('19');
@@ -160,7 +160,7 @@ test('8. regional download on a phone @mobile', async ({ page }) => {
 });
 
 test('8b. homepage regional download on a phone @mobile', async ({ page }) => {
-  await openDownloader(page, '/');
+  await openDownloader(page, '/data/');
   await pickFromCombobox(page, '#rdd-wilaya', 'oran', '31');
   await page.getByRole('radio', { name: 'Administrative boundaries' }).check();
   const { buf, name } = await download(page);

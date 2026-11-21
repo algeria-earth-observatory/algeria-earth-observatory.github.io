@@ -1,0 +1,212 @@
+{
+  "id": "hwsd-v2",
+  "title": "Harmonized World Soil Database v2 (HWSD v2.2, FAO/IIASA)",
+  "description": "Global soil inventory from FAO and IIASA: a 30 arc-second (about 1 km) raster of soil mapping units linked to a relational database (Microsoft Access) of soil-unit composition and physical and chemical properties for seven depth layers down to 2 m. Version 2.2 (data revision 2026-09-30) follows HWSD v2.0 (2023) and v2.01. It harmonises regional and national soil maps, legacy FAO-UNESCO Soil Map of the World polygons among them, with WISE30sec soil attribute estimates.",
+  "purpose": "Standard soil input for crop, agro-ecological zoning (GAEZ), hydrological and land-surface models. Gives soil-unit composition, depth-resolved texture, organic carbon, pH, CEC, salinity (EC, ESP), calcium carbonate and gypsum for Algerian soil mapping units.",
+  "domain": [
+    "soil",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil maps and databases",
+    "Soil properties"
+  ],
+  "keywords": [
+    "HWSD",
+    "Harmonized World Soil Database",
+    "FAO",
+    "IIASA",
+    "GAEZ",
+    "WISE30sec",
+    "WRB",
+    "soil mapping units",
+    "salinity",
+    "gypsum",
+    "calcium carbonate"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Food and Agriculture Organization of the United Nations (FAO) and International Institute for Applied Systems Analysis (IIASA)",
+    "url": "https://data.apps.fao.org/catalog/dataset/ff5c613c-75bb-46a9-a162-bc728059b465"
+  },
+  "creator": "FAO Land and Water Division and IIASA (Nachtergaele, van Velthuizen, Verelst, Wiberg, Fischer)",
+  "source_url": "https://data.apps.fao.org/catalog/dataset/ff5c613c-75bb-46a9-a162-bc728059b465",
+  "documentation_url": "https://doi.org/10.4060/cc3823en",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "FAO data catalogue record for HWSD v2.2: 'This work is made available under the Creative Commons Attribution 4.0 International (CC-BY-4.0)'. The catalogue record for the previous version (v2.01) is tagged CC BY-NC-SA 4.0, so check which version you use. The v2.0 technical report is published under CC BY-NC-SA 3.0 IGO.",
+  "citation": "FAO & IIASA. Harmonized World Soil Database version 2.2. [Accessed on DD Month YYYY]. https://data.apps.fao.org/catalog/iso/ff5c613c-75bb-46a9-a162-bc728059b465. Licence: CC BY 4.0",
+  "doi": null,
+  "references": [
+    {
+      "citation": "FAO & IIASA (2023). Harmonized World Soil Database version 2.0. Rome and Laxenburg. ISBN 978-92-5-137499-3.",
+      "doi": "10.4060/cc3823en",
+      "url": "https://www.fao.org/documents/card/en/c/cc3823en"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land surface except Antarctica (v2.0 report). Algeria is covered: 93.5% of pixels in an Algeria bounding-box read of the WRB-group GeoTIFF on 2026-11-21 were valid (the rest are sea and no-data). The v2.0 report shows the source database per region only in a figure (Fig. 3.5); it names Tunisia explicitly (SOTWIS-Tunisia) but not Algeria, so the source map for Algeria was not confirmed in the text.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "irregular versions (v1.2 2012/2013, v2.0 2023, v2.01, v2.2 2026)",
+    "description": "Static compilation of legacy soil surveys and maps from many decades (e.g. FAO-UNESCO Soil Map of the World, 1971-1981). It has no reference year. FAO catalogue: publication 2023-01-27, revision 2026-09-30 (v2.2)."
+  },
+  "resolution": {
+    "spatial": "30 arc-seconds (about 1 km) raster of soil mapping units; the source maps' effective scale ranges from 1:1 million to 1:5 million",
+    "spatial_m": 1000,
+    "temporal": "static"
+  },
+  "format": [
+    "BIL raster of mapping-unit IDs (HWSD2.bil, 43200 x 21600, 16-bit)",
+    "Microsoft Access database (HWSD2.2.mdb)",
+    "GeoTIFF of dominant WRB Reference Soil Group (GAEZ-V5.HWSDV22.tif)",
+    "OGC WMTS"
+  ],
+  "crs": "EPSG:4326 (WGS84 geographic; GCS_WGS_1984 in HWSD2.prj)",
+  "variables": [
+    {
+      "name": "Soil mapping unit and soil-unit composition",
+      "units": "code / % share",
+      "description": "Each raster cell holds a mapping-unit ID linked to up to several soil units (FAO 1990 Revised Legend, correlated with WRB 2022 in v2.2) and their shares"
+    },
+    {
+      "name": "Depth layers D1-D7",
+      "units": "cm",
+      "description": "Seven standard layers: 0-20, 20-40, 40-60, 60-80, 80-100, 100-150, 150-200 cm"
+    },
+    {
+      "name": "Coarse fragments, sand, silt, clay, USDA texture class",
+      "units": "% volume (coarse fragments), % weight (sand, silt, clay)",
+      "description": "Per soil unit and depth layer"
+    },
+    {
+      "name": "Bulk density and reference bulk density",
+      "units": "g/cm3",
+      "description": "Per soil unit and depth layer"
+    },
+    {
+      "name": "Organic carbon, total nitrogen, C/N ratio",
+      "units": "% weight (organic carbon, as in the v2.0 report example table; the field description gives g/kg, so check the database), g/kg (total nitrogen)",
+      "description": "Per soil unit and depth layer"
+    },
+    {
+      "name": "pH (water), CEC soil, CEC clay, ECEC, TEB, base saturation, aluminium saturation",
+      "units": "-log(H+), cmolc/kg, %",
+      "description": "Per soil unit and depth layer"
+    },
+    {
+      "name": "ESP, calcium carbonate, gypsum, electrical conductivity",
+      "units": "%, % weight, % weight, dS/m",
+      "description": "Salinity, sodicity and calcareous/gypsiferous attributes, important for Algeria's arid soils"
+    },
+    {
+      "name": "Rootable depth and available water capacity (AWC)",
+      "units": "cm, mm",
+      "description": "Revised estimation procedures in v2.2 according to the FAO catalogue"
+    },
+    {
+      "name": "Dominant WRB Reference Soil Group",
+      "units": "class (1-34)",
+      "description": "Convenience raster GAEZ-V5.HWSDV22.tif; legend 1 Acrisols ... 34 Glaciers (FAO SLD)"
+    }
+  ],
+  "processing": "Seven source databases compiled into one 30 arc-second grid in v2.0: European Soil Database, the 1:1 million soil map of China, regional and national SOTER databases (SOTWIS), the FAO/UNESCO Digital Soil Map of the World, and national maps of Afghanistan, Turkiye and Ghana. Soil attribute values come from WISE30sec. v2.2 adds corrections to soil data and phases, updated WRB classifications and revised rootable depth and AWC estimation, driven by GAEZ v5 (FAO catalogue record).",
+  "validation": "No quantitative accuracy statement. The v2.0 report says reliability is variable: lower where the database relies on the Soil Map of the World, better where SOTER or national harmonised databases are used. The data 'are appropriate to be used for regional and global modelling'; for national studies it advises using national harmonised soil databases.",
+  "limitations": [
+    "Polygon-based soil associations: each mapping unit holds several soil units with percentage shares but no location within the polygon; using only the dominant soil can mislead (v2.0 report).",
+    "Property values are typical estimates per soil unit (WISE30sec), not local measurements, so within-polygon variation is not represented.",
+    "Coarse effective scale (1:1 million to 1:5 million) in North Africa; the Algerian source map is not named in the v2.0 report text.",
+    "The WRB-group convenience raster gives class 30 (Technosols) in urban areas, so point checks at Algerian towns return Technosols. Use the mapping-unit raster plus the database for analysis.",
+    "The full attribute database is a Microsoft Access .mdb file and needs a tool that reads Access files.",
+    "The licence changed between versions (v2.01 record CC BY-NC-SA 4.0, v2.2 CC BY 4.0); the v2.2 technical report (Nachtergaele et al.) is listed as forthcoming."
+  ],
+  "version": "2.2 (FAO catalogue: publication 2023-01-27, revision 2026-09-30)",
+  "published_date": "2023-01-27",
+  "updated_date": "2026-09-30",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "FAO data catalogue record (HWSD v2.2)",
+      "url": "https://data.apps.fao.org/catalog/dataset/ff5c613c-75bb-46a9-a162-bc728059b465",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Metadata, licence, citation and links to all files (also v2.01 as previous version)."
+    },
+    {
+      "label": "HWSD v2.2 database (ZIP, Access .mdb)",
+      "url": "https://data.apps.fao.org/catalog/dataset/fedae0d8-677c-47a7-9049-6cba560e6c0a/resource/2a815078-f166-4fd6-af0c-733235c15daf/download/hwsd2.2_db.zip",
+      "kind": "external",
+      "format": "ZIP (HWSD2.2.mdb)",
+      "requires_login": false,
+      "size_bytes": 11149251,
+      "notes": "Hosted by FAO."
+    },
+    {
+      "label": "HWSD v2.2 raster (ZIP, BIL mapping units)",
+      "url": "https://data.apps.fao.org/catalog/dataset/fedae0d8-677c-47a7-9049-6cba560e6c0a/resource/3d3ad0cb-c840-4eea-8ae1-fada78c5eebb/download/hwsd2.2_raster.zip",
+      "kind": "external",
+      "format": "ZIP (BIL + HDR + PRJ)",
+      "requires_login": false,
+      "size_bytes": 22439811,
+      "notes": "Hosted by FAO. Contains HWSD2.bil (43200 x 21600, uint16, nodata 65535)."
+    },
+    {
+      "label": "Dominant WRB soil group GeoTIFF (GAEZ v5)",
+      "url": "https://storage.googleapis.com/fao-gismgr-gaez-v5-data/DATA/GAEZ-V5/MAP/GAEZ-V5.HWSDV22.tif",
+      "kind": "external",
+      "format": "GeoTIFF",
+      "requires_login": false,
+      "size_bytes": 27994328,
+      "notes": "Hosted by FAO; class legend in the FAO SLD style."
+    },
+    {
+      "label": "HWSD page (FAO Global Soil Partnership)",
+      "url": "https://www.fao.org/global-soil-partnership/soil-data/harmonized-world-soil-database/en",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Overview of v2.0/v2.01; does not mention v2.2 or give links."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful for soil-unit composition and arid-soil attributes (calcium carbonate, gypsum, EC, ESP) that matter in the Algerian steppe and Sahara. Values are typical estimates per soil unit, not measurements. For irrigated perimeters or salinity studies, field data or national surveys (INSID) are needed.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "source map used for Algeria (only shown in v2.0 report Fig. 3.5, not in text)",
+      "organic carbon units (report gives both % weight and g/kg)",
+      "doi (no dataset DOI; v2.0 report DOI in references)",
+      "v2.2 technical report (listed as forthcoming)"
+    ],
+    "sources_consulted": [
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=ff5c613c-75bb-46a9-a162-bc728059b465",
+      "https://data.apps.fao.org/catalog/dataset/ff5c613c-75bb-46a9-a162-bc728059b465",
+      "https://data.apps.fao.org/catalog/iso/ff5c613c-75bb-46a9-a162-bc728059b465",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=24e2e2f5-0f74-4a6e-8bbe-9714b627483f",
+      "https://data.apps.fao.org/catalog/dataset/fedae0d8-677c-47a7-9049-6cba560e6c0a/resource/2a815078-f166-4fd6-af0c-733235c15daf/download/hwsd2.2_db.zip",
+      "https://data.apps.fao.org/catalog/dataset/fedae0d8-677c-47a7-9049-6cba560e6c0a/resource/3d3ad0cb-c840-4eea-8ae1-fada78c5eebb/download/hwsd2.2_raster.zip",
+      "https://storage.googleapis.com/fao-gismgr-gaez-v5-data/DATA/GAEZ-V5/MAP/GAEZ-V5.HWSDV22.tif",
+      "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/GAEZ-V5/styles/HWSDV22/sld",
+      "https://www.fao.org/global-soil-partnership/soil-data/harmonized-world-soil-database/en",
+      "https://api.crossref.org/works/10.4060/cc3823en",
+      "https://www.fao.org/3/cc3823en/cc3823en.pdf"
+    ],
+    "notes": "The request mentioned HWSD v2.0; FAO now distributes v2.2 (CC BY 4.0), and this record describes v2.2. Both ZIPs were downloaded and their contents listed (mdb; bil/hdr/prj/stx). The old FAO Soils Portal HWSD v2.0 URL returns 404. The IIASA HWSD page (iiasa.ac.at/models-tools-data/hwsd) returned 403 to automated requests and was not used. data_nature 'derived' because HWSD is compiled from soil surveys and maps, not a statistical prediction."
+  }
+}

@@ -38,6 +38,8 @@ const slug = (/** @type {string} */ s) => s.normalize('NFD').replace(/[̀-ͯ]/g,
 const PLAIN = {
   'aeo-dza-precipitation-chirps3': { id: 'precip', label: 'Precipitation', short: 'precipitation' },
   'aeo-dza-spei-terraclimate': { id: 'spei', label: 'Drought (SPEI)', short: 'SPEI' },
+  'aeo-dza-spi-chirps3': { id: 'spi', label: 'Drought (SPI)', short: 'SPI' },
+  'aeo-dza-soil-soilgrids': { id: 'soil', label: 'Soil properties (SoilGrids)', short: 'soil' },
   'aeo-dza-admin-boundaries': { id: 'boundaries', label: 'Administrative boundaries', short: 'boundary' },
 };
 
@@ -61,7 +63,7 @@ export function indicatorsFromRecords(records) {
       planned.push({ id: r.id, title: r.title.split(':')[0] });
     }
   }
-  const order = ['precip', 'spei', 'boundaries'];
+  const order = ['precip', 'spei', 'spi', 'soil', 'boundaries'];
   available.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   return { available, planned };
 }
@@ -77,7 +79,8 @@ export function makeContext(src) {
   const indicators = src.indicators.map((i) => {
     if (i.kind !== 'product') return i;
     const assets = /** @type {Asset[]} */ (src.manifests[i.id]?.download_assets ?? []);
-    return { ...i, steps: ['annual', 'monthly'].filter((s) => assets.some((a) => a.format === 'PARQUET' && a.href.includes(`_${s}_`))) };
+    // 'stats' = a static table without a time dimension (e.g. soil properties)
+    return { ...i, steps: ['annual', 'monthly', 'stats'].filter((s) => assets.some((a) => a.format === 'PARQUET' && a.href.includes(`_${s}_`))) };
   });
   return {
     indicators,
@@ -111,7 +114,7 @@ export const indicator = (ctx, id) => ctx.indicators.find((i) => i.id === id);
 /** Temporal coverage of a product and step, from the manifest. @param {Ctx} ctx @param {string} ind @param {string} step */
 export function coverage(ctx, ind, step) {
   const m = ctx.manifests[ind];
-  if (!m) return null;
+  if (!m || step === 'stats') return null;
   const t = m.temporal_coverage;
   if (step === 'annual') return { from: String(t.annual[0]), to: String(t.annual[1]) };
   return { from: t.monthly[0], to: t.monthly[1] };
@@ -155,11 +158,12 @@ export function formatsFor(ctx, sel) {
   const assets = /** @type {Asset[]} */ (ctx.manifests[ind.id].download_assets);
   const spatial = /** @type {string[]} */ (ctx.manifests[ind.id].spatial_products_levels ?? []);
   const geotiffOk = spatial.includes(sel.level) && (ind.id !== 'precip' || sel.step === 'annual');
+  const external = ctx.manifests[ind.id].external_rasters;
   const out = [
     { id: 'csv', label: `CSV — statistics for ${where} only`, available: true, regional: true },
     {
       id: 'geotiff',
-      label: geotiffOk ? `GeoTIFF — spatial grid${sel.level === 'admin1' ? ' for this wilaya' : ' for Algeria'}` : `GeoTIFF — ${!spatial.includes(sel.level) ? `not published for ${LEVEL_NAME[sel.level]}s` : 'annual values only'}`,
+      label: external && !spatial.length ? 'GeoTIFF — from the original source (not redistributed by AEO)' : geotiffOk ? `GeoTIFF — spatial grid${sel.level === 'admin1' ? ' for this wilaya' : ' for Algeria'}` : `GeoTIFF — ${!spatial.includes(sel.level) ? `not published for ${LEVEL_NAME[sel.level]}s` : 'annual values only'}`,
       available: geotiffOk, regional: sel.level !== 'admin0',
     },
   ];
@@ -194,10 +198,25 @@ export async function resolve(ctx, sel) {
       : 'Commune values are computed on the commune-average water balance of ≈3.7 km TerraClimate cells.');
   }
   if (ind.id === 'spei') notes.push('SPEI-n is empty for the first n − 1 months of the record (1961). In hyper-arid areas SPEI reflects evaporative demand rather than rainfall.');
+  if (ind.id === 'spi') notes.push('SPI-n is empty for the first n − 1 months (1981). Units flagged arid (normal below 100 mm/year) have unstable SPI; calendar months that cannot be fitted are empty.');
+  if (sel.step === 'stats' && ind.id === 'soil') {
+    notes.length = 0;
+    notes.push('SoilGrids values are model predictions (machine learning on soil profiles and covariates), not field measurements. Uncertainty is large in Algeria, where few profiles were available to the model.');
+    notes.push('q05_mean and q95_mean are the unit averages of the pixel 5 % and 95 % prediction quantiles: an indication of pixel-level uncertainty, not a confidence interval of the mean.');
+    notes.push('Concentrations are given per depth interval. The organic carbon stock (ocs, 0–30 cm) is the ISRIC stock product; AEO does not convert concentrations into stocks.');
+  }
 
   // ---- spatial grids
   if (sel.format === 'geotiff') {
     const spatial = /** @type {string[]} */ (m.spatial_products_levels ?? []);
+    if (m.external_rasters && !spatial.length) {
+      return {
+        ok: false, kind: 'unavailable', ...base,
+        reason: 'AEO publishes regional statistics for this product but does not redistribute its rasters. Download the original GeoTIFFs from the provider.',
+        external: { label: 'Original raster files (provider)', url: m.external_rasters.url, documentation: m.external_rasters.documentation },
+        alternatives: [{ label: `CSV statistics for ${a.name}`, patch: { format: 'csv' } }],
+      };
+    }
     if (!spatial.includes(sel.level)) {
       const parent = sel.level === 'admin2' && spatial.includes('admin1');
       return {
@@ -263,16 +282,32 @@ export async function resolve(ctx, sel) {
       ? idx.partitions.find((/** @type {any} */ p) => p.wilaya_code === a.wilaya && p.unit_codes.includes(a.code)) : null;
     if (part) { readFrom = { href: part.href, bytes: part.bytes, sha256: part.sha256, kind: 'parquet' }; via = idxUrl; }
   }
-  const scale = ind.id === 'spei' ? (sel.scale && SPEI_SCALES.includes(sel.scale) ? sel.scale : 'all') : null;
+  if (sel.step === 'stats') {
+    return {
+      ok: true, kind: 'extract', ...base, format: 'CSV',
+      filename: `aeo_${a.file}_${ind.id}_v${m.version}.csv`,
+      source, readFrom, via,
+      filter: { unit_code: a.code, step: 'stats' },
+      columns: ['property', 'property_label', 'depth', 'units', 'mean', 'q05_mean', 'q95_mean', 'pixels_1km', 'valid_pct', 'total_stock_Mt', 'support'],
+      rowsExpected: (m.layers ?? []).length,
+      coverageText: a.label, periodText: `${m.temporal_coverage?.snapshot ?? 'static'}`, periodApplies: false,
+      notes,
+      button: `Download ${a.name} ${ind.short} statistics — CSV`,
+    };
+  }
+  const isIndex = ind.id === 'spei' || ind.id === 'spi';
+  const scale = isIndex ? (sel.scale && SPEI_SCALES.includes(sel.scale) ? sel.scale : 'all') : null;
+  const scales = scale === 'all' ? SPEI_SCALES : [scale];
   const cols = ind.id === 'precip'
     ? (sel.step === 'annual' ? ['precip_mm', 'normal_1991_2020_mm', 'anomaly_mm', 'anomaly_pct', 'valid_area_pct'] : ['precip_mm', 'normal_1991_2020_mm', 'anomaly_mm'])
-    : ['p_mm', 'pet_mm', 'd_mm', ...(scale === 'all' ? SPEI_SCALES : [scale]).map((s) => `spei_${s}`)];
+    : ind.id === 'spi' ? ['precip_mm', ...scales.map((s) => `spi_${s}`), 'arid']
+    : ['p_mm', 'pet_mm', 'd_mm', ...scales.map((s) => `spei_${s}`)];
   const n = periods(sel.from, sel.to);
   const plabel = sel.from === sel.to ? sel.from : `${sel.from} to ${sel.to}`;
-  const what = ind.id === 'precip' ? `${sel.step} precipitation` : `SPEI${scale === 'all' ? ' (1, 3, 6, 12 months)' : `-${scale}`}`;
+  const what = ind.id === 'precip' ? `${sel.step} precipitation` : `${ind.short}${scale === 'all' ? ' (1, 3, 6, 12 months)' : `-${scale}`}`;
   return {
     ok: true, kind: 'extract', ...base, format: 'CSV',
-    filename: `aeo_${a.file}_${ind.id}_${sel.step}${scale && scale !== 'all' ? `_spei${scale}` : ''}_${sel.from}_${sel.to}_v${m.version}.csv`,
+    filename: `aeo_${a.file}_${ind.id}_${sel.step}${scale && scale !== 'all' ? `_${ind.id}${scale}` : ''}_${sel.from}_${sel.to}_v${m.version}.csv`,
     source, readFrom, via,
     filter: { unit_code: a.code, step: sel.step, from: sel.from, to: sel.to },
     columns: cols, rowsExpected: n,

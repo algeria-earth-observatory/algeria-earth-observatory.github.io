@@ -1,0 +1,224 @@
+{
+  "id": "wosis-soil-profiles",
+  "title": "WoSIS - World Soil Information Service standardised soil profile data (snapshot December 2023)",
+  "description": "Quality-assessed, standardised soil profile observations compiled by ISRIC - World Soil Information from many national and international data providers. The static December 2023 snapshot contains 228k profiles at 217k georeferenced sites in 174 countries, with more than 900k layers and over 6 million records. The dynamic 'wosis_latest' version is served through OGC WFS and a GraphQL API.",
+  "purpose": "Source of measured soil data (texture, organic carbon, pH, CEC, bulk density, EC, water retention and more) for calibrating or validating soil maps and models. For Algeria it shows how few profiles are openly shared, and so why global soil maps are poorly constrained there.",
+  "domain": [
+    "soil",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil profiles",
+    "Soil observations"
+  ],
+  "keywords": [
+    "WoSIS",
+    "ISRIC",
+    "soil profiles",
+    "soil observations",
+    "point data",
+    "WFS",
+    "soil organic carbon",
+    "texture",
+    "pH"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "observed",
+  "data_type": "point",
+  "provider": {
+    "name": "ISRIC - World Soil Information (World Data Centre for Soils)",
+    "url": "https://www.isric.org/explore/wosis"
+  },
+  "creator": "ISRIC - World Soil Information (Calisto, Moreira de Sousa, Batjes), from data shared by many contributing institutions",
+  "source_url": "https://www.isric.org/explore/wosis",
+  "documentation_url": "https://docs.isric.org/globaldata/wosis/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International (snapshot DOI metadata); per-provider licences apply",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "DataCite metadata for the December 2023 snapshot DOI list CC BY 4.0. The WoSIS FAQ says that only standardised profiles with 'public' licences, 'i.e. CC-BY or CC-BY-NC', are distributed and that each source data provider's licence must be respected, so some profiles may be non-commercial only. Data under more restrictive licences are not distributed; ISRIC uses them only for SoilGrids.",
+  "citation": "Batjes, N. H., Calisto, L., and de Sousa, L. M. (2024). Providing quality-assessed and standardised soil data to support global mapping and modelling (WoSIS snapshot 2023). Earth System Science Data, 16, 4735-4765. https://doi.org/10.5194/essd-16-4735-2024. Dataset: Calisto, L., Moreira de Sousa, L., and Batjes, N. H. (2023). Standardised soil profile data for the world (WoSIS snapshot - December 2023). ISRIC - World Soil Information (WDC - Soils). https://doi.org/10.17027/isric-wdcsoils-20231130",
+  "doi": "10.17027/isric-wdcsoils-20231130",
+  "references": [
+    {
+      "citation": "Batjes, N. H., Calisto, L., and de Sousa, L. M. (2024). Providing quality-assessed and standardised soil data to support global mapping and modelling (WoSIS snapshot 2023). Earth System Science Data, 16(10), 4735-4765.",
+      "doi": "10.5194/essd-16-4735-2024",
+      "url": "https://essd.copernicus.org/articles/16/4735/2024/"
+    },
+    {
+      "citation": "Calisto, L., Moreira de Sousa, L., and Batjes, N. H. (2023). Standardised soil profile data for the world (WoSIS snapshot - December 2023). ISRIC - World Soil Information (WDC - Soils).",
+      "doi": "10.17027/isric-wdcsoils-20231130",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global point dataset (174 countries). Algeria has very few points: a WFS query of wosis_latest (layer wosis_latest_profiles, country_name = 'Algeria') on 2026-11-21 returned only 10 profiles. Four come from WD-WISE, sampled in 1971-1972 at about 35.4-35.5 N, 4.5-5.3 E (Hodna/Setif area). Six come from WD-eSOTER, with no sampling date, near 34.9-35.0 N, 1.25-1.85 W (Tlemcen/Maghnia area, near the Moroccan border). The Sahara and most of the Tell have no openly served profiles. ISRIC does not state a per-country count in its documentation.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": true,
+    "frequency": "snapshots (2016, 2019, 2023; next foreseen mid-2026) plus a continuously updated 'wosis_latest' service",
+    "description": "Profiles were sampled over many decades. Sampling dates are recorded per profile where known (Algerian WISE profiles 1971-1972; the e-SOTER profiles have no date)."
+  },
+  "resolution": {
+    "spatial": "Point observations (profile locations with per-profile positional uncertainty) and layers/horizons by depth",
+    "spatial_m": null,
+    "temporal": "Per-profile sampling date, where recorded"
+  },
+  "format": [
+    "TSV in ZIP (static snapshot)",
+    "OGC WFS (wosis_latest; GML/CSV)",
+    "GraphQL API"
+  ],
+  "crs": "EPSG:4326 (WGS84 geographic coordinates)",
+  "variables": [
+    {
+      "name": "Profile/site attributes",
+      "units": null,
+      "description": "Location, positional uncertainty, sampling date, dataset code, WRB / FAO / USDA classification where available"
+    },
+    {
+      "name": "Organic carbon, total carbon, total nitrogen, calcium carbonate equivalent",
+      "units": "g/kg",
+      "description": "Standardised by analytical method (layers e.g. orgc, totc, nitkjd, tceq)"
+    },
+    {
+      "name": "Clay, silt, sand",
+      "units": "g/100g",
+      "description": "Particle-size fractions"
+    },
+    {
+      "name": "Bulk density",
+      "units": "kg/dm3",
+      "description": "Several method variants (e.g. bdfi33, bdfiod, bdwsod)"
+    },
+    {
+      "name": "Coarse fragments",
+      "units": "g/100g (gravimetric) or cm3/100cm3 (volumetric)",
+      "description": "cfgr / cfvo"
+    },
+    {
+      "name": "pH (water, KCl, CaCl2, NaF)",
+      "units": "unitless",
+      "description": "phaq, phkc, phca, phnf"
+    },
+    {
+      "name": "CEC (pH 7, pH 8.2) and ECEC",
+      "units": "cmol(c)/kg",
+      "description": "cecph7, cecph8, ecec"
+    },
+    {
+      "name": "Electrical conductivity",
+      "units": "dS/m",
+      "description": "Several extract ratios (elco20, elco25, elco50, elcosp)"
+    },
+    {
+      "name": "Phosphorus (Bray-I, Mehlich-3, Olsen, retention, total, water-soluble)",
+      "units": "mg/kg",
+      "description": "phetb1, phetm3, phetol, phprtn, phptot, phpwsl"
+    },
+    {
+      "name": "Water retention",
+      "units": "g/100g or cm3/100cm3",
+      "description": "At several suctions (WFS layers such as wg0006, wg0010, wg0033, wg0100, wg0200, wg0500; the capabilities list was only partly inspected)"
+    }
+  ],
+  "processing": "Source datasets are ingested, quality-checked and standardised to common property definitions and analytical-method groupings (WoSIS procedures, Batjes et al. 2024). The snapshot is a frozen copy of the then-current wosis_latest content with a DOI. wosis_latest grows as new data are standardised.",
+  "validation": "Quality assessment and standardisation are described in Batjes et al. (2024). The values are measurements, so there is no map-accuracy statistic. Analytical methods differ between sources and are documented per observation.",
+  "limitations": [
+    "Algeria is nearly absent: 10 profiles in wosis_latest on 2026-11-21, none in the Sahara and none after 1972 with a recorded date. Do not treat the dataset as representative of Algerian soils.",
+    "Measurement methods and dates are heterogeneous across sources; compare only after checking the method codes.",
+    "Licences are set per provider (CC BY or CC BY-NC); check the licence of each dataset before commercial use.",
+    "About 110,000 further 'shared' profiles used for SoilGrids cannot be distributed (ISRIC documentation).",
+    "Positional uncertainty varies per profile; some legacy coordinates are rounded."
+  ],
+  "version": "WoSIS snapshot December 2023 (static); wosis_latest (dynamic)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "WoSIS landing page (ISRIC)",
+      "url": "https://www.isric.org/explore/wosis",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Overview and current profile counts."
+    },
+    {
+      "label": "WoSIS documentation and FAQ",
+      "url": "https://docs.isric.org/globaldata/wosis/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Access tutorials (QGIS WFS, R, GraphQL), licences and units."
+    },
+    {
+      "label": "WoSIS snapshot December 2023 (ZIP)",
+      "url": "https://files.isric.org/public/wosis_snapshot/WoSIS_2023_December.zip",
+      "kind": "external",
+      "format": "ZIP (TSV)",
+      "requires_login": false,
+      "size_bytes": 456066475,
+      "sha256": "3115c6be84613dc960c600768a9999dd6d6ad5207017065196b7e356d3c50f3a",
+      "notes": "Hosted by ISRIC; checksum from ISRIC's checksum.sha256.txt in the same folder."
+    },
+    {
+      "label": "wosis_latest OGC WFS",
+      "url": "https://maps.isric.org/mapserv?map=/map/wosis_latest.map",
+      "kind": "api",
+      "format": "OGC WFS 2.0 (GML, CSV)",
+      "requires_login": false,
+      "notes": "Layers wosis_latest_profiles, wosis_latest_sites and one layer per property; supports attribute filters (e.g. country_name)."
+    },
+    {
+      "label": "WoSIS GraphQL API",
+      "url": "https://graphql.isric.org/",
+      "kind": "api",
+      "format": "GraphQL",
+      "requires_login": false,
+      "notes": "See the ISRIC GraphQL tutorial."
+    },
+    {
+      "label": "WoSIS dashboard",
+      "url": "https://dashboards.isric.org/superset/dashboard/wosis_latest/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Interactive statistics of wosis_latest."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Only 10 openly served profiles fall in Algeria: 4 WISE profiles from 1971-1972 in the Hodna/Setif area and 6 undated e-SOTER profiles near Tlemcen/Maghnia. WoSIS is therefore not a usable source of Algerian soil observations. It does explain why global products (SoilGrids, GSOCmap gap-filling, OpenLandMap-soildb) are weakly constrained in Algeria. National profile data (e.g. INSID, university surveys) are not openly shared through WoSIS.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "spatial_extent.bbox",
+      "published_date (DataCite gives publication year 2023 only)",
+      "number of Algerian profiles in the static 2023 snapshot (the count of 10 is from wosis_latest via WFS; the 456 MB snapshot was not downloaded)"
+    ],
+    "sources_consulted": [
+      "https://www.isric.org/explore/wosis",
+      "https://docs.isric.org/globaldata/wosis/",
+      "https://docs.isric.org/globaldata/wosis/faq-wosis.html",
+      "https://files.isric.org/public/wosis_snapshot/",
+      "https://files.isric.org/public/wosis_snapshot/checksum.sha256.txt",
+      "https://maps.isric.org/mapserv?map=/map/wosis_latest.map&service=WFS&request=GetCapabilities&version=2.0.0",
+      "https://maps.isric.org/mapserv?map=/map/wosis_latest.map&service=WFS&version=2.0.0&request=GetFeature&typeNames=ms:wosis_latest_profiles (filter country_name = Algeria; resultType=hits and CSV)",
+      "https://graphql.isric.org/",
+      "https://dashboards.isric.org/superset/dashboard/wosis_latest/",
+      "https://api.datacite.org/dois/10.17027/isric-wdcsoils-20231130",
+      "https://api.crossref.org/works/10.5194/essd-16-4735-2024",
+      "https://essd.copernicus.org/articles/16/4735/2024/"
+    ],
+    "notes": "The ISRIC landing page states 'over 230,000 georeferenced profiles from 174 countries' by mid-2025; the 2023 snapshot description (DataCite) gives 228k profiles at 217k sites. The DOI landing page resolves to the ISRIC GeoNetwork record e50f84e1-aa5b-49cb-bd6b-cd581232a2ec."
+  }
+}

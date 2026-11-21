@@ -1,0 +1,174 @@
+{
+  "id": "fao-aquastat",
+  "title": "FAO AQUASTAT Country Statistics on Water and Agriculture",
+  "description": "AQUASTAT is FAO's global information system on water and agriculture. Its dissemination system provides over 180 country-level variables and indicators on renewable water resources, water withdrawal by sector and source, irrigation and drainage development, and SDG 6.4 indicators (water-use efficiency, water stress), as annual series with a symbol for each value showing whether it is official, estimated, imputed or external.",
+  "purpose": "The standard international reference for Algeria's national water balance (renewable resources, withdrawals, irrigated area, water stress), needed to put satellite-based water and irrigation products in a national context.",
+  "domain": [
+    "water",
+    "agriculture"
+  ],
+  "categories": [
+    "National water statistics",
+    "Irrigation",
+    "SDG 6.4"
+  ],
+  "keywords": [
+    "AQUASTAT",
+    "FAO",
+    "water withdrawal",
+    "renewable water resources",
+    "irrigation",
+    "area equipped for irrigation",
+    "water stress",
+    "SDG 6.4.1",
+    "SDG 6.4.2"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "tabular",
+  "provider": {
+    "name": "Food and Agriculture Organization of the United Nations (FAO), Land and Water Division – AQUASTAT",
+    "url": "https://www.fao.org/aquastat/en/"
+  },
+  "creator": "FAO AQUASTAT, from national questionnaires, reports and FAO estimates",
+  "source_url": "https://data.apps.fao.org/aquastat/?lang=en",
+  "documentation_url": "https://www.fao.org/aquastat/en/databases/maindatabase/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "The FAO data catalog entries for the AQUASTAT domains 'Water Resources', 'Water Use' and 'Irrigation' (each pointing to the AQUASTAT dissemination platform) are licensed CC-BY-4.0. The FAO Statistical Database Terms of Use also apply. Note: the catalog entry 'AQUASTAT Dissemination System' (the view configuration and SQL query files of the web application) is listed as CC-BY-NC-SA-4.0; this record applies the CC-BY-4.0 licence of the data domains.",
+  "citation": "FAO. [yyyy]. AQUASTAT Core Database. Food and Agriculture Organization of the United Nations. Database accessed on [yyyy/mm/dd].",
+  "doi": null,
+  "references": [],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Country-level values for 200+ countries plus regional aggregates; filter Area = Algeria. No sub-national data.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "1960-01-01",
+    "end": "2023-12-31",
+    "ongoing": true,
+    "frequency": "annual",
+    "description": "The FAO main-database page describes data from 1960 (grouped by 5-year periods in the former system); the current dissemination system publishes yearly values. For Algeria, the API returned values for 1990–2023 for the variables checked (total renewable water resources, total and freshwater withdrawal, sectoral shares, area equipped for full control irrigation, SDG 6.4.1/6.4.2)."
+  },
+  "resolution": {
+    "spatial": "national (country-level)",
+    "spatial_m": null,
+    "temporal": "annual (long-term averages for renewable resources)"
+  },
+  "format": [
+    "CSV (export from the web platform)",
+    "CSV via FAO BigQuery API"
+  ],
+  "crs": null,
+  "variables": [
+    {
+      "name": "Total renewable water resources (4188)",
+      "units": "10^9 m3/year",
+      "description": "Long-term average; Algeria 2023: 11.667 (imputed)"
+    },
+    {
+      "name": "Total water withdrawal (4253)",
+      "units": "10^9 m3/year",
+      "description": "Algeria: official values for 2020–2022 (11.244, 10.621, 10.961)"
+    },
+    {
+      "name": "Total freshwater withdrawal (4263)",
+      "units": "10^9 m3/year",
+      "description": "Withdrawal excluding desalinated and treated wastewater"
+    },
+    {
+      "name": "Agricultural / municipal water withdrawal as % of total (4254, 4255)",
+      "units": "%",
+      "description": "Sectoral shares; Algeria 2023: 67.4% agriculture, 30.9% municipal (imputed)"
+    },
+    {
+      "name": "Area equipped for full control irrigation: total (4311)",
+      "units": "1000 ha",
+      "description": "Algeria: official 445.5 (1992), 513.4 (2001), 1260 (2016); estimates and imputations in between and after"
+    },
+    {
+      "name": "SDG 6.4.2 Water stress (4550)",
+      "units": "%",
+      "description": "Freshwater withdrawal as % of available freshwater after environmental flow requirements; Algeria 2023: 144.8 (estimate)"
+    },
+    {
+      "name": "SDG 6.4.1 Water use efficiency (4551)",
+      "units": "US$/m3",
+      "description": "Value added per volume of water withdrawn"
+    }
+  ],
+  "processing": "Values are compiled from the AQUASTAT annual questionnaire, national reports and official websites, and completed by FAO estimates, imputations (carry forward, interpolation) and values from other international agencies. Each value carries a symbol: A (official), '-' (official, single national source), E (estimate), I (imputed), X (external).",
+  "validation": "No formal validation; reliability must be judged from the value symbols. For Algeria most values checked are estimates (E) or imputations (I): e.g. only 3 of 34 annual values of total water withdrawal (2020–2022) and 3 of 32 values of area equipped for full control irrigation (1992, 2001, 2016) are marked official (A).",
+  "limitations": [
+    "Most Algerian values are FAO estimates or imputations rather than reported figures; imputed years (carry-forward or linear interpolation) contain no new information.",
+    "Renewable water resources are long-term averages that do not vary with drought years.",
+    "National totals only; no wilaya or basin breakdown.",
+    "Definitions (e.g. 'area equipped for irrigation' versus actually irrigated area) differ from Algerian ministry statistics, so figures may not match national sources.",
+    "The web platform is a JavaScript application; scripted access requires the FAO BigQuery API with the published SQL query (parameters area, type, variable, year)."
+  ],
+  "version": "AQUASTAT dissemination system (yearly data, current release)",
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "AQUASTAT dissemination platform",
+      "url": "https://data.apps.fao.org/aquastat/?lang=en",
+      "kind": "external",
+      "format": "CSV export",
+      "requires_login": false,
+      "notes": "Select country (Algeria), variables and years; values come with their symbols."
+    },
+    {
+      "label": "FAO data catalog: AQUASTAT 'Water Resources' domain (licence and metadata)",
+      "url": "https://data.apps.fao.org/catalog/dataset/water-resources",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "CC-BY-4.0; sister entries 'water-use' and 'irrigation'."
+    },
+    {
+      "label": "FAO BigQuery API (example: Algeria, selected variables, 2020–2023)",
+      "url": "https://api.data.apps.fao.org/api/v2/bigquery?sql_url=https%3A%2F%2Fdata.apps.fao.org%2Fcatalog%2Fdataset%2F945666e6-7803-4621-b8ef-cfd885a84596%2Fresource%2F4a000a1b-24f0-4328-aab6-b9b525892090%2Fdownload%2Fquery_en.sql&area=Algeria&type=country&variable=4188%2C4253%2C4311&year=2020%2C2021%2C2022%2C2023",
+      "kind": "api",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "Uses the public SQL query of the AQUASTAT dissemination system; change 'variable' and 'year' as needed (variable codes as in the CSV 'VariableCode' column)."
+    },
+    {
+      "label": "AQUASTAT website",
+      "url": "https://www.fao.org/aquastat/en/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Country profiles, metadata, glossary and symbols."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "AQUASTAT reports Algeria's water stress (SDG 6.4.2) above 100% (144.8% in 2023, estimate): by definition, freshwater withdrawals exceed the renewable freshwater available after environmental flow requirements, which is possible where non-renewable (fossil) groundwater is abstracted. The irrigated-area series shows a strong increase since the 2000s but rests on few official data points. Compare with Ministry of Agriculture statistics and with satellite irrigation maps before use.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "published_date",
+      "updated_date",
+      "start date 1960 (from FAO main-database page, not checked for Algeria)"
+    ],
+    "sources_consulted": [
+      "https://www.fao.org/aquastat/en/",
+      "https://www.fao.org/aquastat/en/databases/maindatabase/",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=water-resources",
+      "https://data.apps.fao.org/catalog/api/3/action/package_show?id=aquastat-ds",
+      "https://data.apps.fao.org/catalog/dataset/945666e6-7803-4621-b8ef-cfd885a84596/resource/4a000a1b-24f0-4328-aab6-b9b525892090/download/query_en.sql",
+      "https://www.fao.org/contact-us/terms/db-terms-of-use/en/"
+    ],
+    "notes": "Algerian values and symbol definitions were retrieved on the check date through the FAO BigQuery API (area=Algeria, type=country, years 1990–2025, nine variables; 304 rows). The values quoted are illustrative and will change with new releases. data_nature is 'derived' because most Algerian values are FAO estimates or imputations rather than direct national reports. The FAO main-database page still describes the former 5-year-period system (1960–2017)."
+  }
+}

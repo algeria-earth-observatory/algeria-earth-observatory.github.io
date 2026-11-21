@@ -1,0 +1,96 @@
+---
+/**
+ * Publications & References. Generated from src/data/publications.json, which
+ * scripts/references/verify_references.py builds from Crossref metadata after checking
+ * that each DOI is registered and matches the expected title, first author and year.
+ */
+import Base from '../../layouts/Base.astro';
+import publications from '../../data/publications.json';
+import { getDatasets } from '../../lib/catalog';
+import { getCollection } from 'astro:content';
+import { domainById } from '../../lib/domains';
+
+type Pub = (typeof publications)[number];
+const datasets = new Map((await getDatasets()).map((d) => [d.id, d.title.split(':')[0]]));
+const docs = new Map((await getCollection('docs')).map((d) => [`/docs/${d.id}/`, d.data.title.split(' — ')[0]]));
+const aeo = publications.filter((p) => p.category === 'aeo');
+const foundations = publications.filter((p) => p.category === 'foundations');
+const topics = [...new Set(foundations.map((p) => p.topic))];
+
+const authorList = (p: Pub) => {
+  const a = p.authors;
+  if (!a.length) return p.publisher ?? '';
+  const one = (x: { family: string; given: string }) => `${x.family}${x.given ? `, ${x.given.split(/[\s-]+/).map((g) => `${g[0]}.`).join(' ')}` : ''}`;
+  return a.length > 6 ? `${a.slice(0, 6).map(one).join(', ')}, et al.` : a.length === 1 ? one(a[0]) : `${a.slice(0, -1).map(one).join(', ')} & ${one(a[a.length - 1])}`;
+};
+const citation = (p: Pub) => `${authorList(p)} (${p.year}). ${p.title}.${p.journal ? ` ${p.journal}` : ''}${p.volume ? `, ${p.volume}` : ''}${p.issue ? `(${p.issue})` : ''}${p.pages ? `, ${p.pages}` : ''}. https://doi.org/${p.doi}`;
+const bibKey = (p: Pub) => `${(p.authors[0]?.family ?? 'aeo').normalize('NFD').replace(/[^A-Za-z]/g, '')}${p.year}${p.title.split(/\s+/)[0].replace(/[^A-Za-z]/g, '').toLowerCase()}`;
+const bibtex = (p: Pub) => {
+  const type = p.type === 'journal-article' ? 'article' : p.type === 'proceedings-article' ? 'inproceedings' : 'misc';
+  const f: [string, string | number | null | undefined][] = [
+    ['author', p.authors.map((a) => `${a.family}${a.given ? `, ${a.given}` : ''}`).join(' and ') || p.publisher],
+    ['title', `{${p.title}}`], ['journal', p.journal || null], ['year', p.year], ['volume', p.volume], ['number', p.issue], ['pages', p.pages?.replace('-', '--')], ['doi', p.doi], ['publisher', p.publisher],
+  ];
+  return `@${type}{${bibKey(p)},\n${f.filter(([, v]) => v !== null && v !== undefined && v !== '').map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}\n}`;
+};
+const supportLink = (s: string) => (s.startsWith('/docs/') ? { href: s, label: docs.get(s) ?? s } : { href: `/data/${s}/`, label: datasets.get(s) ?? s });
+---
+<Base title="Publications & References" description="Curated, verified bibliography of the scientific publications behind the datasets and methods of the Algeria Earth Observatory, with DOI links, citations and BibTeX.">
+  <div class="mx-auto max-w-[90rem] px-5 pb-16 pt-10 sm:px-8 lg:px-12">
+    <nav aria-label="Breadcrumb" class="text-[0.9375rem] text-slate"><a href="/science/">Science</a> <span aria-hidden="true">›</span> <span aria-current="page">Publications & References</span></nav>
+    <header class="mt-3 grid gap-6 border-b border-line pb-8 lg:grid-cols-12 lg:items-end">
+      <h1 class="h-section !text-[clamp(2rem,3.4vw,2.75rem)] lg:col-span-7">Publications & References</h1>
+      <p class="text-[1rem] leading-relaxed text-slate lg:col-span-5">Each DOI is checked against Crossref (title, authors, year, journal) and against the DOI registry. Citations and BibTeX are generated from that metadata. Last check: {foundations[0]?.verified.date}.</p>
+    </header>
+
+    <section class="mt-10" aria-labelledby="aeo-h">
+      <h2 id="aeo-h" class="h-sub">AEO Research</h2>
+      {aeo.length ? <ul></ul> : <p class="mt-3 max-w-3xl text-[1rem] text-graphite">No research papers, datasets with DOIs or software releases by AEO contributors have been published yet. They will be listed here, separately from the external literature below.</p>}
+    </section>
+
+    <section class="mt-12" aria-labelledby="found-h">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 id="found-h" class="h-sub">Scientific Foundations <span class="tabular text-slate">({foundations.length})</span></h2>
+        <label class="text-[0.875rem]"><span class="mr-2 font-medium text-atlas">Topic</span>
+          <select id="pub-topic" class="field !inline-block !w-auto"><option value="">All topics</option>{topics.map((t) => <option value={t}>{t}</option>)}</select></label>
+      </div>
+      <p class="mt-2 max-w-3xl text-[0.9375rem] text-slate">Peer-reviewed publications (and one software package) supporting the datasets and methods AEO uses or recommends. They are not AEO publications.</p>
+      {topics.map((t) => (
+        <div class="mt-8" data-topic={t}>
+          <h3 class="text-[1.0625rem] font-medium text-atlas">{t}</h3>
+          <ol class="mt-2 border-t border-line">
+            {foundations.filter((p) => p.topic === t).map((p) => (
+              <li class="border-b border-line py-4" id={`ref-${bibKey(p)}`}>
+                <p class="text-[0.9375rem] leading-relaxed text-graphite">{authorList(p)} ({p.year}). <span class="text-atlas">{p.title}</span>. {p.journal && <em>{p.journal}</em>}{p.volume && `, ${p.volume}`}{p.issue && `(${p.issue})`}{p.pages && `, ${p.pages}`}.</p>
+                <p class="mt-1 text-[0.9375rem] text-slate">{p.why}</p>
+                <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.875rem]">
+                  <a href={p.url} rel="noopener" class="font-mono">doi.org/{p.doi}</a>
+                  <button type="button" class="link-copy" data-copy={citation(p)}>Copy citation</button>
+                  <details class="inline"><summary class="inline cursor-pointer text-cobalt underline">BibTeX</summary><pre class="mt-2 max-w-full overflow-x-auto border border-line bg-paper p-3 font-mono text-[0.8125rem]">{bibtex(p)}</pre><button type="button" class="link-copy mt-1" data-copy={bibtex(p)}>Copy BibTeX</button></details>
+                  {p.supports.length > 0 && <span class="text-slate">Supports: {p.supports.map((s, i) => { const l = supportLink(s); return <>{i > 0 && ', '}<a href={l.href}>{l.label}</a></>; })}</span>}
+                  <span class="text-slate">{p.domain.map((d) => domainById(d)?.short).filter(Boolean).join(', ')}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </section>
+    <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
+    <p class="mt-10 text-[0.9375rem] text-slate">References are generated by <code>scripts/references/verify_references.py</code>; a DOI that fails verification is left out. Propose an addition through <a href="/contribute/">Contribute</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .link-copy { color: var(--color-cobalt); text-decoration: underline; text-underline-offset: 2px; min-height: 1.5rem; }
+</style>
+
+<script>
+  const status = document.getElementById('copy-status')!;
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy!); const t = b.textContent; b.textContent = 'Copied'; status.textContent = 'Copied to the clipboard.'; setTimeout(() => { b.textContent = t; }, 1500); }
+    catch { status.textContent = 'Copy failed: select the text manually.'; }
+  }));
+  const sel = document.getElementById('pub-topic') as HTMLSelectElement;
+  sel.addEventListener('change', () => document.querySelectorAll<HTMLElement>('[data-topic]').forEach((d) => { d.hidden = !!sel.value && d.dataset.topic !== sel.value; }));
+</script>

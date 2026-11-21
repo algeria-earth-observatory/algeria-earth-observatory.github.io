@@ -23,7 +23,7 @@ export const SPEI_CLASSES = [
   { max: -2, label: 'extremely dry', color: '#6b1515' },
   { max: -1.5, label: 'severely dry', color: '#d03b3b' },
   { max: -1, label: 'moderately dry', color: '#ee8d81' },
-  { max: 1, label: 'near normal', color: '#4a5260' },
+  { max: 1, label: 'near normal', color: '#f0efec' },
   { max: 1.5, label: 'moderately wet', color: '#86b6ef' },
   { max: 2, label: 'very wet', color: '#3987e5' },
   { max: Infinity, label: 'extremely wet', color: '#0d366b' },

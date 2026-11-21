@@ -10,9 +10,19 @@ import { THEMATIC_DOMAINS } from '../lib/domains';
     <div class="prose-aeo">
       <h2 id="mission">Mission</h2>
       <p>
-        Algeria Earth Observatory is an open scientific initiative dedicated to making Earth observation and environmental information about Algeria
-        accessible, discoverable, reusable, and scientifically documented. Through open data, interactive mapping, and collaborative research, the Observatory
-        supports better understanding of Algeria’s agricultural landscapes, climate variability, land-use change, water resources, and environmental systems.
+        Making environmental data about Algeria easier to discover, explore, analyze, and reuse through open Earth observation, reproducible science, and
+        collaborative research.
+      </p>
+      <h2 id="status">Project status</h2>
+      <p>AEO is an emerging, independent open-science initiative. To be precise about what it is not:</p>
+      <ul>
+        <li>it is <strong>not</strong> an official government observatory;</li>
+        <li>it is <strong>not</strong> an institutional research consortium, and has no formal partnerships or endorsements;</li>
+        <li>it is <strong>not</strong> an operational national forecasting authority: its drought outlooks are experimental and not yet published.</li>
+      </ul>
+      <p>
+        AEO documents open datasets that cover Algeria, whether or not it processes them, and publishes Algeria-ready versions of selected datasets
+        with their code, versions and limitations.
       </p>
 
       <h2 id="why">Why it exists</h2>
@@ -37,7 +47,7 @@ import { THEMATIC_DOMAINS } from '../lib/domains';
       </p>
 
       <h2 id="scope">Scientific scope</h2>
-      <p>The catalog is organised around six interconnected domains. Agriculture and cropland is the initial priority.</p>
+      <p>The catalog is organised around environmental domains; climate and drought, agriculture and soil are the current priorities.</p>
       <ul>{THEMATIC_DOMAINS.map((d) => <li><a href={`/data/?domain=${d.id}`}>{d.title}</a> — {d.summary}</li>)}</ul>
 
       <h2 id="governance">Independence and governance</h2>

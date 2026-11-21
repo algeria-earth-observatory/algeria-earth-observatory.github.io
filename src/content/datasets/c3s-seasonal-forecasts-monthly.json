@@ -1,0 +1,175 @@
+{
+  "id": "c3s-seasonal-forecasts-monthly",
+  "title": "C3S Multi-System Seasonal Forecasts: Monthly Statistics on Single Levels",
+  "description": "Monthly-mean seasonal forecasts (real-time forecasts and retrospective hindcasts) from the Copernicus Climate Change Service multi-system, which collects ensemble forecasts from ECMWF, UK Met Office, Météo-France, DWD, CMCC, NCEP, JMA, ECCC and BOM. Over 30 single-level variables (precipitation, 2 m temperature, evaporation, runoff, radiation, wind, soil temperature) are given on a 1° grid for lead times of up to six months, with ensemble members and ensemble means.",
+  "purpose": "Source data for forward-looking drought and temperature outlooks over Algeria (e.g. probability of below-normal winter rainfall for the cereal season), and for the forecast-anomaly products derived from it. It is the multi-model basis that AEO would need before issuing any seasonal outlook.",
+  "domain": [
+    "climate-drought",
+    "agriculture",
+    "water"
+  ],
+  "categories": [
+    "Seasonal forecasts",
+    "Climate prediction"
+  ],
+  "keywords": [
+    "seasonal forecast",
+    "C3S",
+    "Copernicus",
+    "multi-system",
+    "SEAS5",
+    "ensemble",
+    "hindcast",
+    "drought outlook",
+    "precipitation anomaly",
+    "long-range forecast"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "Copernicus Climate Change Service (C3S), implemented by ECMWF",
+    "url": "https://cds.climate.copernicus.eu/datasets/seasonal-monthly-single-levels"
+  },
+  "creator": "Copernicus Climate Change Service, with forecast systems from ECMWF, UK Met Office, Météo-France, DWD, CMCC, NCEP, JMA, ECCC and BOM",
+  "source_url": "https://cds.climate.copernicus.eu/datasets/seasonal-monthly-single-levels",
+  "documentation_url": "https://confluence.ecmwf.int/display/CKB/Description+of+the+C3S+seasonal+multi-system",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International, plus 'Additional licence to use non European contributions'",
+    "spdx": null,
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "The CDS catalogue lists the licence as 'other' with two licence links: CC-BY 4.0 and the 'Additional licence to use non European contributions' (PDF on the CDS object store). That PDF states that all C3S seasonal multi-system data 'may be used and redistributed without restrictions', but for data from non-European centres (NCEP, JMA, ECCC, BOM) the original source must be acknowledged, and the originating centres guarantee neither continuity nor quality and accept no liability. The Copernicus attribution statement required by the CDS also applies.",
+  "citation": "Copernicus Climate Change Service, Climate Data Store, (2018): Seasonal forecast monthly statistics on single levels. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.68dd14c3 (Accessed on DD-MMM-YYYY)",
+  "doi": "10.24381/cds.68dd14c3",
+  "references": [
+    {
+      "citation": "Copernicus Climate Change Service: Seasonal forecast anomalies on single levels (post-processed product derived from the same systems). Climate Data Store.",
+      "doi": null,
+      "url": "https://cds.climate.copernicus.eu/datasets/seasonal-postprocessed-single-levels"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global 1° x 1° regular latitude–longitude grid. An Algeria area can be selected in the CDS request.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -89,
+      180,
+      89
+    ]
+  },
+  "temporal_extent": {
+    "start": "1981-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly (new forecast each month, lead times 1–6 months)",
+    "description": "CDS overview: hindcasts 1993–2016 and real-time forecasts from 2017 to present; the CDS catalogue temporal interval starts 1981-01-01 because some systems (e.g. ECMWF SEAS5) provide hindcasts from 1981. Hindcast periods differ by system (e.g. Météo-France System 9: 1993–2024; DWD GCFS2.2: 1993–2023; CMCC SPS4: 1993–2022). Real-time forecasts are released once per month on the 6th at 12 UTC for ECMWF and on the 10th at 12 UTC for the other centres."
+  },
+  "resolution": {
+    "spatial": "1° x 1° (regridded; model native resolutions differ by system)",
+    "spatial_m": 111320,
+    "temporal": "monthly means, lead months 1–6"
+  },
+  "format": [
+    "GRIB",
+    "NetCDF (conversion on the CDS)"
+  ],
+  "crs": "EPSG:4326 (regular latitude–longitude grid)",
+  "variables": [
+    {
+      "name": "Total precipitation",
+      "units": "m s-1",
+      "description": "Monthly mean precipitation rate"
+    },
+    {
+      "name": "2m temperature",
+      "units": "K",
+      "description": "Monthly mean near-surface air temperature"
+    },
+    {
+      "name": "Evaporation",
+      "units": "m of water s-1",
+      "description": "Monthly mean evaporation rate"
+    },
+    {
+      "name": "Runoff",
+      "units": "m s-1",
+      "description": "Monthly mean runoff rate"
+    },
+    {
+      "name": "Maximum/minimum 2m temperature in the last 24 hours",
+      "units": "K",
+      "description": "Monthly statistics of daily extremes"
+    },
+    {
+      "name": "Surface solar radiation downwards",
+      "units": "W m-2",
+      "description": "Monthly mean downward shortwave radiation"
+    },
+    {
+      "name": "Soil temperature level 1",
+      "units": "K",
+      "description": "Top-layer soil temperature"
+    }
+  ],
+  "processing": "Each centre runs a coupled ocean–atmosphere–land ensemble forecast system; C3S collects, regrids and aggregates the output to monthly statistics (monthly mean, minimum, maximum, standard deviation per member; ensemble mean and hindcast climate mean). For lagged-start systems (UK Met Office, NCEP, JMA) members from several start dates are pooled to a nominal start date.",
+  "validation": "The CDS quality-assessment tab states that monthly statistics contain systematic biases that depend on region and lead time and that bias correction is recommended; a C3S assessment notes that tercile hit-rates depend strongly on variable and region. C3S provides verification plots per system (linked from the CDS documentation).",
+  "limitations": [
+    "Forecasts are probabilistic; the CDS quality assessment states that skill (e.g. tercile hit-rates) depends strongly on variable and region. Skill over Algeria is not documented on the CDS page, so any Algerian rainfall outlook must first be evaluated against the hindcasts.",
+    "Raw monthly statistics are biased; anomalies must be computed against each system's own hindcast climatology (or the post-processed anomaly product used) before combining systems.",
+    "System versions change over time (e.g. UK Met Office system 610 from April 2026); hindcast periods and ensemble sizes differ between centres, which complicates multi-model combination.",
+    "At 1° the Tell–Atlas gradients are not resolved; outputs indicate large-scale tendencies, not local amounts.",
+    "Data from non-European centres carry an additional licence with no guarantee of continuity or quality."
+  ],
+  "version": "C3S multi-system (composition as documented on 10 April 2026: ECMWF SEAS5, UKMO GloSea6-GC5.1, Météo-France System 9, DWD GCFS2.2, CMCC SPS4, NCEP CFSv2, JMA CPS4, ECCC CanSIPSv3.0, BOM ACCESS-S2)",
+  "published_date": "2018-06-14",
+  "updated_date": "2026-11-05",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CDS: Seasonal forecast monthly statistics on single levels",
+      "url": "https://cds.climate.copernicus.eu/datasets/seasonal-monthly-single-levels",
+      "kind": "external",
+      "format": "GRIB / NetCDF",
+      "requires_login": true,
+      "notes": "Free CDS account and acceptance of both licences required."
+    },
+    {
+      "label": "CDS API (retrieve endpoint)",
+      "url": "https://cds.climate.copernicus.eu/api/retrieve/v1/processes/seasonal-monthly-single-levels",
+      "kind": "api",
+      "format": "GRIB / NetCDF",
+      "requires_login": true,
+      "notes": "Select originating_centre, system, variable, product_type (e.g. monthly_mean, ensemble_mean, hindcast_climate_mean) and leadtime_month 1–6."
+    },
+    {
+      "label": "CDS: Seasonal forecast anomalies on single levels (post-processed)",
+      "url": "https://cds.climate.copernicus.eu/datasets/seasonal-postprocessed-single-levels",
+      "kind": "external",
+      "format": "GRIB / NetCDF",
+      "requires_login": true,
+      "notes": "Anomalies relative to each system's hindcast climate; convenient starting point for drought outlooks."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Relevant for anticipating rainfall deficits in the October–May cereal season and summer heat. Because skill over Algeria is not guaranteed, AEO should only derive outlooks after a documented hindcast evaluation (e.g. against CHIRPS or ERA5 over 1993–2016) and should present results as tercile probabilities, never as deterministic forecasts. This record documents the source; it is not an AEO forecast product.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "forecast skill over Algeria (not assessed)"
+    ],
+    "sources_consulted": [
+      "https://cds.climate.copernicus.eu/api/catalogue/v1/collections/seasonal-monthly-single-levels",
+      "https://cds.climate.copernicus.eu/datasets/seasonal-monthly-single-levels",
+      "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/Additional-licence-to-use-non-European-contributions/Additional-licence-to-use-non-European-contributions_7f60a470cb29d48993fa5d9d788b33374a9ff7aae3dd4e7ba8429cc95c53f592.pdf",
+      "https://confluence.ecmwf.int/display/CKB/Description+of+the+C3S+seasonal+multi-system",
+      "https://api.datacite.org/dois/10.24381/cds.68dd14c3"
+    ],
+    "notes": "Overview table (1° grid, GRIB, 1993–2016 hindcasts / 2017– forecasts, release schedule), variables, product types, centres and lead times were read from the CDS layout and form JSON. System composition and hindcast periods are from the ECMWF Confluence multi-system page (status 10 April 2026). The 'C3S Seasonal Forecasts: datasets documentation' Confluence page returned HTTP 404 and was not used. bbox is the CDS catalogue extent (0–360°E, 89°S–89°N) in −180/180 form."
+  }
+}

@@ -12,6 +12,14 @@
 import gibs from './gibs-layers.json';
 import precipMap from '../../public/data/aeo/products/precipitation/v1.0.0/map/map.json';
 import speiMap from '../../public/data/aeo/products/spei/v1.0.0/map/map.json';
+import spiMap from '../../public/data/aeo/products/spi/v1.0.0/map/map.json';
+import spiManifest from '../../public/data/aeo/products/spi/v1.0.0/manifest.json';
+// Soil overlays exist only once scripts/pipelines/soil/build_soil.py has run.
+const soilMapFiles = import.meta.glob('../../public/data/aeo/products/soil/v1.0.0/map/map.json', { eager: true, import: 'default' });
+const soilMap = (Object.values(soilMapFiles)[0] ?? null) as null | {
+  coordinates: [number, number][];
+  layers: Record<string, { breaks: number[]; colors: string[]; units: string; label: string; depth: string }>;
+};
 import type { DomainId } from '../lib/domains';
 
 type GibsId = keyof typeof gibs.layers;
@@ -31,8 +39,10 @@ export interface MapLayer {
   title: string;
   summary: string;
   domain: DomainId | 'reference';
-  type: 'raster' | 'geojson' | 'image';
-  /** Image overlay (type 'image'): URL template with {year}, Web Mercator image corners. */
+  type: 'raster' | 'geojson' | 'image' | 'choropleth';
+  /** Choropleth by wilaya from a published AEO table (type 'choropleth'): web JSON with months, units, values[key][scale]. */
+  choropleth?: { url: string; key: string; scale: string; breaks: number[]; colors: string[]; flag: string; flagColor: string };
+  /** Image overlay (type 'image'): URL template with {year}, {month} or {variant}, Web Mercator image corners. */
   image?: { url: string; coordinates: [number, number][] };
   dataset: string | null;
   nature: 'observed' | 'derived' | 'modeled' | 'reference';
@@ -43,6 +53,8 @@ export interface MapLayer {
   minzoom?: number;
   maxzoom: number;
   time?: { periods: string[]; default: string | null; step: 'day' | '16-day' | 'month' | 'year' };
+  /** Non-temporal variants of one indicator (e.g. soil depth intervals), substituted for {variant}. */
+  variants?: { label: string; options: { id: string; label: string }[]; default: string };
   opacity: number;
   attribution: string;
   legend: Legend;
@@ -201,6 +213,22 @@ export const MAP_LAYERS: MapLayer[] = [
     legend: { kind: 'classes', caption: 'SPEI-12 (standard deviations); sand = hyper-arid, not shown', classes: [...speiMap.colors.map((c: string, i: number) => ({ color: c, label: speiMap.labels[i] })), { color: speiMap.hyper_arid.color, label: 'hyper-arid (normal P < 50 mm)' }] },
     caveat: 'Hyper-arid cells (normal precipitation below 50 mm/year) are shown in sand: there SPEI only reflects evaporative demand. Display resampled to 4.5 km; use the GeoTIFF or statistics for analysis.',
   },
+  ...(['3', '12'] as const).map((k): MapLayer => ({
+    id: `spi-${k}`,
+    title: `Precipitation index SPI-${k} (AEO, CHIRPS v3.0), monthly, by wilaya`,
+    summary: `${k}-month rainfall anomaly as a standard-normal index, for each wilaya, from the AEO SPI product (CHIRPS v3.0 unit means, gamma fit on 1991–2020). Coloured by wilaya: values are wilaya statistics, not a grid.`,
+    domain: 'climate-drought',
+    type: 'choropleth',
+    dataset: 'aeo-dza-spi-chirps3',
+    nature: 'derived',
+    choropleth: { url: '/data/aeo/products/spi/v1.0.0/web/admin1.json', key: 'spi', scale: k, breaks: spiMap.breaks, colors: spiMap.colors, flag: 'arid', flagColor: spiMap.arid.color },
+    maxzoom: 22,
+    time: { periods: [`1991-01-01/${spiManifest.temporal_coverage.monthly[1]}-01/P1M`], default: `${spiManifest.temporal_coverage.monthly[1]}-01`, step: 'month' },
+    opacity: 0.85,
+    attribution: 'SPI: AEO from CHIRPS v3.0 (Climate Hazards Center, UCSB; CC BY 4.0)',
+    legend: { kind: 'classes', caption: `SPI-${k} (standard deviations), by wilaya`, classes: [...spiMap.colors.map((c: string, i: number) => ({ color: c, label: spiMap.labels[i] })), { color: spiMap.arid.color, label: 'arid wilaya: SPI unstable' }] },
+    caveat: 'One value per wilaya (area-mean rainfall). In arid wilayas (normal below 100 mm/year) SPI is unstable and shown in sand.',
+  })),
   {
     id: 'precip-annual',
     title: 'Annual precipitation (AEO, CHIRPS v3.0)',
@@ -376,20 +404,52 @@ export const MAP_LAYERS: MapLayer[] = [
     legend: { kind: 'none', caption: 'True-colour imagery' },
     caveat: 'Swath gaps and clouds occur on individual days.',
   },
+  ...soilLayers(),
 ];
+
+/** SoilGrids 2.0 properties summarised by AEO: one indicator per property, depth as a variant. */
+function soilLayers(): MapLayer[] {
+  if (!soilMap) return [];
+  const SOIL_SITE = '/data/aeo/products/soil/v1.0.0/map';
+  const props: Record<string, string> = {};
+  for (const [id, m] of Object.entries(soilMap.layers)) props[id.split('_')[0]] = m.label;
+  const DEPTH_LABEL: Record<string, string> = { '0-5cm': '0–5 cm', '5-15cm': '5–15 cm', '15-30cm': '15–30 cm', '0-30cm': '0–30 cm' };
+  return Object.entries(props).map(([prop, label]) => {
+    const ids = Object.keys(soilMap.layers).filter((k) => k.startsWith(`${prop}_`));
+    const first = soilMap.layers[ids[0]];
+    return {
+      id: `soil-${prop}`,
+      title: `${label} (SoilGrids 2.0)`,
+      summary: `${label} predicted by ISRIC SoilGrids 2.0 (machine-learning model, 250 m, shown at 1 km), summarised by AEO for Algeria. Model predictions, not field measurements. Choose the depth interval.`,
+      domain: 'soil' as DomainId,
+      type: 'image' as const,
+      dataset: 'aeo-dza-soil-soilgrids',
+      nature: 'modeled' as const,
+      image: { url: `${SOIL_SITE}/${prop}_{variant}.png`, coordinates: soilMap.coordinates },
+      maxzoom: 22,
+      variants: { label: 'Depth', options: ids.map((k) => ({ id: k.slice(prop.length + 1), label: DEPTH_LABEL[k.slice(prop.length + 1)] ?? k })), default: ids[0].slice(prop.length + 1) },
+      opacity: 0.85,
+      attribution: 'Soil: ISRIC SoilGrids 2.0 (Poggio et al. 2021, CC BY 4.0) · AEO processing',
+      legend: { kind: 'classes' as const, caption: `${first.units}; classes from Algerian pixel quantiles`, classes: first.colors.map((c, i) => ({ color: c, label: i === 0 ? `< ${first.breaks[0]}` : i === first.breaks.length ? `≥ ${first.breaks[i - 1]}` : `${first.breaks[i - 1]}–${first.breaks[i]}` })) },
+      caveat: 'Model predictions with large uncertainty in Algeria, where few soil profiles were available to the model. Display resampled to 2 km; statistics use the 1 km grid.',
+    };
+  });
+}
+
+/** Legend classes of a soil layer for one depth (the classes differ by depth). */
+export function soilLegend(id: string, variant: string) {
+  const m = soilMap?.layers[`${id.replace(/^soil-/, '')}_${variant}`];
+  if (!m) return null;
+  return { caption: `${m.units}; classes from Algerian pixel quantiles`, classes: m.colors.map((c, i) => ({ color: c, label: i === 0 ? `< ${m.breaks[0]}` : i === m.breaks.length ? `≥ ${m.breaks[i - 1]}` : `${m.breaks[i - 1]}–${m.breaks[i]}` })) };
+}
 
 export const BASEMAPS = [
   {
-    id: 'dark',
-    title: 'Dark (OpenStreetMap)',
-    style: 'https://tiles.openfreemap.org/styles/dark',
-    attribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
-  },
-  {
     id: 'light',
-    title: 'Light (OpenStreetMap)',
+    title: 'Light with relief',
     style: 'https://tiles.openfreemap.org/styles/positron',
-    attribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
+    relief: gibsTiles('ASTER_GDEM_Greyscale_Shaded_Relief'),
+    attribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · relief: ASTER GDEM (NASA/METI) via ' + GIBS_ATTR,
   },
   {
     id: 'streets',

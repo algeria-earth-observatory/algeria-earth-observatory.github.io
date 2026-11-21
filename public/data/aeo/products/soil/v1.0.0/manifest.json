@@ -1,0 +1,354 @@
+{
+ "product_id": "aeo-dza-soil-soilgrids",
+ "title": "Algeria soil properties (SoilGrids 2.0), 0–30 cm: national, wilaya and commune statistics",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1",
+  "admin2"
+ ],
+ "spatial_products_levels": [],
+ "boundary_version": "2026-11-20",
+ "source_product": "SoilGrids 2.0 (ISRIC — World Soil Information)",
+ "source_version": "SoilGrids 2.0 (files.isric.org/soilgrids/latest, retrieved 2026-11-20)",
+ "source_doi": "10.5194/soil-7-217-2021",
+ "source_license": "CC BY 4.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "snapshot": "SoilGrids 2.0 predictions (static; soil profiles collected over several decades)"
+ },
+ "reference_period": null,
+ "spatial_resolution": "1 km (SoilGrids 1 km aggregated means; 5 %/95 % quantiles averaged from 250 m); statistics over administrative units",
+ "crs": "Statistics computed in Interrupted Goode Homolosine (equal-area); boundaries in EPSG:4326",
+ "units": "per property (see tables: units column)",
+ "formats": [
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/soil/build_soil.py",
+ "methodology_url": "/docs/method-soil/",
+ "created": "2026-11-20",
+ "layers": [
+  {
+   "id": "soc_0-5cm",
+   "property": "soc",
+   "depth": "0-5cm",
+   "label": "Soil organic carbon (concentration)",
+   "mapped_units": "dg/kg",
+   "conversion_factor": 10,
+   "units": "g/kg"
+  },
+  {
+   "id": "soc_5-15cm",
+   "property": "soc",
+   "depth": "5-15cm",
+   "label": "Soil organic carbon (concentration)",
+   "mapped_units": "dg/kg",
+   "conversion_factor": 10,
+   "units": "g/kg"
+  },
+  {
+   "id": "soc_15-30cm",
+   "property": "soc",
+   "depth": "15-30cm",
+   "label": "Soil organic carbon (concentration)",
+   "mapped_units": "dg/kg",
+   "conversion_factor": 10,
+   "units": "g/kg"
+  },
+  {
+   "id": "phh2o_0-5cm",
+   "property": "phh2o",
+   "depth": "0-5cm",
+   "label": "Soil pH (in water)",
+   "mapped_units": "pH x 10",
+   "conversion_factor": 10,
+   "units": "pH"
+  },
+  {
+   "id": "phh2o_5-15cm",
+   "property": "phh2o",
+   "depth": "5-15cm",
+   "label": "Soil pH (in water)",
+   "mapped_units": "pH x 10",
+   "conversion_factor": 10,
+   "units": "pH"
+  },
+  {
+   "id": "phh2o_15-30cm",
+   "property": "phh2o",
+   "depth": "15-30cm",
+   "label": "Soil pH (in water)",
+   "mapped_units": "pH x 10",
+   "conversion_factor": 10,
+   "units": "pH"
+  },
+  {
+   "id": "clay_0-5cm",
+   "property": "clay",
+   "depth": "0-5cm",
+   "label": "Clay fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "clay_5-15cm",
+   "property": "clay",
+   "depth": "5-15cm",
+   "label": "Clay fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "clay_15-30cm",
+   "property": "clay",
+   "depth": "15-30cm",
+   "label": "Clay fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "sand_0-5cm",
+   "property": "sand",
+   "depth": "0-5cm",
+   "label": "Sand fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "sand_5-15cm",
+   "property": "sand",
+   "depth": "5-15cm",
+   "label": "Sand fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "sand_15-30cm",
+   "property": "sand",
+   "depth": "15-30cm",
+   "label": "Sand fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "silt_0-5cm",
+   "property": "silt",
+   "depth": "0-5cm",
+   "label": "Silt fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "silt_5-15cm",
+   "property": "silt",
+   "depth": "5-15cm",
+   "label": "Silt fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "silt_15-30cm",
+   "property": "silt",
+   "depth": "15-30cm",
+   "label": "Silt fraction",
+   "mapped_units": "g/kg",
+   "conversion_factor": 10,
+   "units": "%"
+  },
+  {
+   "id": "bdod_0-5cm",
+   "property": "bdod",
+   "depth": "0-5cm",
+   "label": "Bulk density (fine earth)",
+   "mapped_units": "cg/cm3",
+   "conversion_factor": 100,
+   "units": "kg/dm3"
+  },
+  {
+   "id": "bdod_5-15cm",
+   "property": "bdod",
+   "depth": "5-15cm",
+   "label": "Bulk density (fine earth)",
+   "mapped_units": "cg/cm3",
+   "conversion_factor": 100,
+   "units": "kg/dm3"
+  },
+  {
+   "id": "bdod_15-30cm",
+   "property": "bdod",
+   "depth": "15-30cm",
+   "label": "Bulk density (fine earth)",
+   "mapped_units": "cg/cm3",
+   "conversion_factor": 100,
+   "units": "kg/dm3"
+  },
+  {
+   "id": "cec_0-5cm",
+   "property": "cec",
+   "depth": "0-5cm",
+   "label": "Cation exchange capacity (pH 7)",
+   "mapped_units": "mmol(c)/kg",
+   "conversion_factor": 10,
+   "units": "cmol(c)/kg"
+  },
+  {
+   "id": "cec_5-15cm",
+   "property": "cec",
+   "depth": "5-15cm",
+   "label": "Cation exchange capacity (pH 7)",
+   "mapped_units": "mmol(c)/kg",
+   "conversion_factor": 10,
+   "units": "cmol(c)/kg"
+  },
+  {
+   "id": "cec_15-30cm",
+   "property": "cec",
+   "depth": "15-30cm",
+   "label": "Cation exchange capacity (pH 7)",
+   "mapped_units": "mmol(c)/kg",
+   "conversion_factor": 10,
+   "units": "cmol(c)/kg"
+  },
+  {
+   "id": "nitrogen_0-5cm",
+   "property": "nitrogen",
+   "depth": "0-5cm",
+   "label": "Total nitrogen",
+   "mapped_units": "cg/kg",
+   "conversion_factor": 100,
+   "units": "g/kg"
+  },
+  {
+   "id": "nitrogen_5-15cm",
+   "property": "nitrogen",
+   "depth": "5-15cm",
+   "label": "Total nitrogen",
+   "mapped_units": "cg/kg",
+   "conversion_factor": 100,
+   "units": "g/kg"
+  },
+  {
+   "id": "nitrogen_15-30cm",
+   "property": "nitrogen",
+   "depth": "15-30cm",
+   "label": "Total nitrogen",
+   "mapped_units": "cg/kg",
+   "conversion_factor": 100,
+   "units": "g/kg"
+  },
+  {
+   "id": "cfvo_0-5cm",
+   "property": "cfvo",
+   "depth": "0-5cm",
+   "label": "Coarse fragments (volume)",
+   "mapped_units": "cm3/dm3",
+   "conversion_factor": 10,
+   "units": "vol %"
+  },
+  {
+   "id": "cfvo_5-15cm",
+   "property": "cfvo",
+   "depth": "5-15cm",
+   "label": "Coarse fragments (volume)",
+   "mapped_units": "cm3/dm3",
+   "conversion_factor": 10,
+   "units": "vol %"
+  },
+  {
+   "id": "cfvo_15-30cm",
+   "property": "cfvo",
+   "depth": "15-30cm",
+   "label": "Coarse fragments (volume)",
+   "mapped_units": "cm3/dm3",
+   "conversion_factor": 10,
+   "units": "vol %"
+  },
+  {
+   "id": "ocs_0-30cm",
+   "property": "ocs",
+   "depth": "0-30cm",
+   "label": "Organic carbon stock",
+   "mapped_units": "t/ha",
+   "conversion_factor": 1,
+   "units": "t/ha"
+  }
+ ],
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin0_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Soil statistics (SoilGrids 2.0, 0–30 cm), admin0",
+   "bytes": 2948,
+   "sha256": "84c0e9e6f10c05f4330594b936b28c715143cffdfdf23de59e0ef0fa3e1c04a5"
+  },
+  {
+   "href": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin0_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Soil statistics (SoilGrids 2.0, 0–30 cm), admin0",
+   "bytes": 9846,
+   "sha256": "c85e840200d1b108ea69acf62ea9c3bc99e785497e649a12f0f194bc6bdb4937"
+  },
+  {
+   "href": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Soil statistics (SoilGrids 2.0, 0–30 cm), admin1",
+   "bytes": 195951,
+   "sha256": "d48eab538932821dfd48166f1eaa1f4979dec3e47fd0ff4fa007de30d06d36a9"
+  },
+  {
+   "href": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin1_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Soil statistics (SoilGrids 2.0, 0–30 cm), admin1",
+   "bytes": 48190,
+   "sha256": "5cbaf32da9e7a09b75e913811b0e82df09a4e54d033f6920011b6e8f07b40a56"
+  },
+  {
+   "href": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin2_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Soil statistics (SoilGrids 2.0, 0–30 cm), admin2",
+   "bytes": 4456129,
+   "sha256": "ea6e0ee45045d4b0e496b8d615517710d0b8e3167c70f72c3b57c26f59c4f265"
+  },
+  {
+   "href": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin2_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Soil statistics (SoilGrids 2.0, 0–30 cm), admin2",
+   "bytes": 755615,
+   "sha256": "bf29363b14d4c8f9e96850c207034839273e239850014957b7ed3298916b6449"
+  }
+ ],
+ "external_rasters": {
+  "note": "SoilGrids rasters are not redistributed by AEO; use the ISRIC files.",
+  "url": "https://files.isric.org/soilgrids/latest/",
+  "documentation": "https://docs.isric.org/globaldata/soilgrids/"
+ },
+ "web_assets": {
+  "admin0": "/data/aeo/products/soil/v1.0.0/web/admin0.json",
+  "admin1": "/data/aeo/products/soil/v1.0.0/web/admin1.json",
+  "admin2": "/data/aeo/products/soil/v1.0.0/web/admin2/{wilaya_code}.json",
+  "map": "/data/aeo/products/soil/v1.0.0/map/map.json"
+ }
+}

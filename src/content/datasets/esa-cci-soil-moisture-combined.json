@@ -1,0 +1,204 @@
+{
+  "id": "esa-cci-soil-moisture-combined",
+  "title": "ESA CCI Soil Moisture COMBINED Product (v09.2, daily 0.25°)",
+  "description": "The ESA Climate Change Initiative Soil Moisture COMBINED product merges Level-2 surface soil moisture retrievals from active (scatterometer) and passive (radiometer) microwave satellites — from SMMR and SSM/I through AMSR-E, ASCAT, SMOS, SMAP, AMSR2, GPM and FengYun-3 — into a single daily climate data record of volumetric surface soil moisture (m3 m-3) on a 0.25° global grid, with per-pixel uncertainty and quality flags, from November 1978 to December 2024 (v09.2).",
+  "purpose": "The longest consistent satellite record of surface soil moisture, suitable for agricultural-drought climatologies and anomaly analysis over northern Algeria and for evaluating models (ERA5-Land, GLEAM) and the shorter SMAP record.",
+  "domain": [
+    "water",
+    "climate-drought",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil moisture",
+    "Satellite climate data record"
+  ],
+  "keywords": [
+    "ESA CCI",
+    "soil moisture",
+    "COMBINED",
+    "microwave",
+    "ASCAT",
+    "AMSR2",
+    "SMOS",
+    "SMAP",
+    "climate data record",
+    "TU Wien"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "ESA Climate Change Initiative – Soil Moisture project (TU Wien and partners); archived by CEDA",
+    "url": "https://climate.esa.int/en/projects/soil-moisture/"
+  },
+  "creator": "Dorigo, W., Preimesberger, W., Hahn, S., Van der Schalie, R., De Jeu, R., Kidd, R., Rodriguez-Fernandez, N., Hirschi, M., Stradiotti, P., Frederikse, T., Gruber, A., Duchemin, D.",
+  "source_url": "https://catalogue.ceda.ac.uk/uuid/d4e66299f5054129b8076fb7502949e1",
+  "documentation_url": "https://climate.esa.int/en/catalogue/d4e66299f5054129b8076fb7502949e1/",
+  "license": {
+    "name": "Terms and Conditions for use of Soil Moisture CCI datasets (v2): use by any user for any purpose, with acknowledgement",
+    "spdx": null,
+    "url": "https://artefacts.ceda.ac.uk/licences/specific_licences/esacci_soilmoisture_terms_and_conditions_v2.pdf"
+  },
+  "license_notes": "The CEDA record links this licence and states 'appropriate use of these data may fall under any use' and that users must cite the CEDA citation. The terms require acknowledging the ESA Climate Change Initiative, the Soil Moisture CCI project and the data providers, and citing the dataset DOI and three reference papers; IPR remain with the producers; no warranty. File metadata: 'ESA CCI Data Policy: free and open access.' The C3S version of the product on the Copernicus Climate Data Store is CC-BY-4.0.",
+  "citation": "Dorigo, W., Preimesberger, W., Hahn, S., Van der Schalie, R., De Jeu, R., Kidd, R., Rodriguez-Fernandez, N., Hirschi, M., Stradiotti, P., Frederikse, T., Gruber, A., Duchemin, D. (2025): ESA Soil Moisture Climate Change Initiative (Soil_Moisture_cci): COMBINED product, Version 09.2. NERC EDS Centre for Environmental Data Analysis. doi:10.5285/d4e66299f5054129b8076fb7502949e1",
+  "doi": "10.5285/d4e66299f5054129b8076fb7502949e1",
+  "references": [
+    {
+      "citation": "Gruber, A., Scanlon, T., van der Schalie, R., Wagner, W., and Dorigo, W. (2019). Evolution of the ESA CCI Soil Moisture climate data records and their underlying merging methodology. Earth System Science Data, 11, 717–739.",
+      "doi": "10.5194/essd-11-717-2019",
+      "url": null
+    },
+    {
+      "citation": "Dorigo, W. A., Wagner, W., Albergel, C., et al. (2017). ESA CCI Soil Moisture for improved Earth system understanding: State-of-the art and future directions. Remote Sensing of Environment, 203, 185–215.",
+      "doi": "10.1016/j.rse.2017.07.001",
+      "url": null
+    },
+    {
+      "citation": "Preimesberger, W., Scanlon, T., Su, C.-H., Gruber, A., and Dorigo, W. (2021). Homogenization of Structural Breaks in the Global ESA CCI Soil Moisture Multisatellite Climate Data Record. IEEE Transactions on Geoscience and Remote Sensing, 59(4), 2845–2862.",
+      "doi": "10.1109/TGRS.2020.3012896",
+      "url": null
+    },
+    {
+      "citation": "Copernicus Climate Change Service (2018): Soil moisture gridded data from 1978 to present (C3S product based on ESA CCI SM algorithms, updated to near real time). Climate Data Store.",
+      "doi": "10.24381/cds.d7782f18",
+      "url": "https://cds.climate.copernicus.eu/datasets/satellite-soil-moisture"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global 0.25° grid (CEDA: longitude −180 to 180, latitude −90 to 90); Algeria must be subset. Retrievals are missing or flagged where sensors cannot retrieve soil moisture (e.g. frozen or snow-covered soil, dense vegetation).",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "1978-11-01",
+    "end": "2024-12-31",
+    "ongoing": false,
+    "frequency": "daily",
+    "description": "v09.2 covers 1978-11-01 to 2024-12-31 and is a temporal extension of v09.1. Newer CCI versions are released periodically; the C3S service (DOI 10.24381/cds.d7782f18) extends the same algorithm close to real time (updated three times a month)."
+  },
+  "resolution": {
+    "spatial": "0.25° x 0.25°",
+    "spatial_m": 27830,
+    "temporal": "daily"
+  },
+  "format": [
+    "NetCDF-4 classic (one global file per day)"
+  ],
+  "crs": "EPSG:4326 (regular latitude–longitude grid)",
+  "variables": [
+    {
+      "name": "sm",
+      "units": "m3 m-3",
+      "description": "Volumetric surface soil moisture (valid range 0–1)"
+    },
+    {
+      "name": "sm_uncertainty",
+      "units": "m3 m-3",
+      "description": "Soil moisture uncertainty"
+    },
+    {
+      "name": "flag",
+      "units": "bit flag",
+      "description": "Quality flags: snow/temperature below zero, dense vegetation, no convergence, value outside physical bounds, weight below threshold, all datasets unreliable, barren-ground advisory"
+    },
+    {
+      "name": "sensor",
+      "units": "bit flag",
+      "description": "Contributing sensors (SMMR, SSMI, TMI, AMSRE, WindSat, AMSR2, SMOS, AMIWS, ASCAT A/B/C, SMAP, GPM, FY3B/C/D, MODEL)"
+    },
+    {
+      "name": "freqbandID",
+      "units": "bit flag",
+      "description": "Microwave frequency bands used"
+    },
+    {
+      "name": "t0",
+      "units": "days since 1970-01-01",
+      "description": "Observation timestamp"
+    }
+  ],
+  "processing": "Level-2 soil moisture from scatterometers (ERS AMI-WS, Metop ASCAT) and from radiometers retrieved with the LPRM algorithm are quality controlled, rescaled to a common climatology, merged using weights based on error estimates (triple collocation), and homogenised for structural breaks at sensor transitions (Gruber et al. 2019; Preimesberger et al. 2021). The 'sensor' and 'freqbandID' flags list 'MODEL' among their meanings.",
+  "validation": "Validation and product-quality assessment are documented by the CCI Soil Moisture project (product validation and user documents linked from the ESA CCI catalogue page); no single accuracy figure is given on the CEDA record.",
+  "limitations": [
+    "Represents only the top few centimetres of soil; root-zone moisture is not provided in this product.",
+    "Coarse 0.25° cells (about 28 km) mix irrigated plains, rainfed cereals, rangeland and bare soil in northern Algeria.",
+    "The flag variable includes a 'barren_ground_advisory_flag', relevant to large parts of the Algerian Sahara; such pixels should be screened before use.",
+    "Spatial and temporal coverage are uneven before the 2000s (fewer sensors, gaps between overpasses); merged series contain sensor-transition effects despite homogenisation.",
+    "Version v09.2 ends in December 2024; for recent months use the C3S near-real-time product (note its known issue: 1–20 September 2026 values in v202505 should not be used, per a CDS warning)."
+  ],
+  "version": "v09.2",
+  "published_date": "2025-12-03",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CEDA dataset record (v09.2)",
+      "url": "https://catalogue.ceda.ac.uk/uuid/d4e66299f5054129b8076fb7502949e1",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": false,
+      "notes": "Public data: registered and non-registered users; about 16,860 files, 22 GB."
+    },
+    {
+      "label": "CEDA archive directory (HTTP)",
+      "url": "https://data.ceda.ac.uk/neodc/esacci/soil_moisture/data/daily_files/COMBINED/v09.2",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": false,
+      "notes": "Yearly folders of daily files (e.g. ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-20201231000000-fv09.2.nc)."
+    },
+    {
+      "label": "CCI THREDDS catalogue (OPeNDAP / HTTP)",
+      "url": "https://data.cci.ceda.ac.uk/thredds/catalog/esacci/soil_moisture/data/daily_files/COMBINED/v09.2/catalog.html",
+      "kind": "api",
+      "format": "NetCDF-4 / OPeNDAP",
+      "requires_login": false,
+      "notes": "Allows subsetting via OPeNDAP; server responses can be slow (a subset request timed out on the check date)."
+    },
+    {
+      "label": "ESA CCI Open Data Portal entry",
+      "url": "https://climate.esa.int/en/catalogue/d4e66299f5054129b8076fb7502949e1/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Description, references and documentation links."
+    },
+    {
+      "label": "C3S Climate Data Store: Soil moisture gridded data from 1978 to present",
+      "url": "https://cds.climate.copernicus.eu/datasets/satellite-soil-moisture",
+      "kind": "external",
+      "format": "NetCDF",
+      "requires_login": true,
+      "notes": "Operational C3S counterpart (CC-BY-4.0) updated three times a month; CDS account required."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Most informative over the Tell and High Plateaux cereal belt, where rainfed soil-moisture anomalies drive yields. Over the Sahara, screen pixels with the barren-ground advisory and other flags. Irrigated perimeters and oases are much smaller than a 0.25° cell and are not resolved. For agricultural drought indicators combine with root-zone estimates (GLEAM, ERA5-Land) rather than using surface moisture alone.",
+  "verification": {
+    "checked": "2026-11-21",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation (product validation report not read)",
+      "Algeria pixel values (OPeNDAP subset request timed out)"
+    ],
+    "sources_consulted": [
+      "https://catalogue.ceda.ac.uk/uuid/d4e66299f5054129b8076fb7502949e1",
+      "https://climate.esa.int/en/catalogue/d4e66299f5054129b8076fb7502949e1/",
+      "https://artefacts.ceda.ac.uk/licences/specific_licences/esacci_soilmoisture_terms_and_conditions_v2.pdf",
+      "https://api.datacite.org/dois/10.5285/d4e66299f5054129b8076fb7502949e1",
+      "https://data.cci.ceda.ac.uk/thredds/dodsC/esacci/soil_moisture/data/daily_files/COMBINED/v09.2/2020/ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-20201231000000-fv09.2.nc.das",
+      "https://api.crossref.org/works/10.5194/essd-11-717-2019",
+      "https://api.crossref.org/works/10.1016/j.rse.2017.07.001",
+      "https://cds.climate.copernicus.eu/api/catalogue/v1/collections/satellite-soil-moisture"
+    ],
+    "notes": "Title, creators, DOI and licence verified via DataCite (issued 2025, created/available 2025-12-03) and the CEDA record. Variables, flag meanings, sensors and the file-level licence string were read from the OPeNDAP .das of the 2020-12-31 file. The Preimesberger et al. (2021) DOI is taken from the CCI licence document and was not checked in Crossref. The DOI publication date reported by the CEDA page (2026-04-13) differs from DataCite dates; published_date uses the CEDA publication date 2025-12-03."
+  }
+}

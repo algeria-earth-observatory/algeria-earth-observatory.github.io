@@ -1,0 +1,125 @@
+{
+ "product_id": "aeo-dza-spi-chirps3",
+ "title": "Algeria Standardized Precipitation Index (SPI-1, 3, 6, 12) from CHIRPS v3.0: national, wilaya and commune",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1",
+  "admin2"
+ ],
+ "spatial_products_levels": [],
+ "boundary_version": "2026-11-20",
+ "source_product": "AEO Algeria precipitation v1.0.0 (CHIRPS v3.0 final, monthly; Climate Hazards Center, UC Santa Barbara)",
+ "source_version": "CHIRPS v3.0",
+ "source_doi": "10.15780/G2JQ0P",
+ "source_license": "CC BY 4.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "monthly": [
+   "1981-01",
+   "2026-10"
+  ]
+ },
+ "reference_period": [
+  1991,
+  2020
+ ],
+ "spatial_resolution": "Administrative units (computed on unit-mean monthly precipitation from 0.05° CHIRPS cells)",
+ "crs": "not applicable (tables by administrative unit; boundaries EPSG:4326)",
+ "units": "SPI (dimensionless, standard normal)",
+ "scales": [
+  1,
+  3,
+  6,
+  12
+ ],
+ "formats": [
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/spi/build_spi.py",
+ "methodology_url": "/docs/method-spi/",
+ "created": "2026-11-20",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin0_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Monthly SPI-1/3/6/12, admin0",
+   "bytes": 34296,
+   "sha256": "ebeaf2d080c4415be0e00e2bb380118a19784c87a64ac6963f498ca652cbe4f9"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin0_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Monthly SPI-1/3/6/12, admin0",
+   "bytes": 20785,
+   "sha256": "a632c145158d2ce7e567366f9aadf72c4d19655939184aa3b6f7c28bb163a98b"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_summary_admin0_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0",
+   "role": "summary",
+   "title": "SPI summary (latest month, drought frequency), admin0",
+   "bytes": 163,
+   "sha256": "7c79ff0d9d2675ac2d18c43cbed62d38168aedae26972a7abc06d917ab03ab15"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Monthly SPI-1/3/6/12, admin1",
+   "bytes": 2501849,
+   "sha256": "4db21ba40698ebcd1db0e795ad989da746a146cff49a66ebe0fa959f337a4af2"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin1_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Monthly SPI-1/3/6/12, admin1",
+   "bytes": 407592,
+   "sha256": "6a6b489b3e696280f7fba9ffd58faa07c5fae51a545c57fe2c19dbc7e1be55ef"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_summary_admin1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "summary",
+   "title": "SPI summary (latest month, drought frequency), admin1",
+   "bytes": 3848,
+   "sha256": "baf21fcf30d66e64472949a4f9d1676c7a59fa9525ca9fde07851197c5b9e496"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin2_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Monthly SPI-1/3/6/12, admin2",
+   "bytes": 7021791,
+   "sha256": "e823a817248cf7b69cf38c2261d44da0a73b8d8cb1c3f862c5828ba530bd1306"
+  },
+  {
+   "href": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_summary_admin2_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin2",
+   "role": "summary",
+   "title": "SPI summary (latest month, drought frequency), admin2",
+   "bytes": 88547,
+   "sha256": "a06255773efc0098917ad945c52a24b31a53e7a90964bf15c0fb3a70058bd721"
+  }
+ ],
+ "web_assets": {
+  "admin0": "/data/aeo/products/spi/v1.0.0/web/admin0.json",
+  "admin1": "/data/aeo/products/spi/v1.0.0/web/admin1.json",
+  "admin2": "/data/aeo/products/spi/v1.0.0/web/admin2/{wilaya_code}.json",
+  "map": "/data/aeo/products/spi/v1.0.0/map/map.json"
+ }
+}

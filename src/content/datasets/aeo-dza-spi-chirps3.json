@@ -1,0 +1,209 @@
+{
+  "id": "aeo-dza-spi-chirps3",
+  "title": "Algeria Standardized Precipitation Index SPI (CHIRPS v3.0), 1981–2026: national, wilaya and commune",
+  "title_fr": "Indice de précipitations normalisé SPI pour l'Algérie (CHIRPS v3.0)",
+  "description": "Standardized Precipitation Index at 1, 3, 6 and 12 months, monthly 1981-01 to 2026-10, for Algeria, its 69 wilayas and 1,541 communes. Computed by AEO from the area-mean monthly precipitation of the AEO CHIRPS v3.0 product, with a gamma distribution fitted per calendar month on 1991–2020.",
+  "purpose": "Monitor meteorological drought (rainfall deficits) in Algeria at several timescales; complements SPEI, which also accounts for evaporative demand.",
+  "domain": [
+    "climate-drought",
+    "agriculture"
+  ],
+  "categories": [
+    "Drought indices",
+    "Climate indicators"
+  ],
+  "keywords": [
+    "SPI",
+    "drought",
+    "precipitation",
+    "CHIRPS",
+    "wilaya",
+    "commune",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "derived",
+  "data_type": "tabular",
+  "provider": {
+    "name": "Climate Hazards Center, UC Santa Barbara (CHIRPS v3.0); Algeria Earth Observatory (SPI computation)",
+    "url": "https://www.chc.ucsb.edu/data/chirps3"
+  },
+  "creator": "Algeria Earth Observatory maintainers (SPI computation); Funk et al. (CHIRPS v3.0)",
+  "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/",
+  "documentation_url": "https://doi.org/10.1038/s41597-026-07096-4",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "CHIRPS v3.0 is CC BY 4.0. AEO SPI outputs are CC BY 4.0: cite AEO, CHIRPS v3.0 and the SPI method.",
+  "citation": "Algeria Earth Observatory (2026). Algeria Standardized Precipitation Index SPI (CHIRPS v3.0), version 1.0.0. https://algeria-earth-observatory.github.io/data/aeo-dza-spi-chirps3/ — from Funk, C. et al. (2026), CHIRPS version 3, Scientific Data, doi:10.1038/s41597-026-07096-4.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Funk, C. et al. (2026). The Climate Hazards Center Infrared Precipitation with Stations, Version 3. Scientific Data.",
+      "doi": "10.1038/s41597-026-07096-4"
+    },
+    {
+      "citation": "Guttman, N.B. (1999). Accepting the Standardized Precipitation Index: a calculation algorithm. JAWRA 35(2), 311–322.",
+      "doi": "10.1111/j.1752-1688.1999.tb03592.x"
+    },
+    {
+      "citation": "Stagge, J.H., Tallaksen, L.M., Gudmundsson, L., Van Loon, A.F. & Stahl, K. (2015). Candidate distributions for climatological drought indices (SPI and SPEI). International Journal of Climatology 35, 4027–4040.",
+      "doi": "10.1002/joc.4267"
+    },
+    {
+      "citation": "Hosking, J.R.M. (1990). L-moments: analysis and estimation of distributions using linear combinations of order statistics. JRSS B 52, 105–124.",
+      "doi": "10.1111/j.2517-6161.1990.tb01775.x"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Algeria (AEO boundaries 2026-11-20): 1 country, 69 wilayas, 1,541 communes. Tables by administrative unit; no grid maps.",
+    "algeria_subset": "native",
+    "bbox": [
+      -9.0,
+      18.5,
+      12.5,
+      37.5
+    ]
+  },
+  "temporal_extent": {
+    "start": "1981-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "Monthly 1981-01 to 2026-10; updated when the AEO precipitation product is updated. Calibration 1991–2020."
+  },
+  "resolution": {
+    "spatial": "Administrative units (from 0.05° CHIRPS cells, ≈5.5 km)",
+    "spatial_m": null,
+    "temporal": "monthly"
+  },
+  "format": [
+    "CSV",
+    "Parquet"
+  ],
+  "crs": "Not applicable (tables by administrative unit; boundaries in EPSG:4326)",
+  "variables": [
+    {
+      "name": "precip_mm",
+      "units": "mm",
+      "description": "Monthly area-mean precipitation of the unit (AEO CHIRPS v3.0 product)"
+    },
+    {
+      "name": "spi_1",
+      "units": "dimensionless (standard normal)",
+      "description": "SPI over 1 month ending in the month"
+    },
+    {
+      "name": "spi_3",
+      "units": "dimensionless (standard normal)",
+      "description": "SPI over 3 months ending in the month"
+    },
+    {
+      "name": "spi_6",
+      "units": "dimensionless (standard normal)",
+      "description": "SPI over 6 months ending in the month"
+    },
+    {
+      "name": "spi_12",
+      "units": "dimensionless (standard normal)",
+      "description": "SPI over 12 months ending in the month"
+    },
+    {
+      "name": "arid",
+      "units": null,
+      "description": "1991–2020 normal below 100 mm/year: SPI unstable"
+    }
+  ],
+  "processing": "For each unit, monthly precipitation is accumulated over 1, 3, 6 and 12 months. For each calendar month a gamma distribution is fitted to the positive 1991–2020 accumulations with unbiased probability-weighted moments (Hosking PELGAM); zero accumulations use the mixed distribution H = q + (1−q)G. SPI = Φ⁻¹(H), clipped to ±3.09. Not computed for a calendar month with fewer than 10 positive reference accumulations.",
+  "validation": "tests/python/test_spi.py: agreement with R SPEI 1.8.1 spi() (Gamma, ub-pwm, reference 1991–2020) within 1e-6 on six wilaya series, wherever the reference sample has no zero accumulations (R 1.8.1 does not apply the zero probability). Product QC: SPI-3 over 1991–2020 has mean within ±0.03 and standard deviation 0.93–1.04 in non-arid units.",
+  "limitations": [
+    "SPI measures rainfall anomalies only; it ignores evaporative demand (use SPEI for the water balance).",
+    "In arid units (normal below 100 mm/year; 11 wilayas, 93 communes) rainfall is rare, many calendar months cannot be fitted and SPI is unstable; these units are flagged.",
+    "Commune values rest on few CHIRPS cells for small communes; CHIRPS has few gauges in the Sahara.",
+    "Computed on the unit-mean precipitation, not as the mean of cell-level SPI."
+  ],
+  "version": "1.0.0",
+  "published_date": "2026-11-20",
+  "updated_date": "2026-11-20",
+  "download_url": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin1_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Wilayas — monthly SPI-1/3/6/12 (CSV)",
+      "url": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 2501849,
+      "sha256": "4db21ba40698ebcd1db0e795ad989da746a146cff49a66ebe0fa959f337a4af2",
+      "notes": null
+    },
+    {
+      "label": "Algeria — monthly SPI-1/3/6/12 (CSV)",
+      "url": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin0_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 34296,
+      "sha256": "ebeaf2d080c4415be0e00e2bb380118a19784c87a64ac6963f498ca652cbe4f9",
+      "notes": null
+    },
+    {
+      "label": "Communes — monthly SPI-1/3/6/12 (Parquet)",
+      "url": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_monthly_admin2_v1.0.0.parquet",
+      "kind": "download",
+      "format": "Parquet",
+      "requires_login": false,
+      "size_bytes": 7021791,
+      "sha256": "e823a817248cf7b69cf38c2261d44da0a73b8d8cb1c3f862c5828ba530bd1306",
+      "notes": null
+    },
+    {
+      "label": "Wilayas — latest SPI and drought frequency (CSV)",
+      "url": "/data/aeo/products/spi/v1.0.0/tables/aeo_spi_summary_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 3848,
+      "sha256": "baf21fcf30d66e64472949a4f9d1676c7a59fa9525ca9fde07851197c5b9e496",
+      "notes": null
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/spi",
+  "algeria_notes": "In the north (Tell and High Plateaux) SPI-3 and SPI-6 follow the agricultural season; SPI-12 shows multi-year droughts such as 2020–2024.",
+  "map_layers": [
+    "spi-3",
+    "spi-12"
+  ],
+  "featured": false,
+  "added_date": "2026-11-20",
+  "verification": {
+    "checked": "2026-11-20",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://www.chc.ucsb.edu/data/chirps3",
+      "https://doi.org/10.1038/s41597-026-07096-4"
+    ],
+    "notes": "Computed from the published AEO precipitation product; see PROVENANCE.json."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/spi/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1",
+      "admin2"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "spi"
+    ],
+    "analyze": true
+  },
+  "title_ar": null
+}
