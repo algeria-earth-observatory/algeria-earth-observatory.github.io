@@ -54,7 +54,7 @@ MAP_FROM = 1991
 WEB_ADMIN2_FROM = 1981
 HYPERARID_UNIT_MM, HYPERARID_CELL_MM = 100, 50
 BREAKS = [-2.0, -1.5, -1.0, 1.0, 1.5, 2.0]
-COLORS = ["#6b1515", "#d03b3b", "#ee8d81", "#4a5260", "#86b6ef", "#3987e5", "#0d366b"]  # neutral = dark-surface midpoint
+COLORS = ["#6b1515", "#d03b3b", "#ee8d81", "#f0efec", "#86b6ef", "#3987e5", "#0d366b"]  # neutral = light-surface midpoint
 CLASS_LABELS = ["extremely dry (≤ −2)", "severely dry (−2 to −1.5)", "moderately dry (−1.5 to −1)", "near normal (−1 to 1)",
                 "moderately wet (1 to 1.5)", "very wet (1.5 to 2)", "extremely wet (≥ 2)"]
 
@@ -225,7 +225,9 @@ def main() -> None:
         out[ok, :3] = rgb[np.digitize(m[ok], BREAKS)]
         out[ok, 3] = 235
         arid = (arid_m == 1)
-        out[arid] = (92, 83, 64, 170)  # muted desert sand #5c5340
+        yy, xx = np.indices(arid.shape)
+        out[arid] = (232, 220, 196, 235)  # light sand #e8dcc4 ...
+        out[arid & (((xx + yy) % 7) < 2)] = (180, 157, 114, 235)  # ... with diagonal hatching #b49d72 (not colour alone)
         with rasterio.open(path, "w", driver="PNG", width=dw, height=dh, count=4, dtype="uint8") as ds:
             ds.write(np.moveaxis(out, 2, 0))
         aux = Path(str(path) + ".aux.xml")
@@ -240,7 +242,7 @@ def main() -> None:
     (OUT / "map" / "map.json").write_text(json.dumps({
         "coordinates": [[lw, ln], [le, ln], [le, ls], [lw, ls]], "months": map_months, "scales": [3, 12],
         "breaks": BREAKS, "colors": COLORS, "labels": CLASS_LABELS,
-        "hyper_arid": {"color": "#5c5340", "label": f"hyper-arid (normal P < {HYPERARID_CELL_MM} mm/year): not shown"},
+        "hyper_arid": {"color": "#b49d72", "pattern": "diagonal hatching #b49d72 on #e8dcc4", "label": f"hyper-arid (normal P < {HYPERARID_CELL_MM} mm/year): not shown"},
         "resampling": "nearest neighbour from the 1/30° grid to 4.5 km Web Mercator pixels (display only)"}, indent=1))
 
     # ------------------------------------------------------------ manifest

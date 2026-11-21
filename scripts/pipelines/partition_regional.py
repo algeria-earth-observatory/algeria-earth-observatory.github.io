@@ -37,6 +37,7 @@ BOUNDARY_VERSION = "2026-11-20"
 TABLES = [
     ("precipitation", "1.0.0", "aeo_precip_monthly_admin2_v1.0.0.parquet"),
     ("spei", "1.0.0", "aeo_spei_monthly_admin2_v1.0.0.parquet"),
+    ("spi", "1.0.0", "aeo_spi_monthly_admin2_v1.0.0.parquet"),
 ]
 
 

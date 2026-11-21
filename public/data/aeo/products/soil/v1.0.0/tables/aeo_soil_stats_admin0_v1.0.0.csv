@@ -1,0 +1,29 @@
+level,unit_code,unit_name,parent_code,property,property_label,depth,units,mean,q05_mean,q95_mean,pixels_1km,valid_pct,total_stock_Mt,support
+admin0,DZ,Algeria,,soc,Soil organic carbon (concentration),0-5cm,g/kg,7.154,0.56,23.407,2318452,99.8,,adequate
+admin0,DZ,Algeria,,soc,Soil organic carbon (concentration),5-15cm,g/kg,5.595,0.406,18.267,2318452,99.8,,adequate
+admin0,DZ,Algeria,,soc,Soil organic carbon (concentration),15-30cm,g/kg,4.073,0.316,13.777,2318452,99.8,,adequate
+admin0,DZ,Algeria,,phh2o,Soil pH (in water),0-5cm,pH,8.181,7.019,9.529,2318452,99.8,,adequate
+admin0,DZ,Algeria,,phh2o,Soil pH (in water),5-15cm,pH,8.23,7.049,9.605,2318452,99.8,,adequate
+admin0,DZ,Algeria,,phh2o,Soil pH (in water),15-30cm,pH,8.223,7.049,9.606,2318452,99.8,,adequate
+admin0,DZ,Algeria,,clay,Clay fraction,0-5cm,%,23.796,0.78,81.705,2318452,99.8,,adequate
+admin0,DZ,Algeria,,clay,Clay fraction,5-15cm,%,24.409,0.843,82.734,2318452,99.8,,adequate
+admin0,DZ,Algeria,,clay,Clay fraction,15-30cm,%,24.842,0.872,83.761,2318452,99.8,,adequate
+admin0,DZ,Algeria,,sand,Sand fraction,0-5cm,%,48.825,5.503,88.992,2318452,99.8,,adequate
+admin0,DZ,Algeria,,sand,Sand fraction,5-15cm,%,48.485,5.291,88.497,2318452,99.8,,adequate
+admin0,DZ,Algeria,,sand,Sand fraction,15-30cm,%,47.805,4.753,88.628,2318452,99.8,,adequate
+admin0,DZ,Algeria,,silt,Silt fraction,0-5cm,%,27.379,1.325,82.347,2318452,99.8,,adequate
+admin0,DZ,Algeria,,silt,Silt fraction,5-15cm,%,27.106,1.286,82.189,2318452,99.8,,adequate
+admin0,DZ,Algeria,,silt,Silt fraction,15-30cm,%,27.353,1.146,83.32,2318452,99.8,,adequate
+admin0,DZ,Algeria,,bdod,Bulk density (fine earth),0-5cm,kg/dm3,1.398,0.837,1.812,2318452,99.8,,adequate
+admin0,DZ,Algeria,,bdod,Bulk density (fine earth),5-15cm,kg/dm3,1.422,0.861,1.821,2318452,99.8,,adequate
+admin0,DZ,Algeria,,bdod,Bulk density (fine earth),15-30cm,kg/dm3,1.436,0.972,1.829,2318452,99.8,,adequate
+admin0,DZ,Algeria,,cec,Cation exchange capacity (pH 7),0-5cm,cmol(c)/kg,21.428,1.992,57.393,2318452,99.8,,adequate
+admin0,DZ,Algeria,,cec,Cation exchange capacity (pH 7),5-15cm,cmol(c)/kg,21.575,1.931,57.223,2318452,99.8,,adequate
+admin0,DZ,Algeria,,cec,Cation exchange capacity (pH 7),15-30cm,cmol(c)/kg,22.153,1.911,57.247,2318452,99.8,,adequate
+admin0,DZ,Algeria,,nitrogen,Total nitrogen,0-5cm,g/kg,0.971,0.044,2.604,2318452,99.8,,adequate
+admin0,DZ,Algeria,,nitrogen,Total nitrogen,5-15cm,g/kg,0.945,0.035,2.459,2318452,99.8,,adequate
+admin0,DZ,Algeria,,nitrogen,Total nitrogen,15-30cm,g/kg,0.842,0.026,2.178,2318452,99.8,,adequate
+admin0,DZ,Algeria,,cfvo,Coarse fragments (volume),0-5cm,vol %,22.604,0.004,75.981,2318452,99.8,,adequate
+admin0,DZ,Algeria,,cfvo,Coarse fragments (volume),5-15cm,vol %,22.697,0.013,75.912,2318452,99.8,,adequate
+admin0,DZ,Algeria,,cfvo,Coarse fragments (volume),15-30cm,vol %,23.894,0.005,77.135,2318452,99.8,,adequate
+admin0,DZ,Algeria,,ocs,Organic carbon stock,0-30cm,t/ha,18.421,2.615,49.067,2318452,99.8,4261.0718,adequate

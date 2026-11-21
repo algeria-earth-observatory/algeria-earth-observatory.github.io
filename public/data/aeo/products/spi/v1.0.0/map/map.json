@@ -1,0 +1,33 @@
+{
+ "kind": "choropleth by wilaya",
+ "breaks": [
+  -2,
+  -1.5,
+  -1,
+  1,
+  1.5,
+  2
+ ],
+ "colors": [
+  "#6b1515",
+  "#d03b3b",
+  "#ee8d81",
+  "#f0efec",
+  "#86b6ef",
+  "#3987e5",
+  "#0d366b"
+ ],
+ "labels": [
+  "extremely dry (≤ −2)",
+  "severely dry (−2 to −1.5)",
+  "moderately dry (−1.5 to −1)",
+  "near normal (−1 to 1)",
+  "moderately wet (1 to 1.5)",
+  "very wet (1.5 to 2)",
+  "extremely wet (≥ 2)"
+ ],
+ "arid": {
+  "color": "#e8dcc4",
+  "label": "arid wilaya (normal < 100 mm/year): SPI unstable"
+ }
+}

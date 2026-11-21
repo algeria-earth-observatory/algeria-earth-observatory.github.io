@@ -4,7 +4,7 @@
   "description": "Global gridded predictions of soil properties at 250 m resolution for six standard depth intervals (0-5, 5-15, 15-30, 30-60, 60-100, 100-200 cm), with per-pixel prediction uncertainty (5th, 50th and 95th percentiles and an uncertainty ratio). Produced by ISRIC - World Soil Information with machine learning applied to soil profile observations and environmental covariates.",
   "purpose": "Provides consistent, depth-resolved estimates of texture, pH, organic carbon, bulk density, CEC, nitrogen and coarse fragments where national gridded soil data are not openly available, e.g. as covariates for crop, erosion or hydrological modelling in Algeria.",
   "domain": [
-    "land-ecosystems",
+    "soil",
     "agriculture"
   ],
   "categories": [

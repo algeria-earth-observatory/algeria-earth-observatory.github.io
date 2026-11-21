@@ -1,161 +1,143 @@
 ---
+/**
+ * Explore: one map, one primary indicator at a time, and the RegionInspector beside it.
+ * Find a place → choose an indicator → read the regional statistics → download or visit the source.
+ */
 import Base from '../layouts/Base.astro';
 import { MAP_LAYERS, BASEMAPS } from '../data/map-layers';
-import { DOMAINS } from '../lib/domains';
+import { PRIMARY_DOMAINS } from '../lib/domains';
 import { getDatasets } from '../lib/catalog';
+import { indicatorsFromRecords } from '../lib/region-download.js';
+import { hasAeoStats } from '../scripts/region-inspector';
 
 const datasets = await getDatasets();
-const titleOf = (id: string | null) => (id ? datasets.find((d) => d.id === id)?.title ?? null : null);
-const missing = MAP_LAYERS.filter((l) => l.dataset && !titleOf(l.dataset));
+const byId = new Map(datasets.map((d) => [d.id, d]));
+const missing = MAP_LAYERS.filter((l) => l.dataset && !byId.has(l.dataset));
 if (missing.length) throw new Error(`Map layers reference unknown datasets: ${missing.map((l) => `${l.id}→${l.dataset}`).join(', ')}`);
 
+// Explore groups: the five primary domains; dust is shown with climate.
+const groupOf = (d: string) => (d === 'hazards' ? 'climate-drought' : d);
+const indicators = MAP_LAYERS.filter((l) => l.id !== 'wilayas' && l.id !== 'communes');
 const groups = [
-  { id: 'reference', title: 'Reference' },
-  ...DOMAINS.filter((d) => !d.crossCutting).map((d) => ({ id: d.id, title: d.title })),
-].map((g) => ({ ...g, layers: MAP_LAYERS.filter((l) => l.domain === g.id) })).filter((g) => g.layers.length);
-const natureLabel: Record<string, string> = { observed: 'Observed', derived: 'Derived', modeled: 'Modeled', reference: 'Reference' };
-const aeoLayer = (id: string) => /^(precip-|spei-|wilayas|communes|gaced30)/.test(id);
----
-<Base title="Explore" description="Map explorer for Algeria: wilaya and commune boundaries, precipitation, drought index SPEI, cropland, land cover, vegetation and other documented layers, shown for Algeria only." noFooter darkHeader>
-  <div class="theme-dark relative grid h-[calc(100dvh-3.5rem)] lg:grid-cols-[20rem_minmax(0,1fr)] xl:grid-cols-[20rem_minmax(0,1fr)_20rem]">
-    <div id="drawer-backdrop" class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden" aria-hidden="true"></div>
-    <!-- Left: layers -->
-    <aside id="map-panel" aria-label="Layers and controls" class="fixed inset-y-0 left-0 z-50 w-[min(22rem,88vw)] -translate-x-full overflow-y-auto border-r border-line bg-obsidian transition-transform duration-150 data-[open=true]:translate-x-0 lg:static lg:z-auto lg:w-auto lg:translate-x-0">
-      <div class="border-b border-line px-4 py-4">
-        <div class="flex items-center justify-between"><h1 class="text-[1rem] font-medium">Explore</h1>
-          <button type="button" id="drawer-close" class="min-h-6 min-w-6 px-2 text-[0.8rem] text-slate hover:text-atlas lg:hidden" aria-label="Close layers panel">Close</button></div>
-        <p class="mt-1 text-[0.78rem] leading-snug text-slate">Algeria only. Overlays are display images of documented datasets — use the downloads for analysis.</p>
-        <label class="mt-3 block"><span class="sr-only">Search layers</span>
-          <input id="layer-search" type="search" placeholder="Search layers" autocomplete="off" class="field !py-1.5 !text-[0.8125rem]" /></label>
-        <div class="mt-2 grid grid-cols-2 gap-2">
-          <label class="block"><span class="sr-only">Go to wilaya</span>
-            <select id="wilaya-select" class="field !py-1.5 !text-[0.8125rem]"><option value="">All of Algeria</option></select></label>
-          <label class="block"><span class="sr-only">Basemap</span>
-            <select id="basemap-select" class="field !py-1.5 !text-[0.8125rem]">
-              {BASEMAPS.map((b) => <option value={b.id}>{b.title.replace(' (OpenStreetMap)', '')}</option>)}
-            </select></label>
-        </div>
-        <fieldset class="hidden">
-          <legend>Basemap</legend>
-          {BASEMAPS.map((b, i) => <input type="radio" name="basemap" value={b.id} checked={i === 0} aria-label={b.title} tabindex="-1" />)}
-        </fieldset>
-      </div>
+  ...PRIMARY_DOMAINS.map((d) => ({ id: d.id as string, title: d.title, layers: indicators.filter((l) => groupOf(l.domain) === d.id) })),
+  { id: 'reference', title: 'Satellite imagery', layers: indicators.filter((l) => l.domain === 'reference') },
+].filter((g) => g.layers.length);
+const shortTitle = (t: string) => t.replace(/\s*\((AEO|SoilGrids 2\.0)[^)]*\)/g, '').replace(/\s*\(AEO\)/, '');
+const nature: Record<string, string> = { observed: 'observed', derived: 'derived', modeled: 'model', reference: 'reference' };
 
-      {groups.map((g) => (
-        <details class="group/grp border-b border-line" data-layer-group open={g.id === 'reference' || g.id === 'climate-drought' || g.layers.some((l) => l.defaultOn)}>
-          <summary class="flex min-h-10 cursor-pointer list-none items-center gap-2 px-4 text-[0.8125rem] font-medium text-atlas hover:bg-mist">
-            <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform group-open/grp:rotate-90"><path d="M3 1.5 L7 5 L3 8.5" fill="none" stroke="currentColor" stroke-width="1.4" /></svg>
-            <span id={`grp-${g.id}`}>{g.title}</span><span class="ml-auto font-mono text-[0.8125rem] text-slate">{g.layers.length}</span>
-          </summary>
-          <ul class="pb-2">
-            {g.layers.map((l) => (
-              <li data-layer-item={l.id} data-search={`${l.title} ${l.summary} ${g.title}`.toLowerCase()}>
-                <div class="flex items-start gap-2.5 px-4 py-1.5 hover:bg-mist">
-                  <input type="checkbox" id={`chk-${l.id}`} data-layer-toggle={l.id} class="mt-[3px] h-3.5 w-3.5 shrink-0 accent-[#8aa6ff]" checked={l.defaultOn} />
-                  <label for={`chk-${l.id}`} class="min-w-0 flex-1 cursor-pointer text-[0.8125rem] leading-snug text-atlas">
-                    {l.title}
-                    <span class="mt-0.5 block font-mono text-[0.8125rem] text-slate">{natureLabel[l.nature]}{aeoLayer(l.id) ? ' · AEO' : ''}{l.time ? ` · ${l.time.step}` : ''}</span>
+const layerInfo = MAP_LAYERS.map((l) => ({ id: l.id, title: l.title, dataset: l.dataset, nature: l.nature, caveat: l.caveat }));
+const datasetInfo = Object.fromEntries(MAP_LAYERS.filter((l) => l.dataset).map((l) => {
+  const d = byId.get(l.dataset!)!;
+  return [d.id, { title: d.title, provider: d.provider?.name, source_url: d.source_url, documentation_url: d.documentation_url, status: d.status, resolution: d.resolution?.spatial }];
+}));
+const { available } = indicatorsFromRecords(datasets);
+const lab = 'block text-[0.875rem] font-medium text-atlas';
+---
+<Base title="Explore" description="Explore Algeria on an interactive map: choose a wilaya or commune and an environmental indicator (precipitation, drought, soil, vegetation, water) and read its regional statistics." noFooter>
+  <div id="explore" data-inspector="closed" class="ex-grid theme-light bg-limestone">
+    <!-- Left: data selection -->
+    <aside id="ex-panel" aria-label="Data selection" class="ex-panel border-line bg-surface lg:border-r">
+      <div class="space-y-6 p-4 lg:p-5">
+        <div>
+          <h1 class="text-[1.375rem] font-medium leading-tight text-atlas">Explore Algeria</h1>
+          <p class="mt-1 text-[0.9375rem] leading-relaxed text-slate">Find a place, choose an indicator, read its statistics.</p>
+        </div>
+
+        <div>
+          <label for="ex-wilaya" class={lab}>Place</label>
+          <p id="ex-wilaya-help" class="mt-0.5 text-[0.8125rem] text-slate">Search a wilaya by name or code, or click it on the map.</p>
+          <div class="relative mt-1.5">
+            <input id="ex-wilaya" class="field rdd-input" type="text" aria-describedby="ex-wilaya-help" placeholder="Search 69 wilayas" />
+            <svg class="rdd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+            <ul id="ex-wilaya-list" class="rdd-list" hidden aria-label="Wilayas"></ul>
+          </div>
+          <label class="mt-2 flex min-h-6 items-center gap-2 text-[0.875rem] text-graphite"><input type="checkbox" id="ex-communes" class="h-4 w-4 accent-[#3458d4]" /> Show communes (click one to select it)</label>
+        </div>
+
+        <div>
+          <label for="ex-domain" class={lab}>Environmental domain</label>
+          <select id="ex-domain" class="field mt-1.5">
+            <option value="">All domains</option>
+            {groups.map((g) => <option value={g.id}>{g.title}</option>)}
+          </select>
+        </div>
+
+        <fieldset>
+          <legend class={lab}>Indicator</legend>
+          <p class="mt-0.5 text-[0.8125rem] text-slate">One layer at a time. <span class="ex-badge ex-badge-aeo">AEO statistics</span> means regional values are available.</p>
+          <div id="ex-indicators" class="mt-2 space-y-1">
+            <label class="ex-ind" data-group=""><input type="radio" name="ex-ind" value="" class="accent-[#3458d4]" /><span><span class="block text-[0.9375rem] text-atlas">Boundaries only</span></span></label>
+            {groups.map((g) => (
+              <div data-group-wrap={g.id}>
+                <p class="mt-3 text-[0.8125rem] font-medium text-slate">{g.title}</p>
+                {g.layers.map((l) => (
+                  <label class="ex-ind" data-group={g.id} data-layer={l.id}>
+                    <input type="radio" name="ex-ind" value={l.id} class="accent-[#3458d4]" />
+                    <span>
+                      <span class="block text-[0.9375rem] leading-snug text-atlas">{shortTitle(l.title)}</span>
+                      <span class="mt-0.5 flex flex-wrap items-center gap-1.5 text-[0.8125rem] text-slate">
+                        {hasAeoStats(l.id) ? <span class="ex-badge ex-badge-aeo">AEO statistics</span> : <span class="ex-badge">Map only</span>}
+                        <span>{nature[l.nature]}</span>
+                      </span>
+                    </span>
                   </label>
-                  <button type="button" class="-my-1 grid h-6 w-6 shrink-0 place-items-center font-mono text-[0.8125rem] text-slate hover:text-atlas" aria-expanded="false" aria-controls={`info-${l.id}`} data-info-toggle={l.id} aria-label={`About ${l.title}`}>i</button>
-                </div>
-                <div class="hidden space-y-2 px-4 pb-2 pl-10 pt-1" data-layer-controls={l.id}>
-                  <label class="flex items-center gap-2 text-[0.75rem] text-slate">
-                    <span class="w-12 shrink-0">Opacity</span>
-                    <input type="range" min="0.1" max="1" step="0.05" value={l.opacity} data-opacity={l.id} class="w-full accent-[#8aa6ff]" aria-label={`Opacity of ${l.title}`} />
-                  </label>
-                  {l.time?.step === 'year' && (
-                    <div class="text-[0.75rem] text-slate">
-                      <div class="flex items-center gap-1.5">
-                        <span class="w-12 shrink-0">Year</span>
-                        <button type="button" class="border border-line px-1.5" data-step={l.id} data-dir="-1" aria-label={`Previous year for ${l.title}`}>‹</button>
-                        <input type="range" min="0" max="0" step="1" value="0" data-year={l.id} class="min-w-0 flex-1 accent-[#8aa6ff]" aria-label={`Year for ${l.title}`} />
-                        <button type="button" class="border border-line px-1.5" data-step={l.id} data-dir="1" aria-label={`Next year for ${l.title}`}>›</button>
-                        <output class="tabular w-9 text-right font-mono text-atlas" data-year-label={l.id}></output>
-                      </div>
-                      <p class="mt-1 pl-14 font-mono text-[0.8125rem]" data-date-note={l.id} aria-live="polite"></p>
-                    </div>
-                  )}
-                  {l.time && l.time.step !== 'year' && (
-                    <div class="text-[0.75rem] text-slate">
-                      <div class="flex items-center gap-1.5">
-                        <span class="w-12 shrink-0">Date</span>
-                        <button type="button" class="border border-line px-1.5" data-step={l.id} data-dir="-1" aria-label={`Previous date for ${l.title}`}>‹</button>
-                        <input type="date" data-date={l.id} class="field min-w-0 flex-1 !px-1.5 !py-0.5 !text-[0.75rem]" aria-label={`Date for ${l.title}`} />
-                        <button type="button" class="border border-line px-1.5" data-step={l.id} data-dir="1" aria-label={`Next date for ${l.title}`}>›</button>
-                      </div>
-                      <p class="mt-1 pl-14 font-mono text-[0.8125rem]" data-date-note={l.id} aria-live="polite"></p>
-                    </div>
-                  )}
-                  <p class="hidden text-[0.8125rem] text-[#f0b39a]" data-error={l.id} role="status"></p>
-                </div>
-                <div id={`info-${l.id}`} class="hidden px-4 pb-3 pl-10 text-[0.75rem] leading-relaxed text-graphite">
-                  <p>{l.summary}</p>
-                  {l.caveat && <p class="mt-1.5 text-slate">{l.caveat}</p>}
-                  {l.dataset ? <p class="mt-1.5"><a href={`/data/${l.dataset}/`}>{titleOf(l.dataset)}</a></p> : <p class="mt-1.5 text-slate">Imagery for visual reference; not a catalog dataset.</p>}
-                </div>
-              </li>
+                ))}
+              </div>
             ))}
-          </ul>
+          </div>
+        </fieldset>
+
+        <div id="ex-period" class="space-y-2" hidden>
+          <p class={lab} id="ex-period-l">Period</p>
+          <div id="ex-period-ctl"></div>
+          <p id="ex-period-note" class="text-[0.8125rem] text-slate" aria-live="polite"></p>
+        </div>
+
+        <details class="border-t border-line pt-4">
+          <summary class="cursor-pointer text-[0.9375rem] font-medium text-atlas">Layer information and map options</summary>
+          <div id="ex-info" class="mt-3 space-y-2 text-[0.875rem] leading-relaxed text-graphite"></div>
+          <label class="mt-4 block"><span class={lab}>Layer opacity</span><input id="ex-opacity" type="range" min="0.2" max="1" step="0.05" value="0.85" class="mt-1 w-full accent-[#3458d4]" /></label>
+          <label class="mt-3 block"><span class={lab}>Basemap</span>
+            <select id="ex-basemap" class="field mt-1.5">{BASEMAPS.map((b) => <option value={b.id}>{b.title}</option>)}</select></label>
         </details>
-      ))}
-      <p id="layer-empty" class="hidden px-4 py-3 text-[0.8rem] text-slate">No layer matches.</p>
+      </div>
     </aside>
 
     <!-- Centre: map -->
-    <div class="flex min-h-0 flex-col">
-      <div class="flex items-end gap-2 border-b border-line bg-obsidian px-3 py-2 lg:hidden">
-        <label class="min-w-0 flex-1"><span class="block text-[0.8125rem] text-slate">Region</span>
-          <select id="wilaya-select-m" class="field mt-1 !min-h-10"><option value="">All of Algeria</option></select></label>
-        <button type="button" id="drawer-open" aria-controls="map-panel" aria-expanded="false" class="min-h-10 border border-line-strong bg-obsidian px-3 text-[0.875rem] text-white" style="border-radius:var(--radius-control)">Layers</button>
-      </div>
-      <div class="relative min-h-0 flex-1">
-      <div class="absolute inset-0"><div id="map" class="h-full w-full bg-obsidian" role="region" aria-label="Interactive map of Algeria"></div></div>
-      <div id="legend" class="theme-light tabular pointer-events-auto absolute bottom-8 right-2 z-10 hidden max-h-[28%] w-[12.5rem] max-w-[calc(100%-1rem)] overflow-y-auto border border-line bg-white p-3 text-[0.8125rem] text-graphite sm:max-h-[42%] sm:w-[16rem]" style="border-radius:var(--radius-card)" aria-label="Legend"></div>
-      <div id="coords" class="tabular pointer-events-none absolute left-2 top-2 z-10 bg-obsidian/85 px-2 py-1 font-mono text-[0.8125rem] text-graphite empty:hidden" aria-hidden="true"></div>
-      <noscript><p class="absolute inset-0 grid place-items-center p-6 text-center">The map explorer requires JavaScript. All products remain available in <a href="/data/">Data</a>.</p></noscript>
-      </div>
+    <div class="ex-map relative">
+      <div class="absolute inset-0"><div id="map" class="h-full w-full bg-limestone" role="region" aria-label="Map of Algeria. Use the Place search to select a region with the keyboard; statistics appear in the region panel."></div></div>
+      <div id="legend" class="tabular pointer-events-auto absolute bottom-8 right-2 z-10 hidden max-h-[45%] w-[15rem] max-w-[calc(100%-1rem)] overflow-y-auto border border-line bg-white p-3 text-[0.8125rem] text-graphite shadow-sm" style="border-radius:var(--radius-card)" aria-label="Legend"></div>
+      <noscript><p class="absolute inset-0 grid place-items-center p-6 text-center">The map needs JavaScript. All products are listed in <a href="/data/">Data</a>.</p></noscript>
     </div>
 
-    <!-- Right: inspector -->
-    <aside id="inspector" aria-label="Inspector" aria-live="polite" class="hidden border-l border-line xl:block xl:overflow-y-auto">
-      <div class="px-4 py-4">
-        <p class="overline ">Inspector</p>
-        <div id="inspector-body" class="mt-3 text-[0.8125rem] text-slate">Select a wilaya or commune on the map to see its indicators.</div>
-      </div>
+    <!-- Right: regional information -->
+    <aside id="inspector" class="ex-inspector border-line bg-surface lg:border-l" aria-labelledby="ins-h" hidden>
+      <div class="flex justify-end px-4 pt-3"><button type="button" id="ins-close" class="btn btn-secondary !px-2.5 !py-1 text-[0.875rem]">Close<span class="sr-only"> region panel</span></button></div>
+      <div id="inspector-body" class="px-4 pb-6 lg:px-5"></div>
     </aside>
   </div>
+  <script type="application/json" id="ex-data" set:html={JSON.stringify({ layers: layerInfo, datasets: datasetInfo, indicators: available })} />
 </Base>
 
+<style is:global>
+  .ex-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .ex-map { height: 62vh; min-height: 22rem; }
+  @media (min-width: 1024px) {
+    .ex-grid { height: calc(100dvh - 3.5rem); grid-template-columns: 20rem minmax(0, 1fr); }
+    .ex-grid[data-inspector='open'] { grid-template-columns: 20rem minmax(0, 1fr) 24rem; }
+    .ex-panel, .ex-inspector { overflow-y: auto; }
+    .ex-map { height: auto; min-height: 0; }
+  }
+  .ex-ind { display: flex; gap: .625rem; align-items: flex-start; padding: .5rem .5rem; border-radius: var(--radius-control); cursor: pointer; }
+  .ex-ind input { margin-top: .25rem; width: 1rem; height: 1rem; flex: none; }
+  .ex-ind:hover { background: var(--color-paper); }
+  .ex-ind:has(:checked) { background: #e8edfb; box-shadow: inset 3px 0 0 var(--color-cobalt); }
+  .ex-ind:has(:focus-visible) { outline: 2px solid var(--color-cobalt); outline-offset: 1px; }
+  .ex-badge { display: inline-block; padding: 0 .375rem; border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); font-size: .75rem; line-height: 1.35rem; color: var(--color-slate); }
+  .ex-badge-aeo { border-color: #b6d8c1; background: #e7f2ea; color: var(--color-success); }
+</style>
+
 <script>
-  import { initExplorer } from '../scripts/map-explorer';
-  initExplorer();
-  // mobile drawer (accessible: aria-expanded, Escape, focus in/out)
-  // mobile region selector mirrors the panel's wilaya selector (filled by map-explorer)
-  const wMain = document.getElementById('wilaya-select') as HTMLSelectElement;
-  const wMob = document.getElementById('wilaya-select-m') as HTMLSelectElement;
-  const copyOpts = () => { if (wMob.options.length !== wMain.options.length) wMob.innerHTML = wMain.innerHTML; wMob.value = wMain.value; };
-  new MutationObserver(copyOpts).observe(wMain, { childList: true });
-  wMain.addEventListener('change', copyOpts);
-  wMob.addEventListener('change', () => { wMain.value = wMob.value; wMain.dispatchEvent(new Event('change', { bubbles: true })); });
-  copyOpts();
-  const panel = document.getElementById('map-panel')!;
-  const open = document.getElementById('drawer-open') as HTMLButtonElement;
-  const close = document.getElementById('drawer-close') as HTMLButtonElement;
-  const back = document.getElementById('drawer-backdrop')!;
-  const mq = window.matchMedia('(min-width: 1024px)');
-  const sync = () => { panel.inert = !mq.matches && panel.dataset.open !== 'true'; };
-  mq.addEventListener('change', sync);
-  sync();
-  const setOpen = (v: boolean) => {
-    panel.dataset.open = String(v);
-    sync();
-    back.classList.toggle('hidden', !v);
-    open.setAttribute('aria-expanded', String(v));
-    if (v) (panel.querySelector('input, select, button') as HTMLElement | null)?.focus();
-    else open.focus();
-  };
-  open.addEventListener('click', () => setOpen(true));
-  close.addEventListener('click', () => setOpen(false));
-  back.addEventListener('click', () => setOpen(false));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && panel.dataset.open === 'true') setOpen(false); });
+  import { initExplore } from '../scripts/explore';
+  initExplore();
 </script>

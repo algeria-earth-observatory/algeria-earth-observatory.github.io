@@ -1,0 +1,332 @@
+{
+  "id": "aeo-dza-soil-soilgrids",
+  "title": "Algeria soil properties (SoilGrids 2.0), 0–30 cm: national, wilaya and commune statistics",
+  "title_fr": "Propriétés des sols de l'Algérie (SoilGrids 2.0), 0–30 cm : statistiques nationales, par wilaya et par commune",
+  "title_ar": null,
+  "description": "Soil organic carbon, pH, clay, sand and silt fractions, bulk density, cation exchange capacity, total nitrogen and coarse fragments at 0–5, 5–15 and 15–30 cm, and the 0–30 cm organic carbon stock, averaged by AEO over Algeria, its 69 wilayas and 1,541 communes from ISRIC SoilGrids 2.0 model predictions, with the 5–95 % prediction range.",
+  "purpose": "Give regional soil statistics for Algeria (for example as context for crop, drought or carbon studies) with their depth, units and prediction uncertainty, without each user having to process the global SoilGrids rasters.",
+  "domain": [
+    "soil",
+    "agriculture"
+  ],
+  "categories": [
+    "Soil properties",
+    "Digital soil mapping"
+  ],
+  "keywords": [
+    "soil",
+    "SoilGrids",
+    "soil organic carbon",
+    "carbon stock",
+    "texture",
+    "pH",
+    "bulk density",
+    "CEC",
+    "nitrogen",
+    "wilaya",
+    "commune",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "modeled",
+  "data_type": "tabular",
+  "provider": {
+    "name": "ISRIC – World Soil Information (SoilGrids 2.0); Algeria Earth Observatory (regional statistics)",
+    "url": "https://www.isric.org/explore/soilgrids"
+  },
+  "creator": "Algeria Earth Observatory maintainers (regional statistics); Poggio et al. (SoilGrids 2.0)",
+  "source_url": "https://files.isric.org/soilgrids/latest/",
+  "documentation_url": "https://docs.isric.org/globaldata/soilgrids/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "SoilGrids is CC BY 4.0 (ISRIC). AEO statistics are CC BY 4.0: cite AEO and SoilGrids 2.0 (Poggio et al. 2021).",
+  "citation": "Algeria Earth Observatory (2026). Algeria soil properties (SoilGrids 2.0), 0–30 cm, version 1.0.0. https://algeria-earth-observatory.github.io/data/aeo-dza-soil-soilgrids/ — from Poggio, L. et al. (2021), SoilGrids 2.0, SOIL 7, 217–240, doi:10.5194/soil-7-217-2021.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Poggio, L., de Sousa, L. M., Batjes, N. H., Heuvelink, G. B. M., Kempen, B., Ribeiro, E., and Rossiter, D. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217-240.",
+      "doi": "10.5194/soil-7-217-2021",
+      "url": "https://soil.copernicus.org/articles/7/217/2021/"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "description": "Algeria (AEO boundaries 2026-11-20): 1 country, 69 wilayas, 1,541 communes. Statistics from 1 km pixels in the equal-area Homolosine projection.",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ]
+  },
+  "temporal_extent": {
+    "start": null,
+    "end": null,
+    "ongoing": false,
+    "frequency": "single epoch",
+    "description": "SoilGrids 2.0 predictions are static maps without a reference date; the training profiles were collected over several decades."
+  },
+  "resolution": {
+    "spatial": "Administrative units (from 1 km SoilGrids aggregates of 250 m predictions)",
+    "spatial_m": null,
+    "temporal": "single epoch"
+  },
+  "format": [
+    "CSV",
+    "Parquet"
+  ],
+  "crs": "Statistics computed in Interrupted Goode Homolosine (equal-area); boundaries in EPSG:4326",
+  "variables": [
+    {
+      "name": "soc_0-5cm",
+      "units": "g/kg",
+      "description": "Soil organic carbon (concentration), 0-5cm"
+    },
+    {
+      "name": "soc_5-15cm",
+      "units": "g/kg",
+      "description": "Soil organic carbon (concentration), 5-15cm"
+    },
+    {
+      "name": "soc_15-30cm",
+      "units": "g/kg",
+      "description": "Soil organic carbon (concentration), 15-30cm"
+    },
+    {
+      "name": "phh2o_0-5cm",
+      "units": "pH",
+      "description": "Soil pH (in water), 0-5cm"
+    },
+    {
+      "name": "phh2o_5-15cm",
+      "units": "pH",
+      "description": "Soil pH (in water), 5-15cm"
+    },
+    {
+      "name": "phh2o_15-30cm",
+      "units": "pH",
+      "description": "Soil pH (in water), 15-30cm"
+    },
+    {
+      "name": "clay_0-5cm",
+      "units": "%",
+      "description": "Clay fraction, 0-5cm"
+    },
+    {
+      "name": "clay_5-15cm",
+      "units": "%",
+      "description": "Clay fraction, 5-15cm"
+    },
+    {
+      "name": "clay_15-30cm",
+      "units": "%",
+      "description": "Clay fraction, 15-30cm"
+    },
+    {
+      "name": "sand_0-5cm",
+      "units": "%",
+      "description": "Sand fraction, 0-5cm"
+    },
+    {
+      "name": "sand_5-15cm",
+      "units": "%",
+      "description": "Sand fraction, 5-15cm"
+    },
+    {
+      "name": "sand_15-30cm",
+      "units": "%",
+      "description": "Sand fraction, 15-30cm"
+    },
+    {
+      "name": "silt_0-5cm",
+      "units": "%",
+      "description": "Silt fraction, 0-5cm"
+    },
+    {
+      "name": "silt_5-15cm",
+      "units": "%",
+      "description": "Silt fraction, 5-15cm"
+    },
+    {
+      "name": "silt_15-30cm",
+      "units": "%",
+      "description": "Silt fraction, 15-30cm"
+    },
+    {
+      "name": "bdod_0-5cm",
+      "units": "kg/dm3",
+      "description": "Bulk density (fine earth), 0-5cm"
+    },
+    {
+      "name": "bdod_5-15cm",
+      "units": "kg/dm3",
+      "description": "Bulk density (fine earth), 5-15cm"
+    },
+    {
+      "name": "bdod_15-30cm",
+      "units": "kg/dm3",
+      "description": "Bulk density (fine earth), 15-30cm"
+    },
+    {
+      "name": "cec_0-5cm",
+      "units": "cmol(c)/kg",
+      "description": "Cation exchange capacity (pH 7), 0-5cm"
+    },
+    {
+      "name": "cec_5-15cm",
+      "units": "cmol(c)/kg",
+      "description": "Cation exchange capacity (pH 7), 5-15cm"
+    },
+    {
+      "name": "cec_15-30cm",
+      "units": "cmol(c)/kg",
+      "description": "Cation exchange capacity (pH 7), 15-30cm"
+    },
+    {
+      "name": "nitrogen_0-5cm",
+      "units": "g/kg",
+      "description": "Total nitrogen, 0-5cm"
+    },
+    {
+      "name": "nitrogen_5-15cm",
+      "units": "g/kg",
+      "description": "Total nitrogen, 5-15cm"
+    },
+    {
+      "name": "nitrogen_15-30cm",
+      "units": "g/kg",
+      "description": "Total nitrogen, 15-30cm"
+    },
+    {
+      "name": "cfvo_0-5cm",
+      "units": "vol %",
+      "description": "Coarse fragments (volume), 0-5cm"
+    },
+    {
+      "name": "cfvo_5-15cm",
+      "units": "vol %",
+      "description": "Coarse fragments (volume), 5-15cm"
+    },
+    {
+      "name": "cfvo_15-30cm",
+      "units": "vol %",
+      "description": "Coarse fragments (volume), 15-30cm"
+    },
+    {
+      "name": "ocs_0-30cm",
+      "units": "t/ha",
+      "description": "Organic carbon stock, 0-30cm"
+    }
+  ],
+  "processing": "Mean of the 1 km SoilGrids predictions whose pixel centre falls in each unit, in the equal-area Homolosine projection (so the plain mean is area-weighted); unit averages of the 250 m 5 % and 95 % quantile maps (averaged onto the 1 km grid); values converted with the ISRIC conversion factors. Organic carbon stock is the ISRIC 0–30 cm stock product.",
+  "validation": "tests/python/test_soil_product.py (checksums, completeness, physical ranges, quantile order, national vs wilaya consistency, stock totals). The tutorial scripts/tutorials/soil_wilaya.py recomputes a wilaya from the ISRIC file (Sétif SOC 0–5 cm: 31.10 vs 31.09 g/kg).",
+  "limitations": [
+    "Model predictions, not field measurements; prediction intervals are wide in Algeria, where few soil profiles were available to the model.",
+    "q05_mean and q95_mean average the pixel quantiles; they are not confidence intervals of the unit mean.",
+    "Soil organic carbon concentration is not a stock; use the organic carbon stock (ocs) for t/ha.",
+    "No salinity or water-holding properties; no texture classes.",
+    "Small communes rest on few 1 km pixels (flagged in the support column)."
+  ],
+  "algeria_notes": "Predicted organic carbon at 0–5 cm is highest in the humid northern wilayas (for example Tizi Ouzou 53 g/kg and El Tarf 49 g/kg) and lowest in the Sahara (Adrar 5 g/kg), where predicted sand and coarse-fragment contents are higher. Treat the northern values with care: SoilGrids tends to be uncertain in dryland soils, and the 5–95 % ranges are wide.",
+  "version": "1.0.0",
+  "published_date": "2026-11-20",
+  "updated_date": "2026-11-20",
+  "download_url": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin1_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Wilayas — soil statistics, all properties and depths (CSV)",
+      "url": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 195951,
+      "sha256": "d48eab538932821dfd48166f1eaa1f4979dec3e47fd0ff4fa007de30d06d36a9",
+      "notes": null
+    },
+    {
+      "label": "Algeria — soil statistics (CSV)",
+      "url": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin0_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 2948,
+      "sha256": "84c0e9e6f10c05f4330594b936b28c715143cffdfdf23de59e0ef0fa3e1c04a5",
+      "notes": null
+    },
+    {
+      "label": "Communes — soil statistics (Parquet)",
+      "url": "/data/aeo/products/soil/v1.0.0/tables/aeo_soil_stats_admin2_v1.0.0.parquet",
+      "kind": "download",
+      "format": "Parquet",
+      "requires_login": false,
+      "size_bytes": 755615,
+      "sha256": "bf29363b14d4c8f9e96850c207034839273e239850014957b7ed3298916b6449",
+      "notes": null
+    },
+    {
+      "label": "SoilGrids rasters at ISRIC (250 m and 1 km)",
+      "url": "https://files.isric.org/soilgrids/latest/",
+      "kind": "external",
+      "format": "GeoTIFF / VRT",
+      "requires_login": false,
+      "size_bytes": null,
+      "sha256": null,
+      "notes": "Not redistributed by AEO."
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/soil",
+  "map_layers": [
+    "soil-bdod",
+    "soil-cec",
+    "soil-cfvo",
+    "soil-clay",
+    "soil-nitrogen",
+    "soil-ocs",
+    "soil-phh2o",
+    "soil-sand",
+    "soil-silt",
+    "soil-soc"
+  ],
+  "featured": false,
+  "added_date": "2026-11-20",
+  "verification": {
+    "checked": "2026-11-20",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://files.isric.org/soilgrids/latest/data_aggregated/1000m/",
+      "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
+      "https://doi.org/10.5194/soil-7-217-2021"
+    ],
+    "notes": "Conversion factors from the ISRIC SoilGrids FAQ; see PROVENANCE.json."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/soil/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1",
+      "admin2"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "bdod",
+      "cec",
+      "cfvo",
+      "clay",
+      "nitrogen",
+      "ocs",
+      "phh2o",
+      "sand",
+      "silt",
+      "soc"
+    ],
+    "analyze": false
+  }
+}

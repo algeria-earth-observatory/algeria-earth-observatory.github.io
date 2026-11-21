@@ -1,0 +1,478 @@
+[
+ {
+  "doi": "10.1038/s41597-026-07096-4",
+  "category": "foundations",
+  "topic": "Precipitation",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "aeo-dza-precipitation-chirps3",
+   "/docs/method-precipitation/"
+  ],
+  "why": "Describes CHIRPS v3.0, the source of the AEO precipitation product.",
+  "expect": {
+   "title": "Climate Hazards Center Infrared Precipitation with Stations",
+   "first_author": "Funk",
+   "year": 2026
+  }
+ },
+ {
+  "doi": "10.1038/sdata.2015.66",
+  "category": "foundations",
+  "topic": "Precipitation",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "chirps-v2",
+   "/docs/method-precipitation/"
+  ],
+  "why": "Original CHIRPS paper (version 2): blending method, gauge sources and validation.",
+  "expect": {
+   "title": "climate hazards infrared precipitation with stations",
+   "first_author": "Funk",
+   "year": 2015
+  }
+ },
+ {
+  "doi": "10.5194/essd-13-4349-2021",
+  "category": "foundations",
+  "topic": "Climate reanalysis",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "era5-land"
+  ],
+  "why": "ERA5-Land: land reanalysis candidate for potential evapotranspiration and soil moisture.",
+  "expect": {
+   "title": "ERA5-Land",
+   "first_author": "Muñoz-Sabater",
+   "year": 2021
+  }
+ },
+ {
+  "doi": "10.1038/sdata.2017.191",
+  "category": "foundations",
+  "topic": "Climate reanalysis",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "terraclimate",
+   "aeo-dza-spei-terraclimate",
+   "/docs/method-spei/"
+  ],
+  "why": "TerraClimate: precipitation and reference evapotranspiration used for the AEO SPEI product.",
+  "expect": {
+   "title": "TerraClimate",
+   "first_author": "Abatzoglou",
+   "year": 2018
+  }
+ },
+ {
+  "doi": "10.1175/2009jcli2909.1",
+  "category": "foundations",
+  "topic": "Drought indices",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "aeo-dza-spei-terraclimate",
+   "/docs/method-spei/"
+  ],
+  "why": "Defines the Standardized Precipitation Evapotranspiration Index (SPEI).",
+  "expect": {
+   "title": "Multiscalar Drought Index Sensitive to Global Warming",
+   "first_author": "Vicente-Serrano",
+   "year": 2010
+  }
+ },
+ {
+  "doi": "10.1002/joc.3887",
+  "category": "foundations",
+  "topic": "Drought indices",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "aeo-dza-spei-terraclimate",
+   "/docs/method-spei/"
+  ],
+  "why": "SPEI revisited: parameter fitting (unbiased PWM, log-logistic) used by the AEO SPEI method.",
+  "expect": {
+   "title": "Standardized precipitation evapotranspiration index (SPEI) revisited",
+   "first_author": "Beguería",
+   "year": 2014
+  }
+ },
+ {
+  "doi": "10.1111/j.1752-1688.1999.tb03592.x",
+  "category": "foundations",
+  "topic": "Drought indices",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-spi/"
+  ],
+  "why": "Accepting the Standardized Precipitation Index: calculation choices and record length for SPI.",
+  "expect": {
+   "title": "Accepting the Standardized Precipitation Index",
+   "first_author": "Guttman",
+   "year": 1999
+  }
+ },
+ {
+  "doi": "10.1002/joc.4267",
+  "category": "foundations",
+  "topic": "Drought indices",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-spi/",
+   "/docs/method-spei/"
+  ],
+  "why": "Compares candidate distributions for SPI and SPEI; supports the gamma (SPI) and log-logistic (SPEI) choices.",
+  "expect": {
+   "title": "Candidate Distributions for Climatological Drought Indices",
+   "first_author": "Stagge",
+   "year": 2015
+  }
+ },
+ {
+  "doi": "10.1175/2010bams3103.1",
+  "category": "foundations",
+  "topic": "Drought indices",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-spi/"
+  ],
+  "why": "Lincoln Declaration: WMO recommendation of the SPI for meteorological drought.",
+  "expect": {
+   "title": "Lincoln Declaration on Drought Indices",
+   "first_author": "Hayes",
+   "year": 2011
+  }
+ },
+ {
+  "doi": "10.1111/j.2517-6161.1990.tb01775.x",
+  "category": "foundations",
+  "topic": "Statistical methods",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-spei/",
+   "/docs/method-spi/"
+  ],
+  "why": "L-moments and probability-weighted moments used to fit the drought-index distributions.",
+  "expect": {
+   "title": "L-Moments",
+   "first_author": "Hosking",
+   "year": 1990
+  }
+ },
+ {
+  "doi": "10.1080/01621459.1968.10480934",
+  "category": "foundations",
+  "topic": "Statistical methods",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-precipitation/"
+  ],
+  "why": "Sen's slope estimator used for all AEO trends.",
+  "expect": {
+   "title": "Estimates of the Regression Coefficient Based on Kendall",
+   "first_author": "Sen",
+   "year": 1968
+  }
+ },
+ {
+  "doi": "10.2307/1907187",
+  "category": "foundations",
+  "topic": "Statistical methods",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-precipitation/"
+  ],
+  "why": "Mann–Kendall test for monotonic trends.",
+  "expect": {
+   "title": "Nonparametric Tests Against Trend",
+   "first_author": "Mann",
+   "year": 1945
+  }
+ },
+ {
+  "doi": "10.1023/b:warm.0000043140.61082.60",
+  "category": "foundations",
+  "topic": "Statistical methods",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-precipitation/"
+  ],
+  "why": "Variance correction of the Mann–Kendall test for autocorrelated series, applied by AEO.",
+  "expect": {
+   "first_author": "Yue",
+   "year": 2004
+  }
+ },
+ {
+  "doi": "10.5194/gmd-12-1087-2019",
+  "category": "foundations",
+  "topic": "Seasonal forecasting",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [],
+  "why": "ECMWF SEAS5 seasonal forecast system, a candidate source for experimental drought outlooks.",
+  "expect": {
+   "title": "SEAS5",
+   "first_author": "Johnson",
+   "year": 2019
+  }
+ },
+ {
+  "doi": "10.5194/hess-18-2669-2014",
+  "category": "foundations",
+  "topic": "Seasonal forecasting",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [],
+  "why": "Seasonal forecasts of meteorological drought (SPI) from ensemble systems, with skill assessment.",
+  "expect": {
+   "title": "Global meteorological drought",
+   "first_author": "Dutra",
+   "year": 2014
+  }
+ },
+ {
+  "doi": "10.1175/mwr3280.1",
+  "category": "foundations",
+  "topic": "Forecast verification",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [],
+  "why": "Brier and ranked probability skill scores for verifying probabilistic forecasts against hindcasts.",
+  "expect": {
+   "title": "The Discrete Brier and Ranked Probability Skill Scores",
+   "first_author": "Weigel",
+   "year": 2007
+  }
+ },
+ {
+  "doi": "10.1016/j.rse.2017.07.001",
+  "category": "foundations",
+  "topic": "Soil moisture",
+  "domain": [
+   "water",
+   "climate-drought"
+  ],
+  "supports": [],
+  "why": "ESA CCI Soil Moisture: long-term satellite soil moisture record.",
+  "expect": {
+   "title": "ESA CCI Soil Moisture",
+   "first_author": "Dorigo",
+   "year": 2017
+  }
+ },
+ {
+  "doi": "10.1109/jproc.2010.2043918",
+  "category": "foundations",
+  "topic": "Soil moisture",
+  "domain": [
+   "water",
+   "climate-drought"
+  ],
+  "supports": [
+   "smap-soil-moisture"
+  ],
+  "why": "The SMAP mission: design of the soil moisture retrievals shown in Explore.",
+  "expect": {
+   "title": "Soil Moisture Active Passive (SMAP) Mission",
+   "first_author": "Entekhabi",
+   "year": 2010
+  }
+ },
+ {
+  "doi": "10.5194/soil-7-217-2021",
+  "category": "foundations",
+  "topic": "Digital soil mapping",
+  "domain": [
+   "soil"
+  ],
+  "supports": [
+   "soilgrids",
+   "aeo-dza-soil-soilgrids",
+   "/docs/method-soil/"
+  ],
+  "why": "SoilGrids 2.0: the soil property predictions summarised by AEO, with their uncertainty.",
+  "expect": {
+   "title": "SoilGrids 2.0",
+   "first_author": "Poggio",
+   "year": 2021
+  }
+ },
+ {
+  "doi": "10.1371/journal.pone.0169748",
+  "category": "foundations",
+  "topic": "Digital soil mapping",
+  "domain": [
+   "soil"
+  ],
+  "supports": [
+   "soilgrids"
+  ],
+  "why": "SoilGrids250m: the machine-learning approach behind global soil property maps.",
+  "expect": {
+   "title": "SoilGrids250m",
+   "first_author": "Hengl",
+   "year": 2017
+  }
+ },
+ {
+  "doi": "10.1016/s0016-7061(03)00223-4",
+  "category": "foundations",
+  "topic": "Digital soil mapping",
+  "domain": [
+   "soil"
+  ],
+  "supports": [
+   "/docs/method-soil/"
+  ],
+  "why": "On digital soil mapping: the scorpan framework underlying model-based soil maps.",
+  "expect": {
+   "title": "On digital soil mapping",
+   "first_author": "McBratney",
+   "year": 2003
+  }
+ },
+ {
+  "doi": "10.5194/essd-12-299-2020",
+  "category": "foundations",
+  "topic": "Digital soil mapping",
+  "domain": [
+   "soil"
+  ],
+  "supports": [
+   "/docs/method-soil/"
+  ],
+  "why": "WoSIS: the standardised soil profile observations used to train SoilGrids.",
+  "expect": {
+   "title": "Standardised soil profile data",
+   "first_author": "Batjes",
+   "year": 2020
+  }
+ },
+ {
+  "doi": "10.1016/0273-1177(95)00079-t",
+  "category": "foundations",
+  "topic": "Agricultural drought",
+  "domain": [
+   "agriculture",
+   "climate-drought"
+  ],
+  "supports": [],
+  "why": "Vegetation-based drought monitoring (VCI/VHI) from satellite data.",
+  "expect": {
+   "first_author": "Kogan",
+   "year": 1995
+  }
+ },
+ {
+  "doi": "10.1038/s43016-021-00429-z",
+  "category": "foundations",
+  "topic": "Cropland mapping",
+  "domain": [
+   "agriculture"
+  ],
+  "supports": [
+   "glad-global-cropland"
+  ],
+  "why": "Global cropland expansion maps (GLAD), one of the cropland products documented by AEO.",
+  "expect": {
+   "title": "Global maps of cropland extent and change",
+   "first_author": "Potapov",
+   "year": 2021
+  }
+ },
+ {
+  "doi": "10.1038/nature20584",
+  "category": "foundations",
+  "topic": "Surface water",
+  "domain": [
+   "water"
+  ],
+  "supports": [
+   "jrc-global-surface-water"
+  ],
+  "why": "JRC Global Surface Water: 30 m maps of surface-water occurrence and change.",
+  "expect": {
+   "title": "High-resolution mapping of global surface water",
+   "first_author": "Pekel",
+   "year": 2016
+  }
+ },
+ {
+  "doi": "10.1038/sdata.2016.18",
+  "category": "foundations",
+  "topic": "Reproducible science",
+  "domain": [
+   "reference"
+  ],
+  "supports": [
+   "/docs/reproducibility/"
+  ],
+  "why": "The FAIR principles followed by AEO data publication.",
+  "expect": {
+   "title": "FAIR Guiding Principles",
+   "first_author": "Wilkinson",
+   "year": 2016
+  }
+ },
+ {
+  "doi": "10.7717/peerj.5072",
+  "category": "foundations",
+  "topic": "Reproducible science",
+  "domain": [
+   "reference"
+  ],
+  "supports": [
+   "/docs/reproducibility/"
+  ],
+  "why": "Reproducibility of geospatial research: practices that AEO workflows follow.",
+  "expect": {
+   "title": "Reproducible research and GIScience",
+   "first_author": "Nüst",
+   "year": 2018
+  }
+ },
+ {
+  "doi": "10.32614/cran.package.spei",
+  "category": "foundations",
+  "topic": "Software",
+  "domain": [
+   "climate-drought"
+  ],
+  "supports": [
+   "/docs/method-spei/",
+   "/docs/method-spi/"
+  ],
+  "why": "R package SPEI, the reference implementation against which the AEO SPEI and SPI code is tested.",
+  "expect": {
+   "first_author": "Beguería"
+  }
+ }
+]

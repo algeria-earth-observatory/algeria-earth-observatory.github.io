@@ -38,6 +38,7 @@ export async function runExtract(res, io) {
 /** @param {any} res @param {ArrayBuffer} buf @param {((code: string) => string|undefined)=} unitName */
 async function extractTable(res, buf, unitName) {
   const f = res.filter;
+  if (f.step === 'stats') return extractStatic(res, buf, unitName);
   const monthly = f.step === 'monthly';
   const rows = /** @type {Record<string, any>[]} */ (await parquetReadObjects({ file: buf }));
   const key = (/** @type {any} */ r) => (monthly ? `${Number(r.year)}-${String(Number(r.month)).padStart(2, '0')}` : String(Number(r.year)));
@@ -72,4 +73,16 @@ function extractGeojson(res, buf) {
     features: [feat],
   };
   return { text: JSON.stringify(out), rows: 1, mime: 'application/geo+json' };
+}
+
+/** Static tables (no time dimension, e.g. soil properties): all rows of the unit, in table order. */
+/** @param {any} res @param {ArrayBuffer} buf @param {((code: string) => string|undefined)=} unitName */
+async function extractStatic(res, buf, unitName) {
+  const rows = /** @type {Record<string, any>[]} */ (await parquetReadObjects({ file: buf }));
+  const sel = rows.filter((r) => r.unit_code === res.filter.unit_code);
+  const head = ['level', 'unit_code', 'unit_name', 'parent_code', ...res.columns, 'product_id', 'product_version', 'boundary_version', 'source', 'license'];
+  const meta = [res.product.id, res.product.version, res.boundaryVersion, `${res.product.source}${res.product.sourceDoi ? ` (doi:${res.product.sourceDoi})` : ''}`, `${res.product.license}${res.product.sourceLicense && res.product.sourceLicense !== res.product.license ? `; source data ${res.product.sourceLicense}` : ''}`];
+  const lines = [head.join(',')];
+  for (const r of sel) lines.push([r.level, r.unit_code, r.unit_name ?? unitName?.(r.unit_code) ?? '', r.parent_code ?? '', ...res.columns.map((/** @type {string} */ c) => r[c]), ...meta].map(cell).join(','));
+  return { text: lines.join('\n') + '\n', rows: sel.length, mime: 'text/csv;charset=utf-8' };
 }

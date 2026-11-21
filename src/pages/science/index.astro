@@ -1,0 +1,102 @@
+---
+/**
+ * Science: methods, open-science standards, Learn with AEO, publications.
+ * The standards table states what each product actually has; nothing is claimed that the repository does not contain.
+ */
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import publications from '../../data/publications.json';
+
+const docs = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
+const methods = docs.filter((d) => d.data.section === 'Scientific practice');
+const tutorials = docs.filter((d) => d.data.section === 'Tutorials');
+const guides = docs.filter((d) => d.data.section === 'Working with data' || d.data.section === 'Getting started');
+
+// Status of each AEO product against the ten open-science standards (yes / partial / not yet)
+const STANDARDS = ['Original source identified', 'Processing workflow documented', 'Public code', 'Reproducible environment', 'Explicit data versions', 'Validation and quality control', 'Uncertainty information', 'Data citation', 'Software citation', 'Downloadable outputs'];
+const Y = 'yes', P = 'partial', N = 'not yet';
+const products = [
+  { name: 'Precipitation (CHIRPS v3.0)', href: '/data/aeo-dza-precipitation-chirps3/', s: [Y, Y, Y, P, Y, Y, P, Y, N, Y] },
+  { name: 'Drought index SPI', href: '/data/aeo-dza-spi-chirps3/', s: [Y, Y, Y, P, Y, Y, P, Y, N, Y] },
+  { name: 'Drought index SPEI', href: '/data/aeo-dza-spei-terraclimate/', s: [Y, Y, Y, P, Y, Y, P, Y, N, Y] },
+  { name: 'Soil properties (SoilGrids)', href: '/data/aeo-dza-soil-soilgrids/', s: [Y, Y, Y, P, Y, Y, Y, Y, N, Y] },
+  { name: 'Administrative boundaries', href: '/data/aeo-dza-admin-boundaries/', s: [Y, Y, Y, P, Y, Y, P, Y, N, Y] },
+];
+const notes = [
+  'Every product names its source dataset, version and DOI in its record and manifest.',
+  'Each product has a method page and a PROVENANCE.json file with the processing steps and quality checks.',
+  'All pipelines are in the public GitHub repository (scripts/pipelines/).',
+  'Partial: package versions are pinned in requirements.txt and package-lock.json, but there is no container image or lock file for the Python environment yet.',
+  'Source, processing and boundary versions are recorded in every manifest; files are immutable within a version.',
+  'Automated tests compare each method with a reference implementation or independent check before every deployment.',
+  'Partial for precipitation, SPI, SPEI and boundaries: limitations and support per unit are documented, but no quantitative uncertainty is published. The soil product publishes the 5–95 % prediction range.',
+  'Each record gives a recommended citation of the AEO product and its source.',
+  'Not yet: AEO software has no DOI (for example a Zenodo release) yet.',
+  'Tables and boundaries are downloadable; rasters where the source licence allows redistribution.',
+];
+const cell = (v: string) => (v === Y ? 'text-success' : v === P ? 'text-warn' : 'text-slate');
+---
+<Base title="Science" description="Methods, reproducible workflows, verified publications and tutorials behind the Algeria Earth Observatory data products.">
+  <div class="mx-auto max-w-[90rem] px-5 pb-16 pt-10 sm:px-8 lg:px-12">
+    <header class="grid gap-6 border-b border-line pb-8 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7"><p class="overline">Science</p><h1 class="h-section mt-4 !text-[clamp(2rem,3.4vw,2.75rem)]">Open data, reproducible methods</h1></div>
+      <p class="text-[1rem] leading-relaxed text-slate lg:col-span-5">How AEO products are made and checked, the literature they rest on, and tutorials to reproduce them yourself.</p>
+    </header>
+
+    <nav aria-label="On this page" class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
+      <a href="#methods">Methods</a><a href="/science/publications/">Publications & References</a><a href="#learn">Learn with AEO</a><a href="#standards">Open-science standards</a><a href="#guides">Data guides</a>
+    </nav>
+
+    <section id="methods" class="mt-12 scroll-mt-24" aria-labelledby="methods-h">
+      <h2 id="methods-h" class="h-sub">Methods</h2>
+      <ul class="mt-4 grid gap-x-10 border-t border-line md:grid-cols-2">
+        {methods.map((d) => <li class="border-b border-line py-4"><a href={`/docs/${d.id}/`} class="font-medium">{d.data.title}</a><p class="mt-1 text-[0.9375rem] leading-relaxed text-slate">{d.data.description}</p></li>)}
+      </ul>
+    </section>
+
+    <section class="mt-14" aria-labelledby="pub-h">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 id="pub-h" class="h-sub">Publications & References</h2>
+        <a href="/science/publications/" class="link-arrow">All {publications.length} references</a>
+      </div>
+      <p class="mt-3 max-w-3xl text-[1rem] leading-relaxed text-graphite">A curated bibliography of the peer-reviewed publications behind the datasets and methods AEO uses or recommends. Every DOI and its title, authors, year and journal are checked against Crossref. AEO has not published its own research papers yet; they will be listed separately.</p>
+    </section>
+
+    <section id="learn" class="mt-14 scroll-mt-24" aria-labelledby="learn-h">
+      <h2 id="learn-h" class="h-sub">Learn with AEO</h2>
+      <p class="mt-3 max-w-3xl text-[1rem] leading-relaxed text-graphite">Practical tutorials on real Algerian data. Each gives the scientific objective, data sources, code, dependencies, the outputs we obtained, how to interpret them and their limitations. The tutorials are run by the automated tests, so they keep working.</p>
+      <ul class="mt-5 grid gap-x-10 border-t border-line md:grid-cols-2">
+        {tutorials.map((d) => <li class="border-b border-line py-4"><a href={`/docs/${d.id}/`} class="font-medium">{d.data.title}</a><p class="mt-1 text-[0.9375rem] leading-relaxed text-slate">{d.data.description}</p></li>)}
+        <li class="border-b border-line py-4"><p class="font-medium text-graphite">Mapping agricultural drought exposure <span class="status status-in-preparation ml-1">Planned</span></p><p class="mt-1 text-[0.9375rem] leading-relaxed text-slate">Needs a validated cropland mask for Algeria; it will be added when that workflow exists.</p></li>
+      </ul>
+      <p class="mt-4 text-[0.9375rem] text-slate">Inspired by the <a href="https://openclimatescience.github.io/curriculum" rel="noopener">Open Climate Science for Agriculture curriculum</a>, applied to datasets for Algeria.</p>
+    </section>
+
+    <section id="standards" class="mt-14 scroll-mt-24" aria-labelledby="std-h">
+      <h2 id="std-h" class="h-sub">Open-science standards</h2>
+      <p class="mt-3 max-w-3xl text-[1rem] leading-relaxed text-graphite">Every AEO product should meet these ten standards. The table shows where each one stands today.</p>
+      <div class="relative mt-5 overflow-x-auto border border-line bg-surface" tabindex="0" role="region" aria-labelledby="std-h">
+        <table class="w-full min-w-[56rem] text-left text-[0.875rem]">
+          <caption class="sr-only">Status of each AEO product against the ten open-science standards</caption>
+          <thead class="bg-paper"><tr><th scope="col" class="px-3 py-2 font-medium">Standard</th>{products.map((p) => <th scope="col" class="px-3 py-2 font-medium"><a href={p.href}>{p.name}</a></th>)}</tr></thead>
+          <tbody>
+            {STANDARDS.map((s, i) => (
+              <tr class="border-t border-line align-top">
+                <th scope="row" class="px-3 py-2 font-medium text-atlas">{i + 1}. {s}<p class="mt-1 font-normal text-slate">{notes[i]}</p></th>
+                {products.map((p) => <td class:list={['px-3 py-2 font-medium', cell(p.s[i])]}>{p.s[i]}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="guides" class="mt-14 scroll-mt-24" aria-labelledby="guides-h">
+      <h2 id="guides-h" class="h-sub">Data guides</h2>
+      <ul class="mt-4 grid gap-x-10 border-t border-line md:grid-cols-2 lg:grid-cols-3">
+        {guides.map((d) => <li class="border-b border-line py-3"><a href={`/docs/${d.id}/`}>{d.data.title}</a></li>)}
+      </ul>
+      <p class="mt-4 text-[0.9375rem] text-slate">All documentation: <a href="/docs/">/docs/</a>. Code and issues: <a href="https://github.com/algeria-earth-observatory" rel="noopener">GitHub</a>.</p>
+    </section>
+  </div>
+</Base>

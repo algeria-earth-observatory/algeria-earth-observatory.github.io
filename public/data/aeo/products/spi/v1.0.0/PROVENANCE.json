@@ -1,0 +1,29 @@
+{
+ "product": "aeo-dza-spi-chirps3",
+ "version": "1.0.0",
+ "created": "2026-11-20",
+ "inputs": {
+  "admin0": {
+   "file": "aeo_precip_monthly_admin0_v1.0.0.parquet",
+   "sha256": "c2d0eb5d9208d84c49ace2dc85738599dfe72171eff0eb74438e3b50b5a5d2d5"
+  },
+  "admin1": {
+   "file": "aeo_precip_monthly_admin1_v1.0.0.parquet",
+   "sha256": "eda59824d348d9ab36966ffbbb5352c7a35ae72a16403e0f5a2ac2d2f7f321c4"
+  },
+  "admin2": {
+   "file": "aeo_precip_monthly_admin2_v1.0.0.parquet",
+   "sha256": "6e603ff84aa0d7a57d3a9ce4b7f3627db85a56aac8ad0b8684d961b8726e3529"
+  }
+ },
+ "method": "gamma (unbiased PWM, Hosking PELGAM), mixed distribution for zero accumulations H = q + (1-q)G, per calendar month, reference 1991-2020, clip ±3.09; not computed where fewer than 10 of the 30 reference accumulations are positive",
+ "validation": "tests/python/test_spi.py compares with R SPEI 1.8.1 spi() (Gamma, ub-pwm) on six wilaya series; agreement within 1e-6 where the reference sample has no zeros",
+ "qc": [
+  "admin0: SPI-3 over 1991–2020 in non-arid units has mean +0.009 (max |mean| 0.009) and standard deviation 0.956 (range 0.956–0.956)",
+  "admin0: SPI-3 computed for 100.0 % of non-arid unit-months from 1982; arid units flagged: 0 of 1",
+  "admin1: SPI-3 over 1991–2020 in non-arid units has mean +0.006 (max |mean| 0.029) and standard deviation 0.986 (range 0.939–1.018)",
+  "admin1: SPI-3 computed for 100.0 % of non-arid unit-months from 1982; arid units flagged: 11 of 69",
+  "admin2: SPI-3 over 1991–2020 in non-arid units has mean +0.004 (max |mean| 0.030) and standard deviation 0.993 (range 0.930–1.042)",
+  "admin2: SPI-3 computed for 100.0 % of non-arid unit-months from 1982; arid units flagged: 93 of 1541"
+ ]
+}

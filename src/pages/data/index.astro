@@ -1,4 +1,12 @@
 ---
+/**
+ * Unified environmental data catalog for Algeria.
+ * Three categories, clearly distinguished:
+ *   - Available through AEO: processed, documented and distributed by AEO (Explore | Download | Methods)
+ *   - Available from external sources: documented by AEO, accessed at the provider (Visit source | Documentation | Publication)
+ *   - Under development: AEO products in preparation (no data yet)
+ * "Not yet integrated into AEO" never means "data unavailable".
+ */
 import Base from '../../layouts/Base.astro';
 import RegionDataDownloader from '../../components/RegionDataDownloader.astro';
 import { getDatasets } from '../../lib/catalog';
@@ -8,10 +16,11 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const all = await getDatasets();
-const aeo = all.filter((d) => d.origin !== 'external');
-const available = aeo.filter((d) => d.status === 'available');
-const planned = aeo.filter((d) => d.status === 'in-preparation');
-const nSources = all.filter((d) => d.origin === 'external').length;
+const aeo = all.filter((d) => d.origin !== 'external' && d.status !== 'in-preparation');
+const external = all.filter((d) => d.origin === 'external');
+const planned = all.filter((d) => d.status === 'in-preparation');
+const institutionsFile = Object.values(import.meta.glob('../../data/algerian-sources.json', { eager: true, import: 'default' }))[0] as any[] | undefined;
+const institutions = institutionsFile ?? [];
 type D = (typeof all)[number];
 const LEVEL: Record<string, string> = { admin0: 'Algeria', admin1: 'Wilayas', admin2: 'Communes' };
 const FMT: Record<string, string> = { COG: 'GeoTIFF', CSV: 'CSV', PARQUET: 'Parquet' };
@@ -19,29 +28,33 @@ const manifestOf = (d: D) => (d.product ? JSON.parse(readFileSync(join(process.c
 const short = (name = '') => { const m = name.match(/\(([^)]*)\)/); return m && !/source|processing/i.test(m[1]) ? m[1] : name.split('(')[0].split(';')[0].trim(); };
 const levels = (d: D) => { const m = manifestOf(d); return m ? m.available_levels.map((l: string) => LEVEL[l]).join(', ') : 'Algeria, Wilayas, Communes'; };
 const formats = (d: D) => { const m = manifestOf(d); return m ? m.formats.map((f: string) => FMT[f] ?? f).join(', ') : [...new Set(d.format.map((f) => f.split(' ')[0]))].join(', '); };
-const RDD: Record<string, string> = { 'aeo-dza-precipitation-chirps3': 'precip', 'aeo-dza-spei-terraclimate': 'spei', 'aeo-dza-admin-boundaries': 'boundaries' };
-const search = (d: D) => `${d.title} ${d.description} ${d.keywords.join(' ')} ${d.provider?.name ?? ''}`.toLowerCase();
-const cols = 'lg:grid-cols-[minmax(0,3.2fr)_minmax(0,1.4fr)_minmax(0,1.8fr)_minmax(0,1.6fr)_minmax(9.5rem,auto)]';
+const RDD: Record<string, string> = { 'aeo-dza-precipitation-chirps3': 'precip', 'aeo-dza-spei-terraclimate': 'spei', 'aeo-dza-spi-chirps3': 'spi', 'aeo-dza-soil-soilgrids': 'soil', 'aeo-dza-admin-boundaries': 'boundaries' };
+const METHOD: Record<string, string> = { 'aeo-dza-precipitation-chirps3': '/docs/method-precipitation/', 'aeo-dza-spei-terraclimate': '/docs/method-spei/', 'aeo-dza-spi-chirps3': '/docs/method-spi/', 'aeo-dza-soil-soilgrids': '/docs/method-soil/', 'aeo-dza-admin-boundaries': '/docs/boundaries/' };
+const search = (d: D) => `${d.title} ${d.description} ${d.keywords.join(' ')} ${d.provider?.name ?? ''} ${d.variables.map((v) => v.name).join(' ')}`.toLowerCase();
+const publication = (d: D) => d.references.find((r) => r.doi) ?? null;
+const nature: Record<string, string> = { observed: 'Observations', derived: 'Derived product', modeled: 'Model predictions' };
+const cols = 'lg:grid-cols-[minmax(0,3.2fr)_minmax(0,1.4fr)_minmax(0,1.8fr)_minmax(0,1.4fr)_minmax(9.5rem,auto)]';
 const cellLabel = 'text-[0.875rem] text-slate lg:sr-only';
+const icon = '<svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>';
 ---
-<Base title="Data" description="Algeria-ready environmental data products: precipitation, drought index SPEI and administrative boundaries for Algeria, its wilayas and communes, with versions, checksums and code.">
+<Base title="Data" description="Environmental datasets for Algeria: Algeria-ready AEO products (precipitation, drought indices, soil, boundaries) and documented external datasets for climate, agriculture, soil, water and ecosystems.">
   <section class="mx-auto max-w-[90rem] px-5 pb-6 pt-12 sm:px-8 lg:px-12 lg:pt-16">
     <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
       <div class="lg:col-span-7">
         <p class="overline">Data</p>
-        <h1 class="h-section mt-4 !text-[clamp(2.1rem,3.6vw,3rem)]">Algeria-ready products</h1>
+        <h1 class="h-section mt-4 !text-[clamp(2.1rem,3.6vw,3rem)]">Environmental data for Algeria</h1>
       </div>
-      <p class="text-[1rem] leading-relaxed text-slate lg:col-span-5">Data processed by AEO for Algeria, its wilayas and communes. Each product has a version, checksums and the code that made it.</p>
+      <p class="text-[1rem] leading-relaxed text-slate lg:col-span-5">Datasets processed and distributed by AEO, and open datasets from other providers that cover Algeria. A dataset that AEO has not integrated yet is still available from its provider.</p>
     </div>
   </section>
 
-  <section class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12" aria-labelledby="avail-h">
-    <form id="cat-controls" class="flex flex-wrap items-end gap-x-6 gap-y-4 border-y border-line py-5" onsubmit="return false" aria-label="Filter and sort products">
-      <label class="relative min-w-[min(100%,16rem)] flex-1"><span class="block text-[0.875rem] font-medium text-atlas">Search products</span>
+  <section class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12">
+    <form id="cat-controls" class="flex flex-wrap items-end gap-x-6 gap-y-4 border-y border-line py-5" onsubmit="return false" aria-label="Filter datasets">
+      <label class="relative min-w-[min(100%,16rem)] flex-1"><span class="block text-[0.875rem] font-medium text-atlas">Search datasets</span>
         <svg class="pointer-events-none absolute bottom-[0.85rem] left-3 h-4 w-4 text-slate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4.5 4.5" /></svg>
-        <input id="cat-q" type="search" placeholder="For example: rainfall, drought, wilaya" class="field mt-1.5 !min-h-11 !pl-9 !text-[1rem]" /></label>
-      <label><span class="block text-[0.875rem] font-medium text-atlas">Sort</span>
-        <select id="cat-sort" class="field mt-1.5 !min-h-11"><option value="default">Recommended</option><option value="name">Name (A–Z)</option><option value="start">Period start</option><option value="updated">Recently updated</option></select></label>
+        <input id="cat-q" type="search" placeholder="For example: soil carbon, rainfall, cropland, NDVI" class="field mt-1.5 !min-h-11 !pl-9 !text-[1rem]" /></label>
+      <label><span class="block text-[0.875rem] font-medium text-atlas">Show</span>
+        <select id="cat-kind" class="field mt-1.5 !min-h-11"><option value="">All categories</option><option value="aeo">Available through AEO</option><option value="external">Available from external sources</option><option value="planned">Under development</option></select></label>
       <fieldset class="basis-full"><legend class="text-[0.875rem] font-medium text-atlas">Environmental domain</legend>
         <div class="mt-1.5 flex flex-wrap gap-2">
           {[{ id: '', short: 'All' }, ...THEMATIC_DOMAINS].map((d, i) => (
@@ -51,106 +64,146 @@ const cellLabel = 'text-[0.875rem] text-slate lg:sr-only';
     </form>
     <p id="cat-count" class="sr-only" aria-live="polite"></p>
 
-    <div class="mt-10 flex flex-wrap items-baseline justify-between gap-3">
-      <h2 id="avail-h" class="h-sub">Available now <span class="tabular text-slate" id="avail-n">({available.length})</span></h2>
-      <p class="text-[0.9375rem] text-slate">Download opens the download assistant below with the product selected.</p>
-    </div>
-    <div class:list={['mt-4 hidden gap-4 border-b border-midnight pb-3 text-[0.875rem] font-medium text-slate lg:grid', cols]} aria-hidden="true">
-      <span>Product</span><span>Time period</span><span>Geographic levels</span><span>Formats</span><span class="text-right">Download</span>
-    </div>
-    <ul id="cat-list" class="border-t border-midnight lg:border-t-0" aria-labelledby="avail-h">
-      {available.map((d, i) => (
-        <li class="border-b border-line" data-domain={d.domain.join('|')} data-name={d.title.toLowerCase()} data-start={d.temporal_extent?.start?.slice(0, 4) ?? ''}
-          data-updated={d.updated_date ?? d.published_date ?? ''} data-order={i} data-search={search(d)}>
-          <div class:list={['grid gap-x-4 gap-y-2 py-6 lg:items-baseline', cols]}>
-            <div>
-              <h3 class="text-[1.125rem] font-medium leading-snug"><a href={`/data/${d.id}/`} class="text-atlas no-underline hover:text-cobalt hover:underline">{d.title.split(':')[0]}</a></h3>
-              <p class="mt-1.5 max-w-xl text-[0.9375rem] leading-relaxed text-slate">{d.description.split('. ')[0].replace(/\.$/, '')}.</p>
-              <p class="mt-2 flex flex-wrap items-center gap-2 text-[0.875rem] text-slate"><span class:list={['status', STATUS[d.status].cls]}>{STATUS[d.status].label}</span>{short(d.provider?.name)} · {d.domain.map((x) => domainById(x)?.short).join(', ')}</p>
+    <!-- 1. Available through AEO -->
+    <div data-kind-section="aeo">
+      <div class="mt-10 flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="avail-h" class="h-sub">Available through AEO <span class="tabular text-slate" data-n="aeo">({aeo.length})</span></h2>
+        <p class="text-[0.9375rem] text-slate">Processed for Algeria, documented, versioned and downloadable.</p>
+      </div>
+      <div class:list={['mt-4 hidden gap-4 border-b border-midnight pb-3 text-[0.875rem] font-medium text-slate lg:grid', cols]} aria-hidden="true">
+        <span>Dataset</span><span>Time period</span><span>Geographic levels</span><span>Formats</span><span class="text-right">Access</span>
+      </div>
+      <ul class="border-t border-midnight lg:border-t-0" aria-labelledby="avail-h" data-list="aeo">
+        {aeo.map((d, i) => (
+          <li class="border-b border-line" data-domain={d.domain.join('|')} data-search={search(d)} data-order={i}>
+            <div class:list={['grid gap-x-4 gap-y-2 py-6 lg:items-baseline', cols]}>
+              <div>
+                <h3 class="text-[1.125rem] font-medium leading-snug"><a href={`/data/${d.id}/`} class="text-atlas no-underline hover:text-cobalt hover:underline">{d.title.split(':')[0]}</a></h3>
+                <p class="mt-1.5 max-w-xl text-[0.9375rem] leading-relaxed text-slate">{d.description.split('. ')[0].replace(/\.$/, '')}.</p>
+                <p class="mt-2 flex flex-wrap items-center gap-2 text-[0.875rem] text-slate"><span class:list={['status', STATUS[d.status].cls]}>{STATUS[d.status].label}</span>{short(d.provider?.name)} · {d.domain.map((x) => domainById(x)?.short).join(', ')}</p>
+              </div>
+              <p class="tabular text-[0.9375rem] text-graphite"><span class={cellLabel}>Time period: </span>{period(d)}</p>
+              <p class="text-[0.9375rem] text-graphite"><span class={cellLabel}>Geographic levels: </span>{levels(d)}</p>
+              <p class="text-[0.9375rem] text-graphite"><span class={cellLabel}>Formats: </span>{formats(d)}</p>
+              <div class="flex flex-wrap gap-2 pt-2 lg:flex-col lg:items-end lg:pt-0">
+                {RDD[d.id] && <button type="button" class="btn btn-primary" data-rdd-open={RDD[d.id]}><Fragment set:html={icon} />Download<span class="sr-only"> {d.title.split(':')[0]}</span></button>}
+                <span class="flex gap-3 text-[0.9375rem]">
+                  {d.map_layers.length > 0 && <a href={`/map/?ind=${d.map_layers.find((l) => l !== 'wilayas' && l !== 'communes') ?? ''}`}>Explore</a>}
+                  {METHOD[d.id] && <a href={METHOD[d.id]}>Methods</a>}
+                </span>
+              </div>
             </div>
-            <p class="tabular text-[0.9375rem] text-graphite"><span class={cellLabel}>Time period: </span>{period(d)}</p>
-            <p class="text-[0.9375rem] text-graphite"><span class={cellLabel}>Geographic levels: </span>{levels(d)}</p>
-            <p class="text-[0.9375rem] text-graphite"><span class={cellLabel}>Formats: </span>{formats(d)}</p>
-            <p class="pt-2 lg:pt-0 lg:text-right">
-              {RDD[d.id]
-                ? <button type="button" class="btn btn-primary" data-rdd-open={RDD[d.id]}><svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>Download<span class="sr-only"> {d.title.split(':')[0]}</span></button>
-                : <a href={`/data/${d.id}/#access`} class="btn btn-primary">Download<span class="sr-only"> {d.title.split(':')[0]}</span></a>}
-            </p>
-          </div>
-          <details class="pb-5 text-[0.9375rem]">
-            <summary class="min-h-6 cursor-pointer text-[0.875rem] text-slate hover:text-atlas">Technical details</summary>
-            <dl class="tabular mt-3 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
-              <div><dt class="text-[0.875rem] text-slate">Identifier</dt><dd class="mt-0.5 font-mono text-[0.875rem] text-atlas">{d.id}</dd></div>
-              <div><dt class="text-[0.875rem] text-slate">Version</dt><dd class="mt-0.5 font-mono text-[0.875rem] text-atlas">{d.product?.product_version ?? d.version}</dd></div>
-              <div><dt class="text-[0.875rem] text-slate">Licence</dt><dd class="mt-0.5 text-atlas">{d.license?.spdx ?? d.license?.name}</dd></div>
-              <div><dt class="text-[0.875rem] text-slate">Updated</dt><dd class="mt-0.5 text-atlas">{fmtDate(d.updated_date ?? d.published_date)}</dd></div>
-              <div><dt class="text-[0.875rem] text-slate">Coordinate system</dt><dd class="mt-0.5 font-mono text-[0.875rem] text-atlas">{d.crs}</dd></div>
-              <div class="sm:col-span-3"><dt class="text-[0.875rem] text-slate">Metadata</dt><dd class="mt-0.5 flex flex-wrap gap-x-4">
-                <a href={`/data/${d.id}/`}>Product page</a>
-                {d.product && <a href={d.product.manifest}>Manifest (all files, checksums)</a>}
-                <a href={`/data/${d.id}.stac.json`}>STAC</a>
-                {d.map_layers.length > 0 && <a href={`/map/?layers=${d.map_layers[0]}`}>Map</a>}
-              </dd></div>
-            </dl>
-          </details>
-        </li>
-      ))}
-    </ul>
-    <p id="cat-empty" class="hidden py-8 text-[1rem] text-slate">No available product matches these filters.</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 
-  <div class="mt-12 border-y border-line bg-surface">
+  <div class="mt-12 border-y border-line bg-surface" data-kind-section="aeo">
     <div class="mx-auto max-w-[90rem] px-5 py-12 sm:px-8 lg:px-12">
       <RegionDataDownloader />
     </div>
   </div>
 
-  <section id="planned" class="mx-auto max-w-[90rem] scroll-mt-20 px-5 pt-14 sm:px-8 lg:px-12" aria-labelledby="planned-h">
-    <h2 id="planned-h" class="h-sub">Planned <span class="tabular text-slate" id="planned-n">({planned.length})</span></h2>
-    <p class="mt-2 max-w-3xl text-[0.9375rem] text-slate">These AEO products are in preparation. They have no data or downloads yet and will appear under “Available now” only when published.</p>
-    <ul id="planned-list" class="mt-4 grid gap-x-10 border-t border-line md:grid-cols-2">
-      {planned.map((d) => (
-        <li class="border-b border-line py-4" data-domain={d.domain.join('|')} data-search={search(d)}>
+  <!-- 2. External sources -->
+  <section id="external" class="mx-auto max-w-[90rem] scroll-mt-20 px-5 pt-14 sm:px-8 lg:px-12" data-kind-section="external" aria-labelledby="ext-h">
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+      <h2 id="ext-h" class="h-sub">Available from external sources <span class="tabular text-slate" data-n="external">({external.length})</span></h2>
+      <p class="max-w-2xl text-[0.9375rem] text-slate">Documented and checked by AEO, distributed by their providers. Not yet integrated into AEO: the data are available at the source.</p>
+    </div>
+    <ul class="mt-4 border-t border-midnight" data-list="external" aria-labelledby="ext-h">
+      {external.map((d, i) => {
+        const pub = publication(d);
+        return (
+          <li class="border-b border-line py-5" data-domain={d.domain.join('|')} data-search={search(d)} data-order={i}>
+            <div class="grid gap-x-6 gap-y-2 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)_auto] lg:items-baseline">
+              <div>
+                <h3 class="text-[1.0625rem] font-medium leading-snug"><a href={`/data/${d.id}/`} class="text-atlas no-underline hover:text-cobalt hover:underline">{d.title.split(':')[0]}</a></h3>
+                <p class="mt-1 flex flex-wrap items-center gap-2 text-[0.875rem] text-slate"><span class="status status-external">External source</span>{d.provider?.name} · {d.domain.map((x) => domainById(x)?.short).join(', ')}{d.data_nature && ` · ${nature[d.data_nature]}`}</p>
+              </div>
+              <p class="tabular text-[0.9375rem] text-graphite">{period(d)}{d.resolution?.spatial && <span class="text-slate"> · {d.resolution.spatial.split(';')[0]}</span>}</p>
+              <p class="flex flex-wrap gap-x-4 gap-y-1 text-[0.9375rem] lg:justify-end">
+                {d.source_url && <a href={d.source_url} rel="noopener" target="_blank">Visit source<span class="sr-only"> of {d.title.split(':')[0]} (opens a new tab)</span> <span aria-hidden="true">↗</span></a>}
+                {d.documentation_url && <a href={d.documentation_url} rel="noopener" target="_blank">Documentation<span class="sr-only"> of {d.title.split(':')[0]}</span></a>}
+                {pub && <a href={`https://doi.org/${pub.doi}`} rel="noopener" target="_blank">Publication<span class="sr-only"> for {d.title.split(':')[0]}</span></a>}
+              </p>
+            </div>
+            <details class="mt-2 text-[0.9375rem]">
+              <summary class="cursor-pointer text-[0.875rem] text-slate hover:text-atlas">Details</summary>
+              <div class="mt-3 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+                <p class="sm:col-span-2 lg:col-span-3 max-w-4xl leading-relaxed text-graphite">{d.description}</p>
+                <div><p class="text-[0.875rem] text-slate">Spatial coverage</p><p class="text-atlas">{d.spatial_extent?.description ?? '—'}</p></div>
+                <div><p class="text-[0.875rem] text-slate">Resolution</p><p class="text-atlas">{d.resolution?.spatial ?? '—'}{d.resolution?.temporal && `; ${d.resolution.temporal}`}</p></div>
+                <div><p class="text-[0.875rem] text-slate">Licence</p><p class="text-atlas">{d.license?.spdx ?? d.license?.name ?? '—'}</p></div>
+                {d.variables.length > 0 && <div class="sm:col-span-2 lg:col-span-3"><p class="text-[0.875rem] text-slate">Variables</p><p class="text-atlas">{d.variables.slice(0, 12).map((v) => `${v.name}${v.units ? ` (${v.units})` : ''}`).join('; ')}{d.variables.length > 12 && '; …'}</p></div>}
+                {d.doi && <div><p class="text-[0.875rem] text-slate">Dataset DOI</p><p><a href={`https://doi.org/${d.doi}`} class="font-mono" rel="noopener">doi.org/{d.doi}</a></p></div>}
+                {d.citation && <div class="sm:col-span-2"><p class="text-[0.875rem] text-slate">Citation</p><p class="text-atlas">{d.citation}</p></div>}
+                <div><p class="text-[0.875rem] text-slate">Integration status</p><p class="text-atlas">Documented by AEO; not yet processed for Algeria (checked {fmtDate(d.verification.checked)})</p></div>
+              </div>
+            </details>
+          </li>
+        );
+      })}
+    </ul>
+    <p data-empty="external" class="hidden py-6 text-slate">No external dataset matches these filters.</p>
+  </section>
+
+  {institutions.length > 0 && (
+    <section id="institutions" class="mx-auto max-w-[90rem] scroll-mt-20 px-5 pt-14 sm:px-8 lg:px-12" data-kind-section="external" aria-labelledby="inst-h">
+      <h2 id="inst-h" class="h-sub">Algerian institutions with environmental data</h2>
+      <p class="mt-2 max-w-3xl text-[0.9375rem] text-slate">National institutions that produce environmental data. AEO has no partnership with them; the access column states what is openly available online, as checked on the date shown.</p>
+      <div class="relative mt-4 overflow-x-auto border border-line bg-surface" tabindex="0" role="region" aria-labelledby="inst-h">
+        <table class="w-full min-w-[44rem] text-left text-[0.9375rem]">
+          <thead class="bg-paper"><tr><th scope="col" class="px-3 py-2 font-medium">Institution</th><th scope="col" class="px-3 py-2 font-medium">Public data</th><th scope="col" class="px-3 py-2 font-medium">Access</th></tr></thead>
+          <tbody>{institutions.map((s: any) => (
+            <tr class="border-t border-line align-top" data-domain={(s.domain ?? []).join('|')} data-search={`${s.name} ${s.name_fr ?? ''} ${s.acronym ?? ''} ${s.what_is_public ?? ''}`.toLowerCase()}>
+              <td class="px-3 py-2"><a href={s.url} rel="noopener" target="_blank">{s.name}{s.acronym && ` (${s.acronym})`}</a>{s.name_fr && <p class="text-[0.875rem] text-slate" lang="fr">{s.name_fr}</p>}</td>
+              <td class="px-3 py-2 text-graphite">{s.what_is_public}</td>
+              <td class="px-3 py-2 text-graphite">{s.access}<p class="text-[0.8125rem] text-slate">checked {s.checked}</p></td>
+            </tr>
+          ))}</tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  <!-- 3. Under development -->
+  <section id="planned" class="mx-auto max-w-[90rem] scroll-mt-20 px-5 pb-[var(--space-section)] pt-14 sm:px-8 lg:px-12" data-kind-section="planned" aria-labelledby="planned-h">
+    <h2 id="planned-h" class="h-sub">Under development <span class="tabular text-slate" data-n="planned">({planned.length})</span></h2>
+    <p class="mt-2 max-w-3xl text-[0.9375rem] text-slate">AEO products in preparation. They have no data or downloads yet and will move to “Available through AEO” only when published.</p>
+    <ul class="mt-4 grid gap-x-10 border-t border-line md:grid-cols-2" data-list="planned">
+      {planned.map((d, i) => (
+        <li class="border-b border-line py-4" data-domain={d.domain.join('|')} data-search={search(d)} data-order={i}>
           <p class="flex flex-wrap items-center gap-2"><a href={`/data/${d.id}/`} class="font-medium text-atlas">{d.title.split(':')[0]}</a><span class:list={['status', STATUS[d.status].cls]}>{STATUS[d.status].label}</span></p>
           <p class="mt-1 text-[0.9375rem] leading-relaxed text-slate">{d.description.split('. ')[0].replace(/\.$/, '')}.</p>
         </li>
       ))}
     </ul>
   </section>
-
-  <section class="mx-auto max-w-[90rem] px-5 pb-[var(--space-section)] pt-14 sm:px-8 lg:px-12" aria-labelledby="src-h">
-    <div class="grid gap-4 border-t border-line pt-6 lg:grid-cols-12">
-      <h2 id="src-h" class="text-[1.0625rem] font-medium text-atlas lg:col-span-4">Source library</h2>
-      <p class="text-[0.9375rem] text-slate lg:col-span-8">{nSources} upstream datasets (global and regional products held by their providers) are documented as inputs, with licence and coverage. They are not Algeria-ready downloads. <a href="/data/sources/">Open the source library</a>.</p>
-    </div>
-  </section>
 </Base>
 
 <script>
-  const list = document.getElementById('cat-list')!;
-  const items = [...list.querySelectorAll<HTMLLIElement>('li[data-search]')];
-  const plannedItems = [...document.querySelectorAll<HTMLLIElement>('#planned-list li')];
   const q = document.getElementById('cat-q') as HTMLInputElement;
+  const kind = document.getElementById('cat-kind') as HTMLSelectElement;
   const domVal = () => (document.querySelector('input[name="cat-domain"]:checked') as HTMLInputElement).value;
-  const sort = document.getElementById('cat-sort') as HTMLSelectElement;
   const params = new URLSearchParams(location.search);
   if (params.get('q')) q.value = params.get('q')!;
+  if (params.get('kind')) kind.value = params.get('kind')!;
   if (params.get('domain')) { const r = document.querySelector<HTMLInputElement>(`input[name="cat-domain"][value="${CSS.escape(params.get('domain')!)}"]`); if (r) r.checked = true; }
-  const match = (li: HTMLElement, text: string) => (!domVal() || li.dataset.domain!.split('|').includes(domVal())) && (!text || li.dataset.search!.includes(text));
+  const match = (el: HTMLElement, text: string) => (!domVal() || (el.dataset.domain ?? '').split('|').includes(domVal())) && (!text || (el.dataset.search ?? '').includes(text));
   function apply() {
     const text = q.value.trim().toLowerCase();
-    let n = 0, m = 0;
-    for (const li of items) { li.hidden = !match(li, text); if (!li.hidden) n++; }
-    for (const li of plannedItems) { li.hidden = !match(li, text); if (!li.hidden) m++; }
-    const key = sort.value;
-    [...items].sort((a, b) => key === 'name' ? a.dataset.name!.localeCompare(b.dataset.name!)
-      : key === 'start' ? (a.dataset.start || '9999').localeCompare(b.dataset.start || '9999')
-      : key === 'updated' ? (b.dataset.updated || '').localeCompare(a.dataset.updated || '')
-      : Number(a.dataset.order) - Number(b.dataset.order)).forEach((li) => list.appendChild(li));
-    document.getElementById('avail-n')!.textContent = `(${n})`;
-    document.getElementById('planned-n')!.textContent = `(${m})`;
-    document.getElementById('cat-count')!.textContent = `${n} available and ${m} planned products match.`;
-    document.getElementById('cat-empty')!.classList.toggle('hidden', n > 0);
+    const parts: string[] = [];
+    for (const k of ['aeo', 'external', 'planned']) {
+      let n = 0;
+      document.querySelectorAll<HTMLElement>(`[data-list="${k}"] > li`).forEach((li) => { li.hidden = !match(li, text); if (!li.hidden) n++; });
+      document.querySelectorAll<HTMLElement>(`[data-n="${k}"]`).forEach((e) => (e.textContent = `(${n})`));
+      document.querySelectorAll<HTMLElement>(`[data-kind-section="${k}"]`).forEach((s) => { s.hidden = !!kind.value && kind.value !== k; });
+      document.querySelector(`[data-empty="${k}"]`)?.classList.toggle('hidden', n > 0);
+      parts.push(`${n} ${k === 'aeo' ? 'AEO' : k === 'external' ? 'external' : 'planned'}`);
+    }
+    document.querySelectorAll<HTMLElement>('#institutions tbody tr').forEach((tr) => { tr.hidden = !match(tr, text); });
+    document.getElementById('cat-count')!.textContent = `${parts.join(', ')} datasets match.`;
   }
   document.getElementById('cat-controls')!.addEventListener('input', apply);
   document.getElementById('cat-controls')!.addEventListener('change', apply);

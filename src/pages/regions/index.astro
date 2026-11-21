@@ -11,8 +11,8 @@ const { national, wilayas, communes } = loadRegions();
     lead={`Profiles for all ${wilayas.length} wilayas and ${communes.length.toLocaleString('en-US')} communes, using the administrative division of Loi n° 26-06 (2026). Each profile shows the indicators AEO has processed for that area and links to its data.`} />
   <div class="container-aeo space-y-10 py-10">
     <div class="grid gap-6 lg:grid-cols-2">
-      <PrecipSummary stats={national} areaLabel="Algeria" analyzeHref="/analyze/?level=admin0&unit=DZ" level="admin0" />
-      <SpeiSummary level="admin0" code="DZ" label="Algeria" analyzeHref="/analyze/?level=admin0&unit=DZ&var=spei&scale=12" />
+      <PrecipSummary stats={national} areaLabel="Algeria" analyzeHref="/drought/?level=admin0&unit=DZ" level="admin0" />
+      <SpeiSummary level="admin0" code="DZ" label="Algeria" analyzeHref="/drought/?level=admin0&unit=DZ&var=spei&scale=12" />
     </div>
 
     <section aria-labelledby="w-h">

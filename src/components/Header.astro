@@ -39,7 +39,6 @@ const isActive = (href: string) => path === href || path.startsWith(href);
       {NAV.map((n) => (
         <li><a href={n.href} class="block border-b border-line py-3 text-atlas no-underline last:border-0" aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a></li>
       ))}
-      <li><a href="/contribute/" class="block border-b border-line py-3 text-atlas no-underline">Contribute</a></li>
       <li><a href={SITE.github.orgUrl} class="block py-3 text-atlas no-underline" rel="noopener">GitHub</a></li>
     </ul>
   </nav>

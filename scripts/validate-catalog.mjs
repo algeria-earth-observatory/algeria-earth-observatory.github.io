@@ -15,6 +15,11 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dir = join(root, 'src', 'content', 'datasets');
 const layerSrc = readFileSync(join(root, 'src', 'data', 'map-layers.ts'), 'utf8');
 const layerIds = new Set([...layerSrc.matchAll(/^\s{4}id: '([a-z0-9-]+)'/gm)].map((m) => m[1]));
+// generated layers: SPI choropleths (one per listed scale) and SoilGrids properties (from the soil map metadata)
+const spiScales = layerSrc.match(/\(\[([^\]]+)\] as const\)\.map\(\(k\): MapLayer => \(\{\s*id: `spi-\$\{k\}`/);
+if (spiScales) for (const k of spiScales[1].match(/\d+/g)) layerIds.add(`spi-${k}`);
+const soilMap = join(root, 'public', 'data', 'aeo', 'products', 'soil', 'v1.0.0', 'map', 'map.json');
+if (existsSync(soilMap)) for (const id of Object.keys(JSON.parse(readFileSync(soilMap, 'utf8')).layers)) layerIds.add(`soil-${id.split('_')[0]}`);
 const errors = [];
 const ids = new Set();
 

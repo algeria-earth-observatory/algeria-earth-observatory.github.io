@@ -1,0 +1,1826 @@
+[
+ {
+  "doi": "10.1016/0273-1177(95)00079-t",
+  "url": "https://doi.org/10.1016/0273-1177(95)00079-t",
+  "title": "Application of vegetation index and brightness temperature for drought detection",
+  "authors": [
+   {
+    "family": "Kogan",
+    "given": "F.N."
+   }
+  ],
+  "year": 1995,
+  "journal": "Advances in Space Research",
+  "volume": "15",
+  "issue": "11",
+  "pages": "91-100",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "category": "foundations",
+  "domain": [
+   "agriculture",
+   "climate-drought"
+  ],
+  "topic": "Agricultural drought",
+  "supports": [],
+  "why": "Vegetation-based drought monitoring (VCI/VHI) from satellite data.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1038/sdata.2017.191",
+  "url": "https://doi.org/10.1038/sdata.2017.191",
+  "title": "TerraClimate, a high-resolution global dataset of monthly climate and climatic water balance from 1958–2015",
+  "authors": [
+   {
+    "family": "Abatzoglou",
+    "given": "John T."
+   },
+   {
+    "family": "Dobrowski",
+    "given": "Solomon Z."
+   },
+   {
+    "family": "Parks",
+    "given": "Sean A."
+   },
+   {
+    "family": "Hegewisch",
+    "given": "Katherine C."
+   }
+  ],
+  "year": 2018,
+  "journal": "Scientific Data",
+  "volume": "5",
+  "issue": "1",
+  "pages": "170191",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Climate reanalysis",
+  "supports": [
+   "terraclimate",
+   "aeo-dza-spei-terraclimate",
+   "/docs/method-spei/"
+  ],
+  "why": "TerraClimate: precipitation and reference evapotranspiration used for the AEO SPEI product.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.5194/essd-13-4349-2021",
+  "url": "https://doi.org/10.5194/essd-13-4349-2021",
+  "title": "ERA5-Land: a state-of-the-art global reanalysis dataset for land applications",
+  "authors": [
+   {
+    "family": "Muñoz-Sabater",
+    "given": "Joaquín"
+   },
+   {
+    "family": "Dutra",
+    "given": "Emanuel"
+   },
+   {
+    "family": "Agustí-Panareda",
+    "given": "Anna"
+   },
+   {
+    "family": "Albergel",
+    "given": "Clément"
+   },
+   {
+    "family": "Arduini",
+    "given": "Gabriele"
+   },
+   {
+    "family": "Balsamo",
+    "given": "Gianpaolo"
+   },
+   {
+    "family": "Boussetta",
+    "given": "Souhail"
+   },
+   {
+    "family": "Choulga",
+    "given": "Margarita"
+   },
+   {
+    "family": "Harrigan",
+    "given": "Shaun"
+   },
+   {
+    "family": "Hersbach",
+    "given": "Hans"
+   },
+   {
+    "family": "Martens",
+    "given": "Brecht"
+   },
+   {
+    "family": "Miralles",
+    "given": "Diego G."
+   },
+   {
+    "family": "Piles",
+    "given": "María"
+   },
+   {
+    "family": "Rodríguez-Fernández",
+    "given": "Nemesio J."
+   },
+   {
+    "family": "Zsoter",
+    "given": "Ervin"
+   },
+   {
+    "family": "Buontempo",
+    "given": "Carlo"
+   },
+   {
+    "family": "Thépaut",
+    "given": "Jean-Noël"
+   }
+  ],
+  "year": 2021,
+  "journal": "Earth System Science Data",
+  "volume": "13",
+  "issue": "9",
+  "pages": "4349-4383",
+  "type": "journal-article",
+  "publisher": "Copernicus GmbH",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Climate reanalysis",
+  "supports": [
+   "era5-land"
+  ],
+  "why": "ERA5-Land: land reanalysis candidate for potential evapotranspiration and soil moisture.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1038/s43016-021-00429-z",
+  "url": "https://doi.org/10.1038/s43016-021-00429-z",
+  "title": "Global maps of cropland extent and change show accelerated cropland expansion in the twenty-first century",
+  "authors": [
+   {
+    "family": "Potapov",
+    "given": "Peter"
+   },
+   {
+    "family": "Turubanova",
+    "given": "Svetlana"
+   },
+   {
+    "family": "Hansen",
+    "given": "Matthew C."
+   },
+   {
+    "family": "Tyukavina",
+    "given": "Alexandra"
+   },
+   {
+    "family": "Zalles",
+    "given": "Viviana"
+   },
+   {
+    "family": "Khan",
+    "given": "Ahmad"
+   },
+   {
+    "family": "Song",
+    "given": "Xiao-Peng"
+   },
+   {
+    "family": "Pickens",
+    "given": "Amy"
+   },
+   {
+    "family": "Shen",
+    "given": "Quan"
+   },
+   {
+    "family": "Cortez",
+    "given": "Jocelyn"
+   }
+  ],
+  "year": 2021,
+  "journal": "Nature Food",
+  "volume": "3",
+  "issue": "1",
+  "pages": "19-28",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "agriculture"
+  ],
+  "topic": "Cropland mapping",
+  "supports": [
+   "glad-global-cropland"
+  ],
+  "why": "Global cropland expansion maps (GLAD), one of the cropland products documented by AEO.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1016/s0016-7061(03)00223-4",
+  "url": "https://doi.org/10.1016/s0016-7061(03)00223-4",
+  "title": "On digital soil mapping",
+  "authors": [
+   {
+    "family": "McBratney",
+    "given": "A.B"
+   },
+   {
+    "family": "Mendonça Santos",
+    "given": "M.L"
+   },
+   {
+    "family": "Minasny",
+    "given": "B"
+   }
+  ],
+  "year": 2003,
+  "journal": "Geoderma",
+  "volume": "117",
+  "issue": "1-2",
+  "pages": "3-52",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "category": "foundations",
+  "domain": [
+   "soil"
+  ],
+  "topic": "Digital soil mapping",
+  "supports": [
+   "/docs/method-soil/"
+  ],
+  "why": "On digital soil mapping: the scorpan framework underlying model-based soil maps.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1371/journal.pone.0169748",
+  "url": "https://doi.org/10.1371/journal.pone.0169748",
+  "title": "SoilGrids250m: Global gridded soil information based on machine learning",
+  "authors": [
+   {
+    "family": "Hengl",
+    "given": "Tomislav"
+   },
+   {
+    "family": "Mendes de Jesus",
+    "given": "Jorge"
+   },
+   {
+    "family": "Heuvelink",
+    "given": "Gerard B. M."
+   },
+   {
+    "family": "Ruiperez Gonzalez",
+    "given": "Maria"
+   },
+   {
+    "family": "Kilibarda",
+    "given": "Milan"
+   },
+   {
+    "family": "Blagotić",
+    "given": "Aleksandar"
+   },
+   {
+    "family": "Shangguan",
+    "given": "Wei"
+   },
+   {
+    "family": "Wright",
+    "given": "Marvin N."
+   },
+   {
+    "family": "Geng",
+    "given": "Xiaoyuan"
+   },
+   {
+    "family": "Bauer-Marschallinger",
+    "given": "Bernhard"
+   },
+   {
+    "family": "Guevara",
+    "given": "Mario Antonio"
+   },
+   {
+    "family": "Vargas",
+    "given": "Rodrigo"
+   },
+   {
+    "family": "MacMillan",
+    "given": "Robert A."
+   },
+   {
+    "family": "Batjes",
+    "given": "Niels H."
+   },
+   {
+    "family": "Leenaars",
+    "given": "Johan G. B."
+   },
+   {
+    "family": "Ribeiro",
+    "given": "Eloi"
+   },
+   {
+    "family": "Wheeler",
+    "given": "Ichsani"
+   },
+   {
+    "family": "Mantel",
+    "given": "Stephan"
+   },
+   {
+    "family": "Kempen",
+    "given": "Bas"
+   }
+  ],
+  "year": 2017,
+  "journal": "PLOS ONE",
+  "volume": "12",
+  "issue": "2",
+  "pages": "e0169748",
+  "type": "journal-article",
+  "publisher": "Public Library of Science (PLoS)",
+  "category": "foundations",
+  "domain": [
+   "soil"
+  ],
+  "topic": "Digital soil mapping",
+  "supports": [
+   "soilgrids"
+  ],
+  "why": "SoilGrids250m: the machine-learning approach behind global soil property maps.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.5194/essd-12-299-2020",
+  "url": "https://doi.org/10.5194/essd-12-299-2020",
+  "title": "Standardised soil profile data to support global mapping and modelling (WoSIS snapshot 2019)",
+  "authors": [
+   {
+    "family": "Batjes",
+    "given": "Niels H."
+   },
+   {
+    "family": "Ribeiro",
+    "given": "Eloi"
+   },
+   {
+    "family": "van Oostrum",
+    "given": "Ad"
+   }
+  ],
+  "year": 2020,
+  "journal": "Earth System Science Data",
+  "volume": "12",
+  "issue": "1",
+  "pages": "299-320",
+  "type": "journal-article",
+  "publisher": "Copernicus GmbH",
+  "category": "foundations",
+  "domain": [
+   "soil"
+  ],
+  "topic": "Digital soil mapping",
+  "supports": [
+   "/docs/method-soil/"
+  ],
+  "why": "WoSIS: the standardised soil profile observations used to train SoilGrids.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.5194/soil-7-217-2021",
+  "url": "https://doi.org/10.5194/soil-7-217-2021",
+  "title": "SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty",
+  "authors": [
+   {
+    "family": "Poggio",
+    "given": "Laura"
+   },
+   {
+    "family": "de Sousa",
+    "given": "Luis M."
+   },
+   {
+    "family": "Batjes",
+    "given": "Niels H."
+   },
+   {
+    "family": "Heuvelink",
+    "given": "Gerard B. M."
+   },
+   {
+    "family": "Kempen",
+    "given": "Bas"
+   },
+   {
+    "family": "Ribeiro",
+    "given": "Eloi"
+   },
+   {
+    "family": "Rossiter",
+    "given": "David"
+   }
+  ],
+  "year": 2021,
+  "journal": "SOIL",
+  "volume": "7",
+  "issue": "1",
+  "pages": "217-240",
+  "type": "journal-article",
+  "publisher": "Copernicus GmbH",
+  "category": "foundations",
+  "domain": [
+   "soil"
+  ],
+  "topic": "Digital soil mapping",
+  "supports": [
+   "soilgrids",
+   "aeo-dza-soil-soilgrids",
+   "/docs/method-soil/"
+  ],
+  "why": "SoilGrids 2.0: the soil property predictions summarised by AEO, with their uncertainty.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1111/j.1752-1688.1999.tb03592.x",
+  "url": "https://doi.org/10.1111/j.1752-1688.1999.tb03592.x",
+  "title": "ACCEPTING THE STANDARDIZED PRECIPITATION INDEX: A CALCULATION ALGORITHM 1",
+  "authors": [
+   {
+    "family": "Guttman",
+    "given": "Nathaniel B."
+   }
+  ],
+  "year": 1999,
+  "journal": "JAWRA Journal of the American Water Resources Association",
+  "volume": "35",
+  "issue": "2",
+  "pages": "311-322",
+  "type": "journal-article",
+  "publisher": "Wiley",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Drought indices",
+  "supports": [
+   "/docs/method-spi/"
+  ],
+  "why": "Accepting the Standardized Precipitation Index: calculation choices and record length for SPI.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1175/2009jcli2909.1",
+  "url": "https://doi.org/10.1175/2009jcli2909.1",
+  "title": "A Multiscalar Drought Index Sensitive to Global Warming: The Standardized Precipitation Evapotranspiration Index",
+  "authors": [
+   {
+    "family": "Vicente-Serrano",
+    "given": "Sergio M."
+   },
+   {
+    "family": "Beguería",
+    "given": "Santiago"
+   },
+   {
+    "family": "López-Moreno",
+    "given": "Juan I."
+   }
+  ],
+  "year": 2010,
+  "journal": "Journal of Climate",
+  "volume": "23",
+  "issue": "7",
+  "pages": "1696-1718",
+  "type": "journal-article",
+  "publisher": "American Meteorological Society",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Drought indices",
+  "supports": [
+   "aeo-dza-spei-terraclimate",
+   "/docs/method-spei/"
+  ],
+  "why": "Defines the Standardized Precipitation Evapotranspiration Index (SPEI).",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1175/2010bams3103.1",
+  "url": "https://doi.org/10.1175/2010bams3103.1",
+  "title": "The Lincoln Declaration on Drought Indices: Universal Meteorological Drought Index Recommended",
+  "authors": [
+   {
+    "family": "Hayes",
+    "given": "Michael"
+   },
+   {
+    "family": "Svoboda",
+    "given": "Mark"
+   },
+   {
+    "family": "Wall",
+    "given": "Nicole"
+   },
+   {
+    "family": "Widhalm",
+    "given": "Melissa"
+   }
+  ],
+  "year": 2011,
+  "journal": "Bulletin of the American Meteorological Society",
+  "volume": "92",
+  "issue": "4",
+  "pages": "485-488",
+  "type": "journal-article",
+  "publisher": "American Meteorological Society",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Drought indices",
+  "supports": [
+   "/docs/method-spi/"
+  ],
+  "why": "Lincoln Declaration: WMO recommendation of the SPI for meteorological drought.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1002/joc.3887",
+  "url": "https://doi.org/10.1002/joc.3887",
+  "title": "Standardized precipitation evapotranspiration index (SPEI) revisited: parameter fitting, evapotranspiration models, tools, datasets and drought monitoring",
+  "authors": [
+   {
+    "family": "Beguería",
+    "given": "Santiago"
+   },
+   {
+    "family": "Vicente-Serrano",
+    "given": "Sergio M."
+   },
+   {
+    "family": "Reig",
+    "given": "Fergus"
+   },
+   {
+    "family": "Latorre",
+    "given": "Borja"
+   }
+  ],
+  "year": 2014,
+  "journal": "International Journal of Climatology",
+  "volume": "34",
+  "issue": "10",
+  "pages": "3001-3023",
+  "type": "journal-article",
+  "publisher": "Wiley",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Drought indices",
+  "supports": [
+   "aeo-dza-spei-terraclimate",
+   "/docs/method-spei/"
+  ],
+  "why": "SPEI revisited: parameter fitting (unbiased PWM, log-logistic) used by the AEO SPEI method.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1002/joc.4267",
+  "url": "https://doi.org/10.1002/joc.4267",
+  "title": "Candidate Distributions for Climatological Drought Indices ( SPI and SPEI )",
+  "authors": [
+   {
+    "family": "Stagge",
+    "given": "James H."
+   },
+   {
+    "family": "Tallaksen",
+    "given": "Lena M."
+   },
+   {
+    "family": "Gudmundsson",
+    "given": "Lukas"
+   },
+   {
+    "family": "Van Loon",
+    "given": "Anne F."
+   },
+   {
+    "family": "Stahl",
+    "given": "Kerstin"
+   }
+  ],
+  "year": 2015,
+  "journal": "International Journal of Climatology",
+  "volume": "35",
+  "issue": "13",
+  "pages": "4027-4040",
+  "type": "journal-article",
+  "publisher": "Wiley",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Drought indices",
+  "supports": [
+   "/docs/method-spi/",
+   "/docs/method-spei/"
+  ],
+  "why": "Compares candidate distributions for SPI and SPEI; supports the gamma (SPI) and log-logistic (SPEI) choices.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1175/mwr3280.1",
+  "url": "https://doi.org/10.1175/mwr3280.1",
+  "title": "The Discrete Brier and Ranked Probability Skill Scores",
+  "authors": [
+   {
+    "family": "Weigel",
+    "given": "Andreas P."
+   },
+   {
+    "family": "Liniger",
+    "given": "Mark A."
+   },
+   {
+    "family": "Appenzeller",
+    "given": "Christof"
+   }
+  ],
+  "year": 2007,
+  "journal": "Monthly Weather Review",
+  "volume": "135",
+  "issue": "1",
+  "pages": "118-124",
+  "type": "journal-article",
+  "publisher": "American Meteorological Society",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Forecast verification",
+  "supports": [],
+  "why": "Brier and ranked probability skill scores for verifying probabilistic forecasts against hindcasts.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1038/sdata.2015.66",
+  "url": "https://doi.org/10.1038/sdata.2015.66",
+  "title": "The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes",
+  "authors": [
+   {
+    "family": "Funk",
+    "given": "Chris"
+   },
+   {
+    "family": "Peterson",
+    "given": "Pete"
+   },
+   {
+    "family": "Landsfeld",
+    "given": "Martin"
+   },
+   {
+    "family": "Pedreros",
+    "given": "Diego"
+   },
+   {
+    "family": "Verdin",
+    "given": "James"
+   },
+   {
+    "family": "Shukla",
+    "given": "Shraddhanand"
+   },
+   {
+    "family": "Husak",
+    "given": "Gregory"
+   },
+   {
+    "family": "Rowland",
+    "given": "James"
+   },
+   {
+    "family": "Harrison",
+    "given": "Laura"
+   },
+   {
+    "family": "Hoell",
+    "given": "Andrew"
+   },
+   {
+    "family": "Michaelsen",
+    "given": "Joel"
+   }
+  ],
+  "year": 2015,
+  "journal": "Scientific Data",
+  "volume": "2",
+  "issue": "1",
+  "pages": "150066",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Precipitation",
+  "supports": [
+   "chirps-v2",
+   "/docs/method-precipitation/"
+  ],
+  "why": "Original CHIRPS paper (version 2): blending method, gauge sources and validation.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1038/s41597-026-07096-4",
+  "url": "https://doi.org/10.1038/s41597-026-07096-4",
+  "title": "The Climate Hazards Center Infrared Precipitation with Stations, Version 3",
+  "authors": [
+   {
+    "family": "Funk",
+    "given": "Chris"
+   },
+   {
+    "family": "Peterson",
+    "given": "Pete"
+   },
+   {
+    "family": "Harrison",
+    "given": "Laura"
+   },
+   {
+    "family": "Saldivar",
+    "given": "Robert"
+   },
+   {
+    "family": "Landsfeld",
+    "given": "Martin"
+   },
+   {
+    "family": "Pedreros",
+    "given": "Diego"
+   },
+   {
+    "family": "Shukla",
+    "given": "Shraddhanand"
+   },
+   {
+    "family": "Fink",
+    "given": "Andreas H."
+   },
+   {
+    "family": "Davenport",
+    "given": "Frank"
+   },
+   {
+    "family": "Peterson",
+    "given": "Seth"
+   },
+   {
+    "family": "Turner",
+    "given": "William"
+   },
+   {
+    "family": "Sonnier",
+    "given": "Austin"
+   },
+   {
+    "family": "Budde",
+    "given": "Michael"
+   },
+   {
+    "family": "Tabor",
+    "given": "Karyn"
+   },
+   {
+    "family": "Verdin",
+    "given": "James"
+   },
+   {
+    "family": "Hauzaree",
+    "given": "Disha"
+   },
+   {
+    "family": "Naim",
+    "given": "Mohamed"
+   },
+   {
+    "family": "Alaso",
+    "given": "Daniella"
+   },
+   {
+    "family": "Husak",
+    "given": "Gregory"
+   }
+  ],
+  "year": 2026,
+  "journal": "Scientific Data",
+  "volume": "13",
+  "issue": "1",
+  "pages": "718",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Precipitation",
+  "supports": [
+   "aeo-dza-precipitation-chirps3",
+   "/docs/method-precipitation/"
+  ],
+  "why": "Describes CHIRPS v3.0, the source of the AEO precipitation product.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1038/sdata.2016.18",
+  "url": "https://doi.org/10.1038/sdata.2016.18",
+  "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+  "authors": [
+   {
+    "family": "Wilkinson",
+    "given": "Mark D."
+   },
+   {
+    "family": "Dumontier",
+    "given": "Michel"
+   },
+   {
+    "family": "Aalbersberg",
+    "given": "IJsbrand Jan"
+   },
+   {
+    "family": "Appleton",
+    "given": "Gabrielle"
+   },
+   {
+    "family": "Axton",
+    "given": "Myles"
+   },
+   {
+    "family": "Baak",
+    "given": "Arie"
+   },
+   {
+    "family": "Blomberg",
+    "given": "Niklas"
+   },
+   {
+    "family": "Boiten",
+    "given": "Jan-Willem"
+   },
+   {
+    "family": "da Silva Santos",
+    "given": "Luiz Bonino"
+   },
+   {
+    "family": "Bourne",
+    "given": "Philip E."
+   },
+   {
+    "family": "Bouwman",
+    "given": "Jildau"
+   },
+   {
+    "family": "Brookes",
+    "given": "Anthony J."
+   },
+   {
+    "family": "Clark",
+    "given": "Tim"
+   },
+   {
+    "family": "Crosas",
+    "given": "Mercè"
+   },
+   {
+    "family": "Dillo",
+    "given": "Ingrid"
+   },
+   {
+    "family": "Dumon",
+    "given": "Olivier"
+   },
+   {
+    "family": "Edmunds",
+    "given": "Scott"
+   },
+   {
+    "family": "Evelo",
+    "given": "Chris T."
+   },
+   {
+    "family": "Finkers",
+    "given": "Richard"
+   },
+   {
+    "family": "Gonzalez-Beltran",
+    "given": "Alejandra"
+   },
+   {
+    "family": "Gray",
+    "given": "Alasdair J.G."
+   },
+   {
+    "family": "Groth",
+    "given": "Paul"
+   },
+   {
+    "family": "Goble",
+    "given": "Carole"
+   },
+   {
+    "family": "Grethe",
+    "given": "Jeffrey S."
+   },
+   {
+    "family": "Heringa",
+    "given": "Jaap"
+   },
+   {
+    "family": "’t Hoen",
+    "given": "Peter A.C"
+   },
+   {
+    "family": "Hooft",
+    "given": "Rob"
+   },
+   {
+    "family": "Kuhn",
+    "given": "Tobias"
+   },
+   {
+    "family": "Kok",
+    "given": "Ruben"
+   },
+   {
+    "family": "Kok",
+    "given": "Joost"
+   },
+   {
+    "family": "Lusher",
+    "given": "Scott J."
+   },
+   {
+    "family": "Martone",
+    "given": "Maryann E."
+   },
+   {
+    "family": "Mons",
+    "given": "Albert"
+   },
+   {
+    "family": "Packer",
+    "given": "Abel L."
+   },
+   {
+    "family": "Persson",
+    "given": "Bengt"
+   },
+   {
+    "family": "Rocca-Serra",
+    "given": "Philippe"
+   },
+   {
+    "family": "Roos",
+    "given": "Marco"
+   },
+   {
+    "family": "van Schaik",
+    "given": "Rene"
+   },
+   {
+    "family": "Sansone",
+    "given": "Susanna-Assunta"
+   },
+   {
+    "family": "Schultes",
+    "given": "Erik"
+   },
+   {
+    "family": "Sengstag",
+    "given": "Thierry"
+   },
+   {
+    "family": "Slater",
+    "given": "Ted"
+   },
+   {
+    "family": "Strawn",
+    "given": "George"
+   },
+   {
+    "family": "Swertz",
+    "given": "Morris A."
+   },
+   {
+    "family": "Thompson",
+    "given": "Mark"
+   },
+   {
+    "family": "van der Lei",
+    "given": "Johan"
+   },
+   {
+    "family": "van Mulligen",
+    "given": "Erik"
+   },
+   {
+    "family": "Velterop",
+    "given": "Jan"
+   },
+   {
+    "family": "Waagmeester",
+    "given": "Andra"
+   },
+   {
+    "family": "Wittenburg",
+    "given": "Peter"
+   },
+   {
+    "family": "Wolstencroft",
+    "given": "Katherine"
+   },
+   {
+    "family": "Zhao",
+    "given": "Jun"
+   },
+   {
+    "family": "Mons",
+    "given": "Barend"
+   }
+  ],
+  "year": 2016,
+  "journal": "Scientific Data",
+  "volume": "3",
+  "issue": "1",
+  "pages": "160018",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "reference"
+  ],
+  "topic": "Reproducible science",
+  "supports": [
+   "/docs/reproducibility/"
+  ],
+  "why": "The FAIR principles followed by AEO data publication.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.7717/peerj.5072",
+  "url": "https://doi.org/10.7717/peerj.5072",
+  "title": "Reproducible research and GIScience: an evaluation using AGILE conference papers",
+  "authors": [
+   {
+    "family": "Nüst",
+    "given": "Daniel"
+   },
+   {
+    "family": "Granell",
+    "given": "Carlos"
+   },
+   {
+    "family": "Hofer",
+    "given": "Barbara"
+   },
+   {
+    "family": "Konkol",
+    "given": "Markus"
+   },
+   {
+    "family": "Ostermann",
+    "given": "Frank O."
+   },
+   {
+    "family": "Sileryte",
+    "given": "Rusne"
+   },
+   {
+    "family": "Cerutti",
+    "given": "Valentina"
+   }
+  ],
+  "year": 2018,
+  "journal": "PeerJ",
+  "volume": "6",
+  "issue": null,
+  "pages": "e5072",
+  "type": "journal-article",
+  "publisher": "PeerJ",
+  "category": "foundations",
+  "domain": [
+   "reference"
+  ],
+  "topic": "Reproducible science",
+  "supports": [
+   "/docs/reproducibility/"
+  ],
+  "why": "Reproducibility of geospatial research: practices that AEO workflows follow.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.5194/hess-18-2669-2014",
+  "url": "https://doi.org/10.5194/hess-18-2669-2014",
+  "title": "Global meteorological drought – Part 2: Seasonal forecasts",
+  "authors": [
+   {
+    "family": "Dutra",
+    "given": "E."
+   },
+   {
+    "family": "Pozzi",
+    "given": "W."
+   },
+   {
+    "family": "Wetterhall",
+    "given": "F."
+   },
+   {
+    "family": "Di Giuseppe",
+    "given": "F."
+   },
+   {
+    "family": "Magnusson",
+    "given": "L."
+   },
+   {
+    "family": "Naumann",
+    "given": "G."
+   },
+   {
+    "family": "Barbosa",
+    "given": "P."
+   },
+   {
+    "family": "Vogt",
+    "given": "J."
+   },
+   {
+    "family": "Pappenberger",
+    "given": "F."
+   }
+  ],
+  "year": 2014,
+  "journal": "Hydrology and Earth System Sciences",
+  "volume": "18",
+  "issue": "7",
+  "pages": "2669-2678",
+  "type": "journal-article",
+  "publisher": "Copernicus GmbH",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Seasonal forecasting",
+  "supports": [],
+  "why": "Seasonal forecasts of meteorological drought (SPI) from ensemble systems, with skill assessment.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.5194/gmd-12-1087-2019",
+  "url": "https://doi.org/10.5194/gmd-12-1087-2019",
+  "title": "SEAS5: the new ECMWF seasonal forecast system",
+  "authors": [
+   {
+    "family": "Johnson",
+    "given": "Stephanie J."
+   },
+   {
+    "family": "Stockdale",
+    "given": "Timothy N."
+   },
+   {
+    "family": "Ferranti",
+    "given": "Laura"
+   },
+   {
+    "family": "Balmaseda",
+    "given": "Magdalena A."
+   },
+   {
+    "family": "Molteni",
+    "given": "Franco"
+   },
+   {
+    "family": "Magnusson",
+    "given": "Linus"
+   },
+   {
+    "family": "Tietsche",
+    "given": "Steffen"
+   },
+   {
+    "family": "Decremer",
+    "given": "Damien"
+   },
+   {
+    "family": "Weisheimer",
+    "given": "Antje"
+   },
+   {
+    "family": "Balsamo",
+    "given": "Gianpaolo"
+   },
+   {
+    "family": "Keeley",
+    "given": "Sarah P. E."
+   },
+   {
+    "family": "Mogensen",
+    "given": "Kristian"
+   },
+   {
+    "family": "Zuo",
+    "given": "Hao"
+   },
+   {
+    "family": "Monge-Sanz",
+    "given": "Beatriz M."
+   }
+  ],
+  "year": 2019,
+  "journal": "Geoscientific Model Development",
+  "volume": "12",
+  "issue": "3",
+  "pages": "1087-1117",
+  "type": "journal-article",
+  "publisher": "Copernicus GmbH",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Seasonal forecasting",
+  "supports": [],
+  "why": "ECMWF SEAS5 seasonal forecast system, a candidate source for experimental drought outlooks.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.32614/cran.package.spei",
+  "url": "https://doi.org/10.32614/cran.package.spei",
+  "title": "SPEI: Calculation of the Standardized Precipitation-Evapotranspiration Index",
+  "authors": [
+   {
+    "family": "Beguería",
+    "given": "Santiago"
+   },
+   {
+    "family": "Vicente-Serrano",
+    "given": "Sergio M."
+   }
+  ],
+  "year": 2011,
+  "journal": "CRAN: Contributed Packages",
+  "volume": null,
+  "issue": null,
+  "pages": null,
+  "type": "dataset",
+  "publisher": "The R Foundation",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Software",
+  "supports": [
+   "/docs/method-spei/",
+   "/docs/method-spi/"
+  ],
+  "why": "R package SPEI, the reference implementation against which the AEO SPEI and SPI code is tested.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1109/jproc.2010.2043918",
+  "url": "https://doi.org/10.1109/jproc.2010.2043918",
+  "title": "The Soil Moisture Active Passive (SMAP) Mission",
+  "authors": [
+   {
+    "family": "Entekhabi",
+    "given": "Dara"
+   },
+   {
+    "family": "Njoku",
+    "given": "Eni G."
+   },
+   {
+    "family": "O'Neill",
+    "given": "Peggy E."
+   },
+   {
+    "family": "Kellogg",
+    "given": "Kent H."
+   },
+   {
+    "family": "Crow",
+    "given": "Wade T."
+   },
+   {
+    "family": "Edelstein",
+    "given": "Wendy N."
+   },
+   {
+    "family": "Entin",
+    "given": "Jared K."
+   },
+   {
+    "family": "Goodman",
+    "given": "Shawn D."
+   },
+   {
+    "family": "Jackson",
+    "given": "Thomas J."
+   },
+   {
+    "family": "Johnson",
+    "given": "Joel"
+   },
+   {
+    "family": "Kimball",
+    "given": "John"
+   },
+   {
+    "family": "Piepmeier",
+    "given": "Jeffrey R."
+   },
+   {
+    "family": "Koster",
+    "given": "Randal D."
+   },
+   {
+    "family": "Martin",
+    "given": "Neil"
+   },
+   {
+    "family": "McDonald",
+    "given": "Kyle C."
+   },
+   {
+    "family": "Moghaddam",
+    "given": "Mahta"
+   },
+   {
+    "family": "Moran",
+    "given": "Susan"
+   },
+   {
+    "family": "Reichle",
+    "given": "Rolf"
+   },
+   {
+    "family": "Shi",
+    "given": "J. C."
+   },
+   {
+    "family": "Spencer",
+    "given": "Michael W."
+   },
+   {
+    "family": "Thurman",
+    "given": "Samuel W."
+   },
+   {
+    "family": "Tsang",
+    "given": "Leung"
+   },
+   {
+    "family": "Van Zyl",
+    "given": "Jakob"
+   }
+  ],
+  "year": 2010,
+  "journal": "Proceedings of the IEEE",
+  "volume": "98",
+  "issue": "5",
+  "pages": "704-716",
+  "type": "journal-article",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "category": "foundations",
+  "domain": [
+   "water",
+   "climate-drought"
+  ],
+  "topic": "Soil moisture",
+  "supports": [
+   "smap-soil-moisture"
+  ],
+  "why": "The SMAP mission: design of the soil moisture retrievals shown in Explore.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1016/j.rse.2017.07.001",
+  "url": "https://doi.org/10.1016/j.rse.2017.07.001",
+  "title": "ESA CCI Soil Moisture for improved Earth system understanding: State-of-the art and future directions",
+  "authors": [
+   {
+    "family": "Dorigo",
+    "given": "Wouter"
+   },
+   {
+    "family": "Wagner",
+    "given": "Wolfgang"
+   },
+   {
+    "family": "Albergel",
+    "given": "Clement"
+   },
+   {
+    "family": "Albrecht",
+    "given": "Franziska"
+   },
+   {
+    "family": "Balsamo",
+    "given": "Gianpaolo"
+   },
+   {
+    "family": "Brocca",
+    "given": "Luca"
+   },
+   {
+    "family": "Chung",
+    "given": "Daniel"
+   },
+   {
+    "family": "Ertl",
+    "given": "Martin"
+   },
+   {
+    "family": "Forkel",
+    "given": "Matthias"
+   },
+   {
+    "family": "Gruber",
+    "given": "Alexander"
+   },
+   {
+    "family": "Haas",
+    "given": "Eva"
+   },
+   {
+    "family": "Hamer",
+    "given": "Paul D."
+   },
+   {
+    "family": "Hirschi",
+    "given": "Martin"
+   },
+   {
+    "family": "Ikonen",
+    "given": "Jaakko"
+   },
+   {
+    "family": "de Jeu",
+    "given": "Richard"
+   },
+   {
+    "family": "Kidd",
+    "given": "Richard"
+   },
+   {
+    "family": "Lahoz",
+    "given": "William"
+   },
+   {
+    "family": "Liu",
+    "given": "Yi Y."
+   },
+   {
+    "family": "Miralles",
+    "given": "Diego"
+   },
+   {
+    "family": "Mistelbauer",
+    "given": "Thomas"
+   },
+   {
+    "family": "Nicolai-Shaw",
+    "given": "Nadine"
+   },
+   {
+    "family": "Parinussa",
+    "given": "Robert"
+   },
+   {
+    "family": "Pratola",
+    "given": "Chiara"
+   },
+   {
+    "family": "Reimer",
+    "given": "Christoph"
+   },
+   {
+    "family": "van der Schalie",
+    "given": "Robin"
+   },
+   {
+    "family": "Seneviratne",
+    "given": "Sonia I."
+   },
+   {
+    "family": "Smolander",
+    "given": "Tuomo"
+   },
+   {
+    "family": "Lecomte",
+    "given": "Pascal"
+   }
+  ],
+  "year": 2017,
+  "journal": "Remote Sensing of Environment",
+  "volume": "203",
+  "issue": null,
+  "pages": "185-215",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "category": "foundations",
+  "domain": [
+   "water",
+   "climate-drought"
+  ],
+  "topic": "Soil moisture",
+  "supports": [],
+  "why": "ESA CCI Soil Moisture: long-term satellite soil moisture record.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.2307/1907187",
+  "url": "https://doi.org/10.2307/1907187",
+  "title": "Nonparametric Tests Against Trend",
+  "authors": [
+   {
+    "family": "Mann",
+    "given": "Henry B."
+   }
+  ],
+  "year": 1945,
+  "journal": "Econometrica",
+  "volume": "13",
+  "issue": "3",
+  "pages": "245",
+  "type": "journal-article",
+  "publisher": "JSTOR",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Statistical methods",
+  "supports": [
+   "/docs/method-precipitation/"
+  ],
+  "why": "Mann–Kendall test for monotonic trends.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1080/01621459.1968.10480934",
+  "url": "https://doi.org/10.1080/01621459.1968.10480934",
+  "title": "Estimates of the Regression Coefficient Based on Kendall's Tau",
+  "authors": [
+   {
+    "family": "Sen",
+    "given": "Pranab Kumar"
+   }
+  ],
+  "year": 1968,
+  "journal": "Journal of the American Statistical Association",
+  "volume": "63",
+  "issue": "324",
+  "pages": "1379-1389",
+  "type": "journal-article",
+  "publisher": "Informa UK Limited",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Statistical methods",
+  "supports": [
+   "/docs/method-precipitation/"
+  ],
+  "why": "Sen's slope estimator used for all AEO trends.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1111/j.2517-6161.1990.tb01775.x",
+  "url": "https://doi.org/10.1111/j.2517-6161.1990.tb01775.x",
+  "title": "L-Moments: Analysis and Estimation of Distributions Using Linear Combinations of Order Statistics",
+  "authors": [
+   {
+    "family": "Hosking",
+    "given": "J. R. M."
+   }
+  ],
+  "year": 1990,
+  "journal": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+  "volume": "52",
+  "issue": "1",
+  "pages": "105-124",
+  "type": "journal-article",
+  "publisher": "Oxford University Press (OUP)",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Statistical methods",
+  "supports": [
+   "/docs/method-spei/",
+   "/docs/method-spi/"
+  ],
+  "why": "L-moments and probability-weighted moments used to fit the drought-index distributions.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1023/b:warm.0000043140.61082.60",
+  "url": "https://doi.org/10.1023/b:warm.0000043140.61082.60",
+  "title": "The Mann-Kendall Test Modified by Effective Sample Size to Detect Trend in Serially Correlated Hydrological Series",
+  "authors": [
+   {
+    "family": "Yue",
+    "given": "Sheng"
+   },
+   {
+    "family": "Wang",
+    "given": "ChunYuan"
+   }
+  ],
+  "year": 2004,
+  "journal": "Water Resources Management",
+  "volume": "18",
+  "issue": "3",
+  "pages": "201-218",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "climate-drought"
+  ],
+  "topic": "Statistical methods",
+  "supports": [
+   "/docs/method-precipitation/"
+  ],
+  "why": "Variance correction of the Mann–Kendall test for autocorrelated series, applied by AEO.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ },
+ {
+  "doi": "10.1038/nature20584",
+  "url": "https://doi.org/10.1038/nature20584",
+  "title": "High-resolution mapping of global surface water and its long-term changes",
+  "authors": [
+   {
+    "family": "Pekel",
+    "given": "Jean-François"
+   },
+   {
+    "family": "Cottam",
+    "given": "Andrew"
+   },
+   {
+    "family": "Gorelick",
+    "given": "Noel"
+   },
+   {
+    "family": "Belward",
+    "given": "Alan S."
+   }
+  ],
+  "year": 2016,
+  "journal": "Nature",
+  "volume": "540",
+  "issue": "7633",
+  "pages": "418-422",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "category": "foundations",
+  "domain": [
+   "water"
+  ],
+  "topic": "Surface water",
+  "supports": [
+   "jrc-global-surface-water"
+  ],
+  "why": "JRC Global Surface Water: 30 m maps of surface-water occurrence and change.",
+  "verified": {
+   "date": "2026-11-20",
+   "doi_registered": true,
+   "metadata_source": "Crossref REST API"
+  }
+ }
+]

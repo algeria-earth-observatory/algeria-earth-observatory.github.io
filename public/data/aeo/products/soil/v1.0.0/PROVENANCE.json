@@ -1,0 +1,32 @@
+{
+ "product": "aeo-dza-soil-soilgrids",
+ "version": "1.0.0",
+ "created": "2026-11-20",
+ "inputs": {
+  "mean": "https://files.isric.org/soilgrids/latest/data_aggregated/1000m/<property>/<property>_<depth>_mean_1000.tif",
+  "quantiles": "https://files.isric.org/soilgrids/latest/data/<property>/<property>_<depth>_Q0.05.vrt and _Q0.95.vrt (250 m)",
+  "boundaries": "AEO boundaries 2026-11-20 (full detail)"
+ },
+ "grid": {
+  "crs": "+proj=igh +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs=True",
+  "shape": [
+   2037,
+   2480
+  ],
+  "transform": [
+   1000.0,
+   0.0,
+   -736750.0,
+   0.0,
+   -1000.0,
+   4141000.000000001
+  ]
+ },
+ "conversion": "values divided by the ISRIC conversion factor (docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html)",
+ "zonal_method": "pixels whose centre falls in the unit (equal-area projection, so the unweighted mean is area-weighted); centroid pixel for units without any pixel centre",
+ "qc": [
+  "National mean equals the pixel-weighted mean of the 69 wilaya means for every layer (within 2 %, boundary-pixel effects)",
+  "Clay + sand + silt per wilaya and depth: 100.0–100.0 %",
+  "pH range of unit means: 5.63–8.51"
+ ]
+}
