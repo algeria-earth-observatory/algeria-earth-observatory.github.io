@@ -14,7 +14,7 @@ const search = [d.title, d.title_fr, d.title_ar, d.description, d.provider?.name
 const providerShort = d.provider?.name?.replace(/\s*\(.*?\)\s*/g, ' ').replace(/\s+([,;])/g, '$1').trim();
 ---
 <article
-  class="card group relative flex h-full flex-col p-5 transition-shadow hover:shadow-[0_2px_14px_rgba(20,59,86,0.09)]"
+  class="card group relative flex h-full flex-col p-5 transition-colors hover:border-line-strong"
   data-dataset={d.id}
   data-search={search}
   data-domain={d.domain.join('|')}
@@ -54,7 +54,7 @@ const providerShort = d.provider?.name?.replace(/\s*\(.*?\)\s*/g, ' ').replace(/
       {d.product && <div class="col-span-2"><dt class="meta">Levels</dt><dd class="text-graphite">{d.product.levels.map((l) => ({ admin0: 'Algeria', admin1: 'wilayas', admin2: 'communes' })[l]).join(' · ')}</dd></div>}
       <div class="col-span-2 pt-1">
         <dt class="sr-only">Access</dt>
-        <dd class="font-medium text-[0.82rem]" style={mode === 'direct' ? 'color:#0b5d45' : 'color:#124f87'}>
+        <dd class:list={['font-medium text-[0.82rem]', mode === 'direct' ? 'text-atlas' : 'text-slate']}>
           {mode === 'direct' ? (d.origin === 'external' ? '↓ Direct download from source' : '↓ Download from AEO') : '↗ Access at source'}
         </dd>
       </div>

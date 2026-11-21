@@ -15,6 +15,9 @@ const fmt0 = (v: number | null | undefined) => (v === null || v === undefined ? 
 const fmt1 = (v: number | null | undefined) => (v === null || v === undefined ? '—' : v.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 }));
 const sign = (v: number | null | undefined, d = 0) => (v === null || v === undefined ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}`);
 const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+type Card = { k: string; v: string; n: string };
+const cardsHtml = (cards: Card[]) => cards.map((c) => `<div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.75rem] text-slate">${esc(c.k)}</dt><dd class="mt-1 text-[1.5rem] font-medium leading-tight text-atlas">${esc(c.v)}</dd><dd class="mt-1 text-[0.75rem] leading-snug text-slate">${esc(c.n)}</dd></div>`).join('');
+const pFmt = (p: number) => (p < 0.001 ? 'p < 0.001' : `p = ${p.toFixed(3)}`);
 
 interface State { level: Level; unit: string; compare: string[]; agg: Agg; from: number; to: number; anom: 'mm' | 'pct'; mapYear: number; metric: 'anomaly' | 'annual'; grid: boolean; variable: 'precip' | 'spei'; scale: number; month: number; mapMonth: string }
 
@@ -96,7 +99,7 @@ export async function initAnalyze() {
       : `<option value="">Choose…</option>` + opts.filter((u) => u.code !== state.unit).map((u) => `<option value="${u.code}">${esc(u.name)} (${u.code})</option>`).join('');
     cmpSel.disabled = state.level === 'admin0';
     $<HTMLUListElement>('az-compare-list').innerHTML = state.compare.map((c, i) =>
-      `<li class="flex items-center gap-1 rounded-full border border-line py-0.5 pl-2 pr-1 text-[0.78rem]"><span class="inline-block h-2 w-2 rounded-full" style="background:${SERIES_COLORS[i + 1]}"></span>${esc(unitOf(state.level, c)?.name)}<button type="button" data-remove="${c}" class="rounded-full px-1 text-slate hover:bg-mist" aria-label="Remove ${esc(unitOf(state.level, c)?.name)}">×</button></li>`).join('');
+      `<li class="flex items-center gap-1 border border-line py-0.5 pl-2 pr-1 text-[0.75rem]"><span class="inline-block h-2 w-2 rounded-full" style="background:${SERIES_COLORS[i + 1]}"></span>${esc(unitOf(state.level, c)?.name)}<button type="button" data-remove="${c}" class="rounded-full px-1 text-slate hover:bg-mist" aria-label="Remove ${esc(unitOf(state.level, c)?.name)}">×</button></li>`).join('');
   };
   const currentWilaya = () => (state.level === 'admin2' ? unitOf('admin2', state.unit)?.parent ?? '19' : state.level === 'admin1' ? state.unit : wSel.value);
 
@@ -128,6 +131,7 @@ export async function initAnalyze() {
     [...$<HTMLSelectElement>('az-scale').options].forEach((o) => { o.disabled = state.level === 'admin2' && (o.value === '1' || o.value === '6'); });
     $<HTMLSelectElement>('az-month').value = String(state.month);
     $('spei-controls').classList.toggle('hidden', state.variable !== 'spei');
+    document.querySelectorAll<HTMLElement>('[data-spei-only]').forEach((e) => e.classList.toggle('hidden', state.variable !== 'spei'));
     $('agg-wrap').classList.toggle('hidden', state.variable === 'spei');
     document.querySelectorAll<HTMLElement>('[data-precip-only]').forEach((e) => e.classList.toggle('hidden', state.variable === 'spei'));
     const ys = $<HTMLSelectElement>('az-map-year');
@@ -213,13 +217,27 @@ export async function initAnalyze() {
       [`Latest (${s0.keys[lastIdx] !== undefined ? periodLabel(state.agg, s0.keys[lastIdx]) : '—'})`, `${fmt0(s0.values[lastIdx])} mm`, s0.anomaliesPct[lastIdx] !== null ? `${sign(s0.anomaliesPct[lastIdx])} % vs normal` : ''],
       ['Variability (CV)', sum.cv !== null ? `${sum.cv.toFixed(0)} %` : '—', 'std. dev. / mean'],
     ];
-    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="rounded-md border border-line bg-surface px-3 py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.15rem] font-semibold text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.75rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
+    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.72rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
 
     // trend
     const ts = sum.ts, mk = sum.mk;
     $('az-trend').innerHTML = ts.slope === null || mk.p === null
       ? 'Trend: too few values in this period for a trend test (at least 8 needed).'
       : `<strong class="text-atlas">Trend ${s0.keys[0]}–${s0.keys[s0.keys.length - 1]} (n = ${mk.n}):</strong> ${esc(describeTrend({ slope: ts.slope! * 10, lo: ts.lo! * 10, hi: ts.hi! * 10 }, mk))}${mk.corrected ? ' Lag-1 autocorrelation was significant; the test variance was corrected.' : ''}`;
+    const hasTrend = ts.slope !== null && mk.p !== null;
+    const lastLabel = s0.keys[lastIdx] !== undefined ? periodLabel(state.agg, s0.keys[lastIdx]) : '—';
+    const unitWord = state.agg === 'year' ? 'year' : 'period';
+    const lastPct = s0.anomaliesPct[lastIdx];
+    $('az-cards').innerHTML = cardsHtml([
+      { k: 'Mean', v: `${fmt0(sum.mean)} mm`, n: `per ${unitWord}, ${s0.keys[0] ?? state.from}–${s0.keys[lastIdx] ?? state.to} (normal ${fmt0(s0.normal)} mm)` },
+      { k: 'Trend', v: hasTrend ? `${sign(ts.slope! * 10, 1)} mm/decade` : '—', n: hasTrend ? `Theil–Sen; ${mk.p! < 0.05 ? 'significant' : 'not significant'} (${pFmt(mk.p!)})` : 'too few values (at least 8 needed)' },
+      { k: 'Change', v: lastPct !== null && lastPct !== undefined ? `${sign(lastPct)} %` : '—', n: `${lastLabel} compared with the 1991–2020 normal` },
+    ]);
+    $('az-report').textContent = `${aggInfo.label} precipitation over ${labels[0]} averaged ${fmt0(sum.mean)} mm per ${unitWord} between ${s0.keys[0] ?? state.from} and ${s0.keys[lastIdx] ?? state.to}, against a 1991–2020 normal of ${fmt0(s0.normal)} mm. `
+      + (sum.min && sum.max ? `The driest ${unitWord} was ${periodLabel(state.agg, sum.min[0])} (${fmt0(sum.min[1])} mm) and the wettest ${periodLabel(state.agg, sum.max[0])} (${fmt0(sum.max[1])} mm). ` : '')
+      + (lastPct !== null && lastPct !== undefined ? `${lastLabel} was ${sign(lastPct)} % relative to the normal. ` : '')
+      + (hasTrend ? `The Theil–Sen trend is ${sign(ts.slope! * 10, 1)} mm per decade, which is ${mk.p! < 0.05 ? 'statistically significant' : 'not statistically significant'} (Mann–Kendall, ${pFmt(mk.p!)}). ` : 'The period is too short for a trend test. ')
+      + `Source: CHIRPS v3.0 (CC BY 4.0), processed by the Algeria Earth Observatory, product v${PRECIP.version}.`;
 
     // charts
     const keyLabel = (k: number) => (state.agg === 'hydro' ? `${String(k - 1).slice(2)}/${String(k).slice(2)}` : String(k));
@@ -281,11 +299,38 @@ export async function initAnalyze() {
     else download(`${name}.png`, await svgToPng(svg, footer));
   }));
 
+  // ---------------------------------------------------------------- tabs
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"][data-tab]')];
+  const showTab = (t: HTMLButtonElement, focus = false) => {
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      document.getElementById(`panel-${x.dataset.tab}`)!.hidden = !on;
+    }
+    if (focus) t.focus();
+    if (t.dataset.tab === 'map') window.dispatchEvent(new CustomEvent('aeo:az-map-shown'));
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => showTab(t));
+    t.addEventListener('keydown', (e) => {
+      const k = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : null;
+      if (k === null) return;
+      e.preventDefault(); showTab(tabs[(k + tabs.length) % tabs.length], true);
+    });
+  });
+  $('az-dl-results').addEventListener('click', () => (document.getElementById('dl-csv') as HTMLButtonElement | null)?.click());
+  $('az-print').addEventListener('click', () => window.print());
+
   // ---------------------------------------------------------------- map
   const styleUrl = 'https://tiles.openfreemap.org/styles/dark';
   const map = new maplibregl.Map({ container: 'az-map', style: styleUrl, bounds: [-8.7, 18.9, 12.0, 37.2], fitBoundsOptions: { padding: 16 }, attributionControl: { compact: true } });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   map.dragRotate.disable(); map.touchZoomRotate.disableRotation();
+  let mapFitted = false;
+  window.addEventListener('aeo:az-map-shown', () => {
+    map.resize();
+    if (!mapFitted) { mapFitted = true; map.fitBounds([-8.7, 18.9, 12.0, 37.2], { padding: 16, animate: false }); }
+  });
   let mapReady = false;
   const geo: Partial<Record<'admin1' | 'admin2', Promise<GeoJSON.FeatureCollection>>> = {};
   const loadGeo = (lvl: 'admin1' | 'admin2') => (geo[lvl] ??= fetch(`${BOUNDARIES}/${lvl === 'admin1' ? 'dza_adm1_wilayas_display' : 'dza_adm2_communes_display'}.geojson`).then((r) => r.json()));
@@ -396,7 +441,7 @@ export async function initAnalyze() {
       ['Expected share ≤ −1', '≈ 16 %', 'in the 1991–2020 reference'],
       ['Timescale', `SPEI-${state.scale}`, `${state.scale}-month water balance`],
     ];
-    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="rounded-md border border-line bg-surface px-3 py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.15rem] font-semibold text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.75rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
+    $('az-tiles').innerHTML = tiles.map(([k, v, n]) => `<div class="border-b border-line py-2.5"><dt class="text-[0.75rem] text-slate">${esc(k)}</dt><dd class="mt-0.5 text-[1.125rem] font-medium text-atlas">${esc(v)}</dd>${n ? `<dd class="text-[0.72rem] text-slate">${esc(n)}</dd>` : ''}</div>`).join('');
     if (state.month) {
       const ts = theilSen(s0.values, s0.keys), mk = mannKendall(s0.values);
       $('az-trend').innerHTML = ts.slope === null || mk.p === null ? 'Trend: too few years (at least 8 needed).'
@@ -404,6 +449,20 @@ export async function initAnalyze() {
     } else {
       $('az-trend').textContent = 'Trend tests are shown for one calendar month at a time (choose a month): consecutive monthly SPEI values overlap and are strongly autocorrelated.';
     }
+    const meanSpei = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+    const tsS = state.month ? theilSen(s0.values, s0.keys) : null, mkS = state.month ? mannKendall(s0.values) : null;
+    const hasT = !!(tsS && mkS && tsS.slope !== null && mkS.p !== null);
+    $('az-cards').innerHTML = cardsHtml([
+      { k: 'Mean', v: meanSpei === null ? '—' : sign(meanSpei, 2), n: `SPEI-${state.scale}, ${per}, ${state.from}–${state.to} (0 = 1991–2020 average)` },
+      { k: 'Trend', v: hasT ? `${sign(tsS!.slope! * 10, 2)} /decade` : '—', n: hasT ? `${MONTH_NAMES[state.month - 1]}; ${mkS!.p! < 0.05 ? 'significant' : 'not significant'} (${pFmt(mkS!.p!)})` : 'choose one calendar month in Advanced settings' },
+      { k: 'Change', v: latest === null ? '—' : sign(latest, 2), n: `latest value (${s0.labels[li] ?? '—'})${cls ? `: ${cls.label}` : ''}` },
+    ]);
+    $('az-report').textContent = `SPEI-${state.scale} for ${labels[0]} (${per}, ${state.from}–${state.to}) averaged ${meanSpei === null ? '—' : sign(meanSpei, 2)}. `
+      + `${vals.length ? Math.round((100 * nDry) / vals.length) : 0} % of values were at or below −1 (dry), against about 16 % expected; ${nSev} were at or below −1.5 (severe). `
+      + (worst !== null ? `The lowest value was ${sign(worst, 2)} (${worstAt}). ` : '')
+      + (latest !== null ? `The latest value, ${s0.labels[li]}, is ${sign(latest, 2)}${cls ? ` (${cls.label.toLowerCase()})` : ''}. ` : '')
+      + (hasT ? `The ${MONTH_NAMES[state.month - 1]} trend is ${sign(tsS!.slope! * 10, 2)} SPEI units per decade (${mkS!.p! < 0.05 ? 'significant' : 'not significant'}, ${pFmt(mkS!.p!)}). ` : '')
+      + `Source: TerraClimate water balance, SPEI computed by the Algeria Earth Observatory, product v${SPEI.version}.`;
     $('az-legend').innerHTML = series.length > 1 ? labels.map((l, i) => `<li class="flex items-center gap-1.5"><span class="inline-block h-0.5 w-4" style="background:${SERIES_COLORS[i]}"></span>${esc(l)}</li>`).join('') : '';
     const keyLabel = (k: number) => (state.month ? String(k) : String(Math.floor(k + 1e-9)));
     lineChart($('az-ts'), series.map((s, i) => ({ name: codes.length > 1 ? (unitOf(state.level, codes[i])?.name ?? codes[i]) : `SPEI-${state.scale}`, keys: s.keys, values: s.values })),

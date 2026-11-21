@@ -1,8 +1,9 @@
 import {
-  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf, wilayaPopupHtml, communePopupHtml,
+  maplibregl, MAP_LAYERS, ALGERIA_BOUNDS, buildStyle, createMap, loadWilayas, bboxOf,
   setLayerVisible, setLayerOpacity, setLayerTime, resolveMosaic, refreshTiles, snapDate, stepDate, availableDates, defaultDate, escapeHtml,
   type MapState, type BasemapId,
 } from './map-core';
+import { inspectorHtml, type Selection } from './inspector';
 
 export async function initExplorer() {
   const el = document.getElementById('map');
@@ -11,7 +12,7 @@ export async function initExplorer() {
   // ---------------------------------------------------------------- state
   const params = new URLSearchParams(location.search);
   const requested = (params.get('layers') ?? '').split(',').filter(Boolean);
-  const state: MapState = { basemap: (params.get('basemap') as BasemapId) || 'dark', layers: {} };
+  const state: MapState = { basemap: (params.get('basemap') as BasemapId) || 'satellite', layers: {} };
   for (const l of MAP_LAYERS) {
     const on = requested.length ? requested.includes(l.id) || l.id === 'wilayas' : !!l.defaultOn;
     state.layers[l.id] = { on, opacity: l.opacity, time: defaultDate(l) };
@@ -23,7 +24,7 @@ export async function initExplorer() {
     const p = new URLSearchParams();
     const on = MAP_LAYERS.filter((l) => state.layers[l.id].on && l.id !== 'wilayas').map((l) => l.id);
     if (on.length) p.set('layers', on.join(','));
-    if (state.basemap !== 'dark') p.set('basemap', state.basemap);
+    if (state.basemap !== 'satellite') p.set('basemap', state.basemap);
     const qs = p.toString();
     history.replaceState(null, '', `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`);
   };
@@ -71,10 +72,23 @@ export async function initExplorer() {
   let selected: string | null = null;
   let hovered: string | null = null;
   const popup = new maplibregl.Popup({ maxWidth: '300px', closeButton: true });
+  const wide = window.matchMedia('(min-width: 1280px)');
+  const inspectorBody = document.getElementById('inspector-body');
+  let current: { sel: Selection; at: [number, number] } | null = null;
+  async function showInspector(sel: Selection, at: [number, number]) {
+    current = { sel, at };
+    const html = await inspectorHtml(sel, state);
+    if (current?.sel !== sel) return;
+    if (wide.matches && inspectorBody) { inspectorBody.innerHTML = html; popup.remove(); }
+    else popup.setLngLat(at).setHTML(`<div class="aeo-pop">${html}</div>`).addTo(map);
+  }
+  const refreshInspector = () => { if (current) showInspector(current.sel, current.at); };
   function clearSelection() {
     if (selected && map.getSource('aeo-wilayas')) map.setFeatureState({ source: 'aeo-wilayas', id: selected }, { selected: false });
     selected = null;
+    current = null;
     popup.remove();
+    if (inspectorBody) inspectorBody.textContent = 'Select a wilaya or commune on the map to see its indicators.';
   }
   function selectWilaya(code: string, fly: boolean) {
     const f = fc.features.find((x) => String(x.properties?.wilaya_code) === code);
@@ -84,17 +98,18 @@ export async function initExplorer() {
     map.setFeatureState({ source: 'aeo-wilayas', id: code }, { selected: true });
     if (fly) map.fitBounds(bboxOf(f), { padding: 40, maxZoom: 9 });
     const b = bboxOf(f);
-    if (fly) popup.setLngLat([(b[0] + b[2]) / 2, (b[1] + b[3]) / 2]).setHTML(wilayaPopupHtml(f.properties ?? {})).addTo(map);
+    if (fly) showInspector({ kind: 'wilaya', props: f.properties ?? {} }, [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2]);
   }
   sel.addEventListener('change', () => (sel.value ? selectWilaya(sel.value, true) : (clearSelection(), map.fitBounds(ALGERIA_BOUNDS, { padding: 24 }))));
 
   map.on('click', 'aeo-wilayas-fill', (e) => {
     const f = e.features?.[0];
     if (!f) return;
+    if (state.layers.communes?.on && map.queryRenderedFeatures(e.point, { layers: ['aeo-communes-fill'] }).length) return;
     const code = String(f.properties?.wilaya_code);
     selectWilaya(code, false);
     sel.value = code;
-    popup.setLngLat(e.lngLat).setHTML(wilayaPopupHtml(f.properties ?? {})).addTo(map);
+    showInspector({ kind: 'wilaya', props: f.properties ?? {} }, [e.lngLat.lng, e.lngLat.lat]);
   });
   map.on('mousemove', 'aeo-wilayas-fill', (e) => {
     const id = String(e.features?.[0]?.properties?.wilaya_code ?? '');
@@ -113,7 +128,7 @@ export async function initExplorer() {
   let hoveredC: string | null = null;
   map.on('click', 'aeo-communes-fill', (e) => {
     const f = e.features?.[0];
-    if (f) popup.setLngLat(e.lngLat).setHTML(communePopupHtml(f.properties ?? {})).addTo(map);
+    if (f) showInspector({ kind: 'commune', props: f.properties ?? {} }, [e.lngLat.lng, e.lngLat.lat]);
   });
   map.on('mousemove', 'aeo-communes-fill', (e) => {
     const id = String(e.features?.[0]?.properties?.commune_code ?? '');
@@ -153,7 +168,7 @@ export async function initExplorer() {
       if (l.legend.kind === 'image' && l.legend.url) body = `<img src="${escapeHtml(l.legend.url)}" alt="Colour scale for ${escapeHtml(l.title)} (${escapeHtml(l.legend.caption ?? '')})" class="mt-1 w-full" loading="lazy" />`;
       else if (l.legend.kind === 'gradient' && l.legend.stops) body = `<div class="mt-1 h-2.5 rounded" style="background:linear-gradient(90deg,${l.legend.stops.join(',')})"></div><div class="mt-0.5 flex justify-between text-[0.7rem] text-slate"><span>${escapeHtml(l.legend.labels?.[0])}</span><span>${escapeHtml(l.legend.labels?.[1])}</span></div>`;
       else if (l.legend.kind === 'classes' && l.legend.classes) body = `<ul class="mt-1 grid grid-cols-1 gap-x-2 gap-y-0.5 sm:grid-cols-2">${l.legend.classes.map((c) => `<li class="flex items-center gap-1.5 text-[0.7rem] leading-tight text-graphite"><span class="inline-block h-2.5 w-2.5 shrink-0 rounded-sm border border-black/15" style="background:${escapeHtml(c.color)}"></span>${escapeHtml(c.label)}</li>`).join('')}</ul>`;
-      else if (l.legend.kind === 'line') body = `<div class="mt-1 flex items-center gap-2"><span class="inline-block h-0 w-6 border-t-2 border-[#e8f0f8]"></span><span class="text-[0.72rem] text-slate">${escapeHtml(l.legend.caption)}</span></div>`;
+      else if (l.legend.kind === 'line') body = `<div class="mt-1 flex items-center gap-2"><span class="inline-block h-0 w-6 border-t-2 border-[#17252c]"></span><span class="text-[0.72rem] text-slate">${escapeHtml(l.legend.caption)}</span></div>`;
       const cap = l.legend.kind === 'line' ? '' : `<p class="mt-0.5 text-[0.7rem] text-slate">${escapeHtml(l.legend.caption)}</p>`;
       return `<div class="mt-2.5 border-t border-line pt-2"><p class="font-medium text-atlas leading-snug">${escapeHtml(l.title)}</p>${t ? `<p class="font-mono text-[0.7rem] text-teal-700">${l.time?.step === 'year' ? t.slice(0, 4) : t}</p>` : ''}${body}${cap}</div>`;
     }).join('');
@@ -178,6 +193,7 @@ export async function initExplorer() {
       showControls(l.id, chk.checked);
       renderLegend();
       syncUrl();
+      refreshInspector();
     });
     document.querySelector<HTMLInputElement>(`[data-opacity="${l.id}"]`)?.addEventListener('input', (e) => {
       const v = Number((e.target as HTMLInputElement).value);
@@ -200,7 +216,7 @@ export async function initExplorer() {
         note.textContent = `Showing ${snapped.slice(0, 4)} (${ds[0].slice(0, 4)}–${ds[ds.length - 1].slice(0, 4)})`;
         document.querySelector(`[data-error="${l.id}"]`)?.classList.add('hidden');
         window.clearTimeout(timer);
-        const go = () => { setLayerTime(map, l, snapped); renderLegend(); };
+        const go = () => { setLayerTime(map, l, snapped); renderLegend(); refreshInspector(); };
         if (immediate) go(); else timer = window.setTimeout(go, 120);
       };
       apply(state.layers[l.id].time ?? ds[ds.length - 1]);
@@ -223,6 +239,7 @@ export async function initExplorer() {
         document.querySelector(`[data-error="${l.id}"]`)?.classList.add('hidden');
         setLayerTime(map, l, snapped);
         renderLegend();
+        refreshInspector();
       };
       input.value = state.layers[l.id].time ?? ds[ds.length - 1];
       note.textContent = `Latest available: ${ds[ds.length - 1]}`;
@@ -250,6 +267,29 @@ export async function initExplorer() {
       syncUrl();
     });
   });
+
+  // ---------------------------------------------------------------- layer search, basemap select
+  const search = document.getElementById('layer-search') as HTMLInputElement | null;
+  search?.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>('[data-layer-item]').forEach((li) => {
+      const hit = !q || (li.dataset.search ?? '').includes(q);
+      li.hidden = !hit;
+      if (hit) shown++;
+    });
+    document.querySelectorAll<HTMLDetailsElement>('[data-layer-group]').forEach((g) => { g.hidden = !g.querySelector('[data-layer-item]:not([hidden])'); if (q && !g.hidden) g.open = true; });
+    document.getElementById('layer-empty')?.classList.toggle('hidden', shown > 0);
+  });
+  const bsel = document.getElementById('basemap-select') as HTMLSelectElement | null;
+  if (bsel) {
+    bsel.value = state.basemap;
+    bsel.addEventListener('change', () => {
+      const r = document.querySelector<HTMLInputElement>(`input[name="basemap"][value="${bsel.value}"]`);
+      if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
+    });
+  }
+  wide.addEventListener('change', refreshInspector);
 
   renderLegend();
   syncUrl();

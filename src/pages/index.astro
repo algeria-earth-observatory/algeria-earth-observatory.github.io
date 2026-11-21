@@ -1,178 +1,166 @@
 ---
 import Base from '../layouts/Base.astro';
-import DatasetCard from '../components/DatasetCard.astro';
+import GeoBand from '../components/GeoBand.astro';
 import { getDatasets } from '../lib/catalog';
-import { fmtDate, STATUS } from '../lib/format';
+import { STATUS, period } from '../lib/format';
 import { SITE } from '../config/site';
-import { loadRegions, fmtNum, fmtSigned, BOUNDARY_VERSION } from '../lib/regions-data';
+import { loadRegions, fmtNum, fmtSigned } from '../lib/regions-data';
 import manifest from '../../public/data/aeo/products/precipitation/v1.0.0/manifest.json';
 import mapMeta from '../../public/data/aeo/products/precipitation/v1.0.0/map/map.json';
-import speiMan from '../../public/data/aeo/products/spei/v1.0.0/manifest.json';
 
 const all = await getDatasets();
 const products = all.filter((d) => d.origin !== 'external' && d.status !== 'in-preparation');
-const planned = all.filter((d) => d.status === 'in-preparation');
-const sources = all.filter((d) => d.origin === 'external' && d.featured).slice(0, 3);
-const { national, wilayas, communes } = loadRegions();
-const lastYear = manifest.temporal_coverage.annual[1];
-const lastMonth = manifest.temporal_coverage.monthly[1];
-const wettest = [...wilayas].filter((w) => w.precip?.normal != null).sort((a, b) => b.precip!.normal! - a.precip!.normal!)[0];
-const driest = [...wilayas].filter((w) => w.precip?.normal != null).sort((a, b) => a.precip!.normal! - b.precip!.normal!)[0];
-const nDrierLast = wilayas.filter((w) => (w.precip?.last.anomaly_pct ?? 0) < 0).length;
-const mapData = wilayas.map((w) => [w.code, w.name, w.precip?.normal ?? null, w.precip?.last.anomaly_pct ?? null]);
-const monthName = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
-
+const planned = all.filter((d) => d.status === 'in-preparation').slice(0, 2);
+const index = [...products, ...planned];
+const { wilayas } = loadRegions();
+const setif = wilayas.find((w) => w.code === '19')!;
+const [y0, y1] = manifest.temporal_coverage.annual;
+const short = (name = '') => { const m = name.match(/\(([^)]*)\)/); return m && !/source|processing/i.test(m[1]) ? m[1] : name.split('(')[0].split(';')[0].trim(); };
+const res = (d: (typeof all)[number]) => (d.resolution?.spatial ?? '—').split(';')[0].replace(/\s*\(.*\)$/, '');
 const jsonLd = { '@context': 'https://schema.org', '@type': 'DataCatalog', name: SITE.name, url: SITE.url, description: SITE.description, inLanguage: 'en' };
-const analyses = [
-  { t: 'Sétif — annual precipitation since 1981', d: 'Time series, anomalies and trend for a high-plateau cereal wilaya.', h: `/analyze/?level=admin1&unit=19&agg=year` },
-  { t: 'Agricultural year (Sep–Aug) in Tiaret', d: 'Totals over the cereal season instead of the calendar year.', h: `/analyze/?level=admin1&unit=14&agg=hydro` },
-  { t: 'Compare Tlemcen, Oran and Alger', d: 'Three coastal and Tell wilayas on one chart.', h: `/analyze/?level=admin1&unit=13&compare=31,16&agg=year` },
-  { t: 'Winter rainfall in the commune of Djelfa', d: 'December–February totals for a steppe commune.', h: `/analyze/?level=admin2&unit=1701&agg=DJF` },
+const mapUnits = wilayas.map((w) => [w.code, w.name, w.precip?.normal ?? null]);
+const ICONS: Record<string, string> = {
+  Explore: '<path d="M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2z M9 3v16 M15 5v16" />',
+  Analyze: '<path d="M4 20V10 M9 20V4 M14 20v-7 M19 20V8 M3 20h18" />',
+  Download: '<path d="M12 3v12 M7 10l5 5 5-5 M4 20h16" />',
+};
+const steps = [
+  ['Source data', 'Satellite, gauge and reanalysis products from their original providers, with versions and licences recorded.'],
+  ['Algeria processing', 'Subset to Algeria and aggregated to 69 wilayas and 1,541 communes with area-weighted, nested weights.'],
+  ['Derived indicators', 'Normals, anomalies, drought indices and trends with documented statistical methods.'],
+  ['Quality control', 'Automated tests for coverage, units, completeness, aggregation and checksums before every release.'],
+  ['Downloads', 'GeoTIFF, CSV and Parquet with manifests, provenance and the code that produced them.'],
 ];
 ---
-<Base description="Environmental data and intelligence for Algeria: explore, analyse and download Algeria-ready Earth observation and environmental data at national, wilaya and commune levels." jsonLd={jsonLd}>
-  <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-line bg-deep text-white">
-    <picture class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <source type="image/webp" srcset="/images/hero/algeria-bluemarble-1600.webp" />
-      <img src="/images/hero/algeria-bluemarble-960.jpg" alt="" class="h-full w-full object-cover opacity-[0.22] mix-blend-screen" />
-    </picture>
-    <div class="eo-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,transparent_0%,#060b16_75%)]" aria-hidden="true"></div>
-    <div class="container-aeo relative grid items-center gap-10 py-12 lg:grid-cols-[1fr_1.15fr] lg:py-16">
-      <div>
-        <p class="eo-readout"><span class="eo-dot mr-2 align-middle"></span>Open Earth observation · {SITE.phase.toLowerCase()}</p>
-        <h1 class="mt-4 text-[2.4rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-[3.4rem]">Algeria Earth<br />Observatory</h1>
-        <p class="mt-3 text-xl font-medium text-teal-700 sm:text-2xl">Environmental data and intelligence for Algeria.</p>
-        <p class="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-graphite">
-          Explore, analyze, and download Algeria-ready Earth observation and environmental data at national, wilaya, and commune levels.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/map/" class="btn btn-primary">Explore Map</a>
-          <a href="/data/" class="btn btn-on-dark">Browse Data</a>
-          <a href="/analyze/" class="btn btn-on-dark">Analyze a Wilaya</a>
-        </div>
-        <dl class="mt-9 grid max-w-xl grid-cols-1 gap-2 font-mono text-[0.72rem] sm:grid-cols-3">
-          <div class="eo-panel px-3 py-2"><dt class="text-slate">PRECIPITATION</dt><dd class="text-atlas">CHIRPS v3 · 0.05°</dd><dd class="text-teal-700">{manifest.temporal_coverage.annual[0]}–{manifest.temporal_coverage.annual[1]}</dd></div>
-          <div class="eo-panel px-3 py-2"><dt class="text-slate">DROUGHT · SPEI</dt><dd class="text-atlas">TerraClimate · 1/30°</dd><dd class="text-teal-700">{speiMan.temporal_coverage.monthly[0].slice(0, 4)}–{speiMan.temporal_coverage.monthly[1]}</dd></div>
-          <div class="eo-panel px-3 py-2"><dt class="text-slate">BOUNDARIES</dt><dd class="text-atlas">69 wilayas · {communes.length.toLocaleString('en-US')} communes</dd><dd class="text-teal-700">Loi 26-06 · OSM</dd></div>
-        </dl>
-      </div>
-      <div>
-        <div class="eo-tick relative aspect-[4/3.4] overflow-hidden rounded-md border border-line-strong bg-deep shadow-[0_0_60px_-20px_rgba(90,169,255,.45)]">
-          <div class="absolute inset-0"><div id="home-map" class="h-full w-full" role="region" aria-label="Interactive map of precipitation by wilaya"></div></div>
-          <div class="eo-panel absolute left-2 top-2 z-10 flex p-0.5 text-[0.76rem] text-atlas" role="radiogroup" aria-label="Indicator">
-            <label class="cursor-pointer rounded px-2 py-1 has-[:checked]:bg-signal-strong has-[:checked]:text-white"><input type="radio" name="home-ind" value="normal" class="sr-only" checked />Normal 1991–2020</label>
-            <label class="cursor-pointer rounded px-2 py-1 has-[:checked]:bg-signal-strong has-[:checked]:text-white"><input type="radio" name="home-ind" value="anom" class="sr-only" />{lastYear} anomaly</label>
-          </div>
-          <p class="eo-readout pointer-events-none absolute bottom-2 left-2 z-10 rounded bg-deep/70 px-2 py-1">Precipitation · by wilaya · Algeria only</p>
-        </div>
-        <div id="home-legend" class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.72rem] text-graphite"></div>
-        <p class="mt-1 font-mono text-[0.66rem] leading-snug text-slate">AEO precipitation v{manifest.version} (CHIRPS v3.0) · boundaries © OpenStreetMap contributors (AEO {BOUNDARY_VERSION}) · background: NASA Blue Marble · click a wilaya for its profile</p>
-        <script type="application/json" id="home-data" set:html={JSON.stringify({ units: mapData, meta: mapMeta })} />
+<Base description="Environmental observations, derived indicators and geographic analysis, prepared for Algeria: national, wilaya and commune data on precipitation, drought and land." jsonLd={jsonLd}>
+  <!-- Hero: editorial split -->
+  <section class="mx-auto grid max-w-[90rem] items-center gap-10 px-5 pb-16 pt-12 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:pb-24 lg:pt-20">
+    <div class="lg:col-span-5">
+      <p class="overline">Earth observation / Algeria</p>
+      <h1 class="display mt-6">A clearer view of Algeria.</h1>
+      <p class="lede mt-6">Environmental observations, derived indicators, and geographic analysis—prepared for Algeria.</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="/data/" class="btn btn-primary">Explore data</a>
+        <a href="/analyze/" class="btn btn-secondary">Open analysis</a>
       </div>
     </div>
+    <figure class="relative lg:col-span-7">
+      <svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-4 92 Q 38 18 104 8" fill="none" stroke="#17252C" stroke-opacity=".28" stroke-width=".18" vector-effect="non-scaling-stroke" />
+      </svg>
+      <picture>
+        <source type="image/webp" srcset="/images/hero/algeria-pixel-1000.webp 1000w, /images/hero/algeria-pixel-1800.webp 1800w" sizes="(min-width: 1024px) 760px, 100vw" />
+        <img src="/images/hero/algeria-pixel-1000.jpg" width="1000" height="913" fetchpriority="high" class="h-auto w-full"
+          alt="Satellite composite of Algeria: the green Tell along the Mediterranean coast, the Saharan Atlas, the ergs and the Hoggar and Tassili massifs in the south. Surrounding areas are shown as fading raster cells." />
+      </picture>
+      <figcaption class="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 font-mono text-[0.72rem] text-slate">
+        <span>NASA Blue Marble: Next Generation, shaded relief · NASA EOSDIS GIBS · cells outside Algeria: block means</span>
+        <span>Web Mercator · 17.0°N–38.6°N, 11.5°W–15.5°E</span>
+      </figcaption>
+    </figure>
   </section>
 
-  <!-- Indicators computed from the product -->
-  {national && (
-    <section class="border-b border-line bg-surface" aria-labelledby="ind-h">
-      <div class="container-aeo py-10">
-        <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 id="ind-h" class="text-xl font-semibold text-atlas">Precipitation indicators, computed from the data</h2>
-          <a href="/data/aeo-dza-precipitation-chirps3/" class="text-[0.9rem]">Source product and method →</a>
-        </div>
-        <dl class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">Algeria, mean annual precipitation 1991–2020</dt><dd class="mt-1 text-2xl font-semibold text-atlas">{fmtNum(national.normal)} mm</dd><dd class="text-[0.8rem] text-slate">area-weighted over the whole country</dd></div>
-          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">Algeria, {lastYear}</dt><dd class="mt-1 text-2xl font-semibold text-atlas">{fmtSigned(national.last.anomaly_pct)} %</dd><dd class="text-[0.8rem] text-slate">vs 1991–2020 · {nDrierLast} of {wilayas.length} wilayas below normal</dd></div>
-          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">Wettest / driest wilaya (normal)</dt><dd class="mt-1 text-lg font-semibold text-atlas">{wettest?.name} {fmtNum(wettest?.precip?.normal)} mm</dd><dd class="text-[0.9rem] text-graphite">{driest?.name} {fmtNum(driest?.precip?.normal)} mm</dd></div>
-          <div class="rounded-md border border-line p-4"><dt class="text-[0.8rem] text-slate">National trend {national.trend.period}</dt><dd class="mt-1 text-2xl font-semibold text-atlas">{fmtSigned(national.trend.slope_mm_per_decade, 1)} mm/decade</dd><dd class="text-[0.8rem] text-slate">Theil–Sen; Mann–Kendall p = {national.trend.mk_p?.toFixed(2)} ({national.trend.mk_p != null && national.trend.mk_p < 0.05 ? 'significant' : 'not significant'} at 5 %)</dd></div>
-        </dl>
-        <p class="mt-3 text-[0.8rem] text-slate">Satellite–gauge estimates (CHIRPS v3.0). Gauge density is low in the Sahara, and national means are dominated by the large, dry south. See the <a href="/docs/method-precipitation/">method and limitations</a>.</p>
-      </div>
-    </section>
-  )}
+  <div class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
 
-  <!-- Algeria-ready products -->
-  <section class="container-aeo py-14" aria-labelledby="prod-h">
-    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-      <div class="max-w-2xl">
-        <p class="eyebrow">Algeria-ready data</p>
-        <h2 id="prod-h" class="mt-2 text-3xl font-semibold">Prepared for Algeria, ready to download</h2>
-        <p class="mt-3 text-slate">Processed by AEO from documented sources, clipped and aggregated to Algeria's administrative units, with checksums, provenance and code.</p>
-      </div>
-      <a href="/data/" class="btn btn-secondary shrink-0">All data</a>
-    </div>
-    <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {products.map((d) => <DatasetCard d={d} compact />)}
-    </div>
-    <p class="mt-4 text-[0.9rem] text-slate">{planned.length} further Algeria products are <a href="/products/">planned</a> ({STATUS['in-preparation'].label.toLowerCase()}, no data released yet). The catalog also documents {all.filter((d) => d.origin === 'external').length} upstream source datasets.</p>
-  </section>
-
-  <!-- Featured analyses + coverage -->
-  <section class="border-y border-line bg-paper py-14" aria-labelledby="an-h">
-    <div class="container-aeo grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-      <div>
-        <p class="eyebrow">Featured analyses</p>
-        <h2 id="an-h" class="mt-2 text-2xl font-semibold">Start from a question</h2>
-        <ul class="mt-5 grid gap-3 sm:grid-cols-2">
-          {analyses.map((a) => (
-            <li class="card p-4"><a href={a.h} class="font-semibold">{a.t}</a><p class="mt-1 text-[0.88rem] text-slate">{a.d}</p></li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <p class="eyebrow">Geographic coverage</p>
-        <h2 class="mt-2 text-2xl font-semibold">Country, wilaya, commune</h2>
-        <dl class="mt-5 grid grid-cols-3 gap-3 text-center">
-          <div class="card p-3"><dt class="text-[0.78rem] text-slate">Country</dt><dd class="text-2xl font-semibold text-atlas">1</dd></div>
-          <div class="card p-3"><dt class="text-[0.78rem] text-slate">Wilayas</dt><dd class="text-2xl font-semibold text-atlas">{wilayas.length}</dd></div>
-          <div class="card p-3"><dt class="text-[0.78rem] text-slate">Communes</dt><dd class="text-2xl font-semibold text-atlas">{communes.length.toLocaleString('en-US')}</dd></div>
-        </dl>
-        <p class="mt-3 text-[0.88rem] text-slate">Administrative division of Loi n° 26-06 (4 April 2026). Boundaries from OpenStreetMap (AEO version {BOUNDARY_VERSION}), checked against the commune lists of the law. <a href="/regions/">Browse regions →</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Updates + methodology -->
-  <section class="container-aeo grid gap-10 py-14 lg:grid-cols-2" aria-label="Latest updates and methodology">
-    <div>
-      <p class="eyebrow">Latest data updates</p>
-      <ul class="mt-4 divide-y divide-line border-y border-line text-[0.95rem]">
-        <li class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3"><a href="/data/aeo-dza-precipitation-chirps3/">Precipitation: monthly data through {monthName(lastMonth)}</a><span class="meta shrink-0">v{manifest.version} · {fmtDate(manifest.created)}</span></li>
-        <li class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3"><a href="/data/aeo-dza-admin-boundaries/">Boundaries: {communes.length.toLocaleString('en-US')} communes nested in {wilayas.length} wilayas</a><span class="meta shrink-0">{fmtDate(BOUNDARY_VERSION)}</span></li>
-        <li class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3"><a href="/map/?layers=gaced30-cropland">Map: GACED30 cropland year slider, 2000–2024</a><span class="meta shrink-0">{fmtDate('2026-11-20')}</span></li>
-        <li class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3"><a href="/map/?layers=worldcover-2021">Map: ESA WorldCover 2020 and 2021</a><span class="meta shrink-0">{fmtDate('2026-11-20')}</span></li>
+  <!-- The Observatory -->
+  <section class="border-y border-line bg-surface" aria-labelledby="obs-h">
+    <div class="mx-auto grid max-w-[90rem] px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
+      <h2 id="obs-h" class="overline py-8 lg:col-span-3 lg:py-12">The Observatory</h2>
+      <ul class="grid divide-y divide-line lg:col-span-9 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+        {[
+          ['Explore', 'Layered maps of precipitation, drought, land cover and cropland, shown for Algeria only.', '/map/'],
+          ['Analyze', 'Time series, anomalies and trends for the country, any wilaya or any commune.', '/analyze/'],
+          ['Download', 'Algeria-ready grids and statistics tables with versions, checksums and code.', '/data/'],
+        ].map(([t, d, h]) => (
+          <li class="py-8 lg:px-8 lg:py-12 lg:first:pl-0">
+            <a href={h} class="flex items-center gap-3 text-[1.25rem] font-medium text-atlas no-underline hover:text-cobalt">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true" set:html={ICONS[t]} />{t}</a>
+            <p class="mt-2 max-w-xs text-[0.9375rem] leading-relaxed text-slate">{d}</p>
+          </li>
+        ))}
       </ul>
-      <p class="mt-2 text-[0.8rem] text-slate">Full history: <a href={`${SITE.github.repoUrl}/blob/main/CHANGELOG.md`}>CHANGELOG</a>.</p>
     </div>
-    <div>
-      <p class="eyebrow">Scientific methodology</p>
-      <h2 class="mt-2 text-2xl font-semibold">Every number can be traced</h2>
-      <p class="mt-3 text-slate">Each product follows the same pipeline: source retrieval → Algeria subset → quality control → indicator computation → aggregation to administrative units → export with metadata and checksums. The code runs from the repository; automated tests check coverage, units, aggregation and file integrity.</p>
-      <div class="mt-5 flex flex-wrap gap-3">
-        <a href="/docs/method-precipitation/" class="btn btn-secondary">Precipitation method</a>
-        <a href="/docs/" class="btn btn-secondary">All methods</a>
+  </section>
+
+  <!-- Featured geographic intelligence -->
+  <section class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12" aria-labelledby="geo-h">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <p class="overline">Geographic intelligence</p>
+        <h2 id="geo-h" class="h-section mt-4">Mean annual precipitation, 1991–2020</h2>
+      </div>
+      <p class="text-[0.9375rem] text-slate lg:col-span-5">Area-weighted means for the 69 wilayas from CHIRPS v3.0. Select a wilaya to see its annual series.</p>
+    </div>
+    <div class="mt-10 grid border border-line lg:grid-cols-12">
+      <div class="theme-dark relative min-h-[26rem] lg:col-span-8 lg:min-h-[36rem]">
+        <div class="absolute inset-0"><div id="home-map" class="h-full w-full" role="region" aria-label="Map of mean annual precipitation by wilaya"></div></div>
+        <div id="home-legend" class="tabular absolute bottom-3 left-3 z-10 flex flex-wrap items-center gap-x-3 gap-y-1 bg-obsidian/85 px-3 py-2 font-mono text-[0.68rem] text-[#d9dee1]"></div>
+      </div>
+      <div class="flex flex-col border-t border-line bg-surface p-6 lg:col-span-4 lg:border-l lg:border-t-0" aria-live="polite">
+        <dl class="grid grid-cols-[7.5rem_1fr] gap-y-2 text-[0.875rem]">
+          <dt class="text-slate">Selected region</dt><dd id="hp-name" class="text-atlas">{setif.name}</dd>
+          <dt class="text-slate">Indicator</dt><dd class="text-atlas">Annual precipitation</dd>
+          <dt class="text-slate">Period</dt><dd class="tabular text-atlas">{y0}–{y1}</dd>
+        </dl>
+        <div id="hp-chart" class="mt-6" data-series={JSON.stringify({ years: setif.precip?.years, values: setif.precip?.annual, normal: setif.precip?.normal })}></div>
+        <dl class="tabular mt-4 grid grid-cols-3 border-t border-line pt-4 text-[0.8125rem]">
+          <div><dt class="text-slate">Normal</dt><dd id="hp-normal" class="mt-1 text-[1.125rem] text-atlas">{fmtNum(setif.precip?.normal)} mm</dd></div>
+          <div><dt class="text-slate">{y1}</dt><dd id="hp-last" class="mt-1 text-[1.125rem] text-atlas">{fmtSigned(setif.precip?.last.anomaly_pct)} %</dd></div>
+          <div><dt class="text-slate">Trend</dt><dd id="hp-trend" class="mt-1 text-[1.125rem] text-atlas">{fmtSigned(setif.precip?.trend.slope_mm_per_decade)} mm/10 yr</dd></div>
+        </dl>
+        <p id="hp-sig" class="mt-2 text-[0.75rem] text-slate">Theil–Sen slope; Mann–Kendall p = {setif.precip?.trend.mk_p?.toFixed(2)}{setif.precip?.trend.mk_p != null && setif.precip.trend.mk_p < 0.05 ? ' (significant)' : ' (not significant)'}.</p>
+        <a id="hp-link" href="/analyze/?level=admin1&unit=19" class="link-arrow mt-auto pt-6 text-[0.9375rem]">Open in the analysis workspace</a>
+      </div>
+    </div>
+    <script type="application/json" id="home-data" set:html={JSON.stringify({ units: mapUnits, meta: mapMeta })} />
+  </section>
+
+  <!-- Data products: editorial index -->
+  <section class="border-t border-line bg-surface" aria-labelledby="prod-h">
+    <div class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><p class="overline">Data products</p><h2 id="prod-h" class="h-section mt-4">Prepared for Algeria</h2></div>
+        <a href="/data/" class="link-arrow text-[0.9375rem]">All data</a>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[46rem] border-collapse text-left text-[0.9375rem]">
+          <thead><tr class="border-b border-atlas font-mono text-[0.72rem] uppercase tracking-[0.06em] text-slate">
+            <th class="py-3 pr-6 font-normal">Product</th><th class="py-3 pr-6 font-normal">Category</th><th class="py-3 pr-6 font-normal">Period</th>
+            <th class="py-3 pr-6 font-normal">Resolution</th><th class="py-3 pr-6 font-normal">Status</th><th class="py-3 font-normal">Access</th></tr></thead>
+          <tbody>
+            {index.map((d) => (
+              <tr class="border-b border-line align-top">
+                <td class="py-4 pr-6"><a href={`/data/${d.id}/`} class="text-atlas no-underline hover:text-cobalt">{d.title.split(':')[0].split(' (')[0]}</a><div class="meta mt-1 !text-[0.72rem]">{d.status === 'in-preparation' ? 'AEO product family' : short(d.provider?.name)}</div></td>
+                <td class="py-4 pr-6 text-slate">{d.categories[0] ?? '—'}</td>
+                <td class="tabular py-4 pr-6 font-mono text-[0.8125rem] text-graphite">{d.status === 'in-preparation' ? '—' : period(d)}</td>
+                <td class="py-4 pr-6 font-mono text-[0.8125rem] text-graphite">{d.status === 'in-preparation' ? '—' : res(d)}</td>
+                <td class="py-4 pr-6"><span class:list={['status', STATUS[d.status].cls]}>{STATUS[d.status].label}</span></td>
+                <td class="py-4 text-[0.875rem]">{d.status === 'in-preparation' ? <span class="text-slate">Not released</span> : <a href={`/data/${d.id}/#access`}>Download</a>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- Contribute + sources -->
-  <section class="bg-atlas-900 py-14 text-white" aria-labelledby="open-h">
-    <div class="container-aeo grid gap-10 lg:grid-cols-[1fr_1.2fr]">
-      <div>
-        <p class="font-mono text-xs uppercase tracking-[0.14em] text-sand">Open source, open data</p>
-        <h2 id="open-h" class="mt-2 text-2xl font-semibold text-white">Contribute data, code or expertise</h2>
-        <p class="mt-3 text-[#c3d1db]">Propose Algeria datasets, validation data, processing scripts or corrections through GitHub. Every product needs provenance, a compatible licence and documented methods before it is published.</p>
-        <div class="mt-6 flex flex-wrap gap-3"><a href="/contribute/" class="btn btn-on-dark">How to contribute</a><a href="/about/" class="btn btn-on-dark">About AEO</a></div>
+  <!-- Methodology workflow -->
+  <section class="border-t border-line bg-surface" aria-labelledby="meth-h">
+    <div class="mx-auto max-w-[90rem] px-5 py-[var(--space-section)] sm:px-8 lg:px-12">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><p class="overline">Scientific methodology</p><h2 id="meth-h" class="h-section mt-4">From source to download</h2></div>
+        <a href="/docs/" class="link-arrow text-[0.9375rem]">Methods</a>
       </div>
-      <div>
-        <p class="font-mono text-xs uppercase tracking-[0.14em] text-sand">Upstream sources</p>
-        <ul class="mt-3 space-y-2 text-[0.95rem]">
-          {sources.map((d) => <li><a href={`/data/${d.id}/`} class="text-white">{d.title}</a> <span class="text-[0.8rem] text-[#9fb4c3]">· {d.provider?.name?.split('(')[0]}</span></li>)}
-        </ul>
-        <p class="mt-3 text-[0.85rem] text-[#9fb4c3]">Global datasets are documented as sources; AEO publishes Algeria-ready derivatives from them.</p>
-      </div>
+      <ol class="mt-12 grid gap-8 md:grid-cols-5 md:gap-0">
+        {steps.map(([t, d], i) => (
+          <li class="relative border-t border-atlas pt-5 md:pr-6">
+            <span class="absolute -top-[5px] left-0 h-[9px] w-[9px] bg-cobalt" aria-hidden="true"></span>
+            <p class="tabular font-mono text-[0.72rem] text-slate">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="mt-2 text-[1.0625rem]">{t}</h3>
+            <p class="mt-2 text-[0.875rem] leading-relaxed text-slate">{d}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 </Base>
@@ -180,50 +168,61 @@ const analyses = [
 <script>
   import maplibregl from 'maplibre-gl';
   import 'maplibre-gl/dist/maplibre-gl.css';
+  import { lineChart } from '../lib/charts';
+  import { loadAnnual } from '../lib/precip';
+
   const box = document.getElementById('home-map')!;
   const { units, meta } = JSON.parse(document.getElementById('home-data')!.textContent!);
-  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
-  const color = (v: number | null, breaks: number[], colors: string[]) => {
-    if (v === null) return '#d9dee2';
-    let i = 0; while (i < breaks.length && v >= breaks[i]) i++;
-    return colors[i];
+  const chartEl = document.getElementById('hp-chart')!;
+  const $ = (id: string) => document.getElementById(id)!;
+  const draw = (d: { years: number[]; values: (number | null)[]; normal: number | null }, label: string) =>
+    lineChart(chartEl, [{ name: 'Annual precipitation', keys: d.years, values: d.values }],
+      { yLabel: 'mm', reference: d.normal !== null ? { value: d.normal, label: 'normal' } : null }, `Annual precipitation, ${label}`);
+  draw(JSON.parse(chartEl.dataset.series!), 'Sétif');
+
+  const color = (v: number | null) => {
+    if (v === null) return '#3d4c55';
+    let i = 0; while (i < meta.annual.breaks.length && v >= meta.annual.breaks[i]) i++;
+    return meta.annual.colors[i];
   };
-  const expr = (mode: string) => {
-    const e: unknown[] = ['match', ['get', 'wilaya_code']];
-    for (const [code, , normal, anom] of units) e.push(code, mode === 'normal' ? color(normal, meta.annual.breaks, meta.annual.colors) : color(anom, meta.anomaly.breaks, meta.anomaly.colors));
-    e.push('#d9dee2');
-    return e;
-  };
-  const legend = (mode: string) => {
-    const m = mode === 'normal' ? { ...meta.annual, unit: 'mm/year' } : { ...meta.anomaly, unit: '% of normal' };
-    document.getElementById('home-legend')!.innerHTML = `<span>${m.unit}:</span>` + m.colors.map((c: string, i: number) => {
-      const lo = i ? m.breaks[i - 1] : null, hi = i < m.breaks.length ? m.breaks[i] : null;
-      return `<span class="flex items-center gap-1"><span class="inline-block h-2.5 w-3.5 rounded-sm" style="background:${c}"></span>${lo === null ? `< ${hi}` : hi === null ? `≥ ${lo}` : `${lo}–${hi}`}</span>`;
-    }).join('');
-  };
-  const map = new maplibregl.Map({ container: box, style: 'https://tiles.openfreemap.org/styles/dark', bounds: [-8.7, 18.9, 12.0, 37.2], fitBoundsOptions: { padding: 12 }, attributionControl: { compact: true }, cooperativeGestures: true });
+  const expr: unknown[] = ['match', ['get', 'wilaya_code']];
+  for (const [code, , normal] of units) expr.push(code, color(normal));
+  expr.push('#3d4c55');
+  const legend = $('home-legend');
+  legend.innerHTML = '<span>mm/yr</span>' + meta.annual.colors.map((c: string, i: number) => {
+    const lo = i ? meta.annual.breaks[i - 1] : null, hi = i < meta.annual.breaks.length ? meta.annual.breaks[i] : null;
+    return `<span class="flex items-center gap-1"><span class="inline-block h-2 w-3" style="background:${c}"></span>${lo === null ? `<${hi}` : hi === null ? `≥${lo}` : `${lo}–${hi}`}</span>`;
+  }).join('');
+
+  const map = new maplibregl.Map({ container: box, style: 'https://tiles.openfreemap.org/styles/dark', bounds: [-8.7, 18.9, 12.0, 37.2], fitBoundsOptions: { padding: 24 }, attributionControl: { compact: true }, cooperativeGestures: true });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   map.on('load', async () => {
     const data = await (await fetch('/data/aeo/boundaries/2026-11-20/dza_adm1_wilayas_display.geojson')).json();
-    const before = map.getStyle().layers.find((l) => l.type === 'symbol')?.id;
-    map.addSource('w', { type: 'geojson', data });
-    map.addLayer({ id: 'w-fill', type: 'fill', source: 'w', paint: { 'fill-color': expr('normal') as any, 'fill-opacity': 0.88 } }, before);
-    map.addLayer({ id: 'w-line', type: 'line', source: 'w', paint: { 'line-color': '#0d1626', 'line-width': 0.7 } }, before);
+    let last = -1; map.getStyle().layers.forEach((l, i) => { if (l.type !== 'symbol') last = i; });
+    const before = map.getStyle().layers[last + 1]?.id;
+    map.addSource('w', { type: 'geojson', data, promoteId: 'wilaya_code' });
+    map.addLayer({ id: 'w-fill', type: 'fill', source: 'w', paint: { 'fill-color': expr as any, 'fill-opacity': 0.9 } }, before);
+    map.addLayer({ id: 'w-line', type: 'line', source: 'w', paint: { 'line-color': '#17252c', 'line-width': 0.6 } }, before);
+    map.addLayer({ id: 'w-sel', type: 'line', source: 'w', paint: { 'line-color': '#ffffff', 'line-width': 2 }, filter: ['==', ['get', 'wilaya_code'], '19'] });
     map.addSource('outside', { type: 'geojson', data: '/data/aeo/boundaries/2026-11-20/dza_outside_mask.geojson' });
-    map.addLayer({ id: 'outside-mask', type: 'fill', source: 'outside', paint: { 'fill-color': '#050a14', 'fill-opacity': 0.82 } });
-    legend('normal');
-    const pop = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
-    map.on('mousemove', 'w-fill', (e) => {
-      const code = e.features?.[0]?.properties?.wilaya_code;
-      const u = units.find((x: unknown[]) => x[0] === code);
-      if (!u) return;
-      map.getCanvas().style.cursor = 'pointer';
-      pop.setLngLat(e.lngLat).setHTML(`<strong>${esc(u[1])}</strong><br>Normal ${u[2] === null ? '—' : Math.round(u[2])} mm/year · last year ${u[3] === null ? '—' : `${u[3] > 0 ? '+' : ''}${u[3].toFixed(0)} %`}`).addTo(map);
+    map.addLayer({ id: 'outside-mask', type: 'fill', source: 'outside', paint: { 'fill-color': '#17252c', 'fill-opacity': 0.82 } }, before);
+    const annual = await loadAnnual('admin1');
+    map.on('mousemove', 'w-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', 'w-fill', () => { map.getCanvas().style.cursor = ''; });
+    map.on('click', 'w-fill', (e) => {
+      const code = String(e.features?.[0]?.properties?.wilaya_code ?? '');
+      const i = annual.units.findIndex((u) => u.code === code);
+      if (i < 0) return;
+      const u = annual.units[i], t = annual.trend[i], vals = annual.annual[i], n = annual.normal[i];
+      const lastV = vals[vals.length - 1];
+      map.setFilter('w-sel', ['==', ['get', 'wilaya_code'], code]);
+      $('hp-name').textContent = u.name;
+      $('hp-normal').textContent = `${n === null ? '—' : Math.round(n).toLocaleString('en-US')} mm`;
+      $('hp-last').textContent = lastV === null || n === null || n < 1 ? '—' : `${lastV >= n ? '+' : '−'}${Math.abs(Math.round((100 * (lastV - n)) / n))} %`;
+      $('hp-trend').textContent = t.slope_mm_per_decade === null ? '—' : `${t.slope_mm_per_decade >= 0 ? '+' : '−'}${Math.abs(Math.round(t.slope_mm_per_decade))} mm/10 yr`;
+      $('hp-sig').textContent = t.mk_p === null ? '' : `Theil–Sen slope; Mann–Kendall p = ${t.mk_p.toFixed(2)} (${t.mk_p < 0.05 ? 'significant' : 'not significant'}).`;
+      ($('hp-link') as HTMLAnchorElement).href = `/analyze/?level=admin1&unit=${code}`;
+      draw({ years: annual.years, values: vals, normal: n }, u.name);
     });
-    map.on('mouseleave', 'w-fill', () => { map.getCanvas().style.cursor = ''; pop.remove(); });
-    map.on('click', 'w-fill', (e) => { const c = e.features?.[0]?.properties?.wilaya_code; if (c) location.href = `/regions/${c}/`; });
-    document.querySelectorAll<HTMLInputElement>('input[name="home-ind"]').forEach((r) => r.addEventListener('change', () => {
-      map.setPaintProperty('w-fill', 'fill-color', expr(r.value) as any); legend(r.value);
-    }));
   });
 </script>
