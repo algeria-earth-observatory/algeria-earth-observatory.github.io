@@ -418,7 +418,7 @@ export class RegionInspector {
         `1985–2014 (model median): ${fmt(all[4], meta.units === '°C' ? 1 : 0)} ${meta.units}`,
         crop ? `Over stable cropland: ${u(crop[0])} (range ${u(crop[1])} to ${u(crop[2])})` : 'Stable cropland: too little (under 10,000 ha) to compute',
       ],
-      chart: (el) => { el.innerHTML = rangeBars(rows.map((r) => ({ label: r.label, v: r.v?.[0] ?? null, lo: r.v?.[1] ?? null, hi: r.v?.[2] ?? null })), pct ? '% change' : meta.units, pct ? 0 : 1); },
+      chart: (el) => { el.innerHTML = rangeBars(rows.map((r) => ({ label: r.label, v: r.v?.[0] ?? null, lo: r.v?.[1] ?? null, hi: r.v?.[2] ?? null })), pct ? '% change' : meta.units, pct ? 0 : 1, pct); },
       table: `<table class="tabular w-full text-left"><thead><tr><th scope="col" class="py-1 pr-3 font-medium">Scenario, period</th><th scope="col" class="py-1 pr-3 text-right font-medium">Median</th><th scope="col" class="py-1 text-right font-medium">Range</th></tr></thead><tbody>${rows.map((r) => `<tr class="border-t border-line"><td class="py-0.5 pr-3">${r.label}</td><td class="py-0.5 pr-3 text-right">${r.v ? u(r.v[0]) : '—'}</td><td class="py-0.5 text-right">${r.v ? `${u(r.v[1])} to ${u(r.v[2])}` : '—'}</td></tr>`).join('')}</tbody></table>`,
       notes,
       source: `NASA NEX-GDDP-CMIP6 (Thrasher et al. 2022), 0.25°, ${f.models.length} models (${f.models.join(', ')}); indicators by AEO (product v1.0.0).`,
@@ -489,7 +489,7 @@ function toCsv(header: string[], rows: unknown[][], note: string) {
 }
 
 /** Horizontal bars (median) with a min–max whisker around zero. */
-function rangeBars(rows: { label: string; v: number | null; lo: number | null; hi: number | null }[], units: string, d: number) {
+function rangeBars(rows: { label: string; v: number | null; lo: number | null; hi: number | null }[], units: string, d: number, water = false) {
   const vals = rows.flatMap((r) => [r.v, r.lo, r.hi]).filter((x): x is number => x !== null);
   const lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
   const W = 300, rowH = 30, L = 112, R = 52;
@@ -497,7 +497,7 @@ function rangeBars(rows: { label: string; v: number | null; lo: number | null; h
   const bars = rows.map((r, i) => {
     const y = 6 + i * rowH;
     return `<text x="0" y="${y + 13}" font-size="11.5" fill="#586268">${r.label}</text>
-      ${r.v !== null ? `<rect x="${Math.min(x(0), x(r.v))}" y="${y + 3}" width="${Math.max(1, Math.abs(x(r.v) - x(0)))}" height="12" rx="2" fill="${r.v >= 0 ? '#d7301f' : '#2166ac'}"/>` : ''}
+      ${r.v !== null ? `<rect x="${Math.min(x(0), x(r.v))}" y="${y + 3}" width="${Math.max(1, Math.abs(x(r.v) - x(0)))}" height="12" rx="2" fill="${water ? (r.v >= 0 ? '#35978f' : '#bf812d') : (r.v >= 0 ? '#d7301f' : '#2166ac')}"/>` : ''}
       ${r.lo !== null && r.hi !== null ? `<line x1="${x(r.lo)}" x2="${x(r.hi)}" y1="${y + 9}" y2="${y + 9}" stroke="#17252c" stroke-width="1.5"/><line x1="${x(r.lo)}" x2="${x(r.lo)}" y1="${y + 4}" y2="${y + 14}" stroke="#17252c" stroke-width="1.5"/><line x1="${x(r.hi)}" x2="${x(r.hi)}" y1="${y + 4}" y2="${y + 14}" stroke="#17252c" stroke-width="1.5"/>` : ''}
       <text x="${W - R + 6}" y="${y + 13}" font-size="12" fill="#17252c" font-family="IBM Plex Mono, monospace">${r.v === null ? '—' : (r.v > 0 ? '+' : '') + r.v.toFixed(d)}</text>`;
   }).join('');

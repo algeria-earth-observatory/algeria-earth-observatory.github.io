@@ -476,17 +476,18 @@ function waterClimateLayers(): MapLayer[] {
     const S = '/data/aeo/products/climate-projections/v1.0.0/map';
     const SC: Record<string, string> = { ssp245: 'SSP2-4.5 (intermediate)', ssp585: 'SSP5-8.5 (very high)' };
     const options = cmipMap.scenarios.flatMap((s: string) => cmipMap.periods.map((p: string) => ({ id: `${s}_${p}`, label: `${SC[s]}, ${p.replace('-', '–')}` })));
+    const lc = (t: string) => (/^(November|March)/.test(t) ? t : t[0].toLowerCase() + t.slice(1));
     for (const [ind, m] of Object.entries<any>(cmipMap.layers)) {
       out.push({
         id: `cmip6-${ind}`,
-        title: `Projected change: ${m.label.toLowerCase()} (CMIP6)`,
-        summary: `Change in ${m.label.toLowerCase()} from 1985–2014, median of 8 CMIP6 models (NASA NEX-GDDP-CMIP6, 0.25°). Choose the scenario and period; the inspector gives the model range for each wilaya and for its stable cropland.`,
+        title: `Projected change: ${lc(m.label)} (CMIP6)`,
+        summary: `Change in ${lc(m.label)} from 1985–2014, median of 8 CMIP6 models (NASA NEX-GDDP-CMIP6, 0.25°). Choose the scenario and period; the inspector gives the model range for each wilaya and for its stable cropland.`,
         domain: 'hazards', type: 'image', dataset: 'aeo-dza-climate-projections-nexgddp', nature: 'modeled',
         image: { url: `${S}/${ind}_{variant}.png`, coordinates: cmipMap.coordinates }, maxzoom: 22,
         variants: { label: 'Scenario and period', options, default: 'ssp245_2041-2070', note: 'Projections: 30-year averages compared with 1985–2014.' }, opacity: 0.8,
         attribution: 'Projections: <a href="https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6" target="_blank" rel="noopener">NASA NEX-GDDP-CMIP6</a> · AEO processing',
         legend: { kind: 'classes', caption: `${m.units}, 8-model median · palette ColorBrewer ${m.units.includes('%') ? 'BrBG' : 'OrRd'}`, classes: classLabels(m.breaks, m.colors, m.units.includes('%') ? signedFmt : String) },
-        caveat: 'Projections, not forecasts: they describe 30-year climates under an emissions scenario. Downscaled and bias-corrected to 0.25° (≈ 25 km); local detail is limited. Always read the median with the model range.',
+        caveat: 'Projections, not forecasts: they describe 30-year climates under an emissions scenario. Downscaled and bias-corrected to 0.25° (≈ 25 km); local detail is limited. Always read the median with the model range. For precipitation, cells with almost no rain in 1985–2014 (under 1 mm) have no % change and are left uncoloured.',
       });
     }
   }

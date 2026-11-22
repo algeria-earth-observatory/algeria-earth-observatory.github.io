@@ -16,7 +16,7 @@ const label = 'block text-[0.875rem] font-medium text-atlas';
 
     {!m && <p class="note mt-8">The climate projection product has not been built yet.</p>}
     {m && (
-      <div id="cl" class="mt-6 grid gap-8 lg:grid-cols-12">
+      <div id="cl" class="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-12">
         <form id="cl-form" class="space-y-4 lg:col-span-3" onsubmit="return false">
           <div><label for="cl-ind" class={label}>Indicator</label><select id="cl-ind" class="field mt-1"></select></div>
           <div><label for="cl-sc" class={label}>Scenario and period</label><select id="cl-sc" class="field mt-1"></select></div>

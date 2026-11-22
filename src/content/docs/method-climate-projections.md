@@ -55,6 +55,21 @@ Thresholds of 32, 35 and 40 °C are simple indicators of heat. They are not crop
 - **Agreement:** "8 of 8 models agree" is a much stronger statement than "5 of 8".
 - **Size of the range:** it reflects model disagreement only. It does not include downscaling error, other scenarios or other models.
 
+## Results (8-model median, with the lowest and highest model)
+
+| | SSP2-4.5, 2041–2070 | SSP5-8.5, 2071–2100 |
+|---|---|---|
+| Mean daily maximum temperature, Algeria | +2.2 °C (+1.8 to +2.8) | +5.4 °C (+4.3 to +6.5) |
+| Days above 40 °C, Algeria | +40 days (+29 to +45) | +82 days (+68 to +92) |
+| Annual precipitation, Algeria | −6 % (−24 to 0) | −24 % (−40 to +26) |
+| November–April precipitation, stable cropland | **−18 % (−21 to −9), 8 of 8 models** | **−37 % (−53 to −20), 8 of 8 models** |
+| Longest dry spell, stable cropland | +9 days (+3 to +21) | +22 days (+11 to +37) |
+| Days above 32 °C in March–May, stable cropland | +2.4 days (baseline 0.9) | +10.6 days |
+
+- **Warming:** every model warms every wilaya.
+- **Rainfall on cropland:** where the cereals grow, all 8 models agree that the November–April season becomes drier. In each of the 46 wilayas with at least 10,000 ha of stable cropland, at least 7 of 8 models agree.
+- **Rainfall nationally:** for Algeria as a whole, dominated by the Sahara, the range of annual precipitation change crosses zero.
+
 ## Limitations
 
 - **Resolution:** 0.25° statistical downscaling does not represent the relief of the Tell Atlas or of the Aurès in detail. Coastal and mountain wilayas are the least reliable.

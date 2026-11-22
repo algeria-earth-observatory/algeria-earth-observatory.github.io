@@ -1,0 +1,198 @@
+{
+  "id": "aeo-dza-climate-projections-nexgddp",
+  "title": "Algeria climate hazard projections (NASA NEX-GDDP-CMIP6, 8 models): national and wilaya, all land and stable cropland",
+  "title_fr": "Projections des aléas climatiques pour l'Algérie (NASA NEX-GDDP-CMIP6, 8 modèles) : nation et wilayas, toutes terres et terres cultivées stables",
+  "title_ar": null,
+  "description": "Projected changes in heat (mean maximum temperature, days above 35 °C and 40 °C, March–May days above 32 °C), rainfall (annual and November–April) and dry spells for 2041–2070 and 2071–2100 under SSP2-4.5 and SSP5-8.5, relative to 1985–2014, from 8 bias-corrected CMIP6 models (NEX-GDDP-CMIP6, 0.25°), by wilaya and for Algeria, over all land and over stable cropland: model median, range and agreement.",
+  "purpose": "Give planners and researchers wilaya-level climate hazard projections with their uncertainty, including for farmland.",
+  "domain": [
+    "hazards",
+    "climate-drought",
+    "agriculture"
+  ],
+  "categories": [
+    "Climate projections",
+    "Heat",
+    "Drought",
+    "Climate risk"
+  ],
+  "keywords": [
+    "CMIP6",
+    "NEX-GDDP",
+    "climate change",
+    "projections",
+    "heat",
+    "extreme heat",
+    "precipitation",
+    "dry spell",
+    "SSP2-4.5",
+    "SSP5-8.5",
+    "wilaya",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "modeled",
+  "data_type": "tabular",
+  "provider": {
+    "name": "NASA NEX-GDDP-CMIP6; Algeria Earth Observatory (indicators and regional statistics)",
+    "url": "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6"
+  },
+  "creator": "Algeria Earth Observatory maintainers (indicators); NASA Ames / NCCS (NEX-GDDP-CMIP6)",
+  "source_url": "https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6",
+  "documentation_url": "https://algeria-earth-observatory.github.io/docs/method-climate-projections/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "NEX-GDDP-CMIP6 files carry the licence of each CMIP6 model (CC BY 4.0 for the models used here unless stated otherwise in the NEX-GDDP-CMIP6 documentation). AEO indicators are CC BY 4.0.",
+  "citation": "Algeria Earth Observatory (2026). Algeria climate hazard projections (NEX-GDDP-CMIP6), version 1.0.0. — from Thrasher, B. et al. (2022), Scientific Data 9, 262, doi:10.1038/s41597-022-01393-4.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Thrasher, B. et al. (2022). NASA Global Daily Downscaled Projections, CMIP6. Scientific Data 9, 262.",
+      "doi": "10.1038/s41597-022-01393-4"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ],
+    "description": "Algeria and its 69 wilayas (AEO boundaries 2026-11-20); cropland values for wilayas with ≥ 10,000 ha of stable cropland."
+  },
+  "temporal_extent": {
+    "start": "1985-01-01",
+    "end": "2100-12-31",
+    "ongoing": false,
+    "frequency": "30-year periods",
+    "description": "Baseline 1985–2014; future 2041–2070 and 2071–2100."
+  },
+  "resolution": {
+    "spatial": "Wilayas (0.25° cells)",
+    "spatial_m": null,
+    "temporal": "30-year means"
+  },
+  "format": [
+    "CSV",
+    "Parquet"
+  ],
+  "crs": "not applicable (tables by administrative unit)",
+  "variables": [
+    {
+      "name": "tx_mean",
+      "units": "°C",
+      "description": "Mean daily maximum temperature"
+    },
+    {
+      "name": "hd35",
+      "units": "days/year",
+      "description": "Days above 35 °C"
+    },
+    {
+      "name": "hd40",
+      "units": "days/year",
+      "description": "Days above 40 °C"
+    },
+    {
+      "name": "spring32",
+      "units": "days/year",
+      "description": "Days above 32 °C in March–May"
+    },
+    {
+      "name": "prcptot",
+      "units": "% change",
+      "description": "Annual precipitation"
+    },
+    {
+      "name": "pr_ndjfma",
+      "units": "% change",
+      "description": "November–April precipitation"
+    },
+    {
+      "name": "cdd",
+      "units": "days",
+      "description": "Longest dry spell (< 1 mm/day)"
+    }
+  ],
+  "processing": "Daily tasmax and pr subset to Algeria from NASA NCCS THREDDS; annual indicators per cell and model; 30-year means; area-weighted unit means; change against each model's own 1985–2014; ensemble median, range and sign agreement.",
+  "validation": "Each model is compared with its own historical run; QC lists the national changes for every indicator and scenario.",
+  "limitations": [
+    "Projections, not forecasts.",
+    "8 models do not span the full CMIP6 range.",
+    "Statistical downscaling at 0.25° cannot represent local relief.",
+    "Fixed thresholds (32, 35, 40 °C) are indicators, not crop-specific damage thresholds."
+  ],
+  "algeria_notes": "All 8 models warm every wilaya. Over stable cropland, all 8 models project less November–April (cereal-season) rainfall: median −18 % for 2041–2070 under SSP2-4.5 and −37 % for 2071–2100 under SSP5-8.5. For Algeria as a whole, dominated by the Sahara, the rainfall range crosses zero.",
+  "version": "1.0.0",
+  "published_date": "2026-11-22",
+  "updated_date": "2026-11-22",
+  "download_url": "/data/aeo/products/climate-projections/v1.0.0/tables/aeo_cmip6_change_admin0-1_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Projected change by wilaya — model median and range (CSV)",
+      "url": "/data/aeo/products/climate-projections/v1.0.0/tables/aeo_cmip6_change_admin0-1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 432367,
+      "sha256": "82b9074e223a1ae0bc8601ed0ae47aaa8c8405f6e07b96b897ab4aefc250fd3d",
+      "notes": null
+    },
+    {
+      "label": "Projected change by wilaya and model (CSV)",
+      "url": "/data/aeo/products/climate-projections/v1.0.0/tables/aeo_cmip6_change_by_model_admin0-1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 1876311,
+      "sha256": "7c98f33b1ed691a8f170643f75a2ce3741cb285ef53f083115bcb8d2a4ab1035",
+      "notes": null
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/cmip6",
+  "map_layers": [
+    "cmip6-tx_mean",
+    "cmip6-hd40",
+    "cmip6-spring32",
+    "cmip6-prcptot",
+    "cmip6-pr_ndjfma"
+  ],
+  "featured": false,
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://ds.nccs.nasa.gov/thredds/catalog/AMES/NEX/GDDP-CMIP6/catalog.html",
+      "https://doi.org/10.1038/s41597-022-01393-4"
+    ],
+    "notes": "See PROVENANCE.json."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/climate-projections/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "tx_mean",
+      "hd35",
+      "hd40",
+      "spring32",
+      "prcptot",
+      "pr_ndjfma",
+      "cdd"
+    ],
+    "analyze": false
+  }
+}

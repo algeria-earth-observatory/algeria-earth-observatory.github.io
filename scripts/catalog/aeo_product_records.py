@@ -260,7 +260,7 @@ def projections():
         processing="Daily tasmax and pr subset to Algeria from NASA NCCS THREDDS; annual indicators per cell and model; 30-year means; area-weighted unit means; change against each model's own 1985–2014; ensemble median, range and sign agreement.",
         validation="Each model is compared with its own historical run; QC lists the national changes for every indicator and scenario.",
         limitations=["Projections, not forecasts.", "8 models do not span the full CMIP6 range.", "Statistical downscaling at 0.25° cannot represent local relief.", "Fixed thresholds (32, 35, 40 °C) are indicators, not crop-specific damage thresholds."],
-        algeria_notes="Warming is projected everywhere; rainfall changes are uncertain in sign in the south and mostly negative in the north, with model disagreement shown for each wilaya.",
+        algeria_notes="All 8 models warm every wilaya. Over stable cropland, all 8 models project less November–April (cereal-season) rainfall: median −18 % for 2041–2070 under SSP2-4.5 and −37 % for 2071–2100 under SSP5-8.5. For Algeria as a whole, dominated by the Sahara, the rainfall range crosses zero.",
         access=access(m, {"aeo_cmip6_change_admin0-1_v1.0.0.csv": "Projected change by wilaya — model median and range (CSV)",
                           "aeo_cmip6_change_by_model_admin0-1_v1.0.0.csv": "Projected change by wilaya and model (CSV)"}),
         code_url=f"{REPO}/cmip6", map_layers=[f"cmip6-{k}" for k in ["tx_mean", "hd40", "spring32", "prcptot", "pr_ndjfma"]],

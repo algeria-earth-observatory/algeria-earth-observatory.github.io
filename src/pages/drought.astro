@@ -39,7 +39,8 @@ const seasonLabel = (t: string) => { const [a, b] = t.split('/'); return `${MON3
 const published = outlook ? outlook.outlook.filter((o: any) => o.skilful && o.unit_code !== 'DZ').sort((a: any, b: any) => b.p_below - a.p_below) : [];
 const fieldShare = (outlook ? outlook.field_share : {}) as Record<string, number>;
 const pct = (v: number) => `${Math.round(v * 100)} %`;
-const shade = (v: number) => `background: rgba(53,151,143,${Math.min(1, v * 1.4).toFixed(2)}); color: ${v >= 0.45 ? '#ffffff' : 'var(--color-atlas)'}`;
+// three classes with tested text contrast (ColorBrewer BrBG teal steps)
+const shade = (v: number) => (v >= 0.4 ? 'background:#01665e;color:#ffffff' : v >= 0.2 ? 'background:#80cdc1;color:#0e2a3e' : 'background:#e6f3f1;color:#0e2a3e');
 
 const years = manifest.temporal_coverage.annual as [number, number];
 const months = manifest.temporal_coverage.monthly as [string, string];
@@ -260,7 +261,7 @@ const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r b
     )}
 
     <section id="outlook" aria-labelledby="outlook-h" class="mt-16 border-t border-line pt-10">
-      <div class="grid gap-6 lg:grid-cols-12">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
         <div class="lg:col-span-4">
           <h2 id="outlook-h" class="h-sub">Seasonal rainfall outlook over stable cropland <span class="status status-experimental ml-1 align-middle">Experimental test</span></h2>
           {outlook && <p class="mt-2 text-[0.9375rem] text-slate">NMME forecast issued {outlook.issued}, recalibrated and verified by AEO against CHIRPS rainfall 1991–2021 over the stable cropland of {outlook.units.length - 1} wilayas.</p>}
@@ -290,12 +291,12 @@ const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r b
       {outlook && (
         <figure class="mt-8">
           <figcaption id="skill-cap" class="text-[0.9375rem] font-medium text-atlas">Where seasonal forecasts work: share of wilayas where past forecasts beat climatology</figcaption>
-          <p class="mt-1 text-[0.875rem] text-slate">Rows: month the forecast starts. Columns: months ahead (lead). About 5 % would pass by chance; outlined cells meet the publication rule (at least 20 % of wilayas, lead of 3 months or less).</p>
+          <p class="mt-1 text-[0.875rem] text-slate">Rows: month the forecast starts. Columns: months ahead (lead). About 5 % would pass by chance. Shading: under 20 %, 20–40 %, 40 % or more; cells outlined in orange meet the publication rule (at least 20 % of wilayas, lead of 3 months or less).</p>
           <div class="relative mt-3 overflow-x-auto" tabindex="0" role="region" aria-labelledby="skill-cap">
             <table class="tabular border-collapse text-[0.8125rem]">
               <thead><tr><th scope="col" class="px-2 py-1 text-left font-medium">Start</th>{[1, 2, 3, 4, 5, 6].map((l) => <th scope="col" class="w-16 px-2 py-1 text-center font-medium">{l} mo</th>)}</tr></thead>
               <tbody>{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter((m) => [1, 2, 3, 4, 5, 6].some((l) => fieldShare[`${m}-${l}`] !== undefined)).map((m) => (
-                <tr><th scope="row" class="px-2 py-1 text-left font-normal text-slate">{MON3[m - 1]}</th>{[1, 2, 3, 4, 5, 6].map((l) => { const v = fieldShare[`${m}-${l}`]; return <td class="h-8 w-16 border border-white px-2 text-center font-mono" style={v === undefined ? '' : `${shade(v)};${v >= 0.2 && l <= 3 ? 'outline:2px solid var(--color-atlas);outline-offset:-3px' : ''}`}>{v === undefined ? '—' : `${Math.round(v * 100)}`}</td>; })}</tr>
+                <tr><th scope="row" class="px-2 py-1 text-left font-normal text-slate">{MON3[m - 1]}</th>{[1, 2, 3, 4, 5, 6].map((l) => { const v = fieldShare[`${m}-${l}`]; return <td class="h-8 w-16 border border-white px-2 text-center font-mono" style={v === undefined ? '' : `${shade(v)};${v >= 0.2 && l <= 3 ? 'outline:2px solid #e08214;outline-offset:-3px' : ''}`}>{v === undefined ? '—' : `${Math.round(v * 100)}`}</td>; })}</tr>
               ))}</tbody>
             </table>
           </div>
