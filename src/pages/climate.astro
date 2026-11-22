@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+const one = (f: Record<string, unknown>) => (Object.values(f)[0] ?? null) as any;
+const m = one(import.meta.glob('../../public/data/aeo/products/climate-projections/v1.0.0/manifest.json', { eager: true, import: 'default' }));
+const label = 'block text-[0.875rem] font-medium text-atlas';
+---
+<Base title="Climate" description="Climate hazard projections for Algeria and its wilayas from 8 CMIP6 models (NASA NEX-GDDP-CMIP6): heat, hot days during the cereal grain-filling season, rainfall and dry spells, for all land and for stable cropland, with the model range.">
+  <div class="mx-auto max-w-[90rem] px-5 pb-16 pt-8 sm:px-8 lg:px-12">
+    <header class="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-5">
+      <div>
+        <p class="overline">Climate</p>
+        <h1 class="mt-2 text-[1.75rem] leading-tight">Climate hazards: projections by wilaya</h1>
+      </div>
+      <p class="max-w-xl text-[1rem] text-slate">How heat, rainfall and dry spells may change by 2041–2070 and 2071–2100, from 8 bias-corrected CMIP6 models. Projections under emission scenarios, not forecasts.</p>
+    </header>
+
+    {!m && <p class="note mt-8">The climate projection product has not been built yet.</p>}
+    {m && (
+      <div id="cl" class="mt-6 grid gap-8 lg:grid-cols-12">
+        <form id="cl-form" class="space-y-4 lg:col-span-3" onsubmit="return false">
+          <div><label for="cl-ind" class={label}>Indicator</label><select id="cl-ind" class="field mt-1"></select></div>
+          <div><label for="cl-sc" class={label}>Scenario and period</label><select id="cl-sc" class="field mt-1"></select></div>
+          <fieldset><legend class={label}>Area</legend>
+            <label class="mt-1 flex items-center gap-2 text-[0.9375rem]"><input type="radio" name="cl-dom" value="all" checked class="accent-[#3458d4]" /> All land</label>
+            <label class="mt-1 flex items-center gap-2 text-[0.9375rem]"><input type="radio" name="cl-dom" value="cropland" class="accent-[#3458d4]" /> Stable cropland only</label>
+          </fieldset>
+          <p class="text-[0.875rem] text-slate">Change from 1985–2014 in each model, then the median of the 8 models. The bar shows the median; the line spans the lowest to the highest model.</p>
+          <p class="text-[0.875rem]"><a href="/docs/method-climate-projections/">Method</a> · <a href="/data/aeo-dza-climate-projections-nexgddp/">Data and downloads</a> · <a id="cl-map" href="/map/?ind=cmip6-tx_mean">Map in Explore</a></p>
+        </form>
+        <div class="lg:col-span-9">
+          <div id="cl-summary" class="tabular grid gap-3 sm:grid-cols-3" aria-live="polite"></div>
+          <h2 id="cl-h" class="mt-6 text-[1.125rem] font-medium text-atlas">By wilaya</h2>
+          <p id="cl-note" class="text-[0.875rem] text-slate"></p>
+          <div class="relative mt-3 max-h-[40rem] overflow-auto border border-line" tabindex="0" role="region" aria-labelledby="cl-h">
+            <table class="tabular w-full text-left text-[0.875rem]">
+              <thead class="sticky top-0 z-10 bg-surface"><tr>
+                <th scope="col" class="px-3 py-2 font-medium">Wilaya</th><th scope="col" class="px-3 py-2 text-right font-medium">1985–2014</th>
+                <th scope="col" class="px-3 py-2 text-right font-medium">Change (median)</th><th scope="col" class="px-3 py-2 text-right font-medium">Model range</th>
+                <th scope="col" class="px-3 py-2 text-right font-medium">Models agreeing</th><th scope="col" class="w-56 px-3 py-2 font-medium"><span class="sr-only">Chart</span></th></tr></thead>
+              <tbody id="cl-body"><tr><td colspan="6" class="px-3 py-3 text-slate">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</Base>
+
+<script>
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
+  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const SC: Record<string, string> = { ssp245: 'SSP2-4.5 (intermediate)', ssp585: 'SSP5-8.5 (very high)' };
+  async function init() {
+    if (!$('cl-ind')) return;
+    const f = await (await fetch('/data/aeo/products/climate-projections/v1.0.0/web/projections.json')).json();
+    const ind = $<HTMLSelectElement>('cl-ind')!, sc = $<HTMLSelectElement>('cl-sc')!;
+    ind.innerHTML = Object.entries<any>(f.indicators).map(([k, v]) => `<option value="${k}">${esc(v.label)}</option>`).join('');
+    sc.innerHTML = ['ssp245', 'ssp585'].flatMap((s) => f.periods.map((p: string) => `<option value="${s}|${p}">${SC[s]}, ${p.replace('-', '–')}</option>`)).join('');
+    const p = new URLSearchParams(location.search);
+    if (p.get('ind') && f.indicators[p.get('ind')!]) ind.value = p.get('ind')!;
+    if (p.get('sc')) sc.value = p.get('sc')!;
+    const render = () => {
+      const k = ind.value, key = sc.value;
+      const dom = (document.querySelector('input[name="cl-dom"]:checked') as HTMLInputElement).value;
+      const meta = f.indicators[k];
+      const pct = meta.change === 'percent';
+      const d = pct ? 0 : 1;
+      const u = (v: number) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}${pct ? ' %' : ''}`;
+      const vals = f.values[dom][k]?.[key] ?? {};
+      const nat = vals.DZ;
+      const rows = f.units.map((w: any) => ({ ...w, v: vals[w.code] })).filter((w: any) => w.v).sort((a: any, b: any) => (pct ? a.v[0] - b.v[0] : b.v[0] - a.v[0]));
+      const all = rows.flatMap((r: any) => [r.v[1], r.v[2], 0]);
+      const lo = Math.min(...all), hi = Math.max(...all);
+      const x = (v: number) => 4 + ((v - lo) / (hi - lo || 1)) * 200;
+      $('cl-summary')!.innerHTML = nat ? [
+        [`Algeria${dom === 'cropland' ? ', stable cropland' : ''}: change`, u(nat[0]), pct ? '8-model median' : `${meta.units}, 8-model median`],
+        ['Model range', `${u(nat[1])} to ${u(nat[2])}`, `${nat[3]} of ${f.models.length} models agree on the sign`],
+        ['1985–2014', `${nat[4].toFixed(meta.units === '°C' ? 1 : 0)}`, `${meta.units} (model median)`],
+      ].map(([a, b, c]) => `<div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><p class="text-[0.875rem] text-slate">${a}</p><p class="mt-1 font-mono text-[1.375rem] text-atlas">${b}</p><p class="text-[0.8125rem] text-slate">${c}</p></div>`).join('') : '';
+      $('cl-note')!.textContent = `${meta.label}, ${SC[key.split('|')[0]]}, ${key.split('|')[1].replace('-', '–')} vs 1985–2014${pct ? ' (% change)' : ` (${meta.units})`}. ${dom === 'cropland' ? `Only wilayas with at least 10,000 ha of stable cropland (${rows.length}).` : `${rows.length} wilayas.`}`;
+      $('cl-body')!.innerHTML = rows.map((r: any) => `<tr class="border-t border-line">
+        <td class="px-3 py-1"><a href="/map/?ind=cmip6-${k}&v=${key.replace('|', '_')}&w=${r.code}">${esc(r.name)}</a></td>
+        <td class="px-3 py-1 text-right font-mono">${r.v[4].toFixed(meta.units === '°C' ? 1 : 0)}</td>
+        <td class="px-3 py-1 text-right font-mono">${u(r.v[0])}</td>
+        <td class="px-3 py-1 text-right font-mono text-slate">${u(r.v[1])} to ${u(r.v[2])}</td>
+        <td class="px-3 py-1 text-right font-mono">${r.v[3]}/${f.models.length}</td>
+        <td class="px-3 py-1"><svg viewBox="0 0 208 14" class="h-3.5 w-52" aria-hidden="true"><line x1="${x(0)}" x2="${x(0)}" y1="0" y2="14" stroke="#9aa5ad"/><rect x="${Math.min(x(0), x(r.v[0]))}" y="3" width="${Math.max(1, Math.abs(x(r.v[0]) - x(0)))}" height="8" rx="1.5" fill="${pct ? (r.v[0] < 0 ? '#bf812d' : '#35978f') : (r.v[0] >= 0 ? '#d7301f' : '#2166ac')}"/><line x1="${x(r.v[1])}" x2="${x(r.v[2])}" y1="7" y2="7" stroke="#17252c" stroke-width="1.2"/></svg></td></tr>`).join('');
+      ($('cl-map') as HTMLAnchorElement).href = f.indicators[k] && ['tx_mean', 'hd40', 'spring32', 'prcptot', 'pr_ndjfma'].includes(k) ? `/map/?ind=cmip6-${k}&v=${key.replace('|', '_')}` : '/map/';
+      history.replaceState(null, '', `?ind=${k}&sc=${encodeURIComponent(key)}`);
+    };
+    ind.addEventListener('change', render); sc.addEventListener('change', render);
+    document.querySelectorAll('input[name="cl-dom"]').forEach((r) => r.addEventListener('change', render));
+    render();
+  }
+  init();
+</script>

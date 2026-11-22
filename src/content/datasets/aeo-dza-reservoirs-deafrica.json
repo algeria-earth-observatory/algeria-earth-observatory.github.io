@@ -1,0 +1,160 @@
+{
+  "id": "aeo-dza-reservoirs-deafrica",
+  "title": "Algeria reservoir monitor: monthly water surface area of the main reservoirs (Landsat, 1984–present)",
+  "title_fr": "Suivi des barrages de l'Algérie : surface en eau mensuelle des principales retenues (Landsat, depuis 1984)",
+  "title_ar": null,
+  "description": "Monthly water surface area of Algeria's reservoirs of 0.5 km² or more in Global Dam Watch, from the Digital Earth Africa Waterbodies Landsat observations aggregated by AEO per reservoir, 1984-04 to 2026-11, with the latest observation and the share of the largest area observed since 1984.",
+  "purpose": "Follow how full Algeria's main reservoirs are from satellite, month by month, with an open and reproducible method.",
+  "domain": [
+    "water"
+  ],
+  "categories": [
+    "Reservoirs",
+    "Surface water",
+    "Dams"
+  ],
+  "keywords": [
+    "reservoir",
+    "dam",
+    "barrage",
+    "water surface",
+    "Landsat",
+    "DE Africa",
+    "Global Dam Watch",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "derived",
+  "data_type": "point",
+  "provider": {
+    "name": "Digital Earth Africa (Waterbodies); Global Dam Watch; Algeria Earth Observatory (aggregation)",
+    "url": "https://www.digitalearthafrica.org/en_za/waterbodies-continental-service/"
+  },
+  "creator": "Algeria Earth Observatory maintainers (aggregation); Digital Earth Africa; Global Dam Watch consortium",
+  "source_url": "https://www.digitalearthafrica.org/en_za/waterbodies-continental-service/",
+  "documentation_url": "https://algeria-earth-observatory.github.io/docs/method-reservoirs/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "DE Africa Waterbodies and GDW are CC BY 4.0. GDW authors ask that their database not be re-hosted in whole; AEO publishes only dam points, names and capacities for Algeria with derived series. Attribution: 'This product incorporates data from the GDW database © Global Dam Watch (2024).'",
+  "citation": "Algeria Earth Observatory (2026). Algeria reservoir monitor (DE Africa Waterbodies), version 1.0.0. — from Digital Earth Africa Waterbodies and Global Dam Watch v1.0 (doi:10.6084/m9.figshare.25988293).",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Global Dam Watch database version 1.0 (2024). figshare.",
+      "doi": "10.6084/m9.figshare.25988293"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ],
+    "description": "Reservoirs of at least 0.5 km² listed in Global Dam Watch for Algeria."
+  },
+  "temporal_extent": {
+    "start": "1984-04-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "1984-04 to 2026-11; DE Africa updates weekly."
+  },
+  "resolution": {
+    "spatial": "Reservoirs (Landsat 30 m)",
+    "spatial_m": 30,
+    "temporal": "monthly"
+  },
+  "format": [
+    "CSV",
+    "Parquet",
+    "GeoJSON"
+  ],
+  "crs": "EPSG:4326 (points)",
+  "variables": [
+    {
+      "name": "wet_area_km2",
+      "units": "km²",
+      "description": "Median water surface area of the month's valid scenes"
+    },
+    {
+      "name": "pct_of_observed_max",
+      "units": "%",
+      "description": "Share of the largest monthly area observed since 1984 (surface, not volume)"
+    },
+    {
+      "name": "valid_scenes",
+      "units": "count",
+      "description": "Landsat scenes with ≥ 85 % of the reservoir observed"
+    }
+  ],
+  "processing": "DE Africa waterbody polygons matched to GDW reservoir polygons (500 m buffer); wet area summed per scene; scenes with < 85 % observed dropped; monthly median.",
+  "validation": "Prototype check at Beni Haroun: Sentinel-2 MNDWI areas of 25–32 km² in November 2026 agree with the Landsat series and the GDW outline (36 km²).",
+  "limitations": [
+    "Surface area, not stored volume; not an official ANBT filling rate.",
+    "Clouds and shadows reduce valid scenes; some months are empty.",
+    "Landsat 30 m misses narrow arms and is affected by turbid or very shallow water.",
+    "Dams built after the GDW compilation (2024) are missing."
+  ],
+  "algeria_notes": "63 of 65 reservoirs have Landsat observations up to July–November 2026. Saharan reservoirs such as Djorf Torba are rarely observed well enough (85 % of the area) to give a monthly value.",
+  "version": "1.0.0",
+  "published_date": "2026-11-22",
+  "updated_date": "2026-11-22",
+  "download_url": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoirs_points_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Reservoirs — attributes and latest water area (CSV)",
+      "url": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoirs_points_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 8668,
+      "sha256": "6cdd57110c2694dac1e1c907e766d5d252a93dcd0c868e039f46664a6d9ee83e",
+      "notes": null
+    },
+    {
+      "label": "Reservoirs — monthly water surface area (CSV)",
+      "url": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoir_area_monthly_points_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 439415,
+      "sha256": "7f71998750a9d4aac2024da1ae929c097ccc6725962afbdf7f8686c869fea868",
+      "notes": null
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/reservoirs",
+  "map_layers": [],
+  "featured": false,
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://docs.digitalearthafrica.org/en/latest/data_specs/Waterbodies_specs.html",
+      "https://doi.org/10.6084/m9.figshare.25988293"
+    ],
+    "notes": "See PROVENANCE.json for matched waterbody ids."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/reservoirs/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "wet_area_km2",
+      "pct_of_observed_max"
+    ],
+    "analyze": false
+  }
+}

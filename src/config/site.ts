@@ -34,6 +34,8 @@ export const NAV = [
   { href: '/map/', label: 'Explore' },
   { href: '/data/', label: 'Data' },
   { href: '/drought/', label: 'Drought' },
+  { href: '/water/', label: 'Water' },
+  { href: '/climate/', label: 'Climate' },
   { href: '/science/', label: 'Science' },
   { href: '/contribute/', label: 'Contribute' },
   { href: '/about/', label: 'About' },

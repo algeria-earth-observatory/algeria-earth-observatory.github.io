@@ -1,0 +1,207 @@
+{
+  "id": "aeo-dza-stable-cropland-gaced30",
+  "title": "Algeria stable cropland 2000–2024 (from GACED30): area by commune, wilaya and Algeria",
+  "title_fr": "Terres cultivées stables de l'Algérie 2000–2024 (d'après GACED30) : superficies par commune, wilaya et pour l'Algérie",
+  "title_ar": null,
+  "description": "Land that the GACED30 30 m annual cropland maps classify as cropland in at least 20 of the 25 years 2000–2024, summarised by AEO as true areas (ha) for Algeria, its 69 wilayas and 1,541 communes, with the full distribution of cropland years. The per-cell stable-cropland area on the grids of the other AEO products is published as the AEO cropland mask.",
+  "purpose": "Restrict drought, evapotranspiration, soil-moisture, water-storage and climate statistics, and the seasonal outlook, to land that is actually and persistently farmed.",
+  "domain": [
+    "agriculture",
+    "land-ecosystems"
+  ],
+  "categories": [
+    "Cropland",
+    "Agricultural statistics",
+    "Masks"
+  ],
+  "keywords": [
+    "cropland",
+    "stable cropland",
+    "GACED30",
+    "agriculture",
+    "mask",
+    "fallow",
+    "wilaya",
+    "commune",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "derived",
+  "data_type": "tabular",
+  "provider": {
+    "name": "Algeria Earth Observatory (from GACED30 v1)",
+    "url": "https://doi.org/10.5281/zenodo.18199675"
+  },
+  "creator": "Algeria Earth Observatory maintainers; GACED30 authors (source maps)",
+  "source_url": "https://doi.org/10.5281/zenodo.18199675",
+  "documentation_url": "https://algeria-earth-observatory.github.io/docs/method-stable-cropland/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "GACED30 is CC BY 4.0. AEO statistics are CC BY 4.0: cite AEO and GACED30.",
+  "citation": "Algeria Earth Observatory (2026). Algeria stable cropland 2000–2024 (from GACED30), version 1.0.0. https://algeria-earth-observatory.github.io/data/aeo-dza-stable-cropland-gaced30/ — from GACED30 v1, doi:10.5281/zenodo.18199675.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "GACED30: Global 30-m Annual Cropland Extent Dynamics (2000–2024), version 1. Zenodo.",
+      "doi": "10.5281/zenodo.18199675"
+    },
+    {
+      "citation": "GACED30 data descriptor, Earth System Science Data 18, 7071 (2026).",
+      "doi": "10.5194/essd-18-7071-2026"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ],
+    "description": "Algeria (AEO boundaries 2026-11-20): 1 country, 69 wilayas, 1,541 communes, from 30 m pixels."
+  },
+  "temporal_extent": {
+    "start": "2000-01-01",
+    "end": "2024-12-31",
+    "ongoing": false,
+    "frequency": "single epoch (2000–2024 summary)",
+    "description": "Summary of 25 annual maps, 2000–2024."
+  },
+  "resolution": {
+    "spatial": "Administrative units, from 30 m pixels (true pixel areas)",
+    "spatial_m": 30,
+    "temporal": "2000–2024 summary"
+  },
+  "format": [
+    "CSV",
+    "Parquet",
+    "NPZ"
+  ],
+  "crs": "Areas on the authalic sphere; boundaries EPSG:4326",
+  "variables": [
+    {
+      "name": "stable_cropland_ha",
+      "units": "ha",
+      "description": "Cropland in at least 20 of 25 years"
+    },
+    {
+      "name": "cropland_any_year_ha",
+      "units": "ha",
+      "description": "Cropland in at least one year"
+    },
+    {
+      "name": "cropland_majority_ha",
+      "units": "ha",
+      "description": "Cropland in at least 13 years"
+    },
+    {
+      "name": "cropland_all_years_ha",
+      "units": "ha",
+      "description": "Cropland in all 25 years"
+    },
+    {
+      "name": "years_<k>_ha",
+      "units": "ha",
+      "description": "Area cropland in exactly k years (commune histogram)"
+    }
+  ],
+  "processing": "Count of cropland years per 30 m pixel over the 25 GACED30 maps; true pixel areas summed by commune (pixel centre) and merged into wilayas and Algeria; the same pixels accumulated onto the CHIRPS, WaPOR, CMIP6, GRACE and NMME grids.",
+  "validation": "Areas checked against the boundaries (231.3 Mha mapped vs 231.0 Mha of polygons); national stable cropland 6.40 Mha, cropland in most years 8.35 Mha (close to the commonly cited utilised agricultural area of about 8.5 Mha — a plausibility check, not a validation).",
+  "limitations": [
+    "GACED30 has no published accuracy assessment for Algeria; its authors report confusion between active fallow and bare land in drylands.",
+    "Stable cropland is not the cultivated area of a given year.",
+    "Cropland that appeared after about 2005 has fewer than 20 cropland years and is excluded."
+  ],
+  "algeria_notes": "The largest stable-cropland areas are in Tiaret, Oum El Bouaghi, Mascara, Sidi Bel Abbès, Sétif and Tlemcen (about 0.29–0.58 Mha each); in the Sahara stable cropland is limited to oasis strips and irrigated perimeters.",
+  "version": "1.0.0",
+  "published_date": "2026-11-22",
+  "updated_date": "2026-11-22",
+  "download_url": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin0_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Algeria — stable cropland area (CSV)",
+      "url": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin0_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 210,
+      "sha256": "c34246fa7e75f9d2d8b415ee69cb3fc5efa23d832f43b4e9cda5e6e60038c8b0",
+      "notes": null
+    },
+    {
+      "label": "Wilayas — stable cropland area (CSV)",
+      "url": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 4411,
+      "sha256": "d4ae5c235f2e511353e4aa2fb8e918e6a683a5a2d31557c6ff5b9b9c8667318b",
+      "notes": null
+    },
+    {
+      "label": "Communes — stable cropland area (CSV)",
+      "url": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin2_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 90472,
+      "sha256": "73c800e105d6345bf6729e16025d7615da9f791a4b49ced6d5ae607ba283c5a0",
+      "notes": null
+    },
+    {
+      "label": "Communes — area by number of cropland years (CSV)",
+      "url": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_cropland_years_histogram_admin2_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 229233,
+      "sha256": "2a12b4c987124e3d252022b175073fbf0cc75382f6cba4ecc60aa5f0dabac562",
+      "notes": null
+    },
+    {
+      "label": "Cropland mask on the AEO product grids (NPZ)",
+      "url": "/data/aeo/products/stable-cropland/v1.0.0/mask/aeo_stable_cropland_grids_v1.0.0.npz",
+      "kind": "download",
+      "format": "NPZ",
+      "requires_login": false,
+      "size_bytes": 4875324,
+      "sha256": "db9760dee834c685cf4cd8eba83e0c972c61caa7a0a3501e6da5e81556b22294",
+      "notes": null
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/cropland",
+  "map_layers": [
+    "stable-cropland"
+  ],
+  "featured": false,
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://doi.org/10.5281/zenodo.18199675"
+    ],
+    "notes": "See PROVENANCE.json."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/stable-cropland/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1",
+      "admin2"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "stable_cropland_ha"
+    ],
+    "analyze": false
+  }
+}

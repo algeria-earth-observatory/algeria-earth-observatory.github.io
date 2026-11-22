@@ -1,0 +1,189 @@
+{
+  "id": "aeo-dza-et-soil-moisture-wapor3",
+  "title": "Algeria evapotranspiration and soil moisture (FAO WaPOR v3), monthly: national, wilaya and commune, all land and stable cropland",
+  "title_fr": "Évapotranspiration et humidité du sol de l'Algérie (FAO WaPOR v3), mensuelles : nation, wilayas et communes, toutes terres et terres cultivées stables",
+  "title_ar": null,
+  "description": "Monthly actual evapotranspiration and interception (AETI), reference evapotranspiration (RET) and relative root-zone soil moisture from FAO WaPOR v3 Level 1, averaged by AEO over Algeria, its 69 wilayas and 1,541 communes — over all land and over stable cropland only — from 2018-01 to 2026-10, with departures from the 2018–2025 mean.",
+  "purpose": "Follow crop and rangeland water use and soil moisture month by month, and see whether this month is unusual on farmland.",
+  "domain": [
+    "water",
+    "climate-drought",
+    "agriculture"
+  ],
+  "categories": [
+    "Evapotranspiration",
+    "Soil moisture",
+    "Agricultural water"
+  ],
+  "keywords": [
+    "evapotranspiration",
+    "ET",
+    "AETI",
+    "reference evapotranspiration",
+    "soil moisture",
+    "WaPOR",
+    "FAO",
+    "cropland",
+    "wilaya",
+    "commune",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "modeled",
+  "data_type": "tabular",
+  "provider": {
+    "name": "FAO WaPOR v3; Algeria Earth Observatory (regional statistics)",
+    "url": "https://data.apps.fao.org/wapor/"
+  },
+  "creator": "Algeria Earth Observatory maintainers (regional statistics); FAO WaPOR (source maps)",
+  "source_url": "https://data.apps.fao.org/wapor/",
+  "documentation_url": "https://algeria-earth-observatory.github.io/docs/method-et-soil-moisture/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "WaPOR data are CC BY 4.0 (FAO). AEO statistics are CC BY 4.0: cite AEO and FAO WaPOR v3.",
+  "citation": "Algeria Earth Observatory (2026). Algeria evapotranspiration and soil moisture (FAO WaPOR v3), version 1.0.0. https://algeria-earth-observatory.github.io/data/aeo-dza-et-soil-moisture-wapor3/ — from FAO (2026), WaPOR v3, https://data.apps.fao.org/wapor/.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "GACED30: Global 30-m Annual Cropland Extent Dynamics (2000–2024), version 1. Zenodo.",
+      "doi": "10.5281/zenodo.18199675"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ],
+    "description": "Algeria (AEO boundaries 2026-11-20): 1 country, 69 wilayas, 1,541 communes."
+  },
+  "temporal_extent": {
+    "start": "2018-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly",
+    "description": "Monthly 2018-01 to 2026-10; updated as FAO publishes new months."
+  },
+  "resolution": {
+    "spatial": "Administrative units (from 300 m WaPOR maps averaged to 1.2 km)",
+    "spatial_m": null,
+    "temporal": "monthly"
+  },
+  "format": [
+    "CSV",
+    "Parquet"
+  ],
+  "crs": "not applicable (tables by administrative unit; boundaries EPSG:4326)",
+  "variables": [
+    {
+      "name": "aeti_mm",
+      "units": "mm/month",
+      "description": "Actual evapotranspiration and interception"
+    },
+    {
+      "name": "ret_mm",
+      "units": "mm/month",
+      "description": "Reference evapotranspiration (FAO-56)"
+    },
+    {
+      "name": "rsm_pct",
+      "units": "%",
+      "description": "Relative soil moisture (monthly mean of dekads)"
+    },
+    {
+      "name": "*_cropland_*",
+      "units": "as above",
+      "description": "Same variables over stable cropland only"
+    },
+    {
+      "name": "*_departure_*",
+      "units": "% or percentage points",
+      "description": "Departure from the 2018–2025 mean of the calendar month"
+    }
+  ],
+  "processing": "WaPOR Level-1 rasters read from FAO's open cloud files at the 1.17 km average overview; dekadal soil moisture averaged by month; area-weighted means by commune merged into wilayas and Algeria; cropland means weighted by stable-cropland area.",
+  "validation": "National mean equals the area-weighted mean of wilayas (checked each build); soil moisture within 0–100 %.",
+  "limitations": [
+    "Modelled from satellite data (WaPOR surface energy balance), not measured.",
+    "Departures use only 8 years (2018–2025) and are not drought classes.",
+    "Relative soil moisture is derived from land surface temperature. In the Sahara, with almost no vegetation, WaPOR relative soil moisture is not meaningful (values come from its surface-temperature method); read it for vegetated land and cropland.",
+    "Recent months can be revised by FAO."
+  ],
+  "algeria_notes": "Evapotranspiration is highest in spring over the cropland of the Tell and in irrigated oases; most of the Sahara evaporates almost nothing.",
+  "version": "1.0.0",
+  "published_date": "2026-11-22",
+  "updated_date": "2026-11-22",
+  "download_url": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin0_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Algeria — monthly ET and soil moisture (CSV)",
+      "url": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin0_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 10009,
+      "sha256": "80e647c24093508dae9d2a2b846cd8ccb0508142c250f90bf177be984b05383d",
+      "notes": null
+    },
+    {
+      "label": "Wilayas — monthly ET and soil moisture (CSV)",
+      "url": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 656839,
+      "sha256": "050a68cd5aa8c1fd977e52c3495f1aca9bc714a29d11b7089d19515285d0d1a9",
+      "notes": null
+    },
+    {
+      "label": "Communes — monthly ET and soil moisture (Parquet)",
+      "url": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin2_v1.0.0.parquet",
+      "kind": "download",
+      "format": "Parquet",
+      "requires_login": false,
+      "size_bytes": 2856319,
+      "sha256": "2fc74cf4d91111d825c24e9d18cf8566ff138b586ec4713908a2c7d32914d7af",
+      "notes": null
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/wapor",
+  "map_layers": [
+    "et-aeti",
+    "sm-rsm"
+  ],
+  "featured": false,
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://data.apps.fao.org/gismgr/api/v2/catalog/workspaces/WAPOR-3/mapsets"
+    ],
+    "notes": "The WaPOR catalogue lists soil moisture in % with scale 0.001, but scaled values are fractions; AEO converts them to %. See PROVENANCE.json."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/et-soil-moisture/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1",
+      "admin2"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "aeti_mm",
+      "ret_mm",
+      "rsm_pct"
+    ],
+    "analyze": false
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "sysu-twsa-v1",
+  "title": "SYSU TWSA v1.0: global 0.5° terrestrial water storage anomalies via satellite gravimetry (2002–2022)",
+  "description": "Global monthly gridded terrestrial water storage anomalies at 0.5° from April 2002 to December 2022, derived from GRACE/GRACE-FO with a joint-inversion spatial downscaling framework. The WaterGAP Global Hydrological Model supplies high-resolution spatial basis patterns, while the temporal evolution of all basis functions is estimated from GRACE/GRACE-FO; additional mascon groups for mountain glaciers and selected large or rapidly changing lakes represent signals that the model lacks. Distributed as NetCDF by the National Tibetan Plateau / Third Pole Environment Data Center.",
+  "purpose": "Adds a physically constrained (inversion-based rather than purely machine-learning) downscaled GRACE record to compare with other products when interpreting water-storage change over Algeria.",
+  "domain": [
+    "water",
+    "climate-drought"
+  ],
+  "categories": [
+    "Terrestrial water storage",
+    "Groundwater (indirect)",
+    "Satellite gravimetry",
+    "Downscaling"
+  ],
+  "keywords": [
+    "SYSU TWSA",
+    "GRACE",
+    "GRACE-FO",
+    "downscaling",
+    "joint inversion",
+    "WaterGAP",
+    "TWSA",
+    "terrestrial water storage",
+    "TPDC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "National Tibetan Plateau / Third Pole Environment Data Center (TPDC)",
+    "url": "https://data.tpdc.ac.cn/en/data/cbe257be-ceba-4b02-864d-7c0ecb7996ec"
+  },
+  "creator": "Yuhao Xiong, Wei Feng and Min Zhong (dataset); article co-authors Jun Huang, Hongbing Bai and Guangyu Jian",
+  "source_url": "https://data.tpdc.ac.cn/en/data/cbe257be-ceba-4b02-864d-7c0ecb7996ec",
+  "documentation_url": "https://doi.org/10.5194/essd-18-4537-2026",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "TPDC dataset page: 'License agreement: Attribution 4.0 International (CC BY 4.0)'. The TPDC 'Statement for data usage' asks users to indicate the data source and authors in all results, to indicate the original source when re-posting, and gives the acknowledgement 'The data set is provided by National Tibetan Plateau / Third Pole Environment Data Center (http://data.tpdc.ac.cn)'. The page also states that the ESSD article must be cited when using the data.",
+  "citation": "Xiong, Y., Feng, W., Zhong, M. (2026). SYSU TWSA v1.0: Global high-resolution terrestrial water storage anomalies via satellite gravimetry (2002.04–2022.12). National Tibetan Plateau / Third Pole Environment Data Center. https://doi.org/10.11888/Terre.tpdc.303322. https://cstr.cn/18406.11.Terre.tpdc.303322",
+  "doi": "10.11888/Terre.tpdc.303322",
+  "references": [
+    {
+      "citation": "Xiong, Y., Feng, W., Huang, J., Bai, H., Jian, G., and Zhong, M. (2026). SYSU TWSA v1.0: global high-resolution terrestrial water storage anomalies via satellite gravimetry. Earth System Science Data, 18, 4537–4561.",
+      "doi": "10.5194/essd-18-4537-2026",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global 0.5° grid (TPDC spatial extent −180/−90/180/90). Algeria lies within the domain; values over Algeria were not checked.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2002-04-01",
+    "end": "2022-12-31",
+    "ongoing": false,
+    "frequency": "monthly",
+    "description": "April 2002 to December 2022; some months contain missing data, which are explicitly indicated in the file (TPDC file notes)."
+  },
+  "resolution": {
+    "spatial": "0.5° × 0.5° (GRACE input resolves about 300 km)",
+    "spatial_m": 55660,
+    "temporal": "monthly"
+  },
+  "format": [
+    "NetCDF (.nc), distributed as a ZIP archive of 54.27 MB"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.5° grid)",
+  "variables": [
+    {
+      "name": "tws",
+      "units": null,
+      "description": "Terrestrial water storage anomaly (with lon, lat and time coordinates)"
+    }
+  ],
+  "processing": "Joint-inversion spatial downscaling: high-resolution spatial basis patterns from the WaterGAP Global Hydrological Model (WGHM), with the temporal evolution of all basis functions estimated from GRACE/GRACE-FO under a consistent effective resolution; extra mascon groups for global mountain glaciers and selected major or rapidly changing lakes. Inputs listed in the ESSD data-availability section include GRACE/GRACE-FO Level-2 fields (ICGEM), the JPL mascon solution and monthly WGHM outputs.",
+  "validation": "The provider reports strong consistency with GRACE/GRACE-FO at basin scale, improved agreement with basin water-balance fluxes in smaller basins and broadly better consistency with in situ groundwater-level records (TPDC summary); numbers not summarised here.",
+  "limitations": [
+    "Total water storage anomaly, not groundwater.",
+    "Residual GRACE/GRACE-FO noise and spatial structural biases inherited from WGHM may propagate into the downscaled fields (provider statement).",
+    "Some months are missing; the record ends in December 2022.",
+    "Units of the tws variable were not confirmed from the file; check the NetCDF attributes before use."
+  ],
+  "version": "v1.0",
+  "published_date": "2026-07-03",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "TPDC dataset page (download)",
+      "url": "https://data.tpdc.ac.cn/en/data/cbe257be-ceba-4b02-864d-7c0ecb7996ec",
+      "kind": "external",
+      "format": "NetCDF in ZIP (54.27 MB)",
+      "requires_login": false,
+      "notes": "Sharing way 'Open access'. The page is a JavaScript application; for 'Open access' datasets the site's code issues anonymous FTP download credentials without login, but AEO did not complete a download, so a TPDC account may still be requested."
+    },
+    {
+      "label": "ESSD article (open access)",
+      "url": "https://essd.copernicus.org/articles/18/4537/2026/",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": null
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Because the spatial patterns come from WaterGAP basis functions, sub-mascon detail over Algeria reflects WaterGAP's representation of aquifer storage and abstraction. Compare with the JPL mascons and with the Li & Kusche and Uz et al. downscaled products before drawing regional conclusions.",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "requires_login (download not tested end-to-end)",
+      "units of tws",
+      "values and missing months over Algeria (file not downloaded)",
+      "author affiliations"
+    ],
+    "sources_consulted": [
+      "https://data.tpdc.ac.cn/en/data/cbe257be-ceba-4b02-864d-7c0ecb7996ec",
+      "https://data.tpdc.ac.cn/view/metadataView/getGoogleJson?metadataId=cbe257be-ceba-4b02-864d-7c0ecb7996ec",
+      "https://essd.copernicus.org/articles/18/4537/2026/",
+      "https://doi.org/api/handles/10.11888/Terre.tpdc.303322",
+      "https://doi.org/ra/10.11888/Terre.tpdc.303322",
+      "https://api.crossref.org/works/10.5194/essd-18-4537-2026"
+    ],
+    "notes": "The TPDC page renders only with JavaScript; it was rendered in a headless browser to read size, sharing mode, licence, file notes and the citation. The dataset DOI is registered with ISTIC (not Crossref or DataCite); its metadata was read by DOI content negotiation (CSL JSON, Chinese title, publisher 国家青藏高原科学数据中心, 2026). published_date is the schema.org datePublished on TPDC, which equals the ESSD publication date; the TPDC page gives a 'metadata update time' of 2026-02-04, the same day the DOI handle was created."
+  }
+}

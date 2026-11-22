@@ -1,0 +1,689 @@
+{
+ "created": "2026-11-22",
+ "product": "aeo-dza-seasonal-outlook-nmme",
+ "version": "0.1.0",
+ "nmme_files": {
+  "hcst/nmme_precip_hcst_Apric_10-12_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Apric_10-12_1991-2020.txt",
+   "bytes": 22340440,
+   "sha256": "96989bc21d5ed0e1ab4874bf9d33360cc4f606b064c6d7d027022ccfb36adfbe"
+  },
+  "hcst/nmme_precip_hcst_Apric_5-7_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Apric_5-7_1991-2020.txt",
+   "bytes": 22391262,
+   "sha256": "bf882dd8eebf5c6e187028b06062edb77401de355653919d47a6718b6911958f"
+  },
+  "hcst/nmme_precip_hcst_Apric_6-8_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Apric_6-8_1991-2020.txt",
+   "bytes": 22361052,
+   "sha256": "ba85d8e1af57803cc5125ba7d5a37d1047b7123be3585c0d4e2ddbe397e0ed20"
+  },
+  "hcst/nmme_precip_hcst_Apric_7-9_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Apric_7-9_1991-2020.txt",
+   "bytes": 22339803,
+   "sha256": "0cdf6173f95a0b971e7aad47e22857d55ef3b41052ce6184fbd2b6bd22964911"
+  },
+  "hcst/nmme_precip_hcst_Apric_8-10_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Apric_8-10_1991-2020.txt",
+   "bytes": 22291249,
+   "sha256": "2cc4962a27ed88ffb7a16880088b4c9beea07fa75fa0fa8f7a9a1692ac9f3c87"
+  },
+  "hcst/nmme_precip_hcst_Apric_9-11_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Apric_9-11_1991-2020.txt",
+   "bytes": 22266056,
+   "sha256": "cd913617b998c1677b6cc4bd2e7e92fd1ac6e995f5bfb622aaa8cff916d87c3f"
+  },
+  "hcst/nmme_precip_hcst_Augic_1-3_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Augic_1-3_1992-2021.txt",
+   "bytes": 22421077,
+   "sha256": "3b0550feb53b5e2782ad3f944da3bf80028fb2d05662dcc50c301335b5ffaef1"
+  },
+  "hcst/nmme_precip_hcst_Augic_10-12_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Augic_10-12_1991-2020.txt",
+   "bytes": 22359534,
+   "sha256": "542c7e62b0081da78e2ff2fcf4845cd1a044a309141b7650109b9f0dd034b6cc"
+  },
+  "hcst/nmme_precip_hcst_Augic_11-1_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Augic_11-1_1991-2021.txt",
+   "bytes": 22412774,
+   "sha256": "0031dee13bc17753fd9660c963a0522c199754315e1377836e520db2c59006bc"
+  },
+  "hcst/nmme_precip_hcst_Augic_12-2_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Augic_12-2_1991-2021.txt",
+   "bytes": 22428451,
+   "sha256": "567c0acfa270a4f0b3d2cb05a5ffe6cfa5e88080bc9486bcfe488fe190465164"
+  },
+  "hcst/nmme_precip_hcst_Augic_2-4_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Augic_2-4_1992-2021.txt",
+   "bytes": 22389104,
+   "sha256": "484827df13d999de4e83372efe8295fb40c79f827f1fec997e1775ccd173c2db"
+  },
+  "hcst/nmme_precip_hcst_Augic_9-11_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Augic_9-11_1991-2020.txt",
+   "bytes": 22292010,
+   "sha256": "f54c1eb03a1105ffa4545ae4c0502e8d98b73247fa2cc353897cfc5cdfd4e5f1"
+  },
+  "hcst/nmme_precip_hcst_Decic_1-3_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Decic_1-3_1992-2021.txt",
+   "bytes": 22433135,
+   "sha256": "730aca4d76159cdeab0faeae96b6d2e33fe8ae1aa403e0f3e09df2e157ba6239"
+  },
+  "hcst/nmme_precip_hcst_Decic_2-4_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Decic_2-4_1992-2021.txt",
+   "bytes": 22391552,
+   "sha256": "b8e85b40b5f9b77fe994f9119673e451520b1c8c24a5dc5a4b8f48636bc89292"
+  },
+  "hcst/nmme_precip_hcst_Decic_3-5_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Decic_3-5_1992-2021.txt",
+   "bytes": 22304843,
+   "sha256": "92219c179957f8244035698409eed6d9dde9439f3c7aa7dad05105e83866dd93"
+  },
+  "hcst/nmme_precip_hcst_Decic_4-6_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Decic_4-6_1992-2021.txt",
+   "bytes": 22310894,
+   "sha256": "717ee2e2eb2e6dd3763f6359b894bb57fa6b0218d84944cf725e637893184e18"
+  },
+  "hcst/nmme_precip_hcst_Decic_5-7_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Decic_5-7_1992-2021.txt",
+   "bytes": 22360163,
+   "sha256": "6e0216b5a2c2586d6ee1dfe25499be4f3e56332ef726c4b7dc75b90850e50fdb"
+  },
+  "hcst/nmme_precip_hcst_Decic_6-8_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Decic_6-8_1992-2021.txt",
+   "bytes": 22337126,
+   "sha256": "c55e45d487db8f00d561458e88b750838b2d6b7d1ccba92e656b35c09fe24cc1"
+  },
+  "hcst/nmme_precip_hcst_Janic_2-4_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Janic_2-4_1991-2020.txt",
+   "bytes": 22405002,
+   "sha256": "75e77e088addaf3c241340345207e19194ed6843949895a49ba060629dfda689"
+  },
+  "hcst/nmme_precip_hcst_Janic_3-5_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Janic_3-5_1991-2020.txt",
+   "bytes": 22314843,
+   "sha256": "6084527c754c80a01e4a0d1771cb9b4e8864559877749a4d44837960e9ca074d"
+  },
+  "hcst/nmme_precip_hcst_Janic_4-6_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Janic_4-6_1991-2020.txt",
+   "bytes": 22319717,
+   "sha256": "496ba997d02f76afee481b38d24841fbc1182669e89a783af3cc0ab6f34f8601"
+  },
+  "hcst/nmme_precip_hcst_Janic_5-7_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Janic_5-7_1991-2020.txt",
+   "bytes": 22368424,
+   "sha256": "6c9e600a6b629c6ec1f96a1ecc29815daaa8db78e645a084c1ea26df64687636"
+  },
+  "hcst/nmme_precip_hcst_Janic_6-8_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Janic_6-8_1991-2020.txt",
+   "bytes": 22344243,
+   "sha256": "68ee001573347601575a6bc25f26e1a5a082d6c094a0e527b074252d66899ada"
+  },
+  "hcst/nmme_precip_hcst_Janic_7-9_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Janic_7-9_1991-2020.txt",
+   "bytes": 22330381,
+   "sha256": "bad13582e143cfbe284708b0dcf76f9ca98b3fc5d5f39953acdc5214a8f306ca"
+  },
+  "hcst/nmme_precip_hcst_Julic_1-3_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Julic_1-3_1992-2021.txt",
+   "bytes": 22421459,
+   "sha256": "48e36619a807d7c6a6ba66ca181890e192465414c918db66e2a1f2b29706d6e5"
+  },
+  "hcst/nmme_precip_hcst_Julic_10-12_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Julic_10-12_1991-2020.txt",
+   "bytes": 22355030,
+   "sha256": "a0846227c7c003845185f87292034b31a1151c5fb74d06cdd2b0b51c137002a9"
+  },
+  "hcst/nmme_precip_hcst_Julic_11-1_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Julic_11-1_1991-2021.txt",
+   "bytes": 22406556,
+   "sha256": "1a2f460c8ca38803d2f59ffde82152a7ef70ea6af582c8c2a57488f778b26543"
+  },
+  "hcst/nmme_precip_hcst_Julic_12-2_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Julic_12-2_1991-2021.txt",
+   "bytes": 22424077,
+   "sha256": "decd6c6744bd6268cd64c98eaf08c3c0e97de705e6fe3187bc47f350d395b6de"
+  },
+  "hcst/nmme_precip_hcst_Julic_8-10_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Julic_8-10_1991-2020.txt",
+   "bytes": 22308779,
+   "sha256": "3f384529ec032c5449422d24639d96735249bb19b44da886ab9875f029ccf790"
+  },
+  "hcst/nmme_precip_hcst_Julic_9-11_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Julic_9-11_1991-2020.txt",
+   "bytes": 22296107,
+   "sha256": "a90212b9d1865550e2b793a4aa393468d5a19009e5d55dc11f06aa124c325a8f"
+  },
+  "hcst/nmme_precip_hcst_Junic_10-12_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Junic_10-12_1991-2020.txt",
+   "bytes": 22356111,
+   "sha256": "a171dd23d57e921c079af6abb7de3e9e2c09b914e45fd498bd6f44c7dd6bc50a"
+  },
+  "hcst/nmme_precip_hcst_Junic_11-1_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Junic_11-1_1991-2021.txt",
+   "bytes": 22405144,
+   "sha256": "2fb4eeaf9ab3078cb954434c1fa51067cac23212fedc38b3e5aaa7e0bb97c1ae"
+  },
+  "hcst/nmme_precip_hcst_Junic_12-2_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Junic_12-2_1991-2021.txt",
+   "bytes": 22425083,
+   "sha256": "36a995c5c76d63579f643c0ede7b4b6c02d2ddfb1d6f85b3a8bf1bd0b87f255c"
+  },
+  "hcst/nmme_precip_hcst_Junic_7-9_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Junic_7-9_1991-2020.txt",
+   "bytes": 22352956,
+   "sha256": "dc2aa65c60b32407e3459acca15ae2627b39b66cc139d495c9229b7bd285c1ca"
+  },
+  "hcst/nmme_precip_hcst_Junic_8-10_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Junic_8-10_1991-2020.txt",
+   "bytes": 22309513,
+   "sha256": "2e48ce02e13d545d31b8f8832a524b7d38962c3f5d739e999e8c46db7957f064"
+  },
+  "hcst/nmme_precip_hcst_Junic_9-11_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Junic_9-11_1991-2020.txt",
+   "bytes": 22293059,
+   "sha256": "00490db249dd67aa9bc9cf6773302e284ab8c321449412d31de2446f28a15063"
+  },
+  "hcst/nmme_precip_hcst_Maric_4-6_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Maric_4-6_1991-2020.txt",
+   "bytes": 22341667,
+   "sha256": "4e6c3b1129679712f3c971d682f8773146c27765dd281df57895bb1609af581e"
+  },
+  "hcst/nmme_precip_hcst_Maric_5-7_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Maric_5-7_1991-2020.txt",
+   "bytes": 22378879,
+   "sha256": "a8d12a08781124bd533cc81a3e87b37ecdb6c63a8911ba7df5bd7330da64ed81"
+  },
+  "hcst/nmme_precip_hcst_Maric_6-8_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Maric_6-8_1991-2020.txt",
+   "bytes": 22344190,
+   "sha256": "96c5a5308b6e3d4a952ee5dfc57a2d96d3151fe91b5454db0abf10022e3f78dc"
+  },
+  "hcst/nmme_precip_hcst_Maric_7-9_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Maric_7-9_1991-2020.txt",
+   "bytes": 22328884,
+   "sha256": "b757bfb0e5312fa5cc7dd83e2a9c54d0cfb9c26b6339d0ad4e36a595f885d9c1"
+  },
+  "hcst/nmme_precip_hcst_Maric_8-10_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Maric_8-10_1991-2020.txt",
+   "bytes": 22282870,
+   "sha256": "679ed362b4fedd8b958b801dc0a5892772f948ee06a4505c4594e7c8382fd790"
+  },
+  "hcst/nmme_precip_hcst_Maric_9-11_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Maric_9-11_1991-2020.txt",
+   "bytes": 22268995,
+   "sha256": "999be3eae003bfef8b8ecd8872dbfc757a2aafdb9845449ef35cdda483c20e6c"
+  },
+  "hcst/nmme_precip_hcst_Mayic_10-12_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Mayic_10-12_1991-2020.txt",
+   "bytes": 22345399,
+   "sha256": "49bbd9e0fbf1c9d8f8d8d1f0f5bc2836610ff42d3a76898f866ae9e8ab3bb980"
+  },
+  "hcst/nmme_precip_hcst_Mayic_11-1_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Mayic_11-1_1991-2021.txt",
+   "bytes": 22400530,
+   "sha256": "ed75135a94660d5b485e2eedc95e3e517f6adae76f2a58640eb2f735ef26e11f"
+  },
+  "hcst/nmme_precip_hcst_Mayic_6-8_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Mayic_6-8_1991-2020.txt",
+   "bytes": 22362877,
+   "sha256": "24fc6c19315ee50c52140323b6cc721cc3f0b0a16a560723df500fe85b5dcdf0"
+  },
+  "hcst/nmme_precip_hcst_Mayic_7-9_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Mayic_7-9_1991-2020.txt",
+   "bytes": 22345517,
+   "sha256": "054607464eafa12168397040e75338637b4bded5dff8cbf68a9583c1d103a4b5"
+  },
+  "hcst/nmme_precip_hcst_Mayic_8-10_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Mayic_8-10_1991-2020.txt",
+   "bytes": 22300037,
+   "sha256": "d9dcf8dbf29d37371f39a4ddbb7be30d5b543f5b0c335c571b97e93e90260092"
+  },
+  "hcst/nmme_precip_hcst_Mayic_9-11_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Mayic_9-11_1991-2020.txt",
+   "bytes": 22271840,
+   "sha256": "11dee0195c793ef784a10bd3554a5980a20959e03bb4825826a0deb3bf1b496b"
+  },
+  "hcst/nmme_precip_hcst_Novic_1-3_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_1-3_1992-2021.txt",
+   "bytes": 22404073,
+   "sha256": "2d8c8d8b2b9a1082e8f9d0acd422ee8ad11f4111867ffaa86983f12c715e5d3c"
+  },
+  "hcst/nmme_precip_hcst_Novic_12-2_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_12-2_1991-2021.txt",
+   "bytes": 22423150,
+   "sha256": "cc98e87eceff26d36237112f2aabf6cd7fb26569a6a806b8589b610439ff7580"
+  },
+  "hcst/nmme_precip_hcst_Novic_2-4_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_2-4_1992-2021.txt",
+   "bytes": 22362821,
+   "sha256": "bece86be5d7ea78137e900279fc3e63c25296a5936a4cc0cb581406234b89ce9"
+  },
+  "hcst/nmme_precip_hcst_Novic_3-5_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_3-5_1992-2021.txt",
+   "bytes": 22281517,
+   "sha256": "128aefee9c6b82b6afa76812c5df62a362582a43eab54e762711468784dfd17e"
+  },
+  "hcst/nmme_precip_hcst_Novic_4-6_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_4-6_1992-2021.txt",
+   "bytes": 22288364,
+   "sha256": "e15d72509ea814743d467c4ad978331ebd0451d605bc6d0ee5bef5ff5776355e"
+  },
+  "hcst/nmme_precip_hcst_Novic_5-7_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_5-7_1992-2021.txt",
+   "bytes": 22332954,
+   "sha256": "2a06b68002d84563c7aab89eaccd08ca6d721b10576a917f979c960497ad06ec"
+  },
+  "hcst/nmme_precip_hcst_Octic_1-3_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Octic_1-3_1992-2021.txt",
+   "bytes": 22418962,
+   "sha256": "4e1f4ba3ecbdcd26f7068a67510106453b7118a143ef655b4ad0ffa9abcd4937"
+  },
+  "hcst/nmme_precip_hcst_Octic_11-1_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Octic_11-1_1991-2021.txt",
+   "bytes": 22411208,
+   "sha256": "38d16cbdc5974eac117494cd2b1849d95b6d024c00531cc0e04113f071b01cb7"
+  },
+  "hcst/nmme_precip_hcst_Octic_12-2_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Octic_12-2_1991-2021.txt",
+   "bytes": 22432309,
+   "sha256": "8f7a9b87b0149a748d42243d2313e2ebaea8d8ec546e90044ec0f4d36567b0fe"
+  },
+  "hcst/nmme_precip_hcst_Octic_2-4_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Octic_2-4_1992-2021.txt",
+   "bytes": 22384486,
+   "sha256": "fb6147ce39ac51bb6fa31048a6e1a38f4bb3ed6f368bcad665119d5de37a7628"
+  },
+  "hcst/nmme_precip_hcst_Octic_3-5_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Octic_3-5_1992-2021.txt",
+   "bytes": 22297580,
+   "sha256": "cd02f8625f57948d48b7439c77d27c5d70b7000dc732511c6bf5b2dee894ad36"
+  },
+  "hcst/nmme_precip_hcst_Octic_4-6_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Octic_4-6_1992-2021.txt",
+   "bytes": 22300193,
+   "sha256": "ec7b694e6fec053e7e1fe2fe74098162e0423d4be5227ba11d5d2c412b7cfe08"
+  },
+  "hcst/nmme_precip_hcst_Sepic_1-3_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Sepic_1-3_1992-2021.txt",
+   "bytes": 22421745,
+   "sha256": "fbcd9bb4ff30ecbd84982fc029203e1259e2c8d67c67789e8643722864031287"
+  },
+  "hcst/nmme_precip_hcst_Sepic_10-12_1991-2020.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Sepic_10-12_1991-2020.txt",
+   "bytes": 22363537,
+   "sha256": "45b35dad850e7167f7b4cfe4f49b6dc3cf57e847beda4aaa93cc74be30235b35"
+  },
+  "hcst/nmme_precip_hcst_Sepic_11-1_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Sepic_11-1_1991-2021.txt",
+   "bytes": 22413550,
+   "sha256": "4f5ba33a50c6dfad7389fbe18167001aa3d6485007bb04830fbab2dacb71e8c1"
+  },
+  "hcst/nmme_precip_hcst_Sepic_12-2_1991-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Sepic_12-2_1991-2021.txt",
+   "bytes": 22432149,
+   "sha256": "fefa5ad6b2f057b10757055e6b450cf4d640765622534515871d8a84040df26f"
+  },
+  "hcst/nmme_precip_hcst_Sepic_2-4_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Sepic_2-4_1992-2021.txt",
+   "bytes": 22388684,
+   "sha256": "0a99cbc350583bf0f3c37baa9335e5d789148c304d3dbd5a81e86b668c4897f6"
+  },
+  "hcst/nmme_precip_hcst_Sepic_3-5_1992-2021.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Sepic_3-5_1992-2021.txt",
+   "bytes": 22301325,
+   "sha256": "6c88361984cc0fa325079b4dc3938ffc21263077d60c6e3c7d21d4158e40ae24"
+  },
+  "fcst/nmme_precip_fcst_Apric_10-12_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Apric_10-12_2026-2026.txt",
+   "bytes": 740141,
+   "sha256": "da14a4e63c567507807cf3396cd7f677caee82f41062df43879444a7ef6a61ef"
+  },
+  "fcst/nmme_precip_fcst_Apric_5-7_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Apric_5-7_2026-2026.txt",
+   "bytes": 745737,
+   "sha256": "f3a37ca9c503b684c561980b6f1633b24a8d1792e49250477bba856d19cb08ea"
+  },
+  "fcst/nmme_precip_fcst_Apric_6-8_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Apric_6-8_2026-2026.txt",
+   "bytes": 744554,
+   "sha256": "8ad649f3fa0d57860461a71c44f9df9c63959f42cfeb4b0e99571b445a64923a"
+  },
+  "fcst/nmme_precip_fcst_Apric_7-9_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Apric_7-9_2026-2026.txt",
+   "bytes": 744196,
+   "sha256": "e64250ea233256988d03d7c0b099d282b5f623bd7174843e05de59132050c8ed"
+  },
+  "fcst/nmme_precip_fcst_Apric_8-10_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Apric_8-10_2026-2026.txt",
+   "bytes": 741900,
+   "sha256": "33b82c540a5a0f50b5dec4380a81c00761d1b3a30cad5864d1cfd2d067b55339"
+  },
+  "fcst/nmme_precip_fcst_Apric_9-11_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Apric_9-11_2026-2026.txt",
+   "bytes": 740314,
+   "sha256": "cd3cd02103967a218a9ea16ebf51aa6fb55ce70d3951866beb35b89d9726a67a"
+  },
+  "fcst/nmme_precip_fcst_Augic_1-3_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Augic_1-3_2027-2027.txt",
+   "bytes": 747595,
+   "sha256": "d849c5368e49f32f512b793134919edce3a19fef6cdca185a504ee58575da002"
+  },
+  "fcst/nmme_precip_fcst_Augic_10-12_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Augic_10-12_2026-2026.txt",
+   "bytes": 741769,
+   "sha256": "c167d791d43740a117cd0a7766796cb2192fa6dc0f68d18910c494ae7c866722"
+  },
+  "fcst/nmme_precip_fcst_Augic_11-1_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Augic_11-1_2026-2027.txt",
+   "bytes": 744785,
+   "sha256": "cd998a435c47d2447f8afc702a90c2d86f1ee4b99c6d85858ba99174001a481e"
+  },
+  "fcst/nmme_precip_fcst_Augic_12-2_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Augic_12-2_2026-2027.txt",
+   "bytes": 747030,
+   "sha256": "8bfe6c89990bdc35a51c899623cadc130c2fafa01958dea4c5919b746faffb46"
+  },
+  "fcst/nmme_precip_fcst_Augic_2-4_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Augic_2-4_2027-2027.txt",
+   "bytes": 746147,
+   "sha256": "0fd91d9c813aad20edaddb01ffa1040dddc946416b435b2c93772fc843a27ccb"
+  },
+  "fcst/nmme_precip_fcst_Augic_9-11_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Augic_9-11_2026-2026.txt",
+   "bytes": 740841,
+   "sha256": "913255c09817bb00a4b8df24df3110d95ede0e5677a0a9aabb5b8dd2b5c3146b"
+  },
+  "fcst/nmme_precip_fcst_Decic_1-3_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Decic_1-3_2026-2026.txt",
+   "bytes": 747760,
+   "sha256": "270ff181327f9b887094c1a1c5cfb1fcd3d2b3683606c8c90190a1e51c28a386"
+  },
+  "fcst/nmme_precip_fcst_Decic_2-4_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Decic_2-4_2026-2026.txt",
+   "bytes": 745506,
+   "sha256": "fb2c3e7cd9a1d6a1e1aa02a4cedec540eb58983e76edcf5cee54066ac062f62d"
+  },
+  "fcst/nmme_precip_fcst_Decic_3-5_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Decic_3-5_2026-2026.txt",
+   "bytes": 742656,
+   "sha256": "1a58a112861a979c9c1945ea4d02afd24a81650d4c964609538d525eaa2d5ac1"
+  },
+  "fcst/nmme_precip_fcst_Decic_4-6_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Decic_4-6_2026-2026.txt",
+   "bytes": 743087,
+   "sha256": "c8bab98b4972c6438b68a7d7e73aed55bae6e8018920d34fdc642589888f10be"
+  },
+  "fcst/nmme_precip_fcst_Decic_5-7_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Decic_5-7_2026-2026.txt",
+   "bytes": 744120,
+   "sha256": "50f0709eeea20801687f34eae07112478f905b442a693ccf147b65adedb0fc01"
+  },
+  "fcst/nmme_precip_fcst_Decic_6-8_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Decic_6-8_2026-2026.txt",
+   "bytes": 744670,
+   "sha256": "9ad9c333fbb97788b3e6468fd3c76f15f69468fc7a79ee174e7152bfba8b4294"
+  },
+  "fcst/nmme_precip_fcst_Janic_2-4_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Janic_2-4_2026-2026.txt",
+   "bytes": 746143,
+   "sha256": "5a67ccd190884aa64a1ea03aed9dd144fc41a0984a23a7ba30d2877c3673f84c"
+  },
+  "fcst/nmme_precip_fcst_Janic_3-5_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Janic_3-5_2026-2026.txt",
+   "bytes": 743105,
+   "sha256": "332ca43abd37883b2bed33bd6d9a001c5c508ea96642fcedfc5ab1258d04d451"
+  },
+  "fcst/nmme_precip_fcst_Janic_4-6_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Janic_4-6_2026-2026.txt",
+   "bytes": 743392,
+   "sha256": "6bdfafe0e156bb6dff3a4ecfc1b5e3f9f2ee73c4f2db32e31644dd74d48b244e"
+  },
+  "fcst/nmme_precip_fcst_Janic_5-7_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Janic_5-7_2026-2026.txt",
+   "bytes": 744126,
+   "sha256": "7ddb31b3e1722c1fb2ea8f400fd06dfc2c03dd7b56f07e6e6fca77012135f4b7"
+  },
+  "fcst/nmme_precip_fcst_Janic_6-8_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Janic_6-8_2026-2026.txt",
+   "bytes": 744099,
+   "sha256": "627c614080128908c3f081cc6a2ddb151be013cca1ca725e145fc04640835f36"
+  },
+  "fcst/nmme_precip_fcst_Janic_7-9_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Janic_7-9_2026-2026.txt",
+   "bytes": 743578,
+   "sha256": "65fdb0a038fef9c4b57c5a0fdd2322b589949aaf70da9e26ad2948fae8c54987"
+  },
+  "fcst/nmme_precip_fcst_Julic_1-3_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Julic_1-3_2027-2027.txt",
+   "bytes": 747549,
+   "sha256": "639bc6a62bcdb6a969e3f69977c3b3ac48cd980c5db2665b450a23da4cf71433"
+  },
+  "fcst/nmme_precip_fcst_Julic_10-12_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Julic_10-12_2026-2026.txt",
+   "bytes": 741938,
+   "sha256": "9817b50b77f88de9f3c47f2d0f906afa3bdb676a7446d7f136be6e2cecffb689"
+  },
+  "fcst/nmme_precip_fcst_Julic_11-1_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Julic_11-1_2026-2027.txt",
+   "bytes": 745232,
+   "sha256": "a5c14016767733691065c6b798c1ad6289ae9c8e83c6567cbb8cfc499880b6f4"
+  },
+  "fcst/nmme_precip_fcst_Julic_12-2_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Julic_12-2_2026-2027.txt",
+   "bytes": 747246,
+   "sha256": "ae5d2d6c073e441251ed21119bcd4c7afcb2a740d772e22fbc96097bc06e4e76"
+  },
+  "fcst/nmme_precip_fcst_Julic_8-10_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Julic_8-10_2026-2026.txt",
+   "bytes": 742084,
+   "sha256": "93256e8036e0e894cd723e6cfcb0669b4f5ab7716edf31a0a67736f8cb3b86ad"
+  },
+  "fcst/nmme_precip_fcst_Julic_9-11_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Julic_9-11_2026-2026.txt",
+   "bytes": 740516,
+   "sha256": "c7f9eb71bfbe1ecea672e428a3e4f3f24c6a07b0ed9fd3c6066c4f8787a5c89a"
+  },
+  "fcst/nmme_precip_fcst_Junic_10-12_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Junic_10-12_2026-2026.txt",
+   "bytes": 742004,
+   "sha256": "6efa6be1c8826d270a25530f7a7fd1e05d596c4dbfb2c762ba7a32422223c2d9"
+  },
+  "fcst/nmme_precip_fcst_Junic_11-1_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Junic_11-1_2026-2027.txt",
+   "bytes": 744953,
+   "sha256": "a8b9bca1b64814e5daa9514009f565d799ab36f09a56cfca5f62e2eab922f643"
+  },
+  "fcst/nmme_precip_fcst_Junic_12-2_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Junic_12-2_2026-2027.txt",
+   "bytes": 746839,
+   "sha256": "1e8c62e7cc68493e4d276ed4c7fea0dc2d037b0171660a75eaac2d5463140064"
+  },
+  "fcst/nmme_precip_fcst_Junic_7-9_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Junic_7-9_2026-2026.txt",
+   "bytes": 744716,
+   "sha256": "e8d6d851708c9da71b631e0b7749e31bd5488370dd2d15d24ba680035978d40e"
+  },
+  "fcst/nmme_precip_fcst_Junic_8-10_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Junic_8-10_2026-2026.txt",
+   "bytes": 742228,
+   "sha256": "22e5b1ea5f495220508d0bb9437eb12a5380d91b030513d0074abd2509339bdc"
+  },
+  "fcst/nmme_precip_fcst_Junic_9-11_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Junic_9-11_2026-2026.txt",
+   "bytes": 740767,
+   "sha256": "b79529e3b18bb2cc3a06f0a9cfaaf28b54ea17e24431c13a90bf15deeed99438"
+  },
+  "fcst/nmme_precip_fcst_Maric_4-6_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Maric_4-6_2026-2026.txt",
+   "bytes": 743969,
+   "sha256": "1aafcb648d0edf47d45f1db345bb263fab676b78b2100ca4ea6a2dc8c8ab968a"
+  },
+  "fcst/nmme_precip_fcst_Maric_5-7_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Maric_5-7_2026-2026.txt",
+   "bytes": 745274,
+   "sha256": "16850dfa611eaf019e2ac924dee5d397deb72dd29f3358a7b85385024c7c2fda"
+  },
+  "fcst/nmme_precip_fcst_Maric_6-8_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Maric_6-8_2026-2026.txt",
+   "bytes": 743753,
+   "sha256": "1148f3d45406f1819f085adbc1118bc7d6a9360d9eefbd29a0671e65beb496bd"
+  },
+  "fcst/nmme_precip_fcst_Maric_7-9_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Maric_7-9_2026-2026.txt",
+   "bytes": 743296,
+   "sha256": "b0db6c0ab7452341926493716e00fe2b16a4fa75f069e0f385fd33ecbc4399f9"
+  },
+  "fcst/nmme_precip_fcst_Maric_8-10_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Maric_8-10_2026-2026.txt",
+   "bytes": 741440,
+   "sha256": "5e2547a27ca4b84238da129469b4321d5a4ade6fd25476c4ee92bf0c19f46eb9"
+  },
+  "fcst/nmme_precip_fcst_Maric_9-11_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Maric_9-11_2026-2026.txt",
+   "bytes": 740459,
+   "sha256": "0de3a2c05f79440512a894e9d74cf9b79484282322a174097e9b49dbb462a07a"
+  },
+  "fcst/nmme_precip_fcst_Mayic_10-12_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Mayic_10-12_2026-2026.txt",
+   "bytes": 740741,
+   "sha256": "58dd89e8e0bf483b6cfb2dee91ff290ca7340db5f2d1513f2dffe7a2799ce0c1"
+  },
+  "fcst/nmme_precip_fcst_Mayic_11-1_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Mayic_11-1_2026-2027.txt",
+   "bytes": 744238,
+   "sha256": "2e384bec9124cba7c4b8ced1ba11266d51ec81964e30995a2feee06215941091"
+  },
+  "fcst/nmme_precip_fcst_Mayic_6-8_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Mayic_6-8_2026-2026.txt",
+   "bytes": 744698,
+   "sha256": "78ec7029709ef4fe1a592e1496abef077e7a757db6c00e933817834af5a68aed"
+  },
+  "fcst/nmme_precip_fcst_Mayic_7-9_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Mayic_7-9_2026-2026.txt",
+   "bytes": 744093,
+   "sha256": "408710115d2642ff705155e1a418bfff8a28da34cc9f08ca0252414031bc545e"
+  },
+  "fcst/nmme_precip_fcst_Mayic_8-10_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Mayic_8-10_2026-2026.txt",
+   "bytes": 741848,
+   "sha256": "0545c615974153eeb848e555329be4ae362f2bbc02c22269128de5821e2fc9e0"
+  },
+  "fcst/nmme_precip_fcst_Mayic_9-11_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Mayic_9-11_2026-2026.txt",
+   "bytes": 740272,
+   "sha256": "f5206e8999ffaa89141337eb8025c1d1993d37635919ef1e36e03ca2663958e0"
+  },
+  "fcst/nmme_precip_fcst_Novic_1-3_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_1-3_2027-2027.txt",
+   "bytes": 747936,
+   "sha256": "496c341b93ecf87c56761de2ff29194089ed2c51617f3d90a4e8c56122e5ac7d"
+  },
+  "fcst/nmme_precip_fcst_Novic_12-2_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_12-2_2026-2027.txt",
+   "bytes": 747719,
+   "sha256": "b1e8c9fcb3a0aa1293753e3da8e74e1fadc8f0777a49727a83ae12920f8526e9"
+  },
+  "fcst/nmme_precip_fcst_Novic_2-4_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_2-4_2027-2027.txt",
+   "bytes": 746031,
+   "sha256": "78f48c49c7ebd369210f4096119bc6ad2ed24480cf4af7b3379a18c376a1f062"
+  },
+  "fcst/nmme_precip_fcst_Novic_3-5_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_3-5_2027-2027.txt",
+   "bytes": 742505,
+   "sha256": "0c504ea68307a240beddf578a32f4734fd88d2a5cc5f4ac1ad499fa12c77bc55"
+  },
+  "fcst/nmme_precip_fcst_Novic_4-6_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_4-6_2027-2027.txt",
+   "bytes": 742480,
+   "sha256": "04eaccd866811c7be0be958a1adee1720688e428732b2e7d3cdd62b44820af89"
+  },
+  "fcst/nmme_precip_fcst_Novic_5-7_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_5-7_2027-2027.txt",
+   "bytes": 743562,
+   "sha256": "094ecfd6aa1df919f1fcfed24278ddc57c918aeda915c4163804b2b18cea6f53"
+  },
+  "fcst/nmme_precip_fcst_Octic_1-3_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Octic_1-3_2027-2027.txt",
+   "bytes": 747676,
+   "sha256": "469a26a24b965a512058a15f6c1644589c2d297dd30f5007acdeff63724bf00b"
+  },
+  "fcst/nmme_precip_fcst_Octic_11-1_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Octic_11-1_2026-2027.txt",
+   "bytes": 745501,
+   "sha256": "d47dde117818c3b91804705adc59c37f30f0703d9550dff538c6fb47b689090f"
+  },
+  "fcst/nmme_precip_fcst_Octic_12-2_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Octic_12-2_2026-2027.txt",
+   "bytes": 747794,
+   "sha256": "ea538afcebe14287eae8cd22c93897110a500197eb3e91149d88e96daf6b7a05"
+  },
+  "fcst/nmme_precip_fcst_Octic_2-4_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Octic_2-4_2027-2027.txt",
+   "bytes": 745528,
+   "sha256": "32672b69f98be1ae826c2a7c7b68e889a4e44c4b1dc78270a0e1aaa480f29a8e"
+  },
+  "fcst/nmme_precip_fcst_Octic_3-5_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Octic_3-5_2027-2027.txt",
+   "bytes": 742119,
+   "sha256": "4f392f3c8455a822646d9e1d88c8e422fda59a2c8f67717df5cf2784bbdb9694"
+  },
+  "fcst/nmme_precip_fcst_Octic_4-6_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Octic_4-6_2027-2027.txt",
+   "bytes": 741973,
+   "sha256": "e2d7b5248a9f6fd90c19936f62996c336f0499fd732510d215cf6b1966afe15a"
+  },
+  "fcst/nmme_precip_fcst_Sepic_1-3_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Sepic_1-3_2027-2027.txt",
+   "bytes": 747628,
+   "sha256": "a2f08273c6fb223e7dc749d8bb13d786f23f5f62f56922e879a834c9e9ffb717"
+  },
+  "fcst/nmme_precip_fcst_Sepic_10-12_2026-2026.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Sepic_10-12_2026-2026.txt",
+   "bytes": 743046,
+   "sha256": "412fdddfe0ab2d2b59482076afb6e8609632afcd7a51b8c201ce0d49c939ce4c"
+  },
+  "fcst/nmme_precip_fcst_Sepic_11-1_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Sepic_11-1_2026-2027.txt",
+   "bytes": 745498,
+   "sha256": "e595476ee38d9d889895f80aefca4afebaf0aa052254f159ff15c014c13d1e54"
+  },
+  "fcst/nmme_precip_fcst_Sepic_12-2_2026-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Sepic_12-2_2026-2027.txt",
+   "bytes": 747679,
+   "sha256": "f2ed594303f80ecf81fd3d90d7941896f501dbf7459d3cf760edd8f509ab741f"
+  },
+  "fcst/nmme_precip_fcst_Sepic_2-4_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Sepic_2-4_2027-2027.txt",
+   "bytes": 745901,
+   "sha256": "0572ef9ee8023b65193f80bbc0ccbe5482685072ba9fd832da82d94dfd00ff9b"
+  },
+  "fcst/nmme_precip_fcst_Sepic_3-5_2027-2027.txt": {
+   "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Sepic_3-5_2027-2027.txt",
+   "bytes": 742228,
+   "sha256": "04253bba52c5f7fb548d34632b792b67942dd73153ad9192d75e1d57503e4ca7"
+  }
+ },
+ "chirps": {
+  "files": [],
+  "months": [
+   "1981-01",
+   "2025-02"
+  ]
+ },
+ "cropland_mask": {
+  "file": "stable_cropland_v1.npz",
+  "sha256": "bb9b768a69b03d8ef90bd77512846dbf8d1988dfa301a06cb8f48c8b7395053a"
+ },
+ "method": "AEO seasonal precipitation outlook over stable cropland — an experimental, verified test.\n\nQuestion: can the NMME multi-model seasonal forecast say whether the next 3-month rainfall over\neach wilaya's stable cropland will be below, near or above normal — better than climatology?\n\nInputs:\n  * NMME ensemble-mean 3-month precipitation, 1° grid, hindcasts 1991–2021 and the latest forecasts\n    (NOAA CPC, CPT format; fetch_nmme.py).\n  * Observed precipitation: CHIRPS v3.0 monthly, 0.05° (raw files in D:/CHIRPS/chirps_monthly or\n    $AEO_CHIRPS_MONTHLY; read only).\n  * AEO stable cropland v1 (GACED30, cropland in ≥ 20 of 25 years), as area weights on both grids.\n\nMethod, for each wilaya with at least 10,000 ha of stable cropland (and for all stable cropland in\nAlgeria), each start month (12) and lead (6 target seasons):\n  1. x = forecast seasonal mean precipitation over the wilaya's stable cropland (1° cells weighted by\n     their stable-cropland area); y = observed CHIRPS seasonal total over the same cropland.\n  2. Leave-one-year-out cross-validation: for each year, fit y = a + b·x on the other years\n     (b < 0 is not credible and gives the climatological forecast), predict ŷ with the residual\n     standard deviation s, and derive tercile probabilities P(below) = Φ((q₁ − ŷ)/s),\n     P(above) = 1 − Φ((q₂ − ŷ)/s), where q₁, q₂ are the other years' observed terciles.\n  3. Scores: ranked probability skill score against equal chances (RPSS), ROC area for\n     below-normal, Pearson r of x and y with a one-sided p-value.\n  4. A combination is locally skilful when RPSS > 0, ROC area > 0.5 and p < 0.05. Because about 5 %\n     of the thousands of combinations pass by chance, a start month × lead is usable only if at least\n     20 % of the wilayas pass (field significance, 4× the chance rate) and the lead is ≤ 3 months;\n     an outlook is published only for locally skilful wilayas of a usable start month × lead.\n  5. Current outlook: the regression fitted on all hindcast years, applied to the latest forecast.\n     Where the combination is not skilful, the published outlook is \"equal chances\" (33/33/33)\n     with the reason; the raw model signal is still given for transparency.\n\nOutput: public/data/aeo/products/seasonal-outlook/v0.1.0/  (status: experimental)\nUsage:  python scripts/pipelines/outlook/build_outlook.py\n",
+ "qc": [
+  "3036 unit × start × lead combinations verified; 516 locally skilful (17.0 %; about 5 % expected by chance); 338 pass the field-significance rule",
+  "Latest issue 2026-11-01: 15 of 276 unit × target outlooks are skilful",
+  "lead 1: 29 % locally skilful, median RPSS 0.000",
+  "lead 2: 22 % locally skilful, median RPSS 0.000",
+  "lead 3: 22 % locally skilful, median RPSS 0.000",
+  "lead 4: 16 % locally skilful, median RPSS -0.004",
+  "lead 5: 7 % locally skilful, median RPSS -0.002",
+  "lead 6: 6 % locally skilful, median RPSS -0.009"
+ ]
+}

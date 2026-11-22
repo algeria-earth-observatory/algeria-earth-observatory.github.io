@@ -1,0 +1,79 @@
+{
+ "boundary_version": "2026-11-20",
+ "created": "2026-11-22",
+ "product_id": "aeo-dza-reservoirs-deafrica",
+ "title": "Algeria reservoir monitor: monthly water surface area of the main reservoirs (DE Africa Waterbodies, Landsat, 1984–present)",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria (reservoirs ≥ 0.5 km² in Global Dam Watch)",
+ "available_levels": [
+  "admin0"
+ ],
+ "spatial_products_levels": [],
+ "source_product": "Digital Earth Africa Waterbodies (Landsat); Global Dam Watch v1.0",
+ "source_version": "DE Africa Waterbodies (continental service); GDW v1.0",
+ "source_doi": "10.6084/m9.figshare.25988293",
+ "source_license": "CC BY 4.0 (both)",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "monthly": [
+   "1984-04",
+   "2026-11"
+  ]
+ },
+ "spatial_resolution": "Reservoirs (Landsat 30 m water classification, DE Africa)",
+ "units": "km² of water surface; % of the largest monthly area observed since 1984",
+ "formats": [
+  "CSV",
+  "PARQUET",
+  "GeoJSON"
+ ],
+ "processing_code": "scripts/pipelines/reservoirs/build_reservoirs.py",
+ "methodology_url": "/docs/method-reservoirs/",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoirs_points_v1.0.0.csv",
+   "format": "CSV",
+   "level": "points",
+   "role": "statistics",
+   "title": "Algerian reservoirs: GDW attributes and latest Landsat water area, points",
+   "bytes": 8668,
+   "sha256": "6cdd57110c2694dac1e1c907e766d5d252a93dcd0c868e039f46664a6d9ee83e"
+  },
+  {
+   "href": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoirs_points_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "points",
+   "role": "statistics",
+   "title": "Algerian reservoirs: GDW attributes and latest Landsat water area, points",
+   "bytes": 19254,
+   "sha256": "11d24f6bbceb5e8f100ed735077114d84374b53929090ac5d6023343d881c923"
+  },
+  {
+   "href": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoir_area_monthly_points_v1.0.0.csv",
+   "format": "CSV",
+   "level": "points",
+   "role": "statistics",
+   "title": "Monthly reservoir water area (DE Africa Waterbodies, Landsat), points",
+   "bytes": 439415,
+   "sha256": "7f71998750a9d4aac2024da1ae929c097ccc6725962afbdf7f8686c869fea868"
+  },
+  {
+   "href": "/data/aeo/products/reservoirs/v1.0.0/tables/aeo_reservoir_area_monthly_points_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "points",
+   "role": "statistics",
+   "title": "Monthly reservoir water area (DE Africa Waterbodies, Landsat), points",
+   "bytes": 165229,
+   "sha256": "1cafb50ff4bdecf5fcf4d217adf2ea31b5f2e9b99e4b38e4f32d138a9acf2b4c"
+  }
+ ],
+ "web_assets": {
+  "points": "/data/aeo/products/reservoirs/v1.0.0/web/reservoirs.geojson",
+  "series": "/data/aeo/products/reservoirs/v1.0.0/web/series.json"
+ },
+ "qc": [
+  "65 GDW reservoirs ≥ 0.5 km²; 63 matched to DE Africa waterbodies",
+  "Latest months: 2026-07 to 2026-11; median latest % of observed maximum 68"
+ ]
+}

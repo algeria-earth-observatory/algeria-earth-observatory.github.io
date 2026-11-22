@@ -20,13 +20,13 @@ export function loadSpei(level: 'admin0' | 'admin1' | 'admin2', wilaya?: string)
 }
 
 export const SPEI_CLASSES = [
-  { max: -2, label: 'extremely dry', color: '#6b1515' },
-  { max: -1.5, label: 'severely dry', color: '#d03b3b' },
-  { max: -1, label: 'moderately dry', color: '#ee8d81' },
-  { max: 1, label: 'near normal', color: '#f0efec' },
-  { max: 1.5, label: 'moderately wet', color: '#86b6ef' },
-  { max: 2, label: 'very wet', color: '#3987e5' },
-  { max: Infinity, label: 'extremely wet', color: '#0d366b' },
+  { max: -2, label: 'extremely dry', color: '#b2182b' },
+  { max: -1.5, label: 'severely dry', color: '#ef8a62' },
+  { max: -1, label: 'moderately dry', color: '#fddbc7' },
+  { max: 1, label: 'near normal', color: '#f7f7f7' },
+  { max: 1.5, label: 'moderately wet', color: '#d1e5f0' },
+  { max: 2, label: 'very wet', color: '#67a9cf' },
+  { max: Infinity, label: 'extremely wet', color: '#2166ac' },
 ];
 /** McKee et al. (1993) classes: ≤ −2, ≤ −1.5, ≤ −1 dry; < 1 normal; < 1.5, < 2, ≥ 2 wet. */
 export function speiClass(v: number | null) {

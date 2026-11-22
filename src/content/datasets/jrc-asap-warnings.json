@@ -1,0 +1,209 @@
+{
+  "id": "jrc-asap-warnings",
+  "title": "JRC ASAP ten-daily warnings of agricultural vegetation anomalies (sub-national, since 2001)",
+  "description": "Automatic warnings about low or delayed vegetation performance for crops and rangelands, issued every dekad (10 days) for first-level administrative units worldwide by the European Commission Joint Research Centre's ASAP system (Anomaly hotspots of Agricultural Production). Warning levels 1–4 combine rainfall and vegetation-index anomalies during the active growing season; units are also flagged as off season or as having no significant crop/rangeland. The complete history since the last dekad of May 2001 is published as a CSV, with a second-level version for selected countries and the latest warnings as WFS/WMS layers.",
+  "purpose": "Provides an independent, long, dekadal record of agricultural drought warnings for each of Algeria's 48 (pre-2019) wilayas, useful to compare with AEO drought indices and with cereal production statistics.",
+  "domain": [
+    "agriculture",
+    "climate-drought"
+  ],
+  "categories": [
+    "Agricultural drought",
+    "Early warning",
+    "Crop and rangeland condition"
+  ],
+  "keywords": [
+    "ASAP",
+    "JRC",
+    "early warning",
+    "agricultural drought",
+    "crop warnings",
+    "rangeland",
+    "NDVI",
+    "SPI",
+    "dekadal",
+    "GAUL"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "tabular",
+  "provider": {
+    "name": "European Commission, Joint Research Centre (JRC), Food Security unit – ASAP team",
+    "url": "https://agricultural-production-hotspots.ec.europa.eu/"
+  },
+  "creator": "European Commission JRC ASAP team (dataset contact: Felix Rembold)",
+  "source_url": "https://agricultural-production-hotspots.ec.europa.eu/download.php",
+  "documentation_url": "https://agricultural-production-hotspots.ec.europa.eu/files/asap_warning_classification_v_8_0.pdf",
+  "license": {
+    "name": "European Commission reuse notice – reuse authorised provided the source is acknowledged (Commission Decision 2011/833/EU)",
+    "spdx": null,
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011D0833"
+  },
+  "license_notes": "ASAP download page: 'Reuse is authorised, provided the source is acknowledged. The reuse policy of the European Commission is implemented by a Decision of 12 December 2011', followed by a JRC 'as is' disclaimer. The JRC Data Catalogue entry gives the same reuse notice and 'Access conditions: No limitations – anybody can directly and anonymously access the data'. The SPIRITS and CST software on the same page have separate end-user licences (CST: non-commercial only); these do not apply to the warning data.",
+  "citation": "Rembold, Felix (2026): Ten-daily automatic warnings about agricultural vegetation anomalies. European Commission, Joint Research Centre [Dataset]. https://doi.org/10.2905/JRC.KC71YCG. PID: http://data.europa.eu/89h/jrc-10112-10001",
+  "doi": "10.2905/JRC.KC71YCG",
+  "references": [
+    {
+      "citation": "Rembold, F., Meroni, M., Urbano, F., Csak, G., Kerdiles, H., Perez-Hoyos, A., Lemoine, G., Leo, O., and Negre, T. (2019). ASAP: A new global early warning system to detect anomaly hot spots of agricultural production for food security analysis. Agricultural Systems, 168, 247–257.",
+      "doi": "10.1016/j.agsy.2018.07.002",
+      "url": null
+    },
+    {
+      "citation": "European Commission: Joint Research Centre, Meroni, M., Rembold, F., Vojnovic, P., et al. (2025). The warning classification scheme of ASAP – Anomaly hot Spots of Agricultural Production, v8.0. Publications Office of the European Union, Luxembourg, JRC140585.",
+      "doi": "10.2760/6814458",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global, at ASAP first-level units (gaul1_asap, adapted from FAO GAUL); join on asap1_id with the gaul1_asap_v06 shapefile. Algeria (asap0_id 54) has 48 units named after the 48 wilayas of the pre-2019 division, for example Adrar, Tipaza, Setif and Tamanrasset. Users filter the global CSV by country.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2001-05-21",
+    "end": null,
+    "ongoing": true,
+    "frequency": "dekadal (10-day)",
+    "description": "From the last dekad of May 2001 to present: 917 dekads from 2001-05-21 to 2026-11-01 in the file downloaded on 2026-11-22 (file dated 21 November 2026). Warnings are published 2–3 days after the end of each dekad."
+  },
+  "resolution": {
+    "spatial": "first-level administrative units (Algeria: 48 wilayas, pre-2019 division)",
+    "spatial_m": null,
+    "temporal": "dekadal"
+  },
+  "format": [
+    "CSV (semicolon-separated, ZIP)",
+    "OGC WFS / WMS (latest warnings)",
+    "Esri Shapefile (administrative units, ZIP)"
+  ],
+  "crs": null,
+  "variables": [
+    {
+      "name": "asap0_id, asap1_id, asap0_name, asap1_name",
+      "units": "-",
+      "description": "Country and first-level unit codes and names (join keys for gaul0_asap / gaul1_asap)"
+    },
+    {
+      "name": "date",
+      "units": "date",
+      "description": "Reference date (dekad) of the warning"
+    },
+    {
+      "name": "w_crop, w_crop_na, w_crop_de, w_crop_gr",
+      "units": "code / text",
+      "description": "Crop warning code, short name, long description and warning group (No warning, Warning group 1–4, Off season, No crop/rangeland)"
+    },
+    {
+      "name": "w_range, w_range_na, w_range_de, w_range_gr",
+      "units": "code / text",
+      "description": "Same fields for rangeland"
+    }
+  ],
+  "processing": "Every dekad, ASAP computes rainfall (e.g. SPI-3), water-balance and vegetation-index anomaly indicators over the crop and rangeland areas of each unit, using a remote-sensing phenology to determine whether the season is active, and assigns a warning level from the share of the active area affected (e.g. 'at least 25 % of the active area is affected by an anomaly for the indicator SPI 3'). The classification scheme is documented in the ASAP warning classification v8.0 report.",
+  "validation": "Not assessed on the pages consulted; Rembold et al. (2019) describe the system design.",
+  "limitations": [
+    "Units are Algeria's 48 pre-2019 wilayas, not the current wilaya division; results must be re-mapped before comparison with current wilaya statistics.",
+    "Automatic warnings, not production estimates; Saharan units without significant crop or rangeland (e.g. Adrar) are coded 99 and off-season dekads 98.",
+    "The classification has been revised over time (current scheme v8.0) and indicator inputs have changed; check whether past dekads were reprocessed before analysing long-term frequencies.",
+    "The global CSV is large (48.6 MB zipped, about 900 MB unzipped, 3.39 million rows)."
+  ],
+  "version": "Warning classification scheme v8.0",
+  "published_date": null,
+  "updated_date": "2026-11-21",
+  "download_url": "https://agricultural-production-hotspots.ec.europa.eu/files/warnings_ts.zip",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "ASAP data download page",
+      "url": "https://agricultural-production-hotspots.ec.europa.eu/download.php",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Hotspots, warnings, boundaries, masks, phenology and indicator statistics."
+    },
+    {
+      "label": "warnings_ts.zip (first-level units, since May 2001)",
+      "url": "https://agricultural-production-hotspots.ec.europa.eu/files/warnings_ts.zip",
+      "kind": "download",
+      "format": "CSV in ZIP",
+      "requires_login": false,
+      "size_bytes": 48585499,
+      "notes": "Contains warnings_ts.csv (900,756,369 bytes, semicolon-separated) and readme_warnings_ts.txt. Size as downloaded on 2026-11-22; the file is replaced every dekad."
+    },
+    {
+      "label": "warnings_l2_ts.zip (second-level units, selected countries)",
+      "url": "https://agricultural-production-hotspots.ec.europa.eu/files/warnings_l2_ts.zip",
+      "kind": "download",
+      "format": "CSV in ZIP",
+      "requires_login": false,
+      "size_bytes": 56208203,
+      "notes": "Not checked for Algeria."
+    },
+    {
+      "label": "gaul1_asap_v06.zip (first-level unit boundaries)",
+      "url": "https://agricultural-production-hotspots.ec.europa.eu/files/gaul1_asap_v06.zip",
+      "kind": "download",
+      "format": "Esri Shapefile (ZIP)",
+      "requires_login": false,
+      "size_bytes": 259139373,
+      "notes": "Join key asap1_id; simplified geometries for broad-scale display."
+    },
+    {
+      "label": "ASAP OGC services (WFS/WMS, latest warnings)",
+      "url": "https://agricultural-production-hotspots.ec.europa.eu/public/ows?service=WFS&request=GetCapabilities",
+      "kind": "api",
+      "format": "WFS/WMS",
+      "requires_login": false,
+      "notes": "Layers include public:warning_gaul1_crop and public:warning_gaul1_rangeland."
+    },
+    {
+      "label": "ASAP Warning Explorer",
+      "url": "https://agricultural-production-hotspots.ec.europa.eu/wexplorer/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": null
+    },
+    {
+      "label": "JRC Data Catalogue entry",
+      "url": "https://data.jrc.ec.europa.eu/dataset/jrc-10112-10001",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Citation, DOI and reuse notice."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "The downloaded file holds 44,016 Algerian rows (48 units × 917 dekads). Over the full record, crop codes were dominated by 'Off season' (11,570 rows), 'No warning' (code 0: 9,562; codes 10 and 20 also map to the 'No warning' group) and 'No crop/rangeland' (9,170, Saharan units), with 1,978 rows in warning group 2 and 1,039 in group 4. For the dekad of 2026-11-01, Tipaza had a level-1 crop warning (SPI-3 anomaly on at least 25 % of the active area).",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation",
+      "whether historical dekads were reprocessed with the current classification",
+      "warnings_l2_ts.zip coverage of Algeria"
+    ],
+    "sources_consulted": [
+      "https://agricultural-production-hotspots.ec.europa.eu/",
+      "https://agricultural-production-hotspots.ec.europa.eu/download.php",
+      "https://agricultural-production-hotspots.ec.europa.eu/about.php",
+      "https://agricultural-production-hotspots.ec.europa.eu/files/warnings_ts.zip",
+      "https://agricultural-production-hotspots.ec.europa.eu/files/wfs_warnings_crop_notes.txt",
+      "https://agricultural-production-hotspots.ec.europa.eu/public/ows?service=WFS&request=GetCapabilities",
+      "https://data.jrc.ec.europa.eu/dataset/jrc-10112-10001",
+      "https://doi.org/api/handles/10.2905/JRC.KC71YCG",
+      "https://api.datacite.org/dois/10.2905/JRC.KC71YCG",
+      "https://api.crossref.org/works/10.1016/j.agsy.2018.07.002",
+      "https://doi.org/api/handles/10.2760/6814458"
+    ],
+    "notes": "warnings_ts.zip (48.6 MB) was downloaded and the CSV streamed: 3,392,900 rows, 917 dekads (2001-05-21 to 2026-11-01); Algeria has 48 units and 44,016 rows. The ASAP download page gives an older form of the citation, 'Rembold, Felix (2018) ... PID http://data.europa.eu/89h/jrc-10112-10001'; the JRC Data Catalogue and DataCite give 2026 and the DOI 10.2905/JRC.KC71YCG. The 10.2760/6814458 DOI is registered with the EU Publications Office (not Crossref); its title and year were read by DOI content negotiation. The EUR-Lex licence URL returned HTTP 202 (bot-protection page) to the automated check. updated_date is the Last-Modified date of warnings_ts.zip."
+  }
+}

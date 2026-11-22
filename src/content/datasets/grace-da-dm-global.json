@@ -1,0 +1,189 @@
+{
+  "id": "grace-da-dm-global",
+  "title": "Groundwater and Soil Moisture Conditions from GRACE and GRACE-FO Data Assimilation, global 0.25° weekly (GRACE-DA-DM GL V3.0)",
+  "description": "Weekly global drought indicators from NASA Goddard: groundwater, root-zone soil moisture and surface soil moisture expressed as percentiles, i.e. the probability of occurrence of the current wetness within the 1948–2014 period of record. The indicators are derived from the GRACE/GRACE-FO-assimilating Catchment model simulation (GLDAS_CLSM025_DA1_D) at 0.25°, are daily values provided for one day (Monday) per week, and run from February 2003 to present with a 3–6 month latency in this final archive.",
+  "purpose": "Provides ready-to-use groundwater and soil-moisture drought percentiles that can be summarised over Algerian wilayas to describe hydrological and agricultural drought, complementing precipitation-based indices such as SPI and SPEI.",
+  "domain": [
+    "climate-drought",
+    "water",
+    "agriculture"
+  ],
+  "categories": [
+    "Drought indicators",
+    "Groundwater (model)",
+    "Soil moisture"
+  ],
+  "keywords": [
+    "GRACE-DA-DM",
+    "GRACE",
+    "GRACE-FO",
+    "drought",
+    "groundwater percentile",
+    "soil moisture percentile",
+    "Catchment",
+    "data assimilation",
+    "GES DISC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC); produced by the NASA GSFC Hydrological Sciences Laboratory",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gracedadm-clsm025gl-7d-3.0"
+  },
+  "creator": "M. Rodell, B. Li, A. Getirana and H. Kato Beaudoing, NASA GSFC Hydrological Sciences Laboratory (HSL)",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gracedadm-clsm025gl-7d-3.0",
+  "documentation_url": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/hydrology/README_GRACEDADM3GL.pdf",
+  "license": {
+    "name": "NASA Earth science data – openly shared without restriction (EOSDIS Data Use and Citation Guidance)",
+    "spdx": null,
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "NASA Earthdata catalog page: 'This dataset is openly shared, without restriction, in accordance with the EOSDIS Data Use and Citation Guidance.' The CMR use constraints point to the same guidance and the GES DISC data citation guidelines. The README asks users to cite both the data DOI and Li et al. (2019).",
+  "citation": "Rodell, M., B. Li, A. Getirana, and H. Kato Beaudoing, NASA/GSFC/HSL (2022). Groundwater and Soil Moisture Conditions from GRACE and GRACE-FO Data Assimilation L4 7-days 0.25 x 0.25 degree Global Version 3.0. Greenbelt, Maryland, USA: Goddard Earth Sciences Data and Information Services Center (GES DISC). Accessed [date]. https://doi.org/10.5067/SZYMDFZ7TJ4H",
+  "doi": "10.5067/SZYMDFZ7TJ4H",
+  "references": [
+    {
+      "citation": "Li, B., Rodell, M., Kumar, S., Beaudoing, H. K., Getirana, A., Zaitchik, B. F., et al. (2019). Global GRACE Data Assimilation for Groundwater and Drought Monitoring: Advances and Challenges. Water Resources Research, 55(9), 7564–7586.",
+      "doi": "10.1029/2018WR024618",
+      "url": null
+    },
+    {
+      "citation": "Houborg, R., Rodell, M., Li, B., Reichle, R., and Zaitchik, B. F. (2012). Drought indicators based on model-assimilated Gravity Recovery and Climate Experiment (GRACE) terrestrial water storage observations. Water Resources Research, 48(7).",
+      "doi": "10.1029/2011WR011291",
+      "url": null
+    },
+    {
+      "citation": "Kumar, S. V., Zaitchik, B. F., Peters-Lidard, C. D., Rodell, M., Reichle, R., Li, B., et al. (2016). Assimilation of Gridded GRACE Terrestrial Water Storage Estimates in the North American Land Data Assimilation System. Journal of Hydrometeorology, 17(7), 1951–1972.",
+      "doi": "10.1175/JHM-D-15-0157.1",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global from 60° S to 90° N on a 0.25° grid (600 latitude × 1440 longitude cells); Algeria is fully inside the domain. Users subset the global weekly files.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -60,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2003-02-03",
+    "end": null,
+    "ongoing": true,
+    "frequency": "weekly (daily values for one day, Monday, per week)",
+    "description": "3 February 2003 to present. The latest granule in CMR on 2026-11-22 was dated 28 September 2026 (1,235 granules). This GES DISC archive is the final version produced after GRACE-FO data are available (3–6 month latency); an operational version with 2–9 day latency is published on the project website."
+  },
+  "resolution": {
+    "spatial": "0.25° × 0.25° (GRACE constraint itself resolves about 300 km)",
+    "spatial_m": 27830,
+    "temporal": "weekly"
+  },
+  "format": [
+    "NetCDF-4 (.nc4, one global file per week, about 2 MB)"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.25° grid)",
+  "variables": [
+    {
+      "name": "gws_inst",
+      "units": "%",
+      "description": "Groundwater storage percentile"
+    },
+    {
+      "name": "rtzsm_inst",
+      "units": "%",
+      "description": "Root-zone soil moisture percentile"
+    },
+    {
+      "name": "sfsm_inst",
+      "units": "%",
+      "description": "Surface soil moisture percentile"
+    }
+  ],
+  "processing": "Percentiles are computed from the GLDAS_CLSM025_DA1_D Catchment (CLSM-F2.5, LIS) simulation forced by ECMWF meteorology and assimilating CSR RL06 GRACE/GRACE-FO mascons, against a 1948–2014 period of record and with a 7-day moving-window climatology (README). The global simulation is restarted from the last available GRACE month and extended to the present each week; TWS anomalies use a 2004–2018 baseline.",
+  "validation": "Not quantified in the README; Li et al. (2019) discuss the global data assimilation and drought indicators.",
+  "limitations": [
+    "Percentiles are model-derived drought indicators, not measurements; they inherit errors of the ECMWF forcing, the Catchment model parameters and the coarse GRACE constraint.",
+    "The README warns that different forcing datasets and data assimilation can create discontinuities; this global product differs from the U.S. GRACE-DA-DM V4.0 product.",
+    "Percentile reference period 1948–2014 (from the long model record), while the assimilated record starts in 2003.",
+    "Downloads require a free NASA Earthdata Login."
+  ],
+  "version": "3.0 (Global)",
+  "published_date": "2022-07-15",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NASA Earthdata catalog page",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gracedadm-clsm025gl-7d-3.0",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "DOI landing page; collection C2283200566-GES_DISC. Download requires Earthdata Login."
+    },
+    {
+      "label": "NASA Earthdata Search (collection C2283200566-GES_DISC)",
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C2283200566-GES_DISC",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": null
+    },
+    {
+      "label": "HTTPS / OPeNDAP data tree (CMR virtual directory)",
+      "url": "https://cmr.earthdata.nasa.gov/virtual-directory/collections/C2283200566-GES_DISC",
+      "kind": "download",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "Files such as GRACEDADM_CLSM025GL_7D.A20260928.030.nc4 on data.gesdisc.earthdata.nasa.gov; Earthdata Login required."
+    },
+    {
+      "label": "README for GRACE-DA-DM Global V3.0 (PDF)",
+      "url": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/hydrology/README_GRACEDADM3GL.pdf",
+      "kind": "external",
+      "format": "PDF",
+      "requires_login": false,
+      "notes": null
+    },
+    {
+      "label": "GRACE-based drought indicators project site (operational maps)",
+      "url": "https://nasagrace.unl.edu/",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": false,
+      "notes": "Operational weekly maps with 2–9 day latency (per README)."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "The percentiles can be averaged over wilayas to compare groundwater and soil-moisture drought with SPI/SPEI. In the Sahara, where soil moisture is near zero and storage changes are dominated by aquifer abstraction, percentile values should be interpreted with great caution.",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "values over Algeria (no file downloaded: Earthdata Login required)",
+      "validation",
+      "algeria_notes (AEO interpretation, not a provider statement)"
+    ],
+    "sources_consulted": [
+      "https://cmr.earthdata.nasa.gov/search/concepts/C2283200566-GES_DISC.umm_json",
+      "https://cmr.earthdata.nasa.gov/search/collections.json?concept_id=C2283200566-GES_DISC",
+      "https://cmr.earthdata.nasa.gov/search/variables.umm_json (6 variables associated with C2283200566-GES_DISC)",
+      "https://cmr.earthdata.nasa.gov/search/granules.umm_json?collection_concept_id=C2283200566-GES_DISC&sort_key=-start_date&page_size=1",
+      "https://docserver.gesdisc.eosdis.nasa.gov/public/project/hydrology/README_GRACEDADM3GL.pdf",
+      "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gracedadm-clsm025gl-7d-3.0",
+      "https://nasagrace.unl.edu/",
+      "https://doi.org/api/handles/10.5067/SZYMDFZ7TJ4H",
+      "https://api.datacite.org/dois/10.5067/SZYMDFZ7TJ4H",
+      "https://api.crossref.org/works/10.1029/2018WR024618",
+      "https://api.crossref.org/works/10.1029/2011WR011291",
+      "https://api.crossref.org/works/10.1175/JHM-D-15-0157.1"
+    ],
+    "notes": "The DOI 10.1175/JHM-D-15-0157.1 resolves to journals.ametsoc.org, which returned HTTP 403 to the automated check; its metadata were confirmed on Crossref. Variable names and units from the UMM-Var records and Table 2 of the README. An unauthenticated request for the latest granule was redirected (HTTP 302) to urs.earthdata.nasa.gov (Earthdata Login). published_date is the CMR citation release date (2022-07-15). DataCite lists the creator string 'Matthew Rodell and Hiroko Kato Beaudoing' with HSL, publication year 2022; the citation follows the README and CMR, which add B. Li and A. Getirana."
+  }
+}

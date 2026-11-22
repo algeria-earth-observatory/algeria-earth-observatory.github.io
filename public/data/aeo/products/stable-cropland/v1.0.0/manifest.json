@@ -1,0 +1,127 @@
+{
+ "boundary_version": "2026-11-20",
+ "created": "2026-11-22",
+ "product_id": "aeo-dza-stable-cropland-gaced30",
+ "title": "Algeria stable cropland 2000–2024 (from GACED30): area by commune, wilaya and Algeria, and the AEO cropland mask",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1",
+  "admin2"
+ ],
+ "spatial_products_levels": [],
+ "source_product": "GACED30 v1, AEO Algeria clip (30 m, annual 2000–2024)",
+ "source_version": "GACED30 v1",
+ "source_doi": "10.5281/zenodo.18199675",
+ "source_license": "CC BY 4.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "annual": [
+   "2000",
+   "2024"
+  ]
+ },
+ "spatial_resolution": "30 m pixels summarised by administrative unit (true pixel areas)",
+ "crs": "EPSG:4326 (areas on the authalic sphere)",
+ "units": "hectares; % of unit land area",
+ "formats": [
+  "CSV",
+  "PARQUET",
+  "NPZ"
+ ],
+ "processing_code": "scripts/pipelines/cropland/build_stable_cropland.py, publish_stable_cropland.py",
+ "methodology_url": "/docs/method-stable-cropland/",
+ "definition": "cropland in at least 20 of the 25 years 2000–2024 (GACED30)",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin0_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Stable cropland area (GACED30, ≥ 20 of 25 years), admin0",
+   "bytes": 210,
+   "sha256": "c34246fa7e75f9d2d8b415ee69cb3fc5efa23d832f43b4e9cda5e6e60038c8b0"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin0_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Stable cropland area (GACED30, ≥ 20 of 25 years), admin0",
+   "bytes": 6012,
+   "sha256": "59a76bd6e5c3880aa3910e48c9f62870fea6a165a78e9f5698dfd631f4ea0d02"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Stable cropland area (GACED30, ≥ 20 of 25 years), admin1",
+   "bytes": 4411,
+   "sha256": "d4ae5c235f2e511353e4aa2fb8e918e6a683a5a2d31557c6ff5b9b9c8667318b"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin1_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Stable cropland area (GACED30, ≥ 20 of 25 years), admin1",
+   "bytes": 9939,
+   "sha256": "fd6535ecb3165dbba9ba128e6dcd242e836786c4d08405cb66f3338d6d87e3c2"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin2_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Stable cropland area (GACED30, ≥ 20 of 25 years), admin2",
+   "bytes": 90472,
+   "sha256": "73c800e105d6345bf6729e16025d7615da9f791a4b49ced6d5ae607ba283c5a0"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_stable_cropland_admin2_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Stable cropland area (GACED30, ≥ 20 of 25 years), admin2",
+   "bytes": 81935,
+   "sha256": "363f64953fa65af6eb6904a6fdb6cd4857c0ac85cafc28c0b7cad199f9277a38"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_cropland_years_histogram_admin2_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Area by number of cropland years 2000–2024, admin2",
+   "bytes": 229233,
+   "sha256": "2a12b4c987124e3d252022b175073fbf0cc75382f6cba4ecc60aa5f0dabac562"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/tables/aeo_cropland_years_histogram_admin2_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Area by number of cropland years 2000–2024, admin2",
+   "bytes": 133840,
+   "sha256": "b48d3a26023913cdea44b8587575c95936fc541822f468f943d5a473e1e9db46"
+  },
+  {
+   "href": "/data/aeo/products/stable-cropland/v1.0.0/mask/aeo_stable_cropland_grids_v1.0.0.npz",
+   "format": "NPZ",
+   "level": "admin0",
+   "role": "data",
+   "title": "Stable-cropland area per cell (ha) on the CHIRPS 0.05°, WaPOR 1.2 km, CMIP6 and GRACE 0.25° and NMME 1° grids",
+   "bytes": 4875324,
+   "sha256": "db9760dee834c685cf4cd8eba83e0c972c61caa7a0a3501e6da5e81556b22294"
+  }
+ ],
+ "web_assets": {
+  "map": "/data/aeo/products/stable-cropland/v1.0.0/map/map.json"
+ },
+ "qc": [
+  "Pixels in Algeria outside any commune polygon: 3,281 ha (0.001 %)",
+  "Algeria: cropland in any year 12.98 Mha, majority 8.35 Mha, stable 6.40 Mha, all 25 years 4.80 Mha"
+ ]
+}

@@ -1,0 +1,160 @@
+{
+  "id": "grace-downscaled-li-kusche",
+  "title": "Global 0.25° total water storage anomalies from downscaled GRACE/GRACE-FO (Li & Kusche, v2.0)",
+  "description": "Monthly terrestrial water storage anomalies (equivalent water height, cm) at 0.25° for global land, obtained by downscaling the NASA JPL GRACE/GRACE-FO mascon solution with a machine-learning (long short-term memory) iterative method that uses ERA5 soil moisture, precipitation and temperature as inputs while retaining nearly all of the original GRACE signal. The single NetCDF file covers April 2002 to March 2025 (243 monthly fields, with missing months) and includes a per-cell downscaling uncertainty.",
+  "purpose": "Offers an openly downloadable, recent (to 2025) estimate of water-storage change at finer scale than GRACE, designed to preserve GRACE trends, for summarising storage change over Algeria and its regions.",
+  "domain": [
+    "water",
+    "climate-drought"
+  ],
+  "categories": [
+    "Terrestrial water storage",
+    "Groundwater (indirect)",
+    "Satellite gravimetry",
+    "Downscaling"
+  ],
+  "keywords": [
+    "GRACE",
+    "GRACE-FO",
+    "downscaling",
+    "TWSA",
+    "terrestrial water storage",
+    "machine learning",
+    "LSTM",
+    "ERA5",
+    "JPL mascon",
+    "University of Bonn"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "Zenodo (dataset by F. Li, University of Bonn)",
+    "url": "https://zenodo.org/records/17265162"
+  },
+  "creator": "Fupeng Li (file attribute institution: University of Bonn - IGG - APMG); method by F. Li and J. Kusche",
+  "source_url": "https://zenodo.org/records/17265162",
+  "documentation_url": "https://doi.org/10.1029/2025GL119881",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Zenodo record licence: cc-by-4.0 (open access). The DataCite metadata also carries a copyright statement naming Fupeng Li (rightsstatements.org 'In Copyright'), which identifies the rights holder and does not restrict the CC BY 4.0 grant; attribution is required. The GRL article is published under CC BY 4.0.",
+  "citation": "Li, F. (2025). Global high-resolution (0.25×0.25) total water storage anomaly dataset derived by reproducing GRACE data (file version v2.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17265162",
+  "doi": "10.5281/zenodo.17265162",
+  "references": [
+    {
+      "citation": "Li, F., and Kusche, J. (2026). Reproducing GRACE Total Water Storage Change at Finer Spatial Scales. Geophysical Research Letters, 53(1), e2025GL119881.",
+      "doi": "10.1029/2025GL119881",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global 0.25° grid (720 latitudes from 89.875° N to 89.875° S × 1440 longitudes from 0.125° to 359.875° E, i.e. 0–360° convention); ocean and missing cells are NaN. AEO checked the file over Algeria: 3,406 grid cells, 0.9 % missing values. Users subset the single global file.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2002-04-01",
+    "end": "2025-03-31",
+    "ongoing": false,
+    "frequency": "monthly",
+    "description": "April 2002 to March 2025: 243 monthly fields out of 276 calendar months, i.e. GRACE/GRACE-FO missing months (including the 2017–2018 gap between missions) are not filled. Time is stored as decimal years (e.g. 2002.2916 for April 2002)."
+  },
+  "resolution": {
+    "spatial": "0.25° × 0.25° (GRACE input resolves about 300 km)",
+    "spatial_m": 27830,
+    "temporal": "monthly"
+  },
+  "format": [
+    "NetCDF-4 (single global file, 2.0 GB)"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.25° grid, longitudes 0–360°)",
+  "variables": [
+    {
+      "name": "JPL_EWH_downscaled",
+      "units": "cm",
+      "description": "Downscaled terrestrial water storage anomaly (equivalent water height); dimensions (time, lon, lat)"
+    },
+    {
+      "name": "downscaling_uncertainty",
+      "units": "cm",
+      "description": "Uncertainty of the downscaled anomaly; dimensions (time, lon, lat)"
+    },
+    {
+      "name": "time",
+      "units": "yr",
+      "description": "Decimal year (243 values)"
+    }
+  ],
+  "processing": "Machine-learning-based iterative downscaling (file attribute: 'machine learning - long short-term memory') of JPL GRACE/GRACE-FO mascon TWSA to 0.25°, using ERA5 soil moisture, precipitation and temperature as inputs and constrained to retain the original GRACE signal (Li & Kusche, 2026).",
+  "validation": "The authors report improved agreement with in situ groundwater levels compared with the original GRACE data (higher correlation at over 63 % of wells and lower RMSE at more than 83 % globally) and an average correlation of 0.99 with the original GRACE data at basin scale (GRL abstract); the Zenodo description gives an average r = 0.98 across all 1° land cells.",
+  "limitations": [
+    "Total water storage anomaly, not groundwater: separating groundwater requires subtracting soil moisture, snow and surface water from other sources.",
+    "GRACE resolves about 300 km; the 0.25° detail is added by the machine-learning model and its ERA5 inputs and is not observed by the satellites.",
+    "Missing months (33 of 276) must be handled in trend analysis; the record ends in March 2025 and is not updated operationally.",
+    "Single 2.0 GB file with dimension order (time, lon, lat) and 0–360° longitudes; reorder and shift before mapping Algeria (which spans −8.7° to 12° E)."
+  ],
+  "version": "v2.0 (Zenodo record 17265162; v1.0 is record 16666747)",
+  "published_date": "2025-10-06",
+  "updated_date": null,
+  "download_url": "https://zenodo.org/api/records/17265162/files/JPL_mascon_downscaled-v2.0.nc/content",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Zenodo record",
+      "url": "https://zenodo.org/records/17265162",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": false,
+      "notes": "Open access, no login."
+    },
+    {
+      "label": "JPL_mascon_downscaled-v2.0.nc (direct download)",
+      "url": "https://zenodo.org/api/records/17265162/files/JPL_mascon_downscaled-v2.0.nc/content",
+      "kind": "download",
+      "format": "NetCDF-4",
+      "requires_login": false,
+      "size_bytes": 2015556418,
+      "sha256": "e00be99338b28d9478c44bd696916dc1d7dba6153234809163ef46ef9b40b841",
+      "notes": "Zenodo MD5 7d51f349bf74543d3bcd73e504502073 (verified by AEO); SHA-256 computed by AEO on the downloaded file."
+    },
+    {
+      "label": "Li & Kusche (2026), Geophysical Research Letters",
+      "url": "https://doi.org/10.1029/2025GL119881",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Method paper (CC BY 4.0)."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "AEO uses this file for its national and wilaya water-storage summaries. By AEO's estimate only 9 of the 69 wilayas are at least one GRACE mascon in area; for smaller wilayas the values are mostly spatial detail added by the downscaling, so regional patterns (e.g. in the north-east) should not be read as observed by GRACE.",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "JPL mascon release used as input (not stated in the sources read)",
+      "meaning of 'APMG' in the institution attribute"
+    ],
+    "sources_consulted": [
+      "https://zenodo.org/api/records/17265162",
+      "https://zenodo.org/api/records?q=conceptrecid:16666746&all_versions=true",
+      "https://zenodo.org/records/17265162",
+      "https://doi.org/api/handles/10.5281/zenodo.17265162",
+      "https://api.datacite.org/dois/10.5281/zenodo.17265162",
+      "https://doi.org/api/handles/10.1029/2025GL119881",
+      "https://api.crossref.org/works/10.1029/2025GL119881"
+    ],
+    "notes": "File metadata (global attributes, dimensions, variable names, units and time axis) were read from AEO's downloaded copy; its MD5 matches the Zenodo checksum. Algeria cell count and missing share are from AEO's earlier processing of this file. The creator e-mail address stored in the file attributes is deliberately not reproduced."
+  }
+}

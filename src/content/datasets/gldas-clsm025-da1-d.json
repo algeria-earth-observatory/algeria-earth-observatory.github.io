@@ -1,0 +1,209 @@
+{
+  "id": "gldas-clsm025-da1-d",
+  "title": "GLDAS-2.2 Catchment Land Surface Model with GRACE data assimilation, daily 0.25° (GLDAS_CLSM025_DA1_D v2.2)",
+  "description": "Daily global land-surface fields from NASA's Global Land Data Assimilation System version 2.2, simulated with the Catchment land surface model (CLSM-F2.5) in the Land Information System and constrained by assimilating GRACE and GRACE-FO terrestrial water storage anomalies. The product provides 24 land surface fields at 0.25°, including groundwater storage, terrestrial water storage, surface, root-zone and profile soil moisture, evapotranspiration components, runoff, snow and energy fluxes, from 1 February 2003 to present. Meteorological forcing fields are not distributed because of the data agreement with ECMWF.",
+  "purpose": "Gives a model-based, GRACE-constrained estimate of groundwater and soil-moisture storage at 0.25° and daily time steps, useful to interpret storage trends and drought in Algeria alongside raw GRACE data.",
+  "domain": [
+    "water",
+    "climate-drought"
+  ],
+  "categories": [
+    "Groundwater (model)",
+    "Soil moisture",
+    "Terrestrial water storage",
+    "Land data assimilation"
+  ],
+  "keywords": [
+    "GLDAS",
+    "GLDAS-2.2",
+    "Catchment",
+    "CLSM",
+    "GRACE",
+    "GRACE-FO",
+    "data assimilation",
+    "groundwater storage",
+    "soil moisture",
+    "TWS",
+    "GES DISC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC); produced by the NASA GSFC Hydrological Sciences Laboratory",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gldas-clsm025-da1-d-2.2"
+  },
+  "creator": "B. Li, H. Beaudoing and M. Rodell, NASA GSFC Hydrological Sciences Laboratory (HSL)",
+  "source_url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gldas-clsm025-da1-d-2.2",
+  "documentation_url": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/hydrology/README_GLDAS2.pdf",
+  "license": {
+    "name": "NASA Earth science data – openly shared without restriction (EOSDIS Data Use and Citation Guidance)",
+    "spdx": null,
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "license_notes": "NASA Earthdata catalog page: 'This dataset is openly shared, without restriction, in accordance with the EOSDIS Data Use and Citation Guidance.' The CMR use constraints point to the same guidance and to the GES DISC data citation guidelines. Cite the dataset DOI and Li et al. (2019).",
+  "citation": "Li, B., H. Beaudoing, and M. Rodell, NASA/GSFC/HSL (2020). GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2. Greenbelt, Maryland, USA: Goddard Earth Sciences Data and Information Services Center (GES DISC). Accessed [date]. https://doi.org/10.5067/TXBMLX370XX8",
+  "doi": "10.5067/TXBMLX370XX8",
+  "references": [
+    {
+      "citation": "Li, B., Rodell, M., Kumar, S., Beaudoing, H. K., Getirana, A., Zaitchik, B. F., et al. (2019). Global GRACE Data Assimilation for Groundwater and Drought Monitoring: Advances and Challenges. Water Resources Research, 55(9), 7564–7586.",
+      "doi": "10.1029/2018WR024618",
+      "url": null
+    },
+    {
+      "citation": "Save, H., Bettadpur, S., and Tapley, B. D. (2016). High-resolution CSR GRACE RL05 mascons. Journal of Geophysical Research: Solid Earth, 121(10), 7547–7569.",
+      "doi": "10.1002/2016JB013007",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land from 60° S to 90° N (CMR bounding rectangle −180/−60/180/90) on a 0.25° grid; Algeria is fully inside the domain. Users subset the global daily files.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -60,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2003-02-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "daily",
+    "description": "1 February 2003 to present. The latest granule in CMR on 2026-11-22 was for 30 September 2026 (8,643 granules). Latency is about 2–6 months because GRACE data are assimilated; an Early Product without GRACE assimilation (GLDAS_CLSM025_DA1_D_EP) is issued first and removed when the main product is available."
+  },
+  "resolution": {
+    "spatial": "0.25° × 0.25° (GRACE constraint itself resolves about 300 km)",
+    "spatial_m": 27830,
+    "temporal": "daily"
+  },
+  "format": [
+    "NetCDF-4 (.nc4, one global file per day, about 21 MB)"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.25° grid)",
+  "variables": [
+    {
+      "name": "GWS_tavg",
+      "units": "mm",
+      "description": "Groundwater storage (computed as TWS − root-zone soil moisture − snow water equivalent − canopy interception)"
+    },
+    {
+      "name": "TWS_tavg",
+      "units": "mm",
+      "description": "Terrestrial water storage (soil water, snow, canopy water and groundwater)"
+    },
+    {
+      "name": "SoilMoist_S_tavg",
+      "units": "kg m-2",
+      "description": "Surface soil moisture (0–2 cm reservoir)"
+    },
+    {
+      "name": "SoilMoist_RZ_tavg",
+      "units": "kg m-2",
+      "description": "Root-zone soil moisture (0–100 cm reservoir)"
+    },
+    {
+      "name": "SoilMoist_P_tavg",
+      "units": "kg m-2",
+      "description": "Profile soil moisture (depth varies by grid cell)"
+    },
+    {
+      "name": "Evap_tavg (and ESoil_tavg, ECanop_tavg, TVeg_tavg)",
+      "units": "kg m-2 s-1",
+      "description": "Evapotranspiration and its bare-soil, canopy-interception and transpiration components"
+    },
+    {
+      "name": "Qs_tavg / Qsb_tavg",
+      "units": "kg m-2 s-1",
+      "description": "Storm surface runoff / baseflow-groundwater runoff"
+    },
+    {
+      "name": "SWE_tavg",
+      "units": "kg m-2",
+      "description": "Snow water equivalent"
+    }
+  ],
+  "processing": "Catchment-F2.5 model in LIS version 7, started on 1 February 2003 from the GLDAS-2.0 daily Catchment simulation, forced by ECMWF Integrated Forecasting System analysis fields and assimilating GRACE/GRACE-FO terrestrial water storage anomalies (CSR RL06 mascons; Li et al., 2019). CLSM has no explicit soil layers: soil moisture is represented by inclusive surface (0–2 cm), root-zone (0–100 cm) and profile reservoirs, and it simulates shallow groundwater (GLDAS-2 README).",
+  "validation": "Li et al. (2019) evaluate the global GRACE data assimilation against groundwater and other observations; no accuracy figure is given in the CMR record or README sections read for this entry.",
+  "limitations": [
+    "Model estimate: groundwater and soil-moisture partitioning depend on the Catchment model and ECMWF forcing; GRACE only constrains total storage at about 300 km scale, so 0.25° detail comes from the model.",
+    "Combining GLDAS-2.0, 2.1 and 2.2 into one series can create discontinuities (different forcing and data assimilation) (README).",
+    "Latency of 2–6 months; meteorological forcing fields are not distributed.",
+    "Downloads (HTTPS, OPeNDAP, Earthdata Search) require a free NASA Earthdata Login."
+  ],
+  "version": "2.2",
+  "published_date": "2020-02-25",
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "NASA Earthdata catalog page",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gldas-clsm025-da1-d-2.2",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "DOI landing page; collection C1700900796-GES_DISC. Download requires Earthdata Login."
+    },
+    {
+      "label": "NASA Earthdata Search (collection C1700900796-GES_DISC)",
+      "url": "https://search.earthdata.nasa.gov/search/granules?p=C1700900796-GES_DISC",
+      "kind": "external",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "Granule search, subsetting and download."
+    },
+    {
+      "label": "HTTPS / OPeNDAP data tree (CMR virtual directory)",
+      "url": "https://cmr.earthdata.nasa.gov/virtual-directory/collections/C1700900796-GES_DISC",
+      "kind": "download",
+      "format": "NetCDF-4",
+      "requires_login": true,
+      "notes": "Files are served from data.gesdisc.earthdata.nasa.gov (e.g. GLDAS_CLSM025_DA1_D.A20260930.022.nc4); Earthdata Login required."
+    },
+    {
+      "label": "Giovanni (visualisation and analysis)",
+      "url": "https://giovanni.gsfc.nasa.gov/giovanni/#dataKeyword=GLDAS_CLSM025_DA1_D_2_2",
+      "kind": "viewer",
+      "format": null,
+      "requires_login": true,
+      "notes": "Online maps and time series without downloading files."
+    },
+    {
+      "label": "README for NASA GLDAS Version 2 data (PDF)",
+      "url": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/hydrology/README_GLDAS2.pdf",
+      "kind": "external",
+      "format": "PDF",
+      "requires_login": false,
+      "notes": "Variable table (Table 3.1), soil reservoir definitions and quality issues."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Useful for groundwater-storage and root-zone soil-moisture context over the Tell, the High Plains and the Saharan aquifer systems. Because GRACE constrains only total storage at about 300 km, the split between groundwater and soil moisture and the 0.25° detail over Algeria come from the model; treat GWS_tavg as a model-dependent estimate and compare it with the raw JPL mascon and downscaled GRACE records.",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "validation (accuracy figures in Li et al. 2019 not read)",
+      "values over Algeria (no file downloaded: Earthdata Login required)",
+      "Giovanni login requirement (not tested)"
+    ],
+    "sources_consulted": [
+      "https://cmr.earthdata.nasa.gov/search/concepts/C1700900796-GES_DISC.umm_json",
+      "https://cmr.earthdata.nasa.gov/search/collections.json?concept_id=C1700900796-GES_DISC",
+      "https://cmr.earthdata.nasa.gov/search/variables.umm_json (28 variables associated with C1700900796-GES_DISC)",
+      "https://cmr.earthdata.nasa.gov/search/granules.umm_json?collection_concept_id=C1700900796-GES_DISC&sort_key=-start_date&page_size=1",
+      "https://docserver.gesdisc.eosdis.nasa.gov/public/project/hydrology/README_GLDAS2.pdf",
+      "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gldas-clsm025-da1-d-2.2",
+      "https://doi.org/api/handles/10.5067/TXBMLX370XX8",
+      "https://api.datacite.org/dois/10.5067/TXBMLX370XX8",
+      "https://api.crossref.org/works/10.1029/2018WR024618",
+      "https://api.crossref.org/works/10.1002/2016JB013007"
+    ],
+    "notes": "Variable names and units are from the UMM-Var records associated with the collection and match Table 3.1 of the GLDAS-2 README. An unauthenticated request for the latest granule on data.gesdisc.earthdata.nasa.gov was redirected (HTTP 302) to urs.earthdata.nasa.gov, confirming that Earthdata Login is required. published_date is the CMR citation release date (2020-02-25); DataCite lists creators Li, Beaudoing, Rodell and HSL, publication year 2020."
+  }
+}

@@ -34,7 +34,7 @@ SCALES = [1, 3, 6, 12]
 REF = (1991, 2020)
 ARID_MM = 100
 BREAKS = [-2, -1.5, -1, 1, 1.5, 2]
-COLORS = ["#6b1515", "#d03b3b", "#ee8d81", "#f0efec", "#86b6ef", "#3987e5", "#0d366b"]
+COLORS = ["#b2182b", "#ef8a62", "#fddbc7", "#f7f7f7", "#d1e5f0", "#67a9cf", "#2166ac"]
 LABELS = ["extremely dry (≤ −2)", "severely dry (−2 to −1.5)", "moderately dry (−1.5 to −1)", "near normal (−1 to 1)", "moderately wet (1 to 1.5)", "very wet (1.5 to 2)", "extremely wet (≥ 2)"]
 
 

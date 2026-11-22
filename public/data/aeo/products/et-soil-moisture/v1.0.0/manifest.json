@@ -1,0 +1,97 @@
+{
+ "boundary_version": "2026-11-20",
+ "created": "2026-11-22",
+ "product_id": "aeo-dza-et-soil-moisture-wapor3",
+ "title": "Algeria evapotranspiration and soil moisture (FAO WaPOR v3), monthly: national, wilaya and commune, all land and stable cropland",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1",
+  "admin2"
+ ],
+ "spatial_products_levels": [],
+ "source_product": "FAO WaPOR v3 Level 1 (L1-AETI-M, L1-RET-M, L1-RSM-D)",
+ "source_version": "WaPOR v3",
+ "source_doi": null,
+ "source_license": "CC BY 4.0 (FAO WaPOR data licence)",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "monthly": [
+   "2018-01",
+   "2026-10"
+  ]
+ },
+ "reference_period": [
+  2018,
+  2025
+ ],
+ "spatial_resolution": "Administrative units (from WaPOR 300 m rasters read at the 1.17 km average overview)",
+ "crs": "not applicable (tables by administrative unit; boundaries EPSG:4326)",
+ "units": "AETI and RET mm/month; relative soil moisture %; departures % (AETI) and percentage points (soil moisture) from the 2018–2025 mean",
+ "formats": [
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/wapor/build_wapor.py",
+ "methodology_url": "/docs/method-et-soil-moisture/",
+ "cropland_mask": "AEO stable cropland v1 (GACED30, cropland in ≥ 20 of 25 years 2000–2024)",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin0_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Monthly ET and soil moisture (WaPOR v3), admin0",
+   "bytes": 10009,
+   "sha256": "80e647c24093508dae9d2a2b846cd8ccb0508142c250f90bf177be984b05383d"
+  },
+  {
+   "href": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin0_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Monthly ET and soil moisture (WaPOR v3), admin0",
+   "bytes": 17041,
+   "sha256": "fd75ee91be086419cfa5b8c2b2bb096b7b6268bc09226be6c4d524252c13ce53"
+  },
+  {
+   "href": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Monthly ET and soil moisture (WaPOR v3), admin1",
+   "bytes": 656839,
+   "sha256": "050a68cd5aa8c1fd977e52c3495f1aca9bc714a29d11b7089d19515285d0d1a9"
+  },
+  {
+   "href": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin1_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Monthly ET and soil moisture (WaPOR v3), admin1",
+   "bytes": 279059,
+   "sha256": "aadafaefb5c4e0ef0ee6021f20f313e1a103600478d4d4e991968e3e05d21537"
+  },
+  {
+   "href": "/data/aeo/products/et-soil-moisture/v1.0.0/tables/aeo_et_sm_monthly_admin2_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin2",
+   "role": "statistics",
+   "title": "Monthly ET and soil moisture (WaPOR v3), admin2",
+   "bytes": 2856319,
+   "sha256": "2fc74cf4d91111d825c24e9d18cf8566ff138b586ec4713908a2c7d32914d7af"
+  }
+ ],
+ "web_assets": {
+  "admin0": "/data/aeo/products/et-soil-moisture/v1.0.0/web/admin0.json",
+  "admin1": "/data/aeo/products/et-soil-moisture/v1.0.0/web/admin1.json",
+  "admin2": "/data/aeo/products/et-soil-moisture/v1.0.0/web/admin2/{wilaya_code}.json",
+  "map": "/data/aeo/products/et-soil-moisture/v1.0.0/map/map.json"
+ },
+ "qc": [
+  "National AETI 2026-10 8.217 mm vs wilaya-weighted 8.217 mm",
+  "Stable cropland weight in Algeria: 6,386,682 ha"
+ ]
+}

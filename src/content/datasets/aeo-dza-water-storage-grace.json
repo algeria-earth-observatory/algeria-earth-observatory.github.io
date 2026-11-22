@@ -1,0 +1,182 @@
+{
+  "id": "aeo-dza-water-storage-grace",
+  "title": "Algeria terrestrial water storage anomaly (downscaled GRACE/GRACE-FO): national and wilaya, 2002–2025",
+  "title_fr": "Anomalie du stock d'eau terrestre de l'Algérie (GRACE/GRACE-FO désagrégé) : nation et wilayas, 2002–2025",
+  "title_ar": null,
+  "description": "Monthly change in total water stored on and below the land surface, in cm of water relative to 2004–2009, averaged by AEO over Algeria and its 69 wilayas from the 0.25° downscaled GRACE/GRACE-FO dataset of Li & Kusche (2026), 2002-04 to 2025-03, with uncertainty and Theil–Sen trends.",
+  "purpose": "Show long-term gains and losses of water storage, including the decline of Algeria's large aquifer systems, at the scales GRACE can support.",
+  "domain": [
+    "water",
+    "climate-drought"
+  ],
+  "categories": [
+    "Terrestrial water storage",
+    "Groundwater (indirect)",
+    "Satellite gravimetry"
+  ],
+  "keywords": [
+    "GRACE",
+    "GRACE-FO",
+    "water storage",
+    "TWS",
+    "groundwater",
+    "downscaling",
+    "trend",
+    "wilaya",
+    "Algeria"
+  ],
+  "status": "available",
+  "origin": "aeo-derived",
+  "data_nature": "modeled",
+  "data_type": "tabular",
+  "provider": {
+    "name": "Li & Kusche (University of Bonn), from NASA JPL mascons; Algeria Earth Observatory (regional statistics)",
+    "url": "https://doi.org/10.5281/zenodo.17265162"
+  },
+  "creator": "Algeria Earth Observatory maintainers (regional statistics); F. Li and J. Kusche (downscaled dataset)",
+  "source_url": "https://doi.org/10.5281/zenodo.17265162",
+  "documentation_url": "https://algeria-earth-observatory.github.io/docs/method-water-storage/",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "The downscaled dataset is CC BY 4.0 (Zenodo). AEO statistics are CC BY 4.0.",
+  "citation": "Algeria Earth Observatory (2026). Algeria terrestrial water storage anomaly (downscaled GRACE/GRACE-FO), version 1.0.0. — from Li, F. (2025), Zenodo, doi:10.5281/zenodo.17265162, and Li & Kusche (2026), GRL, doi:10.1029/2025GL119881.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Li, F. & Kusche, J. (2026). Reproducing GRACE Total Water Storage Change at Finer Spatial Scales. Geophysical Research Letters 53, e2025GL119881.",
+      "doi": "10.1029/2025GL119881"
+    },
+    {
+      "citation": "Li, F. (2025). Global high-resolution (0.25°) total water storage anomaly dataset derived by reproducing GRACE data, v2. Zenodo.",
+      "doi": "10.5281/zenodo.17265162"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "algeria",
+    "algeria_subset": "native",
+    "bbox": [
+      -8.67,
+      18.96,
+      11.99,
+      37.09
+    ],
+    "description": "Algeria and its 69 wilayas (AEO boundaries 2026-11-20); communes not published. Tipaza has no value (coastal cells are ocean in the source)."
+  },
+  "temporal_extent": {
+    "start": "2002-04-01",
+    "end": "2025-03-28",
+    "ongoing": false,
+    "frequency": "monthly",
+    "description": "2002-04 to 2025-03 with 33 missing months, including the 2017–2018 gap between missions."
+  },
+  "resolution": {
+    "spatial": "Wilayas (0.25° cells; GRACE resolves about 300 km)",
+    "spatial_m": null,
+    "temporal": "monthly"
+  },
+  "format": [
+    "CSV",
+    "Parquet"
+  ],
+  "crs": "not applicable (tables by administrative unit)",
+  "variables": [
+    {
+      "name": "tws_anomaly_cm",
+      "units": "cm",
+      "description": "Water storage anomaly vs the unit's 2004–2009 mean"
+    },
+    {
+      "name": "uncertainty_cm",
+      "units": "cm",
+      "description": "Unit mean of the downscaling uncertainty"
+    },
+    {
+      "name": "tws_anomaly_cropland_cm",
+      "units": "cm",
+      "description": "Same, weighted by stable-cropland area"
+    },
+    {
+      "name": "trend_cm_per_year",
+      "units": "cm/year",
+      "description": "Theil–Sen trend with Mann–Kendall p-value"
+    }
+  ],
+  "processing": "Area-weighted means of the 0.25° cells; re-referenced to 2004–2009; Theil–Sen trend and Mann–Kendall test on the deseasonalised series.",
+  "validation": "Downloaded file checked against the Zenodo MD5; national trend −0.25 cm/yr (95 % −0.26 to −0.23), Mann–Kendall p < 0.0001.",
+  "limitations": [
+    "Total storage, not groundwater.",
+    "GRACE resolves about 300 km: only 9 wilayas are at least one mascon in area; values of the others are mostly model detail.",
+    "Missing months are left empty.",
+    "The source ends in March 2025."
+  ],
+  "algeria_notes": "Storage declines over most of the country; the strongest declines are in the north-east (about −1.2 cm/year), where the value rests largely on the downscaling.",
+  "version": "1.0.0",
+  "published_date": "2026-11-22",
+  "updated_date": "2026-11-22",
+  "download_url": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin0_v1.0.0.csv",
+  "access": [
+    {
+      "label": "Algeria — monthly water storage anomaly (CSV)",
+      "url": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin0_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 8789,
+      "sha256": "a661b90a7d3d7e671d8cf901d652e52b9ca0fb57b9201a4da758d7c2450b6106",
+      "notes": null
+    },
+    {
+      "label": "Wilayas — monthly water storage anomaly (CSV)",
+      "url": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 633293,
+      "sha256": "d2d23593a2abc6fbc5d4222aac7377e8dca95c19998ab5a024f7a204713ad00d",
+      "notes": null
+    },
+    {
+      "label": "Trends by wilaya (CSV)",
+      "url": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_trends_admin0-1_v1.0.0.csv",
+      "kind": "download",
+      "format": "CSV",
+      "requires_login": false,
+      "size_bytes": 4549,
+      "sha256": "f098575211dc7fdabd4ffe0eff51aeff0e7a3cdb56839e9eb12871d6ae343210",
+      "notes": null
+    }
+  ],
+  "code_url": "https://github.com/algeria-earth-observatory/algeria-earth-observatory.github.io/tree/main/scripts/pipelines/grace",
+  "map_layers": [
+    "tws-grace"
+  ],
+  "featured": false,
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [],
+    "sources_consulted": [
+      "https://zenodo.org/api/records/17265162",
+      "https://api.crossref.org/works/10.1029/2025gl119881"
+    ],
+    "notes": "See PROVENANCE.json."
+  },
+  "product": {
+    "manifest": "/data/aeo/products/water-storage/v1.0.0/manifest.json",
+    "product_version": "1.0.0",
+    "boundary_version": "2026-11-20",
+    "levels": [
+      "admin0",
+      "admin1"
+    ],
+    "spatial_levels": [],
+    "variables": [
+      "tws_anomaly_cm"
+    ],
+    "analyze": false
+  }
+}

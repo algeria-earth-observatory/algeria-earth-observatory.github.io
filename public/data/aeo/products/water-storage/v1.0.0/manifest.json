@@ -1,0 +1,103 @@
+{
+ "boundary_version": "2026-11-20",
+ "created": "2026-11-22",
+ "product_id": "aeo-dza-water-storage-grace",
+ "title": "Algeria terrestrial water storage anomaly (downscaled GRACE/GRACE-FO, Li & Kusche 2026): national and wilaya",
+ "status": "available",
+ "version": "1.0.0",
+ "geographic_scope": "Algeria",
+ "available_levels": [
+  "admin0",
+  "admin1"
+ ],
+ "spatial_products_levels": [],
+ "source_product": "Global 0.25° total water storage anomaly reproducing GRACE (Li 2025, Zenodo v2), from JPL RL06 mascons",
+ "source_version": "v2.0",
+ "source_doi": "10.5281/zenodo.17265162",
+ "source_license": "CC BY 4.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "monthly": [
+   "2002-04",
+   "2025-03"
+  ]
+ },
+ "reference_period": [
+  2004,
+  2009
+ ],
+ "spatial_resolution": "Administrative units (0.25° grid; GRACE native resolution ~3°)",
+ "crs": "not applicable (tables by administrative unit)",
+ "units": "cm equivalent water height",
+ "formats": [
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/grace/build_grace.py",
+ "methodology_url": "/docs/method-water-storage/",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin0_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Monthly terrestrial water storage anomaly (downscaled GRACE), admin0",
+   "bytes": 8789,
+   "sha256": "a661b90a7d3d7e671d8cf901d652e52b9ca0fb57b9201a4da758d7c2450b6106"
+  },
+  {
+   "href": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin0_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin0",
+   "role": "statistics",
+   "title": "Monthly terrestrial water storage anomaly (downscaled GRACE), admin0",
+   "bytes": 8440,
+   "sha256": "ea712fcd6dfe150fd0dd97aba6168f4fb5e696d020c18f499dbb5d86a64998b6"
+  },
+  {
+   "href": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Monthly terrestrial water storage anomaly (downscaled GRACE), admin1",
+   "bytes": 633293,
+   "sha256": "d2d23593a2abc6fbc5d4222aac7377e8dca95c19998ab5a024f7a204713ad00d"
+  },
+  {
+   "href": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_monthly_admin1_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Monthly terrestrial water storage anomaly (downscaled GRACE), admin1",
+   "bytes": 93449,
+   "sha256": "a0194c65060e1a731d94ddaefa42892f4ddd095e4813545a79eddb0519117d65"
+  },
+  {
+   "href": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_trends_admin0-1_v1.0.0.csv",
+   "format": "CSV",
+   "level": "admin0-1",
+   "role": "statistics",
+   "title": "Water storage trend per unit (Theil–Sen), admin0-1",
+   "bytes": 4549,
+   "sha256": "f098575211dc7fdabd4ffe0eff51aeff0e7a3cdb56839e9eb12871d6ae343210"
+  },
+  {
+   "href": "/data/aeo/products/water-storage/v1.0.0/tables/aeo_tws_trends_admin0-1_v1.0.0.parquet",
+   "format": "PARQUET",
+   "level": "admin0-1",
+   "role": "statistics",
+   "title": "Water storage trend per unit (Theil–Sen), admin0-1",
+   "bytes": 10244,
+   "sha256": "97e0152317320b39b3720f2a8e3a6b178c0634d508754954b98922192a84575b"
+  }
+ ],
+ "web_assets": {
+  "admin0": "/data/aeo/products/water-storage/v1.0.0/web/admin0.json",
+  "admin1": "/data/aeo/products/water-storage/v1.0.0/web/admin1.json",
+  "map": "/data/aeo/products/water-storage/v1.0.0/map/map.json"
+ },
+ "qc": [
+  "Algeria trend -0.248 cm/yr (95 % -0.262 to -0.232), Mann–Kendall p = 0.0000",
+  "9 of 69 wilayas are at least one mascon in area"
+ ]
+}
