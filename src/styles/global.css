@@ -228,13 +228,18 @@
   .maplibregl-ctrl-group { border-radius: var(--radius-control) !important; }
   .aeo-reset button { font-size: 12px; font-weight: 500; width: auto !important; padding: 0 .55rem; color: #17252c; }
 
-  /* Live monitor (homepage): pulsing status dot, indicator cards, timeline */
-  .live-dot { position: relative; display: inline-block; width: .5rem; height: .5rem; border-radius: 9999px; background: var(--color-oxide); flex: none; }
-  .now-card { display: flex; flex-direction: column; height: 100%; width: 100%; text-align: left; padding: .75rem; border: 1px solid var(--color-line); border-radius: var(--radius-card); background: var(--color-surface); transition: border-color .15s, background-color .15s; }
-  @media (min-width: 640px) { .now-card { padding: 1rem; } }
+  /* homepage indicator strip: ruled cells, the selected one white with a cobalt top rule */
+  .now-card { display: flex; flex-direction: column; width: 100%; text-align: left; padding: .75rem .875rem .875rem; background: transparent; color: inherit; text-decoration: none; transition: background-color .15s; }
+  @media (min-width: 640px) { .now-card { padding: 1rem 1.125rem 1.125rem; } }
   button.now-card { cursor: pointer; }
-  button.now-card:hover { border-color: var(--color-line-strong); }
-  button.now-card[aria-pressed='true'] { border-color: var(--color-cobalt); box-shadow: inset 0 3px 0 var(--color-cobalt); }
+  .now-card:hover { background: var(--color-paper); }
+  button.now-card[aria-pressed='true'] { background: var(--color-surface); box-shadow: inset 0 3px 0 var(--color-cobalt); }
+  .now-act { display: none; margin-left: auto; color: var(--color-cobalt); font-weight: 500; }
+  @media (min-width: 640px) {
+    button.now-card[aria-pressed='true'] .now-act-on,
+    button.now-card[aria-pressed='false']:hover .now-act-show,
+    a.now-card:hover .now-act-link { display: inline; }
+  }
   .hp-range { width: 100%; accent-color: var(--color-cobalt); }
 
   /* Legacy EO chrome — neutralised */

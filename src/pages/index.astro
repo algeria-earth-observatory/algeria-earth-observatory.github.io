@@ -60,7 +60,8 @@ if (tws0) {
   if (u.trend_cm_per_year !== null) now.push({ label: 'Total water storage (GRACE)', value: `${sg(u.trend_cm_per_year, 2)} cm`, detail: 'per year since 2002', when: `to ${monthName(tws0.months[tws0.months.length - 1])}`, href: '/water/#tws-h' });
 }
 const latestMonth = [spi0?.months.at(-1), et0?.months.at(-1)].filter(Boolean).sort().at(-1) as string | undefined;
-const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.filter((c) => c.mode).map((c) => c.mode) };
+const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.filter((c) => c.mode).map((c) => c.mode),
+  more: { spi: '/drought/', sm: '/drought/', res: '/water/', outlook: '/drought/#outlook' } as Record<string, string> };
 ---
 <Base description="Explore Algeria's land, climate, water, soils and ecosystems through open environmental data, interactive maps and reproducible scientific methods." jsonLd={jsonLd}>
   <!-- Identity -->
@@ -84,35 +85,37 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
   <div class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
 
   <!-- Live monitor: the latest month of each monitoring product, on one map -->
-  <section class="mt-10 scroll-mt-14 border-y border-line bg-paper" aria-labelledby="now-h" id="live">
+  <section class="mt-10 scroll-mt-14" aria-labelledby="now-h" id="live">
     <div class="mx-auto max-w-[90rem] px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
       <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
         <div>
           <h2 id="now-h" class="h-section">Algeria now</h2>
         </div>
-        <p class="max-w-xl text-[0.9375rem] leading-relaxed text-slate">The latest month of each AEO monitoring product, from open satellite and model data. Click a card to show it on the map.</p>
+        <p class="max-w-xl text-[0.9375rem] leading-relaxed text-slate">The latest month of each AEO monitoring product, from open satellite and model data. Choose an indicator to show it on the map.</p>
       </div>
-      <ul id="now-cards" class="tabular mt-6 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-5">
-        {now.map((c) => (
-          <li class="flex flex-col">
-            {c.mode ? (
-              <button type="button" class="now-card" data-mode={c.mode} aria-pressed={c.mode === 'spi' ? 'true' : 'false'} aria-controls="home-map">
-                <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
-                <span class="mt-1 text-[1.25rem] font-medium leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
-                <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
-                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate">{c.when}<span class="ml-auto hidden font-medium text-cobalt sm:inline" aria-hidden="true">Show on map</span></span>
-              </button>
-            ) : (
-              <div class="now-card">
-                <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
-                <span class="mt-1 text-[1.25rem] font-medium leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
-                <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
-                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate">{c.when}</span>
-              </div>
-            )}
-            <a href={c.href} class="mt-1.5 self-start text-[0.8125rem]">Details<span class="sr-only">: {c.label}</span></a>
-          </li>
-        ))}
+      <ul id="now-cards" class="tabular mt-6 grid grid-cols-2 gap-px border border-line bg-line lg:grid-cols-5">
+        {now.map((c) => {
+          const body = <>
+            <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
+            <span class="mt-1 text-[1.25rem] font-medium leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
+            <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
+          </>;
+          return (
+            <li class="flex bg-limestone last:col-span-2 lg:last:col-span-1">
+              {c.mode ? (
+                <button type="button" class="now-card" data-mode={c.mode} aria-pressed={c.mode === 'spi' ? 'true' : 'false'} aria-controls="home-map">
+                  {body}
+                  <span class="mt-auto flex items-baseline gap-2 pt-3 text-[0.8125rem] text-slate">{c.when}<span class="now-act now-act-on" aria-hidden="true">On the map</span><span class="now-act now-act-show" aria-hidden="true">Show on map</span></span>
+                </button>
+              ) : (
+                <a href={c.href} class="now-card">
+                  {body}
+                  <span class="mt-auto flex items-baseline gap-2 pt-3 text-[0.8125rem] text-slate">{c.when}<span class="now-act now-act-link" aria-hidden="true">Water page</span></span>
+                </a>
+              )}
+            </li>
+          );
+        })}
       </ul>
 
       <div class="mt-5 grid overflow-hidden border border-line bg-surface lg:grid-cols-12" style="border-radius:var(--radius-card)">
@@ -148,6 +151,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
           <div class="mt-auto flex flex-col gap-2">
             <a id="hp-explore" href="/map/" class="btn btn-primary justify-center"><span id="hp-explore-name">Explore</span></a>
             <a id="hp-profile" href="/regions/19/" class="btn btn-secondary justify-center">Wilaya profile</a>
+            <a id="hp-more" href="/drought/" class="mt-1 self-start text-[0.875rem]">More on this indicator</a>
           </div>
         </div>
       </div>
@@ -247,7 +251,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
   }
 
   const $ = (id: string) => document.getElementById(id)!;
-  const D = JSON.parse($('home-data').textContent!) as { wilayas: [string, string][]; modes: Mode[] };
+  const D = JSON.parse($('home-data').textContent!) as { wilayas: [string, string][]; modes: Mode[]; more: Record<string, string> };
   const NAMES = new Map(D.wilayas);
   const L = (id: string) => MAP_LAYERS.find((l) => l.id === id) as MapLayer;
   const SPI = L('spi-3'), SM = L('sm-crop-dep'), OUT = L('outlook-nmme');
@@ -435,6 +439,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     mode = m;
     const def = MODES[m];
     document.querySelectorAll<HTMLButtonElement>('#now-cards button[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+    ($('hp-more') as HTMLAnchorElement).href = D.more[m] ?? '/data/';
     $('hp-ind').textContent = def.title;
     $('hp-note').textContent = def.note;
     $('home-legend').innerHTML = def.legend();
