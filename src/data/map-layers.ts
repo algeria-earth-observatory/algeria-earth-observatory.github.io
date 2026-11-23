@@ -41,7 +41,7 @@ export interface MapLayer {
   domain: DomainId | 'reference';
   type: 'raster' | 'geojson' | 'image' | 'choropleth';
   /** Choropleth by wilaya from a published AEO table (type 'choropleth'): web JSON with months, units, values[key][scale]. */
-  choropleth?: { url: string; key: string; scale: string; breaks: number[]; colors: string[]; flag: string; flagColor: string };
+  choropleth?: { url: string; key: string; scale: string; breaks: number[]; colors: string[]; flag: string; flagColor: string; /** colour for units without a value (default: transparent) */ nullColor?: string };
   /** Image overlay (type 'image'): URL template with {year}, {month} or {variant}, Web Mercator image corners. */
   image?: { url: string; coordinates: [number, number][] };
   dataset: string | null;
@@ -157,6 +157,9 @@ const twsMap = one(import.meta.glob('../../public/data/aeo/products/water-storag
 const cropMap = one(import.meta.glob('../../public/data/aeo/products/stable-cropland/v1.0.0/map/map.json', { eager: true, import: 'default' }));
 const cmipMap = one(import.meta.glob('../../public/data/aeo/products/climate-projections/v1.0.0/map/map.json', { eager: true, import: 'default' }));
 const outlookMap = one(import.meta.glob('../../public/data/aeo/products/seasonal-outlook/v0.1.0/web/choropleth.json', { eager: true, import: 'default' }));
+
+/** Soil-moisture departure classes (percentage points), ColorBrewer BrBG-7, neutral grey midpoint. */
+const SM_DEP = { breaks: [-10, -5, -2, 2, 5, 10], colors: ['#8c510a', '#d8b365', '#f6e8c3', '#f5f5f5', '#c7eae5', '#5ab4ac', '#01665e'] };
 
 export const classLabels = (breaks: number[], colors: string[], fmt: (v: number) => string = String) =>
   colors.map((c, i) => ({ color: c, label: i === 0 ? `< ${fmt(breaks[0])}` : i === breaks.length ? `≥ ${fmt(breaks[i - 1])}` : `${fmt(breaks[i - 1])} to ${fmt(breaks[i])}` }));
@@ -444,6 +447,16 @@ function waterClimateLayers(): MapLayer[] {
       attribution: 'Soil moisture: <a href="https://data.apps.fao.org/wapor/" target="_blank" rel="noopener">FAO WaPOR v3</a> (CC BY 4.0) · AEO processing',
       legend: { kind: 'classes', caption: '% of the available range · palette ColorBrewer BrBG (brown dry, teal wet)', classes: classLabels(etMap.rsm.breaks, etMap.rsm.colors) },
       caveat: 'Derived by WaPOR from land surface temperature, not a microwave retrieval or field measurement. In the Sahara, with almost no vegetation, WaPOR relative soil moisture is not meaningful (values come from its surface-temperature method); read it for vegetated land and cropland.',
+    }, {
+      id: 'sm-crop-dep',
+      title: 'Soil moisture on stable cropland, departure from normal (WaPOR v3), monthly, by wilaya',
+      summary: 'Relative soil moisture averaged over the stable cropland of each wilaya, minus the 2018–2025 mean for the same calendar month, in percentage points. Brown = drier than usual, teal = wetter.',
+      domain: 'agriculture', type: 'choropleth', dataset: 'aeo-dza-et-soil-moisture-wapor3', nature: 'modeled',
+      choropleth: { url: '/data/aeo/products/et-soil-moisture/v1.0.0/web/admin1.json', key: 'series', scale: 'rsm_crop_dep_pp', breaks: SM_DEP.breaks, colors: SM_DEP.colors, flag: 'none', flagColor: '#c9ced3', nullColor: '#c9ced3' },
+      maxzoom: 22, time: monthly(etMap.months), opacity: 0.85,
+      attribution: 'Soil moisture: <a href="https://data.apps.fao.org/wapor/" target="_blank" rel="noopener">FAO WaPOR v3</a> (CC BY 4.0) · cropland mask from GACED30 · AEO processing',
+      legend: { kind: 'classes', caption: 'percentage points vs 2018–2025 · palette ColorBrewer BrBG-7', classes: [...classLabels(SM_DEP.breaks, SM_DEP.colors, signedFmt), { color: '#c9ced3', label: 'under 1,000 ha of cropland' }] },
+      caveat: 'Departure from a short baseline (2018–2025), not a long-term normal. Modelled by WaPOR from land surface temperature; one value per wilaya, over stable cropland only.',
     });
   }
   if (cropMap) {

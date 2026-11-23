@@ -36,7 +36,7 @@ const SOIL = '/data/aeo/products/soil/v1.0.0/web';
 
 /** Indicators for which AEO publishes regional statistics. */
 export const hasAeoStats = (id: string | null) => !!id && (/^precip-(annual|anomaly)$/.test(id) || /^(spei|spi)-(3|12)$/.test(id) || id.startsWith('soil-')
-  || ['et-aeti', 'sm-rsm', 'stable-cropland', 'tws-grace', 'outlook-nmme'].includes(id) || id.startsWith('cmip6-'));
+  || ['et-aeti', 'sm-rsm', 'sm-crop-dep', 'stable-cropland', 'tws-grace', 'outlook-nmme'].includes(id) || id.startsWith('cmip6-'));
 
 interface Block {
   indicator: string; period: string; value: string; units: string;
@@ -151,7 +151,7 @@ export class RegionInspector {
     if (id === 'spei-3' || id === 'spei-12') return this.spei(region, q, id === 'spei-3' ? '3' : '12');
     if (id === 'spi-3' || id === 'spi-12') return this.spei(region, q, id === 'spi-3' ? '3' : '12', 'spi');
     if (id.startsWith('soil-')) return this.soil(region, q);
-    if (id === 'et-aeti' || id === 'sm-rsm') return this.wapor(region, q, id === 'et-aeti' ? 'aeti' : 'rsm');
+    if (id === 'et-aeti' || id === 'sm-rsm' || id === 'sm-crop-dep') return this.wapor(region, q, id === 'et-aeti' ? 'aeti' : 'rsm');
     if (id === 'stable-cropland') return this.cropland(region);
     if (id === 'tws-grace') return this.grace(region, q);
     if (id.startsWith('cmip6-')) return this.cmip6(region, q, id.slice(6));
