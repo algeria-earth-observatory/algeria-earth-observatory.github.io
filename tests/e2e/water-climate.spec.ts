@@ -99,7 +99,7 @@ test('Homepage live monitor: cards switch the map, readout equals the published 
   await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-1), 2));
   // the slider moves the month and the value follows the table
   await page.locator('#hp-slider').fill('0');
-  await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-24), 2));
+  await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-120), 2)); // 10-year timeline
   // soil moisture on cropland
   await page.click('#now-cards button[data-mode="sm"]');
   await expect(page.locator('#now-cards button[data-mode="sm"]')).toHaveAttribute('aria-pressed', 'true');

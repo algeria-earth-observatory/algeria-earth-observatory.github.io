@@ -189,7 +189,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
             <p id="hp-class" class="text-[0.9375rem] text-graphite"></p>
           </div>
           <figure id="hp-spark-f" class="m-0">
-            <svg id="hp-spark" viewBox="0 0 240 64" preserveAspectRatio="none" class="block h-16 w-full" role="img" aria-labelledby="hp-spark-c"></svg>
+            <svg id="hp-spark" viewBox="0 0 240 80" preserveAspectRatio="none" class="block h-20 w-full" role="img" aria-labelledby="hp-spark-c"></svg>
             <figcaption id="hp-spark-c" class="mt-1 text-[0.8125rem] text-slate"></figcaption>
           </figure>
           <ul id="hp-res" class="hidden max-h-52 overflow-auto text-[0.875rem]" tabindex="0" aria-label="Reservoirs in the selected wilaya"></ul>
@@ -276,7 +276,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
 <script>
   /**
    * Live monitor: one map, four monitoring indicators (cards above), a timeline over the last
-   * 24 months (or the outlook's target seasons) and a wilaya readout. Values are read from the
+   * 10 years (or the outlook's target seasons) and a wilaya readout. Values are read from the
    * same published web tables as Explore; nothing is computed here except display classes.
    */
   import { buildStyle, createMap, setChoropleth, MAP_LAYERS, maplibregl, escapeHtml } from '../scripts/map-core';
@@ -289,7 +289,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     title: string; note: string; stepName: string; attribution: string;
     steps(): Promise<string[]>; stepLabel(s: string): string;
     apply(s: string): Promise<void>; readout(code: string, s: string): Promise<Readout>;
-    spark?(code: string): Promise<{ bars: Bar[]; caption: string; max: number }>;
+    spark?(code: string): Promise<{ bars: Bar[]; months: string[]; caption: string; max: number }>;
     table(s: string): Promise<{ head: string[]; rows: string[][] }>;
     explore(code: string, s: string): { href: string; text: string };
     legend(): string;
@@ -305,6 +305,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
   const get = (url: string) => { if (!cache.has(url)) cache.set(url, fetch(url).then((r) => r.json())); return cache.get(url)!; };
   const RES_URL = '/data/aeo/products/reservoirs/v1.0.0/web/reservoirs.geojson';
   const RES_SERIES = '/data/aeo/products/reservoirs/v1.0.0/web/series.json';
+  const WINDOW = 120; // months on the timeline and in the bar chart: the last 10 years (less where the record is shorter)
   const OUT_TABLE = '/data/aeo/products/seasonal-outlook/v0.1.0/web/outlook.json';
   const BINS = [25, 50, 75];
   const BLUES = ['#c6dbef', '#6baed6', '#2171b5', '#08306b']; // ColorBrewer Blues (as on the Water page)
@@ -325,7 +326,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     const url = layer.choropleth!.url;
     return {
       title: o.title, note: o.note, stepName: 'Month', attribution: layer.attribution,
-      steps: async () => (await get(url)).months.slice(-24),
+      steps: async () => (await get(url)).months.slice(-WINDOW),
       stepLabel: mLabel,
       apply: (s) => setChoropleth(map, layer, `${s}-01`),
       async readout(code, s) {
@@ -335,10 +336,10 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
         return v === null ? { value: '—', unit: '', cls: o.nullText(f, i) } : { value: o.fmt(v), unit: o.unit, cls: o.describe(v, f, i, t) };
       },
       async spark(code) {
-        const f = await get(url); const i = unitIndex(f, code); const n = f.months.length;
+        const f = await get(url); const i = unitIndex(f, code); const n = f.months.length; const n0 = Math.max(0, n - WINDOW);
         const flagged = !!o.flagText?.(f, i);
-        const bars = o.values(f)[i].slice(n - 24).map((v: number | null) => ({ v: flagged ? null : v, color: v === null || flagged ? NODATA : classOf(layer, v).color }));
-        return { bars, max: o.sparkMax, caption: `${o.short}, ${NAMES.get(code)}, ${mLabel(f.months[n - 24])} – ${mLabel(f.months[n - 1])}. Outlined bar: month on the map.` };
+        const bars = o.values(f)[i].slice(n0).map((v: number | null) => ({ v: flagged ? null : v, color: v === null || flagged ? NODATA : classOf(layer, v).color }));
+        return { bars, months: f.months.slice(n0), max: o.sparkMax, caption: `${o.short}, ${NAMES.get(code)}, ${mLabel(f.months[n0])} – ${mLabel(f.months[n - 1])}. Thin lines mark January; outlined bar: month on the map.` };
       },
       async table(s) {
         const f = await get(url); const t = f.months.indexOf(s);
@@ -375,7 +376,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
         // end at the latest month with a clear image for at least half of the reservoirs (the newest month fills in as scenes arrive)
         const half = series.length / 2;
         let last = s.months.length - 1; while (last > 0 && series.filter((r) => r[last] !== null).length < half) last--;
-        return s.months.slice(Math.max(0, last - 23), last + 1);
+        return s.months.slice(Math.max(0, last - WINDOW + 1), last + 1);
       },
       stepLabel: mLabel,
       async apply(m) { (map.getSource('home-res') as maplibregl.GeoJSONSource).setData(await resAt(m)); },
@@ -532,16 +533,18 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     }
   }
 
-  function drawSpark({ bars, caption, max }: { bars: Bar[]; caption: string; max: number }) {
-    const svg = $('hp-spark'); const n = bars.length; const W = 240, H = 64, mid = H / 2; const w = W / n;
+  function drawSpark({ bars, months, caption, max }: { bars: Bar[]; months: string[]; caption: string; max: number }) {
+    const svg = $('hp-spark'); const n = bars.length; const W = 240, H = 80, mid = H / 2; const w = W / n;
+    const gap = w > 4 ? 1 : w * 0.18, bw = w - gap;
     const cur = +slider.value - (steps.length - n);
     const peak = Math.max(max, ...bars.map((b) => Math.abs(b.v ?? 0)));
-    let out = `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" style="stroke:var(--color-line-strong)" stroke-width="0.6" />`;
+    let out = months.map((m, i) => (m.endsWith('-01') && i > 0 ? `<line x1="${i * w}" x2="${i * w}" y1="0" y2="${H}" style="stroke:var(--color-line)" stroke-width="0.5" vector-effect="non-scaling-stroke" />` : '')).join('');
+    out += `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" style="stroke:var(--color-line-strong)" stroke-width="0.6" />`;
     bars.forEach((b, i) => {
-      const x = i * w + 1;
-      if (b.v === null) { out += `<rect x="${x}" y="${mid - 1}" width="${w - 2}" height="2" fill="${NODATA}" opacity="0.5" />`; return; }
+      const x = i * w + gap / 2;
+      if (b.v === null) { out += `<rect x="${x}" y="${mid - 1}" width="${bw}" height="2" fill="${NODATA}" opacity="0.5" />`; return; }
       const h = Math.max(1.5, (Math.abs(b.v) / peak) * (mid - 3));
-      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${w - 2}" height="${h}" rx="1" fill="${b.color}" style="stroke:${i === cur ? 'var(--color-midnight)' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" />`;
+      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${bw}" height="${h}" fill="${b.color}" style="stroke:${i === cur ? 'var(--color-midnight)' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" vector-effect="non-scaling-stroke" />`;
     });
     svg.innerHTML = out;
     $('hp-spark-c').textContent = caption;
@@ -575,7 +578,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
       const i = +slider.value + 1;
       if (i > steps.length - 1) { stop(); return; }
       setStep(i);
-    }, 900);
+    }, steps.length > 36 ? 350 : 900);
   });
   slider.addEventListener('input', () => { stop(); setStep(+slider.value); });
   sel.addEventListener('change', () => choose(sel.value));
