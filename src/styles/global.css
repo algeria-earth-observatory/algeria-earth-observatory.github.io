@@ -244,6 +244,29 @@
     a.now-card:hover .now-act-link { display: inline; }
   }
   .hp-range { width: 100%; accent-color: var(--color-cobalt); }
+  /* homepage time explorer */
+  .seg { display: inline-flex; border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); overflow: hidden; }
+  .seg button { min-height: 1.875rem; padding: .25rem .625rem; font-size: .8125rem; color: var(--color-graphite); background: var(--color-surface); transition: background-color var(--motion, .15s), color var(--motion, .15s); }
+  .seg button + button { border-left: 1px solid var(--color-line-strong); }
+  .seg button:hover { background: var(--color-paper); }
+  .seg button[aria-pressed='true'] { background: var(--color-midnight); color: var(--color-white); }
+  .hp-ts[hidden] { display: none !important; }
+  #hp-spark .hp-grid { stroke: var(--color-line); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+  #hp-spark .hp-zero { stroke: var(--color-line-strong); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+  #hp-spark .hp-cur { stroke: var(--color-midnight); stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+  #hp-spark .hp-curline { stroke: var(--color-cobalt); stroke-width: 1px; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; }
+  #hp-spark .hp-band { fill: var(--color-midnight); fill-opacity: .07; }
+  .hp-tip { position: absolute; top: 0; z-index: 5; transform: translate(-50%, calc(-100% - 6px)); pointer-events: none; white-space: nowrap;
+    background: var(--color-midnight); color: var(--color-white); font-size: .8125rem; line-height: 1.4; padding: .375rem .625rem; border-radius: var(--radius-control); font-variant-numeric: tabular-nums; }
+  .hp-years { position: relative; height: 1.125rem; font-size: .75rem; color: var(--color-slate); font-variant-numeric: tabular-nums; }
+  .hp-yr { position: absolute; top: 0; padding-left: 3px; border-left: 1px solid var(--color-line-strong); line-height: 1.1rem; }
+  .hp-ctx { position: relative; height: 1.5rem; cursor: pointer; touch-action: none; user-select: none; }
+  .hp-shade { position: absolute; top: 0; bottom: 0; background: color-mix(in srgb, var(--color-surface) 62%, transparent); pointer-events: none; }
+  .hp-ctx-cur { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--color-cobalt); pointer-events: none; }
+  .hp-brush { position: absolute; top: -3px; bottom: -3px; border: 2px solid var(--color-midnight); border-radius: 2px; cursor: grab; }
+  .hp-brush:active { cursor: grabbing; }
+  .hp-brush::before, .hp-brush::after { content: ''; position: absolute; top: 25%; bottom: 25%; width: 5px; background: var(--color-midnight); border-radius: 2px; cursor: ew-resize; }
+  .hp-brush::before { left: -4px; } .hp-brush::after { right: -4px; }
 
   /* Legacy EO chrome — neutralised */
   .eo-grid { background-image: none; }

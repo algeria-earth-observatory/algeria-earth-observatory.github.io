@@ -99,7 +99,22 @@ test('Homepage live monitor: cards switch the map, readout equals the published 
   await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-1), 2));
   // the slider moves the month and the value follows the table
   await page.locator('#hp-slider').fill('0');
-  await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-120), 2)); // 10-year timeline
+  await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-24), 2)); // default zoom: the last 2 years
+  // full record: the strip covers every month, the slider reaches the first one
+  await page.click('#hp-zoom button[data-zoom="all"]');
+  await expect(page.locator('#hp-zoom button[data-zoom="all"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#hp-ctx-svg rect')).toHaveCount(spi.months.length);
+  await expect(page.locator('#hp-t0')).toHaveText(/1981/);
+  await page.locator('#hp-slider').fill('0');
+  const v0 = spi.spi['3'][i][0];
+  await expect(page.locator('#hp-value')).toHaveText(v0 === null ? '—' : sg(v0, 2));
+  // hovering the detail chart previews a month with a tooltip
+  await page.locator('#hp-spark').hover({ position: { x: 30, y: 50 } });
+  await expect(page.locator('#hp-tip')).toBeVisible();
+  await expect(page.locator('#hp-month')).toContainText('preview');
+  await page.mouse.move(0, 0);
+  await page.click('#hp-zoom button[data-zoom="now"]');
+  await expect(page.locator('#hp-month')).toContainText('latest');
   // soil moisture on cropland
   await page.click('#now-cards button[data-mode="sm"]');
   await expect(page.locator('#now-cards button[data-mode="sm"]')).toHaveAttribute('aria-pressed', 'true');
