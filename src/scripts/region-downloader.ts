@@ -47,13 +47,13 @@ export async function initRegionDownloader() {
   if (sel.level === 'admin1' && !sel.wilaya) sel.wilaya = '';
 
   // ------------------------------------------------------------ location
-  const wOpts = [...ctx.wilayas.values()].map((w: any) => ({ value: w.code, label: `${w.code} — ${w.name}`, hint: w.name_ar, search: searchKey(w.code, w.name, w.name_ar) }));
+  const wOpts = [...ctx.wilayas.values()].map((w: any) => ({ value: w.code, label: `${w.code} — ${w.name}`, search: searchKey(w.code, w.name) }));
   const wCb = new Combobox($<HTMLInputElement>('rdd-wilaya'), $<HTMLUListElement>('rdd-wilaya-list'), (v) => { sel.wilaya = v; sel.commune = ''; fillCommunes(); update(); });
   const cCb = new Combobox($<HTMLInputElement>('rdd-commune'), $<HTMLUListElement>('rdd-commune-list'), (v) => { sel.commune = v; update(); });
   wCb.setOptions(wOpts); wCb.set(sel.wilaya, false);
   function fillCommunes() {
     const list = [...ctx.communes.values()].filter((c: any) => c.wilaya === sel.wilaya)
-      .map((c: any) => ({ value: c.code, label: `${c.name} (${c.code})`, hint: c.name_ar, search: searchKey(c.code, c.name, c.name_ar) }))
+      .map((c: any) => ({ value: c.code, label: `${c.name} (${c.code})`, search: searchKey(c.code, c.name) }))
       .sort((a, b) => a.label.localeCompare(b.label, 'fr'));
     cCb.setOptions(list, true);
     cCb.set(sel.commune, false);
@@ -150,7 +150,7 @@ export async function initRegionDownloader() {
     const a = sel.level === 'admin0' ? null : sel.level === 'admin1' ? ctx.wilayas.get(sel.wilaya) : ctx.communes.get(sel.commune);
     $('rdd-area').innerHTML = sel.level === 'admin0'
       ? `Algeria (code DZ) · boundaries ${ctx.boundaryVersion}`
-      : a ? `${esc(a.name)}${a.name_ar ? ` · <span lang="ar" dir="rtl">${esc(a.name_ar)}</span>` : ''} · ${sel.level === 'admin1' ? 'wilaya' : 'commune'} code ${a.code} · boundaries ${ctx.boundaryVersion}` : '';
+      : a ? `${esc(a.name)} · ${sel.level === 'admin1' ? 'wilaya' : 'commune'} code ${a.code} · boundaries ${ctx.boundaryVersion}` : '';
     // period validation (shown next to the fields)
     const perr = ind.kind === 'boundaries' || sel.step === 'stats' || sel.format !== 'csv' ? null : periodError(ctx, sel);
     const err = $('rdd-period-err');

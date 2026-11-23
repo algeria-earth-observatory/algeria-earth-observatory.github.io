@@ -180,7 +180,7 @@ export async function initAnalyze() {
   cSel.addEventListener('change', () => { if (cSel.value) { state.unit = cSel.value; state.compare = []; refresh(true); } });
   cSearch.addEventListener('input', () => {
     const q = cSearch.value.trim().toLowerCase();
-    fillCommunes(q.length < 2 ? communesOf(wSel.value) : a2.units.filter((u) => `${u.name} ${u.name_ar ?? ''} ${u.code}`.toLowerCase().includes(q)).slice(0, 60));
+    fillCommunes(q.length < 2 ? communesOf(wSel.value) : a2.units.filter((u) => `${u.name} ${u.code}`.toLowerCase().includes(q)).slice(0, 60));
   });
   $('az-compare-add').addEventListener('click', () => {
     if (cmpSel.value && !state.compare.includes(cmpSel.value) && state.compare.length < 4) { state.compare.push(cmpSel.value); refresh(false); }

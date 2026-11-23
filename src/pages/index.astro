@@ -11,6 +11,7 @@ import { PRIMARY_DOMAINS } from '../lib/domains';
 import { SITE } from '../config/site';
 import { loadRegions } from '../lib/regions-data';
 import publications from '../data/publications.json';
+import spiMap from '../../public/data/aeo/products/spi/v1.0.0/map/map.json';
 
 const all = await getDatasets();
 const aeoAvailable = all.filter((d) => d.origin !== 'external' && d.status === 'available');
@@ -59,27 +60,64 @@ if (tws0) {
   const u = tws0.units[0];
   if (u.trend_cm_per_year !== null) now.push({ label: 'Total water storage (GRACE)', value: `${sg(u.trend_cm_per_year, 2)} cm`, detail: 'per year since 2002', when: `to ${monthName(tws0.months[tws0.months.length - 1])}`, href: '/water/#tws-h' });
 }
+// Pixel blocks under each indicator: one square per wilaya (per reservoir), with the classes and
+// colours of the map, ordered from driest (left) to wettest (right); grey = no value. Column-major, 3 rows.
+const spi1 = one(import.meta.glob('../../public/data/aeo/products/spi/v1.0.0/web/admin1.json', { eager: true, import: 'default' }));
+const et1 = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/web/admin1.json', { eager: true, import: 'default' }));
+const outC = one(import.meta.glob('../../public/data/aeo/products/seasonal-outlook/v0.1.0/web/choropleth.json', { eager: true, import: 'default' }));
+const NO_VALUE = '#c9ced3';
+const klass = (v: number, breaks: number[]) => breaks.filter((b) => v >= b).length;
+const ranges = (breaks: number[], f: (v: number) => string, u: string) => [`below ${f(breaks[0])}${u}`, ...breaks.slice(1).map((b, i) => `${f(breaks[i])} to ${f(b)}${u}`), `${f(breaks[breaks.length - 1])}${u} or more`];
+type Px = { cells: string[]; rows: number; label: string };
+function pixelBlock(vals: (number | null)[], breaks: number[], colors: string[], names: string[], unit: string, grey: { color: string; name: string }): Px {
+  const ok = vals.filter((v): v is number => v !== null).sort((a, b) => a - b);
+  const nGrey = vals.length - ok.length;
+  const counts = colors.map((_, i) => [names[i], ok.filter((v) => klass(v, breaks) === i).length] as const).filter(([, n]) => n > 0);
+  return {
+    cells: [...ok.map((v) => colors[klass(v, breaks)]), ...Array(nGrey).fill(grey.color)],
+    rows: 3,
+    label: `${vals.length} ${unit}, one square each, ordered from driest to wettest: ${[...counts.map(([n, k]) => `${k} ${n}`), ...(nGrey ? [`${nGrey} ${grey.name}`] : [])].join('; ')}.`,
+  };
+}
+const PX: Record<string, Px> = {};
+if (spi1) PX.spi = pixelBlock(spi1.units.map((u: any, i: number) => (u.arid ? null : spi1.spi['3'][i].at(-1))), spiMap.breaks, spiMap.colors, spiMap.labels, 'wilayas', { color: spiMap.arid.color, name: 'arid (SPI unstable)' });
+if (et1) PX.sm = pixelBlock(et1.series.rsm_crop_dep_pp.map((r: (number | null)[]) => r.at(-1) ?? null), [-10, -5, -2, 2, 5, 10], ['#8c510a', '#d8b365', '#f6e8c3', '#f5f5f5', '#c7eae5', '#5ab4ac', '#01665e'],
+  ranges([-10, -5, -2, 2, 5, 10], (v) => sg(v, 0), ' points'), 'wilayas', { color: NO_VALUE, name: 'with under 1,000 ha of cropland' });
+if (resv) PX.res = pixelBlock(resv.features.map((f: any) => f.properties.latest_pct_of_max ?? null), [25, 50, 75], ['#c6dbef', '#6baed6', '#2171b5', '#08306b'],
+  ['under 25 %', '25–50 %', '50–75 %', '75 % or more'], 'reservoirs', { color: NO_VALUE, name: 'without a clear image' });
+if (outC) { const t0 = outC.targets[0]; PX.outlook = pixelBlock(outC.v[t0].map((r: (number | null)[], i: number) => (outC.flags[t0][i] ? null : r[0])), outC.breaks, outC.colors, outC.class_labels.map((l: string) => l.toLowerCase()), 'wilayas', { color: NO_VALUE, name: 'equal chances (no usable skill)' }); }
 const latestMonth = [spi0?.months.at(-1), et0?.months.at(-1)].filter(Boolean).sort().at(-1) as string | undefined;
 const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.filter((c) => c.mode).map((c) => c.mode),
   more: { spi: '/drought/', sm: '/drought/', res: '/water/', outlook: '/drought/#outlook' } as Record<string, string> };
 ---
 <Base description="Explore Algeria's land, climate, water, soils and ecosystems through open environmental data, interactive maps and reproducible scientific methods." jsonLd={jsonLd}>
-  <!-- Identity -->
-  <section class="mx-auto max-w-[90rem] px-5 pb-10 pt-10 sm:px-8 lg:px-12 lg:pb-14 lg:pt-16" aria-labelledby="hero-h">
-    <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
-      <div class="lg:col-span-7">
-        <div class="w-[8.5rem] sm:w-[11rem] lg:w-[13.5rem]"><Logo fluid label="AEO" /></div>
-        <h1 id="hero-h" class="display mt-8">Algeria Earth Observatory</h1>
+  <!-- Identity beside the pixel-atlas image of Algeria (docs/BRAND.md §7–8) -->
+  <section class="mx-auto grid max-w-[90rem] items-center gap-10 px-5 pb-12 pt-10 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:pb-16 lg:pt-14" aria-labelledby="hero-h">
+    <div class="lg:col-span-5">
+      <div class="w-[7.5rem] sm:w-[9rem]"><Logo fluid label="AEO" /></div>
+      <p class="overline mt-8">Earth observation / Algeria</p>
+      <h1 id="hero-h" class="display mt-4">Algeria Earth Observatory</h1>
+      <p class="lede mt-6">Maps and open data on rainfall, drought, water, soils and land cover in Algeria, for each of the {wilayas.length} wilayas and 1,541 communes. The sources, code and methods behind every figure are public.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/map/" class="btn btn-primary">Explore Algeria</a>
+        <a href="/data/" class="btn btn-secondary">Browse Data</a>
       </div>
-      <div class="lg:col-span-5">
-        <p class="lede">Maps and open data on rainfall, drought, water, soils and land cover in Algeria, for each of the {wilayas.length} wilayas and 1,541 communes. The sources, code and methods behind every figure are public.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/map/" class="btn btn-primary">Explore Algeria</a>
-          <a href="/data/" class="btn btn-secondary">Browse Data</a>
-        </div>
-        {latestMonth && <p class="mt-6 text-[0.9375rem] text-slate">{all.length - planned.length} datasets so far. Drought and water monitoring is updated each month; <a href="#live">the latest data</a> are for {monthName(latestMonth)}.</p>}
-      </div>
+      {latestMonth && <p class="mt-6 text-[0.9375rem] text-slate">{all.length - planned.length} datasets so far. Drought and water monitoring is updated each month; <a href="#live">the latest data</a> are for {monthName(latestMonth)}.</p>}
     </div>
+    <figure class="relative m-0 lg:col-span-7">
+      <svg class="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-4 92 Q 38 18 104 8" fill="none" style="stroke:var(--color-midnight)" stroke-opacity=".28" stroke-width=".18" vector-effect="non-scaling-stroke" />
+      </svg>
+      <picture>
+        <source type="image/webp" srcset="/images/hero/algeria-pixel-1000.webp 1000w, /images/hero/algeria-pixel-1800.webp 1800w" sizes="(min-width: 1024px) 760px, 100vw" />
+        <img src="/images/hero/algeria-pixel-1000.jpg" width="1000" height="913" fetchpriority="high" class="block h-auto w-full"
+          alt="Satellite composite of Algeria: the green Tell along the Mediterranean coast, the Saharan Atlas, the ergs and the Hoggar and Tassili massifs in the south. Surrounding areas are shown as fading raster cells." />
+      </picture>
+      <figcaption class="meta mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 !text-[0.75rem]">
+        <span>NASA Blue Marble: Next Generation, shaded relief / NASA EOSDIS GIBS</span>
+        <span>17.0°N–38.6°N, 11.5°W–15.5°E</span>
+      </figcaption>
+    </figure>
   </section>
 
   <div class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
@@ -89,28 +127,35 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     <div class="mx-auto max-w-[90rem] px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
       <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
         <div>
-          <h2 id="now-h" class="h-section">Algeria now</h2>
+          {latestMonth && <p class="overline">Monitoring / {latestMonth}</p>}
+          <h2 id="now-h" class="h-section mt-3">Algeria now</h2>
         </div>
-        <p class="max-w-xl text-[0.9375rem] leading-relaxed text-slate">The latest month of each AEO monitoring product, from open satellite and model data. Choose an indicator to show it on the map.</p>
+        <p class="max-w-xl text-[0.9375rem] leading-relaxed text-slate">The latest month of each AEO monitoring product, from open satellite and model data. Under each value, one square per wilaya (per reservoir for reservoirs), coloured as on the map and ordered from driest to wettest. Choose an indicator to show it on the map.</p>
       </div>
       <ul id="now-cards" class="tabular mt-6 grid grid-cols-2 gap-px border border-line bg-line lg:grid-cols-5">
         {now.map((c) => {
+          const px = c.mode ? PX[c.mode] : undefined;
           const body = <>
-            <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
+            <span class="text-[0.875rem] text-slate">{c.label}</span>
             <span class="mt-1 text-[1.25rem] font-medium leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
             <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
+            <span class="mt-auto block pt-4">{px && (
+              <svg class="now-px block h-auto w-full" viewBox={`0 0 ${Math.ceil(px.cells.length / px.rows) * 10} ${px.rows * 10}`} role="img" aria-label={px.label}>
+                {px.cells.map((col, k) => <rect x={Math.floor(k / px.rows) * 10 + 0.5} y={(k % px.rows) * 10 + 0.5} width="8.5" height="8.5" fill={col} />)}
+              </svg>
+            )}</span>
           </>;
           return (
             <li class="flex bg-limestone last:col-span-2 lg:last:col-span-1">
               {c.mode ? (
                 <button type="button" class="now-card" data-mode={c.mode} aria-pressed={c.mode === 'spi' ? 'true' : 'false'} aria-controls="home-map">
                   {body}
-                  <span class="mt-auto flex items-baseline gap-2 pt-3 text-[0.8125rem] text-slate">{c.when}<span class="now-act now-act-on" aria-hidden="true">On the map</span><span class="now-act now-act-show" aria-hidden="true">Show on map</span></span>
+                  <span class="flex items-baseline gap-2 pt-2.5 text-[0.8125rem]"><span class="meta">{c.when}</span><span class="now-act now-act-on" aria-hidden="true">On the map</span><span class="now-act now-act-show" aria-hidden="true">Show on map</span></span>
                 </button>
               ) : (
                 <a href={c.href} class="now-card">
                   {body}
-                  <span class="mt-auto flex items-baseline gap-2 pt-3 text-[0.8125rem] text-slate">{c.when}<span class="now-act now-act-link" aria-hidden="true">Water page</span></span>
+                  <span class="flex items-baseline gap-2 pt-2.5 text-[0.8125rem]"><span class="meta">{c.when}</span><span class="now-act now-act-link" aria-hidden="true">Water page</span></span>
                 </a>
               )}
             </li>
@@ -251,6 +296,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
   }
 
   const $ = (id: string) => document.getElementById(id)!;
+  const tok = (n: string) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   const D = JSON.parse($('home-data').textContent!) as { wilayas: [string, string][]; modes: Mode[]; more: Record<string, string> };
   const NAMES = new Map(D.wilayas);
   const L = (id: string) => MAP_LAYERS.find((l) => l.id === id) as MapLayer;
@@ -401,12 +447,12 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     (window as any).__aeoHomeMap = map; // for end-to-end tests
 
     map.on('load', () => {
-      map.setPaintProperty('aeo-wilayas-selected', 'line-color', '#17252c');
+      map.setPaintProperty('aeo-wilayas-selected', 'line-color', tok('--color-midnight'));
       map.addSource('home-res', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: 'home-res', type: 'circle', source: 'home-res', layout: { visibility: 'none', 'circle-sort-key': ['-', 0, ['coalesce', ['get', 'capacity_mcm'], 0]] },
         paint: { 'circle-radius': ['interpolate', ['linear'], ['sqrt', ['coalesce', ['get', 'capacity_mcm'], 5]], 0, 3.5, 31, 13],
           'circle-color': ['case', ['==', ['typeof', ['get', 'pct']], 'number'], ['step', ['get', 'pct'], BLUES[0], BINS[0], BLUES[1], BINS[1], BLUES[2], BINS[2], BLUES[3]], NODATA],
-          'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1.2 } });
+          'circle-stroke-color': tok('--color-white'), 'circle-stroke-width': 1.2 } });
       const pointer = () => { map.getCanvas().style.cursor = 'pointer'; };
       const plain = () => { map.getCanvas().style.cursor = ''; };
       for (const id of ['aeo-wilayas-fill', 'home-res']) { map.on('mouseenter', id, pointer); map.on('mouseleave', id, plain); }
@@ -490,12 +536,12 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     const svg = $('hp-spark'); const n = bars.length; const W = 240, H = 64, mid = H / 2; const w = W / n;
     const cur = +slider.value - (steps.length - n);
     const peak = Math.max(max, ...bars.map((b) => Math.abs(b.v ?? 0)));
-    let out = `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="#857f73" stroke-width="0.6" />`;
+    let out = `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" style="stroke:var(--color-line-strong)" stroke-width="0.6" />`;
     bars.forEach((b, i) => {
       const x = i * w + 1;
       if (b.v === null) { out += `<rect x="${x}" y="${mid - 1}" width="${w - 2}" height="2" fill="${NODATA}" opacity="0.5" />`; return; }
       const h = Math.max(1.5, (Math.abs(b.v) / peak) * (mid - 3));
-      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${w - 2}" height="${h}" rx="1" fill="${b.color}" stroke="${i === cur ? '#17252c' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" />`;
+      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${w - 2}" height="${h}" rx="1" fill="${b.color}" style="stroke:${i === cur ? 'var(--color-midnight)' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" />`;
     });
     svg.innerHTML = out;
     $('hp-spark-c').textContent = caption;

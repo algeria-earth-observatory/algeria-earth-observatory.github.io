@@ -19,7 +19,7 @@ const moved = c.code_1984 !== c.wilaya_code;
     <header class="mt-3 flex flex-wrap items-end justify-between gap-4">
       <div>
         <p class="eyebrow">Commune {c.code} · wilaya {w.code}</p>
-        <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{c.name} <span lang="ar" dir="rtl" class="ml-2 text-[1.6rem] font-normal text-slate">{c.name_ar}</span></h1>
+        <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{c.name}</h1>
       </div>
       <div class="flex flex-wrap gap-2"><a class="btn btn-primary" href="#download">Download data for {c.name}</a><a class="btn btn-secondary" href={`/drought/?level=admin2&unit=${c.code}`}>Analyze this commune</a></div>
     </header>
