@@ -22,6 +22,22 @@ export type BasemapId = (typeof BASEMAPS)[number]['id'];
 const GLYPHS = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
 const LABEL_FONT = ['Noto Sans Regular'];
 
+/**
+ * Basemap labels in Latin script only. The OpenFreeMap styles print "Latin name + Arabic name";
+ * MapLibre lays glyphs out one by one, without Arabic letter joining or right-to-left shaping,
+ * so the Arabic part was rendered as disconnected letters. Arabic names stay in the page text
+ * (wilaya profiles, tables), where the browser shapes them correctly.
+ */
+export const LATIN_LABEL = ['coalesce', ['get', 'name:latin'], ['get', 'name_en'], ['get', 'name:fr'], ['get', 'name']];
+export function latinLabels(s: StyleSpecification): StyleSpecification {
+  for (const l of s.layers) {
+    if (l.type !== 'symbol' || !l.layout || !('text-field' in l.layout)) continue;
+    const tf = JSON.stringify(l.layout['text-field']);
+    if (/name:nonlatin|"name"|\{name/.test(tf)) (l.layout as any)['text-field'] = LATIN_LABEL;
+  }
+  return s;
+}
+
 export interface LayerState { on: boolean; opacity: number; time: string | null; variant?: string | null }
 export interface MapState { basemap: BasemapId; layers: Record<string, LayerState> }
 
@@ -108,7 +124,7 @@ async function baseStyle(id: BasemapId): Promise<StyleSpecification> {
   let s: StyleSpecification;
   if ('style' in b) {
     const res = await fetch(b.style);
-    s = (await res.json()) as StyleSpecification;
+    s = latinLabels((await res.json()) as StyleSpecification);
     if ('relief' in b && b.relief) {
       // subtle shaded relief between the land background and the basemap's water, roads and labels
       s.sources['base-relief'] = { type: 'raster', tiles: [b.relief], tileSize: 256, maxzoom: 12 };
@@ -195,7 +211,7 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
     const step: unknown[] = ['step', ['feature-state', 'v'], c.colors[0]];
     c.breaks.forEach((b, i) => step.push(b, c.colors[i + 1]));
     above.push({ id: `aeo-${l.id}`, type: 'fill', source: 'aeo-wilayas', layout: { visibility: state.layers[l.id]?.on ? 'visible' : 'none' },
-      paint: { 'fill-color': ['case', ['boolean', ['feature-state', 'flag'], false], c.flagColor, ['==', ['typeof', ['feature-state', 'v']], 'number'], step, 'rgba(0,0,0,0)'] as any, 'fill-opacity': state.layers[l.id]?.opacity ?? l.opacity } });
+      paint: { 'fill-color': ['case', ['boolean', ['feature-state', 'flag'], false], c.flagColor, ['==', ['typeof', ['feature-state', 'v']], 'number'], step, c.nullColor ?? 'rgba(0,0,0,0)'] as any, 'fill-opacity': state.layers[l.id]?.opacity ?? l.opacity } });
   }
   above.push(
     { id: 'aeo-wilayas-fill', type: 'fill', source: 'aeo-wilayas', layout: { visibility: wvis },

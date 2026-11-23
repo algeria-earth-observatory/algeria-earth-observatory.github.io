@@ -82,8 +82,44 @@ test('Climate: national warming summary and the wilaya table come from the produ
 
 test('Homepage: "Algeria now" cards give the month each value describes', async ({ page }) => {
   await page.goto('/');
-  const cards = page.getByRole('region', { name: 'Algeria now' }).locator('li');
+  const cards = page.getByRole('region', { name: 'Algeria now' }).locator('#now-cards > li');
   await expect(cards.first()).toBeVisible();
   expect(await cards.count()).toBeGreaterThanOrEqual(4);
   for (const c of await cards.all()) await expect(c).toContainText(/(19|20)\d\d/);
+});
+
+test('Homepage live monitor: cards switch the map, readout equals the published tables, Latin-only labels', async ({ page }) => {
+  const sg = (v: number, d: number) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}`;
+  await page.goto('/');
+  await page.waitForFunction(() => (window as any).__aeoHomeMap?.isStyleLoaded?.());
+  // SPI-3, latest month, Setif (default wilaya)
+  const spi = await (await page.request.get('/data/aeo/products/spi/v1.0.0/web/admin1.json')).json();
+  const i = spi.units.findIndex((u: any) => u.code === '19');
+  await expect(page.locator('#hp-month')).toContainText('latest');
+  await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-1), 2));
+  // the slider moves the month and the value follows the table
+  await page.locator('#hp-slider').fill('0');
+  await expect(page.locator('#hp-value')).toHaveText(sg(spi.spi['3'][i].at(-24), 2));
+  // soil moisture on cropland
+  await page.click('#now-cards button[data-mode="sm"]');
+  await expect(page.locator('#now-cards button[data-mode="sm"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#home-legend')).toContainText('2018–2025');
+  const et = await (await page.request.get('/data/aeo/products/et-soil-moisture/v1.0.0/web/admin1.json')).json();
+  const j = et.units.findIndex((u: any) => u.code === '19');
+  await expect(page.locator('#hp-value')).toHaveText(sg(et.series.rsm_crop_dep_pp[j].at(-1), 1));
+  // reservoirs: surface area wording, never a filling rate
+  await page.click('#now-cards button[data-mode="res"]');
+  await expect(page.locator('#hp-note')).toContainText('not volume');
+  // outlook: equal chances unless skilful
+  await page.click('#now-cards button[data-mode="outlook"]');
+  const out = await (await page.request.get('/data/aeo/products/seasonal-outlook/v0.1.0/web/outlook.json')).json();
+  const first = (await (await page.request.get('/data/aeo/products/seasonal-outlook/v0.1.0/web/choropleth.json')).json()).targets[0];
+  const o = out.outlook.find((r: any) => r.unit_code === '19' && r.target === first);
+  expect(o).toBeTruthy();
+  if (!o.skilful) await expect(page.locator('#hp-value')).toHaveText('Equal chances');
+  if (o.skilful) await expect(page.locator('#hp-value')).toHaveText(`${Math.round(Math.max(o.p_below, o.p_above) * 100)} %`);
+  // basemap labels: no Arabic glyph runs (MapLibre cannot shape Arabic without a plugin)
+  const nonLatin = await page.evaluate(() => (window as any).__aeoHomeMap.getStyle().layers
+    .filter((l: any) => l.type === 'symbol' && JSON.stringify(l.layout?.['text-field'] ?? '').includes('nonlatin')).map((l: any) => l.id));
+  expect(nonLatin).toEqual([]);
 });

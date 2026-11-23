@@ -34,7 +34,7 @@ test('1. homepage: bright map of Algeria, clearly visible', async ({ page }) => 
   expect(Math.min(...rgb)).toBeGreaterThan(200); // light basemap background
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
   expect(bg).toBe('rgb(242, 239, 231)');
-  await expect(page.locator('#home-legend')).toContainText('mm per year');
+  await expect(page.locator('#home-legend')).toContainText('SPI-3');
   await expect(page.getByRole('link', { name: 'Explore Algeria' })).toBeVisible();
 });
 
