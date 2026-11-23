@@ -54,7 +54,7 @@ export interface MapLayer {
   maxzoom: number;
   time?: { periods: string[]; default: string | null; step: 'day' | '16-day' | 'month' | 'year' };
   /** Non-temporal variants of one indicator (e.g. soil depth intervals), substituted for {variant}. */
-  variants?: { label: string; options: { id: string; label: string }[]; default: string };
+  variants?: { label: string; options: { id: string; label: string }[]; default: string; note?: string };
   opacity: number;
   attribution: string;
   legend: Legend;
@@ -148,6 +148,20 @@ export const BOUNDARY_VERSION = '2026-11-20';
 const BDIR = `/data/aeo/boundaries/${BOUNDARY_VERSION}`;
 /** World minus Algeria: drawn over every overlay so that only Algeria is shown. */
 export const OUTSIDE_MASK = `${BDIR}/dza_outside_mask.geojson`;
+
+// ---------------------------------------------------------------- water, cropland and climate products
+// Each product's map.json exists only once its pipeline has run; layers are added only then.
+const one = (files: Record<string, unknown>) => (Object.values(files)[0] ?? null) as any;
+const etMap = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/map/map.json', { eager: true, import: 'default' }));
+const twsMap = one(import.meta.glob('../../public/data/aeo/products/water-storage/v1.0.0/map/map.json', { eager: true, import: 'default' }));
+const cropMap = one(import.meta.glob('../../public/data/aeo/products/stable-cropland/v1.0.0/map/map.json', { eager: true, import: 'default' }));
+const cmipMap = one(import.meta.glob('../../public/data/aeo/products/climate-projections/v1.0.0/map/map.json', { eager: true, import: 'default' }));
+const outlookMap = one(import.meta.glob('../../public/data/aeo/products/seasonal-outlook/v0.1.0/web/choropleth.json', { eager: true, import: 'default' }));
+
+export const classLabels = (breaks: number[], colors: string[], fmt: (v: number) => string = String) =>
+  colors.map((c, i) => ({ color: c, label: i === 0 ? `< ${fmt(breaks[0])}` : i === breaks.length ? `≥ ${fmt(breaks[i - 1])}` : `${fmt(breaks[i - 1])} to ${fmt(breaks[i])}` }));
+const monthly = (months: string[]) => ({ periods: [`${months[0]}-01/${months[months.length - 1]}-01/P1M`], default: `${months[months.length - 1]}-01`, step: 'month' as const });
+const signedFmt = (v: number) => (v > 0 ? `+${v}` : String(v).replace('-', '−'));
 
 export const MAP_LAYERS: MapLayer[] = [
   {
@@ -258,7 +272,7 @@ export const MAP_LAYERS: MapLayer[] = [
     time: { periods: [`${precipMap.years[0]}-01-01/${precipMap.years[precipMap.years.length - 1]}-01-01/P1Y`], default: `${precipMap.years[precipMap.years.length - 1]}-01-01`, step: 'year' },
     opacity: 0.85,
     attribution: 'Precipitation: CHIRPS v3.0 (UCSB Climate Hazards Center, CC BY 4.0) · AEO processing',
-    legend: { kind: 'classes', caption: '% of the 1991–2020 normal (red drier, blue wetter)', classes: precipMap.anomaly.colors.map((c: string, i: number) => ({ color: c, label: i === 0 ? `< ${precipMap.anomaly.breaks[0]}` : i === precipMap.anomaly.breaks.length ? `≥ +${precipMap.anomaly.breaks[i - 1]}` : `${precipMap.anomaly.breaks[i - 1]} to ${precipMap.anomaly.breaks[i]}` })) },
+    legend: { kind: 'classes', caption: '% of the 1991–2020 normal (brown drier, teal wetter · ColorBrewer BrBG)', classes: precipMap.anomaly.colors.map((c: string, i: number) => ({ color: c, label: i === 0 ? `< ${precipMap.anomaly.breaks[0]}` : i === precipMap.anomaly.breaks.length ? `≥ +${precipMap.anomaly.breaks[i - 1]}` : `${precipMap.anomaly.breaks[i - 1]} to ${precipMap.anomaly.breaks[i]}` })) },
     caveat: 'Relative anomalies are large and unstable where the normal is very low (most of the Sahara); not computed where the normal is below 1 mm.',
   },
   {
@@ -405,7 +419,94 @@ export const MAP_LAYERS: MapLayer[] = [
     caveat: 'Swath gaps and clouds occur on individual days.',
   },
   ...soilLayers(),
+  ...waterClimateLayers(),
 ];
+
+function waterClimateLayers(): MapLayer[] {
+  const out: MapLayer[] = [];
+  if (etMap) {
+    const S = '/data/aeo/products/et-soil-moisture/v1.0.0/map';
+    out.push({
+      id: 'et-aeti',
+      title: 'Actual evapotranspiration (WaPOR v3), monthly',
+      summary: 'Water evaporated from soil and transpired by plants (FAO WaPOR v3, 300 m), monthly, 2018 to the latest month. Statistics by wilaya and commune, for all land and for stable cropland only.',
+      domain: 'water', type: 'image', dataset: 'aeo-dza-et-soil-moisture-wapor3', nature: 'modeled',
+      image: { url: `${S}/aeti_{month}.png`, coordinates: etMap.coordinates }, maxzoom: 22, time: monthly(etMap.months), opacity: 0.85,
+      attribution: 'Evapotranspiration: <a href="https://data.apps.fao.org/wapor/" target="_blank" rel="noopener">FAO WaPOR v3</a> (CC BY 4.0) · AEO processing',
+      legend: { kind: 'classes', caption: 'mm per month · palette ColorBrewer GnBu (WaPOR colour family)', classes: classLabels(etMap.aeti.breaks, etMap.aeti.colors) },
+      caveat: 'Modelled from satellite data (surface energy balance), not measured. Shown at 2.5 km; statistics use the 1.2 km average of the 300 m maps. Recent months can be revised by FAO.',
+    }, {
+      id: 'sm-rsm',
+      title: 'Relative soil moisture (WaPOR v3), monthly',
+      summary: 'Root-zone soil moisture relative to its range (0 = wilting point, 100 = field capacity), FAO WaPOR v3, monthly mean of the 10-day maps, 2018 to the latest month.',
+      domain: 'climate-drought', type: 'image', dataset: 'aeo-dza-et-soil-moisture-wapor3', nature: 'modeled',
+      image: { url: `${S}/rsm_{month}.png`, coordinates: etMap.coordinates }, maxzoom: 22, time: monthly(etMap.months), opacity: 0.85,
+      attribution: 'Soil moisture: <a href="https://data.apps.fao.org/wapor/" target="_blank" rel="noopener">FAO WaPOR v3</a> (CC BY 4.0) · AEO processing',
+      legend: { kind: 'classes', caption: '% of the available range · palette ColorBrewer BrBG (brown dry, teal wet)', classes: classLabels(etMap.rsm.breaks, etMap.rsm.colors) },
+      caveat: 'Derived by WaPOR from land surface temperature, not a microwave retrieval or field measurement. In the Sahara, with almost no vegetation, WaPOR relative soil moisture is not meaningful (values come from its surface-temperature method); read it for vegetated land and cropland.',
+    });
+  }
+  if (cropMap) {
+    out.push({
+      id: 'stable-cropland',
+      title: 'Stable cropland 2000–2024 (from GACED30)',
+      summary: 'Share of land that GACED30 maps as cropland in at least 20 of the 25 years 2000–2024. AEO uses it as a mask: agricultural statistics and the seasonal outlook are computed over this land only.',
+      domain: 'agriculture', type: 'image', dataset: 'aeo-dza-stable-cropland-gaced30', nature: 'derived',
+      image: { url: '/data/aeo/products/stable-cropland/v1.0.0/map/stable_share.png', coordinates: cropMap.coordinates }, maxzoom: 22, opacity: 0.9,
+      attribution: 'Cropland: <a href="https://doi.org/10.5281/zenodo.18199675" target="_blank" rel="noopener">GACED30 v1</a> (CC BY 4.0) · stable-cropland mask: AEO',
+      legend: { kind: 'classes', caption: `${cropMap.units} (cells under 1 % not shown) · palette ColorBrewer YlOrBr`, classes: classLabels(cropMap.breaks, cropMap.colors).map((c, i) => (i === 0 ? { ...c, label: `1 to ${cropMap.breaks[0]}` } : c)) },
+      caveat: 'Derived from a global 30 m classification without published accuracy for Algeria. Active fallow counts as cropland. Shown at about 1.2 km.',
+      focusView: '6.5/35.6/3.5',
+    });
+  }
+  if (twsMap) {
+    const S = '/data/aeo/products/water-storage/v1.0.0/map';
+    out.push({
+      id: 'tws-grace',
+      title: 'Water storage anomaly (downscaled GRACE), monthly',
+      summary: 'Change in all water stored on and below the land surface (soil, groundwater, surface water), in cm of water, relative to 2004–2009. Downscaled GRACE/GRACE-FO (Li & Kusche 2026), 0.25°, 2002–2025.',
+      domain: 'water', type: 'image', dataset: 'aeo-dza-water-storage-grace', nature: 'modeled',
+      image: { url: `${S}/tws_{month}.png`, coordinates: twsMap.coordinates }, maxzoom: 22, time: monthly(twsMap.months), opacity: 0.8,
+      attribution: 'Water storage: Li & Kusche (2026), <a href="https://doi.org/10.5281/zenodo.17265162" target="_blank" rel="noopener">Zenodo</a> (CC BY 4.0), from NASA JPL GRACE/GRACE-FO mascons · AEO processing',
+      legend: { kind: 'classes', caption: 'cm of water vs 2004–2009 · red loss, blue gain (ColorBrewer RdBu, as the Copernicus Global Drought Observatory)', classes: classLabels(twsMap.tws.breaks, twsMap.tws.colors, signedFmt) },
+      caveat: 'GRACE resolves about 300 km; the 0.25° detail comes from a downscaling model. Total storage, not groundwater alone. Some months are missing, including the 2017–2018 gap between missions.',
+    });
+  }
+  if (cmipMap) {
+    const S = '/data/aeo/products/climate-projections/v1.0.0/map';
+    const SC: Record<string, string> = { ssp245: 'SSP2-4.5 (intermediate)', ssp585: 'SSP5-8.5 (very high)' };
+    const options = cmipMap.scenarios.flatMap((s: string) => cmipMap.periods.map((p: string) => ({ id: `${s}_${p}`, label: `${SC[s]}, ${p.replace('-', '–')}` })));
+    const lc = (t: string) => (/^(November|March)/.test(t) ? t : t[0].toLowerCase() + t.slice(1));
+    for (const [ind, m] of Object.entries<any>(cmipMap.layers)) {
+      out.push({
+        id: `cmip6-${ind}`,
+        title: `Projected change: ${lc(m.label)} (CMIP6)`,
+        summary: `Change in ${lc(m.label)} from 1985–2014, median of 8 CMIP6 models (NASA NEX-GDDP-CMIP6, 0.25°). Choose the scenario and period; the inspector gives the model range for each wilaya and for its stable cropland.`,
+        domain: 'hazards', type: 'image', dataset: 'aeo-dza-climate-projections-nexgddp', nature: 'modeled',
+        image: { url: `${S}/${ind}_{variant}.png`, coordinates: cmipMap.coordinates }, maxzoom: 22,
+        variants: { label: 'Scenario and period', options, default: 'ssp245_2041-2070', note: 'Projections: 30-year averages compared with 1985–2014.' }, opacity: 0.8,
+        attribution: 'Projections: <a href="https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6" target="_blank" rel="noopener">NASA NEX-GDDP-CMIP6</a> · AEO processing',
+        legend: { kind: 'classes', caption: `${m.units}, 8-model median · palette ColorBrewer ${m.units.includes('%') ? 'BrBG' : 'OrRd'}`, classes: classLabels(m.breaks, m.colors, m.units.includes('%') ? signedFmt : String) },
+        caveat: 'Projections, not forecasts: they describe 30-year climates under an emissions scenario. Downscaled and bias-corrected to 0.25° (≈ 25 km); local detail is limited. Always read the median with the model range. For precipitation, cells with almost no rain in 1985–2014 (under 1 mm) have no % change and are left uncoloured.',
+      });
+    }
+  }
+  if (outlookMap) {
+    out.push({
+      id: 'outlook-nmme',
+      title: 'Seasonal rainfall outlook over stable cropland (experimental)',
+      summary: `Chance of below- or above-normal 3-month rainfall over each wilaya's stable cropland, from the NMME forecast issued ${outlookMap.issued}, recalibrated against CHIRPS 1991–2021. Shown only where past forecasts beat climatology; grey = no usable skill, equal chances.`,
+      domain: 'climate-drought', type: 'choropleth', dataset: 'aeo-dza-seasonal-outlook-nmme', nature: 'modeled',
+      choropleth: { url: '/data/aeo/products/seasonal-outlook/v0.1.0/web/choropleth.json', key: 'v', scale: outlookMap.targets[0], breaks: outlookMap.breaks, colors: outlookMap.colors, flag: 'none', flagColor: '#c9ced3' },
+      variants: { label: 'Target season', options: outlookMap.targets.map((t: string) => ({ id: t, label: outlookMap.labels[t] })), default: outlookMap.targets[0], note: `Forecast issued ${outlookMap.issued}.` },
+      maxzoom: 22, opacity: 0.8,
+      attribution: 'Forecast: NMME (NOAA CPC) · observations: CHIRPS v3.0 · calibration and verification: AEO (experimental)',
+      legend: { kind: 'classes', caption: 'tercile probability; grey = not skilful (equal chances) or too little cropland', classes: outlookMap.colors.map((c: string, i: number) => ({ color: c, label: outlookMap.class_labels[i] })) },
+      caveat: 'Experimental test. Seasonal rainfall forecasts for North Africa have low skill; read every probability together with its verification on the Drought page.',
+    });
+  }
+  return out;
+}
 
 /** SoilGrids 2.0 properties summarised by AEO: one indicator per property, depth as a variant. */
 function soilLayers(): MapLayer[] {
@@ -427,7 +528,7 @@ function soilLayers(): MapLayer[] {
       nature: 'modeled' as const,
       image: { url: `${SOIL_SITE}/${prop}_{variant}.png`, coordinates: soilMap.coordinates },
       maxzoom: 22,
-      variants: { label: 'Depth', options: ids.map((k) => ({ id: k.slice(prop.length + 1), label: DEPTH_LABEL[k.slice(prop.length + 1)] ?? k })), default: ids[0].slice(prop.length + 1) },
+      variants: { label: 'Depth', options: ids.map((k) => ({ id: k.slice(prop.length + 1), label: DEPTH_LABEL[k.slice(prop.length + 1)] ?? k })), default: ids[0].slice(prop.length + 1), note: 'Static map: SoilGrids predictions have no time dimension.' },
       opacity: 0.85,
       attribution: 'Soil: ISRIC SoilGrids 2.0 (Poggio et al. 2021, CC BY 4.0) · AEO processing',
       legend: { kind: 'classes' as const, caption: `${first.units}; classes from Algerian pixel quantiles`, classes: first.colors.map((c, i) => ({ color: c, label: i === 0 ? `< ${first.breaks[0]}` : i === first.breaks.length ? `≥ ${first.breaks[i - 1]}` : `${first.breaks[i - 1]}–${first.breaks[i]}` })) },

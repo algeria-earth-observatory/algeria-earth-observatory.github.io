@@ -1,0 +1,2146 @@
+{
+ "created": "2026-11-22",
+ "product": "aeo-dza-et-soil-moisture-wapor3",
+ "version": "1.0.0",
+ "inputs": {
+  "L1-AETI-M": [
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2018-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2018-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2019-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2019-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2020-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2020-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2021-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2021-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2022-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2022-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2023-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2023-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2024-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2024-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2025-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2025-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-AETI-M.2026-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-AETI-M/WAPOR-3.L1-AETI-M.2026-10.tif"
+   }
+  ],
+  "L1-RET-M": [
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2018-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2018-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2019-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2019-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2020-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2020-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2021-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2021-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2022-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2022-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2023-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2023-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2024-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2024-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-10.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-11",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-11.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2025-12",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2025-12.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-01",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-01.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-02",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-02.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-03",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-03.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-04",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-04.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-05",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-05.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-06",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-06.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-07",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-07.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-08",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-08.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-09",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-09.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RET-M.2026-10",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RET-M/WAPOR-3.L1-RET-M.2026-10.tif"
+   }
+  ],
+  "L1-RSM-D": [
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2018-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2018-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2019-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2019-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2020-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2020-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2021-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2021-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2022-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2022-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2023-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2023-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2024-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2024-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-11-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-11-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-11-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-11-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-11-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-12-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-12-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-12-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-12-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2025-12-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2025-12-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-01-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-01-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-01-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-01-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-01-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-01-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-02-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-02-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-02-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-02-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-02-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-02-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-03-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-03-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-03-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-03-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-03-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-03-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-04-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-04-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-04-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-04-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-04-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-04-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-05-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-05-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-05-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-05-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-05-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-05-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-06-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-06-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-06-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-06-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-06-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-06-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-07-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-07-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-07-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-07-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-07-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-07-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-08-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-08-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-08-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-08-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-08-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-08-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-09-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-09-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-09-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-09-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-09-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-09-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-10-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-10-D1.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-10-D2",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-10-D2.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-10-D3",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-10-D3.tif"
+   },
+   {
+    "code": "WAPOR-3.L1-RSM-D.2026-11-D1",
+    "url": "https://storage.googleapis.com/fao-gismgr-wapor-3-data/DATA/WAPOR-3/MAPSET/L1-RSM-D/WAPOR-3.L1-RSM-D.2026-11-D1.tif"
+   }
+  ]
+ },
+ "cropland_mask": {
+  "file": "stable_cropland_v1.npz",
+  "sha256": "bb9b768a69b03d8ef90bd77512846dbf8d1988dfa301a06cb8f48c8b7395053a"
+ },
+ "method": "AEO evapotranspiration and soil-moisture product for Algeria from FAO WaPOR v3 (Level 1).\n\nInputs (data-work/wapor/, from fetch_wapor.py; open FAO WaPOR v3 rasters, no login):\n  L1-AETI-M  actual evapotranspiration and interception, monthly, mm/month (300 m, read at the 1.17 km overview)\n  L1-RET-M   reference evapotranspiration (FAO-56 Penman–Monteith), monthly, mm/month (~30 km)\n  L1-RSM-D   relative soil moisture, dekadal (300 m, read at the 1.17 km overview); the catalogue\n             unit is \"%\" with scale 0.001, but the scaled values are fractions 0–1, converted to %\n  data-work/cropland/stable_cropland_v1.npz (AEO stable cropland from GACED30, build_stable_cropland.py)\n\nMethod:\n  * Monthly relative soil moisture = mean of the month's dekads (at least 2 of 3 required).\n  * RET is resampled bilinearly to the 1.17 km grid.\n  * Unit statistics are area-weighted means over communes (coverage fractions), merged exactly into\n    wilayas and Algeria. \"Cropland\" statistics weight each cell by its stable-cropland area, so they\n    describe only land that GACED30 maps as cropland in at least 20 of 25 years; they are left empty\n    where a unit has under 1,000 ha (10 km²) of stable cropland.\n  * Departures use the 2018–2025 mean of the same calendar month (8 years — a short baseline, not a\n    climate normal): AETI as % of that mean, soil moisture as percentage points.\n\nOutput: public/data/aeo/products/et-soil-moisture/v1.0.0/\nUsage:  python scripts/pipelines/wapor/build_wapor.py\n",
+ "qc": [
+  "National AETI 2026-10 8.217 mm vs wilaya-weighted 8.217 mm",
+  "Stable cropland weight in Algeria: 6,386,682 ha"
+ ]
+}

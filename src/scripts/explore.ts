@@ -141,6 +141,7 @@ export async function initExplore() {
   const radios = [...document.querySelectorAll<HTMLInputElement>('input[name="ex-ind"]')];
   radios.forEach((r) => { r.checked = r.value === (primary ?? ''); r.addEventListener('change', () => r.checked && setPrimary(r.value || null)); });
   async function setPrimary(id: string | null) {
+    stopPlay();
     if (primary) { state.layers[primary].on = false; setLayerVisible(map, primary, false); }
     primary = id;
     if (id) {
@@ -149,7 +150,7 @@ export async function initExplore() {
       if (l.mosaic) { await resolveMosaic(l); refreshTiles(map, l, state.layers[id].time); }
       setLayerVisible(map, id, true);
       setLayerOpacity(map, id, Number($<HTMLInputElement>('ex-opacity').value));
-      if (l.type === 'choropleth') await setChoropleth(map, l, state.layers[id].time);
+      if (l.type === 'choropleth') await setChoropleth(map, l, state.layers[id].time, state.layers[id].variant);
       if (l.focusView && !region) { const [z, lat, lng] = l.focusView.split('/').map(Number); map.easeTo({ zoom: z, center: [lng, lat] }); }
     }
     renderPeriod(); renderLegend(); renderInfo(); refresh();
@@ -173,7 +174,7 @@ export async function initExplore() {
     if (l.variants) {
       lbl.textContent = l.variants.label;
       ctl.innerHTML = `<select id="ex-variant" class="field" aria-labelledby="ex-period-l">${l.variants.options.map((o) => `<option value="${esc(o.id)}"${o.id === st.variant ? ' selected' : ''}>${esc(o.label)}</option>`).join('')}</select>`;
-      note.textContent = 'Static map: SoilGrids predictions have no time dimension.';
+      note.textContent = l.variants.note ?? 'Static map: no time dimension.';
       $<HTMLSelectElement>('ex-variant').addEventListener('change', (e) => { st.variant = (e.target as HTMLSelectElement).value; apply(); });
       return;
     }
@@ -194,7 +195,19 @@ export async function initExplore() {
       ctl.innerHTML = `<div class="flex items-center gap-2"><button type="button" class="btn btn-secondary !px-2.5 !py-1" data-dir="-1" aria-label="Previous month">‹</button>
         <select id="ex-m" class="field" aria-label="Month">${MONTHS.map((m, i) => `<option value="${String(i + 1).padStart(2, '0')}">${m}</option>`).join('')}</select>
         <select id="ex-y" class="field !w-28" aria-label="Year">${years.map((y) => `<option>${y}</option>`).join('')}</select>
-        <button type="button" class="btn btn-secondary !px-2.5 !py-1" data-dir="1" aria-label="Next month">›</button></div>`;
+        <button type="button" class="btn btn-secondary !px-2.5 !py-1" data-dir="1" aria-label="Next month">›</button>
+        <button type="button" id="ex-play" class="btn btn-secondary !px-2.5 !py-1" aria-pressed="false" aria-label="Play the last 24 months">▶</button></div>`;
+      const play = $<HTMLButtonElement>('ex-play');
+      play.addEventListener('click', () => {
+        if (playing) { stopPlay(); return; }
+        const i0 = Math.max(0, ds.length - 24);
+        let i = ds.indexOf(st.time ?? '') >= i0 && ds.indexOf(st.time ?? '') < ds.length - 1 ? ds.indexOf(st.time ?? '') : i0;
+        playing = window.setInterval(() => {
+          st.time = ds[i]; apply();
+          if (++i >= ds.length) stopPlay();
+        }, 900);
+        play.setAttribute('aria-pressed', 'true'); play.textContent = '❚❚'; play.setAttribute('aria-label', 'Stop');
+      });
       const onCh = () => { st.time = snapDate(l, `${$<HTMLSelectElement>('ex-y').value}-${$<HTMLSelectElement>('ex-m').value}-01`); apply(); };
       $('ex-m').addEventListener('change', onCh); $('ex-y').addEventListener('change', onCh);
     } else {
@@ -219,6 +232,12 @@ export async function initExplore() {
     $('ex-period-note').textContent = l.time.step === 'year' ? `Showing ${t.slice(0, 4)} (available ${ds[0].slice(0, 4)}–${ds[ds.length - 1].slice(0, 4)})` : `Showing ${l.time.step === 'month' ? t.slice(0, 7) : t} (latest ${l.time.step === 'month' ? ds[ds.length - 1].slice(0, 7) : ds[ds.length - 1]})`;
   }
   let timer: number | undefined;
+  let playing: number | undefined;
+  function stopPlay() {
+    window.clearInterval(playing); playing = undefined;
+    const b = document.getElementById('ex-play');
+    if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = '▶'; b.setAttribute('aria-label', 'Play the last 24 months'); }
+  }
   function apply(debounce = false) {
     const l = layer(primary); if (!l) return;
     const st = state.layers[l.id];
@@ -243,7 +262,7 @@ export async function initExplore() {
     const t = st.time, v = st.variant;
     legend.innerHTML = `<p class="font-medium leading-snug text-atlas">${esc(l.title)}</p>
       ${t && l.time ? `<p class="tabular font-mono text-slate">${l.time.step === 'year' ? t.slice(0, 4) : l.time.step === 'month' ? t.slice(0, 7) : t}</p>` : ''}
-      ${v && l.variants ? `<p class="text-slate">Depth ${esc(l.variants.options.find((o) => o.id === v)?.label ?? v)}</p>` : ''}
+      ${v && l.variants ? `<p class="text-slate">${esc(l.variants.label)}: ${esc(l.variants.options.find((o) => o.id === v)?.label ?? v)}</p>` : ''}
       ${body}<p class="mt-1 text-slate">${esc(lg.caption ?? '')}</p>`;
     legend.classList.remove('hidden');
   }
@@ -265,7 +284,7 @@ export async function initExplore() {
     map.setStyle(await buildStyle(state), { diff: false });
     map.once('idle', () => {
       if (selW) setSel('aeo-wilayas', selW, null); if (selC) setSel('aeo-communes', selC, null);
-      const l = layer(primary); if (l?.type === 'choropleth') setChoropleth(map, l, state.layers[l.id].time);
+      const l = layer(primary); if (l?.type === 'choropleth') setChoropleth(map, l, state.layers[l.id].time, state.layers[l.id].variant);
     });
     syncUrl();
   });
@@ -279,7 +298,7 @@ export async function initExplore() {
   }
 
   renderPeriod(); renderLegend(); renderInfo();
-  map.once('load', () => { const l = layer(primary); if (l?.type === 'choropleth') setChoropleth(map, l, state.layers[l.id].time); });
+  map.once('load', () => { const l = layer(primary); if (l?.type === 'choropleth') setChoropleth(map, l, state.layers[l.id].time, state.layers[l.id].variant); });
   map.once('idle', () => {
     const w = params.get('w'), c = params.get('c');
     if (c) {

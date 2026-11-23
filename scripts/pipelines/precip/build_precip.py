@@ -67,9 +67,9 @@ NODATA = -9999.0
 SEQ_BREAKS = [25, 50, 100, 200, 400, 700]
 # light-surface sequential ramp: dry = light, wet = dark (AEO maps use light basemaps since 2026-11-21;
 # scripts/processing/recolor_map_overlays.py converted the v1.0.0 overlays class by class)
-SEQ_COLORS = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
+SEQ_COLORS = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"]
 DIV_BREAKS = [-60, -40, -25, -10, 10, 25, 40, 60]
-DIV_COLORS = ["#6b1515", "#9e2424", "#d03b3b", "#ee8d81", "#f0efec", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"]
+DIV_COLORS = ["#8c510a", "#bf812d", "#dfc27d", "#f6e8c3", "#f5f5f5", "#c7eae5", "#80cdc1", "#35978f", "#01665e"]
 
 
 def slug(s: str) -> str:

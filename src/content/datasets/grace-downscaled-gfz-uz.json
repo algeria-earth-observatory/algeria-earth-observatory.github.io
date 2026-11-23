@@ -1,0 +1,170 @@
+{
+  "id": "grace-downscaled-gfz-uz",
+  "title": "Global 0.5° terrestrial water storage anomalies from a dynamic soft-constrained deep-learning downscaling of GRACE/GRACE-FO (Uz et al., GFZ)",
+  "description": "Monthly terrestrial water storage anomalies (cm) at 0.5° (about 50 km) for global land areas excluding Greenland and Antarctica, April 2002 to December 2022, produced by spatially downscaling the JPL GRACE/GRACE-FO mascon solutions (about 300 km) with a deep-learning model guided simultaneously by the GRACE observations and by high-resolution patterns from the WaterGAP Global Hydrology Model and ERA5, with constraint weights adjusted dynamically during training. Each month includes a total predictive uncertainty combining aleatoric and epistemic components.",
+  "purpose": "Provides an independent, openly licensed downscaled GRACE record with per-cell uncertainty, to compare against other downscaled products when interpreting storage change over Algeria.",
+  "domain": [
+    "water",
+    "climate-drought"
+  ],
+  "categories": [
+    "Terrestrial water storage",
+    "Groundwater (indirect)",
+    "Satellite gravimetry",
+    "Downscaling"
+  ],
+  "keywords": [
+    "GRACE",
+    "GRACE-FO",
+    "downscaling",
+    "deep learning",
+    "TWSA",
+    "terrestrial water storage",
+    "WaterGAP",
+    "ERA5",
+    "GFZ"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "raster",
+  "provider": {
+    "name": "GFZ Data Services (GFZ Helmholtz Centre for Geosciences)",
+    "url": "https://dataservices.gfz.de/10.5880/gfz.dqto.2025.001/global-high-resolution-terrestrial-water"
+  },
+  "creator": "Metehan Uz (GFZ Helmholtz Centre for Geosciences), Kazım Gökhan Atman (Queen Mary University of London), Orhan Akyılmaz (Istanbul Technical University), C. K. Shum (The Ohio State University)",
+  "source_url": "https://dataservices.gfz.de/10.5880/gfz.dqto.2025.001/global-high-resolution-terrestrial-water",
+  "documentation_url": "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/2025-001_Uz-et-al_data-description.pdf",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "CC BY 4.0 in the GFZ landing-page metadata, in DataCite and in section 1 of the data description PDF. The Journal of Hydrology article is also CC BY 4.0 (Crossref licence).",
+  "citation": "Uz, M., Atman, K. G., Akyılmaz, O., and Shum, C. K. (2025). Global High-Resolution Terrestrial Water Storage Anomalies through a Dynamic Soft-Constrained Deep Learning Paradigm. GFZ Data Services. https://doi.org/10.5880/GFZ.DQTO.2025.001",
+  "doi": "10.5880/GFZ.DQTO.2025.001",
+  "references": [
+    {
+      "citation": "Uz, M., Atman, K. G., Akyılmaz, O., and Shum, C. K. (2026). A dynamic soft-constrained deep learning paradigm for spatial downscaling of satellite gravimetry terrestrial water storage. Journal of Hydrology, 668, 135015.",
+      "doi": "10.1016/j.jhydrol.2026.135015",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global land areas excluding Greenland and Antarctica on a 0.5° grid (360 latitudes from 89.75° N to 89.75° S × 720 longitudes from 179.75° W to 179.75° E). Algeria lies within the land domain; values over Algeria were not checked. Users subset the single global file.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "2002-04-01",
+    "end": "2022-12-31",
+    "ongoing": false,
+    "frequency": "monthly",
+    "description": "April 2002 to December 2022; the data description gives 249 time steps, which equals every calendar month in that period, including months without GRACE/GRACE-FO observations."
+  },
+  "resolution": {
+    "spatial": "0.5° × 0.5° (about 50 km; GRACE input resolves about 300 km)",
+    "spatial_m": 55660,
+    "temporal": "monthly"
+  },
+  "format": [
+    "NetCDF (single global file, about 1.03 GB)",
+    "PDF data description"
+  ],
+  "crs": "EPSG:4326 (WGS 84 geographic 0.5° grid)",
+  "variables": [
+    {
+      "name": "twsa",
+      "units": "cm",
+      "description": "Downscaled terrestrial water storage anomaly (time, lat, lon)"
+    },
+    {
+      "name": "unc",
+      "units": "cm",
+      "description": "Total predictive uncertainty of the TWSA simulation (aleatoric + epistemic)"
+    },
+    {
+      "name": "time",
+      "units": "days since 2002-04-01 00:00:00.0 UTC",
+      "description": "Monthly time axis (249 steps)"
+    }
+  ],
+  "processing": "Deep-learning spatial downscaling of the JPL GRACE/GRACE-FO mascon solutions (the data description cites RL06.1Mv03) from about 300 km to 0.5°. A dynamic soft-constraint paradigm guides the model simultaneously by the GRACE/GRACE-FO observations and by high-resolution spatial patterns from WaterGAP v2.2e and ERA5 monthly data; the weight of each constraint is updated at every training step according to the correlation between the prediction and the high-resolution inputs (data description).",
+  "validation": "Not summarised in the data description; see Uz et al. (2026) in the Journal of Hydrology (not read for this record).",
+  "limitations": [
+    "Total water storage anomaly, not groundwater.",
+    "The 0.5° detail is produced by the deep-learning model from WaterGAP and ERA5 patterns; it is not resolved by GRACE.",
+    "Months without GRACE/GRACE-FO data, including the 2017–2018 inter-mission gap, appear to be present in the 249-step series; how they were produced is not stated in the data description, so treat them as model estimates.",
+    "Ends in December 2022 and is not updated operationally; based on the older JPL RL06.1Mv03 mascons."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": "2026-09-01",
+  "download_url": "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/2025-001_Uz-et-al_SCProduct.nc",
+  "preview_url": null,
+  "access": [
+    {
+      "label": "GFZ Data Services landing page",
+      "url": "https://dataservices.gfz.de/10.5880/gfz.dqto.2025.001/global-high-resolution-terrestrial-water",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "DOI landing page with metadata and citation."
+    },
+    {
+      "label": "Data directory (GFZ datapub)",
+      "url": "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/",
+      "kind": "download",
+      "format": "NetCDF, PDF",
+      "requires_login": false,
+      "notes": "Open directory listing two files."
+    },
+    {
+      "label": "2025-001_Uz-et-al_SCProduct.nc",
+      "url": "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/2025-001_Uz-et-al_SCProduct.nc",
+      "kind": "download",
+      "format": "NetCDF",
+      "requires_login": false,
+      "size_bytes": 1032681848,
+      "notes": "Size from the HTTP Content-Length header; file not downloaded by AEO."
+    },
+    {
+      "label": "Data description (PDF)",
+      "url": "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/2025-001_Uz-et-al_data-description.pdf",
+      "kind": "external",
+      "format": "PDF",
+      "requires_login": false,
+      "notes": "Licence, citation, dimensions and variables."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "A useful second opinion beside the Li & Kusche product: comparing the two downscaled records (and the raw JPL mascons) over Algeria shows how much of any sub-mascon pattern depends on the downscaling method. Note the coarser grid (0.5°) and the earlier end date (2022).",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "values and missing-data share over Algeria (file not downloaded)",
+      "variable names and dimensions (taken from the data description PDF, not read from the file)",
+      "treatment of months without GRACE data",
+      "validation",
+      "published_date (DataCite gives publication year 2025 only)"
+    ],
+    "sources_consulted": [
+      "https://dataservices.gfz.de/10.5880/gfz.dqto.2025.001/global-high-resolution-terrestrial-water",
+      "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/",
+      "https://datapub.gfz.de/download/10.5880.GFZ.DQTO.2025.001-Kacbeiu/2025-001_Uz-et-al_data-description.pdf",
+      "https://doi.org/api/handles/10.5880/GFZ.DQTO.2025.001",
+      "https://api.datacite.org/dois/10.5880/GFZ.DQTO.2025.001",
+      "https://doi.org/api/handles/10.1016/j.jhydrol.2026.135015",
+      "https://api.crossref.org/works/10.1016/j.jhydrol.2026.135015"
+    ],
+    "notes": "The file list, licence, coverage and variables were read from the metadata embedded in the GFZ landing page and from the two-page data description PDF. updated_date is the landing-page metadata update date. The NetCDF file (Last-Modified 2025-07-11) was checked with an HTTP HEAD request only."
+  }
+}

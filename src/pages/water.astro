@@ -1,0 +1,171 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Optional products (present once their pipelines have run). Every number on this page is read
+// from the published product files; none is computed or typed in here.
+const one = (f: Record<string, unknown>) => (Object.values(f)[0] ?? null) as any;
+const resRaw = one(import.meta.glob('../../public/data/aeo/products/reservoirs/v1.0.0/web/reservoirs.geojson', { eager: true, query: '?raw', import: 'default' }));
+const res = resRaw ? JSON.parse(resRaw as string) : null;
+const ser = one(import.meta.glob('../../public/data/aeo/products/reservoirs/v1.0.0/web/series.json', { eager: true, import: 'default' }));
+const tws0 = one(import.meta.glob('../../public/data/aeo/products/water-storage/v1.0.0/web/admin0.json', { eager: true, import: 'default' }));
+const tws1 = one(import.meta.glob('../../public/data/aeo/products/water-storage/v1.0.0/web/admin1.json', { eager: true, import: 'default' }));
+const et0 = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/web/admin0.json', { eager: true, import: 'default' }));
+
+const fmt = (v: number | null | undefined, d = 0) => (v === null || v === undefined ? '—' : v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }));
+const sgn = (v: number | null | undefined, d = 2) => (v === null || v === undefined ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}`);
+
+// reservoirs: sorted by capacity, with a 36-month sparkline (SVG path) from the monthly series
+const BINS = [25, 50, 75];
+const BLUES = ['#c6dbef', '#6baed6', '#2171b5', '#08306b']; // ColorBrewer Blues
+const binOf = (p: number | null) => (p === null ? -1 : BINS.filter((b) => p >= b).length);
+const reservoirs = res ? res.features.map((f: any) => f.properties).filter((p: any) => p.latest_month)
+  .sort((a: any, b: any) => (b.capacity_mcm ?? 0) - (a.capacity_mcm ?? 0)) : [];
+const months: string[] = ser?.months ?? [];
+const spark = (gid: number) => {
+  const s: (number | null)[] = (ser?.area_km2?.[String(gid)] ?? []).slice(-36);
+  const v = s.filter((x): x is number => x !== null);
+  if (v.length < 2) return '';
+  const hi = Math.max(...v), lo = 0;
+  let d = '';
+  // months without a valid scene are skipped: the line joins the observed months
+  s.forEach((x, i) => { if (x === null) return; d += `${d ? 'L' : 'M'}${(i * (96 / 35)).toFixed(1)},${(22 - ((x - lo) / (hi - lo || 1)) * 20).toFixed(1)}`; });
+  return d;
+};
+const latestAll = reservoirs.map((r: any) => r.latest_month).sort();
+const medianPct = (() => { const v = reservoirs.map((r: any) => r.latest_pct_of_max).filter((x: any) => x !== null).sort((a: number, b: number) => a - b); return v.length ? v[Math.floor(v.length / 2)] : null; })();
+const below50 = reservoirs.filter((r: any) => r.latest_pct_of_max !== null && r.latest_pct_of_max < 50).length;
+
+// water storage
+const twsNat = tws0 ? tws0.units[0] : null;
+const twsRes = tws1 ? tws1.units.filter((u: any) => u.resolved && u.trend_cm_per_year !== null).sort((a: any, b: any) => a.trend_cm_per_year - b.trend_cm_per_year) : [];
+const twsLast = tws0 ? tws0.months[tws0.months.length - 1] : null;
+---
+<Base title="Water" description="Water resources of Algeria from satellites: monthly water area of the main reservoirs since 1984, long-term change in total water storage (GRACE), and evapotranspiration on cropland.">
+  <div class="mx-auto max-w-[90rem] px-5 pb-16 pt-8 sm:px-8 lg:px-12">
+    <header class="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-5">
+      <div>
+        <p class="overline">Water</p>
+        <h1 class="mt-2 text-[1.75rem] leading-tight">Water resources from space</h1>
+      </div>
+      <p class="max-w-xl text-[1rem] text-slate">Reservoirs, total water storage and evapotranspiration, from open satellite products processed by AEO. Satellite estimates, not official ANBT or ANRH figures.</p>
+    </header>
+
+    {res && (
+      <section aria-labelledby="res-h" class="mt-8">
+        <div class="grid gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <h2 id="res-h" class="h-sub">Reservoir monitor</h2>
+            <p class="mt-2 text-[0.9375rem] text-slate">Water surface of {reservoirs.length} reservoirs (Global Dam Watch, 0.5 km² or more), from every Landsat scene since 1984 in Digital Earth Africa Waterbodies. Latest months: {latestAll[0]} to {latestAll[latestAll.length - 1]}.</p>
+            <dl class="tabular mt-4 grid grid-cols-2 gap-3">
+              <div class="border border-line bg-surface p-3" style="border-radius:var(--radius-card)"><dt class="text-[0.8125rem] text-slate">Median reservoir, latest month</dt><dd class="mt-1 font-mono text-[1.375rem] text-atlas">{fmt(medianPct)} %</dd><dd class="text-[0.8125rem] text-slate">of its largest area since 1984</dd></div>
+              <div class="border border-line bg-surface p-3" style="border-radius:var(--radius-card)"><dt class="text-[0.8125rem] text-slate">Below half their largest area</dt><dd class="mt-1 font-mono text-[1.375rem] text-atlas">{below50} <span class="font-sans text-[1rem] text-slate">of {reservoirs.length}</span></dd></div>
+            </dl>
+            <p class="note mt-4 text-[0.875rem]">A surface-area ratio, not a filling rate: a reservoir at 50 % of its largest area usually holds much less than half its volume. Official filling rates are published by the ANBT.</p>
+            <p class="mt-3 text-[0.875rem]"><a href="/docs/method-reservoirs/">Method</a> · <a href="/data/aeo-dza-reservoirs-deafrica/">Data and downloads</a></p>
+          </div>
+          <div class="lg:col-span-8">
+            <div id="res-map" class="relative h-[28rem] overflow-hidden border border-line" style="border-radius:var(--radius-card)" role="region" aria-label="Map of reservoirs; the table below lists the same values"></div>
+            <ul class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.8125rem] text-slate" aria-label="Map legend">
+              <li class="text-slate">Latest area, % of largest since 1984:</li>
+              {BLUES.map((c, i) => <li class="flex items-center gap-1.5"><span class="inline-block h-3 w-3 rounded-full border border-black/20" style={`background:${c}`}></span>{i === 0 ? `under ${BINS[0]}` : i === BINS.length ? `${BINS[i - 1]} or more` : `${BINS[i - 1]}–${BINS[i]}`}</li>)}
+              <li>· circle size: capacity</li>
+            </ul>
+          </div>
+        </div>
+        <div class="relative mt-6 max-h-[32rem] overflow-auto border border-line" tabindex="0" role="region" aria-label="Reservoirs table">
+          <table class="tabular w-full text-left text-[0.875rem]">
+            <thead class="sticky top-0 z-10 bg-surface"><tr>
+              <th scope="col" class="px-3 py-2 font-medium">Reservoir</th><th scope="col" class="px-3 py-2 font-medium">Wilaya</th>
+              <th scope="col" class="px-3 py-2 text-right font-medium">Capacity (hm³)</th><th scope="col" class="px-3 py-2 font-medium">Month</th>
+              <th scope="col" class="px-3 py-2 text-right font-medium">Water area (km²)</th><th scope="col" class="px-3 py-2 text-right font-medium">% of largest</th>
+              <th scope="col" class="px-3 py-2 font-medium">Last 36 months</th></tr></thead>
+            <tbody>
+              {reservoirs.map((r: any) => (
+                <tr class="border-t border-line">
+                  <td class="px-3 py-1.5">{r.name}{r.river ? <span class="text-slate"> · {r.river}</span> : null}</td>
+                  <td class="px-3 py-1.5">{r.wilaya_name ?? '—'}</td>
+                  <td class="px-3 py-1.5 text-right font-mono">{fmt(r.capacity_mcm)}{r.capacity_mcm !== null && !r.capacity_reported ? <span class="text-slate" title="modelled by Global Dam Watch from area">*</span> : null}</td>
+                  <td class="px-3 py-1.5 font-mono">{r.latest_month}</td>
+                  <td class="px-3 py-1.5 text-right font-mono">{fmt(r.latest_area_km2, 2)}</td>
+                  <td class="px-3 py-1.5 text-right font-mono"><span class="mr-1.5 inline-block h-2.5 w-2.5 rounded-full border border-black/20 align-middle" style={`background:${BLUES[binOf(r.latest_pct_of_max)] ?? '#d9dee2'}`}></span>{fmt(r.latest_pct_of_max)}</td>
+                  <td class="px-3 py-1.5"><svg viewBox="0 0 96 24" class="h-6 w-24" role="img" aria-label={`Water area of ${r.name}, last 36 months`}><path d={spark(r.gdw_id)} fill="none" stroke="#2171b5" stroke-width="1.5" stroke-linejoin="round" /></svg></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-[0.8125rem] text-slate">* Capacity modelled by Global Dam Watch from reservoir area, not reported. This product incorporates data from the GDW database © Global Dam Watch (2024) and Digital Earth Africa Waterbodies (CC BY 4.0).</p>
+      </section>
+    )}
+
+    {tws0 && (
+      <section aria-labelledby="tws-h" class="mt-16 grid gap-6 border-t border-line pt-10 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <h2 id="tws-h" class="h-sub">Total water storage (GRACE)</h2>
+          <p class="mt-2 text-[0.9375rem] text-slate">All water in soils, aquifers and surface waters, from the GRACE and GRACE-FO gravity satellites (downscaled by Li &amp; Kusche 2026), relative to 2004–2009.</p>
+          <dl class="tabular mt-4">
+            <div class="border border-line bg-surface p-3" style="border-radius:var(--radius-card)"><dt class="text-[0.8125rem] text-slate">Algeria, trend {tws0.months[0].slice(0, 4)}–{twsLast?.slice(0, 4)}</dt><dd class="mt-1 font-mono text-[1.375rem] text-atlas">{sgn(twsNat?.trend_cm_per_year)} <span class="font-sans text-[1rem] text-slate">cm per year</span></dd><dd class="text-[0.8125rem] text-slate">{twsNat?.trend_mk_p !== null && twsNat?.trend_mk_p < 0.05 ? 'statistically significant' : 'not significant'} (Mann–Kendall)</dd></div>
+          </dl>
+          <p class="mt-3 text-[0.875rem] text-slate">GRACE resolves about 300 km. Wilayas large enough for GRACE to resolve, steepest decline first: {twsRes.map((u: any) => `${u.name} ${sgn(u.trend_cm_per_year)}`).join(', ')}.</p>
+          <p class="mt-3 text-[0.875rem]"><a href={`/map/?ind=tws-grace&t=${twsLast}`}>Map in Explore</a> · <a href="/docs/method-water-storage/">Method</a> · <a href="/data/aeo-dza-water-storage-grace/">Data</a></p>
+        </div>
+        <div class="lg:col-span-8">
+          <div id="tws-chart"></div>
+          <p class="mt-1 text-[0.8125rem] text-slate">Algeria, monthly; gaps are months without GRACE data (including July 2017 – May 2018 between the two missions).</p>
+        </div>
+      </section>
+    )}
+
+    {et0 && (
+      <section aria-labelledby="et-h" class="mt-16 grid gap-6 border-t border-line pt-10 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <h2 id="et-h" class="h-sub">Evapotranspiration on cropland</h2>
+          <p class="mt-2 text-[0.9375rem] text-slate">Water returned to the air by soils and plants each month (FAO WaPOR v3), on stable cropland and on all land. On rain-fed cereal land it peaks in April–May; on irrigated land it also reflects irrigation.</p>
+          <p class="mt-3 text-[0.875rem]"><a href={`/map/?ind=et-aeti&t=${et0.months[et0.months.length - 1]}`}>Map in Explore</a> · <a href="/docs/method-et-soil-moisture/">Method</a> · <a href="/data/aeo-dza-et-soil-moisture-wapor3/">Data</a></p>
+        </div>
+        <div class="lg:col-span-8"><div id="et-chart"></div></div>
+      </section>
+    )}
+  </div>
+  <script type="application/json" id="water-data" set:html={JSON.stringify({
+    points: res, bins: BINS, colors: BLUES,
+    tws: tws0 ? { months: tws0.months, v: tws0.series.tws[0] } : null,
+    et: et0 ? { months: et0.months, all: et0.series.aeti[0], crop: et0.series.aeti_crop[0] } : null,
+  })} />
+</Base>
+
+<script>
+  import maplibregl from 'maplibre-gl';
+  import 'maplibre-gl/dist/maplibre-gl.css';
+  import { lineChart } from '../lib/charts';
+
+  const d = JSON.parse(document.getElementById('water-data')!.textContent!);
+  const key = (m: string) => Number(m.slice(0, 4)) + (Number(m.slice(5, 7)) - 0.5) / 12;
+  const tw = document.getElementById('tws-chart');
+  if (tw && d.tws) lineChart(tw, [{ name: 'Algeria', keys: d.tws.months.map(key), values: d.tws.v }], { yLabel: 'cm', reference: { value: 0, label: '2004–2009 mean' }, keyLabel: (k) => String(Math.floor(k)), format: (x) => x.toFixed(1) }, 'Total water storage anomaly, Algeria');
+  const et = document.getElementById('et-chart');
+  if (et && d.et) lineChart(et, [{ name: 'Stable cropland', keys: d.et.months.map(key), values: d.et.crop }, { name: 'All land', keys: d.et.months.map(key), values: d.et.all }], { yLabel: 'mm per month', keyLabel: (k) => String(Math.floor(k)), format: (x) => x.toFixed(0) }, 'Actual evapotranspiration, Algeria, monthly');
+
+  const box = document.getElementById('res-map');
+  if (box && d.points) {
+    const color: unknown[] = ['case', ['==', ['typeof', ['get', 'latest_pct_of_max']], 'number'], ['step', ['get', 'latest_pct_of_max'], d.colors[0], ...d.bins.flatMap((b: number, i: number) => [b, d.colors[i + 1]])], '#d9dee2'];
+    const map = new maplibregl.Map({ container: box, style: 'https://tiles.openfreemap.org/styles/positron', bounds: [-2.5, 33.5, 9.0, 37.2], fitBoundsOptions: { padding: 16 }, attributionControl: { compact: true }, cooperativeGestures: true });
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+    (window as any).__aeoWaterMap = map;
+    map.on('load', () => {
+      map.addSource('res', { type: 'geojson', data: d.points });
+      map.addLayer({ id: 'res-c', type: 'circle', source: 'res', paint: {
+        'circle-color': color as any, 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1.5,
+        'circle-radius': ['interpolate', ['linear'], ['sqrt', ['max', 1, ['coalesce', ['get', 'capacity_mcm'], 5]]], 1, 4, 32, 16] as any,
+      } });
+      const pop = new maplibregl.Popup({ closeButton: false, offset: 10 });
+      map.on('mousemove', 'res-c', (e) => {
+        const p: any = e.features?.[0]?.properties; if (!p) return;
+        map.getCanvas().style.cursor = 'pointer';
+        const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, '');
+        pop.setLngLat(e.lngLat).setHTML(`<p style="font-weight:500">${esc(p.name)}</p><p>${esc(p.wilaya_name)} · ${p.latest_month ?? '—'}</p><p>${p.latest_area_km2 ?? '—'} km² · ${p.latest_pct_of_max ?? '—'} % of largest</p>`).addTo(map);
+      });
+      map.on('mouseleave', 'res-c', () => { map.getCanvas().style.cursor = ''; pop.remove(); });
+    });
+  }
+</script>

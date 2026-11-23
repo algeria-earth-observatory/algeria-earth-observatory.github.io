@@ -164,6 +164,11 @@ export async function buildStyle(state: MapState): Promise<StyleSpecification> {
       below.push({ id: `aeo-${l.id}`, type: 'raster', source: `aeo-${l.id}`, layout: { visibility: vis }, paint: { 'raster-opacity': st?.opacity ?? l.opacity, 'raster-fade-duration': 0, 'raster-resampling': 'nearest' } });
     }
   }
+  // Terrain shading over the data overlays (light basemap): the relief of the Tell, Atlas and Hoggar
+  // shows through the colours, which are lightened/darkened slightly but keep their class.
+  if (s.sources['base-relief']) {
+    below.push({ id: 'aeo-relief-shade', type: 'raster', source: 'base-relief', paint: { 'raster-opacity': 0.2, 'raster-saturation': -1, 'raster-brightness-min': 0.35, 'raster-contrast': 0.15 } });
+  }
   // Mask outside Algeria, above all data overlays and below boundaries.
   s.sources['aeo-outside'] = { type: 'geojson', data: OUTSIDE_MASK };
   above.push(maskLayer('aeo-outside', dark));
@@ -229,19 +234,23 @@ export function setLayerOpacity(map: MLMap, id: string, v: number) {
 
 const choroCache = new Map<string, Promise<any>>();
 /** Colour the wilaya polygons with a choropleth layer's values for one month (feature state). */
-export async function setChoropleth(map: MLMap, layer: MapLayer, time: string | null) {
+export async function setChoropleth(map: MLMap, layer: MapLayer, time: string | null, variant?: string | null) {
   const c = layer.choropleth;
-  if (!c || !time) return;
+  if (!c) return;
+  if (layer.time && !time) return;
   if (!choroCache.has(c.url)) choroCache.set(c.url, fetch(c.url).then((r) => r.json()));
   const f = await choroCache.get(c.url)!;
-  const t = f.months.indexOf(time.slice(0, 7));
+  // Static layers (no time) have one value per unit; the variant (if any) selects the series.
+  const t = layer.time ? f.months.indexOf(time!.slice(0, 7)) : 0;
+  const scale = layer.variants ? (variant ?? layer.variants.default) : c.scale;
   f.units.forEach((u: any, i: number) => {
-    const v = t < 0 ? null : f[c.key]?.[c.scale]?.[i]?.[t] ?? null;
-    map.setFeatureState({ source: 'aeo-wilayas', id: u.code }, { v: v === null ? null : v, flag: !!u[c.flag] });
+    const v = t < 0 ? null : f[c.key]?.[scale]?.[i]?.[t] ?? null;
+    const flag = f.flags?.[scale] ? !!f.flags[scale][i] : !!u[c.flag];
+    map.setFeatureState({ source: 'aeo-wilayas', id: u.code }, { v: v === null ? null : v, flag });
   });
 }
 export function setLayerTime(map: MLMap, layer: MapLayer, time: string | null, variant?: string | null) {
-  if (layer.type === 'choropleth') { setChoropleth(map, layer, time); return; }
+  if (layer.type === 'choropleth') { setChoropleth(map, layer, time, variant); return; }
   if (layer.type === 'image' && layer.image) {
     (map.getSource(`aeo-${layer.id}`) as maplibregl.ImageSource | undefined)?.updateImage({ url: imageUrl(layer, time, variant), coordinates: layer.image.coordinates as any });
     return;

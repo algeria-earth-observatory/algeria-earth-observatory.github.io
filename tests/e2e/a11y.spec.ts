@@ -6,7 +6,7 @@ import { openDownloader, pickFromCombobox } from './helpers';
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 const PAGES = ['/', '/data/', '/data/aeo-dza-precipitation-chirps3/', '/data/aeo-dza-spei-terraclimate/', '/data/aeo-dza-spi-chirps3/', '/data/aeo-dza-soil-soilgrids/', '/data/aeo-dza-admin-boundaries/',
-  '/map/', '/drought/', '/science/', '/science/publications/', '/regions/', '/regions/19/', '/regions/19/1901/', '/about/'];
+  '/map/', '/drought/', '/water/', '/climate/', '/science/', '/science/publications/', '/regions/', '/regions/19/', '/regions/19/1901/', '/about/'];
 
 const scan = async (page: import('@playwright/test').Page) => {
   const r = await new AxeBuilder({ page }).withTags(TAGS).exclude('.maplibregl-canvas').analyze();

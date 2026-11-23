@@ -7,8 +7,8 @@
 
 // dataviz reference palette, light-surface steps (fixed order, never cycled)
 export const SERIES_COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4'];
-export const DRY = '#d03b3b';
-export const WET = '#2a78d6';
+export const DRY = '#bf812d'; // ColorBrewer BrBG, as the anomaly maps
+export const WET = '#35978f';
 const INK = '#17252c', MUTED = '#586268', GRID = '#e7e2d7', AXIS = '#b9b3a6';
 
 export interface LineSeries { name: string; keys: number[]; values: (number | null)[] }
@@ -17,6 +17,8 @@ export interface LineOpts {
   trend?: { slope: number; intercept: number; from: number; to: number } | null;
   format?: (v: number) => string; keyLabel?: (k: number) => string;
   compact?: boolean;
+  /** Draw a legend under the chart for 2+ series (default true; pages with their own legend pass false). */
+  legend?: boolean;
 }
 
 interface Dims { W: number; H: number }
@@ -151,6 +153,13 @@ export function lineChart(container: HTMLElement, series: LineSeries[], opts: Li
     }).join('') + (opts.reference ? `<p class="text-slate">${opts.reference.label}: <span class="font-mono">${fmt(opts.reference.value)}</span></p>` : ''),
     (k) => series.map((s, si) => ({ v: s.values[s.keys.indexOf(k)], color: SERIES_COLORS[si] }))
       .filter((m): m is { v: number; color: string } => m.v !== null && m.v !== undefined).map((m) => ({ y: y(m.v), color: m.color })));
+  if (series.length >= 2 && opts.legend !== false) {
+    // legend: identity is never carried by colour alone
+    const lg = document.createElement('p');
+    lg.className = 'mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[0.8125rem] text-slate';
+    lg.innerHTML = series.map((s, si) => `<span class="inline-flex items-center gap-1.5"><span class="inline-block h-0.5 w-4 rounded" style="background:${SERIES_COLORS[si % SERIES_COLORS.length]}"></span>${s.name.replace(/[&<>"']/g, '')}</span>`).join('');
+    container.appendChild(lg);
+  }
   return svg;
 }
 

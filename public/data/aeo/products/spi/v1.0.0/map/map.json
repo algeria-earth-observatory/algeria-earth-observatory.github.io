@@ -9,13 +9,13 @@
   2
  ],
  "colors": [
-  "#6b1515",
-  "#d03b3b",
-  "#ee8d81",
-  "#f0efec",
-  "#86b6ef",
-  "#3987e5",
-  "#0d366b"
+  "#b2182b",
+  "#ef8a62",
+  "#fddbc7",
+  "#f7f7f7",
+  "#d1e5f0",
+  "#67a9cf",
+  "#2166ac"
  ],
  "labels": [
   "extremely dry (≤ −2)",
@@ -29,5 +29,6 @@
  "arid": {
   "color": "#e8dcc4",
   "label": "arid wilaya (normal < 100 mm/year): SPI unstable"
- }
+ },
+ "palette_source": "ColorBrewer (colorbrewer2.org); SPEI/SPI classes as documented by the Copernicus Global Drought Observatory (RdBu-7)"
 }

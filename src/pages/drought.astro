@@ -7,6 +7,11 @@ import spei0 from '../../public/data/aeo/products/spei/v1.0.0/web/admin0.json';
 import spei1 from '../../public/data/aeo/products/spei/v1.0.0/web/admin1.json';
 import spi0 from '../../public/data/aeo/products/spi/v1.0.0/web/admin0.json';
 import { speiClass } from '../lib/spei';
+// Optional products (present once their pipelines have run)
+const one = (f: Record<string, unknown>) => (Object.values(f)[0] ?? null) as any;
+const outlook = one(import.meta.glob('../../public/data/aeo/products/seasonal-outlook/v0.1.0/web/outlook.json', { eager: true, import: 'default' }));
+const et0 = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/web/admin0.json', { eager: true, import: 'default' }));
+const et1 = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/web/admin1.json', { eager: true, import: 'default' }));
 
 // Latest conditions, read from the published SPEI product (no value is computed here).
 const lastI = spei0.months.length - 1;
@@ -20,13 +25,30 @@ const spiLast = (spi0 as any).months[(spi0 as any).months.length - 1] as string;
 const spiNat = (k: '3' | '12') => (spi0 as any).spi[k][0][(spi0 as any).months.length - 1] as number | null;
 const sgn = (v: number | null) => (v === null ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(2)}`);
 
+// Cropland conditions (WaPOR v3 over stable cropland), latest month
+const etLast = et0 ? et0.months.length - 1 : -1;
+const etMonth = et0 ? et0.months[etLast] : null;
+const cropRsm = et0?.series.rsm_crop[0][etLast] ?? null, cropRsmDep = et0?.series.rsm_crop_dep_pp[0][etLast] ?? null;
+const cropEt = et0?.series.aeti_crop[0][etLast] ?? null, cropEtDep = et0?.series.aeti_crop_dep_pct[0][etLast] ?? null;
+const dryCrop = et1 ? et1.units.map((u: any, i: number) => ({ code: u.code, name: u.name, ha: u.cropland_ha, d: et1.series.rsm_crop_dep_pp[i][etLast] as number | null }))
+  .filter((w: any) => w.d !== null && w.ha >= 50_000).sort((a: any, b: any) => a.d - b.d).slice(0, 5) : [];
+const sg1 = (v: number | null, d = 1) => (v === null ? '—' : `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}`);
+// Seasonal outlook (experimental, verified)
+const MON3 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const seasonLabel = (t: string) => { const [a, b] = t.split('/'); return `${MON3[+a.slice(5, 7) - 1]} ${a.slice(0, 4)} – ${MON3[+b.slice(5, 7) - 1]} ${b.slice(0, 4)}`; };
+const published = outlook ? outlook.outlook.filter((o: any) => o.skilful && o.unit_code !== 'DZ').sort((a: any, b: any) => b.p_below - a.p_below) : [];
+const fieldShare = (outlook ? outlook.field_share : {}) as Record<string, number>;
+const pct = (v: number) => `${Math.round(v * 100)} %`;
+// three classes with tested text contrast (ColorBrewer BrBG teal steps)
+const shade = (v: number) => (v >= 0.4 ? 'background:#01665e;color:#ffffff' : v >= 0.2 ? 'background:#80cdc1;color:#0e2a3e' : 'background:#e6f3f1;color:#0e2a3e');
+
 const years = manifest.temporal_coverage.annual as [number, number];
 const months = manifest.temporal_coverage.monthly as [string, string];
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const label = 'block text-[0.875rem] font-medium text-atlas';
 const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r border-line-strong px-2 last:border-r-0 has-[:checked]:bg-obsidian has-[:checked]:text-white has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cobalt';
 ---
-<Base title="Drought" description="Drought monitoring for Algeria: latest SPEI conditions, historical drought time series and statistics for the country, its 69 wilayas and 1,541 communes, with downloads.">
+<Base title="Drought" description="Drought monitoring for Algeria: latest SPEI and SPI conditions, cropland soil moisture, an experimental verified seasonal outlook, and drought time series for the country, its 69 wilayas and 1,541 communes, with downloads.">
   <div class="mx-auto max-w-[90rem] px-5 pb-16 pt-8 sm:px-8 lg:px-12">
     <header class="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-5">
       <div>
@@ -158,7 +180,7 @@ const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r b
                 <button type="button" class="link-btn min-h-6" data-export="an" data-fmt="png" aria-label="Download the anomaly chart as PNG">PNG</button>
               </div>
             </div>
-            <p class="mt-1 text-[0.875rem] text-slate"><span class="mr-1 inline-block h-2.5 w-2.5 align-middle" style="background:#2a78d6"></span>bars above zero: wetter · <span class="mr-1 inline-block h-2.5 w-2.5 align-middle" style="background:#d03b3b"></span>bars below zero: drier <span id="az-an-unit-note"></span></p>
+            <p class="mt-1 text-[0.875rem] text-slate"><span class="mr-1 inline-block h-2.5 w-2.5 align-middle" style="background:#35978f"></span>bars above zero: wetter · <span class="mr-1 inline-block h-2.5 w-2.5 align-middle" style="background:#bf812d"></span>bars below zero: drier <span id="az-an-unit-note"></span></p>
             <div id="az-an" class="mt-2"></div>
           </section>
         </div>
@@ -221,15 +243,66 @@ const seg = 'flex min-h-10 cursor-pointer items-center justify-center border-r b
         </section>
       </div>
     </div>
-    <section aria-labelledby="outlook-h" class="mt-16 grid gap-6 border-t border-line pt-10 lg:grid-cols-12">
-      <div class="lg:col-span-4">
-        <h2 id="outlook-h" class="h-sub">Drought outlook <span class="status status-in-preparation ml-1 align-middle">Experimental, not yet published</span></h2>
+    {et0 && (
+      <section aria-labelledby="crop-h" class="mt-10 grid gap-6 border-t border-line pt-8 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <h2 id="crop-h" class="h-sub">Cropland conditions: {etMonth}</h2>
+          <p class="mt-2 text-[0.9375rem] text-slate">Over stable cropland only (land farmed in at least 20 of 25 years, GACED30), from FAO WaPOR v3. Compared with the 2018–2025 mean of the same month.</p>
+        </div>
+        <dl class="tabular grid gap-3 sm:grid-cols-2 lg:col-span-8">
+          <div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Root-zone soil moisture on cropland</dt><dd class="mt-1 font-mono text-[1.5rem] text-atlas">{cropRsm?.toFixed(0)} <span class="font-sans text-[1rem] text-slate">% of range</span></dd><dd class="text-[0.875rem] text-slate">{sg1(cropRsmDep)} points vs 2018–2025</dd></div>
+          <div class="border border-line bg-surface p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Evapotranspiration on cropland</dt><dd class="mt-1 font-mono text-[1.5rem] text-atlas">{cropEt?.toFixed(0)} <span class="font-sans text-[1rem] text-slate">mm</span></dd><dd class="text-[0.875rem] text-slate">{sg1(cropEtDep, 0)} % vs 2018–2025</dd></div>
+        </dl>
+        <div class="text-[0.9375rem] lg:col-span-8 lg:col-start-5">
+          {dryCrop.length > 0 && <p class="text-slate">Driest cropland soils relative to 2018–2025 (wilayas with at least 50,000 ha of stable cropland): {dryCrop.map((w: any, i: number) => <><a href={`/map/?ind=sm-rsm&w=${w.code}&t=${etMonth}`}>{w.name}</a>{` ${sg1(w.d)}${i < dryCrop.length - 1 ? ', ' : '.'}`}</>)}</p>}
+          <p class="mt-1 text-slate">Eight years are too few for a drought class: these departures flag an unusual month. <a href="/docs/method-et-soil-moisture/">Method</a> · <a href={`/map/?ind=sm-rsm&t=${etMonth}`}>Soil moisture in Explore</a> · <a href={`/map/?ind=et-aeti&t=${etMonth}`}>Evapotranspiration</a></p>
+        </div>
+      </section>
+    )}
+
+    <section id="outlook" aria-labelledby="outlook-h" class="mt-16 border-t border-line pt-10">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <h2 id="outlook-h" class="h-sub">Seasonal rainfall outlook over stable cropland <span class="status status-experimental ml-1 align-middle">Experimental test</span></h2>
+          {outlook && <p class="mt-2 text-[0.9375rem] text-slate">NMME forecast issued {outlook.issued}, recalibrated and verified by AEO against CHIRPS rainfall 1991–2021 over the stable cropland of {outlook.units.length - 1} wilayas.</p>}
+        </div>
+        <div class="space-y-3 text-[0.9375rem] leading-relaxed text-graphite lg:col-span-8">
+          {!outlook && <p>The outlook test has not been built.</p>}
+          {outlook && (
+            <>
+              <p><strong class="font-medium text-atlas">Shown only where past forecasts beat climatology.</strong> For each wilaya, start month and lead, AEO tested 31 years of NMME hindcasts with leave-one-year-out cross-validation. An outlook is published only if it beat equal chances (RPSS, ROC area, correlation) and the same start month and lead worked in at least 20 % of wilayas. Everywhere else the outlook is <em>equal chances</em>. This is a test, not an official forecast: official seasonal forecasts for Algeria are issued by the ONM.</p>
+              {published.length > 0 ? (
+                <>
+                  <p>{published.length} wilayas pass for {[...new Set(published.map((o: any) => seasonLabel(o.target)))].join(' and ')}. In {published.every((o: any) => o.p_below > o.p_above) ? 'all of them' : 'these wilayas'}, <strong class="font-medium text-atlas">{published.every((o: any) => o.p_below > o.p_above) ? 'below-normal rainfall' : 'the tilt shown'}</strong> on stable cropland is the most likely outcome:</p>
+                  <div class="relative max-h-80 overflow-auto border border-line" tabindex="0" role="region" aria-label="Published outlooks">
+                    <table class="tabular w-full text-left text-[0.875rem]">
+                      <thead class="sticky top-0 bg-surface"><tr><th scope="col" class="px-3 py-2 font-medium">Wilaya</th><th scope="col" class="px-3 py-2 font-medium">Season</th><th scope="col" class="px-3 py-2 text-right font-medium">Below</th><th scope="col" class="px-3 py-2 text-right font-medium">Near</th><th scope="col" class="px-3 py-2 text-right font-medium">Above</th><th scope="col" class="px-3 py-2 text-right font-medium">RPSS</th><th scope="col" class="px-3 py-2 text-right font-medium">ROC</th></tr></thead>
+                      <tbody>{published.map((o: any) => <tr class="border-t border-line"><td class="px-3 py-1"><a href={`/map/?ind=outlook-nmme&w=${o.unit_code}&v=${encodeURIComponent(o.target)}`}>{o.unit_name}</a></td><td class="px-3 py-1">{seasonLabel(o.target)}</td><td class="px-3 py-1 text-right font-mono">{pct(o.p_below)}</td><td class="px-3 py-1 text-right font-mono">{pct(o.p_normal)}</td><td class="px-3 py-1 text-right font-mono">{pct(o.p_above)}</td><td class="px-3 py-1 text-right font-mono">{o.rpss.toFixed(2)}</td><td class="px-3 py-1 text-right font-mono">{o.roc_below.toFixed(2)}</td></tr>)}</tbody>
+                    </table>
+                  </div>
+                  <p class="text-slate">"Below" means rainfall in the lowest third of 1991–2021 for that season. In past years with a similar forecast, these seasons were more often dry; this does not predict an amount of rain.</p>
+                </>
+              ) : <p>No wilaya passes the skill test for this issue: every outlook is equal chances.</p>}
+              <p><a href="/map/?ind=outlook-nmme">Outlook map in Explore</a> · <a href="/docs/method-seasonal-outlook/">Method and verification</a> · <a href="/data/aeo-dza-seasonal-outlook-nmme/">Data and full verification tables</a></p>
+            </>
+          )}
+        </div>
       </div>
-      <div class="space-y-3 text-[0.9375rem] leading-relaxed text-graphite lg:col-span-8">
-        <p>AEO plans seasonal drought outlooks from documented ensemble forecast systems (for example ECMWF SEAS5 through the Copernicus Climate Data Store), calibrated against their hindcasts.</p>
-        <p><strong class="font-medium text-atlas">No forecast is published yet.</strong> Probabilities will be shown only after hindcast verification for Algeria (reliability and skill scores against observed SPEI), and always separately from observed drought.</p>
-        <p class="text-slate">Agricultural drought exposure (drought over cropland) is also in preparation and depends on a validated cropland mask.</p>
-      </div>
+      {outlook && (
+        <figure class="mt-8">
+          <figcaption id="skill-cap" class="text-[0.9375rem] font-medium text-atlas">Where seasonal forecasts work: share of wilayas where past forecasts beat climatology</figcaption>
+          <p class="mt-1 text-[0.875rem] text-slate">Rows: month the forecast starts. Columns: months ahead (lead). About 5 % would pass by chance. Shading: under 20 %, 20–40 %, 40 % or more; cells outlined in orange meet the publication rule (at least 20 % of wilayas, lead of 3 months or less).</p>
+          <div class="relative mt-3 overflow-x-auto" tabindex="0" role="region" aria-labelledby="skill-cap">
+            <table class="tabular border-collapse text-[0.8125rem]">
+              <thead><tr><th scope="col" class="px-2 py-1 text-left font-medium">Start</th>{[1, 2, 3, 4, 5, 6].map((l) => <th scope="col" class="w-16 px-2 py-1 text-center font-medium">{l} mo</th>)}</tr></thead>
+              <tbody>{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter((m) => [1, 2, 3, 4, 5, 6].some((l) => fieldShare[`${m}-${l}`] !== undefined)).map((m) => (
+                <tr><th scope="row" class="px-2 py-1 text-left font-normal text-slate">{MON3[m - 1]}</th>{[1, 2, 3, 4, 5, 6].map((l) => { const v = fieldShare[`${m}-${l}`]; return <td class="h-8 w-16 border border-white px-2 text-center font-mono" style={v === undefined ? '' : `${shade(v)};${v >= 0.2 && l <= 3 ? 'outline:2px solid #e08214;outline-offset:-3px' : ''}`}>{v === undefined ? '—' : `${Math.round(v * 100)}`}</td>; })}</tr>
+              ))}</tbody>
+            </table>
+          </div>
+          <p class="mt-2 text-[0.8125rem] text-slate">Values: % of {outlook.units.length - 1} wilayas. Missing rows: start months without hindcast files at NOAA CPC.</p>
+        </figure>
+      )}
     </section>
 
     <div class="mt-16 border-t border-midnight pt-10">

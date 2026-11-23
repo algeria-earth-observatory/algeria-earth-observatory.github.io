@@ -1,0 +1,15 @@
+{
+ "created": "2026-11-22",
+ "product": "aeo-dza-stable-cropland-gaced30",
+ "version": "1.0.0",
+ "inputs": {
+  "gaced30_aeo_clip": "data-work/gaced30/out/gaced30_dza_<year>_v1.tif (see the GACED30 Algeria clip PROVENANCE)",
+  "boundaries": "public\\data\\aeo\\boundaries\\2026-11-20"
+ },
+ "build_npz_sha256": "bb9b768a69b03d8ef90bd77512846dbf8d1988dfa301a06cb8f48c8b7395053a",
+ "method": "Publish the AEO stable-cropland product from data-work/cropland/stable_cropland_v1.npz.\n\nTables (ha, true pixel areas): per commune, wilaya and Algeria — land area mapped by GACED30,\ncropland in any year, in at least 13 years (majority), in at least 20 years (stable, the AEO mask),\nin all 25 years, and the share of the unit that is stable cropland; plus the full distribution of\nthe number of cropland years (0–25) per commune.\nMap: share of each ~1.2 km cell that is stable cropland (display PNG, Web Mercator).\nMask: the stable-cropland area per cell on the grids used by other AEO products, as a compressed\nNPZ download, so the cropland statistics of every product can be reproduced.\n\nUsage: python scripts/pipelines/cropland/publish_stable_cropland.py\n",
+ "qc": [
+  "Pixels in Algeria outside any commune polygon: 3,281 ha (0.001 %)",
+  "Algeria: cropland in any year 12.98 Mha, majority 8.35 Mha, stable 6.40 Mha, all 25 years 4.80 Mha"
+ ]
+}

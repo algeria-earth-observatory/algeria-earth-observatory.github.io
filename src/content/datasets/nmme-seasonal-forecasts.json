@@ -1,0 +1,221 @@
+{
+  "id": "nmme-seasonal-forecasts",
+  "title": "North American Multi-Model Ensemble (NMME) seasonal forecasts and hindcasts",
+  "description": "Monthly-issued seasonal forecasts from the North American Multi-Model Ensemble, a collaboration of North American climate modelling centres coordinated with NOAA's Climate Prediction Center (CPC). Since June 2025 the ensemble consists of NCEP CFSv2, ECCC CanESM5 and GEM5.2-NEMO, NCAR CESM1 and CCSM4, and NASA GEOS-S2S-2. CPC distributes, without registration, global 1° files of monthly and 3-month (seasonal) precipitation, 2 m temperature and sea surface temperature for each model and for the equally weighted multi-model mean, as hindcasts (initialised 1991 onward) and real-time forecasts in the text format of the IRI Climate Predictability Tool (CPT), plus real-time NetCDF ensemble members, anomalies, tercile probabilities and model hindcast climatologies.",
+  "purpose": "Provides open, multi-model seasonal precipitation and temperature forecasts with a long hindcast record, so that forecasts for Algeria's rainfed cereal season can be recalibrated and verified against local observations before use.",
+  "domain": [
+    "climate-drought",
+    "agriculture",
+    "water"
+  ],
+  "categories": [
+    "Seasonal forecasts",
+    "Climate prediction"
+  ],
+  "keywords": [
+    "NMME",
+    "seasonal forecast",
+    "hindcast",
+    "multi-model ensemble",
+    "CFSv2",
+    "CanESM5",
+    "GEM5.2-NEMO",
+    "CESM1",
+    "CCSM4",
+    "GEOS-S2S",
+    "CPT",
+    "precipitation",
+    "NOAA CPC"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "modeled",
+  "data_type": "raster",
+  "provider": {
+    "name": "NOAA NCEP Climate Prediction Center (CPC), on behalf of the NMME project",
+    "url": "https://www.cpc.ncep.noaa.gov/products/NMME/"
+  },
+  "creator": "NMME modelling partners (current members per CPC: NCEP-CFSv2, ECCC-CanESM5, ECCC-GEM5.2-NEMO, NCAR-CESM1, NCAR-CCSM4, NASA-GEOS-S2S-2); files assembled and distributed by NOAA CPC",
+  "source_url": "https://www.cpc.ncep.noaa.gov/products/NMME/data.html",
+  "documentation_url": "https://www.cpc.ncep.noaa.gov/products/NMME/users_guide.html",
+  "license": {
+    "name": "Public domain (NOAA/NWS information, unless specifically noted otherwise); citation requested by the NMME project",
+    "spdx": null,
+    "url": "https://www.weather.gov/disclaimer"
+  },
+  "license_notes": "No dataset-specific licence is stated on the CPC NMME pages. The NWS disclaimer states that information on NWS web servers 'is in the public domain, unless specifically annotated otherwise, and may be used freely by the public', provided users do not claim it as their own or imply NOAA endorsement. The NMME data page asks users to cite Kirtman et al. (2014) and to acknowledge that 'the NMME project and data dissemination is supported by NOAA, NSF, NASA and DOE', and the help of NCEP, IRI and NCAR personnel. Separate terms of the non-US modelling centres (e.g. ECCC) were not checked.",
+  "citation": "Kirtman, B. P., et al. (2014). The North American Multimodel Ensemble: Phase-1 Seasonal-to-Interannual Prediction; Phase-2 toward Developing Intraseasonal Prediction. Bulletin of the American Meteorological Society, 95(4), 585–601. https://doi.org/10.1175/BAMS-D-12-00050.1. Acknowledgement requested: the NMME project and data dissemination is supported by NOAA, NSF, NASA and DOE; with thanks to NCEP, IRI and NCAR personnel for creating, updating and maintaining the NMME archive.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Kirtman, B. P., Min, D., Infanti, J. M., Kinter, J. L., Paolino, D. A., Zhang, Q., van den Dool, H., Saha, S., et al. (2014). The North American Multimodel Ensemble: Phase-1 Seasonal-to-Interannual Prediction; Phase-2 toward Developing Intraseasonal Prediction. Bulletin of the American Meteorological Society, 95(4), 585–601.",
+      "doi": "10.1175/BAMS-D-12-00050.1",
+      "url": null
+    },
+    {
+      "citation": "NOAA CPC. NMME User's Guide (models, update schedule, ensemble-mean method).",
+      "doi": null,
+      "url": "https://www.cpc.ncep.noaa.gov/products/NMME/users_guide.html"
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "global",
+    "description": "Global 1° latitude–longitude grid (CPT files: 181 rows from 90° N to 90° S × 360 columns from 0° to 359° E). Algeria is covered by roughly 1° cells; non-missing precipitation values over northern Algeria were confirmed in the November 2026 multi-model forecast file. Users subset the global files.",
+    "algeria_subset": "extract",
+    "bbox": [
+      -180,
+      -90,
+      180,
+      90
+    ]
+  },
+  "temporal_extent": {
+    "start": "1991-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "monthly issue (models delivered by the 8th; CPC web update on the 9th)",
+    "description": "Hindcasts initialised from 1991 (CPT hindcast files labelled 1991–2020, 1991–2021 or 1992–2021 by target-season year); real-time forecasting began in August 2011. The latest real-time directory on 2026-11-22 is the November 2026 initialisation (2026110800). One-month forecasts cover the following seven months; CPT seasonal files cover overlapping 3-month (and 4-month) target seasons."
+  },
+  "resolution": {
+    "spatial": "1° × 1° (CPT and real-time files)",
+    "spatial_m": 111320,
+    "temporal": "monthly and 3-month (seasonal) means; leads up to 7 months"
+  },
+  "format": [
+    "CPT ASCII text (IRI Climate Predictability Tool v10 format)",
+    "NetCDF (real-time ensemble members, anomalies, probabilities, hindcast climatologies)",
+    "GrADS binary (monthly and seasonal tar archives)"
+  ],
+  "crs": "EPSG:4326 (regular 1° latitude–longitude grid)",
+  "variables": [
+    {
+      "name": "precip (CPT) / prate (real-time NetCDF)",
+      "units": "mm/day (CPT files)",
+      "description": "Precipitation rate, monthly or seasonal mean (raw model values in the CPT files, not anomalies)"
+    },
+    {
+      "name": "tmp2m",
+      "units": null,
+      "description": "2 m air temperature"
+    },
+    {
+      "name": "sst (CPT) / tmpsfc (real-time NetCDF)",
+      "units": null,
+      "description": "Sea surface / surface temperature"
+    }
+  ],
+  "processing": "Each modelling centre runs its forecast ensemble before the 8th of each month and delivers it to CPC. For the CPC products, anomalies are computed against each model's own hindcast climatology; the ensemble mean of each model is computed first and the models are then averaged with equal weights to form the multi-model mean (User's Guide). The CPT files give per-model and multi-model ('nmme') values on a common 1° grid for monthly and 3- or 4-month target periods.",
+  "validation": "CPC publishes a preliminary real-time verification page and Kirtman et al. (2014) describe hindcast skill of the original Phase-1 system. No skill figure for North Africa is given on the pages consulted; skill must be assessed locally.",
+  "limitations": [
+    "Coarse 1° resolution; CPT values are raw model output with model-specific biases and must be recalibrated (e.g. against CHIRPS or station data) before use for Algeria.",
+    "Seasonal precipitation skill varies strongly by region and season; verify cross-validated hindcast skill for each Algerian season and region before interpreting a forecast.",
+    "Ensemble membership changes over time (e.g. CMC1/CMC2 replaced in 2019, GFDL models replaced by SPEAR in 2021 and no longer in the current list); the CPT files still use the prefixes cmc1 and cmc2 and the November 2026 real-time NetCDF directory contains no NASA files.",
+    "CPC directories are rolling FTP-style listings; files for past initialisations may be moved or removed.",
+    "The IRI Data Library NMME archive linked from the CPC data page now requires users to sign in."
+  ],
+  "version": null,
+  "published_date": null,
+  "updated_date": null,
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "CPC NMME data access page",
+      "url": "https://www.cpc.ncep.noaa.gov/products/NMME/data.html",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": "Links to all CPC directories and the citation requirement."
+    },
+    {
+      "label": "CPC International Desk NMME files (CPT format, binary, NetCDF)",
+      "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/",
+      "kind": "download",
+      "format": "CPT text, GrADS binary, NetCDF",
+      "requires_login": false,
+      "notes": "Sub-directories seasonal_nmme_forecast_in_cpt_format, seasonal_nmme_hindcast_in_cpt_format, monthly_nmme_*_in_cpt_format, seasonal_4month_*, netcdf/ (per initialisation) and binary tar archives."
+    },
+    {
+      "label": "Seasonal forecasts in CPT format",
+      "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/",
+      "kind": "download",
+      "format": "CPT text (about 0.7 MB per file)",
+      "requires_login": false,
+      "notes": "Files such as nmme_precip_fcst_Novic_1-3_2027-2027.txt (multi-model mean, November initialisation, JFM 2027)."
+    },
+    {
+      "label": "Seasonal hindcasts in CPT format",
+      "url": "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/",
+      "kind": "download",
+      "format": "CPT text",
+      "requires_login": false,
+      "notes": "Files such as nmme_precip_hcst_Novic_1-3_1992-2021.txt (30 hindcast seasons)."
+    },
+    {
+      "label": "Real-time ensemble members (NetCDF)",
+      "url": "https://ftp.cpc.ncep.noaa.gov/NMME/realtime/",
+      "kind": "download",
+      "format": "NetCDF (30–60 MB per model and variable)",
+      "requires_login": false,
+      "notes": "One directory per initialisation (e.g. 2026110800) with prate, tmp2m and tmpsfc files per model."
+    },
+    {
+      "label": "Real-time anomalies by model (NetCDF)",
+      "url": "https://ftp.cpc.ncep.noaa.gov/NMME/realtime_anom/",
+      "kind": "download",
+      "format": "NetCDF",
+      "requires_login": false,
+      "notes": null
+    },
+    {
+      "label": "Real-time probabilistic forecasts",
+      "url": "https://ftp.cpc.ncep.noaa.gov/NMME/prob/",
+      "kind": "download",
+      "format": "NetCDF, binary",
+      "requires_login": false,
+      "notes": null
+    },
+    {
+      "label": "IRI Data Library NMME archive",
+      "url": "https://iridl.ldeo.columbia.edu/SOURCES/.Models/.NMME/",
+      "kind": "external",
+      "format": null,
+      "requires_login": true,
+      "notes": "Redirects to a sign-in page: the IRI Data Library now requires all users to sign in."
+    }
+  ],
+  "code_url": null,
+  "algeria_notes": "Algeria lies within every global file; the Tell and High Plains cereal zones span only a few 1° cells in latitude. Raw NMME precipitation is biased and its skill over Algeria is not documented by CPC, so forecasts should be recalibrated against local observations and published only where cross-validated hindcasts beat climatology.",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "variables: units of tmp2m and sst/tmpsfc (not read from files)",
+      "mapping of CPT file prefixes cmc1/cmc2 to the current ECCC models CanESM5 and GEM5.2-NEMO",
+      "terms of use of non-US modelling centres",
+      "skill over Algeria (not documented by the provider)"
+    ],
+    "sources_consulted": [
+      "https://www.cpc.ncep.noaa.gov/products/NMME/",
+      "https://www.cpc.ncep.noaa.gov/products/NMME/data.html",
+      "https://www.cpc.ncep.noaa.gov/products/NMME/about.html",
+      "https://www.cpc.ncep.noaa.gov/products/NMME/users_guide.html",
+      "https://ftp.cpc.ncep.noaa.gov/International/nmme/",
+      "https://ftp.cpc.ncep.noaa.gov/International/nmme/readme",
+      "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/",
+      "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_hindcast_in_cpt_format/nmme_precip_hcst_Novic_1-3_1992-2021.txt",
+      "https://ftp.cpc.ncep.noaa.gov/International/nmme/seasonal_nmme_forecast_in_cpt_format/nmme_precip_fcst_Novic_1-3_2027-2027.txt",
+      "https://ftp.cpc.ncep.noaa.gov/International/nmme/netcdf/",
+      "https://ftp.cpc.ncep.noaa.gov/NMME/realtime/2026110800/",
+      "https://ftp.cpc.ncep.noaa.gov/NMME/realtime_anom/",
+      "https://ftp.cpc.ncep.noaa.gov/NMME/prob/",
+      "https://ftp.cpc.ncep.noaa.gov/NMME/clim/",
+      "https://iridl.ldeo.columbia.edu/SOURCES/.Models/.NMME/",
+      "https://www.weather.gov/disclaimer",
+      "https://doi.org/api/handles/10.1175/BAMS-D-12-00050.1",
+      "https://api.crossref.org/works/10.1175/BAMS-D-12-00050.1"
+    ],
+    "notes": "Two CPT files (November 2026 multi-model JFM 2027 forecast and its 1992–2021 hindcast) were downloaded and their headers read: field 'precip', units 'millimeters per day', 181 × 360 grid, missing value −999, 30 hindcast seasons. In the seasonal CPT forecast directory the NASA model has precipitation files only. The current model list is from the CPC 'About' page (NMME News, June 8 2025). The IRI Data Library NMME URL redirected to its sign-in page on 2026-11-22. The DOI of Kirtman et al. (2014) resolves to journals.ametsoc.org, which returned HTTP 403 to the automated check; its metadata were confirmed on Crossref."
+  }
+}

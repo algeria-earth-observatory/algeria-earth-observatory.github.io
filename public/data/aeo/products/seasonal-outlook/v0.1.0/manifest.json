@@ -1,0 +1,103 @@
+{
+ "boundary_version": "2026-11-20",
+ "created": "2026-11-22",
+ "product_id": "aeo-dza-seasonal-outlook-nmme",
+ "title": "Algeria seasonal precipitation outlook over stable cropland (NMME, verified test)",
+ "status": "experimental",
+ "version": "0.1.0",
+ "geographic_scope": "Algeria (stable cropland of wilayas with ≥ 10,000 ha)",
+ "available_levels": [
+  "admin1"
+ ],
+ "spatial_products_levels": [],
+ "source_product": "NMME multi-model ensemble mean, seasonal precipitation (NOAA CPC); CHIRPS v3.0 observations",
+ "source_version": "NMME (CPC CPT files)",
+ "source_doi": null,
+ "source_license": "NOAA data: public domain (U.S. Government work); CHIRPS CC BY 4.0",
+ "license": "CC BY 4.0",
+ "temporal_coverage": {
+  "hindcast": [
+   "1991",
+   "2021"
+  ],
+  "issued": "2026-11-01"
+ },
+ "spatial_resolution": "Wilayas (stable cropland; NMME 1° cells weighted by stable-cropland area, CHIRPS 0.05°)",
+ "units": "tercile probabilities; mm per season",
+ "formats": [
+  "CSV",
+  "PARQUET"
+ ],
+ "processing_code": "scripts/pipelines/outlook/build_outlook.py",
+ "methodology_url": "/docs/method-seasonal-outlook/",
+ "cropland_mask": "AEO stable cropland v1 (GACED30, cropland in ≥ 20 of 25 years 2000–2024)",
+ "download_assets": [
+  {
+   "href": "/data/aeo/products/seasonal-outlook/v0.1.0/tables/aeo_outlook_verification_admin1_v0.1.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Hindcast verification 1991–2021 by wilaya, start month and lead, admin1",
+   "bytes": 219995,
+   "sha256": "82c9bd2cd3d99e6c44bdb96acbd34cd121bb0c0490985c67c9967c2bcc8ddce7"
+  },
+  {
+   "href": "/data/aeo/products/seasonal-outlook/v0.1.0/tables/aeo_outlook_verification_admin1_v0.1.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Hindcast verification 1991–2021 by wilaya, start month and lead, admin1",
+   "bytes": 35873,
+   "sha256": "864d26360c0ffb2ddfae769783c7401331b676ac4c535497cd32f0a201e57ca8"
+  },
+  {
+   "href": "/data/aeo/products/seasonal-outlook/v0.1.0/tables/aeo_outlook_latest_admin1_v0.1.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Seasonal outlook issued 2026-11-01, admin1",
+   "bytes": 34523,
+   "sha256": "dc49b1c19b034d746d9cb6d9465f4ae80c86399f77d7efae2e000527f7fb50ae"
+  },
+  {
+   "href": "/data/aeo/products/seasonal-outlook/v0.1.0/tables/aeo_outlook_latest_admin1_v0.1.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Seasonal outlook issued 2026-11-01, admin1",
+   "bytes": 22128,
+   "sha256": "35369b9c3d0ba027af5d20d27c114d2c5c93e3f77b14c8b97565f74f22ea4918"
+  },
+  {
+   "href": "/data/aeo/products/seasonal-outlook/v0.1.0/tables/aeo_outlook_observed_cropland_precip_admin1_v0.1.0.csv",
+   "format": "CSV",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Observed monthly precipitation over stable cropland (CHIRPS v3.0, mm), admin1",
+   "bytes": 276719,
+   "sha256": "9aaa6df8c5a705422fe03c78a5fa751f66165f220e7e0ae23a24eb95ed0b7145"
+  },
+  {
+   "href": "/data/aeo/products/seasonal-outlook/v0.1.0/tables/aeo_outlook_observed_cropland_precip_admin1_v0.1.0.parquet",
+   "format": "PARQUET",
+   "level": "admin1",
+   "role": "statistics",
+   "title": "Observed monthly precipitation over stable cropland (CHIRPS v3.0, mm), admin1",
+   "bytes": 614779,
+   "sha256": "a08b9718e72852de6441f3a9e0738ccf8478f0863ae25743e8d3d3bdcea831c8"
+  }
+ ],
+ "web_assets": {
+  "admin1": "/data/aeo/products/seasonal-outlook/v0.1.0/web/outlook.json"
+ },
+ "qc": [
+  "3036 unit × start × lead combinations verified; 516 locally skilful (17.0 %; about 5 % expected by chance); 338 pass the field-significance rule",
+  "Latest issue 2026-11-01: 15 of 276 unit × target outlooks are skilful",
+  "lead 1: 29 % locally skilful, median RPSS 0.000",
+  "lead 2: 22 % locally skilful, median RPSS 0.000",
+  "lead 3: 22 % locally skilful, median RPSS 0.000",
+  "lead 4: 16 % locally skilful, median RPSS -0.004",
+  "lead 5: 7 % locally skilful, median RPSS -0.002",
+  "lead 6: 6 % locally skilful, median RPSS -0.009"
+ ]
+}

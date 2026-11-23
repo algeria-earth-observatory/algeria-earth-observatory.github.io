@@ -1,0 +1,295 @@
+{
+ "created": "2026-11-22",
+ "product": "aeo-dza-reservoirs-deafrica",
+ "version": "1.0.0",
+ "gdw": {
+  "url": "https://ndownloader.figshare.com/files/47913754",
+  "sha256": "2fe0b367ed3fcfb299160cd9652b16a8a19338951026ee2ac91edfebf1f3b7ae",
+  "note": "not redistributed (authors' request)"
+ },
+ "deafrica": {
+  "wfs": "https://geoserver.digitalearth.africa/geoserver/wfs",
+  "observations": "https://api.digitalearth.africa/waterbodies/waterbody/{wb_id}/observations/csv?start_date=1984-01-01&end_date=2030-12-31",
+  "matched_uids": {
+   "6856": [
+    "686481",
+    "686482",
+    "686483",
+    "686494",
+    "686495",
+    "686524",
+    "686489",
+    "687954",
+    "686488",
+    "686484",
+    "686485",
+    "686486",
+    "686487",
+    "686490",
+    "686491",
+    "686492",
+    "686528",
+    "687953",
+    "687958",
+    "687959",
+    "686480",
+    "686493"
+   ],
+   "1596": [
+    "685102",
+    "685103",
+    "685067"
+   ],
+   "1600": [
+    "685229",
+    "685394",
+    "685393",
+    "685395",
+    "685396",
+    "685397",
+    "685227"
+   ],
+   "1664": [],
+   "6859": [
+    "685524",
+    "685492",
+    "685525",
+    "685526",
+    "685527",
+    "685528",
+    "685529",
+    "685530",
+    "685531"
+   ],
+   "4546": [
+    "88668",
+    "88667",
+    "88669"
+   ],
+   "4505": [
+    "684990"
+   ],
+   "9047": [
+    "686621"
+   ],
+   "6864": [
+    "688077"
+   ],
+   "6857": [
+    "688035"
+   ],
+   "6863": [
+    "685561",
+    "685562",
+    "685560"
+   ],
+   "4460": [
+    "685303",
+    "685302"
+   ],
+   "4474": [
+    "685076",
+    "685077",
+    "685078"
+   ],
+   "4422": [
+    "688343"
+   ],
+   "4458": [
+    "685713",
+    "685712"
+   ],
+   "37309": [
+    "686389"
+   ],
+   "4476": [
+    "685106",
+    "685105"
+   ],
+   "6858": [
+    "682062",
+    "682065",
+    "682067",
+    "682063",
+    "682064",
+    "682066",
+    "682068"
+   ],
+   "37307": [
+    "685381",
+    "685380"
+   ],
+   "4437": [
+    "686634",
+    "686635"
+   ],
+   "37311": [
+    "686506"
+   ],
+   "37313": [
+    "685688",
+    "685687",
+    "685690"
+   ],
+   "6860": [
+    "685238",
+    "685239"
+   ],
+   "6862": [
+    "685858",
+    "685859",
+    "685855",
+    "685857",
+    "685860"
+   ],
+   "6861": [
+    "686697",
+    "686696"
+   ],
+   "37328": [
+    "685263",
+    "685260",
+    "685261",
+    "685262"
+   ],
+   "4430": [
+    "685314"
+   ],
+   "4519": [
+    "685012"
+   ],
+   "4449": [
+    "686744"
+   ],
+   "4420": [
+    "685793"
+   ],
+   "4512": [
+    "685165"
+   ],
+   "37327": [
+    "685290",
+    "685288",
+    "685289"
+   ],
+   "37325": [
+    "685191",
+    "685192",
+    "685180",
+    "685181"
+   ],
+   "9052": [
+    "685292"
+   ],
+   "9027": [
+    "688033"
+   ],
+   "37315": [
+    "688036"
+   ],
+   "16642": [
+    "686550"
+   ],
+   "37326": [
+    "685054",
+    "685053"
+   ],
+   "4471": [
+    "685231"
+   ],
+   "4523": [
+    "88950",
+    "88951"
+   ],
+   "37314": [
+    "687918"
+   ],
+   "4424": [
+    "686002"
+   ],
+   "4507": [
+    "685183"
+   ],
+   "4455": [
+    "686466"
+   ],
+   "4435": [
+    "685734",
+    "685733"
+   ],
+   "4535": [
+    "88862"
+   ],
+   "4485": [
+    "685636"
+   ],
+   "37323": [
+    "88818"
+   ],
+   "4441": [
+    "685318",
+    "685319",
+    "685317"
+   ],
+   "27626": [
+    "687911"
+   ],
+   "7234": [
+    "687901",
+    "687898",
+    "687899",
+    "687900"
+   ],
+   "27621": [
+    "685811",
+    "685812",
+    "685816"
+   ],
+   "4423": [
+    "688042"
+   ],
+   "4515": [
+    "88955"
+   ],
+   "6276": [
+    "88941"
+   ],
+   "4552": [
+    "88657"
+   ],
+   "7233": [
+    "685739"
+   ],
+   "6322": [
+    "686216"
+   ],
+   "6213": [
+    "685242",
+    "685241"
+   ],
+   "16525": [
+    "685801",
+    "685802"
+   ],
+   "6206": [
+    "685516"
+   ],
+   "6295": [],
+   "6179": [
+    "685790"
+   ],
+   "6253": [
+    "684969"
+   ],
+   "16571": [
+    "686702"
+   ]
+  },
+  "retrieved": "2026-11-22T15:55:23"
+ },
+ "method": "AEO reservoir monitor for Algeria: monthly water surface area of the main reservoirs (Landsat, 1984–present).\n\nInputs (all open, CC BY 4.0, no login):\n  * Global Dam Watch (GDW) v1.0 — dams and reservoir polygons (Lehner et al. 2024; figshare\n    doi:10.6084/m9.figshare.25988293). Downloaded to data-work/reservoirs/. The GDW authors ask that\n    the database not be re-hosted in whole in its original format, so AEO publishes only dam points,\n    names and capacities for Algeria together with derived series — never the GDW files.\n  * Digital Earth Africa Waterbodies (continental service, Landsat 30 m, 1984–present, updated\n    weekly): waterbody polygons (WFS layer DEAfrica_Waterbodies on geoserver.digitalearth.africa) and\n    per-waterbody observations (wet / dry / invalid area per Landsat scene) from\n    https://api.digitalearth.africa/waterbodies/waterbody/<uid>/observations/csv .\n\nMethod:\n  1. Reservoirs: GDW records in Algeria with a reservoir polygon of at least 0.5 km².\n  2. Matching: every DE Africa waterbody whose representative point lies inside the GDW reservoir\n     polygon buffered by 500 m (DE Africa splits large reservoirs into several polygons).\n  3. Per scene date: wet area and observed area summed over the matched polygons. A date is valid when\n     at least 85 % of the reservoir's total polygon area was observed (DE Africa's own validity rule);\n     invalid dates are dropped, never filled.\n  4. Monthly value = median wet area of the valid dates of the month (number of dates kept), from the\n     year after the dam's construction year (GDW YEAR_DAM) when it is known.\n  5. Reference: the largest monthly wet area observed since 1984 (the \"observed maximum\");\n     \"% of observed maximum\" = monthly wet area / observed maximum. This is a surface-area ratio, not a\n     filling rate in volume and not an official ANBT figure.\n\nOutput: public/data/aeo/products/reservoirs/v1.0.0/\nUsage:  python scripts/pipelines/reservoirs/build_reservoirs.py [--refresh]\n",
+ "qc": [
+  "65 GDW reservoirs ≥ 0.5 km²; 63 matched to DE Africa waterbodies",
+  "Latest months: 2026-07 to 2026-11; median latest % of observed maximum 68"
+ ]
+}

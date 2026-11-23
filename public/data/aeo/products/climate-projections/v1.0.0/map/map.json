@@ -1,0 +1,136 @@
+{
+ "coordinates": [
+  [
+   -8.874999999999998,
+   37.49999999999999
+  ],
+  [
+   12.235409176808755,
+   37.49999999999999
+  ],
+  [
+   12.235409176808755,
+   18.77982878950915
+  ],
+  [
+   -8.874999999999998,
+   18.77982878950915
+  ]
+ ],
+ "layers": {
+  "tx_mean": {
+   "breaks": [
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    4
+   ],
+   "colors": [
+    "#fef0d9",
+    "#fdd49e",
+    "#fdbb84",
+    "#fc8d59",
+    "#ef6548",
+    "#d7301f",
+    "#990000"
+   ],
+   "units": "\u00b0C",
+   "label": "Mean daily maximum temperature"
+  },
+  "hd40": {
+   "breaks": [
+    5,
+    10,
+    20,
+    30,
+    45,
+    60
+   ],
+   "colors": [
+    "#fef0d9",
+    "#fdd49e",
+    "#fdbb84",
+    "#fc8d59",
+    "#ef6548",
+    "#d7301f",
+    "#990000"
+   ],
+   "units": "days/year",
+   "label": "Days above 40 \u00b0C"
+  },
+  "spring32": {
+   "breaks": [
+    2,
+    5,
+    10,
+    15,
+    20,
+    30
+   ],
+   "colors": [
+    "#fef0d9",
+    "#fdd49e",
+    "#fdbb84",
+    "#fc8d59",
+    "#ef6548",
+    "#d7301f",
+    "#990000"
+   ],
+   "units": "days/year",
+   "label": "Days above 32 \u00b0C in March\u2013May"
+  },
+  "prcptot": {
+   "breaks": [
+    -30,
+    -20,
+    -10,
+    10,
+    20,
+    30
+   ],
+   "colors": [
+    "#8c510a",
+    "#d8b365",
+    "#f6e8c3",
+    "#f5f5f5",
+    "#c7eae5",
+    "#5ab4ac",
+    "#01665e"
+   ],
+   "units": "% change",
+   "label": "Annual precipitation"
+  },
+  "pr_ndjfma": {
+   "breaks": [
+    -30,
+    -20,
+    -10,
+    10,
+    20,
+    30
+   ],
+   "colors": [
+    "#8c510a",
+    "#d8b365",
+    "#f6e8c3",
+    "#f5f5f5",
+    "#c7eae5",
+    "#5ab4ac",
+    "#01665e"
+   ],
+   "units": "% change",
+   "label": "November\u2013April precipitation"
+  }
+ },
+ "scenarios": [
+  "ssp245",
+  "ssp585"
+ ],
+ "periods": [
+  "2041-2070",
+  "2071-2100"
+ ],
+ "resampling": "nearest neighbour from the 0.25\u00b0 grid to 10 km Web Mercator pixels (display only)"
+}

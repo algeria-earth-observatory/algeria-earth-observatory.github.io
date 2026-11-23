@@ -1,0 +1,204 @@
+{
+  "id": "deafrica-waterbodies",
+  "title": "Digital Earth Africa Waterbodies Monitoring Service (historical extent and surface-area time series)",
+  "description": "Continental service mapping more than 700,000 persistent and seasonal water bodies across Africa (lakes, ponds, reservoirs, wetlands and some river segments) from Landsat Water Observations from Space since 1984. Waterbodies Historical Extent gives static polygons where water was present in at least 5 % of clear observations (retaining only bodies with a core wet at least 10 % of the time, minimum 4,500 m²); Waterbodies Surface Area Change gives, for each polygon, a time series of wet, dry and invalid area and percentages for every usable satellite observation, updated weekly.",
+  "purpose": "Tracks the wetted surface area of individual Algerian dams, reservoirs, sebkhas and wetlands over four decades, supporting reservoir and drought monitoring where gauge data are not public.",
+  "domain": [
+    "water",
+    "hazards"
+  ],
+  "categories": [
+    "Surface water",
+    "Reservoirs and lakes",
+    "Water change detection"
+  ],
+  "keywords": [
+    "Digital Earth Africa",
+    "waterbodies",
+    "reservoirs",
+    "dams",
+    "surface water",
+    "WOfS",
+    "Landsat",
+    "time series",
+    "WFS"
+  ],
+  "status": "external",
+  "origin": "external",
+  "data_nature": "derived",
+  "data_type": "vector",
+  "provider": {
+    "name": "Digital Earth Africa",
+    "url": "https://digitalearthafrica.org/en_za/waterbodies-continental-service/"
+  },
+  "creator": "Digital Earth Africa (workflow adapted from Geoscience Australia's DEA Waterbodies)",
+  "source_url": "https://digitalearthafrica.org/en_za/waterbodies-continental-service/",
+  "documentation_url": "https://docs.digitalearthafrica.org/en/latest/data_specs/Waterbodies_specs.html",
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_notes": "Product specification page, section 'License': 'CC BY Attribution 4.0 International License.' No formal dataset citation is given; the citation below is constructed by AEO.",
+  "citation": "Digital Earth Africa (2024). Waterbodies Monitoring Service: Waterbodies Historical Extent (v0.0.3, beta) and Waterbodies Surface Area Change. https://docs.digitalearthafrica.org/en/latest/data_specs/Waterbodies_specs.html. Licence: CC BY 4.0.",
+  "doi": null,
+  "references": [
+    {
+      "citation": "Krause, C. E., Newey, V., Alger, M. J., and Lymburner, L. (2021). Mapping and Monitoring the Multi-Decadal Dynamics of Australia's Open Waterbodies Using Landsat. Remote Sensing, 13(8), 1437.",
+      "doi": "10.3390/rs13081437",
+      "url": null
+    },
+    {
+      "citation": "Mueller, N., Lewis, A., Roberts, D., Ring, S., Melrose, R., Sixsmith, J., Lymburner, L., McIntyre, A., Tan, P., Curnow, S., and Ip, A. (2016). Water observations from space: Mapping surface water from 25 years of Landsat imagery across Australia. Remote Sensing of Environment, 174, 341–352.",
+      "doi": "10.1016/j.rse.2015.11.003",
+      "url": null
+    }
+  ],
+  "spatial_extent": {
+    "coverage": "continental",
+    "description": "Africa, within the HydroSHEDS v1.1 land mask. A WFS query on 2026-11-22 returned 11,585 polygons within Algeria's bounding box (8.7° W–12° E, 18.9–37.1° N; this box also includes parts of neighbouring countries) and 40 polygons around the Beni Haroun dam (6.15–6.40° E, 36.45–36.65° N). Users query by bounding box or download the continental file.",
+    "algeria_subset": "extract",
+    "bbox": null
+  },
+  "temporal_extent": {
+    "start": "1984-01-01",
+    "end": null,
+    "ongoing": true,
+    "frequency": "per satellite observation (specification: 16 days); service updated weekly",
+    "description": "Historical extent derived from observations 1984–2022 (generated once, to be regenerated every 3–5 years). Surface-area time series from 1984 to present (provider gives the year only); for the largest Beni Haroun polygon the series runs from 1984-05-29 to 2026-10-16 (593 valid observations)."
+  },
+  "resolution": {
+    "spatial": "polygons derived from 30 m Landsat water classification; minimum water body 4,500 m² (5 Landsat pixels)",
+    "spatial_m": 30,
+    "temporal": "per satellite observation; weekly updates"
+  },
+  "format": [
+    "GeoPackage",
+    "Esri Shapefile (ZIP)",
+    "OGC WFS / WMS",
+    "CSV (surface-area time series via the Waterbodies API)"
+  ],
+  "crs": "EPSG:4326 (WGS 84)",
+  "variables": [
+    {
+      "name": "uid / wb_id",
+      "units": "-",
+      "description": "Geohash identifier of the polygon centre / integer identifier"
+    },
+    {
+      "name": "area_m2, perim_m, length_m",
+      "units": "m², m, m",
+      "description": "Area, perimeter and longest side of the historical extent"
+    },
+    {
+      "name": "last_obs_date, last_valid_obs_date, last_valid_obs, last_attrs_update_date",
+      "units": "date / % wet",
+      "description": "Most recent observation, most recent valid observation, its wet percentage, and attribute update date (WFS layer)"
+    },
+    {
+      "name": "date, area_wet_m2, percent_wet, area_dry_m2, percent_dry, area_invalid_m2, percent_invalid, area_observed_m2, percent_observed",
+      "units": "m² / %",
+      "description": "Surface Area Change time series per observation"
+    }
+  ],
+  "processing": "Historical extent polygons are contiguous Water Observations from Space All-Time Summary pixels wet in at least 5 % of clear observations since 1984, retained only if they contain a core wet in at least 10 % of clear observations. For each polygon and each WOfS Feature Layer scene, the wet, dry and invalid shares of the historical extent are computed; percentages are reported only when at least 85 % of the extent is observed and less than 10 % is invalid (specification). Code: github.com/digitalearthafrica/waterbodies.",
+  "validation": "The product is labelled beta ('released for evaluation by all users'); no accuracy assessment is given on the specification page.",
+  "limitations": [
+    "Beta product; historical extent v0.0.3 is the downloadable version while the WFS default layer carries newer attributes.",
+    "Surface area is not volume or water level; no distinction between water sources.",
+    "Large reservoirs are split into several polygons and very large water bodies may have no valid observations in a single day; turbid water, vegetation and narrow rivers are poorly detected.",
+    "Water bodies created after the historical-extent period (or wet less than 10 % of the time) are missing.",
+    "No name attribute: Algerian dams must be identified by location or by joining with a dam inventory."
+  ],
+  "version": "Historical extent v0.0.3 (beta) for download; WFS layer DEAfrica_Waterbodies (attributes as layer v0_0_5)",
+  "published_date": null,
+  "updated_date": "2026-11-17",
+  "download_url": null,
+  "preview_url": null,
+  "access": [
+    {
+      "label": "Product specification and data access (DE Africa docs)",
+      "url": "https://docs.digitalearthafrica.org/en/latest/data_specs/Waterbodies_specs.html",
+      "kind": "external",
+      "format": null,
+      "requires_login": false,
+      "notes": null
+    },
+    {
+      "label": "WFS endpoint (layer waterbodies:DEAfrica_Waterbodies)",
+      "url": "https://geoserver.digitalearth.africa/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "kind": "api",
+      "format": "GeoJSON, GML",
+      "requires_login": false,
+      "notes": "Bounding-box queries tested; versioned layers DEAfrica_Waterbodies_v0_0_1 to _v0_0_5 are also listed."
+    },
+    {
+      "label": "WMS endpoint",
+      "url": "https://geoserver.digitalearth.africa/geoserver/wms?service=WMS&request=GetCapabilities",
+      "kind": "viewer",
+      "format": "WMS",
+      "requires_login": false,
+      "notes": null
+    },
+    {
+      "label": "Surface-area time series API (example: wb_id 686524, Beni Haroun)",
+      "url": "https://api.digitalearth.africa/waterbodies/waterbody/686524/observations/csv?start_date=1984-01-01&end_date=2026-11-22",
+      "kind": "api",
+      "format": "CSV",
+      "requires_login": false,
+      "notes": "Replace the wb_id from the WFS layer; API documentation at https://api.digitalearth.africa/waterbodies/docs."
+    },
+    {
+      "label": "Historical extent v0.0.3 (GeoPackage, continental)",
+      "url": "https://deafrica-services.s3.af-south-1.amazonaws.com/waterbodies/v0.0.3/historical_extent/waterbodies.gpkg",
+      "kind": "download",
+      "format": "GeoPackage",
+      "requires_login": false,
+      "size_bytes": 933404672,
+      "notes": "Public S3 bucket deafrica-services (af-south-1)."
+    },
+    {
+      "label": "Historical extent v0.0.3 (Shapefile ZIP, continental)",
+      "url": "https://deafrica-services.s3.af-south-1.amazonaws.com/waterbodies/v0.0.3/historical_extent/waterbodies.shp.zip",
+      "kind": "download",
+      "format": "Esri Shapefile (ZIP)",
+      "requires_login": false,
+      "size_bytes": 909586196,
+      "notes": null
+    },
+    {
+      "label": "Sandbox notebook: loading Waterbodies data",
+      "url": "https://github.com/digitalearthafrica/deafrica-sandbox-notebooks/blob/main/Datasets/Waterbodies.ipynb",
+      "kind": "external",
+      "format": "Jupyter notebook",
+      "requires_login": false,
+      "notes": "Running it in the DE Africa Sandbox requires a Sandbox account."
+    }
+  ],
+  "code_url": "https://github.com/digitalearthafrica/waterbodies",
+  "algeria_notes": "A WFS query around Beni Haroun (Mila) returned 40 polygons; the reservoir appears as several polygons, identified by location: wb_id 686524 (uid snkx8k5b0c, 16.0 km², 6.27–6.43° E), 686480 (uid snkrsjs9ze, 9.8 km², 6.10–6.21° E) and 686493 (uid snkrys0dbs, 6.8 km², 6.22–6.29° E, 36.52–36.57° N, near the dam wall). On 2026-11-22 their last observation was 2026-11-10 and last valid observation 2026-10-16 (wet share 88.0 %, 82.3 % and 93.0 %). Sum the polygons of a reservoir and read percentages with the invalid share in mind.",
+  "added_date": "2026-11-22",
+  "verification": {
+    "checked": "2026-11-22",
+    "urls_checked": true,
+    "unverified_fields": [
+      "temporal_extent.start (provider gives the year 1984 only)",
+      "identification of the three polygons as Beni Haroun arms (by location; no name attribute)",
+      "which version the WFS default layer corresponds to (attributes match v0_0_5; not stated by the provider)"
+    ],
+    "sources_consulted": [
+      "https://digitalearthafrica.org/en_za/waterbodies-continental-service/",
+      "https://docs.digitalearthafrica.org/en/latest/data_specs/Waterbodies_specs.html",
+      "https://geoserver.digitalearth.africa/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "https://geoserver.digitalearth.africa/geoserver/wfs?service=WFS&version=2.0.0&request=DescribeFeatureType&typeNames=DEAfrica_Waterbodies",
+      "https://geoserver.digitalearth.africa/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=DEAfrica_Waterbodies&outputFormat=application/json&srsName=EPSG:4326&bbox=36.45,6.15,36.65,6.40,urn:ogc:def:crs:EPSG::4326",
+      "https://geoserver.digitalearth.africa/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=waterbodies:DEAfrica_Waterbodies&resultType=hits&bbox=18.9,-8.7,37.1,12.0,urn:ogc:def:crs:EPSG::4326",
+      "https://api.digitalearth.africa/waterbodies/waterbody/686524/observations/csv?start_date=1984-01-01&end_date=2026-11-22",
+      "https://deafrica-services.s3.af-south-1.amazonaws.com/?list-type=2&prefix=waterbodies/v0.0.3/historical_extent/",
+      "https://raw.githubusercontent.com/digitalearthafrica/deafrica-sandbox-notebooks/main/Tools/deafrica_tools/waterbodies.py",
+      "https://api.crossref.org/works/10.3390/rs13081437",
+      "https://api.crossref.org/works/10.1016/j.rse.2015.11.003"
+    ],
+    "notes": "The time series is not stored as public objects under waterbodies/v0.0.3/surface_area_change/ in the S3 bucket (empty listing); it is served by the Waterbodies API used by the DE Africa Python tools (deafrica_tools.waterbodies). updated_date is the last_attrs_update_date of the Algerian polygons queried. The specification page is dated October 2024. The DOI 10.3390/rs13081437 resolves to mdpi.com, which returned HTTP 403 to the automated check; its metadata were confirmed on Crossref."
+  }
+}

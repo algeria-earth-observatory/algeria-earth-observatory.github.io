@@ -20,6 +20,10 @@ const spiScales = layerSrc.match(/\(\[([^\]]+)\] as const\)\.map\(\(k\): MapLaye
 if (spiScales) for (const k of spiScales[1].match(/\d+/g)) layerIds.add(`spi-${k}`);
 const soilMap = join(root, 'public', 'data', 'aeo', 'products', 'soil', 'v1.0.0', 'map', 'map.json');
 if (existsSync(soilMap)) for (const id of Object.keys(JSON.parse(readFileSync(soilMap, 'utf8')).layers)) layerIds.add(`soil-${id.split('_')[0]}`);
+// water, cropland and climate layers (src/data/map-layers.ts waterClimateLayers): fixed ids, plus CMIP6 indicators from their map metadata
+for (const m of layerSrc.matchAll(/^\s{6}id: '([a-z0-9-]+)'/gm)) layerIds.add(m[1]);
+const cmipMap = join(root, 'public', 'data', 'aeo', 'products', 'climate-projections', 'v1.0.0', 'map', 'map.json');
+if (existsSync(cmipMap)) for (const id of Object.keys(JSON.parse(readFileSync(cmipMap, 'utf8')).layers)) layerIds.add(`cmip6-${id}`);
 const errors = [];
 const ids = new Set();
 

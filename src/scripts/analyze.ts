@@ -268,7 +268,7 @@ export async function initAnalyze() {
     const keyLabel = (k: number) => (state.agg === 'hydro' ? `${String(k - 1).slice(2)}/${String(k).slice(2)}` : String(k));
     $('az-legend').innerHTML = series.length > 1 ? labels.map((l, i) => `<li class="flex items-center gap-1.5"><span class="inline-block h-0.5 w-4" style="background:${SERIES_COLORS[i]}"></span>${esc(l)}</li>`).join('') : '';
     lineChart($('az-ts'), series.map((s, i) => ({ name: codes.length > 1 ? (unitOf(state.level, codes[i])?.name ?? codes[i]) : 'Precipitation', keys: s.keys, values: s.values })), {
-      yLabel: 'mm',
+      legend: false, yLabel: 'mm',
       reference: series.length === 1 && s0.normal !== null ? { value: s0.normal, label: `1991–2020 normal ${fmt0(s0.normal)} mm` } : null,
       trend: series.length === 1 && ts.slope !== null && mk.p !== null ? { slope: ts.slope, intercept: ts.intercept!, from: s0.keys[0], to: s0.keys[s0.keys.length - 1] } : null,
       keyLabel,
@@ -491,8 +491,8 @@ export async function initAnalyze() {
     $('az-legend').innerHTML = series.length > 1 ? labels.map((l, i) => `<li class="flex items-center gap-1.5"><span class="inline-block h-0.5 w-4" style="background:${SERIES_COLORS[i]}"></span>${esc(l)}</li>`).join('') : '';
     const keyLabel = (k: number) => (state.month ? String(k) : String(Math.floor(k + 1e-9)));
     lineChart($('az-ts'), series.map((s, i) => ({ name: codes.length > 1 ? (unitOf(state.level, codes[i])?.name ?? codes[i]) : `${IX().label}-${state.scale}`, keys: s.keys, values: s.values })),
-      { yLabel: `${IX().label}-${state.scale}`, reference: { value: -1, label: 'dry threshold −1' }, keyLabel, format: (v: number) => v.toFixed(1) }, `${IX().label}-${state.scale}, ${labels.join(', ')}`);
-    $('az-an-unit-note').textContent = `— ${IX().label}-${state.scale} of ${labels[0]} (blue wet, red dry)`;
+      { legend: false, yLabel: `${IX().label}-${state.scale}`, reference: { value: -1, label: 'dry threshold −1' }, keyLabel, format: (v: number) => v.toFixed(1) }, `${IX().label}-${state.scale}, ${labels.join(', ')}`);
+    $('az-an-unit-note').textContent = `— ${IX().label}-${state.scale} of ${labels[0]}`;
     anomalyChart($('az-an'), s0.keys, s0.values, { yLabel: `${IX().label}-${state.scale}`, keyLabel, format: (v: number) => `${v > 0 ? '+' : ''}${v.toFixed(1)}` }, `${IX().label}-${state.scale} anomalies, ${labels[0]}`);
     const head = ['Month', ...codes.map((c) => esc(unitOf(state.level, c)?.name ?? c)), 'Class'];
     $('az-table').innerHTML = `<thead class="sticky top-0 bg-surface"><tr>${head.map((h) => `<th class="border-b border-line py-1.5 pr-3 font-semibold">${h}</th>`).join('')}</tr></thead><tbody>` +

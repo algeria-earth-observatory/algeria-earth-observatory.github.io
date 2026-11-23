@@ -1,0 +1,20 @@
+{
+ "created": "2026-11-22",
+ "product": "aeo-dza-water-storage-grace",
+ "version": "1.0.0",
+ "input": {
+  "file": "JPL_mascon_downscaled-v2.0.nc",
+  "doi": "10.5281/zenodo.17265162",
+  "md5": "7d51f349bf74543d3bcd73e504502073",
+  "bytes": 2015556418
+ },
+ "cropland_mask": {
+  "file": "stable_cropland_v1.npz",
+  "sha256": "bb9b768a69b03d8ef90bd77512846dbf8d1988dfa301a06cb8f48c8b7395053a"
+ },
+ "method": "AEO terrestrial water storage product for Algeria from downscaled GRACE/GRACE-FO (Li & Kusche 2026).\n\nInput:  data-work/grace_li_kusche/JPL_mascon_downscaled-v2.0.nc\n        Li, F. (2025). Global high-resolution (0.25°) total water storage anomaly dataset derived by\n        reproducing GRACE data, v2, Zenodo, doi:10.5281/zenodo.17265162 (CC BY 4.0); method in\n        Li & Kusche (2026), GRL 53, e2025GL119881, doi:10.1029/2025GL119881. Downscaled from JPL\n        RL06 mascons (~3°) with an LSTM model using ERA5 inputs; variables JPL_EWH_downscaled and\n        downscaling_uncertainty (cm equivalent water height), monthly 2002-04 to 2025-03 with gaps.\n        Checked against the Zenodo MD5 (7d51f349bf74543d3bcd73e504502073) on download.\n\nMethod:\n  * Unit means are area-weighted over the 0.25° cells (commune coverage fractions merged into\n    wilayas and Algeria). Uncertainty: the unit mean of the cell uncertainties, which assumes fully\n    correlated errors (an upper bound for the unit mean's uncertainty).\n  * Anomalies are re-referenced by AEO to each unit's 2004–2009 mean, a stated baseline.\n  * Trend: Theil–Sen slope over all available months (cm per year) with a Mann–Kendall test on\n    the deseasonalised series (monthly climatology removed).\n  * Stable-cropland means weight each cell by its AEO stable-cropland area (GACED30).\n  * Wilayas smaller than one 3° mascon (~96,000 km² at 30° N) are flagged: their value is mostly\n    spatial detail added by the downscaling model, not resolved by GRACE.\n  * Communes are not published: 0.25° cells are larger than most communes.\n\nOutput: public/data/aeo/products/water-storage/v1.0.0/\nUsage:  python scripts/pipelines/grace/build_grace.py\n",
+ "qc": [
+  "Algeria trend -0.248 cm/yr (95 % -0.262 to -0.232), Mann–Kendall p = 0.0000",
+  "9 of 69 wilayas are at least one mascon in area"
+ ]
+}

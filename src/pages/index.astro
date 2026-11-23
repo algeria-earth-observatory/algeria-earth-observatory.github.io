@@ -22,6 +22,44 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'DataCatalog', name:
 const mapUnits = wilayas.map((w) => [w.code, w.name, w.precip?.normal ?? null]);
 const DOMAIN_EXPLORE: Record<string, string> = { 'climate-drought': 'precip-annual', agriculture: 'ndvi-16day', soil: 'soil-soc', water: 'gsw-occurrence', 'land-ecosystems': 'worldcover-2021' };
 const count = (id: string) => all.filter((d) => d.domain.includes(id as any)).length;
+
+// "Now" strip: the latest value of each monitoring product, with the month it describes.
+const one = (f: Record<string, unknown>) => (Object.values(f)[0] ?? null) as any;
+const spi0 = one(import.meta.glob('../../public/data/aeo/products/spi/v1.0.0/web/admin0.json', { eager: true, import: 'default' }));
+const et0 = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/web/admin0.json', { eager: true, import: 'default' }));
+const resvRaw = one(import.meta.glob('../../public/data/aeo/products/reservoirs/v1.0.0/web/reservoirs.geojson', { eager: true, query: '?raw', import: 'default' }));
+const resv = resvRaw ? JSON.parse(resvRaw as string) : null;
+const outl = one(import.meta.glob('../../public/data/aeo/products/seasonal-outlook/v0.1.0/web/outlook.json', { eager: true, import: 'default' }));
+const tws0 = one(import.meta.glob('../../public/data/aeo/products/water-storage/v1.0.0/web/admin0.json', { eager: true, import: 'default' }));
+const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const monthName = (m: string) => `${MON[+m.slice(5, 7) - 1]} ${m.slice(0, 4)}`;
+const sg = (v: number, d = 1) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(d)}`;
+const now: { label: string; value: string; detail: string; when: string; href: string }[] = [];
+if (spi0) {
+  const i = spi0.months.length - 1, v = spi0.spi['3'][0][i];
+  if (v !== null) now.push({ label: 'Rainfall, last 3 months (SPI-3)', value: sg(v, 2), detail: v <= -1 ? 'dry' : v >= 1 ? 'wet' : 'near normal', when: monthName(spi0.months[i]), href: `/map/?ind=spi-3&t=${spi0.months[i]}` });
+}
+if (et0) {
+  const i = et0.months.length - 1, v = et0.series.rsm_crop[0][i], dpp = et0.series.rsm_crop_dep_pp[0][i];
+  if (v !== null) now.push({ label: 'Soil moisture on cropland', value: `${v.toFixed(0)} %`, detail: `${sg(dpp)} points vs 2018–2025`, when: monthName(et0.months[i]), href: `/map/?ind=sm-rsm&t=${et0.months[i]}` });
+}
+if (resv) {
+  const ps = resv.features.map((f: any) => f.properties).filter((p: any) => p.latest_pct_of_max !== null);
+  const v = ps.map((p: any) => p.latest_pct_of_max).sort((a: number, b: number) => a - b);
+  const last = ps.map((p: any) => p.latest_month).sort();
+  if (v.length) now.push({ label: 'Reservoirs (median of ' + v.length + ')', value: `${Math.round(v[Math.floor(v.length / 2)])} %`, detail: 'of largest water area since 1984', when: monthName(last[last.length - 1]), href: '/water/' });
+}
+if (outl) {
+  const pub = outl.outlook.filter((o: any) => o.skilful && o.unit_code !== 'DZ');
+  const below = pub.filter((o: any) => o.p_below > o.p_above);
+  const MON3 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const t = pub[0]?.target;
+  now.push({ label: 'Seasonal outlook (experimental)', value: pub.length ? `${below.length} wilayas` : 'No signal', detail: pub.length ? `lean dry for ${MON3[+t.slice(5, 7) - 1]}–${MON3[+t.slice(13, 15) - 1]}; elsewhere equal chances` : 'equal chances everywhere', when: `issued ${monthName(outl.issued.slice(0, 7))}`, href: '/drought/#outlook' });
+}
+if (tws0) {
+  const u = tws0.units[0];
+  if (u.trend_cm_per_year !== null) now.push({ label: 'Total water storage (GRACE)', value: `${sg(u.trend_cm_per_year, 2)} cm`, detail: 'per year since 2002', when: `to ${monthName(tws0.months[tws0.months.length - 1])}`, href: '/water/#tws-h' });
+}
 ---
 <Base description="Explore Algeria's land, climate, water, soils and ecosystems through open environmental data, interactive maps and reproducible scientific methods." jsonLd={jsonLd}>
   <!-- Identity -->
@@ -82,6 +120,25 @@ const count = (id: string) => all.filter((d) => d.domain.includes(id as any)).le
   <div class="mx-auto mt-14 max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
 
   <!-- Environmental domains -->
+  {now.length > 0 && (
+    <section class="mx-auto max-w-[90rem] px-5 pt-10 sm:px-8 lg:px-12" aria-labelledby="now-h">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 id="now-h" class="h-sub">Algeria now</h2>
+        <p class="text-[0.875rem] text-slate">Latest values of the AEO monitoring products. Each card gives the month it describes.</p>
+      </div>
+      <ul class="tabular mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {now.map((c) => (
+          <li class="flex flex-col border border-line bg-surface p-4" style="border-radius:var(--radius-card)">
+            <p class="text-[0.875rem] text-slate">{c.label}</p>
+            <p class="mt-1 font-mono text-[1.5rem] leading-tight text-atlas">{c.value}</p>
+            <p class="text-[0.875rem] text-graphite">{c.detail}</p>
+            <p class="mt-auto pt-3 text-[0.8125rem] text-slate"><span class="inline-flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 rounded-full bg-[#35978f]" aria-hidden="true"></span>{c.when}</span> · <a href={c.href}>Details</a></p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
   <section class="mx-auto max-w-[90rem] px-5 py-14 sm:px-8 lg:px-12" aria-labelledby="dom-h">
     <h2 id="dom-h" class="h-section">Environmental domains</h2>
     <ul class="mt-8 grid gap-x-8 border-t border-line sm:grid-cols-2 lg:grid-cols-5">
