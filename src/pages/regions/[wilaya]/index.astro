@@ -14,7 +14,7 @@ const { w, communes } = Astro.props as { w: Wilaya; communes: Commune[] };
 const cog = (manifest.download_assets as any[]).find((a) => a.level === 'admin1' && a.unit_code === w.code);
 const mb = (b: number) => `${(b / 1e6).toFixed(1)} MB`;
 const kb = (b: number) => (b > 1e6 ? mb(b) : `${Math.round(b / 1e3)} kB`);
-const rows = communes.map((c) => ({ code: c.code, name: c.name, name_ar: c.name_ar, area_km2: c.area_km2, normal_1991_2020_mm: c.precip?.normal ?? null,
+const rows = communes.map((c) => ({ code: c.code, name: c.name, area_km2: c.area_km2, normal_1991_2020_mm: c.precip?.normal ?? null,
   trend_mm_per_decade: c.precip?.trend.slope_mm_per_decade ?? null, trend_mk_p: c.precip?.trend.mk_p ?? null, statistical_support: c.precip?.support ?? null }));
 ---
 <Base title={`${w.name} (wilaya ${w.code})`} description={`Environmental profile of the wilaya of ${w.name}, Algeria: area, communes and precipitation statistics (normal, anomalies, trend) from the Algeria Earth Observatory.`}>
@@ -23,7 +23,7 @@ const rows = communes.map((c) => ({ code: c.code, name: c.name, name_ar: c.name_
     <header class="mt-3 flex flex-wrap items-end justify-between gap-4">
       <div>
         <p class="eyebrow">Wilaya {w.code}</p>
-        <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{w.name} <span lang="ar" dir="rtl" class="ml-2 text-[1.6rem] font-normal text-slate">{w.name_ar}</span></h1>
+        <h1 class="mt-1 text-[2rem] font-semibold leading-tight text-atlas">{w.name}</h1>
       </div>
       <div class="flex flex-wrap gap-2"><a class="btn btn-primary" href="#download">Download data for {w.name}</a><a class="btn btn-secondary" href={`/drought/?level=admin1&unit=${w.code}`}>Analyze this wilaya</a></div>
     </header>
@@ -49,13 +49,12 @@ const rows = communes.map((c) => ({ code: c.code, name: c.name, name_ar: c.name_
           </div>
           <div class="relative mt-3 overflow-x-auto rounded-md border border-line bg-surface" tabindex="0" role="region" aria-label="Communes table">
             <table class="w-full text-left text-[0.88rem]">
-              <thead class="bg-paper text-[0.875rem] font-medium text-slate"><tr><th class="px-3 py-2">ONS code</th><th class="px-3 py-2">Commune</th><th class="px-3 py-2" lang="ar">الاسم</th><th class="px-3 py-2 text-right">Area (km²)</th><th class="px-3 py-2 text-right">Normal (mm)</th><th class="px-3 py-2 text-right">Trend (mm/decade)</th><th class="px-3 py-2">Support</th></tr></thead>
+              <thead class="bg-paper text-[0.875rem] font-medium text-slate"><tr><th class="px-3 py-2">ONS code</th><th class="px-3 py-2">Commune</th><th class="px-3 py-2 text-right">Area (km²)</th><th class="px-3 py-2 text-right">Normal (mm)</th><th class="px-3 py-2 text-right">Trend (mm/decade)</th><th class="px-3 py-2">Support</th></tr></thead>
               <tbody>
                 {communes.map((c) => (
                   <tr class="border-t border-line">
                     <td class="px-3 py-1.5 font-mono">{c.code}</td>
                     <td class="px-3 py-1.5"><a href={`/regions/${w.code}/${c.code}/`}>{c.name}</a></td>
-                    <td class="px-3 py-1.5" lang="ar" dir="rtl">{c.name_ar}</td>
                     <td class="px-3 py-1.5 text-right">{fmtNum(c.area_km2, 1)}</td>
                     <td class="px-3 py-1.5 text-right">{fmtNum(c.precip?.normal)}</td>
                     <td class="px-3 py-1.5 text-right">{fmtSigned(c.precip?.trend.slope_mm_per_decade, 1)}{c.precip?.trend.mk_p != null && c.precip.trend.mk_p < 0.05 ? ' *' : ''}</td>

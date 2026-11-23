@@ -11,6 +11,7 @@ import { PRIMARY_DOMAINS } from '../lib/domains';
 import { SITE } from '../config/site';
 import { loadRegions } from '../lib/regions-data';
 import publications from '../data/publications.json';
+import spiMap from '../../public/data/aeo/products/spi/v1.0.0/map/map.json';
 
 const all = await getDatasets();
 const aeoAvailable = all.filter((d) => d.origin !== 'external' && d.status === 'available');
@@ -59,71 +60,110 @@ if (tws0) {
   const u = tws0.units[0];
   if (u.trend_cm_per_year !== null) now.push({ label: 'Total water storage (GRACE)', value: `${sg(u.trend_cm_per_year, 2)} cm`, detail: 'per year since 2002', when: `to ${monthName(tws0.months[tws0.months.length - 1])}`, href: '/water/#tws-h' });
 }
+// Pixel blocks under each indicator: one square per wilaya (per reservoir), with the classes and
+// colours of the map, ordered from driest (left) to wettest (right); grey = no value. Column-major, 3 rows.
+const spi1 = one(import.meta.glob('../../public/data/aeo/products/spi/v1.0.0/web/admin1.json', { eager: true, import: 'default' }));
+const et1 = one(import.meta.glob('../../public/data/aeo/products/et-soil-moisture/v1.0.0/web/admin1.json', { eager: true, import: 'default' }));
+const outC = one(import.meta.glob('../../public/data/aeo/products/seasonal-outlook/v0.1.0/web/choropleth.json', { eager: true, import: 'default' }));
+const NO_VALUE = '#c9ced3';
+const klass = (v: number, breaks: number[]) => breaks.filter((b) => v >= b).length;
+const ranges = (breaks: number[], f: (v: number) => string, u: string) => [`below ${f(breaks[0])}${u}`, ...breaks.slice(1).map((b, i) => `${f(breaks[i])} to ${f(b)}${u}`), `${f(breaks[breaks.length - 1])}${u} or more`];
+type Px = { cells: string[]; rows: number; label: string };
+function pixelBlock(vals: (number | null)[], breaks: number[], colors: string[], names: string[], unit: string, grey: { color: string; name: string }): Px {
+  const ok = vals.filter((v): v is number => v !== null).sort((a, b) => a - b);
+  const nGrey = vals.length - ok.length;
+  const counts = colors.map((_, i) => [names[i], ok.filter((v) => klass(v, breaks) === i).length] as const).filter(([, n]) => n > 0);
+  return {
+    cells: [...ok.map((v) => colors[klass(v, breaks)]), ...Array(nGrey).fill(grey.color)],
+    rows: 3,
+    label: `${vals.length} ${unit}, one square each, ordered from driest to wettest: ${[...counts.map(([n, k]) => `${k} ${n}`), ...(nGrey ? [`${nGrey} ${grey.name}`] : [])].join('; ')}.`,
+  };
+}
+const PX: Record<string, Px> = {};
+if (spi1) PX.spi = pixelBlock(spi1.units.map((u: any, i: number) => (u.arid ? null : spi1.spi['3'][i].at(-1))), spiMap.breaks, spiMap.colors, spiMap.labels, 'wilayas', { color: spiMap.arid.color, name: 'arid (SPI unstable)' });
+if (et1) PX.sm = pixelBlock(et1.series.rsm_crop_dep_pp.map((r: (number | null)[]) => r.at(-1) ?? null), [-10, -5, -2, 2, 5, 10], ['#8c510a', '#d8b365', '#f6e8c3', '#f5f5f5', '#c7eae5', '#5ab4ac', '#01665e'],
+  ranges([-10, -5, -2, 2, 5, 10], (v) => sg(v, 0), ' points'), 'wilayas', { color: NO_VALUE, name: 'with under 1,000 ha of cropland' });
+if (resv) PX.res = pixelBlock(resv.features.map((f: any) => f.properties.latest_pct_of_max ?? null), [25, 50, 75], ['#c6dbef', '#6baed6', '#2171b5', '#08306b'],
+  ['under 25 %', '25–50 %', '50–75 %', '75 % or more'], 'reservoirs', { color: NO_VALUE, name: 'without a clear image' });
+if (outC) { const t0 = outC.targets[0]; PX.outlook = pixelBlock(outC.v[t0].map((r: (number | null)[], i: number) => (outC.flags[t0][i] ? null : r[0])), outC.breaks, outC.colors, outC.class_labels.map((l: string) => l.toLowerCase()), 'wilayas', { color: NO_VALUE, name: 'equal chances (no usable skill)' }); }
 const latestMonth = [spi0?.months.at(-1), et0?.months.at(-1)].filter(Boolean).sort().at(-1) as string | undefined;
-const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.filter((c) => c.mode).map((c) => c.mode) };
+const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.filter((c) => c.mode).map((c) => c.mode),
+  more: { spi: '/drought/', sm: '/drought/', res: '/water/', outlook: '/drought/#outlook' } as Record<string, string> };
 ---
 <Base description="Explore Algeria's land, climate, water, soils and ecosystems through open environmental data, interactive maps and reproducible scientific methods." jsonLd={jsonLd}>
-  <!-- Identity -->
-  <section class="mx-auto max-w-[90rem] px-5 pb-10 pt-10 sm:px-8 lg:px-12 lg:pb-14 lg:pt-16" aria-labelledby="hero-h">
-    <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
-      <div class="lg:col-span-7">
-        <div class="w-[8.5rem] sm:w-[11rem] lg:w-[13.5rem]"><Logo fluid label="AEO" /></div>
-        <p class="overline mt-8">Open Earth Data for Algeria</p>
-        <h1 id="hero-h" class="display mt-4">Algeria Earth Observatory</h1>
+  <!-- Identity beside the pixel-atlas image of Algeria (docs/BRAND.md §7–8) -->
+  <section class="mx-auto grid max-w-[90rem] items-center gap-10 px-5 pb-12 pt-10 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:pb-16 lg:pt-14" aria-labelledby="hero-h">
+    <div class="lg:col-span-5">
+      <div class="w-[7.5rem] sm:w-[9rem]"><Logo fluid label="AEO" /></div>
+      <p class="overline mt-8">Earth observation / Algeria</p>
+      <h1 id="hero-h" class="display mt-4">Algeria Earth Observatory</h1>
+      <p class="lede mt-6">Maps and open data on rainfall, drought, water, soils and land cover in Algeria, for each of the {wilayas.length} wilayas and 1,541 communes. The sources, code and methods behind every figure are public.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/map/" class="btn btn-primary">Explore Algeria</a>
+        <a href="/data/" class="btn btn-secondary">Browse Data</a>
       </div>
-      <div class="lg:col-span-5">
-        <p class="lede">Explore Algeria’s land, climate, water, soils and ecosystems through open environmental data, interactive maps and reproducible scientific methods.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/map/" class="btn btn-primary">Explore Algeria</a>
-          <a href="/data/" class="btn btn-secondary">Browse Data</a>
-          <a href="#live" class="btn btn-secondary">Algeria now</a>
-        </div>
-        <ul class="tabular mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[0.875rem] text-slate" aria-label="At a glance">
-          <li><span class="font-mono text-[1rem] text-atlas">{all.length - planned.length}</span> datasets</li>
-          <li><span class="font-mono text-[1rem] text-atlas">{wilayas.length}</span> wilayas</li>
-          <li><span class="font-mono text-[1rem] text-atlas">1,541</span> communes</li>
-          {latestMonth && <li class="flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span>Monitoring to {monthName(latestMonth)}</li>}
-        </ul>
-      </div>
+      {latestMonth && <p class="mt-6 text-[0.9375rem] text-slate">{all.length - planned.length} datasets so far. Drought and water monitoring is updated each month; <a href="#live">the latest data</a> are for {monthName(latestMonth)}.</p>}
     </div>
+    <figure class="relative m-0 lg:col-span-7">
+      <svg class="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-4 92 Q 38 18 104 8" fill="none" style="stroke:var(--color-midnight)" stroke-opacity=".28" stroke-width=".18" vector-effect="non-scaling-stroke" />
+      </svg>
+      <picture>
+        <source type="image/webp" srcset="/images/hero/algeria-pixel-1000.webp 1000w, /images/hero/algeria-pixel-1800.webp 1800w" sizes="(min-width: 1024px) 760px, 100vw" />
+        <img src="/images/hero/algeria-pixel-1000.jpg" width="1000" height="913" fetchpriority="high" class="block h-auto w-full"
+          alt="Satellite composite of Algeria: the green Tell along the Mediterranean coast, the Saharan Atlas, the ergs and the Hoggar and Tassili massifs in the south. Surrounding areas are shown as fading raster cells." />
+      </picture>
+      <figcaption class="meta mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 !text-[0.75rem]">
+        <span>NASA Blue Marble: Next Generation, shaded relief / NASA EOSDIS GIBS</span>
+        <span>17.0°N–38.6°N, 11.5°W–15.5°E</span>
+      </figcaption>
+    </figure>
   </section>
 
   <div class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
 
   <!-- Live monitor: the latest month of each monitoring product, on one map -->
-  <section class="theme-dark mt-10 scroll-mt-14" aria-labelledby="now-h" id="live">
+  <section class="mt-10 scroll-mt-14" aria-labelledby="now-h" id="live">
     <div class="mx-auto max-w-[90rem] px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
       <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
         <div>
-          <p class="overline flex items-center gap-2"><span class="live-dot" aria-hidden="true"></span>Live monitor · updated monthly</p>
+          {latestMonth && <p class="overline">Monitoring / {latestMonth}</p>}
           <h2 id="now-h" class="h-section mt-3">Algeria now</h2>
         </div>
-        <p class="max-w-xl text-[0.9375rem] leading-relaxed text-slate">Latest values of the AEO monitoring products, from open satellite and model data. Each card gives the month it describes; choose one to see it on the map.</p>
+        <p class="max-w-xl text-[0.9375rem] leading-relaxed text-slate">The latest month of each AEO monitoring product, from open satellite and model data. Under each value, one square per wilaya (per reservoir for reservoirs), coloured as on the map and ordered from driest to wettest. Choose an indicator to show it on the map.</p>
       </div>
-      <ul id="now-cards" class="tabular mt-6 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-5">
-        {now.map((c) => (
-          <li class="flex flex-col">
-            {c.mode ? (
-              <button type="button" class="now-card" data-mode={c.mode} aria-pressed={c.mode === 'spi' ? 'true' : 'false'} aria-controls="home-map">
-                <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
-                <span class="mt-1 font-mono text-[1.1875rem] leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
-                <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
-                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate"><span class="inline-block h-1.5 w-1.5 rounded-full bg-[#35978f]" aria-hidden="true"></span>{c.when}<span class="ml-auto hidden text-[#b3c4ff] sm:inline" aria-hidden="true">Map ›</span></span>
-              </button>
-            ) : (
-              <div class="now-card">
-                <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
-                <span class="mt-1 font-mono text-[1.1875rem] leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
-                <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
-                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate"><span class="inline-block h-1.5 w-1.5 rounded-full bg-[#35978f]" aria-hidden="true"></span>{c.when}</span>
-              </div>
-            )}
-            <a href={c.href} class="mt-1.5 self-start text-[0.8125rem]">Details<span class="sr-only">: {c.label}</span></a>
-          </li>
-        ))}
+      <ul id="now-cards" class="tabular mt-6 grid grid-cols-2 gap-px border border-line bg-line lg:grid-cols-5">
+        {now.map((c) => {
+          const px = c.mode ? PX[c.mode] : undefined;
+          const body = <>
+            <span class="text-[0.875rem] text-slate">{c.label}</span>
+            <span class="mt-1 text-[1.25rem] font-medium leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
+            <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
+            <span class="mt-auto block pt-4">{px && (
+              <svg class="now-px block h-auto w-full" viewBox={`0 0 ${Math.ceil(px.cells.length / px.rows) * 10} ${px.rows * 10}`} role="img" aria-label={px.label}>
+                {px.cells.map((col, k) => <rect x={Math.floor(k / px.rows) * 10 + 0.5} y={(k % px.rows) * 10 + 0.5} width="8.5" height="8.5" fill={col} />)}
+              </svg>
+            )}</span>
+          </>;
+          return (
+            <li class="flex bg-limestone last:col-span-2 lg:last:col-span-1">
+              {c.mode ? (
+                <button type="button" class="now-card" data-mode={c.mode} aria-pressed={c.mode === 'spi' ? 'true' : 'false'} aria-controls="home-map">
+                  {body}
+                  <span class="flex items-baseline gap-2 pt-2.5 text-[0.8125rem]"><span class="meta">{c.when}</span><span class="now-act now-act-on" aria-hidden="true">On the map</span><span class="now-act now-act-show" aria-hidden="true">Show on map</span></span>
+                </button>
+              ) : (
+                <a href={c.href} class="now-card">
+                  {body}
+                  <span class="flex items-baseline gap-2 pt-2.5 text-[0.8125rem]"><span class="meta">{c.when}</span><span class="now-act now-act-link" aria-hidden="true">Water page</span></span>
+                </a>
+              )}
+            </li>
+          );
+        })}
       </ul>
 
-      <div class="mt-5 grid overflow-hidden border border-line lg:grid-cols-12" style="border-radius:var(--radius-card)">
+      <div class="mt-5 grid overflow-hidden border border-line bg-surface lg:grid-cols-12" style="border-radius:var(--radius-card)">
         <div class="relative min-h-[26rem] lg:col-span-8 lg:min-h-[38rem]">
           <div class="absolute inset-0"><div id="home-map" class="h-full w-full bg-limestone" role="region" aria-label="Map of the selected monitoring indicator by wilaya. Use the wilaya list beside the map to choose a wilaya with the keyboard."></div></div>
           <div id="home-legend" class="theme-light tabular absolute bottom-3 left-3 z-10 max-w-[calc(100%-1.5rem)] border border-line bg-white/95 px-3 py-2 text-[0.8125rem] text-graphite sm:max-w-[26rem]" style="border-radius:var(--radius-control)"></div>
@@ -133,29 +173,49 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
             <p id="hp-ind" class="text-[1.0625rem] font-medium text-atlas"></p>
             <p id="hp-note" class="mt-1 text-[0.875rem] leading-relaxed text-slate"></p>
           </div>
-          <div id="hp-time">
-            <div class="flex items-center gap-3">
-              <button id="hp-play" type="button" class="btn btn-secondary !min-h-9 gap-1.5 !px-3 !py-1 text-[0.875rem]" aria-pressed="false"><span aria-hidden="true" id="hp-play-i">▶</span><span id="hp-play-t">Play</span></button>
-              <output id="hp-month" for="hp-slider" class="font-mono text-[0.9375rem] text-atlas"></output>
-            </div>
-            <input id="hp-slider" type="range" min="0" max="0" step="1" value="0" class="hp-range mt-3" aria-label="Month shown on the map" />
-            <div class="flex justify-between font-mono text-[0.75rem] text-slate" aria-hidden="true"><span id="hp-t0"></span><span id="hp-t1"></span></div>
-          </div>
           <label class="block"><span class="block text-[0.875rem] font-medium text-atlas">Wilaya</span>
             <select id="hp-select" class="field mt-1.5 !text-[1rem]">{wilayas.map((w) => <option value={w.code} selected={w.code === '19'}>{w.code} — {w.name}</option>)}</select></label>
           <div aria-live="polite">
             <p id="hp-name" class="text-[1.25rem] font-medium text-atlas"></p>
-            <p class="tabular mt-1"><span id="hp-value" class="font-mono text-[2rem] text-atlas">—</span> <span id="hp-unit" class="text-slate"></span></p>
+            <p class="tabular mt-1"><span id="hp-value" class="text-[2rem] font-medium text-atlas">—</span> <span id="hp-unit" class="text-slate"></span></p>
             <p id="hp-class" class="text-[0.9375rem] text-graphite"></p>
           </div>
-          <figure id="hp-spark-f" class="m-0">
-            <svg id="hp-spark" viewBox="0 0 240 64" preserveAspectRatio="none" class="block h-16 w-full" role="img" aria-labelledby="hp-spark-c"></svg>
-            <figcaption id="hp-spark-c" class="mt-1 text-[0.8125rem] text-slate"></figcaption>
-          </figure>
+          <div id="hp-time">
+            <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+              <div class="flex items-center gap-3">
+                <button id="hp-play" type="button" class="btn btn-secondary !min-h-9 gap-1.5 !px-3 !py-1 text-[0.875rem]" aria-pressed="false"><span aria-hidden="true" id="hp-play-i">▶</span><span id="hp-play-t">Play</span></button>
+                <output id="hp-month" for="hp-slider" class="tabular text-[0.9375rem] font-medium text-atlas"></output>
+              </div>
+              <div id="hp-zoom" class="seg hp-ts" role="group" aria-label="Period shown in the chart">
+                <button type="button" data-zoom="now" aria-pressed="true">2 years</button><button type="button" data-zoom="10y" aria-pressed="false">10 years</button><button type="button" data-zoom="all" aria-pressed="false">All</button>
+              </div>
+            </div>
+            <figure class="hp-ts m-0 mt-4">
+              <div class="relative">
+                <svg id="hp-spark" viewBox="0 0 1000 120" preserveAspectRatio="none" class="block h-28 w-full cursor-crosshair" style="touch-action:pan-y" role="img" aria-labelledby="hp-spark-c"></svg>
+                <div id="hp-tip" class="hp-tip" hidden></div>
+              </div>
+              <div id="hp-years" class="hp-years" aria-hidden="true"></div>
+            </figure>
+            <input id="hp-slider" type="range" min="0" max="0" step="1" value="0" class="hp-range mt-2" aria-label="Month shown on the map" />
+            <div class="tabular flex justify-between text-[0.8125rem] text-slate" aria-hidden="true"><span id="hp-t0"></span><span id="hp-t1"></span></div>
+            <div class="hp-ts mt-4">
+              <p class="text-[0.8125rem] text-slate">Full record: drag the frame or its edges to choose the period</p>
+              <div id="hp-ctx" class="hp-ctx mt-1.5">
+                <svg id="hp-ctx-svg" class="absolute inset-0 block h-full w-full" preserveAspectRatio="none" aria-hidden="true"></svg>
+                <div id="hp-shade-l" class="hp-shade left-0"></div><div id="hp-shade-r" class="hp-shade right-0"></div>
+                <div id="hp-ctx-cur" class="hp-ctx-cur"></div>
+                <div id="hp-brush" class="hp-brush" tabindex="0" role="slider" aria-label="Period shown in the chart. Arrow keys move it by a year, Shift and arrow by a month."></div>
+              </div>
+              <div id="hp-ctx-years" class="hp-years" aria-hidden="true"></div>
+            </div>
+            <p id="hp-spark-c" class="hp-ts mt-3 text-[0.8125rem] leading-relaxed text-slate"></p>
+          </div>
           <ul id="hp-res" class="hidden max-h-52 overflow-auto text-[0.875rem]" tabindex="0" aria-label="Reservoirs in the selected wilaya"></ul>
           <div class="mt-auto flex flex-col gap-2">
-            <a id="hp-explore" href="/map/" class="btn btn-primary justify-center">Explore<span id="hp-explore-name"></span></a>
+            <a id="hp-explore" href="/map/" class="btn btn-primary justify-center"><span id="hp-explore-name">Explore</span></a>
             <a id="hp-profile" href="/regions/19/" class="btn btn-secondary justify-center">Wilaya profile</a>
+            <a id="hp-more" href="/drought/" class="mt-1 self-start text-[0.875rem]">More on this indicator</a>
           </div>
         </div>
       </div>
@@ -200,9 +260,9 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
         <div class="mt-6 flex flex-wrap gap-3"><a href="/data/" class="btn btn-primary">Browse Data</a><a href="/data/#download" class="btn btn-secondary">Download data for a place</a></div>
       </div>
       <dl class="tabular grid gap-3 sm:grid-cols-3 lg:col-span-7 lg:self-center">
-        <div class="border border-line p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Available through AEO</dt><dd class="mt-1 font-mono text-[1.75rem] text-atlas">{aeoAvailable.length}</dd><dd class="text-[0.875rem] text-slate">processed, documented, downloadable</dd></div>
-        <div class="border border-line p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">From external sources</dt><dd class="mt-1 font-mono text-[1.75rem] text-atlas">{external.length}</dd><dd class="text-[0.875rem] text-slate">documented, accessed at the provider</dd></div>
-        <div class="border border-line p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Under development</dt><dd class="mt-1 font-mono text-[1.75rem] text-atlas">{planned.length}</dd><dd class="text-[0.875rem] text-slate">AEO products in preparation</dd></div>
+        <div class="border border-line p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Available through AEO</dt><dd class="mt-1 text-[1.75rem] font-medium text-atlas">{aeoAvailable.length}</dd><dd class="text-[0.875rem] text-slate">processed, documented, downloadable</dd></div>
+        <div class="border border-line p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">From external sources</dt><dd class="mt-1 text-[1.75rem] font-medium text-atlas">{external.length}</dd><dd class="text-[0.875rem] text-slate">documented, accessed at the provider</dd></div>
+        <div class="border border-line p-4" style="border-radius:var(--radius-card)"><dt class="text-[0.875rem] text-slate">Under development</dt><dd class="mt-1 text-[1.75rem] font-medium text-atlas">{planned.length}</dd><dd class="text-[0.875rem] text-slate">AEO products in preparation</dd></div>
       </dl>
     </div>
   </section>
@@ -234,28 +294,30 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
 
 <script>
   /**
-   * Live monitor: one map, four monitoring indicators (cards above), a timeline over the last
-   * 24 months (or the outlook's target seasons) and a wilaya readout. Values are read from the
+   * Live monitor: one map, four monitoring indicators (cards above), a time explorer over the full
+   * record with a zoom window (or the outlook's target seasons) and a wilaya readout. Values are read from the
    * same published web tables as Explore; nothing is computed here except display classes.
    */
   import { buildStyle, createMap, setChoropleth, MAP_LAYERS, maplibregl, escapeHtml } from '../scripts/map-core';
   import type { MapLayer } from '../data/map-layers';
 
   type Mode = 'spi' | 'sm' | 'res' | 'outlook';
-  type Bar = { v: number | null; color: string };
+  /** One wilaya's monthly record, aligned with the mode's steps. */
+  interface Series { values: (number | null)[]; colors: string[]; kind: 'div' | 'pos'; max: number; fmt(v: number): string; unit: string; label(v: number): string; short: string; low: string; high: string; note?: string | null }
   interface Readout { value: string; unit: string; cls: string }
   interface ModeDef {
     title: string; note: string; stepName: string; attribution: string;
     steps(): Promise<string[]>; stepLabel(s: string): string;
     apply(s: string): Promise<void>; readout(code: string, s: string): Promise<Readout>;
-    spark?(code: string): Promise<{ bars: Bar[]; caption: string; max: number }>;
+    series?(code: string): Promise<Series | null>;
     table(s: string): Promise<{ head: string[]; rows: string[][] }>;
     explore(code: string, s: string): { href: string; text: string };
     legend(): string;
   }
 
   const $ = (id: string) => document.getElementById(id)!;
-  const D = JSON.parse($('home-data').textContent!) as { wilayas: [string, string][]; modes: Mode[] };
+  const tok = (n: string) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const D = JSON.parse($('home-data').textContent!) as { wilayas: [string, string][]; modes: Mode[]; more: Record<string, string> };
   const NAMES = new Map(D.wilayas);
   const L = (id: string) => MAP_LAYERS.find((l) => l.id === id) as MapLayer;
   const SPI = L('spi-3'), SM = L('sm-crop-dep'), OUT = L('outlook-nmme');
@@ -279,11 +341,11 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
 
   /** Monthly choropleth modes (SPI-3, soil moisture on cropland) share everything but their values. */
   function monthly(layer: MapLayer, o: { title: string; note: string; values: (f: any) => (number | null)[][]; fmt: (v: number) => string; unit: string;
-    describe: (v: number, f: any, i: number, t: number) => string; short: string; nullText: (f: any, i: number) => string; flagText?: (f: any, i: number) => string | null; sparkMax: number; legendCaption: string }): ModeDef {
+    describe: (v: number, f: any, i: number, t: number) => string; short: string; nullText: (f: any, i: number) => string; flagText?: (f: any, i: number) => string | null; sparkMax: number; legendCaption: string; low: string; high: string }): ModeDef {
     const url = layer.choropleth!.url;
     return {
       title: o.title, note: o.note, stepName: 'Month', attribution: layer.attribution,
-      steps: async () => (await get(url)).months.slice(-24),
+      steps: async () => (await get(url)).months,
       stepLabel: mLabel,
       apply: (s) => setChoropleth(map, layer, `${s}-01`),
       async readout(code, s) {
@@ -292,11 +354,12 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
         const v = o.values(f)[i]?.[t] ?? null;
         return v === null ? { value: '—', unit: '', cls: o.nullText(f, i) } : { value: o.fmt(v), unit: o.unit, cls: o.describe(v, f, i, t) };
       },
-      async spark(code) {
-        const f = await get(url); const i = unitIndex(f, code); const n = f.months.length;
-        const flagged = !!o.flagText?.(f, i);
-        const bars = o.values(f)[i].slice(n - 24).map((v: number | null) => ({ v: flagged ? null : v, color: v === null || flagged ? NODATA : classOf(layer, v).color }));
-        return { bars, max: o.sparkMax, caption: `${o.short}, ${NAMES.get(code)}, ${mLabel(f.months[n - 24])} – ${mLabel(f.months[n - 1])}. Outlined bar: month on the map.` };
+      async series(code) {
+        const f = await get(url); const i = unitIndex(f, code); if (i < 0) return null;
+        const flag = o.flagText?.(f, i) ?? null;
+        const values: (number | null)[] = flag ? f.months.map(() => null) : o.values(f)[i];
+        return { values, colors: values.map((v) => (v === null ? NODATA : classOf(layer, v).color)), kind: 'div', max: o.sparkMax, fmt: o.fmt, unit: o.unit,
+          label: (v: number) => classOf(layer, v).label, short: o.short, low: o.low, high: o.high, note: flag };
       },
       async table(s) {
         const f = await get(url); const t = f.months.indexOf(s);
@@ -316,24 +379,24 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
       values: (f) => f.spi['3'], fmt: (v) => sg(v, 2), unit: 'SPI', sparkMax: 2.5,
       describe: (v) => classOf(SPI, v).label, nullText: () => 'No value for this month',
       flagText: (f, i) => (f.units[i].arid ? 'Arid wilaya (normal rainfall under 100 mm a year): SPI is unstable and not shown' : null),
-      legendCaption: 'SPI-3, standard deviations',
+      legendCaption: 'SPI-3, standard deviations', low: 'Driest', high: 'Wettest',
     }),
     sm: monthly(SM, {
       title: 'Soil moisture on cropland, departure', short: 'Soil moisture departure on cropland', note: 'FAO WaPOR v3 relative soil moisture over each wilaya’s stable cropland, compared with the same month in 2018–2025.',
       values: (f) => f.series.rsm_crop_dep_pp, fmt: (v) => sg(v, 1), unit: 'points', sparkMax: 12,
       describe: (v, f, i, t) => { const a = f.series.rsm_crop[i]?.[t]; return `${v <= -2 ? 'Drier than' : v >= 2 ? 'Wetter than' : 'Close to'} the 2018–2025 average${a == null ? '' : ` (${Math.round(a)} % of the available range)`}`; },
       nullText: (f, i) => (f.units[i].cropland_ha < 1000 ? 'Under 1,000 ha of stable cropland: not computed' : 'No value for this month'),
-      legendCaption: 'Percentage points vs 2018–2025',
+      legendCaption: 'Percentage points vs 2018–2025', low: 'Driest', high: 'Wettest',
     }),
     res: {
       title: 'Reservoir water area', note: 'Water surface of each reservoir from Landsat (Digital Earth Africa Waterbodies), as a percentage of its largest area since 1984. Surface area, not volume or official filling rate.',
-      stepName: 'Month', attribution: 'Reservoirs: Digital Earth Africa Waterbodies (Landsat) · dams: Global Dam Watch · AEO processing',
+      stepName: 'Month', attribution: 'Reservoirs: Digital Earth Africa Waterbodies (Landsat). Dams: Global Dam Watch. Processing: AEO.',
       async steps() {
         const s = await get(RES_SERIES); const series = Object.values(s.area_km2) as (number | null)[][];
         // end at the latest month with a clear image for at least half of the reservoirs (the newest month fills in as scenes arrive)
         const half = series.length / 2;
         let last = s.months.length - 1; while (last > 0 && series.filter((r) => r[last] !== null).length < half) last--;
-        return s.months.slice(Math.max(0, last - 23), last + 1);
+        return s.months.slice(0, last + 1);
       },
       stepLabel: mLabel,
       async apply(m) { (map.getSource('home-res') as maplibregl.GeoJSONSource).setData(await resAt(m)); },
@@ -348,8 +411,22 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
         const ps = (await resAt(m)).features.map((f) => f.properties as any).sort((a, b) => (b.capacity_mcm ?? 0) - (a.capacity_mcm ?? 0));
         return { head: ['Reservoir', 'Wilaya', '% of largest area', 'Capacity (hm³)'], rows: ps.map((p) => [p.name, p.wilaya_name, p.pct === null ? '—' : String(Math.round(p.pct)), p.capacity_mcm == null ? '—' : String(Math.round(p.capacity_mcm))]) };
       },
+      async series(code) {
+        const [g, s] = await Promise.all([get(RES_URL), get(RES_SERIES)]);
+        const ps = g.features.map((f: any) => f.properties).filter((p: any) => p.wilaya_code === code);
+        if (!ps.length) return null;
+        // the wilaya's median reservoir, month by month (as in the readout)
+        const values = steps.map((_, t) => {
+          const v = ps.map((p: any) => { const a = s.area_km2[String(p.gdw_id)]?.[t]; const mx = p.observed_max_km2; return a == null || !mx ? null : Math.min(100, (a / mx) * 100); })
+            .filter((x: number | null): x is number => x !== null).sort((x: number, y: number) => x - y);
+          return v.length ? v[Math.floor(v.length / 2)] : null;
+        });
+        return { values, colors: values.map(pctColor), kind: 'pos', max: 100, fmt: (v: number) => `${Math.round(v)} %`, unit: '',
+          label: () => (ps.length > 1 ? `median of ${ps.length} reservoirs, of largest area` : 'of largest water area'),
+          short: ps.length > 1 ? `Reservoir water area, median of ${ps.length}` : `Reservoir water area, ${ps[0].name}`, low: 'Lowest', high: 'Highest', note: null };
+      },
       explore: () => ({ href: '/water/', text: 'reservoir monitor' }),
-      legend: () => legendHtml('Water area, % of largest since 1984 · size: capacity', [...BLUES.map((c, i) => ({ color: c, round: true, label: i === 0 ? `under ${BINS[0]}` : i === BINS.length ? `${BINS[i - 1]}+` : `${BINS[i - 1]}–${BINS[i]}` })), { color: NODATA, round: true, label: 'no clear image' }]),
+      legend: () => legendHtml('Water area, % of largest since 1984 (circle size: capacity)', [...BLUES.map((c, i) => ({ color: c, round: true, label: i === 0 ? `under ${BINS[0]}` : i === BINS.length ? `${BINS[i - 1]}+` : `${BINS[i - 1]}–${BINS[i]}` })), { color: NODATA, round: true, label: 'no clear image' }]),
     },
     outlook: {
       title: 'Seasonal rainfall outlook (experimental)', note: 'NMME forecast over stable cropland, recalibrated on CHIRPS. Shown only where past forecasts beat climatology; grey means equal chances.',
@@ -405,12 +482,12 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     (window as any).__aeoHomeMap = map; // for end-to-end tests
 
     map.on('load', () => {
-      map.setPaintProperty('aeo-wilayas-selected', 'line-color', '#17252c');
+      map.setPaintProperty('aeo-wilayas-selected', 'line-color', tok('--color-midnight'));
       map.addSource('home-res', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: 'home-res', type: 'circle', source: 'home-res', layout: { visibility: 'none', 'circle-sort-key': ['-', 0, ['coalesce', ['get', 'capacity_mcm'], 0]] },
         paint: { 'circle-radius': ['interpolate', ['linear'], ['sqrt', ['coalesce', ['get', 'capacity_mcm'], 5]], 0, 3.5, 31, 13],
           'circle-color': ['case', ['==', ['typeof', ['get', 'pct']], 'number'], ['step', ['get', 'pct'], BLUES[0], BINS[0], BLUES[1], BINS[1], BLUES[2], BINS[2], BLUES[3]], NODATA],
-          'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1.2 } });
+          'circle-stroke-color': tok('--color-white'), 'circle-stroke-width': 1.2 } });
       const pointer = () => { map.getCanvas().style.cursor = 'pointer'; };
       const plain = () => { map.getCanvas().style.cursor = ''; };
       for (const id of ['aeo-wilayas-fill', 'home-res']) { map.on('mouseenter', id, pointer); map.on('mouseleave', id, plain); }
@@ -438,38 +515,104 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     vis('aeo-spi-3', m === 'spi'); vis('aeo-sm-crop-dep', m === 'sm'); vis('aeo-outlook-nmme', m === 'outlook'); vis('home-res', m === 'res');
   }
 
+  /*
+   * Time explorer (focus + context). The strip shows the full record, one stripe per month coloured as on
+   * the map; the frame on it is the zoom window, drawn in detail above and played by ▶. "2 years" is the
+   * current situation. Hovering a bar previews that month on the map; clicking keeps it.
+   */
+  const ZOOMS: Record<string, number> = { now: 24, '10y': 120, all: Infinity };
+  let zoom = 'now';
+  let win = { a: 0, b: 0 };
+  let at = 0; // index of the month shown on the map
+  let ser: Series | null = null;
+  let hoverI: number | null = null;
+  let anim = 0;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   async function setMode(m: Mode) {
     stop();
     mode = m;
     const def = MODES[m];
     document.querySelectorAll<HTMLButtonElement>('#now-cards button[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+    ($('hp-more') as HTMLAnchorElement).href = D.more[m] ?? '/data/';
     $('hp-ind').textContent = def.title;
     $('hp-note').textContent = def.note;
     $('home-legend').innerHTML = def.legend();
     $('hp-attr').innerHTML = `Source: ${def.attribution}`;
     slider.setAttribute('aria-label', `${def.stepName} shown on the map`);
     steps = await def.steps();
-    slider.max = String(steps.length - 1);
-    $('hp-t0').textContent = steps.length ? def.stepLabel(steps[0]) : '';
-    $('hp-t1').textContent = steps.length > 1 ? def.stepLabel(steps[steps.length - 1]) : '';
-    const start = m === 'outlook' ? 0 : steps.length - 1;
+    ser = def.series ? await def.series(code) : null;
+    if (zoom === 'custom') zoom = 'now';
+    markZoom();
+    win = zoomWin(zoom);
+    at = m === 'outlook' ? 0 : steps.length - 1;
     ($('hp-play') as HTMLButtonElement).hidden = steps.length < 2;
     setVisible(m);
-    await setStep(start);
+    drawContext();
+    applyWin();
+    await setStep(at);
+  }
+
+  const zoomWin = (z: string) => { const n = steps.length; const k = Math.min(n, ZOOMS[z] ?? n); return { a: n - k, b: n - 1 }; };
+  const markZoom = () => document.querySelectorAll<HTMLButtonElement>('#hp-zoom button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.zoom === zoom)));
+
+  /** Slider bounds, labels, detail chart and frame follow the window. */
+  function applyWin() {
+    const def = MODES[mode];
+    slider.min = String(win.a); slider.max = String(win.b); slider.value = String(at);
+    $('hp-t0').textContent = steps.length ? def.stepLabel(steps[win.a]) : '';
+    $('hp-t1').textContent = steps.length > 1 ? def.stepLabel(steps[win.b]) : '';
+    const br = $('hp-brush');
+    br.setAttribute('aria-valuemin', '0'); br.setAttribute('aria-valuemax', String(Math.max(0, steps.length - 1)));
+    br.setAttribute('aria-valuenow', String(win.a));
+    if (steps.length) br.setAttribute('aria-valuetext', `${def.stepLabel(steps[win.a])} to ${def.stepLabel(steps[win.b])}`);
+    drawDetail(); drawBrush();
+  }
+
+  function setWindow(target: { a: number; b: number }, animate = true) {
+    const n = steps.length;
+    const to = { a: Math.max(0, Math.round(target.a)), b: Math.min(n - 1, Math.round(target.b)) };
+    const my = ++anim;
+    const done = () => {
+      win = to; applyWin();
+      const want = zoom === 'now' ? n - 1 : Math.min(win.b, Math.max(win.a, at));
+      if (want !== at) setStep(want);
+    };
+    if (!animate || reduceMotion) { done(); return; }
+    const from = { ...win }; const t0 = performance.now();
+    const frame = (now: number) => {
+      if (my !== anim) return;
+      const k = Math.min(1, (now - t0) / 450), e = 1 - Math.pow(1 - k, 3);
+      win = { a: from.a + (to.a - from.a) * e, b: from.b + (to.b - from.b) * e };
+      drawDetail(); drawBrush();
+      if (k < 1) requestAnimationFrame(frame); else done();
+    };
+    requestAnimationFrame(frame);
   }
 
   async function setStep(i: number) {
     const def = MODES[mode];
-    slider.value = String(i);
-    const s = steps[i];
-    $('hp-month').textContent = `${def.stepLabel(s)}${mode !== 'outlook' && i === steps.length - 1 ? ' · latest' : ''}`;
-    slider.setAttribute('aria-valuetext', def.stepLabel(s));
-    await def.apply(s);
+    i = Math.max(0, Math.min(steps.length - 1, i));
+    if (i < win.a || i > win.b) { // keep the month in view: move the window, keep its width
+      const w = win.b - win.a; const a = Math.max(0, Math.min(steps.length - 1 - w, i - Math.floor(w / 2)));
+      win = { a, b: a + w }; at = i; applyWin();
+    }
+    at = i; slider.value = String(i);
+    slider.setAttribute('aria-valuetext', def.stepLabel(steps[i]));
+    showMonth();
+    drawDetail(); drawCursor();
+    await def.apply(steps[i]);
     await Promise.all([readout(), table()]);
   }
 
+  function showMonth(preview?: number) {
+    const def = MODES[mode]; const i = preview ?? at;
+    if (!steps.length) return;
+    $('hp-month').textContent = `${def.stepLabel(steps[i])}${preview != null ? ' (preview)' : mode !== 'outlook' && i === steps.length - 1 ? ' (latest)' : ''}`;
+  }
+
   async function readout() {
-    const def = MODES[mode]; const s = steps[+slider.value];
+    const def = MODES[mode]; const s = steps[at];
     const r = await def.readout(code, s);
     $('hp-name').textContent = NAMES.get(code) ?? '';
     $('hp-value').textContent = r.value;
@@ -477,62 +620,188 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     $('hp-class').textContent = r.cls;
     const ex = def.explore(code, s);
     ($('hp-explore') as HTMLAnchorElement).href = ex.href;
-    $('hp-explore-name').textContent = ` ${ex.text}`;
+    $('hp-explore-name').textContent = `Explore ${ex.text}`;
     ($('hp-profile') as HTMLAnchorElement).href = `/regions/${code}/`;
-    // sparkline (monthly modes) or reservoir list
-    const fig = $('hp-spark-f'), list = $('hp-res');
-    fig.hidden = !def.spark; list.classList.toggle('hidden', mode !== 'res');
-    if (def.spark) drawSpark(await def.spark(code));
+    const list = $('hp-res');
+    list.classList.toggle('hidden', mode !== 'res');
     if (mode === 'res') {
       const ps = (await resAt(s)).features.map((f) => f.properties as any).filter((p) => p.wilaya_code === code).sort((a, b) => (b.capacity_mcm ?? 0) - (a.capacity_mcm ?? 0));
-      list.innerHTML = ps.map((p) => `<li class="flex items-center gap-2 border-t border-line py-1.5"><span class="inline-block h-2.5 w-2.5 flex-none rounded-full border border-black/20" style="background:${pctColor(p.pct)}"></span><span class="min-w-0 flex-1 truncate">${escapeHtml(p.name)}</span><span class="font-mono text-graphite">${p.pct === null ? '—' : `${Math.round(p.pct)} %`}</span></li>`).join('');
+      list.innerHTML = ps.map((p) => `<li class="flex items-center gap-2 border-t border-line py-1.5"><span class="inline-block h-2.5 w-2.5 flex-none rounded-full border border-black/20" style="background:${pctColor(p.pct)}"></span><span class="min-w-0 flex-1 truncate">${escapeHtml(p.name)}</span><span class="tabular text-graphite">${p.pct === null ? '—' : `${Math.round(p.pct)} %`}</span></li>`).join('');
     }
   }
 
-  function drawSpark({ bars, caption, max }: { bars: Bar[]; caption: string; max: number }) {
-    const svg = $('hp-spark'); const n = bars.length; const W = 240, H = 64, mid = H / 2; const w = W / n;
-    const cur = +slider.value - (steps.length - n);
-    const peak = Math.max(max, ...bars.map((b) => Math.abs(b.v ?? 0)));
-    let out = `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="#78878f" stroke-width="0.6" />`;
-    bars.forEach((b, i) => {
-      const x = i * w + 1;
-      if (b.v === null) { out += `<rect x="${x}" y="${mid - 1}" width="${w - 2}" height="2" fill="${NODATA}" opacity="0.5" />`; return; }
-      const h = Math.max(1.5, (Math.abs(b.v) / peak) * (mid - 3));
-      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${w - 2}" height="${h}" rx="1" fill="${b.color}" stroke="${i === cur ? '#ffffff' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" />`;
-    });
-    svg.innerHTML = out;
-    $('hp-spark-c').textContent = caption;
+  // ---- drawing
+  function drawContext() {
+    document.querySelectorAll<HTMLElement>('.hp-ts').forEach((el) => { el.hidden = !ser; });
+    if (!ser) { $('hp-spark-c').textContent = ''; return; }
+    const N = steps.length; const s = ser;
+    const svg = $('hp-ctx-svg');
+    svg.setAttribute('viewBox', `0 0 ${N} 1`);
+    svg.innerHTML = s.values.map((v, i) => `<rect x="${i}" y="0" width="1.06" height="1" fill="${s.colors[i]}"${v === null ? ' opacity="0.4"' : ''} />`).join('');
+    const every = N > 240 ? 10 : 5;
+    $('hp-ctx-years').innerHTML = steps.map((m, i) => (m.endsWith('-01') && +m.slice(0, 4) % every === 0 && i / N < 0.94 ? `<span class="hp-yr" style="left:${(i / N) * 100}%">${m.slice(0, 4)}</span>` : '')).join('');
+    caption();
+    drawBrush();
   }
 
+  function caption() {
+    if (!ser) return;
+    const def = MODES[mode]; const s = ser; let lo = -1, hi = -1;
+    s.values.forEach((v, i) => { if (v === null) return; if (lo < 0 || v < s.values[lo]!) lo = i; if (hi < 0 || v > s.values[hi]!) hi = i; });
+    const first = Math.max(0, s.values.findIndex((v) => v !== null));
+    const val = (i: number) => `${s.fmt(s.values[i]!)}${s.unit ? ` ${s.unit}` : ''}`;
+    const ext = lo < 0 ? (s.note ?? 'No value for this wilaya.') : `${s.low} month in the record: ${def.stepLabel(steps[lo])} (${val(lo)}). ${s.high}: ${def.stepLabel(steps[hi])} (${val(hi)}).`;
+    $('hp-spark-c').textContent = `${s.short}, ${NAMES.get(code)}, ${def.stepLabel(steps[first])} to ${def.stepLabel(steps[steps.length - 1])}. ${ext}`;
+  }
+
+  function drawDetail() {
+    if (!ser) return;
+    const s = ser; const W = 1000, H = 120;
+    const n = win.b - win.a + 1; const w = W / n;
+    const gap = w > 6 ? Math.min(3, w * 0.18) : 0, bw = Math.max(0.7, w - gap);
+    const i0 = Math.max(0, Math.floor(win.a)), i1 = Math.min(steps.length - 1, Math.ceil(win.b));
+    let peak = s.max;
+    if (s.kind === 'div') for (let i = i0; i <= i1; i++) { const v = s.values[i]; if (v !== null && Math.abs(v) > peak) peak = Math.abs(v); }
+    const base = s.kind === 'pos' ? H - 1 : H / 2; const span = s.kind === 'pos' ? H - 6 : H / 2 - 4;
+    const nY = n / 12; const gStride = nY > 25 ? 5 : 1; const lStride = nY <= 4 ? 1 : nY <= 12 ? 2 : nY <= 25 ? 5 : 10;
+    let grid = '', labels = '', bars = '';
+    for (let i = i0; i <= i1; i++) {
+      const m = steps[i]; const x = (i - win.a) * w;
+      if (m.endsWith('-01') && i > i0) {
+        const y = +m.slice(0, 4); const p = (x / W) * 100;
+        if (y % gStride === 0) grid += `<line x1="${x}" x2="${x}" y1="0" y2="${H}" class="hp-grid" />`;
+        if (y % lStride === 0 && p > 0 && p < 92) labels += `<span class="hp-yr" style="left:${p}%">${y}</span>`;
+      }
+      const v = s.values[i];
+      if (v === null) { bars += `<rect x="${x + gap / 2}" y="${base - 1}" width="${bw}" height="2" fill="${NODATA}" opacity=".5" />`; continue; }
+      const h = Math.max(1.5, (Math.abs(v) / peak) * span);
+      const dim = hoverI !== null && n <= 72 && i !== hoverI && i !== at ? ' opacity=".5"' : '';
+      bars += `<rect x="${x + gap / 2}" y="${s.kind === 'pos' || v >= 0 ? base - h : base}" width="${bw}" height="${h}" fill="${s.colors[i]}"${i === at ? ' class="hp-cur"' : ''}${dim} />`;
+    }
+    const band = hoverI !== null ? `<rect x="${(hoverI - win.a) * w}" y="0" width="${Math.max(w, 2)}" height="${H}" class="hp-band" />` : '';
+    const curX = (at - win.a + 0.5) * w;
+    const curLine = at >= i0 && at <= i1 ? `<line x1="${curX}" x2="${curX}" y1="0" y2="${H}" class="hp-curline" />` : '';
+    $('hp-spark').innerHTML = band + grid + `<line x1="0" x2="${W}" y1="${base}" y2="${base}" class="hp-zero" />` + curLine + bars;
+    $('hp-years').innerHTML = labels;
+  }
+
+  function drawBrush() {
+    const N = Math.max(1, steps.length);
+    const l = (win.a / N) * 100, r = ((win.b + 1) / N) * 100;
+    const b = $('hp-brush'); b.style.left = `${l}%`; b.style.width = `${r - l}%`;
+    $('hp-shade-l').style.width = `${l}%`; $('hp-shade-r').style.left = `${r}%`;
+    drawCursor();
+  }
+  const drawCursor = () => { $('hp-ctx-cur').style.left = `${((at + 0.5) / Math.max(1, steps.length)) * 100}%`; };
+
   async function table() {
-    const def = MODES[mode]; const s = steps[+slider.value];
+    const def = MODES[mode]; const s = steps[at];
     const t = await def.table(s);
     $('hp-table-c').textContent = `${def.title}, ${def.stepLabel(s)}`;
     $('hp-table-h').innerHTML = t.head.map((h, i) => `<th scope="col" class="px-3 py-2 font-medium ${i >= 2 && i < t.head.length - (mode === 'res' ? 0 : 1) ? 'text-right' : ''}">${escapeHtml(h)}</th>`).join('');
-    $('hp-table-b').innerHTML = t.rows.map((r) => `<tr class="border-t border-line">${r.map((c, i) => `<td class="px-3 py-1.5 ${i === 0 && mode !== 'res' ? 'font-mono' : ''} ${i >= 2 && i < r.length - (mode === 'res' ? 0 : 1) ? 'text-right font-mono' : ''}">${escapeHtml(c)}</td>`).join('')}</tr>`).join('');
+    $('hp-table-b').innerHTML = t.rows.map((r) => `<tr class="border-t border-line">${r.map((c, i) => `<td class="px-3 py-1.5  ${i >= 2 && i < r.length - (mode === 'res' ? 0 : 1) ? 'text-right' : ''}">${escapeHtml(c)}</td>`).join('')}</tr>`).join('');
   }
 
-  function choose(c: string) {
+  async function choose(c: string) {
     if (!NAMES.has(c)) return;
     map.setFeatureState({ source: 'aeo-wilayas', id: code }, { selected: false });
     code = c; sel.value = c;
     map.setFeatureState({ source: 'aeo-wilayas', id: code }, { selected: true });
+    const def = MODES[mode];
+    ser = def.series ? await def.series(code) : null;
+    drawContext(); drawDetail();
     readout();
   }
 
+  // ---- hover preview on the detail chart
+  const spark = $('hp-spark'), tip = $('hp-tip');
+  let pv = 0;
+  const idxAt = (clientX: number) => {
+    const r = spark.getBoundingClientRect(); const n = win.b - win.a + 1;
+    const i = Math.floor(win.a + ((clientX - r.left) / r.width) * n);
+    return { i: Math.max(Math.ceil(win.a), Math.min(Math.floor(win.b), i)), p: ((clientX - r.left) / r.width) * 100 };
+  };
+  function hover(i: number | null, p = 0) {
+    if (i === hoverI) return;
+    hoverI = i; drawDetail();
+    const my = ++pv;
+    if (i === null || !ser) { tip.hidden = true; showMonth(); MODES[mode].apply(steps[at]); return; }
+    const def = MODES[mode]; const v = ser.values[i];
+    tip.innerHTML = `<strong class="font-medium">${escapeHtml(def.stepLabel(steps[i]))}</strong><br>${v === null ? 'no value' : `${escapeHtml(ser.fmt(v))}${ser.unit ? ` ${escapeHtml(ser.unit)}` : ''}<br>${escapeHtml(ser.label(v))}`}`;
+    tip.style.left = `${Math.min(82, Math.max(18, p))}%`;
+    tip.hidden = false;
+    showMonth(i);
+    requestAnimationFrame(() => { if (my === pv && hoverI === i) MODES[mode].apply(steps[i]); });
+  }
+  spark.addEventListener('pointermove', (e) => { if (!ser || timer !== null) return; const { i, p } = idxAt(e.clientX); hover(i, p); });
+  spark.addEventListener('pointerleave', () => hover(null));
+  spark.addEventListener('click', (e) => {
+    if (!ser) return;
+    const { i } = idxAt(e.clientX);
+    stop(); hoverI = null; ++pv; tip.hidden = true;
+    zoom = zoom === 'now' && i !== steps.length - 1 ? 'custom' : zoom; markZoom();
+    setStep(i);
+  });
+
+  // ---- the frame on the full-record strip: drag to move, drag an edge to resize, click elsewhere to jump
+  const ctx = $('hp-ctx');
+  ctx.addEventListener('pointerdown', (e) => {
+    if (!steps.length) return;
+    e.preventDefault(); stop(); ++anim;
+    const r = ctx.getBoundingClientRect(); const N = steps.length;
+    const idx = (x: number) => ((x - r.left) / r.width) * N;
+    const minW = Math.min(N, 12) - 1;
+    const x0 = e.clientX;
+    const bl = r.left + (win.a / N) * r.width, br = r.left + ((win.b + 1) / N) * r.width;
+    const kind: 'l' | 'r' | 'move' = Math.abs(x0 - bl) < 10 ? 'l' : Math.abs(x0 - br) < 10 ? 'r' : 'move';
+    if (kind === 'move' && (x0 < bl || x0 > br)) {
+      const w = win.b - win.a; const a = Math.max(0, Math.min(N - 1 - w, Math.round(idx(x0) - w / 2)));
+      win = { a, b: a + w };
+    }
+    const start = { ...win }, i0 = idx(x0);
+    zoom = 'custom'; markZoom();
+    ctx.setPointerCapture(e.pointerId);
+    const move = (ev: PointerEvent) => {
+      const d = Math.round(idx(ev.clientX) - i0);
+      if (kind === 'move') { const w = start.b - start.a; const a = Math.max(0, Math.min(N - 1 - w, start.a + d)); win = { a, b: a + w }; }
+      else if (kind === 'l') win = { a: Math.max(0, Math.min(start.b - minW, start.a + d)), b: start.b };
+      else win = { a: start.a, b: Math.min(N - 1, Math.max(start.a + minW, start.b + d)) };
+      drawDetail(); drawBrush();
+    };
+    const up = () => {
+      ctx.removeEventListener('pointermove', move); ctx.removeEventListener('pointerup', up); ctx.removeEventListener('pointercancel', up);
+      setWindow(win, false);
+    };
+    ctx.addEventListener('pointermove', move); ctx.addEventListener('pointerup', up); ctx.addEventListener('pointercancel', up);
+    drawDetail(); drawBrush();
+  });
+  $('hp-brush').addEventListener('keydown', (e) => {
+    const N = steps.length, w = win.b - win.a; const k = e.shiftKey ? 1 : 12; let a = win.a;
+    if (e.key === 'ArrowLeft') a -= k; else if (e.key === 'ArrowRight') a += k; else if (e.key === 'Home') a = 0; else if (e.key === 'End') a = N - 1 - w; else return;
+    e.preventDefault(); stop();
+    a = Math.max(0, Math.min(N - 1 - w, a));
+    zoom = 'custom'; markZoom();
+    setWindow({ a, b: a + w }, false);
+  });
+  document.querySelectorAll<HTMLButtonElement>('#hp-zoom button').forEach((b) => b.addEventListener('click', () => {
+    stop(); zoom = b.dataset.zoom!; markZoom(); setWindow(zoomWin(zoom));
+  }));
+
+  // ---- play through the window
   function stop() {
     if (timer !== null) { clearInterval(timer); timer = null; }
     $('hp-play-i').textContent = '▶'; $('hp-play-t').textContent = 'Play'; $('hp-play').setAttribute('aria-pressed', 'false');
   }
   $('hp-play').addEventListener('click', () => {
     if (timer !== null) { stop(); return; }
-    if (+slider.value >= steps.length - 1) setStep(0);
+    if (at >= win.b) setStep(win.a);
     $('hp-play-i').textContent = '❚❚'; $('hp-play-t').textContent = 'Pause'; $('hp-play').setAttribute('aria-pressed', 'true');
+    const n = win.b - win.a + 1;
     timer = window.setInterval(() => {
-      const i = +slider.value + 1;
-      if (i > steps.length - 1) { stop(); return; }
+      const i = at + 1;
+      if (i > win.b) { stop(); return; }
       setStep(i);
-    }, 900);
+    }, Math.max(70, Math.min(800, 24000 / n)));
   });
   slider.addEventListener('input', () => { stop(); setStep(+slider.value); });
   sel.addEventListener('change', () => choose(sel.value));

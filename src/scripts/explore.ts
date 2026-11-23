@@ -73,7 +73,7 @@ export async function initExplore() {
   const wByCode = new Map(fc.features.map((f) => [String(f.properties?.wilaya_code), f]));
   const wCb = new Combobox($<HTMLInputElement>('ex-wilaya'), $<HTMLUListElement>('ex-wilaya-list'), (v) => { if (v) selectWilaya(v, true); });
   wCb.setOptions([...wByCode.values()].sort((a, b) => String(a.properties?.wilaya_code).localeCompare(String(b.properties?.wilaya_code)))
-    .map((f) => { const p = f.properties!; return { value: String(p.wilaya_code), label: `${p.wilaya_code} — ${p.name}`, hint: p.name_ar ?? '', search: searchKey(String(p.wilaya_code), p.name, p.name_ar) }; }));
+    .map((f) => { const p = f.properties!; return { value: String(p.wilaya_code), label: `${p.wilaya_code} — ${p.name}`, search: searchKey(String(p.wilaya_code), p.name) }; }));
 
   let selW: string | null = null, selC: string | null = null;
   const setSel = (src: string, id: string | null, prev: string | null) => {
@@ -103,7 +103,7 @@ export async function initExplore() {
     setSel('aeo-communes', null, selC); selC = null;
     setSel('aeo-wilayas', code, selW); selW = code;
     wCb.set(code, false);
-    region = { level: 'admin1', code, name: p.name, nameAr: p.name_ar, wilaya: code, areaKm2: Number(p.area_km2) };
+    region = { level: 'admin1', code, name: p.name, wilaya: code, areaKm2: Number(p.area_km2) };
     openInspector();
     if (fly) map.fitBounds(bboxOf(f), { padding: 40, maxZoom: 8.5 });
     refresh();
@@ -113,7 +113,7 @@ export async function initExplore() {
     setSel('aeo-wilayas', null, selW); selW = null;
     setSel('aeo-communes', code, selC); selC = code;
     wCb.set(String(p.wilaya_code), false);
-    region = { level: 'admin2', code, name: p.name, nameAr: p.name_ar, wilaya: String(p.wilaya_code), wilayaName: p.wilaya_name, areaKm2: Number(p.area_km2) };
+    region = { level: 'admin2', code, name: p.name, wilaya: String(p.wilaya_code), wilayaName: p.wilaya_name, areaKm2: Number(p.area_km2) };
     openInspector();
     refresh();
   }

@@ -19,11 +19,17 @@ async function clickLngLat(page: Page, lngLat: [number, number]) {
 
 test('1. homepage: bright map of Algeria, clearly visible', async ({ page }) => {
   await page.goto('/');
+  // first screen: the pixel-atlas image of Algeria (docs/BRAND.md §7)
+  const hero = page.locator('img[src*="algeria-pixel"]');
+  await expect(hero).toBeVisible();
+  const hb = await hero.boundingBox();
+  expect(hb!.width).toBeGreaterThan(340); expect(hb!.y).toBeLessThan(1000);
+  // then the live monitor map
   const map = page.locator('#home-map canvas');
+  await map.scrollIntoViewIfNeeded();
   await expect(map).toBeVisible();
   const box = await map.boundingBox();
-  expect(box!.width).toBeGreaterThan(500); expect(box!.height).toBeGreaterThan(380);
-  expect(box!.y).toBeLessThan(1000); // in the first screen
+  expect(box!.width).toBeGreaterThan(330); expect(box!.height).toBeGreaterThan(380);
   // light basemap (OpenFreeMap Positron) and a light page; no dark style
   await page.waitForFunction(() => (window as any).__aeoHomeMap?.isStyleLoaded?.());
   const rgb = await page.evaluate(() => {
@@ -146,4 +152,12 @@ test('9. no AEO statistics: an honest message, never a number', async ({ page })
   await expect(body).toContainText('Available from external source — regional statistics not yet processed by AEO.');
   await expect(body.locator('.font-mono.text-\\[2rem\\]')).toHaveCount(0);
   await expect(body.getByRole('link', { name: /Visit source/ })).toHaveAttribute('href', /^https:\/\//);
+});
+
+test('No Arabic script in the pages (not yet translated and reviewed)', async ({ page }) => {
+  for (const url of ['/', '/regions/', '/regions/19/', '/regions/19/1901/', '/data/aeo-dza-admin-boundaries/']) {
+    await page.goto(url);
+    const html = await page.content();
+    expect(html.match(/[؀-ۿ]+/g), url).toBeNull();
+  }
 });

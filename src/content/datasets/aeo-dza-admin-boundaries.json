@@ -2,7 +2,6 @@
   "id": "aeo-dza-admin-boundaries",
   "title": "Algeria administrative boundaries: national, 69 wilayas, 1,541 communes (OSM)",
   "title_fr": "Limites nationales et des wilayas de l'Algérie (69 wilayas, instantané OSM)",
-  "title_ar": "حدود الجزائر الوطنية وحدود الولايات (69 ولاية، لقطة من OpenStreetMap)",
   "description": "Nested polygons for Algeria, its 69 wilayas and its 1,541 communes, built by AEO from an OpenStreetMap snapshot of 20 November 2026. Communes carry their ONS codes and French and Arabic names; wilayas are the union of their communes. The division follows Loi n° 26-06 of 4 April 2026 (JO n° 25): 69 wilayas and 1,541 communes; wilayas 59–69 were named by Décret présidentiel n° 26-206 (JO n° 40).",
   "purpose": "A versioned, openly licensed reference geography for summarising gridded data by wilaya, for the AEO map explorer, and for future wilaya-level search and downloads.",
   "domain": [
@@ -18,7 +17,6 @@
     "ADM1",
     "Algeria",
     "OpenStreetMap",
-    "ولاية",
     "boundaries"
   ],
   "status": "available",

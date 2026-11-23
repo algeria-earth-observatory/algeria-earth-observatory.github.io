@@ -1,7 +1,7 @@
 /**
  * Accessible searchable select (ARIA 1.2 combobox with a listbox popup).
  *
- * Keyboard: type to filter (accent-insensitive; matches name, code or Arabic name);
+ * Keyboard: type to filter (accent-insensitive; matches name or code);
  * Down/Up move; Enter selects; Escape closes and restores; Home/End in the list;
  * Tab commits an exact match. The committed value is a stable code, never a name.
  */

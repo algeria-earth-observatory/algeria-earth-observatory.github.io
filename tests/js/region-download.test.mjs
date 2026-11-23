@@ -27,9 +27,9 @@ const head = csv[0].split(',');
 const rows = csv.slice(1).map((l) => Object.fromEntries(l.split(',').map((v, i) => [head[i], v])));
 const adm1 = json(pub('/data/aeo/boundaries/2026-11-20/dza_adm1_wilayas.geojson')).features.map((f) => f.properties);
 const units = {
-  boundary_version: '2026-11-20', national: { code: 'DZ', name: 'Algeria', name_ar: 'الجزائر' },
-  wilayas: adm1.map((w) => [w.wilaya_code, w.name, w.name_ar ?? '']),
-  communes: rows.map((r) => [r.commune_code, r.name, r.name_ar, r.wilaya_code]),
+  boundary_version: '2026-11-20', national: { code: 'DZ', name: 'Algeria' },
+  wilayas: adm1.map((w) => [w.wilaya_code, w.name]),
+  communes: rows.map((r) => [r.commune_code, r.name, r.wilaya_code]),
 };
 const ctx = (load = async (u) => json(pub(u))) => makeContext({ indicators: available, manifests, boundaryRecord, units, load });
 const io = { fetchBuffer: async (u) => buf(u), unitName: (c) => units.wilayas.find((w) => w[0] === c)?.[1] ?? units.communes.find((x) => x[0] === c)?.[1] };

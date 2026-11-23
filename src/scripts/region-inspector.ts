@@ -20,7 +20,6 @@ export interface InspectorRegion {
   level: 'admin1' | 'admin2';
   code: string;
   name: string;
-  nameAr?: string | null;
   wilaya: string;
   wilayaName?: string;
   areaKm2?: number | null;
@@ -60,7 +59,7 @@ export class RegionInspector {
 
   async render(region: InspectorRegion, q: InspectorQuery) {
     const my = ++this.seq;
-    const head = `<p class="text-[0.875rem] text-slate">${region.level === 'admin1' ? `Wilaya ${esc(region.code)}` : `Commune ${esc(region.code)} · wilaya of ${esc(region.wilayaName ?? region.wilaya)}`}${region.nameAr ? ` · <span lang="ar" dir="rtl">${esc(region.nameAr)}</span>` : ''}</p>
+    const head = `<p class="text-[0.875rem] text-slate">${region.level === 'admin1' ? `Wilaya ${esc(region.code)}` : `Commune ${esc(region.code)} · wilaya of ${esc(region.wilayaName ?? region.wilaya)}`}</p>
       <h2 id="ins-h" class="mt-1 text-[1.375rem] font-medium leading-tight text-atlas" tabindex="-1">${esc(region.name)} <span class="font-normal text-slate">— Environmental profile</span></h2>`;
     this.el.innerHTML = `${head}<p class="mt-4 text-[0.9375rem] text-slate" role="status">Loading statistics…</p>`;
     let body: string;

@@ -19,7 +19,7 @@
 /** @typedef {'admin0'|'admin1'|'admin2'} Level */
 /** @typedef {{ href: string, format: string, level: string|null, unit_code?: string, title: string, bytes: number, sha256: string, role?: string }} Asset */
 /** @typedef {{ id: string, label: string, kind: 'product'|'boundaries', manifest?: string, record?: string, partitions?: string, steps: string[], short: string }} IndicatorConfig */
-/** @typedef {{ code: string, name: string, name_ar: string, wilaya?: string }} Unit */
+/** @typedef {{ code: string, name: string, wilaya?: string }} Unit */
 /**
  * @typedef {{
  *   level: Level, wilaya: string, commune: string, indicator: string, step: string,
@@ -73,8 +73,8 @@ export function indicatorsFromRecords(records) {
  * @param {{ indicators: IndicatorConfig[], manifests: Record<string, any>, boundaryRecord: any, units: any, load: (url: string) => Promise<any> }} src
  */
 export function makeContext(src) {
-  const wilayas = new Map(src.units.wilayas.map((/** @type {string[]} */ w) => [w[0], { code: w[0], name: w[1], name_ar: w[2] }]));
-  const communes = new Map(src.units.communes.map((/** @type {string[]} */ c) => [c[0], { code: c[0], name: c[1], name_ar: c[2], wilaya: c[3] }]));
+  const wilayas = new Map(src.units.wilayas.map((/** @type {string[]} */ w) => [w[0], { code: w[0], name: w[1] }]));
+  const communes = new Map(src.units.communes.map((/** @type {string[]} */ c) => [c[0], { code: c[0], name: c[1], wilaya: c[2] }]));
   // time steps = those for which the manifest lists a statistics table
   const indicators = src.indicators.map((i) => {
     if (i.kind !== 'product') return i;
@@ -96,16 +96,16 @@ export function makeContext(src) {
 
 /** @param {Ctx} ctx @param {Selection} sel */
 export function area(ctx, sel) {
-  if (sel.level === 'admin0') return { level: sel.level, code: 'DZ', name: 'Algeria', name_ar: ctx.national.name_ar, label: 'Algeria', file: 'dza' };
+  if (sel.level === 'admin0') return { level: sel.level, code: 'DZ', name: 'Algeria', label: 'Algeria', file: 'dza' };
   if (sel.level === 'admin1') {
     const w = ctx.wilayas.get(sel.wilaya);
     if (!w) return null;
-    return { level: sel.level, code: w.code, name: w.name, name_ar: w.name_ar, label: `${w.name} (wilaya ${w.code})`, file: `w${w.code}-${slug(w.name)}` };
+    return { level: sel.level, code: w.code, name: w.name, label: `${w.name} (wilaya ${w.code})`, file: `w${w.code}-${slug(w.name)}` };
   }
   const c = ctx.communes.get(sel.commune);
   if (!c || c.wilaya !== sel.wilaya) return null;
   const w = ctx.wilayas.get(c.wilaya);
-  return { level: sel.level, code: c.code, name: c.name, name_ar: c.name_ar, wilaya: c.wilaya, wilayaName: w?.name, label: `${c.name} (commune ${c.code}, wilaya of ${w?.name})`, file: `c${c.code}-${slug(c.name)}` };
+  return { level: sel.level, code: c.code, name: c.name, wilaya: c.wilaya, wilayaName: w?.name, label: `${c.name} (commune ${c.code}, wilaya of ${w?.name})`, file: `c${c.code}-${slug(c.name)}` };
 }
 
 /** @param {Ctx} ctx @param {string} id */

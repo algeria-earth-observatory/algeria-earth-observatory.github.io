@@ -295,7 +295,6 @@ export function communePopupHtml(p: Record<string, unknown>) {
   return `<div class="aeo-pop">
     <p class="aeo-pop-k">Commune ${escapeHtml(p.commune_code)} · wilaya ${escapeHtml(p.wilaya_code)}</p>
     <p class="aeo-pop-t">${escapeHtml(p.name)}</p>
-    ${p.name_ar ? `<p class="aeo-pop-ar" lang="ar" dir="rtl">${escapeHtml(p.name_ar)}</p>` : ''}
     <dl><dt>Wilaya</dt><dd>${escapeHtml(p.wilaya_name)}</dd><dt>Area (computed)</dt><dd>${Number(p.area_km2).toLocaleString('en-US')} km²</dd></dl>
     <p class="aeo-pop-n"><a href="/regions/${escapeHtml(p.wilaya_code)}/${escapeHtml(p.commune_code)}/">Commune profile</a> · <a href="/drought/?level=admin2&unit=${escapeHtml(p.commune_code)}">Analyze</a></p>
   </div>`;
@@ -305,7 +304,6 @@ export function wilayaPopupHtml(p: Record<string, unknown>) {
   return `<div class="aeo-pop">
     <p class="aeo-pop-k">Wilaya ${escapeHtml(p.wilaya_code)}</p>
     <p class="aeo-pop-t">${escapeHtml(p.name)}</p>
-    ${p.name_ar ? `<p class="aeo-pop-ar" lang="ar" dir="rtl">${escapeHtml(p.name_ar)}</p>` : ''}
     <dl>
       <dt>ISO 3166-2</dt><dd>${p.iso_3166_2 ? escapeHtml(p.iso_3166_2) : '<span title="Not tagged in OSM">—</span>'}</dd>
       <dt>Area (computed)</dt><dd>${Number(p.area_km2).toLocaleString('en-US')} km²</dd>
