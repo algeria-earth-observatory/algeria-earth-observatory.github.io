@@ -126,11 +126,8 @@
   @media (min-width: 1024px) { .container-aeo { padding-inline: 3rem; } }
 
   /* technical labels */
-  .eyebrow, .overline {
-    font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--color-slate); font-weight: 400;
-  }
-  .meta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-slate); }
+  .eyebrow, .overline { font-size: 0.875rem; color: var(--color-slate); font-weight: 500; }
+  .meta { font-size: 0.8125rem; color: var(--color-slate); font-variant-numeric: tabular-nums; }
   .tabular { font-variant-numeric: tabular-nums; }
 
   /* type scale */
@@ -233,8 +230,6 @@
 
   /* Live monitor (homepage): pulsing status dot, indicator cards, timeline */
   .live-dot { position: relative; display: inline-block; width: .5rem; height: .5rem; border-radius: 9999px; background: var(--color-oxide); flex: none; }
-  .live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: var(--color-oxide); animation: aeo-pulse 2.2s ease-out infinite; }
-  @keyframes aeo-pulse { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(3); opacity: 0; } }
   .now-card { display: flex; flex-direction: column; height: 100%; width: 100%; text-align: left; padding: .75rem; border: 1px solid var(--color-line); border-radius: var(--radius-card); background: var(--color-surface); transition: border-color .15s, background-color .15s; }
   @media (min-width: 640px) { .now-card { padding: 1rem; } }
   button.now-card { cursor: pointer; }
