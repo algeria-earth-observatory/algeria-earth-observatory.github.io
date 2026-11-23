@@ -91,7 +91,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
   <div class="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12"><GeoBand /></div>
 
   <!-- Live monitor: the latest month of each monitoring product, on one map -->
-  <section class="theme-dark mt-10 scroll-mt-14" aria-labelledby="now-h" id="live">
+  <section class="mt-10 scroll-mt-14 border-y border-line bg-paper" aria-labelledby="now-h" id="live">
     <div class="mx-auto max-w-[90rem] px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
       <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
         <div>
@@ -108,14 +108,14 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
                 <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
                 <span class="mt-1 font-mono text-[1.1875rem] leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
                 <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
-                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate"><span class="inline-block h-1.5 w-1.5 rounded-full bg-[#35978f]" aria-hidden="true"></span>{c.when}<span class="ml-auto hidden text-[#b3c4ff] sm:inline" aria-hidden="true">Map ›</span></span>
+                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate"><span class="inline-block h-1.5 w-1.5 rounded-full bg-oxide" aria-hidden="true"></span>{c.when}<span class="ml-auto hidden font-medium text-cobalt sm:inline" aria-hidden="true">Map ›</span></span>
               </button>
             ) : (
               <div class="now-card">
                 <span class="text-[0.8125rem] text-slate sm:text-[0.875rem]">{c.label}</span>
                 <span class="mt-1 font-mono text-[1.1875rem] leading-tight text-atlas sm:text-[1.5rem]">{c.value}</span>
                 <span class="hidden text-[0.875rem] text-graphite sm:block">{c.detail}</span>
-                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate"><span class="inline-block h-1.5 w-1.5 rounded-full bg-[#35978f]" aria-hidden="true"></span>{c.when}</span>
+                <span class="mt-auto flex items-center gap-1.5 pt-3 text-[0.8125rem] text-slate"><span class="inline-block h-1.5 w-1.5 rounded-full bg-oxide" aria-hidden="true"></span>{c.when}</span>
               </div>
             )}
             <a href={c.href} class="mt-1.5 self-start text-[0.8125rem]">Details<span class="sr-only">: {c.label}</span></a>
@@ -123,7 +123,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
         ))}
       </ul>
 
-      <div class="mt-5 grid overflow-hidden border border-line lg:grid-cols-12" style="border-radius:var(--radius-card)">
+      <div class="mt-5 grid overflow-hidden border border-line bg-surface lg:grid-cols-12" style="border-radius:var(--radius-card)">
         <div class="relative min-h-[26rem] lg:col-span-8 lg:min-h-[38rem]">
           <div class="absolute inset-0"><div id="home-map" class="h-full w-full bg-limestone" role="region" aria-label="Map of the selected monitoring indicator by wilaya. Use the wilaya list beside the map to choose a wilaya with the keyboard."></div></div>
           <div id="home-legend" class="theme-light tabular absolute bottom-3 left-3 z-10 max-w-[calc(100%-1.5rem)] border border-line bg-white/95 px-3 py-2 text-[0.8125rem] text-graphite sm:max-w-[26rem]" style="border-radius:var(--radius-control)"></div>
@@ -154,7 +154,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
           </figure>
           <ul id="hp-res" class="hidden max-h-52 overflow-auto text-[0.875rem]" tabindex="0" aria-label="Reservoirs in the selected wilaya"></ul>
           <div class="mt-auto flex flex-col gap-2">
-            <a id="hp-explore" href="/map/" class="btn btn-primary justify-center">Explore<span id="hp-explore-name"></span></a>
+            <a id="hp-explore" href="/map/" class="btn btn-primary justify-center"><span id="hp-explore-name">Explore</span></a>
             <a id="hp-profile" href="/regions/19/" class="btn btn-secondary justify-center">Wilaya profile</a>
           </div>
         </div>
@@ -477,7 +477,7 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     $('hp-class').textContent = r.cls;
     const ex = def.explore(code, s);
     ($('hp-explore') as HTMLAnchorElement).href = ex.href;
-    $('hp-explore-name').textContent = ` ${ex.text}`;
+    $('hp-explore-name').textContent = `Explore ${ex.text}`;
     ($('hp-profile') as HTMLAnchorElement).href = `/regions/${code}/`;
     // sparkline (monthly modes) or reservoir list
     const fig = $('hp-spark-f'), list = $('hp-res');
@@ -493,12 +493,12 @@ const homeData = { wilayas: wilayas.map((w) => [w.code, w.name]), modes: now.fil
     const svg = $('hp-spark'); const n = bars.length; const W = 240, H = 64, mid = H / 2; const w = W / n;
     const cur = +slider.value - (steps.length - n);
     const peak = Math.max(max, ...bars.map((b) => Math.abs(b.v ?? 0)));
-    let out = `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="#78878f" stroke-width="0.6" />`;
+    let out = `<line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="#857f73" stroke-width="0.6" />`;
     bars.forEach((b, i) => {
       const x = i * w + 1;
       if (b.v === null) { out += `<rect x="${x}" y="${mid - 1}" width="${w - 2}" height="2" fill="${NODATA}" opacity="0.5" />`; return; }
       const h = Math.max(1.5, (Math.abs(b.v) / peak) * (mid - 3));
-      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${w - 2}" height="${h}" rx="1" fill="${b.color}" stroke="${i === cur ? '#ffffff' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" />`;
+      out += `<rect x="${x}" y="${b.v >= 0 ? mid - h : mid}" width="${w - 2}" height="${h}" rx="1" fill="${b.color}" stroke="${i === cur ? '#17252c' : 'none'}" stroke-width="${i === cur ? 1.4 : 0}" />`;
     });
     svg.innerHTML = out;
     $('hp-spark-c').textContent = caption;

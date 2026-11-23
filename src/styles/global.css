@@ -232,15 +232,15 @@
   .aeo-reset button { font-size: 12px; font-weight: 500; width: auto !important; padding: 0 .55rem; color: #17252c; }
 
   /* Live monitor (homepage): pulsing status dot, indicator cards, timeline */
-  .live-dot { position: relative; display: inline-block; width: .5rem; height: .5rem; border-radius: 9999px; background: #35978f; flex: none; }
-  .live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: #35978f; animation: aeo-pulse 2.2s ease-out infinite; }
+  .live-dot { position: relative; display: inline-block; width: .5rem; height: .5rem; border-radius: 9999px; background: var(--color-oxide); flex: none; }
+  .live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: var(--color-oxide); animation: aeo-pulse 2.2s ease-out infinite; }
   @keyframes aeo-pulse { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(3); opacity: 0; } }
   .now-card { display: flex; flex-direction: column; height: 100%; width: 100%; text-align: left; padding: .75rem; border: 1px solid var(--color-line); border-radius: var(--radius-card); background: var(--color-surface); transition: border-color .15s, background-color .15s; }
   @media (min-width: 640px) { .now-card { padding: 1rem; } }
   button.now-card { cursor: pointer; }
   button.now-card:hover { border-color: var(--color-line-strong); }
-  button.now-card[aria-pressed='true'] { border-color: #9db1ff; background: var(--color-surface-2); box-shadow: inset 0 3px 0 #9db1ff; }
-  .hp-range { width: 100%; accent-color: #9db1ff; }
+  button.now-card[aria-pressed='true'] { border-color: var(--color-cobalt); box-shadow: inset 0 3px 0 var(--color-cobalt); }
+  .hp-range { width: 100%; accent-color: var(--color-cobalt); }
 
   /* Legacy EO chrome — neutralised */
   .eo-grid { background-image: none; }
